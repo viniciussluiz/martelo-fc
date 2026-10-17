@@ -1,0 +1,47 @@
+{
+  "name": "martelo-fc",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Martelo FC — leilão às cegas de futebol, multiplayer, com continuidade de salas, histórico de confrontos e Sala de Troféus.",
+  "type": "module",
+  "engines": {
+    "node": ">=20.11"
+  },
+  "scripts": {
+    "dev": "concurrently -k -n server,web -c blue,green \"npm:dev:server\" \"npm:dev:web\"",
+    "dev:server": "tsx watch src/server/main.ts",
+    "dev:web": "vite --config vite.config.ts",
+    "build": "vite build --config vite.config.ts",
+    "start": "tsx src/server/main.ts",
+    "migrate": "tsx scripts/migrate.ts",
+    "deck:generate": "tsx scripts/generate-deck.ts",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:e2e": "playwright test",
+    "test:all": "npm run typecheck && npm test && npm run build && npm run test:e2e"
+  },
+  "dependencies": {
+    "better-sqlite3": "12.4.1",
+    "tsx": "4.20.6",
+    "ws": "8.22.0"
+  },
+  "devDependencies": {
+    "@fontsource/big-shoulders-display": "^5.3.0",
+    "@fontsource/kalam": "^5.3.0",
+    "@fontsource/public-sans": "^5.3.0",
+    "@playwright/test": "1.56.0",
+    "@types/better-sqlite3": "7.6.13",
+    "@types/node": "22.18.12",
+    "@types/react": "19.2.2",
+    "@types/react-dom": "19.2.2",
+    "@types/ws": "8.18.1",
+    "@vitejs/plugin-react": "6.1.2",
+    "concurrently": "^10.0.6",
+    "react": "19.2.0",
+    "react-dom": "19.2.0",
+    "typescript": "5.9.3",
+    "vite": "8.3.4",
+    "vitest": "5.0.5"
+  }
+}
