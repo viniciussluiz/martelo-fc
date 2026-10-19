@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import type { CardView } from '../../shared/protocol';
 import { serverNow } from '../lib/store';
+import { Avatar } from './Avatar';
 import { Icon } from './Icon';
 
 export const TIER_LABEL: Record<string, string> = {
@@ -69,11 +70,17 @@ export function Band({ card }: { card?: CardView }) {
   );
 }
 
+/** Figurinha do jogador; Lendas reveladas ganham destaque dourado e tamanho maior. */
+export function CardAvatar({ card, size = 64 }: { card: CardView; size?: number }) {
+  return <Avatar seed={card.seed} club={card.club} kit={card.kit} size={size} legend={card.tier === 'lenda'} mystery={!!card.mystery} label={card.mystery ? undefined : `Figurinha de ${card.name}`} />;
+}
+
 export function CardFace({ card, children, compact }: { card: CardView; children?: React.ReactNode; compact?: boolean }) {
   return (
-    <div className="sticker" data-mystery={!!card.mystery}>
-      <div className="spread" style={{ alignItems: 'flex-start' }}>
-        <div className="stack" style={{ gap: 2, minWidth: 0 }}>
+    <div className="sticker" data-mystery={!!card.mystery} data-legend={card.tier === 'lenda' || undefined}>
+      <div className="sticker-row">
+        <CardAvatar card={card} size={compact ? 48 : 60} />
+        <div className="stack" style={{ gap: 2, minWidth: 0, flex: 1 }}>
           <div className="row" style={{ gap: 8 }}>
             <span className="badge-pos">{card.position}</span>
             <TierBadge tier={card.tier} />

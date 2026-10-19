@@ -129,6 +129,9 @@ export function buildAuctionPool(params: {
 }): { pool: Card[]; reserve: Card[] } {
   const rng = new Rng(`pool:${params.seed}`);
   const carriedIds = new Set(params.carried.map((c) => c.id));
+  const person = (c: Card) => c.personId ?? c.id;
+  // Uma pessoa só pode aparecer uma vez por leilão (mesmo com versões de clube/ano diferentes).
+  const usedPeople = new Set(params.carried.map(person));
   const carriedByPos: Partial<Record<Position, number>> = {};
   for (const c of params.carried) carriedByPos[c.position] = (carriedByPos[c.position] ?? 0) + 1;
   const sizes = lotSizes(params.seats, params.extra, carriedByPos);
@@ -136,9 +139,17 @@ export function buildAuctionPool(params: {
   const reserve: Card[] = [];
   for (const pos of POSITIONS) {
     const candidates = rng.shuffle(params.deck.filter((c) => c.position === pos && !carriedIds.has(c.id)));
-    const missing = Math.max(0, sizes[pos] - (carriedByPos[pos] ?? 0));
-    pool.push(...candidates.slice(0, missing));
-    reserve.push(...candidates.slice(missing));
+    let missing = Math.max(0, sizes[pos] - (carriedByPos[pos] ?? 0));
+    for (const c of candidates) {
+      if (usedPeople.has(person(c))) continue;
+      usedPeople.add(person(c));
+      if (missing > 0) {
+        pool.push(c);
+        missing--;
+      } else {
+        reserve.push(c);
+      }
+    }
   }
   return { pool, reserve };
 }

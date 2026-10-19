@@ -10,6 +10,11 @@ sem ver o nível, monta o time e disputa liga e copa. Implementação independen
   sequências, títulos e finais em comum, elencos e leilões de cada disputa, filtros por período e competição.
 - **Sala de Troféus** — 30 conquistas orientadas a dados (raridades, categorias, secretas, progresso), validadas no servidor.
 
+## Jogadores reais
+`npm run deck:wikidata` monta `data/deck-wikidata.json` com jogadores antigos e atuais dos principais clubes brasileiros a partir
+do Wikidata (dados CC0, sem fotos). A nota de cada carta é calculada pelo projeto (fama + passagem pelo clube); as figurinhas são
+ilustrações próprias, e as Lendas ganham destaque dourado. Detalhes em [docs/BARALHO.md](docs/BARALHO.md).
+
 ## Requisitos
 - Node.js **20.11+** (testado com 22). Nenhum serviço externo; o banco é SQLite em arquivo.
 
@@ -46,5 +51,7 @@ Os testes sobem servidores próprios com banco temporário e ritmo acelerado (`G
 - [docs/BARALHO.md](docs/BARALHO.md) — formato do baralho para trocar pelo seu conjunto de dados.
 
 ## Créditos e licenças de ativos
-Código, textos, ícones, nomes de clubes e jogadores do baralho padrão são próprios (fictícios).
+Código, textos e ícones são próprios. O baralho fictício (`data/deck.json`) tem clubes e jogadores inventados; o baralho de
+jogadores reais (`data/deck-wikidata.json`) usa dados do Wikidata (CC0), sem fotos — as figurinhas são ilustrações próprias.
+Nomes reais de atletas e clubes podem envolver direito de imagem/marca num uso comercial (ver [docs/BARALHO.md](docs/BARALHO.md)).
 Fontes empacotadas via Fontsource sob SIL Open Font License: Big Shoulders Display, Public Sans e Kalam.

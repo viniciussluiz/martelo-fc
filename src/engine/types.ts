@@ -43,6 +43,13 @@ export interface Card {
   tier: Tier;
   /** Pista pública (biografia curta) — correlacionada, mas não idêntica, ao nível. */
   hint: string;
+  /**
+   * Identifica a pessoa por trás da carta (ex.: QID do Wikidata). Um baralho pode ter
+   * várias versões do mesmo jogador (clube/ano); o leilão nunca põe duas juntas.
+   */
+  personId?: string;
+  /** Cores do uniforme do clube (primária, secundária), usadas no avatar ilustrado. */
+  kit?: [string, string];
 }
 
 export type AcquisitionSource = 'leilao' | 'desempate' | 'repescagem' | 'monte';

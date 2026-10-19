@@ -1,3 +1,4 @@
+import { existsSync } from 'node:fs';
 import { resolve } from 'node:path';
 
 export type GameSpeed = 'normal' | 'turbo' | 'test' | 'e2e';
@@ -20,13 +21,19 @@ export interface ServerConfig {
 
 const root = resolve(import.meta.dirname, '../..');
 
+/** Usa o baralho de jogadores reais (Wikidata) quando existir; senão, o fictício. */
+function defaultDeckPath(): string {
+  const real = resolve(root, 'data/deck-wikidata.json');
+  return existsSync(real) ? real : resolve(root, 'data/deck.json');
+}
+
 export function loadConfig(env: NodeJS.ProcessEnv = process.env): ServerConfig {
   const speed = env.GAME_SPEED as GameSpeed | undefined;
   return {
     port: Number(env.PORT ?? 3210),
     host: env.HOST ?? '0.0.0.0',
     dbPath: env.DATABASE_PATH ?? resolve(root, 'data/martelo.db'),
-    deckPath: env.DECK_PATH ?? resolve(root, 'data/deck.json'),
+    deckPath: env.DECK_PATH ?? defaultDeckPath(),
     staticDir: env.STATIC_DIR ?? resolve(root, 'dist'),
     forceSpeed: speed && ['normal', 'turbo', 'test', 'e2e'].includes(speed) ? speed : null,
     sessionTtlDays: Number(env.SESSION_TTL_DAYS ?? 60),

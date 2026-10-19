@@ -147,8 +147,10 @@ function cardView(card: Card, opts: { hideName: boolean; showTier: boolean; show
     club: card.club,
     year: card.year,
     hint: opts.hideName ? 'Carta-surpresa: o nome só aparece no martelo.' : card.hint,
+    seed: opts.hideName ? 'surpresa' : (card.personId ?? card.id),
   };
   if (opts.hideName) v.mystery = true;
+  if (card.kit) v.kit = card.kit;
   if (opts.showTier) v.tier = card.tier;
   if (opts.showLevel) {
     v.levelMin = card.levelMin;

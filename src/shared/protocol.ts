@@ -82,6 +82,10 @@ export interface CardView {
   club: string;
   year: number;
   hint: string;
+  /** Semente estável da figurinha ilustrada (mesmo jogador = mesmo desenho). */
+  seed: string;
+  /** Cores do uniforme do clube, quando o baralho as tem. */
+  kit?: [string, string];
   mystery?: boolean;
   /** Revelado no martelo (carta vendida) ou na Cerimônia. */
   tier?: Tier;

@@ -1,5 +1,5 @@
 import type { DisputeView } from '../../../shared/protocol';
-import { TierBadge } from '../common';
+import { CardAvatar, TierBadge } from '../common';
 
 const FORMATION: Record<string, Record<string, number>> = {
   '4-3-3': { GOL: 1, LAT: 2, ZAG: 2, MEI: 3, ATA: 3 },
@@ -48,7 +48,8 @@ export function SquadPitch({ d, participantId, showPrice = true }: { d: DisputeV
                 );
               }
               return (
-                <div className="pitch-slot" key={i} title={`${card.name} (${card.club}, ${card.year})`}>
+                <div className="pitch-slot" key={i} title={`${card.name} (${card.club}, ${card.year})`} data-legend={card.tier === 'lenda' || undefined}>
+                  <CardAvatar card={card} size={34} />
                   <div className="nm">{card.name}</div>
                   <div className="row" style={{ gap: 4, justifyContent: 'center' }}>
                     {card.levelMin !== undefined ? (

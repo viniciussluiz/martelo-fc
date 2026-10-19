@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import type { BidStepView, DisputeView, MonteStepView, RevealView, RoomView, StepView, TiebreakStepView } from '../../../shared/protocol';
 import { act, socket } from '../../lib/socket';
 import { toast } from '../../lib/store';
-import { CardFace, Countdown, EnvelopeArt, POSITION_NAME, TierBadge, plural, useNow } from '../common';
+import { CardAvatar, CardFace, Countdown, EnvelopeArt, POSITION_NAME, TierBadge, plural, useNow } from '../common';
 import { Icon } from '../Icon';
 import { SquadPitch } from './Squad';
 
@@ -351,14 +351,17 @@ function MonteBoard({ step, d }: { step: MonteStepView; d: DisputeView }) {
               onClick={() => void act({ t: 'monte:pick', stepId: step.stepId, cardId: id })}
               aria-label={can ? `Escolher ${c.name}` : c.name}
             >
-              <div className="row" style={{ gap: 6 }}>
-                <span className="badge-pos">{c.position}</span>
-              </div>
-              <div className="sticker-name" style={{ fontSize: '1.15rem' }}>
-                {c.name}
-              </div>
-              <div className="sticker-meta">
-                {c.club}, {c.year}
+              <div className="sticker-row">
+                <CardAvatar card={c} size={44} />
+                <div style={{ minWidth: 0 }}>
+                  <span className="badge-pos">{c.position}</span>
+                  <div className="sticker-name" style={{ fontSize: '1.15rem' }}>
+                    {c.name}
+                  </div>
+                  <div className="sticker-meta">
+                    {c.club}, {c.year}
+                  </div>
+                </div>
               </div>
             </button>
           );
@@ -403,8 +406,9 @@ function RevealStage({ reveal, d }: { reveal: RevealView; d: DisputeView }) {
         ))}
       </div>
       {card && (
-        <div className="reveal-card" key={item.cardId}>
-          <div className="stack" style={{ gap: 6 }}>
+        <div className="reveal-card" key={item.cardId} data-legend={(sold && card.tier === 'lenda') || undefined}>
+          <CardAvatar card={sold ? card : { ...card, tier: undefined }} size={96} />
+          <div className="stack" style={{ gap: 6, minWidth: 0 }}>
             <div className="row" style={{ gap: 8 }}>
               <span className="badge-pos">{card.position}</span>
               {sold && <TierBadge tier={card.tier} />}
