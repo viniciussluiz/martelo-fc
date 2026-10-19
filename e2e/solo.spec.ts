@@ -1,4 +1,5 @@
 import { expect, test } from '@playwright/test';
+import { SERIES_CLUBS } from '../src/tools/wikidata/series';
 import { continuationVisible, enterAsGuest, playUntil, watchConsole } from './helpers';
 
 test('partida rápida completa, continuidade na mesma sala e Sala de Troféus', async ({ page }) => {
@@ -11,10 +12,23 @@ test('partida rápida completa, continuidade na mesma sala e Sala de Troféus', 
   await expect(page.getByText('4 meias e 2 atacantes')).toBeVisible();
   await page.getByRole('button', { name: 'Torneio Mundial' }).click();
   await expect(page.getByText('Grupos em turno único')).toBeVisible();
+  // Clubes das cartas: por padrão tudo (Brasil + Europa); aqui, só a Série A.
+  const clubs = page.getByRole('group', { name: 'Clubes das cartas' });
+  await expect(clubs.getByRole('button', { name: 'Tudo', exact: true })).toHaveAttribute('aria-pressed', 'true');
+  await clubs.getByRole('button', { name: 'Série A', exact: true }).click();
+  await expect(clubs.getByRole('button', { name: 'Série A', exact: true })).toHaveAttribute('aria-pressed', 'true');
+  await page.getByRole('button', { name: 'Ver clubes' }).click();
+  await expect(page.getByText(/Flamengo · /)).toBeVisible();
   await page.getByRole('button', { name: /Abrir o pregão/ }).click();
 
   // Leilão: envelope com validação no cliente.
   await expect(page.getByRole('button', { name: 'Lacrar envelope' })).toBeVisible();
+  // Só clubes da Série A no pregão.
+  const serieA = new Set(SERIES_CLUBS.filter((c) => c.series === 'A').map((c) => c.name));
+  const metas = await page.locator('.sticker-meta').allInnerTexts();
+  const shown = metas.map((t) => /^(.*), \d{4}$/.exec(t.trim())?.[1]).filter((x): x is string => !!x);
+  expect(shown.length).toBeGreaterThan(0);
+  expect(shown.filter((c) => !serieA.has(c))).toEqual([]);
   const inputs = page.getByLabel(/^Lance em/);
   await inputs.first().fill('150');
   await expect(page.getByText('Passou das suas moedas.')).toBeVisible();

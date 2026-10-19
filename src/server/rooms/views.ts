@@ -42,6 +42,7 @@ export function buildRoomView(room: RoomActor, userId: string): RoomView {
     mode: room.mode,
     status: room.status,
     settings: room.settings,
+    deck: room.deckInfo,
     hostUserId: room.hostUserId,
     cycle: room.cycle,
     you: userId,

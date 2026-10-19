@@ -2,7 +2,10 @@ import { describe, expect, it } from 'vitest';
 import { buildAuctionPool } from '../../src/engine/dispute.js';
 import { validateDeck } from '../../src/engine/deck-generator.js';
 import { Rng } from '../../src/engine/rng.js';
-import type { Card } from '../../src/engine/types.js';
+import { existsSync, readFileSync } from 'node:fs';
+import { join } from 'node:path';
+import { deckForScope, SERIES_SCOPES, type Card } from '../../src/engine/types.js';
+import { SERIES_CLUBS, type SeriesClub } from '../../src/tools/wikidata/series.js';
 import {
   ageModifier,
   buildDeck,
@@ -16,6 +19,7 @@ import {
   mapPosition,
   mergeStints,
   peakFromPercentile,
+  referencePercentile,
   representativeYear,
   shortClubName,
   shortStintCap,
@@ -213,7 +217,7 @@ function syntheticDump(): RawDump {
 
 describe('montagem do baralho', () => {
   const counts = { GOL: 30, LAT: 50, ZAG: 50, MEI: 90, ATA: 80 };
-  const { deck, report } = buildDeck(syntheticDump(), { counts, currentYear: 2026 });
+  const { deck, report } = buildDeck(syntheticDump(), { counts, currentYear: 2026, clubs: null });
 
   it('produz um baralho válido, com pelo menos as quantidades pedidas e ids estáveis', () => {
     validateDeck(deck.cards);
@@ -267,7 +271,95 @@ describe('montagem do baralho', () => {
   });
 
   it('é determinístico', () => {
-    const again = buildDeck(syntheticDump(), { counts, currentYear: 2026 }).deck.cards;
+    const again = buildDeck(syntheticDump(), { counts, currentYear: 2026, clubs: null }).deck.cards;
     expect(again.map((c) => `${c.id}:${c.levelMin}`)).toEqual(deck.cards.map((c) => `${c.id}:${c.levelMin}`));
+  });
+});
+
+describe('baralho por grupos de clubes (Série A, Série B, Europa)', () => {
+  const groups: SeriesClub[] = [
+    { qid: 'Q17479', name: 'Flamengo', series: 'A', kit: ['#C8102E', '#111111'] },
+    { qid: 'Q35933', name: 'Corinthians', series: 'A', kit: ['#FFFFFF', '#111111'] },
+    { qid: 'Q219120', name: 'Ponte Preta', series: 'B', kit: ['#111111', '#FFFFFF'] },
+    { qid: 'Q999', name: 'Tubarão', series: 'B', kit: ['#123456', '#ABCDEF'] },
+    { qid: 'Q8682', name: 'Real Madrid', series: 'EU', kit: ['#FFFFFF', '#FEBE10'] },
+  ];
+  /** Mesmo dump sintético, com o clube "Exemplo" (Q80955) fora dos grupos e um clube europeu. */
+  function dumpWithEurope(): RawDump {
+    const raw = syntheticDump();
+    raw.clubs.push({ qid: 'Q8682', label: 'Real Madrid Club de Fútbol', short: null, sitelinks: 153, colors: [] });
+    // Um terço dos jogadores também passou pelo clube europeu, com mais artigos (como na vida real).
+    let n = 0;
+    for (const p of Object.values(raw.people)) {
+      if (n++ % 3) continue;
+      raw.stints.push({ person: p.qid, club: 'Q8682', start: (p.birthYear ?? 1980) + 26, end: (p.birthYear ?? 1980) + 29, apps: 90, goals: 10 });
+    }
+    return raw;
+  }
+  const countsBySeries = {
+    A: { GOL: 12, LAT: 20, ZAG: 20, MEI: 36, ATA: 30 },
+    B: { GOL: 10, LAT: 15, ZAG: 15, MEI: 25, ATA: 20 },
+    EU: { GOL: 12, LAT: 20, ZAG: 20, MEI: 36, ATA: 30 },
+  };
+  const { deck, report } = buildDeck(dumpWithEurope(), { clubs: groups, countsBySeries, currentYear: 2026 });
+
+  it('só clubes dos grupos viram carta, com nome, cores e grupo da lista', () => {
+    validateDeck(deck.cards);
+    expect(deck.cards.every((c) => c.series !== undefined)).toBe(true);
+    expect(deck.cards.some((c) => c.club === 'Exemplo')).toBe(false);
+    expect(new Set(deck.cards.map((c) => c.club))).toEqual(new Set(['Flamengo', 'Corinthians', 'Ponte Preta', 'Tubarão', 'Real Madrid']));
+    const rm = deck.cards.find((c) => c.club === 'Real Madrid')!;
+    expect(rm.series).toBe('EU');
+    expect(rm.kit).toEqual(['#FFFFFF', '#FEBE10']);
+    expect(deck.cards.find((c) => c.club === 'Tubarão')!.series).toBe('B');
+    expect(report.bySeries.A).toBeGreaterThan(0);
+    expect(report.bySeries.B).toBeGreaterThan(0);
+    expect(report.bySeries.EU).toBeGreaterThan(0);
+  });
+
+  it('quem jogou no Brasil e na Europa tem versão nos dois, para salas só de um deles', () => {
+    const byPerson = new Map<string, Set<string>>();
+    for (const c of deck.cards) byPerson.set(c.personId!, (byPerson.get(c.personId!) ?? new Set()).add(c.series === 'EU' ? 'EU' : 'BR'));
+    expect([...byPerson.values()].some((s) => s.size === 2)).toBe(true);
+  });
+
+  it('a sala filtra o baralho pelo grupo escolhido; baralho sem grupos fica inteiro', () => {
+    expect(deckForScope(deck.cards, 'A').every((c) => c.series === 'A')).toBe(true);
+    expect(deckForScope(deck.cards, 'B').every((c) => c.series === 'B')).toBe(true);
+    expect(deckForScope(deck.cards, 'EU').every((c) => c.series === 'EU')).toBe(true);
+    expect(deckForScope(deck.cards, 'AB').every((c) => c.series !== 'EU')).toBe(true);
+    expect(deckForScope(deck.cards, 'ALL')).toHaveLength(deck.cards.length);
+    const fictional = deck.cards.map(({ series: _s, ...c }) => c);
+    expect(deckForScope(fictional, 'EU')).toHaveLength(fictional.length);
+  });
+
+  it('a fama é medida dentro de cada região: muitos desconhecidos novos não inflam as notas', () => {
+    const scores = new Map([
+      ['a', 1],
+      ['b', 2],
+      ['c', 3],
+    ]);
+    const ref = [1, 2, 3];
+    expect(referencePercentile(scores, ref).get('c')).toBeCloseTo(1);
+    // Mais 100 jogadores pouco conhecidos fora da referência: o percentil de quem já estava não muda.
+    const many = new Map([...scores, ...Array.from({ length: 100 }, (_, i) => [`x${i}`, 0.5] as [string, number])]);
+    expect(referencePercentile(many, ref).get('b')).toBeCloseTo(referencePercentile(scores, ref).get('b')!);
+  });
+});
+
+describe('baralho real gerado (data/deck-wikidata.json)', () => {
+  const path = join(import.meta.dirname, '../../data/deck-wikidata.json');
+  it.skipIf(!existsSync(path))('cada escolha de clubes tem cartas para uma sala de 20 técnicos e nenhum clube fora da lista', () => {
+    const cards = (JSON.parse(readFileSync(path, 'utf8')) as { cards: Card[] }).cards;
+    validateDeck(cards);
+    // 20 técnicos × vagas da formação mais exigente + sobra por posição (ver docs/BARALHO.md).
+    const need = { GOL: 21, LAT: 41, ZAG: 41, MEI: 81, ATA: 61 };
+    for (const scope of SERIES_SCOPES) {
+      const scoped = deckForScope(cards, scope);
+      for (const [pos, n] of Object.entries(need)) expect(scoped.filter((c) => c.position === pos).length, `${scope} ${pos}`).toBeGreaterThanOrEqual(n);
+    }
+    const allowed = new Set(SERIES_CLUBS.map((c) => c.name));
+    expect(cards.filter((c) => !allowed.has(c.club)).map((c) => c.club)).toEqual([]);
+    for (const c of cards) expect(SERIES_CLUBS.find((x) => x.name === c.club)!.series).toBe(c.series);
   });
 });

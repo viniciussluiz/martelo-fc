@@ -6,7 +6,7 @@ import { WebSocketServer, type WebSocket } from 'ws';
 import { validateDeck } from '../engine/deck-generator.js';
 import { GameRuleError } from '../engine/errors.js';
 import type { Card } from '../engine/types.js';
-import type { ClientMessage, ServerMessage } from '../shared/protocol.js';
+import type { ClientMessage, DeckInfo, ServerMessage } from '../shared/protocol.js';
 import { AuthError, AuthService, type PublicUser } from './auth.js';
 import { loadConfig, type ServerConfig } from './config.js';
 import { migrate, openDatabase, type DB } from './db.js';
@@ -33,10 +33,31 @@ export interface App {
   close(): Promise<void>;
 }
 
-export function loadDeck(path: string): Card[] {
-  const raw = JSON.parse(readFileSync(path, 'utf8')) as { cards: Card[] };
+export function loadDeckFile(path: string): { name: string; cards: Card[] } {
+  const raw = JSON.parse(readFileSync(path, 'utf8')) as { name?: string; cards: Card[] };
   validateDeck(raw.cards);
-  return raw.cards;
+  return { name: raw.name ?? 'Baralho', cards: raw.cards };
+}
+
+export function loadDeck(path: string): Card[] {
+  return loadDeckFile(path).cards;
+}
+
+/** Resumo do baralho para a sala: nome e cartas por grupo de clubes. */
+export function describeDeck(name: string, cards: Card[]): DeckInfo {
+  const groups: DeckInfo['groups'] = {};
+  const clubs: Partial<Record<keyof DeckInfo['groups'], Set<string>>> = {};
+  for (const c of cards) {
+    if (!c.series) continue;
+    groups[c.series] = (groups[c.series] ?? 0) + 1;
+    (clubs[c.series] ??= new Set()).add(c.club);
+  }
+  return {
+    name,
+    total: cards.length,
+    groups,
+    clubs: Object.fromEntries(Object.entries(clubs).map(([k, v]) => [k, [...v].sort((a, b) => a.localeCompare(b, 'pt'))])),
+  };
 }
 
 export async function createApp(overrides: Partial<ServerConfig> = {}, logger?: Logger): Promise<App> {
@@ -45,12 +66,17 @@ export async function createApp(overrides: Partial<ServerConfig> = {}, logger?: 
   const db = openDatabase(config.dbPath);
   const applied = migrate(db);
   if (applied.length) log.info('migrações aplicadas', { applied });
-  const deck = loadDeck(config.deckPath);
+  const deckFile = loadDeckFile(config.deckPath);
+  const deck = deckFile.cards;
+  const deckInfo = describeDeck(deckFile.name, deck);
+  if (Object.keys(deckInfo.groups).length === 0) {
+    log.warn('baralho sem jogadores reais em uso (fictício ou personalizado)', { path: config.deckPath, name: deckInfo.name });
+  }
   const auth = new AuthService(db, config.sessionTtlDays);
   const achievements = new AchievementService(db);
   const results = new ResultsService(db, achievements);
   const h2h = new H2HService(db);
-  const rooms = new RoomManager({ db, deck, results, config, log });
+  const rooms = new RoomManager({ db, deck, deckInfo, results, config, log });
   const restored = rooms.restoreAll();
   if (restored) log.info('salas restauradas', { restored });
 
@@ -336,7 +362,7 @@ export async function createApp(overrides: Partial<ServerConfig> = {}, logger?: 
   const addr = server.address() as AddressInfo;
   const host = config.host === '0.0.0.0' ? '127.0.0.1' : config.host;
   const url = `http://${host}:${addr.port}`;
-  log.info('servidor no ar', { url, db: config.dbPath, deck: deck.length });
+  log.info('servidor no ar', { url, db: config.dbPath, deck: `${deckInfo.name} (${deck.length} cartas)` });
 
   return {
     server,

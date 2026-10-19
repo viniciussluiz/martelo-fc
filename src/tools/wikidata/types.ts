@@ -35,6 +35,8 @@ export interface RawPerson {
   international?: boolean;
   /** P21 = feminino (o baralho padrão é do futebol masculino). */
   female?: boolean;
+  /** Copas do Mundo disputadas (P1344). */
+  wc?: number;
 }
 
 export interface RawStint {
@@ -62,10 +64,17 @@ export interface RawDump {
 export interface FetchOptions {
   /** País dos clubes (QID). Brasil = Q155. */
   country: string;
-  /** Quantos clubes (os mais conhecidos do país, por nº de artigos na Wikipédia). */
+  /** Quantos clubes (os mais conhecidos do país, por nº de artigos na Wikipédia). Ignorado se houver `clubIds`. */
   clubCount: number;
+  /** Lista explícita de clubes (QIDs), ex.: os da Série A e B do ano. */
+  clubIds?: string[];
   /** Corte mínimo de artigos em Wikipédias para entrar (filtra desconhecidos). */
   minSitelinks: number;
+  /** Corte para clubes menores (com menos de `smallClubSitelinks` artigos), que têm poucos jogadores famosos. */
+  minSitelinksSmallClubs?: number;
+  smallClubSitelinks?: number;
+  /** Corte por clube (tem precedência sobre os anteriores), ex.: mais alto para os grandes da Europa. */
+  minSitelinksFor?: (club: RawClub) => number;
   /** Clubes extras/forçados (QIDs). */
   extraClubs?: string[];
   log?: (msg: string) => void;

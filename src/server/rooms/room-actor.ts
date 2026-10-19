@@ -5,6 +5,8 @@ import {
   DEFAULT_AUCTION_CONFIG,
   DEFAULT_DISPUTE_CONFIG,
   MAX_PARTICIPANTS,
+  SERIES_SCOPES,
+  deckForScope,
   type Card,
   type CpuStyle,
   type DisputeConfig,
@@ -14,6 +16,7 @@ import {
 import type {
   ContinueChoice,
   ContinuationView,
+  DeckInfo,
   MemberStatus,
   RevealView,
   RoomMode,
@@ -37,6 +40,7 @@ export interface Conn {
 export interface RoomDeps {
   db: DB;
   deck: Card[];
+  deckInfo: DeckInfo;
   results: ResultsService;
   config: ServerConfig;
   log: Logger;
@@ -62,6 +66,7 @@ export class RoomConflictError extends Error {}
 export const DEFAULT_SETTINGS: Record<RoomMode, RoomSettings> = {
   online: {
     cupFormat: 'copa8',
+    series: 'ALL',
     cpuCount: 0,
     speed: 'normal',
     maxHumans: 20,
@@ -74,6 +79,7 @@ export const DEFAULT_SETTINGS: Record<RoomMode, RoomSettings> = {
   },
   solo: {
     cupFormat: 'copa8',
+    series: 'ALL',
     cpuCount: 3,
     speed: 'normal',
     maxHumans: 1,
@@ -105,6 +111,10 @@ export function sanitizeSettings(mode: RoomMode, base: RoomSettings, patch: Part
   if (patch.cupFormat !== undefined) {
     if (!['copa8', 'libertadores', 'mundial', 'nenhuma'].includes(patch.cupFormat)) throw new GameRuleError('config_invalida', 'Formato de copa inválido.');
     s.cupFormat = patch.cupFormat;
+  }
+  if (patch.series !== undefined) {
+    if (!SERIES_SCOPES.includes(patch.series)) throw new GameRuleError('config_invalida', 'Grupo de clubes inválido.');
+    s.series = patch.series;
   }
   if (patch.speed !== undefined) {
     if (!['normal', 'turbo'].includes(patch.speed)) throw new GameRuleError('config_invalida', 'Velocidade inválida.');
@@ -458,6 +468,10 @@ export class RoomActor {
     this.broadcast();
   }
 
+  get deckInfo(): DeckInfo {
+    return this.deps.deckInfo;
+  }
+
   private requireHost(userId: string) {
     if (userId !== this.hostUserId) throw new GameRuleError('so_anfitriao', 'Só o anfitrião da sala pode fazer isso.');
   }
@@ -521,7 +535,9 @@ export class RoomActor {
     const id = randomUUID();
     const seed = randomBytes(8).toString('hex');
     const config = this.disputeConfig();
-    const dispute = Dispute.create({ id, seed, config, seats, deck: this.deps.deck, carried });
+    // Só as cartas dos clubes escolhidos para a sala (as herdadas do ciclo anterior voltam todas).
+    const deck = deckForScope(this.deps.deck, this.settings.series ?? 'ALL');
+    const dispute = Dispute.create({ id, seed, config, seats, deck, carried });
     const now = nowIso();
     const tx = this.deps.db.transaction(() => {
       const upd = this.deps.db

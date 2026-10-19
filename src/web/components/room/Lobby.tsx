@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import type { RoomSettings, RoomView } from '../../../shared/protocol';
+import type { Series, SeriesScope } from '../../../engine/types';
+import type { DeckInfo, RoomSettings, RoomView } from '../../../shared/protocol';
 import { act } from '../../lib/socket';
 import { toast } from '../../lib/store';
 import { CUP_FORMAT_LABEL, fmtDateTime } from '../common';
@@ -45,6 +46,45 @@ function Toggle({ label, checked, disabled, onChange }: { label: string; checked
   );
 }
 
+const SCOPES: Array<{ id: SeriesScope; label: string; groups: Series[]; desc: string }> = [
+  { id: 'ALL', label: 'Tudo', groups: ['A', 'B', 'EU'], desc: 'Séries A e B do Brasileirão e os grandes da Europa.' },
+  { id: 'AB', label: 'Séries A e B', groups: ['A', 'B'], desc: 'Só clubes da Série A e da Série B do Brasileirão.' },
+  { id: 'EU', label: 'Europa', groups: ['EU'], desc: 'Só os grandes clubes da Europa.' },
+  { id: 'A', label: 'Série A', groups: ['A'], desc: 'Só os clubes da Série A.' },
+  { id: 'B', label: 'Série B', groups: ['B'], desc: 'Só os clubes da Série B.' },
+];
+
+/** Escolha dos clubes das cartas (só aparece quando o baralho tem jogadores reais separados por grupo). */
+function ClubsField({ deck, value, editable, onChange }: { deck: DeckInfo; value: SeriesScope; editable: boolean; onChange: (v: SeriesScope) => void }) {
+  const [showClubs, setShowClubs] = useState(false);
+  const available = SCOPES.filter((o) => o.groups.some((g) => deck.groups[g]));
+  if (available.length === 0) {
+    return <p className="small muted">Baralho: {deck.name}</p>;
+  }
+  const current = SCOPES.find((o) => o.id === value) ?? SCOPES[0]!;
+  const count = current.groups.reduce((n, g) => n + (deck.groups[g] ?? 0), 0);
+  const clubs = current.groups.flatMap((g) => deck.clubs[g] ?? []);
+  return (
+    <div className="field">
+      <label>Clubes das cartas</label>
+      <div className="seg seg-grid seg-clubs" role="group" aria-label="Clubes das cartas">
+        {available.map((o) => (
+          <button key={o.id} type="button" aria-pressed={value === o.id} disabled={!editable} onClick={() => onChange(o.id)}>
+            {o.label}
+          </button>
+        ))}
+      </div>
+      <p className="small muted">
+        {current.desc} {count} cartas, de {clubs.length} clubes.{' '}
+        <button type="button" className="link-btn" onClick={() => setShowClubs((v) => !v)} aria-expanded={showClubs}>
+          {showClubs ? 'Esconder clubes' : 'Ver clubes'}
+        </button>
+      </p>
+      {showClubs && <p className="small clubs-list">{clubs.join(' · ')}</p>}
+    </div>
+  );
+}
+
 export function SettingsPanel({ room, editable }: { room: RoomView; editable: boolean }) {
   const s = room.settings;
   const set = (patch: Partial<RoomSettings>) => void act({ t: 'room:settings', settings: patch });
@@ -52,6 +92,7 @@ export function SettingsPanel({ room, editable }: { room: RoomView; editable: bo
     <div className="panel stack">
       <div className="panel-title">Regras da sala</div>
       {!editable && <p className="small muted">Só o anfitrião muda as regras.</p>}
+      <ClubsField deck={room.deck} value={s.series ?? 'ALL'} editable={editable} onChange={(v) => set({ series: v })} />
       <div className="field">
         <label>Depois da liga</label>
         <div className="seg seg-grid" role="group" aria-label="Copa">

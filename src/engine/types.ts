@@ -23,6 +23,30 @@ export const SQUAD_SIZE = 11;
 
 /** Faixas de nível (decisão própria — o original exibe faixas como “76–84”). */
 export type Tier = 'lenda' | 'craque' | 'titular' | 'operario' | 'perna';
+
+/** Grupo do clube da carta: Série A ou B do Brasileirão, ou um grande clube da Europa. */
+export type Series = 'A' | 'B' | 'EU';
+/** Quais cartas a sala usa. */
+export type SeriesScope = 'ALL' | 'AB' | 'A' | 'B' | 'EU';
+export const SERIES_SCOPES: readonly SeriesScope[] = ['ALL', 'AB', 'A', 'B', 'EU'];
+
+const SCOPE_SERIES: Record<SeriesScope, readonly Series[]> = {
+  ALL: ['A', 'B', 'EU'],
+  AB: ['A', 'B'],
+  A: ['A'],
+  B: ['B'],
+  EU: ['EU'],
+};
+
+/**
+ * Cartas que a sala usa conforme o grupo escolhido. Baralhos sem grupo
+ * (ex.: o fictício) são usados inteiros, qualquer que seja a escolha.
+ */
+export function deckForScope(deck: Card[], scope: SeriesScope): Card[] {
+  if (!deck.some((c) => c.series)) return deck;
+  const allowed = SCOPE_SERIES[scope] ?? SCOPE_SERIES.ALL;
+  return deck.filter((c) => c.series !== undefined && allowed.includes(c.series));
+}
 export const TIER_LABEL: Record<Tier, string> = {
   lenda: 'Lenda',
   craque: 'Craque',
@@ -50,6 +74,8 @@ export interface Card {
   personId?: string;
   /** Cores do uniforme do clube (primária, secundária), usadas no avatar ilustrado. */
   kit?: [string, string];
+  /** Grupo do clube da carta (baralho real): Série A, Série B ou Europa; a sala escolhe quais usa. */
+  series?: Series;
 }
 
 export type AcquisitionSource = 'leilao' | 'desempate' | 'repescagem' | 'monte';

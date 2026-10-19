@@ -1,5 +1,6 @@
 import { Rng } from '../../engine/rng.js';
-import type { Card, Position, Tier } from '../../engine/types.js';
+import type { Card, Position, Series, Tier } from '../../engine/types.js';
+import { SERIES_CLUBS, SERIES_SEASON, type SeriesClub } from './series.js';
 import type { RawClub, RawDump, RawPerson, RawStint } from './types.js';
 
 /**
@@ -19,25 +20,45 @@ export interface BuildOptions {
   deckName: string;
   /** Ano de referência para “jogadores atuais” (passagem sem data de fim). */
   currentYear: number;
-  /** Cartas por posição no baralho final. */
+  /**
+   * Clubes que viram cartas, com a série de cada um. Passagens por outros clubes do
+   * dump contam para a fama do jogador, mas não viram carta. `null` = todos os clubes, sem série.
+   */
+  clubs: SeriesClub[] | null;
+  /** Cartas por posição em cada série (cada série sozinha precisa bastar para uma sala de 20). */
+  countsBySeries: Record<Series, Record<Position, number>>;
+  /** Cartas por posição quando não há séries (`clubs: null`). */
   counts: Record<Position, number>;
   /** Máximo de versões (clube/ano) do mesmo jogador no baralho. */
   maxVersionsPerPlayer: number;
   /** Participação desejada de cada faixa no baralho. */
   tierShare: Record<Tier, number>;
   /** Percentil de fama a partir do qual a melhor versão do jogador sempre entra. */
-  mustIncludePercentile: number;
+  mustIncludePercentile: Record<Region, number>;
   seed: string;
 }
 
 export const DEFAULT_BUILD: BuildOptions = {
-  deckId: 'brasileirao-wikidata-v1',
-  deckName: 'Brasileirão — Wikidata',
+  deckId: `brasileirao-${SERIES_SEASON}-wikidata`,
+  deckName: `Brasileirão ${SERIES_SEASON} (Séries A e B) + grandes da Europa`,
   currentYear: new Date().getFullYear(),
+  clubs: SERIES_CLUBS,
+  countsBySeries: {
+    A: { GOL: 70, LAT: 110, ZAG: 115, MEI: 220, ATA: 185 },
+    B: { GOL: 30, LAT: 55, ZAG: 55, MEI: 105, ATA: 85 },
+    EU: { GOL: 85, LAT: 140, ZAG: 150, MEI: 290, ATA: 235 },
+  },
   counts: { GOL: 90, LAT: 140, ZAG: 140, MEI: 260, ATA: 220 },
   maxVersionsPerPlayer: 2,
-  tierShare: { lenda: 0.08, craque: 0.18, titular: 0.34, operario: 0.26, perna: 0.14 },
-  mustIncludePercentile: 0.9,
+  tierShare: {
+    lenda: 0.08,
+    craque: 0.18,
+    titular: 0.34,
+    operario: 0.26,
+    perna: 0.14,
+  },
+  // Na Europa a busca já só traz jogadores muito citados; ali o corte é mais alto.
+  mustIncludePercentile: { BR: 0.9, EU: 0.95 },
   seed: 'wikidata-deck-v1',
 };
 
@@ -83,7 +104,11 @@ export function mapPosition(labels: string[]): Position | null {
 
 const stripParens = (s: string) => s.replace(/\s*\([^)]*\)\s*$/, '').trim();
 
-const normalize = (s: string) => s.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+const normalize = (s: string) =>
+  s
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase();
 
 /**
  * Nome curto pelo qual o jogador é conhecido: o menor entre título da Wikipédia pt e rótulos.
@@ -91,17 +116,28 @@ const normalize = (s: string) => s.normalize('NFD').replace(/[\u0300-\u036f]/g, 
  * (evita trocar “Ronaldo Nazário” por “Fenômeno”).
  */
 export function displayName(
-  p: Pick<RawPerson, 'ptTitle' | 'labelPt' | 'labelEn'> & { nicknames?: string[]; nationalities?: string[] },
+  p: Pick<RawPerson, 'ptTitle' | 'labelPt' | 'labelEn'> & {
+    nicknames?: string[];
+    nationalities?: string[];
+  },
 ): string | null {
   const candidates = nameCandidates(p);
   if (candidates.length === 0) return null;
   const best = candidates.reduce((b, c) => (words(c) < words(b) || (words(c) === words(b) && c.length < b.length) ? c : b));
   if (words(best) < 3) return best;
-  const tokens = new Set(normalize(best).split(/\s+/).filter((t) => t.length > 2));
+  const tokens = new Set(
+    normalize(best)
+      .split(/\s+/)
+      .filter((t) => t.length > 2),
+  );
   const nick = (p.nicknames ?? [])
     .map(stripParens)
     .filter((n) => n.length >= 2 && n.length <= 24 && words(n) <= 2)
-    .find((n) => normalize(n).split(/\s+/).some((t) => tokens.has(t)));
+    .find((n) =>
+      normalize(n)
+        .split(/\s+/)
+        .some((t) => tokens.has(t)),
+    );
   if (nick) return nick;
   // Jogador brasileiro só com o nome de registro (4+ palavras) nos rótulos: no Brasil ele é chamado pelo
   // prenome (“Cássio Albuquerque dos Anjos” → “Cássio”; “Paulo Sérgio de Oliveira Lima” → “Paulo Sérgio”).
@@ -120,7 +156,21 @@ function nameCandidates(p: Pick<RawPerson, 'ptTitle' | 'labelPt' | 'labelEn'>): 
 }
 
 const CONNECTORS = new Set(['da', 'de', 'do', 'dos', 'das', 'e']);
-const COMPOUND_FIRST = new Set(['jose', 'joao', 'paulo', 'luiz', 'luis', 'carlos', 'marco', 'marcos', 'antonio', 'jorge', 'pedro', 'francisco', 'juan']);
+const COMPOUND_FIRST = new Set([
+  'jose',
+  'joao',
+  'paulo',
+  'luiz',
+  'luis',
+  'carlos',
+  'marco',
+  'marcos',
+  'antonio',
+  'jorge',
+  'pedro',
+  'francisco',
+  'juan',
+]);
 const NAME_SUFFIXES = new Set(['junior', 'jr', 'jr.', 'filho', 'neto', 'sobrinho', 'segundo']);
 
 /** Prenome pelo qual um jogador brasileiro costuma ser chamado (simples ou composto). */
@@ -160,7 +210,8 @@ const CLUB_OVERRIDES: Array<[RegExp, string]> = [
 
 const CLUB_PREFIXES =
   /^(Clube de Regatas do|Clube de Regatas|Club de Regatas|Clube|Club|Sport Club|Esporte Clube|Sociedade Esportiva|Associação Atlética|Associação Chapecoense de Futebol|Associação|Futebol Clube|Grêmio Esportivo|Esporte Clube)\s+/i;
-const CLUB_SUFFIXES = /\s+(Futebol Clube|Foot Ball Club|Football Club|Esporte Clube|Futebol e Regatas|de Futebol|Futebol|F\.?C\.?|E\.?C\.?|S\.?C\.?)$/i;
+const CLUB_SUFFIXES =
+  /\s+(Futebol Clube|Foot Ball Club|Football Club|Esporte Clube|Futebol e Regatas|de Futebol|Futebol|F\.?C\.?|E\.?C\.?|S\.?C\.?)$/i;
 
 /**
  * Cores dos uniformes dos principais clubes (fato público; o Wikidata tem poucos e
@@ -226,22 +277,31 @@ export function tierOf(mid: number): Tier {
 }
 
 /**
- * Fama do jogador: artigos em Wikipédias (escala log), prêmios, seleção e carreira nos clubes importados.
+ * Fama do jogador: artigos em Wikipédias (escala log), prêmios, seleção (jogos e Copas do Mundo)
+ * e carreira nos clubes importados.
  *  - Era: as Wikipédias cobrem muito mais os jogadores recentes; nascidos antes de 1975 ganham compensação.
  *  - Carreira: muitos jogos pelos clubes do baralho somam (ídolos locais com poucos artigos no exterior).
  *  - Quem é conhecido sobretudo como técnico (título da Wikipédia “(treinador…)”) perde bastante:
  *    os artigos sobre ele falam da carreira no banco, não em campo.
  */
 export function fameScore(
-  p: Pick<RawPerson, 'sitelinks' | 'awards' | 'caps' | 'ptTitle'> & { birthYear?: number | null; international?: boolean },
+  p: Pick<RawPerson, 'sitelinks' | 'awards' | 'caps' | 'ptTitle'> & {
+    birthYear?: number | null;
+    international?: boolean;
+    coach?: boolean;
+    wc?: number;
+  },
   careerApps = 0,
 ): number {
   let score = Math.log(1 + p.sitelinks) + 0.12 * Math.min(p.awards, 12) + 0.004 * Math.min(p.caps ?? 0, 150);
   if (p.international) score += 0.2;
+  score += 0.15 * Math.min(p.wc ?? 0, 4);
   const born = p.birthYear ?? null;
   if (born !== null) score += born < 1945 ? 0.45 : born < 1960 ? 0.3 : born < 1975 ? 0.12 : 0;
   score += 0.25 * Math.log(1 + Math.min(Math.max(careerApps, 0), 1000) / 50);
   if (/\((treinador|técnico)/i.test(p.ptTitle ?? '')) score -= 1.5;
+  // Quem também foi técnico tem artigos inflados pela carreira no banco (ex.: Ancelotti, Guardiola).
+  else if (p.coach) score -= 0.3;
   return score;
 }
 
@@ -366,6 +426,8 @@ export function evaluateStint(
   clubPrestige: number,
   isMain: boolean,
   currentYear: number,
+  /** Peso do bônus de ídolo: nos grandes da Europa o Wikidata tem jogos de quase todo mundo, e o bônus inflaria a todos. */
+  idolScale = 1,
 ): StintEval | null {
   const peak = peakFromPercentile(famePct);
   const year = representativeYear(s, person.birthYear, currentYear);
@@ -377,7 +439,7 @@ export function evaluateStint(
   // Peso do clube (percentil entre os clubes importados): −2 … +0,5
   mid += -2 + clubPrestige * 2.5;
   // Tempo/jogos no clube
-  mid += idolBonus(apps, s.goals, position);
+  mid += idolBonus(apps, s.goals, position) * idolScale;
   if (apps === null && span !== null && span >= 4) mid += 1;
   // Produtividade dos atacantes
   if (position === 'ATA' && apps !== null && apps >= 20 && s.goals !== null) {
@@ -412,7 +474,14 @@ function hintFor(e: StintEval, person: RawPerson, club: string, position: Positi
   const nat = person.nationalities.find((n) => n !== 'Brasil') ?? null;
   if (nat && !person.nationalities.includes('Brasil')) parts.push(`${nat}.`);
   const s = e.stint;
-  const period = s.start !== null ? (s.end !== null && s.end !== s.start ? `de ${s.start} a ${s.end}` : s.end === null ? `desde ${s.start}` : `em ${s.start}`) : '';
+  const period =
+    s.start !== null
+      ? s.end !== null && s.end !== s.start
+        ? `de ${s.start} a ${s.end}`
+        : s.end === null
+          ? `desde ${s.start}`
+          : `em ${s.start}`
+      : '';
   if (s.apps && s.apps > 0) {
     // Para goleiros o Wikidata às vezes registra gols sofridos no mesmo campo: não mostramos.
     const goals = position !== 'GOL' && s.goals !== null && s.goals > 0 ? ` e ${s.goals} ${s.goals === 1 ? 'gol' : 'gols'}` : '';
@@ -429,6 +498,41 @@ function hintFor(e: StintEval, person: RawPerson, club: string, position: Positi
 // Montagem
 // ---------------------------------------------------------------------------
 
+/**
+ * Percentil de cada valor em relação a uma população de referência. Assim, incluir
+ * muitos jogadores pouco conhecidos (ex.: de clubes menores) não infla a nota de todos os outros.
+ */
+export function referencePercentile(values: Map<string, number>, reference: number[]): Map<string, number> {
+  const ref = [...reference].sort((a, b) => a - b);
+  const n = Math.max(1, ref.length - 1);
+  const below = (v: number) => {
+    let lo = 0;
+    let hi = ref.length;
+    while (lo < hi) {
+      const mid = (lo + hi) >> 1;
+      if (ref[mid]! < v) lo = mid + 1;
+      else hi = mid;
+    }
+    return lo;
+  };
+  const out = new Map<string, number>();
+  for (const [k, v] of values) out.set(k, Math.min(1, below(v) / n));
+  return out;
+}
+
+export type Region = 'BR' | 'EU';
+
+/**
+ * Erros conhecidos no Wikidata corrigidos na montagem (o certo é corrigir lá também).
+ * Ex.: Van der Sar aparece no Barcelona de 1990–99, mas era o Ajax.
+ */
+export const STINT_FIXES: Array<{ person: string; club: string; start: number | null; clubCorrect: string }> = [
+  { person: 'Q482955', club: 'Q7156', start: 1990, clubCorrect: 'Q81888' },
+];
+
+/** Artigos mínimos para um jogador entrar na população de referência da fama de cada região (= corte da busca). */
+export const FAME_REFERENCE_SITELINKS: Record<Region, number> = { BR: 8, EU: 30 };
+
 function percentileMap(values: Map<string, number>): Map<string, number> {
   const sorted = [...values.entries()].sort((a, b) => a[1] - b[1] || a[0].localeCompare(b[0]));
   const out = new Map<string, number>();
@@ -442,16 +546,41 @@ export interface BuildReport {
   people: number;
   byPosition: Record<Position, number>;
   byTier: Record<Tier, number>;
-  skipped: { noPosition: number; noName: number; noDates: number; female: number };
+  skipped: {
+    noPosition: number;
+    noName: number;
+    noDates: number;
+    female: number;
+    otherClubs: number;
+  };
+  /** Cartas por série (vazio sem séries). */
+  bySeries: Partial<Record<Series, number>>;
 }
 
 export function buildDeck(raw: RawDump, options: Partial<BuildOptions> = {}): { deck: DeckFile; report: BuildReport } {
   const opts = { ...DEFAULT_BUILD, ...options };
   const rng = new Rng(opts.seed);
   const clubs = new Map(raw.clubs.map((c) => [c.qid, c]));
-  const clubPrestige = percentileMap(new Map(raw.clubs.map((c) => [c.qid, Math.log(1 + c.sitelinks)])));
-  const clubName = new Map(raw.clubs.map((c) => [c.qid, shortClubName(c)]));
-  const skipped = { noPosition: 0, noName: 0, noDates: 0, female: 0 };
+  const seriesClub = opts.clubs ? new Map(opts.clubs.map((c) => [c.qid, c])) : null;
+  // Brasil e Europa são “mundos” separados: artigos na Wikipédia não se comparam entre eles
+  // (um reserva de clube inglês tem mais artigos que muito ídolo brasileiro). Fama e peso do
+  // clube são medidos dentro da região do clube da carta.
+  const regionOf = (clubQid: string): Region => (seriesClub?.get(clubQid)?.series === 'EU' ? 'EU' : 'BR');
+  const clubPrestige = new Map<string, number>();
+  for (const region of ['BR', 'EU'] as Region[]) {
+    const inRegion = raw.clubs.filter((c) => regionOf(c.qid) === region);
+    for (const [k, v] of percentileMap(new Map(inRegion.map((c) => [c.qid, Math.log(1 + c.sitelinks)])))) clubPrestige.set(k, v);
+  }
+  const clubName = new Map(raw.clubs.map((c) => [c.qid, seriesClub?.get(c.qid)?.name ?? shortClubName(c)]));
+  /** Só passagens por estes clubes viram carta. */
+  const cardClub = (qid: string) => (seriesClub ? seriesClub.has(qid) : clubs.has(qid));
+  const skipped = {
+    noPosition: 0,
+    noName: 0,
+    noDates: 0,
+    female: 0,
+    otherClubs: 0,
+  };
 
   // Jogadores elegíveis (baralho do futebol masculino; jogadoras ficam para um baralho próprio)
   const eligible = new Map<string, { person: RawPerson; position: Position; name: string }>();
@@ -472,18 +601,27 @@ export function buildDeck(raw: RawDump, options: Partial<BuildOptions> = {}): { 
     }
     eligible.set(p.qid, { person: p, position, name });
   }
-  // Passagens por jogador
+  // Passagens por jogador (com as correções conhecidas de erros do Wikidata)
   const stintsBy = new Map<string, RawStint[]>();
-  for (const s of raw.stints) {
+  for (const s0 of raw.stints) {
+    const fix = STINT_FIXES.find((f) => f.person === s0.person && f.club === s0.club && f.start === s0.start);
+    const s = fix ? { ...s0, club: fix.clubCorrect } : s0;
     if (!eligible.has(s.person) || !clubs.has(s.club)) continue;
     const list = stintsBy.get(s.person) ?? [];
     list.push(s);
     stintsBy.set(s.person, list);
   }
   const merged = new Map([...stintsBy].map(([pid, list]) => [pid, mergeStints(list)]));
-  const fame = percentileMap(
-    new Map([...eligible.values()].map((e) => [e.person.qid, fameScore(e.person, careerApps(merged.get(e.person.qid) ?? []))])),
-  );
+  const fameScores = new Map([...eligible.values()].map((e) => [e.person.qid, fameScore(e.person, careerApps(merged.get(e.person.qid) ?? []))]));
+  const fameIn = new Map<Region, Map<string, number>>();
+  for (const region of ['BR', 'EU'] as Region[]) {
+    const minLinks = FAME_REFERENCE_SITELINKS[region];
+    const members = [...merged].filter(([pid, list]) => list.some((s) => regionOf(s.club) === region)).map(([pid]) => pid);
+    const reference = members.filter((pid) => eligible.get(pid)!.person.sitelinks >= minLinks).map((pid) => fameScores.get(pid)!);
+    const scores = new Map(members.map((pid) => [pid, fameScores.get(pid)!]));
+    fameIn.set(region, referencePercentile(scores, reference.length >= 50 ? reference : [...scores.values()]));
+  }
+  const fame = (pid: string, region: Region) => fameIn.get(region)?.get(pid) ?? 0;
 
   interface Candidate {
     card: Card;
@@ -496,35 +634,56 @@ export function buildDeck(raw: RawDump, options: Partial<BuildOptions> = {}): { 
   for (const pid of stintsBy.keys()) {
     const { person, position, name } = eligible.get(pid)!;
     const list = merged.get(pid)!;
-    const famePct = fame.get(pid) ?? 0;
     const weight = (s: RawStint) => (s.apps ?? 0) * 10 + (s.start !== null && s.end !== null ? Math.abs(s.end - s.start) : 0);
     const main = [...list].sort((a, b) => weight(b) - weight(a))[0];
-    const evals = list
-      .map((s) => evaluateStint(s, person, position, famePct, clubPrestige.get(s.club) ?? 0.5, s === main, opts.currentYear))
+    const own = list.filter((s) => cardClub(s.club));
+    if (own.length === 0) {
+      skipped.otherClubs++;
+      continue;
+    }
+    const evals = own
+      .map((s) =>
+        evaluateStint(
+          s,
+          person,
+          position,
+          fame(pid, regionOf(s.club)),
+          clubPrestige.get(s.club) ?? 0.5,
+          s === main,
+          opts.currentYear,
+          regionOf(s.club) === 'EU' ? 0.5 : 1,
+        ),
+      )
       .filter((e): e is StintEval => !!e);
     if (evals.length === 0) {
       skipped.noDates++;
       continue;
     }
-    // Versões: a melhor passagem e, se houver, a passagem de outro clube mais contrastante.
+    // Versões, em cada região: a melhor passagem e, se houver, a de outro clube/época mais contrastante.
+    // (Assim Ronaldo tem carta de Cruzeiro/Corinthians para salas só do Brasil e de Barcelona/Real para a Europa.)
     evals.sort((a, b) => b.mid - a.mid || (b.stint.apps ?? 0) - (a.stint.apps ?? 0));
-    const chosen: StintEval[] = [evals[0]!];
-    for (const e of evals.slice(1)) {
-      if (chosen.length >= opts.maxVersionsPerPlayer) break;
-      if (chosen.some((c) => c.stint.club === e.stint.club && Math.abs(c.year - e.year) < 4)) continue;
-      chosen.push(e);
+    const versions: Array<{ e: StintEval; rank: number }> = [];
+    for (const region of ['BR', 'EU'] as Region[]) {
+      const chosen: StintEval[] = [];
+      for (const e of evals.filter((x) => regionOf(x.stint.club) === region)) {
+        if (chosen.length >= opts.maxVersionsPerPlayer) break;
+        if (chosen.some((c) => c.stint.club === e.stint.club && Math.abs(c.year - e.year) < 4)) continue;
+        chosen.push(e);
+      }
+      chosen.forEach((e, rank) => versions.push({ e, rank }));
     }
-    for (const [rank, e] of chosen.entries()) {
+    for (const { e, rank } of versions) {
       const club = clubs.get(e.stint.club)!;
       const shortName = clubName.get(club.qid)!;
       const levelMin = Math.round(e.mid - e.width / 2);
       const levelMax = Math.min(99, levelMin + e.width);
       const tier = tierOf((levelMin + levelMax) / 2);
-      const kit = clubKit(club, shortName);
+      const sc = seriesClub?.get(club.qid);
+      const kit = sc?.kit ?? clubKit(club, shortName);
       candidates.push({
         personId: pid,
         rank,
-        fame: fame.get(pid) ?? 0,
+        fame: fame(pid, regionOf(e.stint.club)),
         card: {
           id: `wd-${pid}-${club.qid}-${e.year}`,
           personId: pid,
@@ -537,6 +696,7 @@ export function buildDeck(raw: RawDump, options: Partial<BuildOptions> = {}): { 
           tier,
           hint: hintFor(e, person, shortName, position),
           ...(kit ? { kit } : {}),
+          ...(sc ? { series: sc.series } : {}),
         },
       });
     }
@@ -545,31 +705,43 @@ export function buildDeck(raw: RawDump, options: Partial<BuildOptions> = {}): { 
   // Seleção: 1) a melhor versão de todo jogador muito conhecido entra sempre;
   // 2) o resto é preenchido por faixa (para ter também operários e pernas-de-pau),
   //    preferindo melhores versões e nomes mais conhecidos.
+  //    Com séries, cada série é selecionada à parte, para que cada uma sozinha forme um baralho completo.
   const tiers: Tier[] = ['lenda', 'craque', 'titular', 'operario', 'perna'];
   const picked: Card[] = [];
   const positions = Object.keys(opts.counts) as Position[];
-  for (const pos of positions) {
-    const pool = candidates.filter((c) => c.card.position === pos);
-    const chosen = new Set<Candidate>();
-    for (const c of pool) if (c.rank === 0 && c.fame >= opts.mustIncludePercentile) chosen.add(c);
-    const want = Math.max(opts.counts[pos], chosen.size);
-    for (const t of tiers) {
-      const already = [...chosen].filter((c) => c.card.tier === t).length;
-      const quota = Math.max(0, Math.round(want * opts.tierShare[t]) - already);
-      const inTier = pool
-        .filter((c) => c.card.tier === t && !chosen.has(c))
-        .map((c) => ({ c, key: c.fame + (c.rank === 0 ? 0.25 : 0) + rng.next() * 0.15 }))
-        .sort((a, b) => b.key - a.key)
-        .map((x) => x.c);
-      for (const c of inTier.slice(0, quota)) chosen.add(c);
+  const groups: Array<{ pool: Candidate[]; counts: Record<Position, number> }> = seriesClub
+    ? (Object.keys(opts.countsBySeries) as Series[]).map((sr) => ({
+        pool: candidates.filter((c) => c.card.series === sr),
+        counts: opts.countsBySeries[sr],
+      }))
+    : [{ pool: candidates, counts: opts.counts }];
+  for (const group of groups) {
+    for (const pos of positions) {
+      const pool = group.pool.filter((c) => c.card.position === pos);
+      const chosen = new Set<Candidate>();
+      for (const c of pool) if (c.rank === 0 && c.fame >= opts.mustIncludePercentile[c.card.series === 'EU' ? 'EU' : 'BR']) chosen.add(c);
+      const want = Math.max(group.counts[pos], chosen.size);
+      for (const t of tiers) {
+        const already = [...chosen].filter((c) => c.card.tier === t).length;
+        const quota = Math.max(0, Math.round(want * opts.tierShare[t]) - already);
+        const inTier = pool
+          .filter((c) => c.card.tier === t && !chosen.has(c))
+          .map((c) => ({
+            c,
+            key: c.fame + (c.rank === 0 ? 0.25 : 0) + rng.next() * 0.15,
+          }))
+          .sort((a, b) => b.key - a.key)
+          .map((x) => x.c);
+        for (const c of inTier.slice(0, quota)) chosen.add(c);
+      }
+      // Completa com os mais conhecidos que sobraram (caso alguma faixa tenha faltado).
+      const rest = pool.filter((c) => !chosen.has(c)).sort((a, b) => a.rank - b.rank || b.fame - a.fame);
+      for (const c of rest) {
+        if (chosen.size >= want) break;
+        chosen.add(c);
+      }
+      picked.push(...[...chosen].map((c) => c.card));
     }
-    // Completa com os mais conhecidos que sobraram (caso alguma faixa tenha faltado).
-    const rest = pool.filter((c) => !chosen.has(c)).sort((a, b) => a.rank - b.rank || b.fame - a.fame);
-    for (const c of rest) {
-      if (chosen.size >= want) break;
-      chosen.add(c);
-    }
-    picked.push(...[...chosen].map((c) => c.card));
   }
 
   // Homônimos no baralho: o mais conhecido fica com o nome curto; os outros ganham o último sobrenome.
@@ -578,7 +750,7 @@ export function buildDeck(raw: RawDump, options: Partial<BuildOptions> = {}): { 
   const rename = new Map<string, string>();
   for (const [name, ids] of byName) {
     if (ids.size < 2) continue;
-    const [, ...others] = [...ids].sort((a, b) => (fame.get(b) ?? 0) - (fame.get(a) ?? 0));
+    const [, ...others] = [...ids].sort((a, b) => (fameScores.get(b) ?? 0) - (fameScores.get(a) ?? 0));
     for (const pid of others) {
       const alt = disambiguatedName(name, eligible.get(pid)!.person);
       if (alt && !byName.has(alt)) rename.set(pid, alt);
@@ -600,6 +772,15 @@ export function buildDeck(raw: RawDump, options: Partial<BuildOptions> = {}): { 
       fetchedAt: raw.fetchedAt,
       cards: picked,
     },
-    report: { candidates: candidates.length, people: stintsBy.size, byPosition, byTier, skipped },
+    report: {
+      candidates: candidates.length,
+      people: stintsBy.size,
+      byPosition,
+      byTier,
+      skipped,
+      bySeries: Object.fromEntries(
+        (['A', 'B', 'EU'] as Series[]).map((sr) => [sr, picked.filter((c) => c.series === sr).length]).filter(([, n]) => n),
+      ),
+    },
   };
 }

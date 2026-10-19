@@ -1853,3 +1853,29 @@ p {
 .monte-grid .sticker .avatar {
   margin-top: 2px;
 }
+
+/* Escolha dos clubes das cartas na sala */
+.seg-clubs {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+/* “Tudo” ocupa a linha inteira; as outras quatro opções ficam em 2 × 2. */
+.seg-clubs button:first-child:nth-last-child(odd) {
+  grid-column: 1 / -1;
+}
+
+.link-btn {
+  border: 0;
+  background: none;
+  padding: 0;
+  color: var(--ink);
+  font: inherit;
+  font-weight: 700;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.clubs-list {
+  color: var(--ink-2);
+  line-height: 1.5;
+}

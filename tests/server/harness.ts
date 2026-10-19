@@ -13,9 +13,9 @@ export interface TestEnv {
   stop(): Promise<void>;
 }
 
-export async function startTestApp(dir = mkdtempSync(join(tmpdir(), 'martelo-'))): Promise<TestEnv> {
+export async function startTestApp(dir = mkdtempSync(join(tmpdir(), 'martelo-')), deckPath = join(ROOT_DIR, 'data/deck.json')): Promise<TestEnv> {
   const app = await createApp(
-    { port: 0, host: '127.0.0.1', dbPath: join(dir, 'test.db'), deckPath: join(ROOT_DIR, 'data/deck.json'), forceSpeed: 'test', staticDir: join(dir, 'nada') },
+    { port: 0, host: '127.0.0.1', dbPath: join(dir, 'test.db'), deckPath, forceSpeed: 'test', staticDir: join(dir, 'nada') },
     silentLogger,
   );
   return {

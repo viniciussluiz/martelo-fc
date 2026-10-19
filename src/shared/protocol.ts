@@ -10,7 +10,7 @@ import type { CupReach, CupTie } from '../engine/cup.js';
 import type { DisputePhase, DisputeResult } from '../engine/dispute.js';
 import type { StandingRow } from '../engine/league.js';
 import type { MatchEvent, Goal } from '../engine/match.js';
-import type { AcquisitionSource, CupFormat, Formation, Position, Tactic, Tier } from '../engine/types.js';
+import type { AcquisitionSource, CupFormat, Formation, Position, Series, SeriesScope, Tactic, Tier } from '../engine/types.js';
 
 export type RoomMode = 'online' | 'solo';
 export type RoomStatus = 'lobby' | 'in_dispute' | 'post_dispute' | 'closed';
@@ -20,6 +20,8 @@ export type ContinueChoice = 'continue' | 'leave';
 
 export interface RoomSettings {
   cupFormat: CupFormat;
+  /** Clubes das cartas do leilão: tudo, Séries A e B, só A, só B ou grandes da Europa. */
+  series: SeriesScope;
   cpuCount: number;
   speed: SpeedSetting;
   maxHumans: number;
@@ -247,12 +249,22 @@ export interface DisputeView {
   result: DisputeResult | null;
 }
 
+/** Baralho carregado no servidor: nome e quantas cartas há em cada grupo de clubes (vazio = baralho sem grupos). */
+export interface DeckInfo {
+  name: string;
+  total: number;
+  groups: Partial<Record<Series, number>>;
+  /** Clubes de cada grupo, em ordem alfabética. */
+  clubs: Partial<Record<Series, string[]>>;
+}
+
 export interface RoomView {
   id: string;
   code: string;
   mode: RoomMode;
   status: RoomStatus;
   settings: RoomSettings;
+  deck: DeckInfo;
   hostUserId: string;
   cycle: number;
   you: string;

@@ -1,8 +1,8 @@
 import type { FetchOptions, RawClub, RawDump, RawPerson, RawStint, SparqlFn } from './types.js';
 
 /**
- * Extrai do Wikidata os clubes mais conhecidos de um país e os jogadores que
- * passaram por eles (antigos e atuais), com período, jogos e gols de cada passagem.
+ * Extrai do Wikidata uma lista de clubes (por padrão os da Série A e B do ano, ver series.ts)
+ * e os jogadores que passaram por eles (antigos e atuais), com período, jogos e gols de cada passagem.
  * Não usa fotos nem textos da Wikipédia — apenas dados estruturados (CC0).
  *
  * Este módulo não importa nada de Node para poder rodar também no navegador.
@@ -143,6 +143,14 @@ export function capsQuery(ids: string[]): string {
 } GROUP BY ?p`;
 }
 
+/** Copas do Mundo disputadas (P1344 → edição da Copa do Mundo da FIFA). */
+export function worldCupsQuery(ids: string[]): string {
+  return `SELECT ?p (COUNT(DISTINCT ?wc) AS ?n) WHERE {
+  VALUES ?p { ${ids.map((i) => `wd:${i}`).join(' ')} }
+  ?p wdt:P1344 ?wc. ?wc wdt:P31 wd:Q27020041.
+} GROUP BY ?p`;
+}
+
 type Row = Record<string, { value: string } | undefined>;
 
 /**
@@ -174,6 +182,7 @@ export async function fetchExtras(sparql: SparqlFn, people: Record<string, RawPe
     p.coach ??= false;
     p.international ??= false;
     p.female ??= false;
+    p.wc ??= 0;
   }
   await runBatched(sparql, nicknamesQuery, batch, (rows) => {
     for (const r of rows) {
@@ -191,6 +200,12 @@ export async function fetchExtras(sparql: SparqlFn, people: Record<string, RawPe
       if (f === 'female') p.female = true;
     }
   }, skip('marcas'));
+  await runBatched(sparql, worldCupsQuery, batch, (rows) => {
+    for (const r of rows) {
+      const p = at(r);
+      if (p) p.wc = num(r.n) ?? 0;
+    }
+  }, skip('Copas do Mundo'));
 }
 
 export interface FetchProgress {
@@ -205,8 +220,14 @@ export async function fetchRawDump(sparql: SparqlFn, opts: FetchOptions & { resu
     dump = opts.resumeFrom;
     log(`Retomando: ${dump.clubs.length} clubes, ${Object.keys(dump.people).length} jogadores, ${dump.detailed?.length ?? 0} já detalhados.`);
   } else {
-    log(`Buscando os ${opts.clubCount} clubes mais conhecidos de ${opts.country}…`);
-    const clubRows = await sparql(clubsQuery(opts.country, opts.clubCount));
+    let clubRows: Row[];
+    if (opts.clubIds?.length) {
+      log(`Buscando ${opts.clubIds.length} clubes…`);
+      clubRows = await sparql(clubsByIdQuery(opts.clubIds));
+    } else {
+      log(`Buscando os ${opts.clubCount} clubes mais conhecidos de ${opts.country}…`);
+      clubRows = await sparql(clubsQuery(opts.country, opts.clubCount));
+    }
     if (opts.extraClubs?.length) clubRows.push(...(await sparql(clubsByIdQuery(opts.extraClubs))));
     const clubs = new Map<string, RawClub>();
     for (const r of clubRows) {
@@ -225,8 +246,11 @@ export async function fetchRawDump(sparql: SparqlFn, opts: FetchOptions & { resu
     let i = 0;
     for (const club of clubs.values()) {
       i++;
-      log(`[${i}/${clubs.size}] passagens pelo ${club.label}…`);
-      const rows = await sparql(stintsQuery(club.qid, opts.minSitelinks));
+      // Clubes menores têm poucos jogadores com muitos artigos: o corte é mais baixo para eles.
+      const small = club.sitelinks < (opts.smallClubSitelinks ?? 40);
+      const min = opts.minSitelinksFor?.(club) ?? (small ? (opts.minSitelinksSmallClubs ?? opts.minSitelinks) : opts.minSitelinks);
+      log(`[${i}/${clubs.size}] passagens pelo ${club.label} (artigos ≥ ${min})…`);
+      const rows = await sparql(stintsQuery(club.qid, min));
       for (const r of rows) {
         const person = qid(r.p?.value);
         if (!person) continue;

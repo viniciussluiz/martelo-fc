@@ -10,7 +10,7 @@ src/
             services/ (resultados, estatísticas, confrontos, conquistas, perfil)
   web/      React 19 + Vite. lib/ (store, socket, api, router) · pages/ · components/
 migrations/ SQL versionado (aplicado automaticamente no boot ou com `npm run migrate`).
-data/       deck.json (baralho padrão) e o banco SQLite (padrão data/martelo.db).
+data/       deck-wikidata.json (baralho padrão: jogadores reais), wikidata-raw.json (dados brutos), deck.json (fictício, testes) e o banco SQLite (padrão data/martelo.db).
 tests/      Vitest: engine/ (regras) e server/ (integração com banco + WebSocket reais).
 e2e/        Playwright: fluxos de navegador (solo, sala online com dois navegadores, mobile).
 ```

@@ -3,6 +3,7 @@
 ## Leilão
 | Regra | Valor padrão | Configurável |
 |---|---|---|
+| Clubes das cartas | Tudo (Séries A e B de 2026 + grandes da Europa) | sala: “Clubes das cartas” (Tudo, Séries A e B, Série A, Série B, Europa) |
 | Moedas iniciais | 100 | `AuctionConfig.startingCoins` |
 | Lote por posição | Σ vagas + 1 (nunca menor que as cartas herdadas do ciclo anterior) | `lotExtra` |
 | Tamanho da leva | 12 cartas | `batchSize` |

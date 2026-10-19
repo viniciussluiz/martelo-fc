@@ -151,5 +151,6 @@ export function validateDeck(cards: Card[]): void {
     if (c.kit && !(Array.isArray(c.kit) && c.kit.length === 2 && c.kit.every((h) => /^#[0-9a-fA-F]{6}$/.test(h)))) {
       throw new Error(`Cores do uniforme inválidas em ${c.id}`);
     }
+    if (c.series !== undefined && !['A', 'B', 'EU'].includes(c.series)) throw new Error(`Grupo de clubes inválido em ${c.id}`);
   }
 }
