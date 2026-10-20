@@ -25,10 +25,11 @@ test('partida rápida completa, continuidade na mesma sala e Sala de Troféus', 
   await expect(page.getByRole('button', { name: 'Lacrar envelope' })).toBeVisible();
   // Só clubes da Série A no pregão.
   const serieA = new Set(SERIES_CLUBS.filter((c) => c.series === 'A').map((c) => c.name));
-  const metas = await page.locator('.sticker-meta').allInnerTexts();
-  const shown = metas.map((t) => /^(.*), \d{4}$/.exec(t.trim())?.[1]).filter((x): x is string => !!x);
+  const shown = (await page.locator('.sticker-meta .club-name').allInnerTexts()).map((t) => t.trim());
   expect(shown.length).toBeGreaterThan(0);
   expect(shown.filter((c) => !serieA.has(c))).toEqual([]);
+  // Cada clube aparece com o selo ao lado do nome.
+  expect(await page.locator('.sticker-meta .club-badge').count()).toBe(shown.length);
   const inputs = page.getByLabel(/^Lance em/);
   await inputs.first().fill('150');
   await expect(page.getByText('Passou das suas moedas.')).toBeVisible();

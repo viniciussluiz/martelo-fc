@@ -1,6 +1,6 @@
 {
   "name": "martelo-fc",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "private": true,
   "description": "Martelo FC — leilão às cegas de futebol, multiplayer, com continuidade de salas, histórico de confrontos e Sala de Troféus.",
   "type": "module",

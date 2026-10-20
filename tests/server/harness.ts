@@ -3,7 +3,7 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import WebSocket from 'ws';
 import { createApp, type App } from '../../src/server/app.js';
-import { ROOT_DIR } from '../../src/server/config.js';
+import { ROOT_DIR, type ServerConfig } from '../../src/server/config.js';
 import { silentLogger } from '../../src/server/log.js';
 import type { ClientMessage, RoomView, ServerMessage } from '../../src/shared/protocol.js';
 
@@ -13,9 +13,13 @@ export interface TestEnv {
   stop(): Promise<void>;
 }
 
-export async function startTestApp(dir = mkdtempSync(join(tmpdir(), 'martelo-')), deckPath = join(ROOT_DIR, 'data/deck.json')): Promise<TestEnv> {
+export async function startTestApp(
+  dir = mkdtempSync(join(tmpdir(), 'martelo-')),
+  deckPath = join(ROOT_DIR, 'data/deck.json'),
+  extra: Partial<ServerConfig> = {},
+): Promise<TestEnv> {
   const app = await createApp(
-    { port: 0, host: '127.0.0.1', dbPath: join(dir, 'test.db'), deckPath, forceSpeed: 'test', staticDir: join(dir, 'nada') },
+    { port: 0, host: '127.0.0.1', dbPath: join(dir, 'test.db'), deckPath, forceSpeed: 'test', staticDir: join(dir, 'nada'), crestsDir: join(dir, 'sem-escudos'), ...extra },
     silentLogger,
   );
   return {

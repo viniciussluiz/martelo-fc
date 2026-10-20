@@ -9,6 +9,8 @@ export interface ServerConfig {
   dbPath: string;
   deckPath: string;
   staticDir: string;
+  /** Pasta com escudos oficiais, para quem tem autorização de usá-los (opcional; ver docs/BARALHO.md). */
+  crestsDir: string;
   /** Força uma velocidade para todas as salas (usado em testes automatizados). */
   forceSpeed: GameSpeed | null;
   sessionTtlDays: number;
@@ -58,6 +60,7 @@ export function loadConfig(env: NodeJS.ProcessEnv = process.env): ServerConfig {
     dbPath: env.DATABASE_PATH ?? resolve(root, 'data/martelo.db'),
     deckPath: resolveDeckPath(env),
     staticDir: env.STATIC_DIR ?? resolve(root, 'dist'),
+    crestsDir: env.CRESTS_DIR ?? resolve(root, 'data/escudos'),
     forceSpeed: speed && ['normal', 'turbo', 'test', 'e2e'].includes(speed) ? speed : null,
     sessionTtlDays: Number(env.SESSION_TTL_DAYS ?? 60),
     abandonAfterMin: Number(env.ABANDON_AFTER_MIN ?? 30),

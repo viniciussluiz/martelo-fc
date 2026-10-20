@@ -1,4 +1,5 @@
-import { readFileSync } from 'node:fs';
+import { createReadStream, existsSync, readdirSync, readFileSync } from 'node:fs';
+import { basename, extname, join } from 'node:path';
 import { createServer, type Server } from 'node:http';
 import type { AddressInfo } from 'node:net';
 import { randomUUID } from 'node:crypto';
@@ -6,6 +7,7 @@ import { WebSocketServer, type WebSocket } from 'ws';
 import { validateDeck } from '../engine/deck-generator.js';
 import { GameRuleError } from '../engine/errors.js';
 import type { Card } from '../engine/types.js';
+import { clubSlug } from '../shared/clubs.js';
 import type { ClientMessage, DeckInfo, ServerMessage } from '../shared/protocol.js';
 import { AuthError, AuthService, type PublicUser } from './auth.js';
 import { APP_VERSION, configNotes, loadConfig, type ServerConfig } from './config.js';
@@ -44,8 +46,27 @@ export function loadDeck(path: string): Card[] {
   return loadDeckFile(path).cards;
 }
 
+const CREST_EXT = ['.svg', '.png', '.webp', '.jpg', '.jpeg'];
+
+/**
+ * Escudos em `data/escudos/` (opcional): arquivos nomeados pelo clube, ex.: `flamengo.png`,
+ * `sao-paulo.svg`. Só quem tem autorização dos clubes deve colocá-los ali (são marcas registradas).
+ */
+export function loadCrests(dir: string): Map<string, string> {
+  const out = new Map<string, string>();
+  if (!existsSync(dir)) return out;
+  for (const file of readdirSync(dir)) {
+    const ext = extname(file).toLowerCase();
+    if (!CREST_EXT.includes(ext)) continue;
+    const slug = basename(file, extname(file)).toLowerCase();
+    if (!/^[a-z0-9-]+$/.test(slug) || out.has(slug)) continue;
+    out.set(slug, file);
+  }
+  return out;
+}
+
 /** Resumo do baralho para a sala: nome e cartas por grupo de clubes. */
-export function describeDeck(name: string, cards: Card[]): DeckInfo {
+export function describeDeck(name: string, cards: Card[], crestFiles: Map<string, string> = new Map()): DeckInfo {
   const groups: DeckInfo['groups'] = {};
   const clubs: Partial<Record<keyof DeckInfo['groups'], Set<string>>> = {};
   for (const c of cards) {
@@ -53,11 +74,17 @@ export function describeDeck(name: string, cards: Card[]): DeckInfo {
     groups[c.series] = (groups[c.series] ?? 0) + 1;
     (clubs[c.series] ??= new Set()).add(c.club);
   }
+  const crests: Record<string, string> = {};
+  for (const club of new Set(cards.map((c) => c.club))) {
+    const file = crestFiles.get(clubSlug(club));
+    if (file) crests[club] = `/escudos/${encodeURIComponent(file)}`;
+  }
   return {
     name,
     total: cards.length,
     groups,
     clubs: Object.fromEntries(Object.entries(clubs).map(([k, v]) => [k, [...v].sort((a, b) => a.localeCompare(b, 'pt'))])),
+    crests,
   };
 }
 
@@ -70,7 +97,9 @@ export async function createApp(overrides: Partial<ServerConfig> = {}, logger?: 
   for (const note of configNotes.splice(0)) log.warn(note);
   const deckFile = loadDeckFile(config.deckPath);
   const deck = deckFile.cards;
-  const deckInfo = describeDeck(deckFile.name, deck);
+  const crestFiles = loadCrests(config.crestsDir);
+  const deckInfo = describeDeck(deckFile.name, deck, crestFiles);
+  if (crestFiles.size) log.info('escudos carregados', { pasta: config.crestsDir, clubes: Object.keys(deckInfo.crests).length });
   if (Object.keys(deckInfo.groups).length === 0) {
     log.warn('baralho sem jogadores reais em uso (fictício ou personalizado)', { path: config.deckPath, name: deckInfo.name });
   }
@@ -212,6 +241,20 @@ export async function createApp(overrides: Partial<ServerConfig> = {}, logger?: 
           sendJson(res, 500, { error: 'interno', message: 'Erro interno. Tente de novo.' });
         }
       }
+      return;
+    }
+    if ((req.method === 'GET' || req.method === 'HEAD') && url.pathname.startsWith('/escudos/')) {
+      // Só arquivos listados na pasta de escudos (sem caminhos arbitrários).
+      const file = decodeURIComponent(url.pathname.slice('/escudos/'.length));
+      const known = [...crestFiles.values()].includes(file) ? file : null;
+      if (!known) {
+        res.writeHead(404, { 'content-type': 'text/plain; charset=utf-8', ...SECURITY_HEADERS });
+        res.end('Escudo não encontrado.');
+        return;
+      }
+      const type = file.endsWith('.svg') ? 'image/svg+xml' : file.endsWith('.png') ? 'image/png' : file.endsWith('.webp') ? 'image/webp' : 'image/jpeg';
+      res.writeHead(200, { 'content-type': type, 'cache-control': 'public, max-age=86400', ...SECURITY_HEADERS });
+      createReadStream(join(config.crestsDir, known)).pipe(res);
       return;
     }
     if ((req.method === 'GET' || req.method === 'HEAD') && serveStatic(config.staticDir, url.pathname, res)) return;

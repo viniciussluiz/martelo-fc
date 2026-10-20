@@ -1,4 +1,4 @@
-import { mkdtempSync, readFileSync, writeFileSync } from 'node:fs';
+import { mkdirSync, mkdtempSync, readFileSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
@@ -26,7 +26,12 @@ beforeAll(async () => {
   for (const c of cards) group.set(c.id, c.series!);
   const deckPath = join(dir, 'deck-grupos.json');
   writeFileSync(deckPath, JSON.stringify({ id: 'teste', name: 'Baralho de teste', cards }));
-  env = await startTestApp(dir, deckPath);
+  // Escudo autorizado de um clube (aqui, um desenho de teste) e um arquivo que não é imagem.
+  const crests = join(dir, 'escudos');
+  mkdirSync(crests);
+  writeFileSync(join(crests, 'clube-a.svg'), '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10"><rect width="10" height="10"/></svg>');
+  writeFileSync(join(crests, 'leia-me.txt'), 'não é escudo');
+  env = await startTestApp(dir, deckPath, { crestsDir: crests });
 });
 afterAll(async () => {
   await env.stop();
@@ -57,6 +62,19 @@ describe('clubes das cartas escolhidos na sala', () => {
     expect(ana.room!.deck.groups.EU).toBeGreaterThan(0);
     expect(ana.room!.deck.clubs.B).toEqual(['Clube B']);
     ana.close();
+  });
+
+  it('escudos da pasta data/escudos aparecem para os clubes que os têm, e só eles são servidos', async () => {
+    const eva = await TestClient.guest(env.app, 'Eva Escudos');
+    await soloRoom(eva);
+    expect(eva.room!.deck.crests).toEqual({ 'Clube A': '/escudos/clube-a.svg' });
+    const ok = await fetch(env.app.url + '/escudos/clube-a.svg');
+    expect(ok.status).toBe(200);
+    expect(ok.headers.get('content-type')).toBe('image/svg+xml');
+    for (const bad of ['/escudos/leia-me.txt', '/escudos/..%2Fdeck-grupos.json', '/escudos/%2E%2E/test.db']) {
+      expect((await fetch(env.app.url + bad)).status, bad).toBe(404);
+    }
+    eva.close();
   });
 
   it('rejeita grupo inválido', async () => {

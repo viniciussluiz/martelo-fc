@@ -256,6 +256,8 @@ export interface DeckInfo {
   groups: Partial<Record<Series, number>>;
   /** Clubes de cada grupo, em ordem alfabética. */
   clubs: Partial<Record<Series, string[]>>;
+  /** Escudos disponíveis no servidor (`data/escudos/`): nome do clube → URL. Vazio = selo genérico do jogo. */
+  crests: Record<string, string>;
 }
 
 export interface RoomView {

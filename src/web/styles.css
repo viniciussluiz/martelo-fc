@@ -1884,3 +1884,20 @@ p {
   text-align: center;
   padding: 18px 16px 28px;
 }
+
+/* Selo do clube ao lado do nome */
+.club-line {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+}
+
+.club-badge {
+  flex: none;
+  display: block;
+}
+
+.club-crest {
+  object-fit: contain;
+}

@@ -5,6 +5,7 @@ import { toast } from '../../lib/store';
 import { CardAvatar, CardFace, Countdown, EnvelopeArt, POSITION_NAME, TierBadge, plural, useNow } from '../common';
 import { Icon } from '../Icon';
 import { SquadPitch } from './Squad';
+import { ClubLine } from '../ClubBadge';
 
 export function AuctionScreen({ room }: { room: RoomView }) {
   const d = room.dispute!;
@@ -359,7 +360,7 @@ function MonteBoard({ step, d }: { step: MonteStepView; d: DisputeView }) {
                     {c.name}
                   </div>
                   <div className="sticker-meta">
-                    {c.club}, {c.year}
+                    <ClubLine club={c.club} year={c.year} kit={c.kit} />
                   </div>
                 </div>
               </div>
@@ -416,7 +417,7 @@ function RevealStage({ reveal, d }: { reveal: RevealView; d: DisputeView }) {
             </div>
             <div className="sticker-name">{card.name}</div>
             <div className="sticker-meta">
-              {card.club}, {card.year}
+              <ClubLine club={card.club} year={card.year} kit={card.kit} />
             </div>
             {item.bids.length === 0 ? (
               <p className="muted">Ninguém deu lance. {item.round === 'leva' ? 'Vai para a repescagem.' : 'Vai para o Monte Final.'}</p>

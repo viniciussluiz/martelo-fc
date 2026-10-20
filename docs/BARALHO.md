@@ -67,6 +67,13 @@ conhecidos. O baralho atual tem 2.113 cartas: Série A 817 (≈12% Lendas), Sér
 Wikidata as tem (ou a tabela de cores dos principais clubes do script). Lendas ganham avatar maior com aro dourado, brilho e
 coroa — só depois de reveladas (no martelo e na Cerimônia), para não entregar o nível durante o leilão às cegas.
 
+**Escudos.** Ao lado do nome do clube, cada carta mostra um selo: por padrão, um desenho genérico do jogo (escudo liso nas
+cores do clube com a sigla de placar, ex.: FLA, SAO, RMA), **não o escudo oficial** — escudos são marcas registradas e não
+vêm no projeto. Quem tiver autorização dos clubes pode colocar os arquivos em `data/escudos/` (ou na pasta de `CRESTS_DIR`),
+um por clube, com o nome do clube em minúsculas, sem acento e com hífens: `flamengo.png`, `sao-paulo.svg`,
+`atletico-mg.webp`, `inter-de-milao.png` (SVG, PNG, WebP ou JPG). O servidor lista a pasta ao subir e usa a imagem no lugar do
+selo; o servidor só entrega arquivos dessa lista.
+
 **Observação.** Os dados são livres, mas usar nomes reais de atletas num produto comercial pode envolver direito de imagem/nome;
 avalie com um advogado antes de lançar.
 

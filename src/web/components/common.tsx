@@ -3,6 +3,7 @@ import type { CardView } from '../../shared/protocol';
 import { serverNow } from '../lib/store';
 import { Avatar } from './Avatar';
 import { Icon } from './Icon';
+import { ClubLine } from './ClubBadge';
 
 export const TIER_LABEL: Record<string, string> = {
   lenda: 'Lenda',
@@ -88,7 +89,7 @@ export function CardFace({ card, children, compact }: { card: CardView; children
           </div>
           <div className="sticker-name">{card.name}</div>
           <div className="sticker-meta">
-            {card.club}, {card.year}
+            <ClubLine club={card.club} year={card.year} kit={card.kit} />
           </div>
           {!compact && <div className="sticker-hint">{card.hint}</div>}
         </div>
