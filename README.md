@@ -25,6 +25,9 @@ Detalhes em [docs/BARALHO.md](docs/BARALHO.md).
 npm install
 npm start            # compila o cliente e sobe o servidor em http://localhost:3210 (aplica as migrações no boot)
 ```
+Pouco espaço em disco? O zip já traz o site compilado (`dist/`): `npm install --omit=dev` instala só o necessário
+para jogar (~40 MB em vez de ~200 MB; sem testes nem recompilação do site).
+
 Ao subir, o terminal mostra a versão e o baralho carregado (ex.: `Martelo FC 0.3.0` · `Baralho: Brasileirão 2026 …`);
 o rodapé do site mostra o mesmo. Atualizando a partir de uma versão antiga, extraia o zip numa pasta nova (o macOS cria
 “martelo-fc 2” se já existir uma) e rode `npm install` e `npm start` dentro dela.

@@ -1,6 +1,6 @@
 {
   "name": "martelo-fc",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "private": true,
   "description": "Martelo FC — leilão às cegas de futebol, multiplayer, com continuidade de salas, histórico de confrontos e Sala de Troféus.",
   "type": "module",
@@ -12,7 +12,7 @@
     "dev:server": "tsx watch src/server/main.ts",
     "dev:web": "vite --config vite.config.ts",
     "build": "vite build --config vite.config.ts",
-    "prestart": "vite build --config vite.config.ts --logLevel warn",
+    "prestart": "node scripts/ensure-client.mjs",
     "start": "tsx src/server/main.ts",
     "migrate": "tsx scripts/migrate.ts",
     "deck:generate": "tsx scripts/generate-deck.ts",
