@@ -1,0 +1,3 @@
+Coloque aqui os escudos oficiais SE tiver autorização dos clubes (são marcas registradas).
+Um arquivo por clube, nome em minúsculas, sem acento, com hífens: flamengo.png, sao-paulo.svg, atletico-mg.webp, inter-de-milao.png
+Sem arquivos aqui, o jogo usa o selo genérico (escudo liso nas cores do clube com a sigla).
