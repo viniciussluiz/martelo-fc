@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import type { PublicUserView } from '../shared/protocol';
 import { Icon, Logo } from './components/Icon';
 import { api, ApiError } from './lib/api';
@@ -125,6 +125,22 @@ function Routes() {
   return <HomePage />;
 }
 
+/** Rodapé com versão e baralho do servidor: ajuda a saber qual cópia do jogo está rodando. */
+function Footer() {
+  const [info, setInfo] = useState<{ version: string; deck: string; cards: number } | null>(null);
+  useEffect(() => {
+    void api<{ version: string; deck: string; cards: number }>('GET', '/api/health')
+      .then(setInfo)
+      .catch(() => undefined);
+  }, []);
+  if (!info) return null;
+  return (
+    <footer className="app-footer small muted">
+      Martelo FC {info.version} · Baralho: {info.deck} ({info.cards} cartas)
+    </footer>
+  );
+}
+
 export function App() {
   useBoot();
   return (
@@ -133,6 +149,7 @@ export function App() {
       <main className="page">
         <Routes />
       </main>
+      <Footer />
       <Toasts />
     </div>
   );

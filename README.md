@@ -23,9 +23,11 @@ Detalhes em [docs/BARALHO.md](docs/BARALHO.md).
 ## Instalar e rodar
 ```bash
 npm install
-npm run build        # compila o cliente para dist/
-npm start            # servidor em http://localhost:3210 (aplica as migrações no boot)
+npm start            # compila o cliente e sobe o servidor em http://localhost:3210 (aplica as migrações no boot)
 ```
+Ao subir, o terminal mostra a versão e o baralho carregado (ex.: `Martelo FC 0.3.0` · `Baralho: Brasileirão 2026 …`);
+o rodapé do site mostra o mesmo. Atualizando a partir de uma versão antiga, extraia o zip numa pasta nova (o macOS cria
+“martelo-fc 2” se já existir uma) e rode `npm install` e `npm start` dentro dela.
 Desenvolvimento com recarga: `npm run dev` (servidor em 3210 + Vite em http://localhost:5173 com proxy para /api e /ws).
 
 Configuração por variáveis de ambiente — ver [.env.example](.env.example). Não há segredos.

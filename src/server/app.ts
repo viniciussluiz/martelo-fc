@@ -8,7 +8,7 @@ import { GameRuleError } from '../engine/errors.js';
 import type { Card } from '../engine/types.js';
 import type { ClientMessage, DeckInfo, ServerMessage } from '../shared/protocol.js';
 import { AuthError, AuthService, type PublicUser } from './auth.js';
-import { loadConfig, type ServerConfig } from './config.js';
+import { APP_VERSION, configNotes, loadConfig, type ServerConfig } from './config.js';
 import { migrate, openDatabase, type DB } from './db.js';
 import { HttpError, RateLimiter, readJson, Router, SECURITY_HEADERS, sendJson, serveStatic, type Ctx } from './http.js';
 import { createLogger, type Logger } from './log.js';
@@ -29,6 +29,7 @@ export interface App {
   achievements: AchievementService;
   h2h: H2HService;
   config: ServerConfig;
+  deckInfo: DeckInfo;
   url: string;
   close(): Promise<void>;
 }
@@ -66,6 +67,7 @@ export async function createApp(overrides: Partial<ServerConfig> = {}, logger?: 
   const db = openDatabase(config.dbPath);
   const applied = migrate(db);
   if (applied.length) log.info('migrações aplicadas', { applied });
+  for (const note of configNotes.splice(0)) log.warn(note);
   const deckFile = loadDeckFile(config.deckPath);
   const deck = deckFile.cards;
   const deckInfo = describeDeck(deckFile.name, deck);
@@ -96,7 +98,7 @@ export async function createApp(overrides: Partial<ServerConfig> = {}, logger?: 
   const body = (ctx: Ctx) => (ctx.body ?? {}) as Record<string, unknown>;
 
   router
-    .on('GET', '/api/health', () => ({ ok: true, rooms: rooms.all().length, time: new Date().toISOString() }))
+    .on('GET', '/api/health', () => ({ ok: true, version: APP_VERSION, deck: deckInfo.name, cards: deckInfo.total, rooms: rooms.all().length, time: new Date().toISOString() }))
     .on('POST', '/api/auth/guest', (ctx) => {
       limitAuth(ctx);
       return auth.createGuest(body(ctx).displayName);
@@ -373,6 +375,7 @@ export async function createApp(overrides: Partial<ServerConfig> = {}, logger?: 
     achievements,
     h2h,
     config,
+    deckInfo,
     url,
     async close() {
       clearInterval(heartbeat);

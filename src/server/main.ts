@@ -17,6 +17,10 @@ function loadDotEnv(path = resolve(ROOT_DIR, '.env')) {
 loadDotEnv();
 const { createApp } = await import('./app.js');
 const app = await createApp();
+const { APP_VERSION } = await import('./config.js');
+const port = new URL(app.url).port;
+console.log(`\nMartelo FC ${APP_VERSION} no ar: http://localhost:${port}`);
+console.log(`Baralho: ${app.deckInfo.name} (${app.deckInfo.total} cartas)\n`);
 
 const shutdown = async (signal: string) => {
   console.log(JSON.stringify({ t: new Date().toISOString(), lvl: 'info', msg: 'encerrando', signal }));

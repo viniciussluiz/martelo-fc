@@ -1879,3 +1879,8 @@ p {
   color: var(--ink-2);
   line-height: 1.5;
 }
+
+.app-footer {
+  text-align: center;
+  padding: 18px 16px 28px;
+}
