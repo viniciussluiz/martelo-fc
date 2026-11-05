@@ -18,3 +18,21 @@ describe('escolha do baralho pelo ambiente', () => {
     expect(resolveDeckPath({ DECK_PATH: '/tmp/meu-baralho.json' })).toBe('/tmp/meu-baralho.json');
   });
 });
+
+describe('build do site entregue', () => {
+  it('lê o script principal do dist/index.html e acompanha um novo build', async () => {
+    const { mkdtempSync, writeFileSync, utimesSync, rmSync } = await import('node:fs');
+    const { tmpdir } = await import('node:os');
+    const { join } = await import('node:path');
+    const { clientBuildId } = await import('../../src/server/http.js');
+    const dir = mkdtempSync(join(tmpdir(), 'martelo-build-'));
+    expect(clientBuildId(dir)).toBeUndefined();
+    const index = join(dir, 'index.html');
+    writeFileSync(index, '<script type="module" crossorigin src="/assets/index-AAA111.js"></script>');
+    expect(clientBuildId(dir)).toBe('/assets/index-AAA111.js');
+    writeFileSync(index, '<script type="module" crossorigin src="/assets/index-BBB222.js"></script>');
+    utimesSync(index, new Date(), new Date(Date.now() + 5000));
+    expect(clientBuildId(dir)).toBe('/assets/index-BBB222.js');
+    rmSync(dir, { recursive: true, force: true });
+  });
+});

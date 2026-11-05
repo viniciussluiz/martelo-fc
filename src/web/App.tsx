@@ -1,6 +1,9 @@
 import { useEffect, useState } from 'react';
 import type { PublicUserView } from '../shared/protocol';
+import { Spinner } from './components/common';
+import { TeamCrest } from './components/crest/TeamCrest';
 import { Icon, Logo } from './components/Icon';
+import { StatusLight } from './components/ui';
 import { api, ApiError } from './lib/api';
 import { matchPath, navigate, usePath } from './lib/router';
 import { socket } from './lib/socket';
@@ -55,7 +58,7 @@ function TopBar() {
   const user = useStore((s) => s.user);
   const conn = useStore((s) => s.connection);
   const path = usePath();
-  const link = (href: string, label: string, current: boolean) => (
+  const link = (href: string, label: string, icon: string, current: boolean) => (
     <a
       href={href}
       aria-current={current ? 'page' : undefined}
@@ -64,7 +67,8 @@ function TopBar() {
         navigate(href);
       }}
     >
-      {label}
+      <Icon name={icon} size={18} />
+      <span>{label}</span>
     </a>
   );
   return (
@@ -78,16 +82,35 @@ function TopBar() {
             navigate('/');
           }}
         >
-          <Logo />
-          <span>Martelo FC</span>
+          <span className="brand-crest">
+            <Logo size={46} />
+          </span>
+          <span className="brand-name">Martelo FC</span>
         </a>
         <nav className="nav" aria-label="Principal">
-          {link('/', 'Jogar', path === '/' || path.startsWith('/sala'))}
-          {user && link(`/perfil/${user.id}`, 'Perfil', path.startsWith('/perfil'))}
-          {user && link(`/trofeus/${user.id}`, 'Troféus', path.startsWith('/trofeus'))}
-          {link('/regras', 'Regras', path.startsWith('/regras'))}
+          {link('/', 'Jogar', 'bola', path === '/' || path.startsWith('/sala'))}
+          {user && link(`/perfil/${user.id}`, 'Perfil', 'perfil', path.startsWith('/perfil'))}
+          {user && link(`/trofeus/${user.id}`, 'Troféus', 'trofeu', path.startsWith('/trofeus'))}
+          {link('/regras', 'Regras', 'apito', path.startsWith('/regras'))}
         </nav>
-        {user && <span className="conn" data-state={conn} title={conn === 'online' ? 'Conectado' : 'Reconectando…'} />}
+        {user && (
+          <a
+            className="me-chip"
+            href={`/perfil/${user.id}`}
+            onClick={(e) => {
+              e.preventDefault();
+              navigate(`/perfil/${user.id}`);
+            }}
+            title={conn === 'online' ? 'Conectado' : 'Reconectando…'}
+          >
+            <TeamCrest userId={user.id} name={user.displayName} crest={user.crest} size={30} />
+            <span className="me-name">{user.displayName}</span>
+            <span className="conn" data-state={conn}>
+              <StatusLight on={conn === 'online'} />
+              <span className="sr-only">{conn === 'online' ? 'Conectado' : 'Reconectando'}</span>
+            </span>
+          </a>
+        )}
       </div>
     </header>
   );
@@ -99,8 +122,10 @@ function Toasts() {
     <div className="toasts" aria-live="polite">
       {toasts.map((t) => (
         <div key={t.id} className="toast" data-kind={t.kind} role={t.kind === 'erro' ? 'alert' : 'status'}>
-          <Icon name={t.icon ?? (t.kind === 'erro' ? 'info' : t.kind === 'conquista' ? 'trofeu' : 'lacre')} />
-          <div>
+          <span className="toast-icon">
+            <Icon name={t.icon ?? (t.kind === 'erro' ? 'info' : t.kind === 'conquista' ? 'trofeu' : 'lacre')} />
+          </span>
+          <div className="toast-text">
             <strong>{t.title}</strong>
             {t.body && <div className="small">{t.body}</div>}
           </div>
@@ -114,7 +139,7 @@ function Routes() {
   const path = usePath();
   const booting = useStore((s) => s.booting);
   const user = useStore((s) => s.user);
-  if (booting) return <div className="page muted">Abrindo o pregão…</div>;
+  if (booting) return <Spinner label="Abrindo o pregão…" />;
   let m: Record<string, string> | null;
   if ((m = matchPath('/sala/:code', path))) return user ? <RoomPage code={m.code!.toUpperCase()} /> : <HomePage joinCode={m.code!} />;
   if ((m = matchPath('/perfil/:id/rival/:opp', path))) return user ? <RivalPage userId={m.id!} opponentId={m.opp!} /> : <HomePage />;
@@ -135,8 +160,11 @@ function Footer() {
   }, []);
   if (!info) return null;
   return (
-    <footer className="app-footer small muted">
-      Martelo FC {info.version} · Baralho: {info.deck} ({info.cards} cartas)
+    <footer className="app-footer">
+      <span>Martelo FC {info.version}</span>
+      <span>
+        Baralho {info.deck}, {info.cards} cartas
+      </span>
     </footer>
   );
 }

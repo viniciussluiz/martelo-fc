@@ -1,4 +1,5 @@
 import { createHash, randomBytes, randomUUID, scryptSync, timingSafeEqual } from 'node:crypto';
+import { CrestError, defaultUserCrest, parseCrest, readCrest, type CrestConfig } from '../shared/crest.js';
 import { nowIso, type DB } from './db.js';
 
 /**
@@ -14,6 +15,8 @@ export interface PublicUser {
   username: string | null;
   isGuest: boolean;
   createdAt: string;
+  /** Escudo do time (montado no criador ou gerado a partir do id). */
+  crest: CrestConfig;
 }
 
 export class AuthError extends Error {
@@ -33,6 +36,7 @@ interface UserRow {
   password_hash: string | null;
   is_guest: number;
   created_at: string;
+  crest_json: string | null;
 }
 
 const toPublic = (r: UserRow): PublicUser => ({
@@ -41,7 +45,19 @@ const toPublic = (r: UserRow): PublicUser => ({
   username: r.username,
   isGuest: !!r.is_guest,
   createdAt: r.created_at,
+  crest: readCrest(r.crest_json, () => defaultUserCrest(r.id, r.display_name)),
 });
+
+/** Valida o escudo vindo do cliente (ou nulo: fica o gerado). */
+export function cleanCrest(raw: unknown): CrestConfig | null {
+  if (raw === undefined || raw === null) return null;
+  try {
+    return parseCrest(raw);
+  } catch (err) {
+    if (err instanceof CrestError) throw new AuthError(400, 'escudo_invalido', err.message);
+    throw err;
+  }
+}
 
 export function hashPassword(password: string): string {
   const salt = randomBytes(16);
@@ -95,23 +111,27 @@ export class AuthService {
     return token;
   }
 
-  createGuest(displayName: unknown): { token: string; user: PublicUser } {
+  createGuest(displayName: unknown, crest?: unknown): { token: string; user: PublicUser } {
     const name = cleanDisplayName(displayName);
+    const recipe = cleanCrest(crest);
     const id = randomUUID();
-    this.db.prepare('INSERT INTO users (id, display_name, is_guest, created_at) VALUES (?, ?, 1, ?)').run(id, name, nowIso());
+    this.db
+      .prepare('INSERT INTO users (id, display_name, is_guest, created_at, crest_json) VALUES (?, ?, 1, ?, ?)')
+      .run(id, name, nowIso(), recipe ? JSON.stringify(recipe) : null);
     return { token: this.createSession(id), user: this.getUser(id)! };
   }
 
-  register(input: { username: unknown; password: unknown; displayName: unknown }): { token: string; user: PublicUser } {
+  register(input: { username: unknown; password: unknown; displayName: unknown; crest?: unknown }): { token: string; user: PublicUser } {
     const username = cleanUsername(input.username);
     const password = cleanPassword(input.password);
     const name = cleanDisplayName(input.displayName);
+    const recipe = cleanCrest(input.crest);
     const exists = this.db.prepare('SELECT 1 FROM users WHERE username = ?').get(username);
     if (exists) throw new AuthError(409, 'usuario_existe', 'Esse usuário já existe.');
     const id = randomUUID();
     this.db
-      .prepare('INSERT INTO users (id, username, display_name, password_hash, is_guest, created_at) VALUES (?, ?, ?, ?, 0, ?)')
-      .run(id, username, name, hashPassword(password), nowIso());
+      .prepare('INSERT INTO users (id, username, display_name, password_hash, is_guest, created_at, crest_json) VALUES (?, ?, ?, ?, 0, ?, ?)')
+      .run(id, username, name, hashPassword(password), nowIso(), recipe ? JSON.stringify(recipe) : null);
     return { token: this.createSession(id), user: this.getUser(id)! };
   }
 
@@ -146,6 +166,15 @@ export class AuthService {
   rename(userId: string, displayName: unknown): PublicUser {
     const name = cleanDisplayName(displayName);
     this.db.prepare('UPDATE users SET display_name = ? WHERE id = ?').run(name, userId);
+    return this.getUser(userId)!;
+  }
+
+  /** Salva o escudo do time do técnico (vale em todas as salas, perfil e histórico). */
+  setCrest(userId: string, raw: unknown): PublicUser {
+    const recipe = cleanCrest(raw);
+    if (!recipe) throw new AuthError(400, 'escudo_invalido', 'Monte o escudo antes de salvar.');
+    const res = this.db.prepare('UPDATE users SET crest_json = ? WHERE id = ?').run(JSON.stringify(recipe), userId);
+    if (res.changes === 0) throw new AuthError(404, 'usuario_inexistente', 'Usuário não encontrado.');
     return this.getUser(userId)!;
   }
 

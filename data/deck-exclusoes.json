@@ -1,0 +1,11 @@
+{
+  "_leia": "Cartas que o baralho nunca usa (dados errados ou desatualizados no Wikidata). \"id\" sem o ano (wd-<jogador>-<clube>) tira todas as versões daquela passagem; com o ano, só aquela carta. Vale ao montar o baralho (npm run deck:wikidata) — data/deck-wikidata.json já sai sem elas.",
+  "excluir": [
+    {
+      "id": "wd-Q56248407-Q270995",
+      "jogador": "Marquinhos",
+      "clube": "Atlético-MG",
+      "motivo": "Não está no Atlético-MG em 2026: a passagem (desde 2017) não tem data de saída no Wikidata."
+    }
+  ]
+}

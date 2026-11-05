@@ -146,7 +146,7 @@ export function validateDeck(cards: Card[]): void {
     if (!c.id || ids.has(c.id)) throw new Error(`Carta com id ausente ou duplicado: ${c.id}`);
     ids.add(c.id);
     if (!['GOL', 'LAT', 'ZAG', 'MEI', 'ATA'].includes(c.position)) throw new Error(`Posição inválida em ${c.id}`);
-    if (!(c.levelMin >= 1 && c.levelMax <= 99 && c.levelMin <= c.levelMax)) throw new Error(`Faixa de nível inválida em ${c.id}`);
+    if (!(c.levelMin >= 1 && c.levelMax <= 100 && c.levelMin <= c.levelMax)) throw new Error(`Faixa de nível inválida em ${c.id}`);
     if (!c.name?.trim()) throw new Error(`Nome vazio em ${c.id}`);
     if (c.kit && !(Array.isArray(c.kit) && c.kit.length === 2 && c.kit.every((h) => /^#[0-9a-fA-F]{6}$/.test(h)))) {
       throw new Error(`Cores do uniforme inválidas em ${c.id}`);

@@ -28,8 +28,10 @@ test('partida rápida completa, continuidade na mesma sala e Sala de Troféus', 
   const shown = (await page.locator('.sticker-meta .club-name').allInnerTexts()).map((t) => t.trim());
   expect(shown.length).toBeGreaterThan(0);
   expect(shown.filter((c) => !serieA.has(c))).toEqual([]);
-  // Cada clube aparece com o selo ao lado do nome.
+  // Cada carta: só o nome e, embaixo, o escudo com “Clube (ano)” — sem rosto e sem descrição.
   expect(await page.locator('.sticker-meta .club-badge').count()).toBe(shown.length);
+  expect(await page.locator('.sticker-meta .club-year').first().innerText()).toMatch(/^\(\d{4}\)$/);
+  expect(await page.locator('.sticker .legend-figure, .sticker .avatar, .sticker-hint').count()).toBe(0);
   const inputs = page.getByLabel(/^Lance em/);
   await inputs.first().fill('150');
   await expect(page.getByText('Passou das suas moedas.')).toBeVisible();

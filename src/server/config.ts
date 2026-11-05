@@ -71,5 +71,17 @@ export function loadConfig(env: NodeJS.ProcessEnv = process.env): ServerConfig {
 
 export const ROOT_DIR = root;
 
+/** Carrega `.env` da raiz, se existir, sem sobrescrever variáveis já definidas. */
+export function loadDotEnv(path = resolve(root, '.env')) {
+  if (!existsSync(path)) return;
+  for (const line of readFileSync(path, 'utf8').split(/\r?\n/)) {
+    const m = /^\s*([A-Z0-9_]+)\s*=\s*(.*?)\s*$/.exec(line);
+    if (!m || line.trim().startsWith('#')) continue;
+    const [, key, raw] = m;
+    const value = raw!.replace(/^["']|["']$/g, '');
+    if (process.env[key!] === undefined && value !== '') process.env[key!] = value;
+  }
+}
+
 /** Versão do projeto (package.json), mostrada no log e no rodapé para saber qual cópia está rodando. */
 export const APP_VERSION: string = (JSON.parse(readFileSync(resolve(root, 'package.json'), 'utf8')) as { version: string }).version;

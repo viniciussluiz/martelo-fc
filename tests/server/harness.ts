@@ -160,6 +160,13 @@ export class TestClient {
       } else if (step.kind === 'monte' && step.current === d.you && step.myOptions.length) {
         this.acted.add(step.stepId);
         this.fire({ t: 'monte:pick', stepId: step.stepId, cardId: step.myOptions[0]! });
+      } else if (step.kind === 'convocacao' && !step.mySealed && this.strategy === 'bid') {
+        // Convoca os primeiros de cada pacote (na estratégia “pass”, deixa o tempo acabar).
+        this.acted.add(step.stepId);
+        const picks = Object.entries(step.myPackages).flatMap(([pos, id]) =>
+          (d.packages[id!]?.cardIds ?? []).slice(0, step.need[pos as keyof typeof step.need]),
+        );
+        this.fire({ t: 'convoca:set', stepId: step.stepId, cardIds: picks, seal: true });
       }
     }
     if (d.phase === 'ceremony' && !this.acted.has(`cer:${d.id}`)) {

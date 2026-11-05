@@ -1,4 +1,4 @@
-import type { Rng } from './rng.js';
+import { Rng } from './rng.js';
 import type { Position, Tactic } from './types.js';
 
 /**
@@ -39,6 +39,9 @@ export interface Goal {
   cardId: string;
   name: string;
   minute: number;
+  /** Quem deu o passe (nem todo gol tem assistência). */
+  assistCardId?: string;
+  assistName?: string;
 }
 
 export interface MatchResult {
@@ -108,6 +111,30 @@ function pickScorer(team: TeamSheet, ratings: Map<string, number>, rng: Rng): Sq
   return rng.weighted(team.squad, (p) => SCORER_WEIGHT[p.position] * Math.pow((ratings.get(p.cardId) ?? 60) / 80, 2));
 }
 
+/** Peso de cada posição para dar o passe do gol: meias e laterais servem mais. */
+const ASSIST_WEIGHT: Record<Position, number> = { MEI: 5, ATA: 3, LAT: 3, ZAG: 0.8, GOL: 0.15 };
+/** Parte dos gols que sai com assistência (o resto é jogada individual, rebote, pênalti…). */
+export const ASSIST_RATE = 0.72;
+
+/**
+ * Assistências dos gols. Usam um sorteio próprio, derivado do jogo, para não mexer na sequência
+ * do sorteio principal: o mesmo jogo continua com o mesmo placar e os mesmos goleadores.
+ */
+function assignAssists(id: string, home: TeamSheet, away: TeamSheet, goals: Goal[], h: Map<string, number>, a: Map<string, number>) {
+  if (goals.length === 0) return;
+  const rng = new Rng(`${id}|${home.teamId}|${away.teamId}|passes|${goals.map((g) => `${g.minute}${g.cardId}`).join(',')}`);
+  for (const g of goals) {
+    if (rng.next() >= ASSIST_RATE) continue;
+    const team = g.side === 'home' ? home : away;
+    const ratings = g.side === 'home' ? h : a;
+    const mates = team.squad.filter((p) => p.cardId !== g.cardId);
+    if (mates.length === 0) continue;
+    const p = rng.weighted(mates, (m) => ASSIST_WEIGHT[m.position] * Math.pow((ratings.get(m.cardId) ?? 60) / 80, 2));
+    g.assistCardId = p.cardId;
+    g.assistName = p.name;
+  }
+}
+
 const GOAL_TEXT = [
   '{p} recebe na entrada da área e bate firme no canto!',
   '{p} aparece de cabeça depois do escanteio — rede balançando!',
@@ -123,9 +150,18 @@ function fill(template: string, name: string): string {
   return template.replace('{p}', name);
 }
 
+/**
+ * Média de gols de um lado (Poisson). Calibrada para placares de futebol de verdade: ~2,8 gols por jogo
+ * entre times iguais; 10 pontos de diferença em todos os setores dão ≈ 2,2 × 0,75 (antes davam 3,9 × 0,4,
+ * e um time forte fazia +140 de saldo numa liga). Cada ponto de ataque acima da defesa rival vale ~3,6% de gols.
+ */
+export const GOAL_BASE = 1.28;
+export const ATTACK_SCALE = 28;
+export const MIDFIELD_SCALE = 56;
+
 export function expectedGoals(attack: number, defense: number, midDiff: number, homeBoost: number, bothAttack: number): number {
-  const lambda = 1.3 * Math.exp((attack - defense) / 15 + midDiff / 30 + homeBoost) * (1 + bothAttack);
-  return Math.min(5, Math.max(0.12, lambda));
+  const lambda = GOAL_BASE * Math.exp((attack - defense) / ATTACK_SCALE + midDiff / MIDFIELD_SCALE + homeBoost) * (1 + bothAttack);
+  return Math.min(4.5, Math.max(0.15, lambda));
 }
 
 export function simulateMatch(params: SimulateParams): MatchResult {
@@ -135,7 +171,7 @@ export function simulateMatch(params: SimulateParams): MatchResult {
   const h = rateTeam(home, rng, homeTactic);
   const a = rateTeam(away, rng, awayTactic);
   const openness = (homeTactic === 'ataque' ? 0.08 : 0) + (awayTactic === 'ataque' ? 0.08 : 0);
-  const homeBoost = params.neutral ? 0 : 0.12;
+  const homeBoost = params.neutral ? 0 : 0.1;
   const lh = expectedGoals(h.att, a.def, h.mid - a.mid, homeBoost, openness);
   const la = expectedGoals(a.att, h.def, a.mid - h.mid, 0, openness);
   const homeGoals = rng.poisson(lh);
@@ -153,6 +189,7 @@ export function simulateMatch(params: SimulateParams): MatchResult {
     goals.push({ side: 'away', cardId: p.cardId, name: p.name, minute });
   }
   goals.sort((x, y) => x.minute - y.minute);
+  assignAssists(params.id, home, away, goals, h.ratings, a.ratings);
 
   const result: MatchResult = { id: params.id, homeId: home.teamId, awayId: away.teamId, homeGoals, awayGoals, goals };
 
@@ -163,7 +200,8 @@ export function simulateMatch(params: SimulateParams): MatchResult {
   if (params.withEvents) {
     const events: MatchEvent[] = [{ minute: 0, type: 'apito', side: null, text: 'Apita o árbitro: bola rolando!' }];
     for (const g of goals) {
-      events.push({ minute: g.minute, type: 'gol', side: g.side, cardId: g.cardId, text: fill(rng.pick(GOAL_TEXT), g.name) });
+      const text = fill(rng.pick(GOAL_TEXT), g.name) + (g.assistName ? ` Assistência de ${g.assistName}.` : '');
+      events.push({ minute: g.minute, type: 'gol', side: g.side, cardId: g.cardId, text });
     }
     const extras = rng.int(2, 5);
     for (let i = 0; i < extras; i++) {

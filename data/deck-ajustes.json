@@ -1,0 +1,25 @@
+{
+  "_leia": "Correções manuais do baralho, aplicadas ao montar com npm run deck:wikidata (data/deck-wikidata.json já sai com elas). \"id\" é o id da carta: wd-<jogador> pega todas as cartas do jogador, wd-<jogador>-<clube> todas as daquela passagem, e com o ano no fim só aquela carta.",
+  "excluir": [
+    {
+      "id": "wd-Q56248407-Q270995",
+      "jogador": "Marquinhos",
+      "clube": "Atlético-MG",
+      "motivo": "Não está no Atlético-MG em 2026: a passagem (desde 2017) não tem data de saída no Wikidata."
+    }
+  ],
+  "nivel": [
+    {
+      "id": "wd-Q12897",
+      "jogador": "Pelé",
+      "faixa": [95, 100],
+      "motivo": "Os dois maiores do baralho ficam acima do teto das outras Lendas (93–98)."
+    },
+    {
+      "id": "wd-Q615",
+      "jogador": "Lionel Messi",
+      "faixa": [95, 100],
+      "motivo": "Os dois maiores do baralho ficam acima do teto das outras Lendas (93–98)."
+    }
+  ]
+}

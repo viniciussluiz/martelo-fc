@@ -229,7 +229,7 @@ export class ResultsService {
         const wb = rv.bids.find((b) => b.participantId === rv.winnerId)!.amount;
         const ob = rv.bids.find((b) => b.participantId === other)!.amount;
         put('lance', rv.cardId, null, rv.winnerId, other, rv.winnerId, wb, ob, {
-          card: dispute.cards[rv.cardId]?.name ?? rv.cardId,
+          card: dispute.auction.itemLabel(rv.cardId),
           price: rv.price,
         });
       }

@@ -47,6 +47,15 @@ Leilão:   [GOL leva…, repescagem] → [LAT…] → [ZAG…] → [MEI…] → 
           cada passo: lance (envelope) → desempate (se houver) → revelação
 ```
 
+## Escudos dos times
+`src/shared/crest.ts` define a receita do escudo (formato, padrão, cores, símbolo, sigla e enfeites), a validação e o gerador
+determinístico. O desenho é só no cliente (`src/web/components/crest/`).
+- **Técnicos:** a receita fica em `users.crest_json` (migração `002_team_crests.sql`), enviada no cadastro/entrada ou por
+  `PUT /api/me/crest`; sem receita, o escudo é gerado a partir do id da conta. A `RoomView` traz `crests` (por id de usuário) de todos
+  os técnicos que aparecem na sala; ao salvar, as salas do técnico recebem o escudo novo na hora.
+- **CPU e clubes do jogo:** o escudo sai do nome (`crestForTeamName`), então “Robô Boleiro” tem o mesmo escudo em qualquer sala,
+  partida ou copa — nada é guardado.
+
 ## Finalização (integração entre módulos)
 `ResultsService.finalizeDispute` roda numa **única transação**:
 1. `processed_events('finalize:<id>')` — se já existir, retorna sem fazer nada (idempotência contra retentativas e mensagens duplicadas);

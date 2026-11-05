@@ -1,8 +1,7 @@
 /**
- * Siglas dos clubes (abreviações usadas em placares de TV) para o selo que aparece ao lado do
- * nome do clube nas cartas. O selo é um desenho genérico do próprio jogo — escudo liso nas cores
- * do clube com a sigla —, não o escudo oficial (marca registrada de cada clube). Quem tiver
- * autorização para usar os escudos oficiais pode colocá-los em `data/escudos/` (ver docs/BARALHO.md).
+ * Siglas dos clubes (abreviações usadas em placares de TV) para o selo genérico do jogo — escudo
+ * liso nas cores do clube com a sigla —, usado quando o clube não tem escudo oficial em
+ * `data/escudos/` nem em `data/escudos/fontes.json` (ver docs/BARALHO.md e `npm run escudos`).
  */
 export const CLUB_CODES: Record<string, string> = {
   // Série A 2026

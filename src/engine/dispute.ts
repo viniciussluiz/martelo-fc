@@ -1,20 +1,24 @@
 import { Auction, lotSizes, type AuctionState } from './auction.js';
 import { computePregaoAwards, type PregaoAward } from './awards.js';
-import { makeContinentalBots, makeLeagueBots } from './bots.js';
+import { makeContinentalBots, makeLeagueBots, type BotClub } from './bots.js';
 import { Cup, REACH_ORDER, type CupReach, type CupState } from './cup.js';
 import { GameRuleError } from './errors.js';
 import { aggregateScorers, League, type LeagueState, type LeagueTeam, type StandingRow } from './league.js';
 import type { MatchResult, SquadPlayer } from './match.js';
+import { buildClubPackages } from './packages.js';
 import { Rng } from './rng.js';
 import {
   FORMATIONS,
   MAX_PARTICIPANTS,
   POSITIONS,
+  QUALITY_BANDS,
+  qualityBand,
   type Card,
   type DisputeConfig,
   type Formation,
   type Participant,
   type Position,
+  type QualityBand,
   type Tactic,
 } from './types.js';
 
@@ -119,12 +123,35 @@ export interface CreateDisputeParams {
   carried?: Card[];
 }
 
-/** Monta o pool do leilão: herdadas do ciclo anterior + sorteio do baralho. */
+/**
+ * Quantas cartas novas de cada faixa entram num lote, já contando as herdadas do ciclo anterior:
+ * cada carta nova vai para a faixa que tem menos cartas até aqui (empate → ordem sorteada).
+ * Sem herdadas, sai ⌊n/3⌋ ou ⌈n/3⌉ de cada faixa.
+ */
+export function bandQuota(carried: Card[], newCards: number, rng: Rng): Record<QualityBand, number> {
+  const count: Record<QualityBand, number> = { bom: 0, medio: 0, ruim: 0 };
+  for (const c of carried) count[qualityBand(c.tier)]++;
+  const quota: Record<QualityBand, number> = { bom: 0, medio: 0, ruim: 0 };
+  const order = rng.shuffle(QUALITY_BANDS);
+  for (let i = 0; i < newCards; i++) {
+    const band = order.reduce((a, b) => (count[b] < count[a] ? b : a));
+    count[band]++;
+    quota[band]++;
+  }
+  return quota;
+}
+
+/**
+ * Monta o pool do leilão: herdadas do ciclo anterior + sorteio do baralho, equilibrado em terços por
+ * posição (bons, médios, ruins) e com pelo menos uma Lenda em cada posição — se o baralho da sala tiver.
+ */
 export function buildAuctionPool(params: {
   seats: Array<Pick<SeatInput, 'formation'>>;
   deck: Card[];
   carried: Card[];
   extra: number;
+  /** Extras proporcionais às vagas (ver `AuctionConfig.lotExtraRatio`). */
+  extraRatio?: number;
   seed: string;
 }): { pool: Card[]; reserve: Card[] } {
   const rng = new Rng(`pool:${params.seed}`);
@@ -134,22 +161,58 @@ export function buildAuctionPool(params: {
   const usedPeople = new Set(params.carried.map(person));
   const carriedByPos: Partial<Record<Position, number>> = {};
   for (const c of params.carried) carriedByPos[c.position] = (carriedByPos[c.position] ?? 0) + 1;
-  const sizes = lotSizes(params.seats, params.extra, carriedByPos);
+  const sizes = lotSizes(params.seats, params.extra, carriedByPos, params.extraRatio ?? 0);
   const pool: Card[] = [...params.carried];
   const reserve: Card[] = [];
+  const avg = (c: Card) => (c.levelMin + c.levelMax) / 2;
   for (const pos of POSITIONS) {
-    const candidates = rng.shuffle(params.deck.filter((c) => c.position === pos && !carriedIds.has(c.id)));
-    let missing = Math.max(0, sizes[pos] - (carriedByPos[pos] ?? 0));
-    for (const c of candidates) {
+    // Candidatos sorteados, uma versão por pessoa.
+    const candidates: Card[] = [];
+    for (const c of rng.shuffle(params.deck.filter((c) => c.position === pos && !carriedIds.has(c.id)))) {
       if (usedPeople.has(person(c))) continue;
       usedPeople.add(person(c));
-      if (missing > 0) {
-        pool.push(c);
-        missing--;
-      } else {
-        reserve.push(c);
+      candidates.push(c);
+    }
+    const carriedHere = params.carried.filter((c) => c.position === pos);
+    // Toda posição tem pelo menos uma Lenda. Se nenhuma herdada for Lenda e o lote já estiver
+    // cheio de herdadas, entra uma carta a mais só para a Lenda.
+    const legend = carriedHere.some((c) => c.tier === 'lenda') ? undefined : candidates.find((c) => c.tier === 'lenda');
+    const room = Math.max(0, sizes[pos] - carriedHere.length);
+    const missing = Math.min(candidates.length, legend && room === 0 ? 1 : room);
+    const quota = bandQuota(carriedHere, missing, rng);
+    const picked = new Set<Card>();
+    if (legend && missing > 0) {
+      if (quota.bom === 0) {
+        const from = quota.medio >= quota.ruim ? 'medio' : 'ruim';
+        quota[from]--;
+        quota.bom++;
+      }
+      picked.add(legend);
+      quota.bom--;
+    }
+    for (const band of QUALITY_BANDS) {
+      for (const c of candidates) {
+        if (quota[band] === 0) break;
+        if (!picked.has(c) && qualityBand(c.tier) === band) {
+          picked.add(c);
+          quota[band]--;
+        }
       }
     }
+    // Faixa sem cartas suficientes no baralho (ex.: só Série B quase não tem Craque): completa com
+    // o mais próximo dela — os de nível mais alto para “bom”, mais baixo para “ruim”, do meio para “médio”.
+    const leftover = () => candidates.filter((c) => !picked.has(c));
+    const mid = candidates.length ? candidates.map(avg).sort((a, b) => a - b)[Math.floor(candidates.length / 2)]! : 0;
+    for (const band of QUALITY_BANDS) {
+      while (quota[band] > 0) {
+        const rest = leftover();
+        if (rest.length === 0) break;
+        const score = (c: Card) => (band === 'bom' ? avg(c) : band === 'ruim' ? -avg(c) : -Math.abs(avg(c) - mid));
+        picked.add(rest.reduce((a, b) => (score(b) > score(a) ? b : a)));
+        quota[band]--;
+      }
+    }
+    for (const c of candidates) (picked.has(c) ? pool : reserve).push(c);
   }
   return { pool, reserve };
 }
@@ -171,14 +234,20 @@ export class Dispute {
     if (seats.length > MAX_PARTICIPANTS) {
       throw new GameRuleError('lotado', `No máximo ${MAX_PARTICIPANTS} técnicos por disputa.`);
     }
-    const carried = params.config.carryOverPreviousCycle ? (params.carried ?? []) : [];
-    const { pool, reserve } = buildAuctionPool({
-      seats,
-      deck: params.deck,
-      carried,
-      extra: params.config.auction.lotExtra,
-      seed: params.seed,
-    });
+    const clubs = params.config.auction.mode === 'clubes';
+    // No leilão de clubes os pacotes são sorteados de novo a cada ciclo (não há herdadas).
+    const carried = params.config.carryOverPreviousCycle && !clubs ? (params.carried ?? []) : [];
+    const packed = clubs ? buildClubPackages({ participants: seats.length, deck: params.deck, seed: params.seed }) : null;
+    const { pool, reserve } = packed
+      ? { pool: packed.cards, reserve: [] }
+      : buildAuctionPool({
+          seats,
+          deck: params.deck,
+          carried,
+          extra: params.config.auction.lotExtra,
+          extraRatio: params.config.auction.lotExtraRatio ?? 0,
+          seed: params.seed,
+        });
     const participants: Participant[] = seats.map((s) => ({
       id: s.id,
       userId: s.userId,
@@ -195,6 +264,7 @@ export class Dispute {
       reserve,
       config: params.config.auction,
       seed: params.seed,
+      ...(packed ? { packages: packed.packages } : {}),
     });
     const state: DisputeState = {
       version: 1,
@@ -297,7 +367,11 @@ export class Dispute {
       human: !p.isCpu,
     }));
     const botCount = Math.max(0, this.state.config.leagueSize - teams.length);
-    for (const b of makeLeagueBots(botCount, this.state.seed)) {
+    // Os clubes do jogo são calibrados pela média dos elencos do leilão (senão viram saco de pancada).
+    const bots = makeLeagueBots(botCount, this.state.seed, this.auctionSquadLevel());
+    // Leilão de clubes: quem ficou de fora dos pacotes vai para os outros times da liga.
+    if (this.auction.isClubs) giveLeftoversToBots(bots, this.leftoverPackageCards(), new Rng(`sobras:${this.state.seed}`));
+    for (const b of bots) {
       teams.push({ teamId: b.teamId, name: b.name, squad: b.squad, participantId: null, human: false });
     }
     this.league = League.create(teams, this.state.seed);
@@ -322,7 +396,7 @@ export class Dispute {
     const extras: LeagueTeam[] =
       format === 'copa8'
         ? []
-        : makeContinentalBots(24, this.state.seed).map((b) => ({
+        : makeContinentalBots(24, this.state.seed, this.auctionSquadLevel()).map((b) => ({
             teamId: b.teamId,
             name: b.name,
             squad: b.squad,
@@ -472,8 +546,63 @@ export class Dispute {
     this.state.phase = 'finished';
   }
 
+  /** Nível médio (meio da faixa) dos elencos montados no leilão: a régua dos clubes do jogo. */
+  auctionSquadLevel(): number {
+    const squads = this.participants.map((p) => this.squadOf(p.id)).filter((s) => s.length > 0);
+    const mean = (s: SquadPlayer[]) => s.reduce((sum, x) => sum + (x.levelMin + x.levelMax) / 2, 0) / s.length;
+    return squads.length ? squads.reduce((sum, s) => sum + mean(s), 0) / squads.length : 75;
+  }
+
+  /** Leilão de clubes: jogadores dos pacotes que ninguém escalou (levados e não convocados, ou que sobraram). */
+  leftoverPackageCards(): Card[] {
+    const used = new Set(this.participants.flatMap((p) => p.roster.map((r) => r.cardId)));
+    return Object.values(this.auction.state.packages ?? {})
+      .flatMap((pk) => pk.cardIds)
+      .filter((id) => !used.has(id) && !id.startsWith('fill-'))
+      .map((id) => this.cards[id]!)
+      .filter(Boolean);
+  }
+
   /** Todas as cartas adquiridas nesta disputa (voltam ao leilão no próximo ciclo). */
   acquiredCards(): Card[] {
     return this.participants.flatMap((p) => p.roster.map((r) => this.cards[r.cardId]!)).filter((c) => !c.id.startsWith('fill-'));
+  }
+}
+
+/** Até quantos pontos de nível uma sobra pode ficar do jogador inventado que ela substitui. */
+export const LEFTOVER_TOLERANCE = 5;
+
+/**
+ * Distribui as sobras dos pacotes entre os times da liga controlados pelo jogo: cada vaga troca o
+ * jogador inventado pela sobra real da mesma posição com nível mais parecido (até
+ * `LEFTOVER_TOLERANCE` pontos de diferença), em rodízio entre os times. Assim os nomes ficam reais
+ * sem mudar a força que cada clube do jogo recebeu.
+ */
+export function giveLeftoversToBots(bots: BotClub[], leftovers: Card[], rng: Rng): void {
+  if (bots.length === 0 || leftovers.length === 0) return;
+  const mid = (x: { levelMin: number; levelMax: number }) => (x.levelMin + x.levelMax) / 2;
+  for (const pos of POSITIONS) {
+    const pile = rng.shuffle(leftovers.filter((c) => c.position === pos));
+    const slots = Math.max(0, ...bots.map((b) => b.squad.filter((x) => x.position === pos).length));
+    for (let k = 0; k < slots && pile.length; k++) {
+      for (const bot of rng.shuffle(bots)) {
+        const target = bot.squad.filter((x) => x.position === pos)[k];
+        if (!target || pile.length === 0) continue;
+        let best = -1;
+        for (let i = 0; i < pile.length; i++) {
+          const gap = Math.abs(mid(pile[i]!) - mid(target));
+          if (gap <= LEFTOVER_TOLERANCE && (best < 0 || gap < Math.abs(mid(pile[best]!) - mid(target)))) best = i;
+        }
+        if (best < 0) continue;
+        const card = pile.splice(best, 1)[0]!;
+        bot.squad[bot.squad.indexOf(target)] = {
+          cardId: card.id,
+          name: card.name,
+          position: card.position,
+          levelMin: card.levelMin,
+          levelMax: card.levelMax,
+        };
+      }
+    }
   }
 }

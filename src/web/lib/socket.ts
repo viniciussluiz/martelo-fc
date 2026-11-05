@@ -63,6 +63,7 @@ class Socket {
   private onMessage(msg: ServerMessage) {
     switch (msg.t) {
       case 'hello:ok': {
+        if (reloadIfOutdated(msg.build)) return;
         this.ready = true;
         this.retry = 0;
         store.set({ user: msg.user, connection: 'online' });
@@ -140,4 +141,23 @@ export async function act(msg: ClientMessage): Promise<boolean> {
     toast({ kind: 'erro', title: 'Não deu', body: (err as Error).message });
     return false;
   }
+}
+
+/**
+ * Aba aberta antes de o servidor ser atualizado continua rodando o site antigo (o WebSocket
+ * reconecta sozinho). Se o servidor entrega outro build, recarrega a página — uma vez por build,
+ * para nunca entrar em ciclo. Em `npm run dev` (sem dist/) não faz nada.
+ */
+function reloadIfOutdated(serverBuild: string | undefined): boolean {
+  if (!serverBuild || typeof document === 'undefined') return false;
+  const own = document.querySelector<HTMLScriptElement>('script[type="module"][src*="/assets/index-"]')?.getAttribute('src');
+  if (!own || own === serverBuild) return false;
+  try {
+    if (sessionStorage.getItem('martelo:reload-for') === serverBuild) return false;
+    sessionStorage.setItem('martelo:reload-for', serverBuild);
+  } catch {
+    // Sem sessionStorage: recarrega mesmo assim (o build novo já vem com o id certo).
+  }
+  location.reload();
+  return true;
 }

@@ -1,5 +1,5 @@
-import { createReadStream, existsSync, readdirSync, readFileSync } from 'node:fs';
-import { basename, extname, join } from 'node:path';
+import { createReadStream, readFileSync } from 'node:fs';
+import { join } from 'node:path';
 import { createServer, type Server } from 'node:http';
 import type { AddressInfo } from 'node:net';
 import { randomUUID } from 'node:crypto';
@@ -7,12 +7,12 @@ import { WebSocketServer, type WebSocket } from 'ws';
 import { validateDeck } from '../engine/deck-generator.js';
 import { GameRuleError } from '../engine/errors.js';
 import type { Card } from '../engine/types.js';
-import { clubSlug } from '../shared/clubs.js';
 import type { ClientMessage, DeckInfo, ServerMessage } from '../shared/protocol.js';
 import { AuthError, AuthService, type PublicUser } from './auth.js';
 import { APP_VERSION, configNotes, loadConfig, type ServerConfig } from './config.js';
+import { loadCrests, loadCrestSources, resolveCrests, type CrestSources } from './crests.js';
 import { migrate, openDatabase, type DB } from './db.js';
-import { HttpError, RateLimiter, readJson, Router, SECURITY_HEADERS, sendJson, serveStatic, type Ctx } from './http.js';
+import { clientBuildId, HttpError, RateLimiter, readJson, Router, SECURITY_HEADERS, sendJson, serveStatic, type Ctx } from './http.js';
 import { createLogger, type Logger } from './log.js';
 import { RoomManager } from './rooms/room-manager.js';
 import type { RoomActor } from './rooms/room-actor.js';
@@ -46,27 +46,15 @@ export function loadDeck(path: string): Card[] {
   return loadDeckFile(path).cards;
 }
 
-const CREST_EXT = ['.svg', '.png', '.webp', '.jpg', '.jpeg'];
-
-/**
- * Escudos em `data/escudos/` (opcional): arquivos nomeados pelo clube, ex.: `flamengo.png`,
- * `sao-paulo.svg`. Só quem tem autorização dos clubes deve colocá-los ali (são marcas registradas).
- */
-export function loadCrests(dir: string): Map<string, string> {
-  const out = new Map<string, string>();
-  if (!existsSync(dir)) return out;
-  for (const file of readdirSync(dir)) {
-    const ext = extname(file).toLowerCase();
-    if (!CREST_EXT.includes(ext)) continue;
-    const slug = basename(file, extname(file)).toLowerCase();
-    if (!/^[a-z0-9-]+$/.test(slug) || out.has(slug)) continue;
-    out.set(slug, file);
-  }
-  return out;
-}
+export { loadCrests } from './crests.js';
 
 /** Resumo do baralho para a sala: nome e cartas por grupo de clubes. */
-export function describeDeck(name: string, cards: Card[], crestFiles: Map<string, string> = new Map()): DeckInfo {
+export function describeDeck(
+  name: string,
+  cards: Card[],
+  crestFiles: Map<string, string> = new Map(),
+  crestSources: CrestSources = { clubes: {} },
+): DeckInfo {
   const groups: DeckInfo['groups'] = {};
   const clubs: Partial<Record<keyof DeckInfo['groups'], Set<string>>> = {};
   for (const c of cards) {
@@ -74,11 +62,11 @@ export function describeDeck(name: string, cards: Card[], crestFiles: Map<string
     groups[c.series] = (groups[c.series] ?? 0) + 1;
     (clubs[c.series] ??= new Set()).add(c.club);
   }
-  const crests: Record<string, string> = {};
-  for (const club of new Set(cards.map((c) => c.club))) {
-    const file = crestFiles.get(clubSlug(club));
-    if (file) crests[club] = `/escudos/${encodeURIComponent(file)}`;
-  }
+  const crests = resolveCrests(
+    cards.map((c) => c.club),
+    crestFiles,
+    crestSources,
+  );
   return {
     name,
     total: cards.length,
@@ -98,8 +86,13 @@ export async function createApp(overrides: Partial<ServerConfig> = {}, logger?: 
   const deckFile = loadDeckFile(config.deckPath);
   const deck = deckFile.cards;
   const crestFiles = loadCrests(config.crestsDir);
-  const deckInfo = describeDeck(deckFile.name, deck, crestFiles);
-  if (crestFiles.size) log.info('escudos carregados', { pasta: config.crestsDir, clubes: Object.keys(deckInfo.crests).length });
+  const deckInfo = describeDeck(deckFile.name, deck, crestFiles, loadCrestSources(config.crestsDir));
+  {
+    const clubs = new Set(deck.map((c) => c.club));
+    const local = [...clubs].filter((c) => deckInfo.crests[c]?.startsWith('/escudos/')).length;
+    const remote = Object.keys(deckInfo.crests).length - local;
+    if (local || remote) log.info('escudos', { pasta: config.crestsDir, arquivos: local, endereços: remote, semEscudo: clubs.size - local - remote });
+  }
   if (Object.keys(deckInfo.groups).length === 0) {
     log.warn('baralho sem jogadores reais em uso (fictício ou personalizado)', { path: config.deckPath, name: deckInfo.name });
   }
@@ -130,12 +123,13 @@ export async function createApp(overrides: Partial<ServerConfig> = {}, logger?: 
     .on('GET', '/api/health', () => ({ ok: true, version: APP_VERSION, deck: deckInfo.name, cards: deckInfo.total, rooms: rooms.all().length, time: new Date().toISOString() }))
     .on('POST', '/api/auth/guest', (ctx) => {
       limitAuth(ctx);
-      return auth.createGuest(body(ctx).displayName);
+      const b = body(ctx);
+      return auth.createGuest(b.displayName, b.crest);
     })
     .on('POST', '/api/auth/register', (ctx) => {
       limitAuth(ctx);
       const b = body(ctx);
-      return auth.register({ username: b.username, password: b.password, displayName: b.displayName });
+      return auth.register({ username: b.username, password: b.password, displayName: b.displayName, crest: b.crest });
     })
     .on('POST', '/api/auth/login', (ctx) => {
       limitAuth(ctx);
@@ -160,7 +154,16 @@ export async function createApp(overrides: Partial<ServerConfig> = {}, logger?: 
     })
     .on('PATCH', '/api/me', (ctx) => {
       const user = requireUser(ctx);
-      return { user: auth.rename(user.id, body(ctx).displayName) };
+      const updated = auth.rename(user.id, body(ctx).displayName);
+      rooms.userChanged(user.id);
+      return { user: updated };
+    })
+    .on('PUT', '/api/me/crest', (ctx) => {
+      const user = requireUser(ctx);
+      const updated = auth.setCrest(user.id, body(ctx).crest);
+      // As salas em que o técnico está passam a mostrar o escudo novo na hora.
+      rooms.userChanged(user.id);
+      return { user: updated };
     })
     .on('POST', '/api/rooms', (ctx) => {
       const user = requireUser(ctx);
@@ -326,7 +329,8 @@ export async function createApp(overrides: Partial<ServerConfig> = {}, logger?: 
           clearTimeout(helloTimeout);
           removeSink?.();
           removeSink = rooms.addUserSink(u.id, send);
-          send({ t: 'hello:ok', user: { id: u.id, displayName: u.displayName, username: u.username, isGuest: u.isGuest } });
+          const build = clientBuildId(config.staticDir);
+          send({ t: 'hello:ok', user: { id: u.id, displayName: u.displayName, username: u.username, isGuest: u.isGuest, crest: u.crest }, ...(build ? { build } : {}) });
           if (reqId) send({ t: 'ack', reqId });
           return;
         }
@@ -367,6 +371,9 @@ export async function createApp(overrides: Partial<ServerConfig> = {}, logger?: 
               break;
             case 'monte:pick':
               room.montePick(u, String(msg.stepId), String(msg.cardId));
+              break;
+            case 'convoca:set':
+              room.convoca(u, String(msg.stepId), Array.isArray(msg.cardIds) ? msg.cardIds : [], !!msg.seal);
               break;
             case 'ceremony:ready':
               room.ceremonyReady(u);

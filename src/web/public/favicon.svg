@@ -1,7 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect width="64" height="64" rx="14" fill="#14213d"/>
-  <g transform="rotate(-38 32 32)">
-    <rect x="16" y="14" width="30" height="14" rx="3" fill="#ff6a1a"/>
-    <rect x="29" y="27" width="5" height="26" rx="2.5" fill="#f4f6f8"/>
-  </g>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="10 16 108 120" width="58" height="64"><defs><clipPath id="crR0-body"><path d="M16 27 Q28 17 40 27 Q52 17 64 27 Q76 17 88 27 Q100 17 112 27 V71 C112 100 92 118 64 131 C36 118 16 100 16 71 Z"></path></clipPath></defs><path d="M16 27 Q28 17 40 27 Q52 17 64 27 Q76 17 88 27 Q100 17 112 27 V71 C112 100 92 118 64 131 C36 118 16 100 16 71 Z" fill="#2E8B3A"></path><g clip-path="url(#crR0-body)"><rect x="0" y="0" width="128" height="47" fill="#FFC81E"></rect><polygon points="0,0 128,0 128,30 0,74" fill="#FFFFFF" opacity="0.13"></polygon></g><path d="M16 27 Q28 17 40 27 Q52 17 64 27 Q76 17 88 27 Q100 17 112 27 V71 C112 100 92 118 64 131 C36 118 16 100 16 71 Z" fill="none" stroke="#24160C" stroke-width="7" stroke-linejoin="round"></path><g transform="translate(33.76 42.76) scale(0.6048)" stroke="#24160C" stroke-width="8.333333333333332" stroke-linejoin="round" paint-order="stroke"><g transform="rotate(-38 50 50)"><rect x="44" y="40" width="12" height="56" rx="5" fill="#cc9500"></rect><rect x="16" y="14" width="68" height="30" rx="5" fill="#FFC81E"></rect><rect x="24" y="12" width="9" height="34" rx="2" fill="#cc9500"></rect><rect x="67" y="12" width="9" height="34" rx="2" fill="#cc9500"></rect></g></g></svg>

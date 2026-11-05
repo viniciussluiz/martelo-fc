@@ -79,6 +79,13 @@ export class RoomManager {
     for (const sink of this.userSinks.get(userId) ?? []) sink(msg);
   }
 
+  /** Escudo (ou nome) de um técnico mudou: as salas em que ele aparece mostram o novo na hora. */
+  userChanged(userId: string) {
+    for (const r of this.byId.values()) {
+      if (r.forgetUserCrest(userId)) r.broadcast();
+    }
+  }
+
   all(): RoomActor[] {
     return [...this.byId.values()];
   }

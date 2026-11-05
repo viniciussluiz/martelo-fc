@@ -1,0 +1,13 @@
+# Fora da imagem: dependências locais, compilados, bancos e dados brutos que o servidor não usa.
+node_modules
+dist
+test-results
+playwright-report
+.git
+.env
+.DS_Store
+**/.DS_Store
+*.log
+data/*.db
+data/*.db-*
+data/wikidata-raw.json

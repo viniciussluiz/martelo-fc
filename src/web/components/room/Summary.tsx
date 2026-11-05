@@ -3,20 +3,39 @@ import { navigate } from '../../lib/router';
 import { act } from '../../lib/socket';
 import { REACH_LABEL, useNow } from '../common';
 import { Icon } from '../Icon';
+import { TeamCrest } from '../crest/TeamCrest';
+import { Confetti, StatusLight } from '../ui';
 import { HistoryPanel, RoomHeader, SettingsPanel } from './Lobby';
 import { StandingsTable } from './Matches';
 
-/** Resumo da última disputa concluída (dado histórico). */
+/** Resumo da última disputa concluída (dado histórico): pódio, seus números e o ranking. */
 export function LastResultCard({ room, full }: { room: RoomView; full?: boolean }) {
   const r = room.lastResult;
   if (!r) return null;
   const mine = r.outcomes.find((o) => o.userId === room.you);
+  const podium = [r.outcomes[1], r.outcomes[0], r.outcomes[2]].filter((o): o is NonNullable<typeof o> => !!o);
   return (
-    <section className="stack" style={{ gap: 14 }}>
-      <div className="stack" style={{ gap: 6 }}>
-        <span className="small muted">Ciclo {r.seq} encerrado</span>
+    <section className="result">
+      <div className="result-head">
+        <span className="result-cycle">Ciclo {r.seq} encerrado</span>
         <p className="headline">{r.headline}</p>
       </div>
+      {full && podium.length > 0 && (
+        <div className="podium" aria-hidden="true">
+          {podium.map((o) => (
+            <div key={o.participantId} className="podium-step" data-rank={o.rank} data-me={o.userId === room.you || undefined}>
+              {o.rank === 1 && <Confetti count={18} seed={r.seq} />}
+              <span className="podium-crest">
+                <TeamCrest id={o.participantId} name={o.name} userId={o.userId} size={o.rank === 1 ? 84 : 62} />
+              </span>
+              <span className="podium-name">{o.name}</span>
+              <span className="podium-block">
+                <span className="podium-rank">{o.rank}º</span>
+              </span>
+            </div>
+          ))}
+        </div>
+      )}
       {mine && (
         <div className="stat-strip">
           <div className="stat">
@@ -28,9 +47,7 @@ export function LastResultCard({ room, full }: { room: RoomView; full?: boolean 
             <div className="lbl">na liga, {mine.leaguePoints} pontos</div>
           </div>
           <div className="stat">
-            <div className="num" style={{ fontSize: '1.4rem' }}>
-              {mine.cupReach ? REACH_LABEL[mine.cupReach] : '—'}
-            </div>
+            <div className="num num-word">{mine.cupReach ? REACH_LABEL[mine.cupReach] : '—'}</div>
             <div className="lbl">{r.cupName ?? 'Sem copa'}</div>
           </div>
           <div className="stat">
@@ -41,20 +58,21 @@ export function LastResultCard({ room, full }: { room: RoomView; full?: boolean 
       )}
       <ol className="outcomes" aria-label="Ranking do ciclo">
         {r.outcomes.map((o) => (
-          <li key={o.participantId} data-me={o.userId === room.you}>
+          <li key={o.participantId} data-me={o.userId === room.you} data-rank={o.rank}>
             <span className="rank">{o.rank}</span>
-            <span className="stack" style={{ gap: 0, minWidth: 0 }}>
+            <TeamCrest id={o.participantId} name={o.name} userId={o.userId} size={36} />
+            <span className="outcome-text">
               <strong>
-                {o.name} {o.isCpu && <span className="badge">CPU</span>}
+                {o.name} {o.isCpu && <span className="badge badge-cpu">CPU</span>}
               </strong>
-              <span className="small muted">
+              <span className="small">
                 {o.leaguePosition}º na liga
                 {o.cupReach ? `, ${(REACH_LABEL[o.cupReach] ?? o.cupReach).toLowerCase()} na copa` : ''}, gastou {o.spent} moedas, elenco {o.squadAverage}
               </span>
             </span>
-            <span className="row" style={{ gap: 4 }}>
+            <span className="outcome-titles">
               {o.titles.map((t) => (
-                <span key={t} className="badge badge-ok">
+                <span key={t} className="badge badge-gold">
                   <Icon name={t === 'liga' ? 'taca' : 'trofeu'} size={14} /> {t === 'liga' ? 'Liga' : 'Copa'}
                 </span>
               ))}
@@ -63,8 +81,8 @@ export function LastResultCard({ room, full }: { room: RoomView; full?: boolean 
         ))}
       </ol>
       {full && (
-        <details className="panel">
-          <summary style={{ cursor: 'pointer', fontWeight: 700 }}>Tabela final da liga</summary>
+        <details className="fold">
+          <summary>Tabela final da liga</summary>
           <StandingsTable rows={r.leagueTable} you={mine?.participantId ?? null} />
         </details>
       )}
@@ -86,16 +104,19 @@ function ContinuationPanel({ room }: { room: RoomView }) {
   const pct = Math.min(100, (left / (room.settings.continuationTimeoutSec * 1000)) * 100);
   return (
     <section className="continuation" aria-label="Continuar na sala">
-      <div className="spread">
-        <h2 style={{ color: '#fff' }}>Mais uma na mesma sala?</h2>
+      <div className="continuation-head">
+        <h2>Mais uma na mesma sala?</h2>
         <span className="clock" data-urgent={secs <= 10}>
-          {secs}s
+          <span className="clock-face">
+            <span className="clock-num">{String(secs).padStart(2, '0')}</span>
+            <span className="clock-unit">s</span>
+          </span>
         </span>
       </div>
       <div className="countbar" aria-hidden="true">
         <span style={{ width: `${pct}%` }} />
       </div>
-      <p className="small" style={{ color: '#c9d2e3' }}>
+      <p className="small cont-text">
         Todos os jogadores comprados neste ciclo voltam ao pregão, as moedas voltam a 100 e começa um novo leilão, liga e copa.
         {room.mode === 'online'
           ? ` Com pelo menos ${c.minHumans} ${c.minHumans === 1 ? 'técnico confirmado' : 'técnicos confirmados'}, o próximo ciclo começa sozinho quando todos responderem ou o tempo acabar. Quem não responder fica fora desta rodada e pode voltar depois pelo código.`
@@ -105,7 +126,8 @@ function ContinuationPanel({ room }: { room: RoomView }) {
         {c.eligible.map((u) => (
           <li key={u}>
             <span className="vote-name">
-              <span className="dot" data-off={!connected(u)} />
+              <TeamCrest userId={u} name={memberName(u)} size={24} />
+              <StatusLight on={connected(u)} />
               {memberName(u)}
               {u === room.you ? ' (você)' : ''}
             </span>
@@ -121,7 +143,7 @@ function ContinuationPanel({ room }: { room: RoomView }) {
       </ul>
       {eligible && !myVote && (
         <div className="row">
-          <button className="btn btn-cone" onClick={() => void act({ t: 'continue:vote', disputeId: c.disputeId, choice: 'continue' })}>
+          <button className="btn btn-primary" onClick={() => void act({ t: 'continue:vote', disputeId: c.disputeId, choice: 'continue' })}>
             <Icon name="repetir" /> Continuar na sala
           </button>
           <button className="btn" onClick={() => void act({ t: 'continue:vote', disputeId: c.disputeId, choice: 'leave' })}>
@@ -132,7 +154,7 @@ function ContinuationPanel({ room }: { room: RoomView }) {
       {myVote === 'continue' && <p>Você confirmou. {yes < c.minHumans ? `Faltam ${c.minHumans - yes} para seguir.` : 'Esperando os outros responderem.'}</p>}
       {!eligible && <p className="small">Você entrou depois; aguarde o próximo ciclo começar.</p>}
       {isHost && room.mode === 'online' && myVote === 'continue' && yes >= c.minHumans && yes < c.eligible.length && (
-        <button className="btn btn-pitch" onClick={() => void act({ t: 'continue:start-now', disputeId: c.disputeId })}>
+        <button className="btn btn-primary" onClick={() => void act({ t: 'continue:start-now', disputeId: c.disputeId })}>
           Começar agora com quem confirmou
         </button>
       )}
@@ -142,11 +164,15 @@ function ContinuationPanel({ room }: { room: RoomView }) {
 
 export function PostDispute({ room }: { room: RoomView }) {
   return (
-    <div className="stack" style={{ gap: 22 }}>
+    <div className="stack" style={{ gap: 14 }}>
       <RoomHeader room={room} subtitle="Fim de temporada. Os resultados já estão no seu histórico." />
       <div className="grid-2">
         <div className="stack">
-          <LastResultCard room={room} full />
+          <section className="panel">
+            <div className="panel-body">
+              <LastResultCard room={room} full />
+            </div>
+          </section>
           <div className="row">
             <button className="btn" onClick={() => navigate(`/perfil/${room.you}`)}>
               <Icon name="perfil" /> Ver meus confrontos

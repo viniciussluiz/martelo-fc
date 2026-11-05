@@ -1,18 +1,4 @@
-import { existsSync, readFileSync } from 'node:fs';
-import { resolve } from 'node:path';
-import { ROOT_DIR } from './config.js';
-
-/** Carrega `.env` da raiz, se existir, sem sobrescrever variáveis já definidas. */
-function loadDotEnv(path = resolve(ROOT_DIR, '.env')) {
-  if (!existsSync(path)) return;
-  for (const line of readFileSync(path, 'utf8').split(/\r?\n/)) {
-    const m = /^\s*([A-Z0-9_]+)\s*=\s*(.*?)\s*$/.exec(line);
-    if (!m || line.trim().startsWith('#')) continue;
-    const [, key, raw] = m;
-    const value = raw!.replace(/^["']|["']$/g, '');
-    if (process.env[key!] === undefined && value !== '') process.env[key!] = value;
-  }
-}
+import { loadDotEnv } from './config.js';
 
 loadDotEnv();
 const { createApp } = await import('./app.js');

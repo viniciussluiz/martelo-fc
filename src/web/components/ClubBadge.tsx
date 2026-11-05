@@ -1,21 +1,40 @@
-import { memo, useId } from 'react';
+import { memo, useMemo, useState } from 'react';
 import { clubCode } from '../../shared/clubs';
+import { crestHash, crestLuminance, type CrestConfig, type CrestPattern } from '../../shared/crest';
 import { useStore } from '../lib/store';
+import { Crest } from './crest/Crest';
 
 /**
- * Selo do clube ao lado do nome. Por padrão é um desenho genérico do jogo (escudo liso nas
- * cores do clube com a sigla), não o escudo oficial. Se o servidor tiver o escudo do clube em
- * `data/escudos/` (colocado por quem tem autorização para usá-lo), mostra a imagem.
+ * Escudo do clube da carta. Usa o escudo oficial que o servidor indicar (arquivo em `data/escudos/` ou
+ * endereço registrado em `data/escudos/fontes.json`, ver `npm run escudos`). Sem escudo — ou se a
+ * imagem não carregar — mostra o selo do jogo: um escudo nas cores do clube com a sigla.
  */
 
 const FALLBACK: [string, string] = ['#33415F', '#FFFFFF'];
+const PATTERNS: CrestPattern[] = ['liso', 'topo', 'listras', 'faixa', 'metade', 'liso'];
 
-function luminance(hex: string): number {
-  const n = parseInt(hex.slice(1), 16);
-  return (0.299 * ((n >> 16) & 255) + 0.587 * ((n >> 8) & 255) + 0.114 * (n & 255)) / 255;
+function genericCrest(club: string, kit: [string, string] | undefined): CrestConfig {
+  const [primary, secondaryRaw] = kit ?? FALLBACK;
+  const close = Math.abs(crestLuminance(primary) - crestLuminance(secondaryRaw)) < 0.14;
+  const secondary = close ? (crestLuminance(primary) > 0.5 ? '#24160C' : '#FFFFFF') : secondaryRaw;
+  const h = crestHash(club);
+  const pattern = PATTERNS[h % PATTERNS.length]!;
+  return {
+    shape: (['classico', 'frances', 'redondo'] as const)[(h >> 3) % 3]!,
+    pattern: pattern === 'topo' ? 'liso' : pattern,
+    primary: primary.toUpperCase(),
+    secondary: secondary.toUpperCase(),
+    detail: pattern === 'liso' ? secondary.toUpperCase() : crestLuminance(primary) > 0.6 ? '#24160C' : '#FFFFFF',
+    symbol: 'iniciais',
+    initials: clubCode(club).slice(0, 4),
+    motto: '',
+    stars: 0,
+    ribbon: false,
+    laurel: false,
+    medallion: pattern !== 'liso',
+    border: 'simples',
+  };
 }
-
-const SHIELD = 'M2 2H22V13C22 20 17.2 24.6 12 26.6C6.8 24.6 2 20 2 13Z';
 
 interface Props {
   club: string;
@@ -23,44 +42,41 @@ interface Props {
   size?: number;
 }
 
-function ClubBadgeImpl({ club, kit, size = 26 }: Props) {
+function ClubBadgeImpl({ club, kit, size = 28 }: Props) {
   const crest = useStore((s) => s.room?.deck?.crests?.[club]);
-  const uid = useId().replace(/:/g, '');
-  if (crest) {
-    return <img className="club-badge club-crest" src={crest} alt="" width={size} height={size} loading="lazy" decoding="async" />;
+  const [failed, setFailed] = useState<string | null>(null);
+  const generic = useMemo(() => genericCrest(club, kit), [club, kit]);
+  if (crest && failed !== crest) {
+    return (
+      <img
+        className="club-badge club-crest"
+        src={crest}
+        alt=""
+        width={size}
+        height={size}
+        loading="lazy"
+        decoding="async"
+        referrerPolicy="no-referrer"
+        onError={() => setFailed(crest)}
+      />
+    );
   }
-  const [primary, secondary] = kit ?? FALLBACK;
-  const code = clubCode(club);
-  // Texto sobre a cor principal: escolhe o tom que contrasta.
-  const ink = luminance(primary) > 0.6 ? '#14213D' : '#FFFFFF';
-  const band = Math.abs(luminance(primary) - luminance(secondary)) < 0.12 ? ink : secondary;
-  const fontSize = code.length <= 2 ? 10.5 : code.length === 3 ? 9.4 : code.length === 4 ? 7.4 : 6;
   return (
-    <svg className="club-badge" viewBox="0 0 24 28" width={size} height={Math.round((size * 28) / 24)} aria-hidden="true" focusable="false">
-      <defs>
-        <clipPath id={`shield-${uid}`}>
-          <path d={SHIELD} />
-        </clipPath>
-      </defs>
-      <path d={SHIELD} fill={primary} />
-      <rect x="0" y="0" width="24" height="6" fill={band} clipPath={`url(#shield-${uid})`} />
-      <text x="12" y="18.4" textAnchor="middle" fontSize={fontSize} fontWeight="800" fill={ink} fontFamily="Big Shoulders Display, Public Sans, sans-serif">
-        {code}
-      </text>
-      <path d={SHIELD} fill="none" stroke="#14213D" strokeWidth="1.3" strokeLinejoin="round" />
-    </svg>
+    <span className="club-badge club-generic" style={{ height: size }}>
+      <Crest crest={generic} size={size} />
+    </span>
   );
 }
 
 export const ClubBadge = memo(ClubBadgeImpl);
 
-/** “Clube, ano” com o selo do clube na frente, como aparece nas cartas. */
-export function ClubLine({ club, year, kit }: { club: string; year: number; kit?: [string, string] | undefined }) {
+/** Escudo do clube e, ao lado, “Clube (ano)” — como aparece nas cartas. */
+export function ClubLine({ club, year, kit, size }: { club: string; year: number; kit?: [string, string] | undefined; size?: number }) {
   return (
     <span className="club-line">
-      <ClubBadge club={club} kit={kit} />
-      <span>
-        <span className="club-name">{club}</span>, {year}
+      <ClubBadge club={club} kit={kit} size={size} />
+      <span className="club-label">
+        <span className="club-name">{club}</span> <span className="club-year">({year})</span>
       </span>
     </span>
   );

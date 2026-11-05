@@ -135,6 +135,11 @@ export class League {
     return aggregateScorers(Object.values(this.state.results), limit);
   }
 
+  /** Maiores garçons (assistências) da liga. */
+  topAssists(limit = 10): Array<{ cardId: string; name: string; teamId: string; assists: number }> {
+    return aggregateAssists(Object.values(this.state.results), limit);
+  }
+
   roundFixtures(round: number): Fixture[] {
     return this.state.fixtures[round - 1] ?? [];
   }
@@ -214,4 +219,38 @@ export function aggregateScorers(results: MatchResult[], limit = 10) {
     for (const g of m.goals) add(g, g.side === 'home' ? m.homeId : m.awayId);
   }
   return [...map.values()].sort((a, b) => b.goals - a.goals || a.name.localeCompare(b.name)).slice(0, limit);
+}
+
+export function aggregateAssists(results: MatchResult[], limit = 10) {
+  const map = new Map<string, { cardId: string; name: string; teamId: string; assists: number }>();
+  for (const m of results) {
+    for (const g of m.goals) {
+      if (!g.assistCardId) continue;
+      const teamId = g.side === 'home' ? m.homeId : m.awayId;
+      const key = `${teamId}:${g.assistCardId}`;
+      const cur = map.get(key) ?? { cardId: g.assistCardId, name: g.assistName ?? g.assistCardId, teamId, assists: 0 };
+      cur.assists++;
+      map.set(key, cur);
+    }
+  }
+  return [...map.values()].sort((a, b) => b.assists - a.assists || a.name.localeCompare(b.name)).slice(0, limit);
+}
+
+/** Gols e assistências de cada jogador dos times pedidos (time → carta → [gols, assistências]). */
+export function playerStats(results: MatchResult[], teamIds: ReadonlySet<string>): Record<string, Record<string, [number, number]>> {
+  const out: Record<string, Record<string, [number, number]>> = {};
+  const bump = (teamId: string, cardId: string, k: 0 | 1) => {
+    if (!teamIds.has(teamId)) return;
+    const team = (out[teamId] ??= {});
+    const cur = (team[cardId] ??= [0, 0]);
+    cur[k]++;
+  };
+  for (const m of results) {
+    for (const g of m.goals) {
+      const teamId = g.side === 'home' ? m.homeId : m.awayId;
+      bump(teamId, g.cardId, 0);
+      if (g.assistCardId) bump(teamId, g.assistCardId, 1);
+    }
+  }
+  return out;
 }

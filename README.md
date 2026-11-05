@@ -9,12 +9,25 @@ sem ver o nível, monta o time e disputa liga e copa. Implementação independen
 - **Histórico de confrontos** — por adversário: ciclos, ligas, copas, partidas, mata-matas e disputas de lance, com aproveitamento,
   sequências, títulos e finais em comum, elencos e leilões de cada disputa, filtros por período e competição.
 - **Sala de Troféus** — 30 conquistas orientadas a dados (raridades, categorias, secretas, progresso), validadas no servidor.
+- **Escudos dos times** — ao fundar o clube, o técnico monta o escudo num criador visual (formato, padrão, três cores, símbolo,
+  sigla, estrelas, faixa e louros), salvo na conta e mostrado no placar, na tabela, nos confrontos, no histórico e no perfil.
+  Os times da CPU e os clubes da liga e das copas ganham um escudo gerado a partir do nome: o mesmo time tem sempre o mesmo escudo.
+
+## Tipos de leilão
+- **Jogador** (padrão): um jogador por lance, como sempre.
+- **Clubes**: cada lote é o setor de um clube (ex.: os goleiros do Corinthians). Quem leva o pacote fica com todos os jogadores dele e,
+  no fim do pregão, convoca quem joga pela formação — quem não escolhe a tempo fica com o pior do pacote. Quem sobra vai para os outros
+  times da liga. Regras completas em [docs/REGRAS.md](docs/REGRAS.md#leilão-de-clubes-sala-tipo-de-leilão--clubes).
 
 ## Jogadores reais
 O baralho padrão (`data/deck-wikidata.json`) tem jogadores antigos e atuais dos clubes da **Série A e da Série B de 2026** e dos
 **grandes clubes da Europa**, a partir do Wikidata (dados CC0, sem fotos). Ao criar a sala, escolha os clubes das cartas: Tudo,
-Séries A e B, Série A, Série B ou Europa. A nota de cada carta é calculada pelo projeto (fama + passagem pelo clube); as
-figurinhas são ilustrações próprias, e as Lendas ganham destaque dourado. `npm run deck:wikidata` atualiza os dados.
+Séries A e B, Série A, Série B ou Europa. A nota de cada carta é calculada pelo projeto (fama + passagem pelo clube). A carta
+mostra só o nome e o escudo com “Clube (ano)”; a Lenda vira carta dourada (rosto amarelo, sem tom de pele) depois do martelo.
+`npm run deck:wikidata` atualiza os dados.
+
+**Escudos:** `npm run escudos` busca os escudos na API Futebol (com `API_FUTEBOL_KEY` no `.env`) e completa com o
+TheSportsDB; até lá, o jogo usa os endereços já registrados em `data/escudos/fontes.json`.
 Detalhes em [docs/BARALHO.md](docs/BARALHO.md).
 
 ## Requisitos
@@ -34,6 +47,26 @@ o rodapé do site mostra o mesmo. Atualizando a partir de uma versão antiga, ex
 Desenvolvimento com recarga: `npm run dev` (servidor em 3210 + Vite em http://localhost:5173 com proxy para /api e /ws).
 
 Configuração por variáveis de ambiente — ver [.env.example](.env.example). Não há segredos.
+
+## Colocar em produção
+O jogo é **um processo Node só** (site, API, WebSocket e o banco SQLite em arquivo) e as salas vivem na memória desse processo.
+Por isso ele precisa de um servidor sempre ligado, com disco persistente e **uma única instância** — não roda em hospedagem
+“serverless” (Vercel, Netlify, funções). O `Dockerfile` da raiz gera a imagem de produção; o banco fica em `/data`.
+
+**Fly.io (região São Paulo, `fly.toml` pronto):**
+```bash
+fly auth login
+fly apps create <nome-do-app>          # e troque "app" no fly.toml por esse nome
+fly volumes create martelo_data --region gru --size 1
+fly deploy --ha=false                  # uma máquina só (salas em memória + SQLite)
+fly certs add seu-dominio.com.br       # opcional: domínio próprio
+```
+O `fly deploy` envia a pasta local (com o baralho e os escudos de `data/escudos`, que não estão no git). O site fica em
+`https://<nome-do-app>.fly.dev`, com HTTPS e WebSocket. Logs: `fly logs`. O volume tem snapshots diários.
+
+**Outra hospedagem com Docker** (VPS, Railway, Render…): `docker build -t martelo-fc .` e
+`docker run -d -p 8080:8080 -v martelo-data:/data --restart unless-stopped martelo-fc`, atrás de um proxy com HTTPS
+(Caddy, Nginx) que repasse o WebSocket de `/ws`. Hospedagens que constroem a partir do GitHub só veem o que foi commitado.
 
 ## Banco e migrações
 As migrações SQL ficam em `migrations/` e são aplicadas automaticamente no boot. Para aplicar manualmente:
@@ -59,6 +92,8 @@ Os testes sobem servidores próprios com banco temporário e ritmo acelerado (`G
 
 ## Créditos e licenças de ativos
 Código, textos e ícones são próprios. O baralho fictício (`data/deck.json`) tem clubes e jogadores inventados; o baralho de
-jogadores reais (`data/deck-wikidata.json`) usa dados do Wikidata (CC0), sem fotos — as figurinhas são ilustrações próprias.
+jogadores reais (`data/deck-wikidata.json`) usa dados do Wikidata (CC0), sem fotos. Escudos dos clubes vêm da API Futebol e do
+TheSportsDB (marcas dos clubes, usadas com autorização); a figura da Lenda é ilustração própria.
 Nomes reais de atletas e clubes podem envolver direito de imagem/marca num uso comercial (ver [docs/BARALHO.md](docs/BARALHO.md)).
-Fontes empacotadas via Fontsource sob SIL Open Font License: Big Shoulders Display, Public Sans e Kalam.
+Fontes empacotadas via Fontsource sob SIL Open Font License: Lilita One, Barlow, Barlow Condensed, Silkscreen e Kalam.
+Os escudos dos times (símbolos, formatos e padrões) são desenhos próprios do projeto.

@@ -1,6 +1,6 @@
 {
   "name": "martelo-fc",
-  "version": "0.3.2",
+  "version": "0.4.0",
   "private": true,
   "description": "Martelo FC — leilão às cegas de futebol, multiplayer, com continuidade de salas, histórico de confrontos e Sala de Troféus.",
   "type": "module",
@@ -21,7 +21,8 @@
     "test:watch": "vitest",
     "test:e2e": "playwright test",
     "test:all": "npm run typecheck && npm test && npm run build && npm run test:e2e",
-    "deck:wikidata": "tsx scripts/deck-wikidata.ts"
+    "deck:wikidata": "tsx scripts/deck-wikidata.ts",
+    "escudos": "tsx scripts/escudos.ts"
   },
   "dependencies": {
     "better-sqlite3": "12.4.1",
@@ -29,9 +30,11 @@
     "ws": "8.22.0"
   },
   "devDependencies": {
-    "@fontsource/big-shoulders-display": "^5.3.0",
+    "@fontsource/barlow": "^5.3.0",
+    "@fontsource/barlow-condensed": "^5.3.0",
     "@fontsource/kalam": "^5.3.0",
-    "@fontsource/public-sans": "^5.3.0",
+    "@fontsource/lilita-one": "^5.3.0",
+    "@fontsource/silkscreen": "^5.3.0",
     "@playwright/test": "1.56.0",
     "@types/better-sqlite3": "7.6.13",
     "@types/node": "22.18.12",

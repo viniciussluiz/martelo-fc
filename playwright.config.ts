@@ -31,6 +31,8 @@ export default defineConfig({
       HOST: '127.0.0.1',
       DATABASE_PATH: dbPath,
       GAME_SPEED: 'e2e',
+      // Sem escudos remotos: o teste não depende de rede (usa o selo genérico).
+      CRESTS_DIR: join(tmpdir(), 'martelo-e2e-sem-escudos'),
       LOG_LEVEL: 'warn',
     },
   },

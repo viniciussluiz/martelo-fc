@@ -47,6 +47,19 @@ export function deckForScope(deck: Card[], scope: SeriesScope): Card[] {
   const allowed = SCOPE_SERIES[scope] ?? SCOPE_SERIES.ALL;
   return deck.filter((c) => c.series !== undefined && allowed.includes(c.series));
 }
+/**
+ * Faixa de qualidade usada para equilibrar o leilão: cada lote de posição sai com
+ * ≈ 1/3 de bons (Lenda, Craque), 1/3 de médios (Titular) e 1/3 de ruins (Operário, Perna-de-pau).
+ */
+export type QualityBand = 'bom' | 'medio' | 'ruim';
+export const QUALITY_BANDS: readonly QualityBand[] = ['bom', 'medio', 'ruim'];
+
+export function qualityBand(tier: Tier): QualityBand {
+  if (tier === 'lenda' || tier === 'craque') return 'bom';
+  if (tier === 'titular') return 'medio';
+  return 'ruim';
+}
+
 export const TIER_LABEL: Record<Tier, string> = {
   lenda: 'Lenda',
   craque: 'Craque',
@@ -105,10 +118,24 @@ export type Tactic = 'retranca' | 'equilibrio' | 'ataque';
 
 export type CupFormat = 'copa8' | 'libertadores' | 'mundial' | 'nenhuma';
 
+/**
+ * Tipo de leilão: “jogador” é o de sempre (um jogador por lance); em “clubes” cada lote é um setor
+ * de um clube (ex.: os goleiros do Corinthians), quem leva o pacote convoca no fim quem joga.
+ */
+export type AuctionMode = 'jogador' | 'clubes';
+export const AUCTION_MODES: readonly AuctionMode[] = ['jogador', 'clubes'];
+
 export interface AuctionConfig {
+  /** Tipo de leilão (ausente = 'jogador'). */
+  mode?: AuctionMode;
   startingCoins: number;
-  /** Cartas extras por lote além da soma das vagas (o original usa +1). */
+  /** Cartas extras por lote além da soma das vagas (mínimo). */
   lotExtra: number;
+  /**
+   * Cartas extras proporcionais às vagas: lote = vagas + max(lotExtra, ⌈vagas × lotExtraRatio⌉).
+   * 0,5 → 4 técnicos têm 6 goleiros para escolher (e 12 laterais, 18 meias…).
+   */
+  lotExtraRatio?: number;
   /** Tamanho máximo de cada leva exibida de uma vez. */
   batchSize: number;
   /** Probabilidade de uma leva conter uma “carta surpresa” (nome oculto). */
@@ -131,6 +158,7 @@ export interface DisputeConfig {
 export const DEFAULT_AUCTION_CONFIG: AuctionConfig = {
   startingCoins: 100,
   lotExtra: 1,
+  lotExtraRatio: 0.5,
   batchSize: 12,
   mysteryChance: 0.35,
   repescagem: true,

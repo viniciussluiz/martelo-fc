@@ -1,5 +1,8 @@
 import { useState } from 'react';
+import { randomCrest, teamInitials, type CrestConfig } from '../../shared/crest';
 import type { PublicUserView } from '../../shared/protocol';
+import { CrestEditor } from '../components/crest/CrestEditor';
+import { Icon } from '../components/Icon';
 import { signIn } from '../App';
 import { api } from '../lib/api';
 import { navigate } from '../lib/router';
@@ -15,14 +18,20 @@ export function AuthPage() {
   const [displayName, setDisplayName] = useState(user?.displayName ?? '');
   const [error, setError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
+  const [crest, setCrest] = useState<CrestConfig>(() => randomCrest(user?.displayName ?? 'Seu Time'));
 
   if (user && !user.isGuest) {
     return (
-      <div className="panel stack" style={{ maxWidth: 480 }}>
-        <div className="panel-title">Você já está conectado como {user.displayName}.</div>
-        <button className="btn btn-primary" onClick={() => navigate('/')}>
-          Ir para o início
-        </button>
+      <div className="panel narrow">
+        <div className="panel-head">
+          <h2>Você já está em campo</h2>
+        </div>
+        <div className="panel-body stack">
+          <p>Conectado como {user.displayName}.</p>
+          <button className="btn btn-primary" onClick={() => navigate('/')}>
+            Ir para o início
+          </button>
+        </div>
       </div>
     );
   }
@@ -40,7 +49,7 @@ export function AuthPage() {
         const r = await api<{ token: string; user: PublicUserView }>(
           'POST',
           mode === 'entrar' ? '/api/auth/login' : '/api/auth/register',
-          mode === 'entrar' ? { username, password } : { username, password, displayName },
+          mode === 'entrar' ? { username, password } : { username, password, displayName, crest },
         );
         await signIn(r.token, r.user);
       }
@@ -53,51 +62,68 @@ export function AuthPage() {
   };
 
   return (
-    <form className="panel stack" style={{ maxWidth: 480 }} onSubmit={submit}>
-      <h2>{mode === 'entrar' ? 'Entrar' : mode === 'criar' ? 'Criar conta' : 'Guardar meu progresso'}</h2>
-      <div className="seg" role="group" aria-label="Tipo de acesso">
-        {user?.isGuest && (
-          <button type="button" aria-pressed={mode === 'converter'} onClick={() => setMode('converter')}>
-            Converter convidado
-          </button>
-        )}
-        <button type="button" aria-pressed={mode === 'entrar'} onClick={() => setMode('entrar')}>
-          Entrar
-        </button>
-        {!user && (
-          <button type="button" aria-pressed={mode === 'criar'} onClick={() => setMode('criar')}>
-            Criar conta
-          </button>
-        )}
+    <form className={mode === 'criar' ? 'panel auth auth-wide' : 'panel auth'} onSubmit={submit}>
+      <div className="panel-head">
+        <h2>{mode === 'entrar' ? 'Entrar' : mode === 'criar' ? 'Criar conta' : 'Guardar meu progresso'}</h2>
       </div>
-      {mode === 'converter' && <p className="muted">Escolha usuário e senha. Seus resultados como convidado continuam valendo.</p>}
-      {mode === 'criar' && (
-        <div className="field">
-          <label htmlFor="dn">Nome do time</label>
-          <input id="dn" className="input" value={displayName} onChange={(e) => setDisplayName(e.target.value)} maxLength={28} required />
+      <div className="panel-body stack">
+        <div className="seg" role="group" aria-label="Tipo de acesso">
+          {user?.isGuest && (
+            <button type="button" aria-pressed={mode === 'converter'} onClick={() => setMode('converter')}>
+              Converter convidado
+            </button>
+          )}
+          <button type="button" aria-pressed={mode === 'entrar'} onClick={() => setMode('entrar')}>
+            Entrar
+          </button>
+          {!user && (
+            <button type="button" aria-pressed={mode === 'criar'} onClick={() => setMode('criar')}>
+              Criar conta
+            </button>
+          )}
         </div>
-      )}
-      <div className="field">
-        <label htmlFor="un">Usuário</label>
-        <input id="un" className="input" value={username} onChange={(e) => setUsername(e.target.value)} autoComplete="username" required />
+        {mode === 'converter' && <p className="muted">Escolha usuário e senha. Seus resultados, seu escudo e seus troféus continuam valendo.</p>}
+        {mode === 'criar' && (
+          <div className="field">
+            <label htmlFor="dn">Nome do time</label>
+            <input
+              id="dn"
+              className="input"
+              value={displayName}
+              onChange={(e) => {
+                setDisplayName(e.target.value);
+                setCrest((c) => ({ ...c, initials: teamInitials(e.target.value || 'Seu Time') }));
+              }}
+              maxLength={28}
+              required
+            />
+          </div>
+        )}
+        {mode === 'criar' && <CrestEditor value={crest} onChange={setCrest} teamName={displayName || 'Seu Time'} compact />}
+        <div className="row auth-fields">
+          <div className="field">
+            <label htmlFor="un">Usuário</label>
+            <input id="un" className="input" value={username} onChange={(e) => setUsername(e.target.value)} autoComplete="username" required />
+          </div>
+          <div className="field">
+            <label htmlFor="pw">Senha</label>
+            <input
+              id="pw"
+              className="input"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              autoComplete={mode === 'entrar' ? 'current-password' : 'new-password'}
+              minLength={6}
+              required
+            />
+          </div>
+        </div>
+        {error && <p className="error-text">{error}</p>}
+        <button className="btn btn-primary btn-lg" disabled={busy}>
+          <Icon name="play" /> {mode === 'entrar' ? 'Entrar' : mode === 'criar' ? 'Criar conta' : 'Guardar progresso'}
+        </button>
       </div>
-      <div className="field">
-        <label htmlFor="pw">Senha</label>
-        <input
-          id="pw"
-          className="input"
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          autoComplete={mode === 'entrar' ? 'current-password' : 'new-password'}
-          minLength={6}
-          required
-        />
-      </div>
-      {error && <p className="error-text">{error}</p>}
-      <button className="btn btn-primary" disabled={busy}>
-        {mode === 'entrar' ? 'Entrar' : mode === 'criar' ? 'Criar conta' : 'Guardar progresso'}
-      </button>
     </form>
   );
 }

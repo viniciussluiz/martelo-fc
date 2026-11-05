@@ -1,6 +1,10 @@
 import { useEffect, useState } from 'react';
-import { Spinner, fmtDate, REACH_LABEL } from '../components/common';
+import type { CrestConfig } from '../../shared/crest';
+import { Empty, Spinner, fmtDate, REACH_LABEL } from '../components/common';
+import { CrestEditorDialog } from '../components/crest/CrestEditor';
+import { TeamCrest } from '../components/crest/TeamCrest';
 import { Icon } from '../components/Icon';
+import { SectionTitle } from '../components/ui';
 import { api } from '../lib/api';
 import { navigate } from '../lib/router';
 import { useStore } from '../lib/store';
@@ -14,7 +18,7 @@ interface Rec {
 }
 
 interface Profile {
-  user: { id: string; displayName: string; isGuest: boolean; createdAt: string };
+  user: { id: string; displayName: string; isGuest: boolean; createdAt: string; crest: CrestConfig };
   stats: Record<string, number>;
   career: { level: number; name: string; xp: number; nextXp: number | null };
   winRate: number;
@@ -40,14 +44,15 @@ interface Profile {
 interface Opponent {
   userId: string;
   displayName: string;
+  crest: CrestConfig | null;
   lastAt: string;
   records: Record<string, Rec>;
 }
 
 export function Record3({ r }: { r: Rec }) {
   return (
-    <span className="num" style={{ fontSize: '1.05rem' }}>
-      {r.wins}V {r.draws}E {r.losses}D
+    <span className="record3">
+      <span data-r="V">{r.wins}V</span> <span data-r="E">{r.draws}E</span> <span data-r="D">{r.losses}D</span>
     </span>
   );
 }
@@ -57,6 +62,7 @@ export function ProfilePage({ userId }: { userId: string }) {
   const [p, setP] = useState<Profile | null>(null);
   const [opps, setOpps] = useState<Opponent[] | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [editing, setEditing] = useState(false);
   useEffect(() => {
     setP(null);
     setOpps(null);
@@ -67,41 +73,48 @@ export function ProfilePage({ userId }: { userId: string }) {
       })
       .catch((e: Error) => setError(e.message));
   }, [userId]);
-  if (error) return <div className="empty">{error}</div>;
+  if (error) return <Empty icon="info">{error}</Empty>;
   if (!p || !opps) return <Spinner />;
   const s = p.stats;
   const isMe = me?.id === userId;
+  // O seu escudo pode ter mudado agora há pouco no criador.
+  const crest = isMe && me ? me.crest : p.user.crest;
   return (
-    <div className="stack" style={{ gap: 26 }}>
-      <div className="spread">
-        <div className="stack" style={{ gap: 6 }}>
+    <div className="profile">
+      <header className="profile-head">
+        <div className="profile-crest">
+          <TeamCrest userId={p.user.id} name={p.user.displayName} crest={crest} size={150} />
+          {isMe && (
+            <button type="button" className="btn btn-sm" onClick={() => setEditing(true)}>
+              <Icon name="pincel" /> Editar escudo
+            </button>
+          )}
+        </div>
+        <div className="profile-id">
           <h1>{p.user.displayName}</h1>
-          <p className="muted">
+          <p className="profile-since">
             Técnico desde {fmtDate(p.user.createdAt)}
             {p.user.isGuest ? ' (convidado)' : ''}
           </p>
+          <div className="career">
+            <div className="career-top">
+              <span className="career-name">{p.career.name}</span>
+              <span className="career-xp">
+                {p.career.xp} pontos{p.career.nextXp ? `, próximo nível em ${p.career.nextXp}` : ', topo da pirâmide'}
+              </span>
+            </div>
+            <div className="ladder" aria-label={`Nível ${p.career.level} de 5`}>
+              {[0, 1, 2, 3, 4, 5].map((l) => (
+                <span key={l} data-on={l <= p.career.level} />
+              ))}
+            </div>
+          </div>
         </div>
-        <button className="btn btn-primary" onClick={() => navigate(`/trofeus/${userId}`)}>
+        <button className="btn btn-primary profile-trophies" onClick={() => navigate(`/trofeus/${userId}`)}>
           <Icon name="trofeu" /> Sala de Troféus ({p.trophiesUnlocked})
         </button>
-      </div>
-
-      <section className="panel stack">
-        <div className="spread">
-          <div>
-            <div className="small muted">Trajetória</div>
-            <strong style={{ fontFamily: 'var(--f-display)', fontSize: '1.6rem' }}>{p.career.name}</strong>
-          </div>
-          <span className="small muted">
-            {p.career.xp} pontos{p.career.nextXp ? `, próximo nível em ${p.career.nextXp}` : ', topo da pirâmide'}
-          </span>
-        </div>
-        <div className="ladder" aria-label={`Nível ${p.career.level} de 5`}>
-          {[0, 1, 2, 3, 4, 5].map((l) => (
-            <span key={l} data-on={l <= p.career.level} />
-          ))}
-        </div>
-      </section>
+        {isMe && <CrestEditorDialog open={editing} onClose={() => setEditing(false)} initial={crest} teamName={p.user.displayName} />}
+      </header>
 
       <section className="stat-strip" aria-label="Números">
         <div className="stat">
@@ -131,11 +144,11 @@ export function ProfilePage({ userId }: { userId: string }) {
       </section>
 
       <section className="stack">
-        <h2>Confrontos</h2>
+        <SectionTitle>Confrontos</SectionTitle>
         {opps.length === 0 ? (
-          <div className="empty">
+          <Empty icon="turma">
             {isMe ? 'Jogue uma sala com amigos para começar o seu histórico de confrontos.' : 'Ainda sem confrontos contra outros técnicos.'}
-          </div>
+          </Empty>
         ) : (
           <ul className="opp-list">
             {opps.map((o) => (
@@ -147,13 +160,18 @@ export function ProfilePage({ userId }: { userId: string }) {
                     navigate(`/perfil/${userId}/rival/${o.userId}`);
                   }}
                 >
-                  <strong style={{ fontSize: '1.1rem' }}>{o.displayName}</strong>
-                  <span className="small muted">último em {fmtDate(o.lastAt)}</span>
-                  <span className="small">
-                    Ciclos: <Record3 r={o.records.ciclo!} />
+                  <span className="opp-vs" aria-hidden="true">
+                    <TeamCrest userId={p.user.id} name={p.user.displayName} crest={crest} size={36} />
+                    <span className="opp-x">×</span>
+                    <TeamCrest userId={o.userId} name={o.displayName} crest={o.crest} size={36} />
                   </span>
-                  <span className="small">
-                    Partidas: <Record3 r={o.records.partida!} />
+                  <strong className="opp-name">{o.displayName}</strong>
+                  <span className="small muted">último em {fmtDate(o.lastAt)}</span>
+                  <span className="opp-line">
+                    Ciclos <Record3 r={o.records.ciclo!} />
+                  </span>
+                  <span className="opp-line">
+                    Partidas <Record3 r={o.records.partida!} />
                   </span>
                 </a>
               </li>
@@ -163,9 +181,9 @@ export function ProfilePage({ userId }: { userId: string }) {
       </section>
 
       <section className="stack">
-        <h2>Últimas disputas</h2>
+        <SectionTitle>Últimas disputas</SectionTitle>
         {p.recent.length === 0 ? (
-          <div className="empty">Nenhuma disputa concluída ainda.</div>
+          <Empty icon="apito">Nenhuma disputa concluída ainda. Abra uma partida rápida e o resultado aparece aqui.</Empty>
         ) : (
           <div className="table-wrap">
             <table className="table">
@@ -187,13 +205,35 @@ export function ProfilePage({ userId }: { userId: string }) {
                     <td>
                       {r.room_code} <span className="small muted">ciclo {r.seq}</span>
                     </td>
-                    <td>{r.team_name}</td>
+                    <td>
+                      <span className="team-cell">
+                        <TeamCrest userId={p.user.id} name={r.team_name} crest={crest} size={22} />
+                        <span className="team-cell-name">{r.team_name}</span>
+                      </span>
+                    </td>
                     <td className="r">
                       {r.rank}º de {r.participants}
                     </td>
                     <td className="r">{r.league_position}º</td>
                     <td>{r.cup_reach ? REACH_LABEL[r.cup_reach] : '—'}</td>
-                    <td>{[r.league_title ? 'Liga' : '', r.cup_title ? 'Copa' : ''].filter(Boolean).join(' e ') || '—'}</td>
+                    <td>
+                      {r.league_title || r.cup_title ? (
+                        <span className="row" style={{ gap: 4 }}>
+                          {r.league_title ? (
+                            <span className="badge badge-gold">
+                              <Icon name="taca" size={13} /> Liga
+                            </span>
+                          ) : null}
+                          {r.cup_title ? (
+                            <span className="badge badge-gold">
+                              <Icon name="trofeu" size={13} /> Copa
+                            </span>
+                          ) : null}
+                        </span>
+                      ) : (
+                        '—'
+                      )}
+                    </td>
                   </tr>
                 ))}
               </tbody>

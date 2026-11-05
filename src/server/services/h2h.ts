@@ -1,4 +1,5 @@
 import type { DB } from '../db.js';
+import { userCrests } from './team-crests.js';
 
 /**
  * Histórico de confrontos entre usuários.
@@ -115,10 +116,12 @@ export class H2HService {
       map.set(p.opponent, entry);
     }
     const names = this.names([...map.keys()]);
+    const crests = userCrests(this.db, map.keys());
     return [...map.values()]
       .map((e) => ({
         userId: e.userId,
         displayName: names.get(e.userId) ?? 'Técnico',
+        crest: crests.get(e.userId) ?? null,
         lastAt: e.lastAt,
         records: Object.fromEntries(KINDS.map((k) => [k, finishRecord(e.records[k], k)])) as Record<ConfrontKind, Record3>,
       }))
@@ -188,9 +191,10 @@ export class H2HService {
       ...t.them.titles.map((title) => ({ disputeId: t.disputeId, at: t.finishedAt, who: 'adversario' as const, title })),
     ]);
     const names = this.names([me, opponent]);
+    const crests = userCrests(this.db, [me, opponent]);
     return {
-      me: { userId: me, displayName: names.get(me) ?? 'Você' },
-      opponent: { userId: opponent, displayName: names.get(opponent) ?? 'Técnico' },
+      me: { userId: me, displayName: names.get(me) ?? 'Você', crest: crests.get(me) ?? null },
+      opponent: { userId: opponent, displayName: names.get(opponent) ?? 'Técnico', crest: crests.get(opponent) ?? null },
       filters,
       records,
       streaks: {

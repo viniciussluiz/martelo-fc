@@ -1,5 +1,7 @@
-import { POSITIONS, type Card, type Position } from '../../engine/types.js';
+import { FORMATIONS, POSITIONS, type Card, type Position } from '../../engine/types.js';
+import { packageLabel } from '../../engine/packages.js';
 import type { MatchResult } from '../../engine/match.js';
+import { aggregateAssists, aggregateScorers, playerStats } from '../../engine/league.js';
 import type {
   AuctionView,
   CardView,
@@ -9,6 +11,7 @@ import type {
   LeagueView,
   MatchView,
   MemberView,
+  PackageView,
   ParticipantView,
   RoomView,
   StepView,
@@ -36,6 +39,15 @@ export function buildRoomView(room: RoomActor, userId: string): RoomView {
       inDispute: room.isParticipant(m.userId),
     }));
   const c = room.continuation;
+  const dispute = room.dispute ? disputeView(room, userId) : null;
+  const history = room.cachedHistory();
+  const lastResult = room.status === 'post_dispute' || room.status === 'lobby' ? room.lastResult : null;
+  const crestIds = [
+    ...members.map((m) => m.userId),
+    ...(dispute?.participants ?? []).flatMap((p) => (p.userId ? [p.userId] : [])),
+    ...(lastResult?.outcomes ?? []).flatMap((o) => (o.userId ? [o.userId] : [])),
+    ...history.flatMap((h) => h.participants.flatMap((p) => (p.userId ? [p.userId] : []))),
+  ];
   return {
     id: room.id,
     code: room.code,
@@ -47,13 +59,14 @@ export function buildRoomView(room: RoomActor, userId: string): RoomView {
     cycle: room.cycle,
     you: userId,
     members,
-    dispute: room.dispute ? disputeView(room, userId) : null,
+    dispute,
     continuation:
       c && !c.resolved
         ? { disputeId: c.disputeId, cycle: c.cycle, deadline: c.deadline, eligible: c.eligible, responses: c.responses, minHumans: c.minHumans }
         : null,
-    lastResult: room.status === 'post_dispute' || room.status === 'lobby' ? room.lastResult : null,
-    history: room.cachedHistory(),
+    lastResult,
+    history,
+    crests: room.crestsFor(crestIds),
     serverTime: Date.now(),
   };
 }
@@ -73,14 +86,19 @@ function disputeView(room: RoomActor, userId: string): DisputeView {
     }
   }
   let hiddenMystery = new Set<string>();
+  const clubs = d.auction.isClubs;
   if (d.phase === 'auction' && step) {
     if (step.kind === 'bid') {
       step.cardIds.forEach((id) => cardIds.add(id));
       hiddenMystery = new Set(step.mysteryCardIds);
     } else if (step.kind === 'tiebreak') {
       step.items.forEach((i) => cardIds.add(i.cardId));
-    } else {
+    } else if (step.kind === 'monte') {
       step.pool.forEach((id) => cardIds.add(id));
+    } else if (me) {
+      // Convocação: só o dono vê os nomes dos próprios pacotes (sem faixa nem nível).
+      const options = d.auction.convocaOptions(me.id);
+      for (const pos of POSITIONS) options[pos].forEach((id) => cardIds.add(id));
     }
   }
   if (room.reveal) {
@@ -106,17 +124,42 @@ function disputeView(room: RoomActor, userId: string): DisputeView {
   for (const t of d.league?.state.teams ?? []) teamNames[t.teamId] = t.name;
   for (const t of d.cup?.state.teams ?? []) teamNames[t.teamId] = t.name;
 
-  const participants: ParticipantView[] = d.participants.map((p) => ({
-    id: p.id,
-    userId: p.userId,
-    name: p.name,
-    isCpu: p.isCpu,
-    formation: p.formation,
-    coins: p.coins,
-    roster: p.roster.map((r) => ({ cardId: r.cardId, position: r.position, price: r.price, source: r.source })),
-    connected: p.isCpu || room.isConnected(p.userId),
-    abandoned: room.abandoned.has(p.id),
-  }));
+  const participants: ParticipantView[] = d.participants.map((p) => {
+    const v: ParticipantView = {
+      id: p.id,
+      userId: p.userId,
+      name: p.name,
+      isCpu: p.isCpu,
+      formation: p.formation,
+      coins: p.coins,
+      roster: p.roster.map((r) => ({ cardId: r.cardId, position: r.position, price: r.price, source: r.source })),
+      connected: p.isCpu || room.isConnected(p.userId),
+      abandoned: room.abandoned.has(p.id),
+    };
+    if (clubs) {
+      const packs = d.auction.packagesOf(p.id);
+      v.packs = POSITIONS.filter((pos) => packs[pos]).map((pos) => ({ position: pos, ...packs[pos]! }));
+    }
+    return v;
+  });
+
+  // Pacotes do leilão de clubes: clube, setor e tamanho; os nomes só para o dono, na convocação.
+  const packages: Record<string, PackageView> = {};
+  if (clubs) {
+    const mine = new Set(Object.values(me ? d.auction.packagesOf(me.id) : {}).map((w) => w!.packageId));
+    const showNames = d.phase === 'auction' && step?.kind === 'convocacao';
+    for (const pk of Object.values(d.auction.state.packages ?? {})) {
+      packages[pk.id] = {
+        id: pk.id,
+        club: pk.club,
+        position: pk.position,
+        size: pk.cardIds.length,
+        label: packageLabel(pk),
+        ...(pk.mixed ? { mixed: true } : {}),
+        ...(showNames && mine.has(pk.id) ? { cardIds: pk.cardIds } : {}),
+      };
+    }
+  }
 
   return {
     id: room.disputeId!,
@@ -128,6 +171,8 @@ function disputeView(room: RoomActor, userId: string): DisputeView {
     cards,
     teamNames,
     carriedCount: d.state.carriedCardIds.length,
+    auctionMode: clubs ? 'clubes' : 'jogador',
+    packages,
     auction: d.phase === 'auction' || room.reveal ? auctionView(room, myPid) : null,
     ceremony:
       d.phase === 'ceremony' && d.state.awards
@@ -147,8 +192,6 @@ function cardView(card: Card, opts: { hideName: boolean; showTier: boolean; show
     position: card.position,
     club: card.club,
     year: card.year,
-    hint: opts.hideName ? 'Carta-surpresa: o nome só aparece no martelo.' : card.hint,
-    seed: opts.hideName ? 'surpresa' : (card.personId ?? card.id),
   };
   if (opts.hideName) v.mystery = true;
   if (card.kit) v.kit = card.kit;
@@ -184,7 +227,7 @@ function auctionView(room: RoomActor, myPid: string): AuctionView {
         youAreEligible: eligible,
         myBids: step.bids[myPid] ?? {},
         mySealed: step.sealed.includes(myPid),
-        myOpenSlots: isMine ? a.openSlots(myPid)[step.position] : 0,
+        myOpenSlots: isMine ? a.vacancies(myPid)[step.position] : 0,
         myCoins: isMine ? a.participant(myPid).coins : 0,
       };
     } else if (step.kind === 'tiebreak') {
@@ -204,6 +247,20 @@ function auctionView(room: RoomActor, myPid: string): AuctionView {
         mySealed: step.sealed.includes(myPid),
         myFreeCoins: isMine ? a.participant(myPid).coins - committed : 0,
       };
+    } else if (step.kind === 'convocacao') {
+      const me = isMine ? a.participant(myPid) : null;
+      const packs = me ? a.packagesOf(myPid) : {};
+      stepView = {
+        kind: 'convocacao',
+        stepId: step.stepId,
+        deadline,
+        eligible: step.eligible,
+        sealed: step.sealed,
+        need: me ? FORMATIONS[me.formation] : { GOL: 0, LAT: 0, ZAG: 0, MEI: 0, ATA: 0 },
+        myPackages: Object.fromEntries(POSITIONS.filter((pos) => packs[pos]).map((pos) => [pos, packs[pos]!.packageId])),
+        myPicks: step.picks[myPid] ?? [],
+        mySealed: step.sealed.includes(myPid),
+      };
     } else {
       stepView = {
         kind: 'monte',
@@ -217,8 +274,8 @@ function auctionView(room: RoomActor, myPid: string): AuctionView {
       };
     }
   }
-  const currentPos: Position | null = step && step.kind !== 'monte' ? step.position : null;
-  const idx = currentPos ? POSITIONS.indexOf(currentPos) : a.done || step?.kind === 'monte' ? POSITIONS.length : 0;
+  const currentPos: Position | null = step && (step.kind === 'bid' || step.kind === 'tiebreak') ? step.position : null;
+  const idx = currentPos ? POSITIONS.indexOf(currentPos) : a.done || step?.kind === 'monte' || step?.kind === 'convocacao' ? POSITIONS.length : 0;
   return {
     step: stepView,
     reveal: room.reveal,
@@ -263,6 +320,8 @@ function leagueView(room: RoomActor, myPid: string, names: Record<string, string
     myLastMatch: mine ? matchView(mine, names, true) : null,
     myNextFixture: d.phase === 'league' ? fixture : null,
     topScorers: league.topScorers(10),
+    topAssists: league.topAssists(10),
+    playerStats: playerStats(Object.values(league.state.results), new Set(d.participants.map((p) => p.id))),
     tickStartedAt: room.tickStartedAt,
     tickMs: room.timing.leagueRoundMs,
   };
@@ -301,6 +360,9 @@ function cupView(room: RoomActor, myPid: string, names: Record<string, string>):
       : null,
     reached: s.reached,
     championId: s.championId,
+    topScorers: aggregateScorers(Object.values(s.results), 10),
+    topAssists: aggregateAssists(Object.values(s.results), 10),
+    playerStats: playerStats(Object.values(s.results), new Set(d.participants.map((p) => p.id))),
     tickStartedAt: room.tickStartedAt,
     tickMs: d.phase === 'cup' ? room.timing.cupMatchdayMs : room.timing.leagueRoundMs,
   };

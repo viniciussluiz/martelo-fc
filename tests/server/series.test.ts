@@ -31,6 +31,17 @@ beforeAll(async () => {
   mkdirSync(crests);
   writeFileSync(join(crests, 'clube-a.svg'), '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10"><rect width="10" height="10"/></svg>');
   writeFileSync(join(crests, 'leia-me.txt'), 'não é escudo');
+  // Endereços registrados por `npm run escudos`: o arquivo local vence; host fora da lista é ignorado.
+  writeFileSync(
+    join(crests, 'fontes.json'),
+    JSON.stringify({
+      clubes: {
+        'Clube A': { fonte: 'api-futebol', id: '1', url: 'https://cdn.api-futebol.com.br/times/escudos/a.svg' },
+        'Clube Europa': { fonte: 'thesportsdb', id: '2', url: 'https://r2.thesportsdb.com/images/media/team/badge/eu.png' },
+        'Clube B': { fonte: 'thesportsdb', id: '3', url: 'https://exemplo.com/b.png' },
+      },
+    }),
+  );
   env = await startTestApp(dir, deckPath, { crestsDir: crests });
 });
 afterAll(async () => {
@@ -64,13 +75,20 @@ describe('clubes das cartas escolhidos na sala', () => {
     ana.close();
   });
 
-  it('escudos da pasta data/escudos aparecem para os clubes que os têm, e só eles são servidos', async () => {
+  it('escudos: arquivo da pasta primeiro, depois o endereço de fontes.json; só arquivos da pasta são servidos', async () => {
     const eva = await TestClient.guest(env.app, 'Eva Escudos');
     await soloRoom(eva);
-    expect(eva.room!.deck.crests).toEqual({ 'Clube A': '/escudos/clube-a.svg' });
+    expect(eva.room!.deck.crests).toEqual({
+      'Clube A': '/escudos/clube-a.svg',
+      'Clube Europa': 'https://r2.thesportsdb.com/images/media/team/badge/eu.png',
+    });
     const ok = await fetch(env.app.url + '/escudos/clube-a.svg');
     expect(ok.status).toBe(200);
     expect(ok.headers.get('content-type')).toBe('image/svg+xml');
+    // O navegador pode carregar escudos das fontes remotas (e só delas).
+    const csp = ok.headers.get('content-security-policy') ?? '';
+    expect(csp).toContain('img-src \'self\' data: https://cdn.api-futebol.com.br https://r2.thesportsdb.com');
+    expect(csp).not.toContain('exemplo.com');
     for (const bad of ['/escudos/leia-me.txt', '/escudos/..%2Fdeck-grupos.json', '/escudos/%2E%2E/test.db']) {
       expect((await fetch(env.app.url + bad)).status, bad).toBe(404);
     }

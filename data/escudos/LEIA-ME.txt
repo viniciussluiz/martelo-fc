@@ -1,3 +1,11 @@
-Coloque aqui os escudos oficiais SE tiver autorização dos clubes (são marcas registradas).
-Um arquivo por clube, nome em minúsculas, sem acento, com hífens: flamengo.png, sao-paulo.svg, atletico-mg.webp, inter-de-milao.png
-Sem arquivos aqui, o jogo usa o selo genérico (escudo liso nas cores do clube com a sigla).
+Escudos dos clubes (marcas registradas: use só com autorização dos clubes).
+
+O jogo procura, nesta ordem:
+1. um arquivo aqui com o nome do clube em minúsculas, sem acento, com hífens:
+   flamengo.png, sao-paulo.svg, atletico-mg.webp, inter-de-milao.png
+2. o endereço do clube em fontes.json (API Futebol ou TheSportsDB)
+3. o selo genérico do jogo (escudo liso nas cores do clube com a sigla)
+
+Para buscar e baixar todos: coloque API_FUTEBOL_KEY=live_... no .env e rode  npm run escudos
+(sem a chave, usa só o TheSportsDB). Arquivos colocados à mão nunca são substituídos.
+Reinicie o servidor depois.

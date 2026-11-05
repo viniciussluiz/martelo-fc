@@ -55,18 +55,35 @@ export function makeBotClub(params: { id: string; name: string; seed: string; st
   return { teamId: params.id, name: params.name, squad, formation, continental: !!params.continental };
 }
 
-export function makeLeagueBots(count: number, seed: string): BotClub[] {
-  const rng = new Rng(`bots:${seed}`);
-  const names = rng.shuffle(LEAGUE_BOT_NAMES).slice(0, count);
-  return names.map((name, i) =>
-    makeBotClub({ id: `bot-${i + 1}`, name, seed: `${seed}:bot:${i}`, strength: rng.int(66, 77) }),
-  );
+/**
+ * Forças dos clubes do jogo espalhadas por igual entre `ref + from` e `ref + to` (com um pouco de ruído),
+ * onde `ref` é a média dos elencos montados no leilão. Assim a liga tem clubes do jogo do nível dos
+ * técnicos (que brigam pelo título) até os bem mais fracos (que brigam contra o rebaixamento) —
+ * qualquer que seja o baralho. Sem `ref`, usa a faixa fixa antiga.
+ */
+export function botStrengths(count: number, rng: Rng, ref: number | undefined, from: number, to: number, fallback: [number, number]): number[] {
+  if (ref === undefined || !Number.isFinite(ref)) return Array.from({ length: count }, () => rng.int(fallback[0], fallback[1]));
+  const steps = Array.from({ length: count }, (_, i) => (count === 1 ? (from + to) / 2 : from + ((to - from) * i) / (count - 1)));
+  return rng.shuffle(steps).map((d) => Math.round(Math.max(45, Math.min(92, ref + d + rng.normal(0, 0.8)))));
 }
 
-export function makeContinentalBots(count: number, seed: string): BotClub[] {
+/** Clubes da liga: do nível médio dos técnicos (+1) até 9 pontos abaixo. */
+export const LEAGUE_BOT_SPREAD: [number, number] = [-11, -1];
+/** Clubes do continente na copa: um pouco mais fortes que os da liga. */
+export const CONTINENTAL_BOT_SPREAD: [number, number] = [-9, 1];
+
+export function makeLeagueBots(count: number, seed: string, ref?: number): BotClub[] {
+  const rng = new Rng(`bots:${seed}`);
+  const names = rng.shuffle(LEAGUE_BOT_NAMES).slice(0, count);
+  const strengths = botStrengths(names.length, rng, ref, LEAGUE_BOT_SPREAD[0], LEAGUE_BOT_SPREAD[1], [66, 77]);
+  return names.map((name, i) => makeBotClub({ id: `bot-${i + 1}`, name, seed: `${seed}:bot:${i}`, strength: strengths[i]! }));
+}
+
+export function makeContinentalBots(count: number, seed: string, ref?: number): BotClub[] {
   const rng = new Rng(`cont:${seed}`);
   const names = rng.shuffle(CONTINENTAL_BOT_NAMES).slice(0, count);
+  const strengths = botStrengths(names.length, rng, ref, CONTINENTAL_BOT_SPREAD[0], CONTINENTAL_BOT_SPREAD[1], [68, 80]);
   return names.map((name, i) =>
-    makeBotClub({ id: `cont-${i + 1}`, name, seed: `${seed}:cont:${i}`, strength: rng.int(68, 80), continental: true }),
+    makeBotClub({ id: `cont-${i + 1}`, name, seed: `${seed}:cont:${i}`, strength: strengths[i]!, continental: true }),
   );
 }

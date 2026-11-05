@@ -1,6 +1,7 @@
 import type { DB } from '../db.js';
 import { careerLevelFor } from './achievements-catalog.js';
 import { computeUserStats } from './stats.js';
+import { userCrests } from './team-crests.js';
 
 /** Resumo de perfil: números calculados a partir do histórico persistido. */
 export function profileSummary(db: DB, userId: string) {
@@ -26,7 +27,14 @@ export function profileSummary(db: DB, userId: string) {
     .all(userId);
   const trophies = (db.prepare('SELECT COUNT(*) AS n FROM user_achievements WHERE user_id = ?').get(userId) as { n: number }).n;
   return {
-    user: { id: user.id, displayName: user.display_name, username: user.username, isGuest: !!user.is_guest, createdAt: user.created_at },
+    user: {
+      id: user.id,
+      displayName: user.display_name,
+      username: user.username,
+      isGuest: !!user.is_guest,
+      createdAt: user.created_at,
+      crest: userCrests(db, [user.id]).get(user.id)!,
+    },
     stats,
     career: careerLevelFor(stats.careerXp),
     winRate: stats.matchesPlayed ? Math.round((stats.matchesWon / stats.matchesPlayed) * 1000) / 10 : 0,

@@ -1,0 +1,481 @@
+{
+  "_leia": "Gerado por `npm run escudos`. Ordem de uso: arquivo em data/escudos/ e, sem ele, o endereço (url).",
+  "atualizadoEm": "2026-10-23T00:46:54.808Z",
+  "clubes": {
+    "Ajax": {
+      "fonte": "thesportsdb",
+      "id": "133772",
+      "nome": "Ajax",
+      "url": "https://r2.thesportsdb.com/images/media/team/badge/zg9tii1755495289.png/tiny",
+      "arquivo": "ajax.png"
+    },
+    "América-MG": {
+      "fonte": "thesportsdb",
+      "id": "134742",
+      "nome": "América Mineiro",
+      "url": "https://r2.thesportsdb.com/images/media/team/badge/rtpp171752177342.png/tiny",
+      "arquivo": "america-mg.png"
+    },
+    "Arsenal": {
+      "fonte": "thesportsdb",
+      "id": "133604",
+      "nome": "Arsenal",
+      "url": "https://r2.thesportsdb.com/images/media/team/badge/uyhbfe1612467038.png/tiny",
+      "arquivo": "arsenal.png"
+    },
+    "Athletico-PR": {
+      "fonte": "thesportsdb",
+      "id": "134297",
+      "nome": "Athletico Paranaense",
+      "url": "https://r2.thesportsdb.com/images/media/team/badge/irzu1u1554237406.png/tiny",
+      "arquivo": "athletico-pr.png"
+    },
+    "Atlético de Madrid": {
+      "fonte": "thesportsdb",
+      "id": "133729",
+      "nome": "Atlético Madrid",
+      "url": "https://r2.thesportsdb.com/images/media/team/badge/0ulh3q1719984315.png/tiny",
+      "arquivo": "atletico-de-madrid.png"
+    },
+    "Atlético-GO": {
+      "fonte": "thesportsdb",
+      "id": "134737",
+      "nome": "Atlético Goianiense",
+      "url": "https://r2.thesportsdb.com/images/media/team/badge/l7382k1766505911.png/tiny",
+      "arquivo": "atletico-go.png"
+    },
+    "Atlético-MG": {
+      "fonte": "thesportsdb",
+      "id": "134299",
+      "nome": "Atlético Mineiro",
+      "url": "https://r2.thesportsdb.com/images/media/team/badge/x5lixs1743742872.png/tiny",
+      "arquivo": "atletico-mg.png"
+    },
+    "Avaí": {
+      "fonte": "thesportsdb",
+      "id": "134738",
+      "nome": "Avaí",
+      "url": "https://r2.thesportsdb.com/images/media/team/badge/bblkat1766506007.png/tiny",
+      "arquivo": "avai.png"
+    },
+    "Bahia": {
+      "fonte": "thesportsdb",
+      "id": "134293",
+      "nome": "Bahia",
+      "url": "https://r2.thesportsdb.com/images/media/team/badge/xuvtsv1473539308.png/tiny",
+      "arquivo": "bahia.png"
+    },
+    "Barcelona": {
+      "fonte": "thesportsdb",
+      "id": "133739",
+      "nome": "Barcelona",
+      "url": "https://r2.thesportsdb.com/images/media/team/badge/wq9sir1639406443.png/tiny",
+      "arquivo": "barcelona.png"
+    },
+    "Bayer Leverkusen": {
+      "fonte": "thesportsdb",
+      "id": "133666",
+      "nome": "Bayer Leverkusen",
+      "url": "https://r2.thesportsdb.com/images/media/team/badge/3x9k851726760113.png/tiny",
+      "arquivo": "bayer-leverkusen.png"
+    },
+    "Bayern de Munique": {
+      "fonte": "thesportsdb",
+      "id": "133664",
+      "nome": "Bayern Munich",
+      "url": "https://r2.thesportsdb.com/images/media/team/badge/01ogkh1716960412.png/tiny",
+      "arquivo": "bayern-de-munique.png"
+    },
+    "Benfica": {
+      "fonte": "thesportsdb",
+      "id": "134108",
+      "nome": "Benfica",
+      "url": "https://r2.thesportsdb.com/images/media/team/badge/hj4kyc1781152436.png/tiny",
+      "arquivo": "benfica.png"
+    },
+    "Borussia Dortmund": {
+      "fonte": "thesportsdb",
+      "id": "133650",
+      "nome": "Borussia Dortmund",
+      "url": "https://r2.thesportsdb.com/images/media/team/badge/tqo8ge1716960353.png/tiny",
+      "arquivo": "borussia-dortmund.png"
+    },
+    "Botafogo": {
+      "fonte": "thesportsdb",
+      "id": "134285",
+      "nome": "Botafogo",
+      "url": "https://r2.thesportsdb.com/images/media/team/badge/bs5mbw1733004596.png/tiny",
+      "arquivo": "botafogo.png"
+    },
+    "Botafogo-SP": {
+      "fonte": "thesportsdb",
+      "id": "136830",
+      "nome": "Botafogo-SP",
+      "url": "https://r2.thesportsdb.com/images/media/team/badge/kg3xsd1701366652.png/tiny",
+      "arquivo": "botafogo-sp.png"
+    },
+    "Bragantino": {
+      "fonte": "thesportsdb",
+      "id": "134736",
+      "nome": "Bragantino",
+      "url": "https://r2.thesportsdb.com/images/media/team/badge/2p7tl41701423595.png/tiny",
+      "arquivo": "bragantino.png"
+    },
+    "Ceará": {
+      "fonte": "thesportsdb",
+      "id": "134744",
+      "nome": "Ceará",
+      "url": "https://r2.thesportsdb.com/images/media/team/badge/rxxvyp1464886685.png/tiny",
+      "arquivo": "ceara.png"
+    },
+    "Chapecoense": {
+      "fonte": "thesportsdb",
+      "id": "134464",
+      "nome": "Chapecoense",
+      "url": "https://r2.thesportsdb.com/images/media/team/badge/wy0e1i1765900601.png/tiny",
+      "arquivo": "chapecoense.png"
+    },
+    "Chelsea": {
+      "fonte": "thesportsdb",
+      "id": "133610",
+      "nome": "Chelsea",
+      "url": "https://r2.thesportsdb.com/images/media/team/badge/pbf4ul1782638263.png/tiny",
+      "arquivo": "chelsea.png"
+    },
+    "Corinthians": {
+      "fonte": "thesportsdb",
+      "id": "134284",
+      "nome": "Corinthians",
+      "url": "https://r2.thesportsdb.com/images/media/team/badge/vvuvps1473538042.png/tiny",
+      "arquivo": "corinthians.png"
+    },
+    "Coritiba": {
+      "fonte": "thesportsdb",
+      "id": "134298",
+      "nome": "Coritiba",
+      "url": "https://r2.thesportsdb.com/images/media/team/badge/ywwsyu1473538050.png/tiny",
+      "arquivo": "coritiba.png"
+    },
+    "CRB": {
+      "fonte": "thesportsdb",
+      "id": "135680",
+      "nome": "CRB",
+      "url": "https://r2.thesportsdb.com/images/media/team/badge/vpypuq1472069179.png/tiny",
+      "arquivo": "crb.png"
+    },
+    "Criciúma": {
+      "fonte": "thesportsdb",
+      "id": "134292",
+      "nome": "Criciúma",
+      "url": "https://r2.thesportsdb.com/images/media/team/badge/r11mld1766506200.png/tiny",
+      "arquivo": "criciuma.png"
+    },
+    "Cruzeiro": {
+      "fonte": "thesportsdb",
+      "id": "134294",
+      "nome": "Cruzeiro",
+      "url": "https://r2.thesportsdb.com/images/media/team/badge/upsvvu1473538059.png/tiny",
+      "arquivo": "cruzeiro.png"
+    },
+    "Cuiabá": {
+      "fonte": "thesportsdb",
+      "id": "136831",
+      "nome": "Cuiabá",
+      "url": "https://r2.thesportsdb.com/images/media/team/badge/ykbxfa1766506334.png/tiny",
+      "arquivo": "cuiaba.png"
+    },
+    "Flamengo": {
+      "fonte": "thesportsdb",
+      "id": "134287",
+      "nome": "Flamengo",
+      "url": "https://r2.thesportsdb.com/images/media/team/badge/syptwx1473538074.png/tiny",
+      "arquivo": "flamengo.png"
+    },
+    "Fluminense": {
+      "fonte": "thesportsdb",
+      "id": "134296",
+      "nome": "Fluminense",
+      "url": "https://r2.thesportsdb.com/images/media/team/badge/stvvwp1473538082.png/tiny",
+      "arquivo": "fluminense.png"
+    },
+    "Fortaleza": {
+      "fonte": "thesportsdb",
+      "id": "136186",
+      "nome": "Fortaleza",
+      "url": "https://r2.thesportsdb.com/images/media/team/badge/tosmdr1532853458.png/tiny",
+      "arquivo": "fortaleza.png"
+    },
+    "Goiás": {
+      "fonte": "thesportsdb",
+      "id": "134295",
+      "nome": "Goiás",
+      "url": "https://r2.thesportsdb.com/images/media/team/badge/qhfhdp1635869930.png/tiny",
+      "arquivo": "goias.png"
+    },
+    "Grêmio": {
+      "fonte": "thesportsdb",
+      "id": "134288",
+      "nome": "Grêmio",
+      "url": "https://r2.thesportsdb.com/images/media/team/badge/uvpwyt1473538089.png/tiny",
+      "arquivo": "gremio.png"
+    },
+    "Inter de Milão": {
+      "fonte": "thesportsdb",
+      "id": "133681",
+      "nome": "Inter Milan",
+      "url": "https://r2.thesportsdb.com/images/media/team/badge/ryhu6d1617113103.png/tiny",
+      "arquivo": "inter-de-milao.png"
+    },
+    "Internacional": {
+      "fonte": "thesportsdb",
+      "id": "134281",
+      "nome": "Internacional",
+      "url": "https://r2.thesportsdb.com/images/media/team/badge/yprvxx1473538097.png/tiny",
+      "arquivo": "internacional.png"
+    },
+    "Juventude": {
+      "fonte": "thesportsdb",
+      "id": "135887",
+      "nome": "Juventude",
+      "url": "https://r2.thesportsdb.com/images/media/team/badge/1ntter1766506778.png/tiny",
+      "arquivo": "juventude.png"
+    },
+    "Juventus": {
+      "fonte": "thesportsdb",
+      "id": "133676",
+      "nome": "Juventus",
+      "url": "https://r2.thesportsdb.com/images/media/team/badge/uxf0gr1742983727.png/tiny",
+      "arquivo": "juventus.png"
+    },
+    "Lazio": {
+      "fonte": "thesportsdb",
+      "id": "133668",
+      "nome": "Lazio",
+      "url": "https://r2.thesportsdb.com/images/media/team/badge/rwqyvs1448806608.png/tiny",
+      "arquivo": "lazio.png"
+    },
+    "Liverpool": {
+      "fonte": "thesportsdb",
+      "id": "133602",
+      "nome": "Liverpool",
+      "url": "https://r2.thesportsdb.com/images/media/team/badge/kfaher1737969724.png/tiny",
+      "arquivo": "liverpool.png"
+    },
+    "Londrina": {
+      "fonte": "thesportsdb",
+      "id": "135664",
+      "nome": "Londrina",
+      "url": "https://r2.thesportsdb.com/images/media/team/badge/xp2z9j1740846583.png/tiny",
+      "arquivo": "londrina.png"
+    },
+    "Lyon": {
+      "fonte": "thesportsdb",
+      "id": "133713",
+      "nome": "Lyon",
+      "url": "https://r2.thesportsdb.com/images/media/team/badge/blk9771656932845.png/tiny",
+      "arquivo": "lyon.png"
+    },
+    "Manchester City": {
+      "fonte": "thesportsdb",
+      "id": "133613",
+      "nome": "Manchester City",
+      "url": "https://r2.thesportsdb.com/images/media/team/badge/vwpvry1467462651.png/tiny",
+      "arquivo": "manchester-city.png"
+    },
+    "Manchester United": {
+      "fonte": "thesportsdb",
+      "id": "133612",
+      "nome": "Manchester United",
+      "url": "https://r2.thesportsdb.com/images/media/team/badge/xzqdr11517660252.png/tiny",
+      "arquivo": "manchester-united.png"
+    },
+    "Milan": {
+      "fonte": "thesportsdb",
+      "id": "133667",
+      "nome": "AC Milan",
+      "url": "https://r2.thesportsdb.com/images/media/team/badge/wvspur1448806617.png/tiny",
+      "arquivo": "milan.png"
+    },
+    "Mirassol": {
+      "fonte": "thesportsdb",
+      "id": "141181",
+      "nome": "Mirassol",
+      "url": "https://r2.thesportsdb.com/images/media/team/badge/pw8uo11765900737.png/tiny",
+      "arquivo": "mirassol.png"
+    },
+    "Monaco": {
+      "fonte": "thesportsdb",
+      "id": "133823",
+      "nome": "Monaco",
+      "url": "https://r2.thesportsdb.com/images/media/team/badge/exjf5l1678808044.png/tiny",
+      "arquivo": "monaco.png"
+    },
+    "Napoli": {
+      "fonte": "thesportsdb",
+      "id": "133670",
+      "nome": "Napoli",
+      "url": "https://r2.thesportsdb.com/images/media/team/badge/l8qyxv1742982541.png/tiny",
+      "arquivo": "napoli.png"
+    },
+    "Náutico": {
+      "fonte": "thesportsdb",
+      "id": "134289",
+      "nome": "Náutico",
+      "url": "https://r2.thesportsdb.com/images/media/team/badge/wywuwv1464886832.png/tiny",
+      "arquivo": "nautico.png"
+    },
+    "Novorizontino": {
+      "fonte": "thesportsdb",
+      "id": "141182",
+      "nome": "Novorizontino",
+      "url": "https://r2.thesportsdb.com/images/media/team/badge/2qwxw51617198963.png/tiny"
+    },
+    "Olympique de Marseille": {
+      "fonte": "thesportsdb",
+      "id": "133707",
+      "nome": "Marseille",
+      "url": "https://r2.thesportsdb.com/images/media/team/badge/c6bazh1779212287.png/tiny",
+      "arquivo": "olympique-de-marseille.png"
+    },
+    "Operário-PR": {
+      "fonte": "thesportsdb",
+      "id": "136829",
+      "nome": "Operário Ferroviário",
+      "url": "https://r2.thesportsdb.com/images/media/team/badge/fhrc6i1560791704.png/tiny",
+      "arquivo": "operario-pr.png"
+    },
+    "Palmeiras": {
+      "fonte": "thesportsdb",
+      "id": "134465",
+      "nome": "Palmeiras",
+      "url": "https://r2.thesportsdb.com/images/media/team/badge/vsqwqp1473538105.png/tiny",
+      "arquivo": "palmeiras.png"
+    },
+    "Ponte Preta": {
+      "fonte": "thesportsdb",
+      "id": "134290",
+      "nome": "Ponte Preta",
+      "url": "https://r2.thesportsdb.com/images/media/team/badge/wbss4d1644929547.png/tiny",
+      "arquivo": "ponte-preta.png"
+    },
+    "Porto": {
+      "fonte": "thesportsdb",
+      "id": "134114",
+      "nome": "Porto",
+      "url": "https://r2.thesportsdb.com/images/media/team/badge/xu47rb1628855600.png/tiny",
+      "arquivo": "porto.png"
+    },
+    "PSG": {
+      "fonte": "thesportsdb",
+      "id": "133714",
+      "nome": "Paris Saint-Germain",
+      "url": "https://r2.thesportsdb.com/images/media/team/badge/rwqrrq1473504808.png/tiny",
+      "arquivo": "psg.png"
+    },
+    "PSV": {
+      "fonte": "thesportsdb",
+      "id": "133768",
+      "nome": "PSV Eindhoven",
+      "url": "https://r2.thesportsdb.com/images/media/team/badge/xfsz6i1721297428.png/tiny",
+      "arquivo": "psv.png"
+    },
+    "Real Madrid": {
+      "fonte": "thesportsdb",
+      "id": "133738",
+      "nome": "Real Madrid",
+      "url": "https://r2.thesportsdb.com/images/media/team/badge/vwvwrw1473502969.png/tiny",
+      "arquivo": "real-madrid.png"
+    },
+    "Remo": {
+      "fonte": "thesportsdb",
+      "id": "137818",
+      "nome": "Remo",
+      "url": "https://r2.thesportsdb.com/images/media/team/badge/u36jfy1579341655.png/tiny",
+      "arquivo": "remo.png"
+    },
+    "Roma": {
+      "fonte": "thesportsdb",
+      "id": "133682",
+      "nome": "Roma",
+      "url": "https://r2.thesportsdb.com/images/media/team/badge/jwro2s1760820674.png/tiny",
+      "arquivo": "roma.png"
+    },
+    "Santos": {
+      "fonte": "thesportsdb",
+      "id": "134286",
+      "nome": "Santos",
+      "url": "https://r2.thesportsdb.com/images/media/team/badge/j8xk9g1679447486.png/tiny",
+      "arquivo": "santos.png"
+    },
+    "São Bernardo": {
+      "fonte": "thesportsdb",
+      "id": "145389",
+      "nome": "São Bernardo",
+      "url": "https://r2.thesportsdb.com/images/media/team/badge/0kt1ah1688106304.png/tiny",
+      "arquivo": "sao-bernardo.png"
+    },
+    "São Paulo": {
+      "fonte": "thesportsdb",
+      "id": "134291",
+      "nome": "São Paulo",
+      "url": "https://r2.thesportsdb.com/images/media/team/badge/sxpupx1473538135.png/tiny",
+      "arquivo": "sao-paulo.png"
+    },
+    "Sevilla": {
+      "fonte": "thesportsdb",
+      "id": "133735",
+      "nome": "Sevilla",
+      "url": "https://r2.thesportsdb.com/images/media/team/badge/vpsqqx1473502977.png/tiny",
+      "arquivo": "sevilla.png"
+    },
+    "Sport": {
+      "fonte": "thesportsdb",
+      "id": "136250",
+      "nome": "Sport Recife",
+      "url": "https://r2.thesportsdb.com/images/media/team/badge/tyrbls1545421563.png/tiny",
+      "arquivo": "sport.png"
+    },
+    "Sporting": {
+      "fonte": "thesportsdb",
+      "id": "135708",
+      "nome": "Sporting CP",
+      "url": "https://r2.thesportsdb.com/images/media/team/badge/5hiuk71783137875.png/tiny",
+      "arquivo": "sporting.png"
+    },
+    "Tottenham": {
+      "fonte": "thesportsdb",
+      "id": "133616",
+      "nome": "Tottenham Hotspur",
+      "url": "https://r2.thesportsdb.com/images/media/team/badge/dfyfhl1604094109.png/tiny",
+      "arquivo": "tottenham.png"
+    },
+    "Valencia": {
+      "fonte": "thesportsdb",
+      "id": "133725",
+      "nome": "Valencia",
+      "url": "https://r2.thesportsdb.com/images/media/team/badge/dm8l6o1655594864.png/tiny",
+      "arquivo": "valencia.png"
+    },
+    "Vasco": {
+      "fonte": "thesportsdb",
+      "id": "134282",
+      "nome": "Vasco da Gama",
+      "url": "https://r2.thesportsdb.com/images/media/team/badge/ynqlxo1630521109.png/tiny",
+      "arquivo": "vasco.png"
+    },
+    "Vila Nova": {
+      "fonte": "thesportsdb",
+      "id": "134734",
+      "nome": "Vila Nova",
+      "url": "https://r2.thesportsdb.com/images/media/team/badge/nwd4ns1740851638.png/tiny",
+      "arquivo": "vila-nova.png"
+    },
+    "Vitória": {
+      "fonte": "thesportsdb",
+      "id": "134280",
+      "nome": "Vitória",
+      "url": "https://r2.thesportsdb.com/images/media/team/badge/tysrrx1473538156.png/tiny",
+      "arquivo": "vitoria.png"
+    }
+  }
+}

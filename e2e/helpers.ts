@@ -21,7 +21,7 @@ export async function enterAsGuest(page: Page, team: string) {
  * Joga pela interface até `done()` ser verdadeiro: escreve um lance no primeiro
  * jogador disponível, lacra, resolve desempates, escolhe no Monte e confirma a cerimônia.
  */
-export async function playUntil(page: Page, done: () => Promise<boolean>, timeoutMs = 150_000, opts: { ready?: boolean } = {}) {
+export async function playUntil(page: Page, done: () => Promise<boolean>, timeoutMs = 150_000, opts: { ready?: boolean; convoke?: boolean } = {}) {
   const t0 = Date.now();
   while (Date.now() - t0 < timeoutMs) {
     if (await done()) return;
@@ -44,6 +44,24 @@ export async function playUntil(page: Page, done: () => Promise<boolean>, timeou
     if (await pick.count()) {
       await pick.first().click({ timeout: 2000 }).catch(() => undefined);
       continue;
+    }
+    // Convocação (leilão de clubes): marca quem estiver livre em cada setor e fecha.
+    const close = page.getByRole('button', { name: 'Fechar convocação' });
+    if (opts.convoke !== false && (await close.count())) {
+      if (await close.isEnabled().catch(() => false)) {
+        await close.click({ timeout: 2000 }).catch(() => undefined);
+        continue;
+      }
+      const box = page.locator('.convoca-row input:not(:checked):not([disabled])').first();
+      if (await box.count()) {
+        await box.check({ timeout: 1000 }).catch(() => undefined);
+        continue;
+      }
+      const tab = page.locator('.convoca .tabs [role=tab]:not([data-done])').first();
+      if (await tab.count()) {
+        await tab.click({ timeout: 1000 }).catch(() => undefined);
+        continue;
+      }
     }
     const ready = page.getByRole('button', { name: 'Estou pronto' });
     if (opts.ready !== false && (await ready.count())) {

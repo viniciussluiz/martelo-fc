@@ -47,7 +47,10 @@ describe('tamanho dos lotes', () => {
     const carried = DECK.filter((c) => c.position === 'ATA').slice(0, 10);
     const { pool, reserve } = buildAuctionPool({ seats: [{ formation: '4-3-3' }, { formation: '4-3-3' }], deck: DECK, carried, extra: 1, seed: 'x' });
     for (const c of carried) expect(pool.some((p) => p.id === c.id)).toBe(true);
-    expect(pool.filter((c) => c.position === 'ATA')).toHaveLength(10); // max(6+1, 10)
+    // max(6+1, 10); sem Lenda entre as herdadas, entra mais uma carta (a Lenda da posição).
+    const ata = pool.filter((c) => c.position === 'ATA');
+    expect(ata).toHaveLength(carried.some((c) => c.tier === 'lenda') ? 10 : 11);
+    expect(ata.some((c) => c.tier === 'lenda')).toBe(true);
     expect(pool.filter((c) => c.position === 'GOL')).toHaveLength(3);
     const ids = new Set([...pool, ...reserve].map((c) => c.id));
     expect(ids.size).toBe(pool.length + reserve.length);

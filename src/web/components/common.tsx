@@ -1,9 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState, type ReactNode } from 'react';
 import type { CardView } from '../../shared/protocol';
 import { serverNow } from '../lib/store';
-import { Avatar } from './Avatar';
-import { Icon } from './Icon';
 import { ClubLine } from './ClubBadge';
+import { Icon } from './Icon';
+import { LegendFigure } from './LegendFigure';
+import { PixelBall, PosChip } from './ui';
 
 export const TIER_LABEL: Record<string, string> = {
   lenda: 'Lenda',
@@ -47,12 +48,31 @@ export function useNow(ms = 250): number {
   return now;
 }
 
-export function Countdown({ deadline, urgentAt = 10 }: { deadline: number; urgentAt?: number }) {
+/**
+ * Relógio de placar (dígitos de LED). Com `bar`, mostra embaixo quanto do prazo ainda resta (o total
+ * é o tempo que faltava quando este prazo apareceu na tela).
+ */
+export function Countdown({ deadline, urgentAt = 10, bar }: { deadline: number; urgentAt?: number; bar?: boolean }) {
   const now = useNow(250);
-  const s = Math.max(0, Math.ceil((deadline - now) / 1000));
+  const total = useRef<{ deadline: number; ms: number } | null>(null);
+  if (!total.current || total.current.deadline !== deadline) total.current = { deadline, ms: Math.max(1000, deadline - now) };
+  const left = Math.max(0, deadline - now);
+  const s = Math.ceil(left / 1000);
+  const pct = Math.min(100, (left / total.current.ms) * 100);
   return (
-    <span className="clock" data-urgent={s <= urgentAt} aria-label={`${s} segundos`}>
-      {s}s
+    <span className="clock" data-urgent={s <= urgentAt} data-final={s <= 5 || undefined} aria-label={`${s} segundos`}>
+      <span className="clock-face">
+        <Icon name="relogio" size={18} />
+        <span className="clock-num" key={s <= 5 ? s : 'n'}>
+          {String(s).padStart(2, '0')}
+        </span>
+        <span className="clock-unit">s</span>
+      </span>
+      {bar && (
+        <span className="clock-bar" aria-hidden="true">
+          <span style={{ width: `${pct}%` }} />
+        </span>
+      )}
     </span>
   );
 }
@@ -71,37 +91,52 @@ export function Band({ card }: { card?: CardView }) {
   );
 }
 
-/** Figurinha do jogador; Lendas reveladas ganham destaque dourado e tamanho maior. */
-export function CardAvatar({ card, size = 64 }: { card: CardView; size?: number }) {
-  return <Avatar seed={card.seed} club={card.club} kit={card.kit} size={size} legend={card.tier === 'lenda'} mystery={!!card.mystery} label={card.mystery ? undefined : `Figurinha de ${card.name}`} />;
+/** Nome do jogador e, embaixo, o escudo com “Clube (ano)”. Nada além disso. */
+export function CardIdentity({ card, crestSize = 18 }: { card: CardView; crestSize?: number }) {
+  return (
+    <div className="card-id">
+      <div className="sticker-name">{card.name}</div>
+      <div className="sticker-meta">
+        <ClubLine club={card.club} year={card.year} kit={card.kit} size={crestSize} />
+      </div>
+    </div>
+  );
 }
 
-export function CardFace({ card, children, compact }: { card: CardView; children?: React.ReactNode; compact?: boolean }) {
+/** Lenda já revelada no martelo: carta dourada com a figura de rosto amarelo. */
+export function isRevealedLegend(card: CardView): boolean {
+  return card.tier === 'lenda';
+}
+
+/**
+ * Figurinha do jogador: faixa da posição em cima, escudo do clube como arte, nome e “Clube (ano)”.
+ * `compact` é a versão de uma linha (lista lacrada, Monte).
+ */
+export function CardFace({ card, children, compact, band }: { card: CardView; children?: ReactNode; compact?: boolean; band?: ReactNode }) {
+  const legend = isRevealedLegend(card);
   return (
-    <div className="sticker" data-mystery={!!card.mystery} data-legend={card.tier === 'lenda' || undefined}>
-      <div className="sticker-row">
-        <CardAvatar card={card} size={compact ? 48 : 60} />
-        <div className="stack" style={{ gap: 2, minWidth: 0, flex: 1 }}>
-          <div className="row" style={{ gap: 8 }}>
-            <span className="badge-pos">{card.position}</span>
-            <TierBadge tier={card.tier} />
-            <Band card={card} />
-          </div>
-          <div className="sticker-name">{card.name}</div>
-          <div className="sticker-meta">
-            <ClubLine club={card.club} year={card.year} kit={card.kit} />
-          </div>
-          {!compact && <div className="sticker-hint">{card.hint}</div>}
+    <div className="sticker" data-pos={card.position} data-mystery={!!card.mystery} data-legend={legend || undefined} data-compact={compact || undefined}>
+      {!compact && (
+        <div className="sticker-band">
+          <PosChip pos={card.position} />
+          {card.mystery && <span className="sticker-flag">carta-surpresa</span>}
+          {band}
         </div>
+      )}
+      <div className="sticker-row">
+        {legend && <LegendFigure club={card.club} kit={card.kit} size={compact ? 32 : 40} />}
+        <CardIdentity card={card} crestSize={compact ? 22 : 40} />
         {children}
       </div>
     </div>
   );
 }
 
+/** Envelope pardo com o lance escrito à caneta e, se lacrado, o lacre de cera. */
 export function EnvelopeArt({ amount, label, sealed }: { amount: string; label?: string; sealed?: boolean }) {
   return (
     <div className="envelope" role="img" aria-label={`Envelope com lance de ${amount}${sealed ? ', lacrado' : ''}`}>
+      <span className="envelope-flap" aria-hidden="true" />
       {label && <span className="envelope-label">{label}</span>}
       <span className="envelope-amount">{amount}</span>
       {sealed && (
@@ -127,10 +162,25 @@ export function fmtDateTime(iso: string | null | undefined) {
   return new Date(iso).toLocaleString('pt-BR', { day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit' });
 }
 
+/** Carregando: a bolinha quicando e o recado. */
 export function Spinner({ label = 'Carregando…' }: { label?: string }) {
   return (
-    <div className="empty" role="status">
-      {label}
+    <div className="loading" role="status">
+      <span className="loading-ball">
+        <PixelBall size={30} />
+      </span>
+      <span className="loading-shadow" aria-hidden="true" />
+      <span className="loading-text">{label}</span>
+    </div>
+  );
+}
+
+/** Aviso de tela vazia: diz o que fazer. */
+export function Empty({ children, icon = 'bola' }: { children: ReactNode; icon?: string }) {
+  return (
+    <div className="empty">
+      <Icon name={icon} size={26} />
+      <div>{children}</div>
     </div>
   );
 }

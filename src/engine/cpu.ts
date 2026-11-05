@@ -26,10 +26,15 @@ interface PlanParams {
   openInPosition: number;
   totalOpenSlots: number;
   round: BidRound;
+  /** Quantos jogadores cada item rende (leilão de clubes: os que o pacote dá para escalar). */
+  playersPerItem?: number;
 }
 
 export function cpuPlanBids(params: PlanParams): Record<string, number> {
   const { rng, participant, cards, mysteryCardIds, openInPosition, totalOpenSlots, round } = params;
+  const perItem = Math.max(1, params.playersPerItem ?? 1);
+  // Pacotes: quase todo técnico leva um por setor, então a CPU segura a mão para chegar ao fim com moedas.
+  const pace = params.playersPerItem ? 0.55 : 1;
   const coins = participant.coins;
   if (coins <= 0 || openInPosition <= 0 || cards.length === 0) return {};
   const style = participant.cpuStyle ?? 'equilibrado';
@@ -47,7 +52,7 @@ export function cpuPlanBids(params: PlanParams): Record<string, number> {
     // Às vezes a CPU passa a vez em nomes que acha fracos.
     if (desirability < 0.25 && rng.next() < 0.35) continue;
     const roundMult = round === 'repescagem' ? 0.65 : 1;
-    let amount = perSlot * (0.35 + 1.7 * Math.pow(desirability, 1.5)) * STYLE_MULT[style] * roundMult * (0.75 + rng.next() * 0.5);
+    let amount = perSlot * perItem * pace * (0.35 + 1.7 * Math.pow(desirability, 1.5)) * STYLE_MULT[style] * roundMult * (0.75 + rng.next() * 0.5);
     amount = Math.max(1, Math.round(amount));
     bids[w.card.id] = amount;
     total += amount;
@@ -94,4 +99,14 @@ export function cpuMontePick(rng: Rng, options: Card[], _p: Participant): string
     }
   }
   return best.id;
+}
+
+/** Convocação da CPU (leilão de clubes): em cada setor, os que ela acha melhores. */
+export function cpuConvoca(rng: Rng, sectors: Array<{ need: number; cards: Card[] }>): string[] {
+  const out: string[] = [];
+  for (const { need, cards } of sectors) {
+    const ranked = cards.map((c) => ({ id: c.id, est: cpuEstimate(c, rng, false) })).sort((a, b) => b.est - a.est);
+    out.push(...ranked.slice(0, need).map((x) => x.id));
+  }
+  return out;
 }

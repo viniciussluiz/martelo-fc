@@ -1,5 +1,9 @@
 import { useEffect, useState } from 'react';
-import { Spinner, fmtDate, REACH_LABEL } from '../components/common';
+import type { CrestConfig } from '../../shared/crest';
+import { Empty, Spinner, fmtDate, REACH_LABEL } from '../components/common';
+import { TeamCrest } from '../components/crest/TeamCrest';
+import { Icon } from '../components/Icon';
+import { SectionTitle } from '../components/ui';
 import { api } from '../lib/api';
 import { navigate } from '../lib/router';
 
@@ -25,8 +29,8 @@ interface Side {
 }
 
 interface Detail {
-  me: { userId: string; displayName: string };
-  opponent: { userId: string; displayName: string };
+  me: { userId: string; displayName: string; crest: CrestConfig | null };
+  opponent: { userId: string; displayName: string; crest: CrestConfig | null };
   records: Record<string, Rec>;
   streaks: { current: { type: 'V' | 'E' | 'D'; length: number } | null; longestWin: number; longestLoss: number };
   lastResults: Array<{ matchId: string; at: string; result: 'V' | 'E' | 'D'; mine: number; theirs: number; competition: string; stage: string }>;
@@ -72,25 +76,35 @@ export function RivalPage({ userId, opponentId }: { userId: string; opponentId: 
       .then(setData)
       .catch((e: Error) => setError(e.message));
   }, [userId, opponentId, period, competition]);
-  if (error) return <div className="empty">{error}</div>;
+  if (error) return <Empty icon="info">{error}</Empty>;
   if (!data) return <Spinner />;
   const r = data.records;
   const cur = data.streaks.current;
   return (
-    <div className="stack" style={{ gap: 24 }}>
+    <div className="rival">
       <a
+        className="back-link"
         href={`/perfil/${userId}`}
         onClick={(e) => {
           e.preventDefault();
           navigate(`/perfil/${userId}`);
         }}
       >
-        Voltar ao perfil
+        <Icon name="voltar" size={18} /> Voltar ao perfil
       </a>
-      <h1>
-        {data.me.displayName} × {data.opponent.displayName}
-      </h1>
-      <div className="row">
+      <header className="faceoff-head">
+        <span className="faceoff-crest">
+          <TeamCrest userId={data.me.userId} name={data.me.displayName} crest={data.me.crest} size={120} />
+        </span>
+        <h1 className="faceoff">
+          <span className="faceoff-name">{data.me.displayName}</span> <span className="faceoff-x">×</span>{' '}
+          <span className="faceoff-name">{data.opponent.displayName}</span>
+        </h1>
+        <span className="faceoff-crest">
+          <TeamCrest userId={data.opponent.userId} name={data.opponent.displayName} crest={data.opponent.crest} size={120} />
+        </span>
+      </header>
+      <div className="row filters">
         <div className="seg" role="group" aria-label="Período">
           {[
             [0, 'Tudo'],
@@ -143,8 +157,11 @@ export function RivalPage({ userId, opponentId }: { userId: string; opponentId: 
       <p className="small muted">Vitórias, empates e derrotas, sempre do ponto de vista de {data.me.displayName}. Cada modalidade é contada separadamente.</p>
 
       <section className="grid-2">
-        <div className="panel stack">
-          <div className="panel-title">Forma recente nas partidas</div>
+        <div className="panel">
+          <div className="panel-head">
+            <h2>Forma recente nas partidas</h2>
+          </div>
+          <div className="panel-body stack">
           {data.lastResults.length === 0 ? (
             <p className="muted">Sem partidas diretas no filtro.</p>
           ) : (
@@ -162,13 +179,17 @@ export function RivalPage({ userId, opponentId }: { userId: string; opponentId: 
               </p>
             </>
           )}
+          </div>
         </div>
-        <div className="panel stack">
-          <div className="panel-title">Títulos e finais em comum</div>
+        <div className="panel">
+          <div className="panel-head">
+            <h2>Títulos e finais em comum</h2>
+          </div>
+          <div className="panel-body stack">
           {data.titlesInCommon.length === 0 && data.finals.length === 0 ? (
             <p className="muted">Ninguém levantou taça nas disputas em comum ainda.</p>
           ) : (
-            <ul className="room-list">
+            <ul className="plain-list">
               {data.finals.map((f) => (
                 <li key={`f-${f.disputeId}`}>
                   <span>
@@ -187,24 +208,26 @@ export function RivalPage({ userId, opponentId }: { userId: string; opponentId: 
               ))}
             </ul>
           )}
+          </div>
         </div>
       </section>
 
       <section className="stack">
-        <h2>Disputas em comum</h2>
+        <SectionTitle>Disputas em comum</SectionTitle>
         {data.timeline.length === 0 ? (
-          <div className="empty">Nenhuma disputa em comum no período.</div>
+          <Empty icon="apito">Nenhuma disputa em comum no período.</Empty>
         ) : (
           data.timeline.map((t) => (
-            <article className="panel stack" key={t.disputeId} style={{ gap: 10 }}>
-              <div className="spread">
-                <strong>
+            <article className="panel" key={t.disputeId}>
+              <div className="panel-head">
+                <h3>
                   {fmtDate(t.finishedAt)}, sala {t.roomCode}, ciclo {t.seq}
-                </strong>
-                <span className="small muted">
+                </h3>
+                <span className="panel-head-aside">
                   Disputas de lance: {t.auctionDuels.mine} a {t.auctionDuels.theirs}
                 </span>
               </div>
+              <div className="panel-body">
               <div className="table-wrap">
                 <table className="table">
                   <thead>
@@ -222,7 +245,17 @@ export function RivalPage({ userId, opponentId }: { userId: string; opponentId: 
                     {[t.me, t.them].map((s, i) => (
                       <tr key={i} data-me={i === 0}>
                         <td>
-                          {s.teamName} {s.titles.length ? `(${s.titles.join(' e ')})` : ''}
+                          <span className="team-cell">
+                            <TeamCrest
+                              userId={i === 0 ? data.me.userId : data.opponent.userId}
+                              name={s.teamName}
+                              crest={i === 0 ? data.me.crest : data.opponent.crest}
+                              size={22}
+                            />
+                            <span className="team-cell-name">
+                              {s.teamName} {s.titles.length ? `(${s.titles.join(' e ')})` : ''}
+                            </span>
+                          </span>
                         </td>
                         <td className="r">{s.rank}º</td>
                         <td className="r">{s.leaguePosition}º</td>
@@ -235,6 +268,7 @@ export function RivalPage({ userId, opponentId }: { userId: string; opponentId: 
                   </tbody>
                 </table>
               </div>
+              </div>
             </article>
           ))
         )}
@@ -242,15 +276,15 @@ export function RivalPage({ userId, opponentId }: { userId: string; opponentId: 
 
       {data.matches.length > 0 && (
         <section className="stack">
-          <h2>Todas as partidas</h2>
-          <ul className="room-list panel">
+          <SectionTitle>Todas as partidas</SectionTitle>
+          <ul className="match-list panel">
             {data.matches.map((m) => (
               <li key={`${m.disputeId}-${m.matchId}`}>
                 <span className="row" style={{ gap: 8 }}>
                   <span className="form-chips">
                     <span data-r={m.result}>{m.result}</span>
                   </span>
-                  <span className="num">
+                  <span className="match-score">
                     {m.mine} × {m.theirs}
                   </span>
                   {m.penalties && <span className="small muted">pên. {m.penalties.mine}×{m.penalties.theirs}</span>}

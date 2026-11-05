@@ -10,7 +10,8 @@ import type { CupReach, CupTie } from '../engine/cup.js';
 import type { DisputePhase, DisputeResult } from '../engine/dispute.js';
 import type { StandingRow } from '../engine/league.js';
 import type { MatchEvent, Goal } from '../engine/match.js';
-import type { AcquisitionSource, CupFormat, Formation, Position, Series, SeriesScope, Tactic, Tier } from '../engine/types.js';
+import type { CrestConfig } from './crest.js';
+import type { AcquisitionSource, AuctionMode, CupFormat, Formation, Position, Series, SeriesScope, Tactic, Tier } from '../engine/types.js';
 
 export type RoomMode = 'online' | 'solo';
 export type RoomStatus = 'lobby' | 'in_dispute' | 'post_dispute' | 'closed';
@@ -19,6 +20,8 @@ export type MemberStatus = 'active' | 'inactive' | 'left';
 export type ContinueChoice = 'continue' | 'leave';
 
 export interface RoomSettings {
+  /** Tipo de leilão: um jogador por lance (padrão) ou setores de clubes (pacotes + convocação). */
+  auctionMode: AuctionMode;
   cupFormat: CupFormat;
   /** Clubes das cartas do leilão: tudo, Séries A e B, só A, só B ou grandes da Europa. */
   series: SeriesScope;
@@ -40,6 +43,8 @@ export interface PublicUserView {
   displayName: string;
   username: string | null;
   isGuest: boolean;
+  /** Escudo do time do técnico. */
+  crest: CrestConfig;
 }
 
 export interface MemberView {
@@ -83,10 +88,7 @@ export interface CardView {
   position: Position;
   club: string;
   year: number;
-  hint: string;
-  /** Semente estável da figurinha ilustrada (mesmo jogador = mesmo desenho). */
-  seed: string;
-  /** Cores do uniforme do clube, quando o baralho as tem. */
+  /** Cores do uniforme do clube, quando o baralho as tem (selo genérico e figura da Lenda). */
   kit?: [string, string];
   mystery?: boolean;
   /** Revelado no martelo (carta vendida) ou na Cerimônia. */
@@ -111,8 +113,22 @@ export interface ParticipantView {
   formation: Formation;
   coins: number;
   roster: RosterView[];
+  /** Leilão de clubes: pacotes levados (a revelação ainda pode estar mostrando os últimos). */
+  packs?: Array<{ packageId: string; position: Position; price: number; source: AcquisitionSource }>;
   connected: boolean;
   abandoned: boolean;
+}
+
+/** Pacote do leilão de clubes: um setor de um clube. Os nomes só aparecem para o dono, na convocação. */
+export interface PackageView {
+  id: string;
+  club: string;
+  position: Position;
+  size: number;
+  label: string;
+  mixed?: boolean;
+  /** Jogadores do pacote: só nos seus, a partir da convocação. */
+  cardIds?: string[];
 }
 
 export interface BidStepView {
@@ -157,7 +173,21 @@ export interface MonteStepView {
   pickNumber: number;
 }
 
-export type StepView = BidStepView | TiebreakStepView | MonteStepView;
+export interface ConvocacaoStepView {
+  kind: 'convocacao';
+  stepId: string;
+  deadline: number;
+  eligible: string[];
+  sealed: string[];
+  /** Quantos a sua formação pede em cada setor. */
+  need: Record<Position, number>;
+  /** Seus pacotes por setor (os jogadores vêm em `packages[id].cardIds`). */
+  myPackages: Partial<Record<Position, string>>;
+  myPicks: string[];
+  mySealed: boolean;
+}
+
+export type StepView = BidStepView | TiebreakStepView | MonteStepView | ConvocacaoStepView;
 
 export interface RevealView {
   stepId: string;
@@ -204,6 +234,10 @@ export interface LeagueView {
   myLastMatch: MatchView | null;
   myNextFixture: FixtureView | null;
   topScorers: Array<{ cardId: string; name: string; teamId: string; goals: number }>;
+  /** Maiores garçons: quem mais deu assistências. */
+  topAssists: Array<{ cardId: string; name: string; teamId: string; assists: number }>;
+  /** Gols e assistências dos jogadores dos técnicos da sala: time → carta → [gols, assistências]. */
+  playerStats: Record<string, Record<string, [number, number]>>;
   tickStartedAt: number;
   tickMs: number;
 }
@@ -221,6 +255,9 @@ export interface CupView {
   myNextFixture: FixtureView | null;
   reached: Record<string, CupReach>;
   championId: string | null;
+  topScorers: Array<{ cardId: string; name: string; teamId: string; goals: number }>;
+  topAssists: Array<{ cardId: string; name: string; teamId: string; assists: number }>;
+  playerStats: Record<string, Record<string, [number, number]>>;
   tickStartedAt: number;
   tickMs: number;
 }
@@ -241,6 +278,10 @@ export interface DisputeView {
   cards: Record<string, CardView>;
   teamNames: Record<string, string>;
   carriedCount: number;
+  /** Tipo de leilão desta disputa. */
+  auctionMode: AuctionMode;
+  /** Leilão de clubes: os pacotes do pregão. */
+  packages: Record<string, PackageView>;
   auction: AuctionView | null;
   ceremony: CeremonyView | null;
   league: LeagueView | null;
@@ -256,7 +297,10 @@ export interface DeckInfo {
   groups: Partial<Record<Series, number>>;
   /** Clubes de cada grupo, em ordem alfabética. */
   clubs: Partial<Record<Series, string[]>>;
-  /** Escudos disponíveis no servidor (`data/escudos/`): nome do clube → URL. Vazio = selo genérico do jogo. */
+  /**
+   * Escudos dos clubes: nome do clube → URL (arquivo em `data/escudos/` ou endereço de `data/escudos/fontes.json`).
+   * Clube ausente = selo genérico do jogo.
+   */
   crests: Record<string, string>;
 }
 
@@ -276,6 +320,11 @@ export interface RoomView {
   /** Resumo da última disputa concluída (dado histórico; não é usado pelo próximo leilão). */
   lastResult: (DisputeResult & { disputeId: string; seq: number }) | null;
   history: HistoryEntry[];
+  /**
+   * Escudos dos times dos técnicos que aparecem nesta sala (membros, disputa, resumo e histórico),
+   * por id de usuário. Times da CPU e clubes do jogo não entram: o escudo deles sai do nome.
+   */
+  crests: Record<string, CrestConfig>;
   serverTime: number;
 }
 
@@ -300,6 +349,7 @@ export type ClientMessage =
   | { t: 'bid:set'; stepId: string; bids: Record<string, number>; seal?: boolean; reqId?: string }
   | { t: 'tiebreak:set'; stepId: string; amounts: Record<string, number>; reqId?: string }
   | { t: 'monte:pick'; stepId: string; cardId: string; reqId?: string }
+  | { t: 'convoca:set'; stepId: string; cardIds: string[]; seal?: boolean; reqId?: string }
   | { t: 'ceremony:ready'; reqId?: string }
   | { t: 'tactic'; tactic: Tactic; reqId?: string }
   | { t: 'continue:vote'; disputeId: string; choice: ContinueChoice; reqId?: string }
@@ -307,7 +357,8 @@ export type ClientMessage =
   | { t: 'ping'; reqId?: string };
 
 export type ServerMessage =
-  | { t: 'hello:ok'; user: PublicUserView }
+  /** `build`: script principal do site que o servidor entrega agora (aba com outro build se recarrega). */
+  | { t: 'hello:ok'; user: PublicUserView; build?: string }
   | { t: 'room:state'; room: RoomView }
   | { t: 'room:left'; reason: string }
   | { t: 'ack'; reqId: string }

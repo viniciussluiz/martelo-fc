@@ -1,6 +1,7 @@
-import { createReadStream, existsSync, statSync } from 'node:fs';
+import { createReadStream, existsSync, readFileSync, statSync } from 'node:fs';
 import type { IncomingMessage, ServerResponse } from 'node:http';
 import { extname, join, normalize, resolve } from 'node:path';
+import { CREST_REMOTE_ORIGINS } from './crests.js';
 
 export interface Ctx {
   req: IncomingMessage;
@@ -109,8 +110,26 @@ export const SECURITY_HEADERS: Record<string, string> = {
   'referrer-policy': 'same-origin',
   'x-frame-options': 'DENY',
   'content-security-policy':
-    "default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; font-src 'self' data:; connect-src 'self' ws: wss:; script-src 'self'; frame-ancestors 'none'",
+    `default-src 'self'; img-src 'self' data: ${CREST_REMOTE_ORIGINS.join(' ')}; style-src 'self' 'unsafe-inline'; font-src 'self' data:; connect-src 'self' ws: wss:; script-src 'self'; frame-ancestors 'none'`,
 };
+
+const buildCache = new Map<string, { mtimeMs: number; id: string | undefined }>();
+
+/**
+ * Identifica o site compilado que o servidor entrega: o script principal de `dist/index.html`
+ * (ex.: “/assets/index-tp4b96hG.js”, que muda a cada build). Vai no `hello:ok`; uma aba aberta
+ * com um build antigo se recarrega sozinha. Sem dist/ (modo dev), não há id.
+ */
+export function clientBuildId(staticDir: string): string | undefined {
+  const file = join(resolve(staticDir), 'index.html');
+  if (!existsSync(file)) return undefined;
+  const mtimeMs = statSync(file).mtimeMs;
+  const cached = buildCache.get(file);
+  if (cached && cached.mtimeMs === mtimeMs) return cached.id;
+  const id = /src="(\/assets\/index-[^"]+\.js)"/.exec(readFileSync(file, 'utf8'))?.[1];
+  buildCache.set(file, { mtimeMs, id });
+  return id;
+}
 
 /** Serve o build do cliente (dist/) com fallback de SPA para index.html. */
 export function serveStatic(staticDir: string, pathname: string, res: ServerResponse): boolean {

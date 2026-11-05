@@ -1,3 +1,6 @@
+import type { CrestConfig } from '../../shared/crest';
+import { Crest } from './crest/Crest';
+
 /** Ícones próprios do Martelo FC (traço 2px, 24×24). */
 const PATHS: Record<string, string> = {
   martelo: 'M14.5 3.5l6 6-3 3-6-6 3-3zM11.5 6.5l-8 8M8 15.5l-4.5 4.5M17.5 12.5l-4 4',
@@ -31,9 +34,29 @@ const PATHS: Record<string, string> = {
   copiar: 'M8 8h12v12H8zM4 16V4h12',
   perfil: 'M12 12a4 4 0 100-8 4 4 0 000 8zM4 21c.8-4 4-6 8-6s7.2 2 8 6',
   info: 'M12 3a9 9 0 100 18 9 9 0 000-18zM12 11v6M12 7.5h.01',
+  dado: 'M5 4h14a1 1 0 011 1v14a1 1 0 01-1 1H5a1 1 0 01-1-1V5a1 1 0 011-1zM8.5 8.5h.01M15.5 8.5h.01M12 12h.01M8.5 15.5h.01M15.5 15.5h.01',
+  pincel: 'M14 4l6 6-8.5 8.5a3 3 0 01-2 .9L5 20l.6-4.5a3 3 0 01.9-2L14 4zM12 6l6 6',
+  editar: 'M4 20h4L19 9l-4-4L4 16v4zM13.5 6.5l4 4',
+  play: 'M7 4l13 8-13 8V4z',
+  voltar: 'M15 5l-7 7 7 7',
+  mais: 'M12 5v14M5 12h14',
+  menos: 'M5 12h14',
+};
+
+/** Ícones cheios (desenho sólido, sem traço). */
+const FILLED: Record<string, string> = {
+  'estrela-cheia': 'M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9L12 2.5z',
 };
 
 export function Icon({ name, size, title }: { name: string; size?: number; title?: string }) {
+  if (FILLED[name]) {
+    return (
+      <svg viewBox="0 0 24 24" width={size} height={size} fill="currentColor" aria-hidden={title ? undefined : true} role={title ? 'img' : undefined}>
+        {title ? <title>{title}</title> : null}
+        <path d={FILLED[name]} />
+      </svg>
+    );
+  }
   const d = PATHS[name] ?? PATHS.estrela!;
   return (
     <svg
@@ -42,7 +65,7 @@ export function Icon({ name, size, title }: { name: string; size?: number; title
       height={size}
       fill="none"
       stroke="currentColor"
-      strokeWidth={2}
+      strokeWidth={2.4}
       strokeLinecap="round"
       strokeLinejoin="round"
       aria-hidden={title ? undefined : true}
@@ -54,14 +77,23 @@ export function Icon({ name, size, title }: { name: string; size?: number; title
   );
 }
 
-export function Logo() {
-  return (
-    <svg viewBox="0 0 32 32" aria-hidden="true">
-      <rect width="32" height="32" rx="7" fill="#ff6a1a" />
-      <g transform="rotate(-38 16 16)" fill="#fff">
-        <rect x="8" y="7" width="15" height="7" rx="1.6" />
-        <rect x="14.2" y="13.5" width="2.6" height="13" rx="1.3" />
-      </g>
-    </svg>
-  );
+/** Escudo do próprio Martelo FC (marca do jogo). */
+export const BRAND_CREST: CrestConfig = {
+  shape: 'brasao',
+  pattern: 'topo',
+  primary: '#2E8B3A',
+  secondary: '#FFC81E',
+  detail: '#FFC81E',
+  symbol: 'martelo',
+  initials: 'MFC',
+  motto: 'DESDE 2026',
+  stars: 0,
+  ribbon: false,
+  laurel: false,
+  medallion: false,
+  border: 'grossa',
+};
+
+export function Logo({ size = 40 }: { size?: number }) {
+  return <Crest crest={BRAND_CREST} size={size} />;
 }

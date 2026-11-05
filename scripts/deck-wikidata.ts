@@ -13,6 +13,7 @@ import { resolve } from 'node:path';
 import { parseArgs } from 'node:util';
 import { validateDeck } from '../src/engine/deck-generator.js';
 import { buildDeck } from '../src/tools/wikidata/build.js';
+import { applyAdjustments, loadAdjustments } from '../src/tools/wikidata/adjustments.js';
 import { fetchRawDump, nodeSparql } from '../src/tools/wikidata/fetch.js';
 import { MIN_SITELINKS, SERIES_CLUBS } from '../src/tools/wikidata/series.js';
 import type { RawDump } from '../src/tools/wikidata/types.js';
@@ -47,6 +48,11 @@ if (doFetch) {
 if (doBuild) {
   const raw = JSON.parse(readFileSync(values.raw!, 'utf8')) as RawDump;
   const { deck, report } = buildDeck(raw);
+  // Correções manuais (data/deck-ajustes.json): cartas com dados errados saem, faixas fixadas à mão.
+  const adjusted = applyAdjustments(deck.cards, loadAdjustments(resolve(root, 'data/deck-ajustes.json')));
+  deck.cards = adjusted.cards;
+  if (adjusted.removed.length) console.log(`Excluídas: ${adjusted.removed.map((c) => `${c.name} (${c.club} ${c.year})`).join(', ')}`);
+  if (adjusted.leveled.length) console.log(`Faixa ajustada: ${adjusted.leveled.map((c) => `${c.name} (${c.club} ${c.year}) ${c.levelMin}–${c.levelMax}`).join(', ')}`);
   validateDeck(deck.cards);
   writeFileSync(values.out!, JSON.stringify(deck, null, 1) + '\n');
   console.log(`Baralho salvo em ${values.out}: ${deck.cards.length} cartas.`);

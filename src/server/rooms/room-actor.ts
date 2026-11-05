@@ -2,6 +2,7 @@ import { randomBytes, randomUUID } from 'node:crypto';
 import { Dispute, type SeatInput } from '../../engine/dispute.js';
 import { GameRuleError } from '../../engine/errors.js';
 import {
+  AUCTION_MODES,
   DEFAULT_AUCTION_CONFIG,
   DEFAULT_DISPUTE_CONFIG,
   MAX_PARTICIPANTS,
@@ -31,6 +32,9 @@ import type { Logger } from '../log.js';
 import type { ResultsService } from '../services/results.js';
 import { TIMINGS, type Timing } from './timing.js';
 import { buildRoomView } from './views.js';
+import { CPU_TEAM_NAMES } from '../../shared/teams.js';
+import { userCrests } from '../services/team-crests.js';
+import type { CrestConfig } from '../../shared/crest.js';
 
 export interface Conn {
   id: string;
@@ -65,6 +69,7 @@ export class RoomConflictError extends Error {}
 
 export const DEFAULT_SETTINGS: Record<RoomMode, RoomSettings> = {
   online: {
+    auctionMode: 'jogador',
     cupFormat: 'copa8',
     series: 'ALL',
     cpuCount: 0,
@@ -78,6 +83,7 @@ export const DEFAULT_SETTINGS: Record<RoomMode, RoomSettings> = {
     minHumansToContinue: 2,
   },
   solo: {
+    auctionMode: 'jogador',
     cupFormat: 'copa8',
     series: 'ALL',
     cpuCount: 3,
@@ -92,11 +98,7 @@ export const DEFAULT_SETTINGS: Record<RoomMode, RoomSettings> = {
   },
 };
 
-const CPU_NAMES = [
-  'Robô Boleiro', 'Placa-Mãe United', 'Atlético Processador', 'Sport Club Byte', 'Real Silício',
-  'Inter de Pixel', 'Dínamo Digital', 'Algoritmo FC', 'Bit Bola EC', 'Cache Clube',
-  'Grêmio Binário', 'Servidor da Colina', 'Tchê Tech FC', 'Firmware Futebol', 'Kernel Esporte',
-];
+const CPU_NAMES = CPU_TEAM_NAMES;
 const CPU_STYLES: CpuStyle[] = ['agressivo', 'equilibrado', 'poupador'];
 
 const CODE_ALPHABET = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
@@ -108,6 +110,10 @@ export function makeRoomCode(): string {
 /** Normaliza e valida configurações vindas do cliente. */
 export function sanitizeSettings(mode: RoomMode, base: RoomSettings, patch: Partial<RoomSettings>): RoomSettings {
   const s = { ...base };
+  if (patch.auctionMode !== undefined) {
+    if (!AUCTION_MODES.includes(patch.auctionMode)) throw new GameRuleError('config_invalida', 'Tipo de leilão inválido.');
+    s.auctionMode = patch.auctionMode;
+  }
   if (patch.cupFormat !== undefined) {
     if (!['copa8', 'libertadores', 'mundial', 'nenhuma'].includes(patch.cupFormat)) throw new GameRuleError('config_invalida', 'Formato de copa inválido.');
     s.cupFormat = patch.cupFormat;
@@ -490,16 +496,23 @@ export class RoomActor {
     this.startDispute(humans);
   }
 
+  private get clubsMode(): boolean {
+    return this.settings.auctionMode === 'clubes';
+  }
+
   private disputeConfig(): DisputeConfig {
+    const clubs = this.clubsMode;
     return {
       ...DEFAULT_DISPUTE_CONFIG,
       cupFormat: this.settings.cupFormat,
-      carryOverPreviousCycle: this.settings.carryOver,
+      // Leilão de clubes: os pacotes são sorteados de novo a cada ciclo.
+      carryOverPreviousCycle: this.settings.carryOver && !clubs,
       auction: {
         ...DEFAULT_AUCTION_CONFIG,
+        mode: clubs ? 'clubes' : 'jogador',
         repescagem: this.settings.repescagem,
         tiebreakRound: this.settings.tiebreakRound,
-        mysteryChance: this.settings.mysteryCards ? DEFAULT_AUCTION_CONFIG.mysteryChance : 0,
+        mysteryChance: this.settings.mysteryCards && !clubs ? DEFAULT_AUCTION_CONFIG.mysteryChance : 0,
       },
     };
   }
@@ -515,7 +528,7 @@ export class RoomActor {
     const prev = this.deps.db
       .prepare(`SELECT id FROM disputes WHERE room_id = ? AND status = 'finished' ORDER BY seq DESC LIMIT 1`)
       .get(this.id) as { id: string } | undefined;
-    const carried: Card[] = this.settings.carryOver && prev ? this.deps.results.acquiredCards(prev.id) : [];
+    const carried: Card[] = this.settings.carryOver && !this.clubsMode && prev ? this.deps.results.acquiredCards(prev.id) : [];
     const humans = humanIds
       .map((id) => this.members.get(id)!)
       .filter(Boolean)
@@ -536,7 +549,8 @@ export class RoomActor {
     const seed = randomBytes(8).toString('hex');
     const config = this.disputeConfig();
     // Só as cartas dos clubes escolhidos para a sala (as herdadas do ciclo anterior voltam todas).
-    const deck = deckForScope(this.deps.deck, this.settings.series ?? 'ALL');
+    // O leilão de clubes usa o baralho inteiro: é o que dá clube suficiente para cada setor.
+    const deck = this.clubsMode ? this.deps.deck : deckForScope(this.deps.deck, this.settings.series ?? 'ALL');
     const dispute = Dispute.create({ id, seed, config, seats, deck, carried });
     const now = nowIso();
     const tx = this.deps.db.transaction(() => {
@@ -652,6 +666,14 @@ export class RoomActor {
     this.afterAction(true);
   }
 
+  convoca(userId: string, stepId: string, cardIds: string[], seal: boolean) {
+    const pid = this.requireParticipant(userId);
+    this.requireStep(stepId);
+    if (!Array.isArray(cardIds) || cardIds.length > 30) throw new GameRuleError('convocacao_invalida', 'Convocação inválida.');
+    this.dispute!.auction.submitConvocacao(pid, cardIds.map(String), seal);
+    this.afterAction();
+  }
+
   ceremonyReady(userId: string) {
     this.requireParticipant(userId);
     if (this.dispute!.phase !== 'ceremony' || !this.ceremony) throw new GameRuleError('fora_de_hora', 'A cerimônia não está aberta.');
@@ -744,7 +766,7 @@ export class RoomActor {
         const pending = this.pendingHumans(step);
         if (step.stepId !== this.trackedStepId) {
           this.trackedStepId = step.stepId;
-          const ms = step.kind === 'bid' ? t.bidMs : step.kind === 'tiebreak' ? t.tiebreakMs : t.monteMs;
+          const ms = step.kind === 'bid' ? t.bidMs : step.kind === 'tiebreak' ? t.tiebreakMs : step.kind === 'convocacao' ? t.convocacaoMs : t.monteMs;
           this.stepDeadline = now + (pending.length ? ms : t.cpuStepMs);
         }
         const ready = pending.length === 0;
@@ -804,7 +826,8 @@ export class RoomActor {
     const now = Date.now();
     this.tickStartedAt = now;
     this.lastTickMatchIds = [];
-    this.nextTickAt = now + this.timing.leagueRoundMs;
+    // A 1ª rodada começa logo (as seguintes esperam o jogo anterior acabar na tela).
+    this.nextTickAt = now + Math.min(this.timing.leagueRoundMs, 3_000);
     this.persistDispute(true);
     this.drive();
     this.broadcast();
@@ -827,7 +850,7 @@ export class RoomActor {
       // Deixa o último jogo “acontecer” na tela antes do resumo.
       this.persistDispute(true);
       this.broadcast();
-      this.schedule(Math.min(this.timing.cupMatchdayMs, 4000), () => this.finalize());
+      this.schedule(this.timing.cupMatchdayMs, () => this.finalize());
       return;
     }
     this.persistDispute();
@@ -1049,6 +1072,26 @@ export class RoomActor {
           : [],
       };
     });
+  }
+
+  private crestCache = new Map<string, CrestConfig>();
+
+  /** Escudos dos técnicos (por id de usuário), lidos do banco uma vez e guardados até mudarem. */
+  crestsFor(userIds: Iterable<string>): Record<string, CrestConfig> {
+    const missing = [...new Set(userIds)].filter((id) => id && !this.crestCache.has(id));
+    if (missing.length) for (const [id, crest] of userCrests(this.deps.db, missing)) this.crestCache.set(id, crest);
+    const out: Record<string, CrestConfig> = {};
+    for (const id of new Set(userIds)) {
+      const c = this.crestCache.get(id);
+      if (c) out[id] = c;
+    }
+    return out;
+  }
+
+  /** Esquece o escudo guardado de um técnico; diz se ele aparece nesta sala. */
+  forgetUserCrest(userId: string): boolean {
+    const had = this.crestCache.delete(userId);
+    return had || this.members.has(userId);
   }
 
   private historyCache: { at: number; data: ReturnType<RoomActor['history']> } | null = null;

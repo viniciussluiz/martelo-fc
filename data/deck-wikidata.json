@@ -21615,23 +21615,6 @@
    "series": "A"
   },
   {
-   "id": "wd-Q56248407-Q270995-2026",
-   "personId": "Q56248407",
-   "name": "Marquinhos",
-   "position": "MEI",
-   "club": "Atlético-MG",
-   "year": 2026,
-   "levelMin": 64,
-   "levelMax": 70,
-   "tier": "perna",
-   "hint": "16 jogos e 1 gol pelo Atlético-MG desde 2017. 27 anos em 2026.",
-   "kit": [
-    "#111111",
-    "#FFFFFF"
-   ],
-   "series": "A"
-  },
-  {
    "id": "wd-Q1947869-Q188277-2008",
    "personId": "Q1947869",
    "name": "Marquinhos Paraná",
@@ -31600,8 +31583,8 @@
    "position": "ATA",
    "club": "Barcelona",
    "year": 2014,
-   "levelMin": 93,
-   "levelMax": 98,
+   "levelMin": 95,
+   "levelMax": 100,
    "tier": "lenda",
    "hint": "Argentina. 520 jogos e 474 gols pelo Barcelona de 2004 a 2021. 27 anos em 2014. 208 jogos pela seleção.",
    "kit": [
@@ -33402,8 +33385,8 @@
    "position": "ATA",
    "club": "Santos",
    "year": 1967,
-   "levelMin": 93,
-   "levelMax": 98,
+   "levelMin": 95,
+   "levelMax": 100,
    "tier": "lenda",
    "hint": "1775 jogos e 1734 gols pelo Santos de 1956 a 1974. 27 anos em 1967. 92 jogos pela seleção.",
    "kit": [

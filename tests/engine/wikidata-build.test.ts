@@ -363,3 +363,33 @@ describe('baralho real gerado (data/deck-wikidata.json)', () => {
     for (const c of cards) expect(SERIES_CLUBS.find((x) => x.name === c.club)!.series).toBe(c.series);
   });
 });
+
+describe('ajustes manuais do baralho (data/deck-ajustes.json)', () => {
+  it('cartas excluídas não estão no baralho; Pelé e Messi são 95–100; o id casa por prefixo', async () => {
+    const { applyAdjustments, isExcluded, loadAdjustments } = await import('../../src/tools/wikidata/adjustments.js');
+    const adj = loadAdjustments(join(process.cwd(), 'data/deck-ajustes.json'));
+    expect(adj.excluir.some((e) => e.id === 'wd-Q56248407-Q270995')).toBe(true);
+    const real = JSON.parse(readFileSync(join(process.cwd(), 'data/deck-wikidata.json'), 'utf8')) as { cards: Card[] };
+    expect(real.cards.filter((c) => isExcluded(c, adj.excluir))).toEqual([]);
+    expect(real.cards.some((c) => c.name === 'Marquinhos' && c.club === 'Atlético-MG')).toBe(false);
+    for (const name of ['Pelé', 'Lionel Messi']) {
+      const cards = real.cards.filter((c) => c.name === name);
+      expect(cards.length, name).toBeGreaterThan(0);
+      for (const c of cards) expect([c.levelMin, c.levelMax, c.tier]).toEqual([95, 100, 'lenda']);
+    }
+    // Ninguém mais passa do teto das Lendas.
+    expect(real.cards.filter((c) => c.levelMax > 98).map((c) => c.name).sort()).toEqual(['Lionel Messi', 'Pelé']);
+    // O baralho real continua válido com o 100.
+    expect(() => validateDeck(real.cards)).not.toThrow();
+    const sample = [
+      { id: 'wd-Q1-Q2-2020', levelMin: 70, levelMax: 75, tier: 'titular' as const },
+      { id: 'wd-Q1-Q2-2026', levelMin: 70, levelMax: 75, tier: 'titular' as const },
+      { id: 'wd-Q1-Q3-2026', levelMin: 70, levelMax: 75, tier: 'titular' as const },
+      { id: 'wd-Q10-Q2-2026', levelMin: 70, levelMax: 75, tier: 'titular' as const },
+    ];
+    const out = applyAdjustments(sample, { excluir: [{ id: 'wd-Q1-Q2' }], nivel: [{ id: 'wd-Q1', faixa: [95, 100] }] });
+    expect(out.cards.map((c) => c.id)).toEqual(['wd-Q1-Q3-2026', 'wd-Q10-Q2-2026']);
+    expect(out.cards[0]).toMatchObject({ levelMin: 95, levelMax: 100, tier: 'lenda' });
+    expect(out.cards[1]).toMatchObject({ levelMin: 70, levelMax: 75 });
+  });
+});

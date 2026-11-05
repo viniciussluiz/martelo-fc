@@ -61,18 +61,35 @@ as constantes em `src/tools/wikidata/build.ts` e rode `npm run deck:wikidata -- 
 salas só do Brasil e de Real Madrid/Barcelona para a Europa; o leilão nunca põe duas versões da mesma pessoa juntas
 (`personId`). Cada grupo é montado à parte: a melhor versão dos mais famosos entra sempre (top 10% no Brasil, 5% na Europa);
 o resto é estratificado por posição e faixa (para haver também operários e pernas-de-pau), preferindo os nomes mais
-conhecidos. O baralho atual tem 2.113 cartas: Série A 817 (≈12% Lendas), Série B 330 e Europa 966 (≈14% Lendas).
+conhecidos. O baralho atual tem 2.112 cartas: Série A 816 (≈12% Lendas), Série B 330 e Europa 966 (≈14% Lendas). O teto das Lendas é
+93–98; só Pelé e Messi vão a 95–100 (ajuste manual, abaixo).
 
-**Imagens.** As figurinhas são ilustrações próprias, geradas no navegador (sem rosto), com as cores oficiais do clube quando o
-Wikidata as tem (ou a tabela de cores dos principais clubes do script). Lendas ganham avatar maior com aro dourado, brilho e
-coroa — só depois de reveladas (no martelo e na Cerimônia), para não entregar o nível durante o leilão às cegas.
+**Ajustes manuais** (`data/deck-ajustes.json`), aplicados pelo `npm run deck:wikidata` ao montar o baralho:
+- `excluir`: cartas que nunca entram — típico quando o Wikidata tem uma passagem sem data de saída, que vira carta “de 2026”
+  de quem já saiu do clube (ex.: Marquinhos no Atlético-MG);
+- `nivel`: faixa de nível fixa (ex.: Pelé e Messi 95–100).
+O `id` casa por prefixo: `wd-<jogador>` pega todas as cartas do jogador, `wd-<jogador>-<clube>` as daquela passagem, e com o
+ano no fim só aquela carta.
 
-**Escudos.** Ao lado do nome do clube, cada carta mostra um selo: por padrão, um desenho genérico do jogo (escudo liso nas
-cores do clube com a sigla de placar, ex.: FLA, SAO, RMA), **não o escudo oficial** — escudos são marcas registradas e não
-vêm no projeto. Quem tiver autorização dos clubes pode colocar os arquivos em `data/escudos/` (ou na pasta de `CRESTS_DIR`),
-um por clube, com o nome do clube em minúsculas, sem acento e com hífens: `flamengo.png`, `sao-paulo.svg`,
-`atletico-mg.webp`, `inter-de-milao.png` (SVG, PNG, WebP ou JPG). O servidor lista a pasta ao subir e usa a imagem no lugar do
-selo; o servidor só entrega arquivos dessa lista.
+**Cartas.** A carta mostra só o nome do jogador e, embaixo, o escudo do clube com “Clube (ano)” — sem rosto, sem foto e
+sem descrição (o campo `hint` continua no baralho, mas não vai para a tela). Quando uma **Lenda** é vendida no martelo, a
+carta fica dourada e ganha uma figura com rosto amarelo (sem tom de pele) e a camisa nas cores do clube; antes dos lances
+nada indica a Lenda, para não entregar o nível no leilão às cegas.
+
+**Escudos.** Os escudos oficiais são marcas registradas: use-os só com autorização dos clubes. A ordem de uso é:
+1. arquivo em `data/escudos/` (ou na pasta de `CRESTS_DIR`), um por clube, com o nome do clube em minúsculas, sem acento e
+   com hífens: `flamengo.png`, `sao-paulo.svg`, `atletico-mg.webp`, `inter-de-milao.png` (SVG, PNG, WebP ou JPG); o servidor
+   só entrega arquivos dessa lista;
+2. endereço registrado em `data/escudos/fontes.json`, que o navegador carrega direto da fonte (só de
+   `cdn.api-futebol.com.br` e `r2.thesportsdb.com`, liberados no CSP);
+3. sem nenhum dos dois (ou se a imagem não carregar), um selo genérico do jogo nas cores do clube com a sigla (FLA, SAO, RMA).
+
+`npm run escudos` preenche os dois primeiros: com `API_FUTEBOL_KEY` no `.env` ele busca na
+[API Futebol](https://www.api-futebol.com.br/documentacao/time) os times dos campeonatos liberados no seu plano (Brasileirão
+e Copa do Brasil para os clubes brasileiros; Premier League, La Liga, Italiano, Bundesliga, Francês, Liga dos Campeões e Liga
+Europa para os europeus), casa pelo nome (tabela em `src/tools/escudos/clubs.ts`), completa o que faltar com o
+[TheSportsDB](https://www.thesportsdb.com/) e baixa os arquivos. Arquivos colocados à mão nunca são trocados.
+`--sem-baixar` só atualiza o `fontes.json`. Reinicie o servidor depois.
 
 **Observação.** Os dados são livres, mas usar nomes reais de atletas num produto comercial pode envolver direito de imagem/nome;
 avalie com um advogado antes de lançar.
@@ -103,7 +120,7 @@ avalie com um advogado antes de lançar.
 ```
 
 - `position`: `GOL` | `LAT` | `ZAG` | `MEI` | `ATA`; `tier`: `lenda` | `craque` | `titular` | `operario` | `perna`.
-- `levelMin` ≤ `levelMax`, entre 1 e 99; `id` único e estável (usado no histórico e no reaproveitamento entre ciclos).
+- `levelMin` ≤ `levelMax`, entre 1 e 100; `id` único e estável (usado no histórico e no reaproveitamento entre ciclos).
 - Opcionais: `personId` (mesma pessoa em versões diferentes), `kit` (duas cores `#RRGGBB`), `series` (`A` | `B` | `EU`:
   grupo do clube, usado pela escolha de clubes da sala; baralho sem `series` é usado inteiro).
 - Para salas de 20 técnicos: ≥ 21 GOL, ≥ 41 LAT, ≥ 41 ZAG, ≥ 81 MEI e ≥ 61 ATA. Se faltar carta, o Monte completa com reservas genéricas.
