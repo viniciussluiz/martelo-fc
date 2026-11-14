@@ -1,10 +1,10 @@
 # Leilão FC no Fly.io (região São Paulo).
-# Troque "app" por um nome livre antes do primeiro deploy (fly apps create <nome>).
+# "app" precisa ser o mesmo nome usado em `fly apps create <nome>` (se "leilao-fc" já existir no Fly, troque aqui também).
 #
 # Uma máquina só: as salas vivem na memória do processo e o banco é um arquivo SQLite no volume.
 # Por isso o deploy é feito com --ha=false e a máquina nunca é desligada por ociosidade.
 
-app = "martelo-fc"
+app = "leilao-fc"
 primary_region = "gru"
 kill_signal = "SIGTERM"
 kill_timeout = "10s"
