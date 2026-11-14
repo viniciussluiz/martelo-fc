@@ -11,7 +11,7 @@ import { api, cleanupDir, startTestApp, TestClient, type TestEnv } from './harne
  * com os cartões divididos em grupos, para o teste não depender dos dados do Wikidata.
  */
 let env: TestEnv;
-const group = new Map<string, 'A' | 'B' | 'EU'>();
+const group = new Map<string, string>();
 
 beforeAll(async () => {
   const dir = mkdtempSync(join(tmpdir(), 'martelo-series-'));

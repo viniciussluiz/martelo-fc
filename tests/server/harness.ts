@@ -19,7 +19,7 @@ export async function startTestApp(
   extra: Partial<ServerConfig> = {},
 ): Promise<TestEnv> {
   const app = await createApp(
-    { port: 0, host: '127.0.0.1', dbPath: join(dir, 'test.db'), deckPath, forceSpeed: 'test', staticDir: join(dir, 'nada'), crestsDir: join(dir, 'sem-escudos'), ...extra },
+    { port: 0, host: '127.0.0.1', dbPath: join(dir, 'test.db'), deckPath, forceSpeed: 'test', staticDir: join(dir, 'nada'), crestsDir: join(dir, 'sem-escudos'), nationalDeckPath: join(dir, 'sem-selecoes.json'), ...extra },
     silentLogger,
   );
   return {

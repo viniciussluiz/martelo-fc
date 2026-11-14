@@ -1,4 +1,4 @@
-# Martelo FC — imagem de produção (um único processo: site, API, WebSocket e SQLite).
+# Leilão FC — imagem de produção (um único processo: site, API, WebSocket e SQLite).
 #
 # docker build -t martelo-fc .
 # docker run -p 8080:8080 -v martelo-data:/data martelo-fc

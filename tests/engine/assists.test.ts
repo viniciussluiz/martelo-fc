@@ -42,8 +42,9 @@ describe('assistências', () => {
   });
 
   it('a narração do gol cita o passe', () => {
-    const r = results.find((x) => x.goals.some((g) => g.assistName))!;
-    const g = r.goals.find((x) => x.assistName)!;
+    // Gol de bola rolando (o de escanteio narra quem cobrou).
+    const r = results.find((x) => x.goals.some((g) => g.assistName && !g.kind))!;
+    const g = r.goals.find((x) => x.assistName && !x.kind)!;
     expect(r.events!.some((e) => e.type === 'gol' && e.text.includes(`Assistência de ${g.assistName}`))).toBe(true);
   });
 

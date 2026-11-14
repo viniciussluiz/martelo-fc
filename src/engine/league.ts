@@ -1,5 +1,5 @@
 import { Rng } from './rng.js';
-import { simulateMatch, type Goal, type MatchResult, type TeamSheet } from './match.js';
+import { simulateMatch, type Goal, type MatchResult, type SetPieceTakers, type TeamSheet } from './match.js';
 import type { Tactic } from './types.js';
 
 /**
@@ -102,7 +102,7 @@ export class League {
   }
 
   /** Joga a próxima rodada. As táticas são as escolhidas pelos técnicos até aqui. */
-  playRound(tactics: Record<string, Tactic> = {}): MatchResult[] {
+  playRound(tactics: Record<string, Tactic> = {}, takers: Record<string, SetPieceTakers> = {}): MatchResult[] {
     if (this.done) return [];
     const roundIdx = this.state.currentRound;
     const fixtures = this.state.fixtures[roundIdx]!;
@@ -116,6 +116,8 @@ export class League {
         away,
         homeTactic: home.participantId ? tactics[home.participantId] : 'equilibrio',
         awayTactic: away.participantId ? tactics[away.participantId] : 'equilibrio',
+        ...(home.participantId && takers[home.participantId] ? { homeTakers: takers[home.participantId] } : {}),
+        ...(away.participantId && takers[away.participantId] ? { awayTakers: takers[away.participantId] } : {}),
         withEvents: home.human || away.human,
         rng: new Rng(`${this.state.seed}:${f.id}`),
       });

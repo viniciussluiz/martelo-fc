@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import type { RoomView } from '../../../shared/protocol';
+import type { DisputeView, RoomView } from '../../../shared/protocol';
+import type { SetPiece } from '../../../engine/match';
 import { act } from '../../lib/socket';
 import { Countdown } from '../common';
 import { SquadPitch } from './Squad';
@@ -15,6 +16,54 @@ const AWARD_ICON: Record<string, string> = {
   'mao-de-vaca': 'cadeado',
   'perna-de-pau': 'zebra',
 };
+
+const SET_PIECE_FIELDS: Array<{ id: SetPiece; label: string; note: string }> = [
+  { id: 'penalti', label: 'Pênalti', note: 'Raro, mas quase sempre gol.' },
+  { id: 'falta', label: 'Falta', note: 'Na entrada da área: entra uma a cada três.' },
+  { id: 'escanteio', label: 'Escanteio', note: 'Quem cobra dá a assistência.' },
+];
+const TAKER_ORDER = ['ATA', 'MEI', 'LAT', 'ZAG', 'GOL'];
+
+/** Batedores de bola parada do seu time (pênalti, falta e escanteio). */
+function SetPiecesPanel({ d }: { d: DisputeView }) {
+  const me = d.participants.find((p) => p.id === d.you);
+  if (!me || !d.setPieces) return null;
+  const roster = [...me.roster].filter((r) => d.cards[r.cardId]).sort((a, b) => TAKER_ORDER.indexOf(a.position) - TAKER_ORDER.indexOf(b.position));
+  return (
+    <section className="panel setpieces-panel">
+      <div className="panel-head">
+        <h3>Bola parada</h3>
+      </div>
+      <div className="panel-body">
+      <p className="small muted setpieces-note">Escolha quem bate. Se não escolher, vale a indicação do jogo.</p>
+      <div className="setpieces">
+        {SET_PIECE_FIELDS.map((f) => (
+          <div className="field" key={f.id}>
+            <label htmlFor={`taker-${f.id}`}>{f.label}</label>
+            <select
+              id={`taker-${f.id}`}
+              className="input"
+              value={d.setPieces?.[f.id] ?? ''}
+              onChange={(e) => void act({ t: 'setpieces', takers: { [f.id]: e.target.value } })}
+            >
+              {roster.map((r) => {
+                const c = d.cards[r.cardId]!;
+                return (
+                  <option key={r.cardId} value={r.cardId}>
+                    {c.name} · {r.position}
+                    {c.levelMin !== undefined ? ` · ${c.levelMin}–${c.levelMax}` : ''}
+                  </option>
+                );
+              })}
+            </select>
+            <span className="small muted">{f.note}</span>
+          </div>
+        ))}
+      </div>
+      </div>
+    </section>
+  );
+}
 
 export function CeremonyScreen({ room }: { room: RoomView }) {
   const d = room.dispute!;
@@ -32,7 +81,10 @@ export function CeremonyScreen({ room }: { room: RoomView }) {
       <header className="scoreboard comp-head">
         <div className="comp-title">
           <h2 className="sb-title">Cerimônia da Revelação</h2>
-          <span className="comp-sub">As faixas de nível abrem agora: em cada jogo, o jogador rende um valor dentro da faixa.</span>
+          <span className="comp-sub">
+            As faixas de nível abrem agora: em cada jogo, o jogador rende um valor dentro da faixa. Aproveite para definir quem bate pênalti,
+            falta e escanteio.
+          </span>
         </div>
         {c && (
           <div className="ceremony-go">
@@ -64,7 +116,9 @@ export function CeremonyScreen({ room }: { room: RoomView }) {
           </div>
           <SquadPitch d={d} participantId={view} />
         </div>
-        <aside className="panel awards-panel">
+        <div className="stack" style={{ gap: 12 }}>
+          <SetPiecesPanel d={d} />
+          <aside className="panel awards-panel">
           <div className="panel-head">
             <h3>O pregão em números</h3>
           </div>
@@ -85,7 +139,8 @@ export function CeremonyScreen({ room }: { room: RoomView }) {
               </li>
             ))}
           </ul>
-        </aside>
+          </aside>
+        </div>
       </div>
     </div>
   );

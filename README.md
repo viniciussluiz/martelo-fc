@@ -1,4 +1,4 @@
-# Martelo FC
+# Leilão FC
 
 Leilão às cegas de futebol para jogar com amigos ou contra a CPU: cada técnico tem 100 moedas e um envelope, dá lance no nome do jogador
 sem ver o nível, monta o time e disputa liga e copa. Implementação independente inspirada nas mecânicas observáveis do Leilão Legends
@@ -41,7 +41,7 @@ npm start            # compila o cliente e sobe o servidor em http://localhost:3
 Pouco espaço em disco? O zip já traz o site compilado (`dist/`): `npm install --omit=dev` instala só o necessário
 para jogar (~40 MB em vez de ~200 MB; sem testes nem recompilação do site).
 
-Ao subir, o terminal mostra a versão e o baralho carregado (ex.: `Martelo FC 0.3.0` · `Baralho: Brasileirão 2026 …`);
+Ao subir, o terminal mostra a versão e o baralho carregado (ex.: `Leilão FC 0.3.0` · `Baralho: Brasileirão 2026 …`);
 o rodapé do site mostra o mesmo. Atualizando a partir de uma versão antiga, extraia o zip numa pasta nova (o macOS cria
 “martelo-fc 2” se já existir uma) e rode `npm install` e `npm start` dentro dela.
 Desenvolvimento com recarga: `npm run dev` (servidor em 3210 + Vite em http://localhost:5173 com proxy para /api e /ws).

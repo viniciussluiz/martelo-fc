@@ -9,7 +9,7 @@ import type { PregaoAward } from '../engine/awards.js';
 import type { CupReach, CupTie } from '../engine/cup.js';
 import type { DisputePhase, DisputeResult } from '../engine/dispute.js';
 import type { StandingRow } from '../engine/league.js';
-import type { MatchEvent, Goal } from '../engine/match.js';
+import type { MatchEvent, Goal, RedCard, SetPieceTakers } from '../engine/match.js';
 import type { CrestConfig } from './crest.js';
 import type { AcquisitionSource, AuctionMode, CupFormat, Formation, Position, Series, SeriesScope, Tactic, Tier } from '../engine/types.js';
 
@@ -214,8 +214,18 @@ export interface MatchView {
   awayGoals: number;
   penalties?: { home: number; away: number };
   goals: Goal[];
+  /** Expulsões do jogo (raras). */
+  redCards?: RedCard[];
   events?: MatchEvent[];
+  /** Os 11 de cada lado, para o campinho (só no jogo que passa na tela). */
+  lineups?: { home: LineupPlayer[]; away: LineupPlayer[] };
   stage?: string;
+}
+
+export interface LineupPlayer {
+  cardId: string;
+  name: string;
+  position: Position;
 }
 
 export interface FixtureView {
@@ -287,6 +297,8 @@ export interface DisputeView {
   league: LeagueView | null;
   cup: CupView | null;
   tactic: Tactic | null;
+  /** Seus batedores de pênalti, falta e escanteio (os escolhidos ou, sem escolha, os que o jogo indica). */
+  setPieces: SetPieceTakers | null;
   result: DisputeResult | null;
 }
 
@@ -352,6 +364,7 @@ export type ClientMessage =
   | { t: 'convoca:set'; stepId: string; cardIds: string[]; seal?: boolean; reqId?: string }
   | { t: 'ceremony:ready'; reqId?: string }
   | { t: 'tactic'; tactic: Tactic; reqId?: string }
+  | { t: 'setpieces'; takers: SetPieceTakers; reqId?: string }
   | { t: 'continue:vote'; disputeId: string; choice: ContinueChoice; reqId?: string }
   | { t: 'continue:start-now'; disputeId: string; reqId?: string }
   | { t: 'ping'; reqId?: string };

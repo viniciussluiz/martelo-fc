@@ -21,7 +21,7 @@ const PEOPLE_BATCH = 120;
 
 export const SPARQL_ENDPOINT = 'https://query.wikidata.org/sparql';
 
-export function nodeSparql(userAgent = 'MarteloFC-deck-builder/1.0 (https://github.com/; contato via repositório)'): SparqlFn {
+export function nodeSparql(userAgent = 'LeilaoFC-deck-builder/1.0 (https://github.com/; contato via repositório)'): SparqlFn {
   return async (query) => {
     for (let attempt = 1; ; attempt++) {
       const res = await fetch(SPARQL_ENDPOINT, {

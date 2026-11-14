@@ -5,7 +5,8 @@ import { CREST_SOURCES_FILE, loadCrests, loadCrestSources, type CrestEntry, type
 import { clubRef, normName, type ClubGroup } from './clubs.js';
 
 /**
- * Atualiza os escudos dos clubes do baralho (`npm run escudos`):
+ * Atualiza os escudos dos clubes e das seleções do baralho (`npm run escudos`). As seleções (modo “Seleções”)
+ * vêm só do TheSportsDB, que tem o escudo da federação de cada uma. Passos:
  *  1. API Futebol (api-futebol.com.br), com a chave do .env: lê os campeonatos liberados no plano,
  *     as tabelas/fases de Brasileirão e Copa do Brasil (clubes brasileiros) e das ligas e copas
  *     europeias (clubes da Europa), e casa os times pelo nome;
@@ -28,6 +29,8 @@ export interface SyncOptions {
   apiFutebolKey?: string | undefined;
   theSportsDbKey?: string | undefined;
   download?: boolean;
+  /** Só busca quem ainda não tem escudo baixado (os demais ficam como estão). */
+  onlyMissing?: boolean;
   fetch?: typeof fetch;
   log?: (msg: string) => void;
   /** Pausa entre chamadas (ms). Testes usam 0. */
@@ -118,13 +121,27 @@ export function matchTeam(club: string, teams: Iterable<ApiTeam>): ApiTeam | und
 export async function syncCrests(opts: SyncOptions): Promise<SyncReport> {
   const f = opts.fetch ?? fetch;
   const log = opts.log ?? (() => undefined);
-  const pace = opts.pace ?? { apiFutebol: 300, theSportsDb: 2100 };
+  const pace = opts.pace ?? { apiFutebol: 300, theSportsDb: 3000 };
+  /** Espera quando o TheSportsDB responde 429 (limite por minuto da chave gratuita). */
+  const cooldown = opts.pace ? opts.pace.theSportsDb * 10 : 30_000;
   const tsdbKey = opts.theSportsDbKey || '123';
   const previous = loadCrestSources(opts.dir);
   const next: CrestSources = { clubes: {} };
   const report: SyncReport = { apiFutebol: [], theSportsDb: [], kept: [], missing: [], manual: [], downloaded: [], failedDownloads: [] };
   const clubs = [...new Map(opts.clubs.map((c) => [c.name, c])).values()].sort((a, b) => a.name.localeCompare(b.name, 'pt'));
   const pending = new Set(clubs.map((c) => c.name));
+  if (opts.onlyMissing) {
+    // Quem já tem o arquivo baixado fica como está: a busca só vai atrás do que falta.
+    const have = loadCrests(opts.dir);
+    for (const club of clubs) {
+      const before = previous.clubes[club.name];
+      if (before?.arquivo && have.get(clubSlug(club.name)) === before.arquivo) {
+        next.clubes[club.name] = { ...before };
+        pending.delete(club.name);
+        report.kept.push(club.name);
+      }
+    }
+  }
 
   // 1. API Futebol
   if (opts.apiFutebolKey) {
@@ -183,12 +200,60 @@ export async function syncCrests(opts: SyncOptions): Promise<SyncReport> {
     }
   }
 
+  // Arquivos locais e fontes.json
+  mkdirSync(opts.dir, { recursive: true });
+  const files = loadCrests(opts.dir);
+  const stored = new Set<string>();
+  /** Baixa o escudo do clube para a pasta (arquivo colocado à mão nunca é substituído). */
+  const store = async (club: SyncClub) => {
+    if (stored.has(club.name)) return;
+    stored.add(club.name);
+    const entry = next.clubes[club.name];
+    const slug = clubSlug(club.name);
+    const existing = files.get(slug);
+    const ours = previous.clubes[club.name]?.arquivo;
+    if (existing && existing !== ours) {
+      report.manual.push(club.name);
+      return;
+    }
+    if (!entry) return;
+    if (opts.download === false || (entry.arquivo && existing === entry.arquivo && entry.url === previous.clubes[club.name]?.url)) {
+      if (existing) entry.arquivo = existing;
+      return;
+    }
+    try {
+      const file = await downloadCrest(f, entry.url, opts.dir, slug);
+      if (existing && existing !== file) unlinkSync(join(opts.dir, existing));
+      entry.arquivo = file;
+      files.set(slug, file);
+      report.downloaded.push(club.name);
+    } catch (err) {
+      if (existing) entry.arquivo = existing;
+      report.failedDownloads.push(club.name);
+      log(`  não baixou o escudo de ${club.name}: ${err instanceof Error ? err.message : String(err)}`);
+    }
+  };
+  /** Grava fontes.json com o que já se sabe (o que ainda não foi buscado fica como estava). */
+  const flush = () => {
+    const all: Record<string, CrestEntry> = { ...previous.clubes, ...next.clubes };
+    next.atualizadoEm = (opts.now ?? (() => new Date()))().toISOString();
+    const sorted = Object.fromEntries(Object.entries(all).sort(([a], [b]) => a.localeCompare(b, 'pt')));
+    const body = {
+      _leia: 'Gerado por `npm run escudos`. Ordem de uso: arquivo em data/escudos/ e, sem ele, o endereço (url).',
+      atualizadoEm: next.atualizadoEm,
+      clubes: sorted as Record<string, CrestEntry>,
+    };
+    writeFileSync(join(opts.dir, CREST_SOURCES_FILE), JSON.stringify(body, null, 2) + '\n');
+  };
+
   // 2. TheSportsDB (reserva)
   const tsdb = async (path: string): Promise<Array<Record<string, string | null>>> => {
-    for (let attempt = 0; attempt < 3; attempt++) {
+    // A chave gratuita tem limite por minuto: no 429, espera e tenta de novo (até ~3 min) em vez de desistir do time.
+    for (let attempt = 0; attempt < 6; attempt++) {
       const r = await f(`${THESPORTSDB}/${encodeURIComponent(tsdbKey)}/${path}`, { headers: { Accept: 'application/json' } });
       if (r.status === 429) {
-        await sleep(20_000);
+        log(`  TheSportsDB pediu para ir mais devagar: esperando ${Math.round(cooldown / 1000)} s (tentativa ${attempt + 1} de 6)…`);
+        await sleep(cooldown);
         continue;
       }
       await sleep(pace.theSportsDb);
@@ -199,12 +264,17 @@ export async function syncCrests(opts: SyncOptions): Promise<SyncReport> {
     return [];
   };
   const leftovers = clubs.filter((c) => pending.has(c.name));
-  if (leftovers.length) log(`TheSportsDB: ${leftovers.length} clube(s) sem escudo da API Futebol.`);
+  if (leftovers.length) log(`TheSportsDB: buscando ${leftovers.length} escudo(s), um a cada ~2 s (pode levar ${Math.ceil((leftovers.length * 2.5) / 60)} min)…`);
   for (const club of leftovers) {
     const ref = clubRef(club.name);
     const before = previous.clubes[club.name];
     const fits = (t: Record<string, string | null>) =>
-      t.strSport === 'Soccer' && t.strGender !== 'Female' && !!t.strBadge && (!ref.country || t.strCountry === ref.country);
+      t.strSport === 'Soccer' &&
+      t.strGender !== 'Female' &&
+      !!t.strBadge &&
+      (!ref.country || t.strCountry === ref.country) &&
+      // Seleção: só o time que disputa torneios de seleções (e não um clube com nome de país).
+      (!ref.national || isNationalSide(t));
     let team: Record<string, string | null> | undefined;
     try {
       if (before?.fonte === 'thesportsdb' && before.id) team = (await tsdb(`lookupteam.php?id=${encodeURIComponent(before.id)}`)).find(fits);
@@ -219,54 +289,22 @@ export async function syncCrests(opts: SyncOptions): Promise<SyncReport> {
       // `/tiny` = versão de 100 px, de sobra para o escudo de 28 px da carta.
       next.clubes[club.name] = { fonte: 'thesportsdb', id: String(team.idTeam), nome: team.strTeam ?? club.name, url: `${team.strBadge!}/tiny` };
       report.theSportsDb.push(club.name);
+      log(`  ${club.name}: achou “${team.strTeam ?? ''}”`);
+      // Baixa e grava já: se a busca for interrompida, o que achou até aqui fica salvo.
+      await store(club);
+      flush();
     } else if (before) {
       next.clubes[club.name] = { ...before };
       report.kept.push(club.name);
     } else {
       report.missing.push(club.name);
+      log(`  ${club.name}: não achou`);
     }
   }
 
-  // 3. Arquivos locais
-  mkdirSync(opts.dir, { recursive: true });
-  const files = loadCrests(opts.dir);
-  for (const club of clubs) {
-    const entry = next.clubes[club.name];
-    const slug = clubSlug(club.name);
-    const existing = files.get(slug);
-    const ours = previous.clubes[club.name]?.arquivo;
-    if (existing && existing !== ours) {
-      report.manual.push(club.name);
-      continue;
-    }
-    if (!entry) continue;
-    if (opts.download === false) {
-      if (existing) entry.arquivo = existing;
-      continue;
-    }
-    try {
-      const file = await downloadCrest(f, entry.url, opts.dir, slug);
-      if (existing && existing !== file) unlinkSync(join(opts.dir, existing));
-      entry.arquivo = file;
-      report.downloaded.push(club.name);
-    } catch (err) {
-      if (existing) entry.arquivo = existing;
-      report.failedDownloads.push(club.name);
-      log(`  não baixou o escudo de ${club.name}: ${err instanceof Error ? err.message : String(err)}`);
-    }
-  }
-
-  // Clubes de outros baralhos que já estavam no arquivo continuam lá.
-  const inDeck = new Set(clubs.map((c) => c.name));
-  for (const [club, entry] of Object.entries(previous.clubes)) if (!inDeck.has(club)) next.clubes[club] = entry;
-  next.atualizadoEm = (opts.now ?? (() => new Date()))().toISOString();
-  const sorted = Object.fromEntries(Object.entries(next.clubes).sort(([a], [b]) => a.localeCompare(b, 'pt')));
-  const body = {
-    _leia: 'Gerado por `npm run escudos`. Ordem de uso: arquivo em data/escudos/ e, sem ele, o endereço (url).',
-    atualizadoEm: next.atualizadoEm,
-    clubes: sorted as Record<string, CrestEntry>,
-  };
-  writeFileSync(join(opts.dir, CREST_SOURCES_FILE), JSON.stringify(body, null, 2) + '\n');
+  // 3. Arquivos locais (os do TheSportsDB já foram baixados na hora)
+  for (const club of clubs) await store(club);
+  flush();
   return report;
 }
 
@@ -280,6 +318,13 @@ export function pickTsdbTeam(club: string, teams: Array<Record<string, string | 
   const accepted = new Set([club, ...ref.aliases, ...ref.tsdb].map(normName));
   const names = (t: Record<string, string | null>) => [t.strTeam ?? '', ...(t.strTeamAlternate ?? '').split(',')].map(normName).filter(Boolean);
   return teams.find((t) => names(t).some((n) => accepted.has(n)));
+}
+
+const NATIONAL_COMP = /world cup|friendl|nations|qualif|euro|copa america|gold cup|asian cup|international/i;
+
+/** O time do TheSportsDB é uma seleção principal: alguma das ligas dele é torneio de seleções. */
+export function isNationalSide(t: Record<string, string | null>): boolean {
+  return ['strLeague', 'strLeague2', 'strLeague3', 'strLeague4', 'strLeague5', 'strLeague6', 'strLeague7'].some((k) => NATIONAL_COMP.test(t[k] ?? ''));
 }
 
 const MAX_BYTES = 1_500_000;

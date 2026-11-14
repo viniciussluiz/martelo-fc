@@ -1,6 +1,7 @@
 import { randomBytes, randomUUID } from 'node:crypto';
 import { Dispute, type SeatInput } from '../../engine/dispute.js';
 import { GameRuleError } from '../../engine/errors.js';
+import type { SetPieceTakers } from '../../engine/match.js';
 import {
   AUCTION_MODES,
   DEFAULT_AUCTION_CONFIG,
@@ -8,6 +9,8 @@ import {
   MAX_PARTICIPANTS,
   SERIES_SCOPES,
   deckForScope,
+  isPackageMode,
+  nationalDeck,
   type Card,
   type CpuStyle,
   type DisputeConfig,
@@ -490,6 +493,9 @@ export class RoomActor {
     this.requireHost(userId);
     if (this.status !== 'lobby') throw new GameRuleError('fora_de_hora', 'A disputa já começou.');
     const humans = this.activeMembers().map((m) => m.userId);
+    if (this.settings.auctionMode === 'selecoes' && nationalDeck(this.deps.deck).length === 0) {
+      throw new GameRuleError('config_invalida', 'Este baralho não tem cartas de seleção. Escolha outro tipo de leilão.');
+    }
     if (humans.length + this.settings.cpuCount < 2) {
       throw new GameRuleError('poucos_tecnicos', 'Chame mais alguém ou adicione CPUs: são pelo menos 2 técnicos.');
     }
@@ -497,7 +503,7 @@ export class RoomActor {
   }
 
   private get clubsMode(): boolean {
-    return this.settings.auctionMode === 'clubes';
+    return isPackageMode(this.settings.auctionMode);
   }
 
   private disputeConfig(): DisputeConfig {
@@ -509,7 +515,7 @@ export class RoomActor {
       carryOverPreviousCycle: this.settings.carryOver && !clubs,
       auction: {
         ...DEFAULT_AUCTION_CONFIG,
-        mode: clubs ? 'clubes' : 'jogador',
+        mode: this.settings.auctionMode,
         repescagem: this.settings.repescagem,
         tiebreakRound: this.settings.tiebreakRound,
         mysteryChance: this.settings.mysteryCards && !clubs ? DEFAULT_AUCTION_CONFIG.mysteryChance : 0,
@@ -550,7 +556,11 @@ export class RoomActor {
     const config = this.disputeConfig();
     // Só as cartas dos clubes escolhidos para a sala (as herdadas do ciclo anterior voltam todas).
     // O leilão de clubes usa o baralho inteiro: é o que dá clube suficiente para cada setor.
-    const deck = this.clubsMode ? this.deps.deck : deckForScope(this.deps.deck, this.settings.series ?? 'ALL');
+    // O de seleções usa só as cartas de seleção (os melhores de cada país).
+    const deck =
+      this.settings.auctionMode === 'selecoes'
+        ? nationalDeck(this.deps.deck)
+        : deckForScope(this.deps.deck, this.clubsMode ? 'ALL' : (this.settings.series ?? 'ALL'));
     const dispute = Dispute.create({ id, seed, config, seats, deck, carried });
     const now = nowIso();
     const tx = this.deps.db.transaction(() => {
@@ -681,6 +691,14 @@ export class RoomActor {
     const humans = this.dispute!.participants.filter((p) => !p.isCpu && !this.abandoned.has(p.id) && this.isConnected(p.userId));
     if (humans.every((p) => this.ceremony!.ready.has(p.userId!))) this.ceremony.deadline = Date.now();
     this.afterAction();
+  }
+
+  setSetPieces(userId: string, takers: SetPieceTakers) {
+    const pid = this.requireParticipant(userId);
+    if (!takers || typeof takers !== 'object') throw new GameRuleError('batedor_invalido', 'Batedores inválidos.');
+    this.dispute!.setSetPieces(pid, takers);
+    this.persistDispute();
+    this.sendState(userId);
   }
 
   setTactic(userId: string, tactic: Tactic) {

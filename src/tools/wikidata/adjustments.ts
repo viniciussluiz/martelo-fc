@@ -5,7 +5,8 @@ import type { Card } from '../../engine/types.js';
  * Correções manuais do baralho (`data/deck-ajustes.json`), para quando o Wikidata erra ou quando a
  * nota calculada não faz justiça a alguém:
  *  - `excluir`: cartas que nunca entram (ex.: passagem sem data de saída que vira carta “de 2026”);
- *  - `nivel`: faixa de nível fixa (ex.: Pelé e Messi 95–100).
+ *  - `nivel`: faixa de nível fixa (ex.: Pelé e Messi 95–100);
+ *  - `incluir`: cartas completas feitas à mão (ex.: Dirceu Lopes e Ronaldo no Cruzeiro), que entram no fim do baralho.
  * O `id` casa por prefixo: `wd-<jogador>` pega todas as cartas do jogador, `wd-<jogador>-<clube>`
  * todas daquela passagem, e o id completo só aquela carta.
  */
@@ -23,9 +24,13 @@ export interface LevelOverride {
   motivo?: string;
 }
 
+/** Carta feita à mão: os campos da carta e, se quiser, o motivo. */
+export type Inclusion = Card & { motivo?: string };
+
 export interface DeckAdjustments {
   excluir: Exclusion[];
   nivel: LevelOverride[];
+  incluir?: Inclusion[];
 }
 
 export function loadAdjustments(path: string): DeckAdjustments {
@@ -43,7 +48,25 @@ export function loadAdjustments(path: string): DeckAdjustments {
       n.faixa[0] <= n.faixa[1] &&
       n.faixa[1] <= 100,
   );
-  return { excluir, nivel };
+  const positions = ['GOL', 'LAT', 'ZAG', 'MEI', 'ATA'];
+  const tiers = ['lenda', 'craque', 'titular', 'operario', 'perna'];
+  const incluir = (raw.incluir ?? []).filter(
+    (c) =>
+      typeof c?.id === 'string' &&
+      c.id.length > 0 &&
+      typeof c.name === 'string' &&
+      c.name.length > 0 &&
+      typeof c.club === 'string' &&
+      positions.includes(c.position) &&
+      tiers.includes(c.tier) &&
+      Number.isInteger(c.year) &&
+      Number.isInteger(c.levelMin) &&
+      Number.isInteger(c.levelMax) &&
+      c.levelMin >= 1 &&
+      c.levelMin <= c.levelMax &&
+      c.levelMax <= 100,
+  );
+  return { excluir, nivel, incluir };
 }
 
 export function matchesId(card: Pick<Card, 'id'>, id: string): boolean {
@@ -54,11 +77,14 @@ export function isExcluded(card: Pick<Card, 'id'>, exclusions: Exclusion[]): boo
   return exclusions.some((e) => matchesId(card, e.id));
 }
 
-/** Aplica as correções: tira as excluídas e fixa as faixas de nível (quem ganha faixa ≥ 86 vira Lenda). */
+/**
+ * Aplica as correções: tira as excluídas, fixa as faixas de nível (quem ganha faixa ≥ 86 vira Lenda) e
+ * põe no fim as cartas feitas à mão (uma com o mesmo id de uma carta do baralho fica no lugar dela).
+ */
 export function applyAdjustments<T extends Pick<Card, 'id' | 'levelMin' | 'levelMax' | 'tier'>>(
   cards: T[],
   adj: DeckAdjustments,
-): { cards: T[]; removed: T[]; leveled: T[] } {
+): { cards: T[]; removed: T[]; leveled: T[]; added: T[] } {
   const removed = cards.filter((c) => isExcluded(c, adj.excluir));
   const kept = cards.filter((c) => !isExcluded(c, adj.excluir));
   const leveled: T[] = [];
@@ -69,5 +95,7 @@ export function applyAdjustments<T extends Pick<Card, 'id' | 'levelMin' | 'level
     leveled.push(next);
     return next;
   });
-  return { cards: out, removed, leveled };
+  const added = (adj.incluir ?? []).map(({ motivo: _motivo, ...card }) => card as unknown as T);
+  const addedIds = new Set(added.map((c) => c.id));
+  return { cards: [...out.filter((c) => !addedIds.has(c.id)), ...added], removed, leveled, added };
 }

@@ -1,3 +1,5 @@
+import { nationalTeam } from './selecoes.js';
+
 /**
  * Siglas dos clubes (abreviações usadas em placares de TV) para o selo genérico do jogo — escudo
  * liso nas cores do clube com a sigla —, usado quando o clube não tem escudo oficial em
@@ -82,7 +84,7 @@ const plain = (s: string) => s.normalize('NFD').replace(/[̀-ͯ]/g, '');
 
 /** Sigla do clube: a da tabela ou, para clubes fora dela, as iniciais (até 3 letras). */
 export function clubCode(name: string): string {
-  const known = CLUB_CODES[name];
+  const known = CLUB_CODES[name] ?? nationalTeam(name)?.code;
   if (known) return known;
   const words = plain(name)
     .replace(/[^A-Za-z0-9 ]+/g, ' ')

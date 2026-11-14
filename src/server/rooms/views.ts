@@ -171,7 +171,7 @@ function disputeView(room: RoomActor, userId: string): DisputeView {
     cards,
     teamNames,
     carriedCount: d.state.carriedCardIds.length,
-    auctionMode: clubs ? 'clubes' : 'jogador',
+    auctionMode: clubs ? (d.auction.state.mode ?? 'clubes') : 'jogador',
     packages,
     auction: d.phase === 'auction' || room.reveal ? auctionView(room, myPid) : null,
     ceremony:
@@ -181,6 +181,7 @@ function disputeView(room: RoomActor, userId: string): DisputeView {
     league: d.league ? leagueView(room, myPid, teamNames) : null,
     cup: d.cup ? cupView(room, myPid, teamNames) : null,
     tactic: me ? (d.state.tactics[me.id] ?? 'equilibrio') : null,
+    setPieces: me && d.phase !== 'auction' ? d.takersOf(me.id) : null,
     result: d.state.result,
   };
 }
@@ -284,7 +285,15 @@ function auctionView(room: RoomActor, myPid: string): AuctionView {
   };
 }
 
-function matchView(m: MatchResult, names: Record<string, string>, withEvents: boolean, stage?: string): MatchView {
+type SquadOf = (teamId: string) => Array<{ cardId: string; name: string; position: Position }>;
+
+/** Os 11 de cada lado (só nome e posição: o nível não vai junto). */
+function lineupsOf(m: MatchResult, squadOf: SquadOf): NonNullable<MatchView['lineups']> {
+  const slim = (id: string) => squadOf(id).map((p) => ({ cardId: p.cardId, name: p.name, position: p.position }));
+  return { home: slim(m.homeId), away: slim(m.awayId) };
+}
+
+function matchView(m: MatchResult, names: Record<string, string>, withEvents: boolean, stage?: string, squadOf?: SquadOf): MatchView {
   const v: MatchView = {
     id: m.id,
     homeId: m.homeId,
@@ -296,7 +305,9 @@ function matchView(m: MatchResult, names: Record<string, string>, withEvents: bo
     goals: m.goals,
   };
   if (m.penalties) v.penalties = m.penalties;
+  if (m.redCards?.length) v.redCards = m.redCards;
   if (withEvents && m.events) v.events = m.events;
+  if (squadOf) v.lineups = lineupsOf(m, squadOf);
   if (stage) v.stage = stage;
   return v;
 }
@@ -309,6 +320,7 @@ function leagueView(room: RoomActor, myPid: string, names: Record<string, string
   const last = lastIds.map((id) => league.state.results[id]).filter((m): m is MatchResult => !!m);
   const mine = last.find((m) => m.homeId === myPid || m.awayId === myPid) ?? null;
   const next = league.state.fixtures[round]?.find((f) => f.homeId === myPid || f.awayId === myPid) ?? null;
+  const squadOf: SquadOf = (id) => league.team(id).squad;
   const fixture: FixtureView | null = next
     ? { homeId: next.homeId, awayId: next.awayId, homeName: names[next.homeId]!, awayName: names[next.awayId]!, label: `Rodada ${next.round}` }
     : null;
@@ -316,8 +328,9 @@ function leagueView(room: RoomActor, myPid: string, names: Record<string, string
     round,
     totalRounds: league.totalRounds,
     table: league.standings(),
-    lastResults: last.map((m) => matchView(m, names, false)),
-    myLastMatch: mine ? matchView(mine, names, true) : null,
+    // Quem só assiste vê o 1º jogo da rodada no campinho: ele também leva as escalações.
+    lastResults: last.map((m, i) => matchView(m, names, false, undefined, !mine && i === 0 ? squadOf : undefined)),
+    myLastMatch: mine ? matchView(mine, names, true, undefined, squadOf) : null,
     myNextFixture: d.phase === 'league' ? fixture : null,
     topScorers: league.topScorers(10),
     topAssists: league.topAssists(10),
@@ -338,6 +351,7 @@ function cupView(room: RoomActor, myPid: string, names: Record<string, string>):
   const stageOf = (id: string) => (id.startsWith('C-G') ? 'grupos' : (id.split('-')[1] ?? ''));
   const mine = last.find((m) => m.homeId === myPid || m.awayId === myPid) ?? null;
   const nextDay = cup.peekMatchday();
+  const squadOf: SquadOf = (id) => cup.team(id).squad;
   const next = nextDay.find((m) => m.homeId === myPid || m.awayId === myPid) ?? null;
   return {
     name: s.name,
@@ -347,8 +361,8 @@ function cupView(room: RoomActor, myPid: string, names: Record<string, string>):
     ties: s.ties,
     groupTables: s.groups.length ? cup.groupStandings() : null,
     groups: s.groups,
-    lastResults: last.map((m) => matchView(m, names, false, STAGE_LABEL[stageOf(m.id)])),
-    myLastMatch: mine ? matchView(mine, names, true, STAGE_LABEL[stageOf(mine.id)]) : null,
+    lastResults: last.map((m, i) => matchView(m, names, false, STAGE_LABEL[stageOf(m.id)], !mine && i === 0 ? squadOf : undefined)),
+    myLastMatch: mine ? matchView(mine, names, true, STAGE_LABEL[stageOf(mine.id)], squadOf) : null,
     myNextFixture: next
       ? {
           homeId: next.homeId,

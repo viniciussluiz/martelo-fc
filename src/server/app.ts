@@ -1,4 +1,4 @@
-import { createReadStream, readFileSync } from 'node:fs';
+import { createReadStream, existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { createServer, type Server } from 'node:http';
 import type { AddressInfo } from 'node:net';
@@ -84,7 +84,15 @@ export async function createApp(overrides: Partial<ServerConfig> = {}, logger?: 
   if (applied.length) log.info('migrações aplicadas', { applied });
   for (const note of configNotes.splice(0)) log.warn(note);
   const deckFile = loadDeckFile(config.deckPath);
-  const deck = deckFile.cards;
+  // Baralho de jogadores reais: soma as cartas de seleção (modo “Seleções”), se o arquivo existir.
+  const real = deckFile.cards.some((c) => c.series);
+  const national =
+    real && !deckFile.cards.some((c) => c.series === 'SEL') && existsSync(config.nationalDeckPath)
+      ? loadDeckFile(config.nationalDeckPath).cards.filter((c) => c.series === 'SEL')
+      : [];
+  const deck = national.length ? [...deckFile.cards, ...national] : deckFile.cards;
+  validateDeck(deck);
+  if (national.length) log.info('cartas de seleção', { path: config.nationalDeckPath, cartas: national.length, selecoes: new Set(national.map((c) => c.club)).size });
   const crestFiles = loadCrests(config.crestsDir);
   const deckInfo = describeDeck(deckFile.name, deck, crestFiles, loadCrestSources(config.crestsDir));
   {
@@ -380,6 +388,9 @@ export async function createApp(overrides: Partial<ServerConfig> = {}, logger?: 
               break;
             case 'tactic':
               room.setTactic(u, msg.tactic);
+              break;
+            case 'setpieces':
+              room.setSetPieces(u, msg.takers);
               break;
             case 'continue:vote':
               room.vote(u, String(msg.disputeId), msg.choice);

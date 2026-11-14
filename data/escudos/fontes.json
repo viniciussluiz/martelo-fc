@@ -1,6 +1,6 @@
 {
   "_leia": "Gerado por `npm run escudos`. Ordem de uso: arquivo em data/escudos/ e, sem ele, o endereço (url).",
-  "atualizadoEm": "2026-10-23T00:46:54.808Z",
+  "atualizadoEm": "2026-11-14T04:54:20.399Z",
   "clubes": {
     "Ajax": {
       "fonte": "thesportsdb",
@@ -9,12 +9,26 @@
       "url": "https://r2.thesportsdb.com/images/media/team/badge/zg9tii1755495289.png/tiny",
       "arquivo": "ajax.png"
     },
+    "Alemanha": {
+      "fonte": "thesportsdb",
+      "id": "133907",
+      "nome": "Germany",
+      "url": "https://r2.thesportsdb.com/images/media/team/badge/1xysi51726167152.png/tiny",
+      "arquivo": "alemanha.png"
+    },
     "América-MG": {
       "fonte": "thesportsdb",
       "id": "134742",
       "nome": "América Mineiro",
       "url": "https://r2.thesportsdb.com/images/media/team/badge/rtpp171752177342.png/tiny",
       "arquivo": "america-mg.png"
+    },
+    "Argentina": {
+      "fonte": "thesportsdb",
+      "id": "134509",
+      "nome": "Argentina",
+      "url": "https://r2.thesportsdb.com/images/media/team/badge/3zplhu1726167477.png/tiny",
+      "arquivo": "argentina.png"
     },
     "Arsenal": {
       "fonte": "thesportsdb",
@@ -121,6 +135,13 @@
       "url": "https://r2.thesportsdb.com/images/media/team/badge/2p7tl41701423595.png/tiny",
       "arquivo": "bragantino.png"
     },
+    "Brasil": {
+      "fonte": "thesportsdb",
+      "id": "134496",
+      "nome": "Brazil",
+      "url": "https://r2.thesportsdb.com/images/media/team/badge/jl6dip1726167280.png/tiny",
+      "arquivo": "brasil.png"
+    },
     "Ceará": {
       "fonte": "thesportsdb",
       "id": "134744",
@@ -170,6 +191,13 @@
       "url": "https://r2.thesportsdb.com/images/media/team/badge/r11mld1766506200.png/tiny",
       "arquivo": "criciuma.png"
     },
+    "Croácia": {
+      "fonte": "thesportsdb",
+      "id": "133912",
+      "nome": "Croatia",
+      "url": "https://r2.thesportsdb.com/images/media/team/badge/84cfeg1789271106.png/tiny",
+      "arquivo": "croacia.png"
+    },
     "Cruzeiro": {
       "fonte": "thesportsdb",
       "id": "134294",
@@ -183,6 +211,27 @@
       "nome": "Cuiabá",
       "url": "https://r2.thesportsdb.com/images/media/team/badge/ykbxfa1766506334.png/tiny",
       "arquivo": "cuiaba.png"
+    },
+    "Dinamarca": {
+      "fonte": "thesportsdb",
+      "id": "133906",
+      "nome": "Denmark",
+      "url": "https://r2.thesportsdb.com/images/media/team/badge/e13arj1717365623.png/tiny",
+      "arquivo": "dinamarca.png"
+    },
+    "Espanha": {
+      "fonte": "thesportsdb",
+      "id": "133909",
+      "nome": "Spain",
+      "url": "https://r2.thesportsdb.com/images/media/team/badge/ncgqyr1726166942.png/tiny",
+      "arquivo": "espanha.png"
+    },
+    "Estados Unidos": {
+      "fonte": "thesportsdb",
+      "id": "134514",
+      "nome": "USA",
+      "url": "https://r2.thesportsdb.com/images/media/team/badge/21f0oi1597948195.png/tiny",
+      "arquivo": "estados-unidos.png"
     },
     "Flamengo": {
       "fonte": "thesportsdb",
@@ -205,6 +254,13 @@
       "url": "https://r2.thesportsdb.com/images/media/team/badge/tosmdr1532853458.png/tiny",
       "arquivo": "fortaleza.png"
     },
+    "França": {
+      "fonte": "thesportsdb",
+      "id": "133913",
+      "nome": "France",
+      "url": "https://r2.thesportsdb.com/images/media/team/badge/ejx5za1788198941.png/tiny",
+      "arquivo": "franca.png"
+    },
     "Goiás": {
       "fonte": "thesportsdb",
       "id": "134295",
@@ -219,6 +275,20 @@
       "url": "https://r2.thesportsdb.com/images/media/team/badge/uvpwyt1473538089.png/tiny",
       "arquivo": "gremio.png"
     },
+    "Holanda": {
+      "fonte": "thesportsdb",
+      "id": "133905",
+      "nome": "Netherlands",
+      "url": "https://r2.thesportsdb.com/images/media/team/badge/1p0hr41593787110.png/tiny",
+      "arquivo": "holanda.png"
+    },
+    "Inglaterra": {
+      "fonte": "thesportsdb",
+      "id": "133914",
+      "nome": "England",
+      "url": "https://r2.thesportsdb.com/images/media/team/badge/vf5ttc1726166739.png/tiny",
+      "arquivo": "inglaterra.png"
+    },
     "Inter de Milão": {
       "fonte": "thesportsdb",
       "id": "133681",
@@ -232,6 +302,20 @@
       "nome": "Internacional",
       "url": "https://r2.thesportsdb.com/images/media/team/badge/yprvxx1473538097.png/tiny",
       "arquivo": "internacional.png"
+    },
+    "Irlanda": {
+      "fonte": "thesportsdb",
+      "id": "133911",
+      "nome": "Ireland",
+      "url": "https://r2.thesportsdb.com/images/media/team/badge/3vq2cl1679073105.png/tiny",
+      "arquivo": "irlanda.png"
+    },
+    "Itália": {
+      "fonte": "thesportsdb",
+      "id": "133910",
+      "nome": "Italy",
+      "url": "https://r2.thesportsdb.com/images/media/team/badge/fxijcp1726167035.png/tiny",
+      "arquivo": "italia.png"
     },
     "Juventude": {
       "fonte": "thesportsdb",
@@ -288,6 +372,13 @@
       "nome": "Manchester United",
       "url": "https://r2.thesportsdb.com/images/media/team/badge/xzqdr11517660252.png/tiny",
       "arquivo": "manchester-united.png"
+    },
+    "México": {
+      "fonte": "thesportsdb",
+      "id": "134497",
+      "nome": "Mexico",
+      "url": "https://r2.thesportsdb.com/images/media/team/badge/3rmosi1748525208.png/tiny",
+      "arquivo": "mexico.png"
     },
     "Milan": {
       "fonte": "thesportsdb",
@@ -365,6 +456,13 @@
       "url": "https://r2.thesportsdb.com/images/media/team/badge/xu47rb1628855600.png/tiny",
       "arquivo": "porto.png"
     },
+    "Portugal": {
+      "fonte": "thesportsdb",
+      "id": "133908",
+      "nome": "Portugal",
+      "url": "https://r2.thesportsdb.com/images/media/team/badge/swqvpy1455466083.png/tiny",
+      "arquivo": "portugal.png"
+    },
     "PSG": {
       "fonte": "thesportsdb",
       "id": "133714",
@@ -421,6 +519,13 @@
       "url": "https://r2.thesportsdb.com/images/media/team/badge/sxpupx1473538135.png/tiny",
       "arquivo": "sao-paulo.png"
     },
+    "Sérvia": {
+      "fonte": "thesportsdb",
+      "id": "136140",
+      "nome": "Serbia",
+      "url": "https://r2.thesportsdb.com/images/media/team/badge/oxvynb1689195538.png/tiny",
+      "arquivo": "servia.png"
+    },
     "Sevilla": {
       "fonte": "thesportsdb",
       "id": "133735",
@@ -442,12 +547,26 @@
       "url": "https://r2.thesportsdb.com/images/media/team/badge/5hiuk71783137875.png/tiny",
       "arquivo": "sporting.png"
     },
+    "Suíça": {
+      "fonte": "thesportsdb",
+      "id": "134506",
+      "nome": "Switzerland",
+      "url": "https://r2.thesportsdb.com/images/media/team/badge/mb7yqe1717365808.png/tiny",
+      "arquivo": "suica.png"
+    },
     "Tottenham": {
       "fonte": "thesportsdb",
       "id": "133616",
       "nome": "Tottenham Hotspur",
       "url": "https://r2.thesportsdb.com/images/media/team/badge/dfyfhl1604094109.png/tiny",
       "arquivo": "tottenham.png"
+    },
+    "Uruguai": {
+      "fonte": "thesportsdb",
+      "id": "134504",
+      "nome": "Uruguay",
+      "url": "https://r2.thesportsdb.com/images/media/team/badge/6vjbr11726167756.png/tiny",
+      "arquivo": "uruguai.png"
     },
     "Valencia": {
       "fonte": "thesportsdb",

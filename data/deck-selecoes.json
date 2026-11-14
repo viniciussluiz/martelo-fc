@@ -1,0 +1,7763 @@
+{
+ "id": "selecoes-wikidata",
+ "name": "Seleções",
+ "version": 1,
+ "source": "Wikidata (https://www.wikidata.org) — dados estruturados sob CC0. Notas calculadas pelo Leilão FC.",
+ "license": "CC0-1.0 (dados de origem)",
+ "generatedAt": "2026-11-14T04:32:45.442Z",
+ "fetchedAt": "2026-10-19T22:37:07.482Z",
+ "cards": [
+  {
+   "id": "sel-Q107365-alemanha",
+   "personId": "Q107365",
+   "name": "Manuel Neuer",
+   "position": "GOL",
+   "club": "Alemanha",
+   "year": 2013,
+   "levelMin": 92,
+   "levelMax": 97,
+   "tier": "lenda",
+   "hint": "128 jogos pela seleção, 17 Copas do Mundo.",
+   "kit": [
+    "#FFFFFF",
+    "#111111"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q131261-alemanha",
+   "personId": "Q131261",
+   "name": "Oliver Kahn",
+   "position": "GOL",
+   "club": "Alemanha",
+   "year": 1996,
+   "levelMin": 92,
+   "levelMax": 97,
+   "tier": "lenda",
+   "hint": "86 jogos pela seleção, 4 Copas do Mundo.",
+   "kit": [
+    "#FFFFFF",
+    "#111111"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q44194-alemanha",
+   "personId": "Q44194",
+   "name": "Sepp Maier",
+   "position": "GOL",
+   "club": "Alemanha",
+   "year": 1971,
+   "levelMin": 90,
+   "levelMax": 95,
+   "tier": "lenda",
+   "hint": "95 jogos pela seleção, 4 Copas do Mundo.",
+   "kit": [
+    "#FFFFFF",
+    "#111111"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q13865408-alemanha",
+   "personId": "Q13865408",
+   "name": "Joshua Kimmich",
+   "position": "LAT",
+   "club": "Alemanha",
+   "year": 2022,
+   "levelMin": 86,
+   "levelMax": 92,
+   "tier": "craque",
+   "hint": "116 jogos pela seleção, 3 Copas do Mundo.",
+   "kit": [
+    "#FFFFFF",
+    "#111111"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q152940-alemanha",
+   "personId": "Q152940",
+   "name": "Marcell Jansen",
+   "position": "LAT",
+   "club": "Alemanha",
+   "year": 2012,
+   "levelMin": 76,
+   "levelMax": 84,
+   "tier": "titular",
+   "hint": "45 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#FFFFFF",
+    "#111111"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q44458-alemanha",
+   "personId": "Q44458",
+   "name": "Paul Breitner",
+   "position": "LAT",
+   "club": "Alemanha",
+   "year": 1978,
+   "levelMin": 86,
+   "levelMax": 92,
+   "tier": "craque",
+   "hint": "48 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#FFFFFF",
+    "#111111"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q43682-alemanha",
+   "personId": "Q43682",
+   "name": "Philipp Lahm",
+   "position": "LAT",
+   "club": "Alemanha",
+   "year": 2010,
+   "levelMin": 92,
+   "levelMax": 97,
+   "tier": "lenda",
+   "hint": "113 jogos pela seleção, 3 Copas do Mundo.",
+   "kit": [
+    "#FFFFFF",
+    "#111111"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q327285-alemanha",
+   "personId": "Q327285",
+   "name": "Stefan Reuter",
+   "position": "LAT",
+   "club": "Alemanha",
+   "year": 1993,
+   "levelMin": 79,
+   "levelMax": 85,
+   "tier": "titular",
+   "hint": "69 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#FFFFFF",
+    "#111111"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q4457-alemanha",
+   "personId": "Q4457",
+   "name": "Franz Beckenbauer",
+   "position": "ZAG",
+   "club": "Alemanha",
+   "year": 1972,
+   "levelMin": 93,
+   "levelMax": 98,
+   "tier": "lenda",
+   "hint": "103 jogos pela seleção, 3 Copas do Mundo.",
+   "kit": [
+    "#FFFFFF",
+    "#111111"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q151260-alemanha",
+   "personId": "Q151260",
+   "name": "Jérôme Boateng",
+   "position": "ZAG",
+   "club": "Alemanha",
+   "year": 2015,
+   "levelMin": 89,
+   "levelMax": 94,
+   "tier": "lenda",
+   "hint": "76 jogos pela seleção, 3 Copas do Mundo.",
+   "kit": [
+    "#FFFFFF",
+    "#111111"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q60435-alemanha",
+   "personId": "Q60435",
+   "name": "Karl-Heinz Schnellinger",
+   "position": "ZAG",
+   "club": "Alemanha",
+   "year": 1966,
+   "levelMin": 85,
+   "levelMax": 91,
+   "tier": "craque",
+   "hint": "47 jogos pela seleção, 4 Copas do Mundo.",
+   "kit": [
+    "#FFFFFF",
+    "#111111"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q110053-alemanha",
+   "personId": "Q110053",
+   "name": "Mats Hummels",
+   "position": "ZAG",
+   "club": "Alemanha",
+   "year": 2015,
+   "levelMin": 88,
+   "levelMax": 93,
+   "tier": "lenda",
+   "hint": "78 jogos pela seleção, 15 Copas do Mundo.",
+   "kit": [
+    "#FFFFFF",
+    "#111111"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q70550-alemanha",
+   "personId": "Q70550",
+   "name": "Per Mertesacker",
+   "position": "ZAG",
+   "club": "Alemanha",
+   "year": 2011,
+   "levelMin": 84,
+   "levelMax": 90,
+   "tier": "craque",
+   "hint": "104 jogos pela seleção, 3 Copas do Mundo.",
+   "kit": [
+    "#FFFFFF",
+    "#111111"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q155919-alemanha",
+   "personId": "Q155919",
+   "name": "Andreas Möller",
+   "position": "MEI",
+   "club": "Alemanha",
+   "year": 1994,
+   "levelMin": 83,
+   "levelMax": 89,
+   "tier": "craque",
+   "hint": "85 jogos pela seleção, 3 Copas do Mundo.",
+   "kit": [
+    "#FFFFFF",
+    "#111111"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q44298-alemanha",
+   "personId": "Q44298",
+   "name": "Bastian Schweinsteiger",
+   "position": "MEI",
+   "club": "Alemanha",
+   "year": 2011,
+   "levelMin": 89,
+   "levelMax": 94,
+   "tier": "lenda",
+   "hint": "121 jogos pela seleção, 3 Copas do Mundo.",
+   "kit": [
+    "#FFFFFF",
+    "#111111"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q44326-alemanha",
+   "personId": "Q44326",
+   "name": "Günter Netzer",
+   "position": "MEI",
+   "club": "Alemanha",
+   "year": 1973,
+   "levelMin": 83,
+   "levelMax": 89,
+   "tier": "craque",
+   "hint": "37 jogos pela seleção, 1 Copa do Mundo.",
+   "kit": [
+    "#FFFFFF",
+    "#111111"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q104454-alemanha",
+   "personId": "Q104454",
+   "name": "Mario Götze",
+   "position": "MEI",
+   "club": "Alemanha",
+   "year": 2016,
+   "levelMin": 82,
+   "levelMax": 88,
+   "tier": "craque",
+   "hint": "66 jogos pela seleção, 1 Copa do Mundo.",
+   "kit": [
+    "#FFFFFF",
+    "#111111"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q83488-alemanha",
+   "personId": "Q83488",
+   "name": "Mesut Özil",
+   "position": "MEI",
+   "club": "Alemanha",
+   "year": 2015,
+   "levelMin": 90,
+   "levelMax": 95,
+   "tier": "lenda",
+   "hint": "92 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#FFFFFF",
+    "#111111"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q11948-alemanha",
+   "personId": "Q11948",
+   "name": "Michael Ballack",
+   "position": "MEI",
+   "club": "Alemanha",
+   "year": 2003,
+   "levelMin": 89,
+   "levelMax": 94,
+   "tier": "lenda",
+   "hint": "98 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#FFFFFF",
+    "#111111"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q54094-alemanha",
+   "personId": "Q54094",
+   "name": "Sami Khedira",
+   "position": "MEI",
+   "club": "Alemanha",
+   "year": 2014,
+   "levelMin": 88,
+   "levelMax": 93,
+   "tier": "lenda",
+   "hint": "77 jogos pela seleção, 3 Copas do Mundo.",
+   "kit": [
+    "#FFFFFF",
+    "#111111"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q131234-alemanha",
+   "personId": "Q131234",
+   "name": "Toni Kroos",
+   "position": "MEI",
+   "club": "Alemanha",
+   "year": 2017,
+   "levelMin": 92,
+   "levelMax": 97,
+   "tier": "lenda",
+   "hint": "114 jogos pela seleção, 3 Copas do Mundo.",
+   "kit": [
+    "#FFFFFF",
+    "#111111"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q43744-alemanha",
+   "personId": "Q43744",
+   "name": "Gerd Müller",
+   "position": "ATA",
+   "club": "Alemanha",
+   "year": 1972,
+   "levelMin": 92,
+   "levelMax": 97,
+   "tier": "lenda",
+   "hint": "62 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#FFFFFF",
+    "#111111"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q57079-alemanha",
+   "personId": "Q57079",
+   "name": "Jürgen Klinsmann",
+   "position": "ATA",
+   "club": "Alemanha",
+   "year": 1991,
+   "levelMin": 89,
+   "levelMax": 95,
+   "tier": "lenda",
+   "hint": "108 jogos pela seleção, 3 Copas do Mundo.",
+   "kit": [
+    "#FFFFFF",
+    "#111111"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q152871-alemanha",
+   "personId": "Q152871",
+   "name": "Karl-Heinz Rummenigge",
+   "position": "ATA",
+   "club": "Alemanha",
+   "year": 1982,
+   "levelMin": 93,
+   "levelMax": 98,
+   "tier": "lenda",
+   "hint": "95 jogos pela seleção, 3 Copas do Mundo.",
+   "kit": [
+    "#FFFFFF",
+    "#111111"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q134976-alemanha",
+   "personId": "Q134976",
+   "name": "Lukas Podolski",
+   "position": "ATA",
+   "club": "Alemanha",
+   "year": 2009,
+   "levelMin": 89,
+   "levelMax": 95,
+   "tier": "lenda",
+   "hint": "130 jogos pela seleção, 3 Copas do Mundo.",
+   "kit": [
+    "#FFFFFF",
+    "#111111"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q45766-alemanha",
+   "personId": "Q45766",
+   "name": "Mario Gómez",
+   "position": "ATA",
+   "club": "Alemanha",
+   "year": 2012,
+   "levelMin": 89,
+   "levelMax": 94,
+   "tier": "lenda",
+   "hint": "78 jogos pela seleção, 25 Copas do Mundo.",
+   "kit": [
+    "#FFFFFF",
+    "#111111"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q80471-alemanha",
+   "personId": "Q80471",
+   "name": "Miroslav Klose",
+   "position": "ATA",
+   "club": "Alemanha",
+   "year": 2007,
+   "levelMin": 91,
+   "levelMax": 96,
+   "tier": "lenda",
+   "hint": "137 jogos pela seleção, 4 Copas do Mundo.",
+   "kit": [
+    "#FFFFFF",
+    "#111111"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q43666-alemanha",
+   "personId": "Q43666",
+   "name": "Thomas Müller",
+   "position": "ATA",
+   "club": "Alemanha",
+   "year": 2016,
+   "levelMin": 92,
+   "levelMax": 97,
+   "tier": "lenda",
+   "hint": "131 jogos pela seleção, 16 Copas do Mundo.",
+   "kit": [
+    "#FFFFFF",
+    "#111111"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q1757383-argentina",
+   "personId": "Q1757383",
+   "name": "Edgardo Andrada",
+   "position": "GOL",
+   "club": "Argentina",
+   "year": 1969,
+   "levelMin": 80,
+   "levelMax": 86,
+   "tier": "titular",
+   "hint": "20 jogos pela seleção.",
+   "kit": [
+    "#75AADB",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q316205-argentina",
+   "personId": "Q316205",
+   "name": "Sergio Goycochea",
+   "position": "GOL",
+   "club": "Argentina",
+   "year": 1995,
+   "levelMin": 81,
+   "levelMax": 87,
+   "tier": "craque",
+   "hint": "44 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#75AADB",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q140319-argentina",
+   "personId": "Q140319",
+   "name": "Ubaldo Fillol",
+   "position": "GOL",
+   "club": "Argentina",
+   "year": 1984,
+   "levelMin": 79,
+   "levelMax": 87,
+   "tier": "titular",
+   "hint": "58 jogos pela seleção, 3 Copas do Mundo.",
+   "kit": [
+    "#75AADB",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q716089-argentina",
+   "personId": "Q716089",
+   "name": "Cristian Ansaldi",
+   "position": "LAT",
+   "club": "Argentina",
+   "year": 2013,
+   "levelMin": 77,
+   "levelMax": 85,
+   "tier": "titular",
+   "hint": "5 jogos pela seleção, 1 Copa do Mundo.",
+   "kit": [
+    "#75AADB",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q52876-argentina",
+   "personId": "Q52876",
+   "name": "Javier Zanetti",
+   "position": "LAT",
+   "club": "Argentina",
+   "year": 2000,
+   "levelMin": 89,
+   "levelMax": 94,
+   "tier": "lenda",
+   "hint": "145 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#75AADB",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q220746-argentina",
+   "personId": "Q220746",
+   "name": "Juan Pablo Sorín",
+   "position": "LAT",
+   "club": "Argentina",
+   "year": 2003,
+   "levelMin": 86,
+   "levelMax": 92,
+   "tier": "craque",
+   "hint": "76 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#75AADB",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q3876530-argentina",
+   "personId": "Q3876530",
+   "name": "Nicolás Tagliafico",
+   "position": "LAT",
+   "club": "Argentina",
+   "year": 2019,
+   "levelMin": 82,
+   "levelMax": 88,
+   "tier": "craque",
+   "hint": "83 jogos pela seleção, 3 Copas do Mundo.",
+   "kit": [
+    "#75AADB",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q244790-argentina",
+   "personId": "Q244790",
+   "name": "Pablo Zabaleta",
+   "position": "LAT",
+   "club": "Argentina",
+   "year": 2012,
+   "levelMin": 79,
+   "levelMax": 87,
+   "tier": "titular",
+   "hint": "58 jogos pela seleção, 39 Copas do Mundo.",
+   "kit": [
+    "#75AADB",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q161571-argentina",
+   "personId": "Q161571",
+   "name": "Javier Mascherano",
+   "position": "ZAG",
+   "club": "Argentina",
+   "year": 2011,
+   "levelMin": 88,
+   "levelMax": 93,
+   "tier": "lenda",
+   "hint": "147 jogos pela seleção, 4 Copas do Mundo.",
+   "kit": [
+    "#75AADB",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q182063-argentina",
+   "personId": "Q182063",
+   "name": "Nicolás Otamendi",
+   "position": "ZAG",
+   "club": "Argentina",
+   "year": 2015,
+   "levelMin": 89,
+   "levelMax": 95,
+   "tier": "lenda",
+   "hint": "139 jogos pela seleção, 4 Copas do Mundo.",
+   "kit": [
+    "#75AADB",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q973088-argentina",
+   "personId": "Q973088",
+   "name": "Osvaldo Héctor Cruz",
+   "position": "ZAG",
+   "club": "Argentina",
+   "year": 1960,
+   "levelMin": 86,
+   "levelMax": 92,
+   "tier": "craque",
+   "hint": "21 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#75AADB",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q189535-argentina",
+   "personId": "Q189535",
+   "name": "Roberto Ayala",
+   "position": "ZAG",
+   "club": "Argentina",
+   "year": 2000,
+   "levelMin": 81,
+   "levelMax": 89,
+   "tier": "craque",
+   "hint": "115 jogos pela seleção, 3 Copas do Mundo.",
+   "kit": [
+    "#75AADB",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q734558-argentina",
+   "personId": "Q734558",
+   "name": "Roberto Perfumo",
+   "position": "ZAG",
+   "club": "Argentina",
+   "year": 1971,
+   "levelMin": 84,
+   "levelMax": 90,
+   "tier": "craque",
+   "hint": "37 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#75AADB",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q2704110-argentina",
+   "personId": "Q2704110",
+   "name": "Arcadio López",
+   "position": "MEI",
+   "club": "Argentina",
+   "year": 1937,
+   "levelMin": 80,
+   "levelMax": 86,
+   "tier": "titular",
+   "hint": "6 jogos pela seleção, 1 Copa do Mundo.",
+   "kit": [
+    "#75AADB",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q295883-argentina",
+   "personId": "Q295883",
+   "name": "Claudio López",
+   "position": "MEI",
+   "club": "Argentina",
+   "year": 2000,
+   "levelMin": 79,
+   "levelMax": 85,
+   "tier": "titular",
+   "hint": "55 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#75AADB",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q16553648-argentina",
+   "personId": "Q16553648",
+   "name": "Cristian Pavón",
+   "position": "MEI",
+   "club": "Argentina",
+   "year": 2023,
+   "levelMin": 83,
+   "levelMax": 89,
+   "tier": "craque",
+   "hint": "11 jogos pela seleção, 1 Copa do Mundo.",
+   "kit": [
+    "#75AADB",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q258115-argentina",
+   "personId": "Q258115",
+   "name": "Diego Simeone",
+   "position": "MEI",
+   "club": "Argentina",
+   "year": 1997,
+   "levelMin": 86,
+   "levelMax": 92,
+   "tier": "craque",
+   "hint": "106 jogos pela seleção, 3 Copas do Mundo.",
+   "kit": [
+    "#75AADB",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q630170-argentina",
+   "personId": "Q630170",
+   "name": "Leandro Paredes",
+   "position": "MEI",
+   "club": "Argentina",
+   "year": 2022,
+   "levelMin": 80,
+   "levelMax": 86,
+   "tier": "titular",
+   "hint": "82 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#75AADB",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q436230-argentina",
+   "personId": "Q436230",
+   "name": "Lucas Biglia",
+   "position": "MEI",
+   "club": "Argentina",
+   "year": 2013,
+   "levelMin": 79,
+   "levelMax": 85,
+   "tier": "titular",
+   "hint": "58 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#75AADB",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q310373-argentina",
+   "personId": "Q310373",
+   "name": "Osvaldo Ardiles",
+   "position": "MEI",
+   "club": "Argentina",
+   "year": 1979,
+   "levelMin": 81,
+   "levelMax": 87,
+   "tier": "craque",
+   "hint": "52 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#75AADB",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q333793-argentina",
+   "personId": "Q333793",
+   "name": "Ricky Álvarez",
+   "position": "MEI",
+   "club": "Argentina",
+   "year": 2015,
+   "levelMin": 80,
+   "levelMax": 88,
+   "tier": "craque",
+   "hint": "9 jogos pela seleção, 1 Copa do Mundo.",
+   "kit": [
+    "#75AADB",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q50600-argentina",
+   "personId": "Q50600",
+   "name": "Carlos Tévez",
+   "position": "ATA",
+   "club": "Argentina",
+   "year": 2006,
+   "levelMin": 86,
+   "levelMax": 92,
+   "tier": "craque",
+   "hint": "76 jogos pela seleção, 1 Copa do Mundo.",
+   "kit": [
+    "#75AADB",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q17515-argentina",
+   "personId": "Q17515",
+   "name": "Diego Maradona",
+   "position": "ATA",
+   "club": "Argentina",
+   "year": 1987,
+   "levelMin": 92,
+   "levelMax": 97,
+   "tier": "lenda",
+   "hint": "91 jogos pela seleção, 5 Copas do Mundo.",
+   "kit": [
+    "#75AADB",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q170376-argentina",
+   "personId": "Q170376",
+   "name": "Gabriel Batistuta",
+   "position": "ATA",
+   "club": "Argentina",
+   "year": 2000,
+   "levelMin": 84,
+   "levelMax": 90,
+   "tier": "craque",
+   "hint": "78 jogos pela seleção, 3 Copas do Mundo.",
+   "kit": [
+    "#75AADB",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q21484126-argentina",
+   "personId": "Q21484126",
+   "name": "Lautaro Martínez",
+   "position": "ATA",
+   "club": "Argentina",
+   "year": 2024,
+   "levelMin": 84,
+   "levelMax": 90,
+   "tier": "craque",
+   "hint": "87 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#75AADB",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q615-argentina",
+   "personId": "Q615",
+   "name": "Lionel Messi",
+   "position": "ATA",
+   "club": "Argentina",
+   "year": 2014,
+   "levelMin": 95,
+   "levelMax": 100,
+   "tier": "lenda",
+   "hint": "208 jogos pela seleção, 20 Copas do Mundo.",
+   "kit": [
+    "#75AADB",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q690387-argentina",
+   "personId": "Q690387",
+   "name": "Luis Artime",
+   "position": "ATA",
+   "club": "Argentina",
+   "year": 1968,
+   "levelMin": 86,
+   "levelMax": 92,
+   "tier": "craque",
+   "hint": "25 jogos pela seleção, 1 Copa do Mundo.",
+   "kit": [
+    "#75AADB",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q119562-argentina",
+   "personId": "Q119562",
+   "name": "Sergio Agüero",
+   "position": "ATA",
+   "club": "Argentina",
+   "year": 2015,
+   "levelMin": 91,
+   "levelMax": 96,
+   "tier": "lenda",
+   "hint": "101 jogos pela seleção, 5 Copas do Mundo.",
+   "kit": [
+    "#75AADB",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q188544-brasil",
+   "personId": "Q188544",
+   "name": "Dida",
+   "position": "GOL",
+   "club": "Brasil",
+   "year": 1998,
+   "levelMin": 91,
+   "levelMax": 96,
+   "tier": "lenda",
+   "hint": "91 jogos pela seleção, 3 Copas do Mundo.",
+   "kit": [
+    "#FFDC02",
+    "#193375"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q257606-brasil",
+   "personId": "Q257606",
+   "name": "Gilmar",
+   "position": "GOL",
+   "club": "Brasil",
+   "year": 1957,
+   "levelMin": 93,
+   "levelMax": 98,
+   "tier": "lenda",
+   "hint": "94 jogos pela seleção, 4 Copas do Mundo.",
+   "kit": [
+    "#FFDC02",
+    "#193375"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q182459-brasil",
+   "personId": "Q182459",
+   "name": "Júlio César",
+   "position": "GOL",
+   "club": "Brasil",
+   "year": 2005,
+   "levelMin": 91,
+   "levelMax": 96,
+   "tier": "lenda",
+   "hint": "87 jogos pela seleção, 4 Copas do Mundo.",
+   "kit": [
+    "#FFDC02",
+    "#193375"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q178683-brasil",
+   "personId": "Q178683",
+   "name": "Cafu",
+   "position": "LAT",
+   "club": "Brasil",
+   "year": 1994,
+   "levelMin": 92,
+   "levelMax": 97,
+   "tier": "lenda",
+   "hint": "142 jogos pela seleção, 4 Copas do Mundo.",
+   "kit": [
+    "#FFDC02",
+    "#193375"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q295262-brasil",
+   "personId": "Q295262",
+   "name": "Carlos Alberto Torres",
+   "position": "LAT",
+   "club": "Brasil",
+   "year": 1971,
+   "levelMin": 91,
+   "levelMax": 96,
+   "tier": "lenda",
+   "hint": "53 jogos pela seleção, 1 Copa do Mundo.",
+   "kit": [
+    "#FFDC02",
+    "#193375"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q299693-brasil",
+   "personId": "Q299693",
+   "name": "Djalma Santos",
+   "position": "LAT",
+   "club": "Brasil",
+   "year": 1959,
+   "levelMin": 93,
+   "levelMax": 98,
+   "tier": "lenda",
+   "hint": "98 jogos pela seleção, 5 Copas do Mundo.",
+   "kit": [
+    "#FFDC02",
+    "#193375"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q177686-brasil",
+   "personId": "Q177686",
+   "name": "Maicon",
+   "position": "LAT",
+   "club": "Brasil",
+   "year": 2004,
+   "levelMin": 90,
+   "levelMax": 95,
+   "tier": "lenda",
+   "hint": "76 jogos pela seleção, 3 Copas do Mundo.",
+   "kit": [
+    "#FFDC02",
+    "#193375"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q83329-brasil",
+   "personId": "Q83329",
+   "name": "Nílton Santos",
+   "position": "LAT",
+   "club": "Brasil",
+   "year": 1952,
+   "levelMin": 93,
+   "levelMax": 98,
+   "tier": "lenda",
+   "hint": "75 jogos pela seleção, 6 Copas do Mundo.",
+   "kit": [
+    "#FFDC02",
+    "#193375"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q262826-brasil",
+   "personId": "Q262826",
+   "name": "Bellini",
+   "position": "ZAG",
+   "club": "Brasil",
+   "year": 1957,
+   "levelMin": 92,
+   "levelMax": 97,
+   "tier": "lenda",
+   "hint": "51 jogos pela seleção, 3 Copas do Mundo.",
+   "kit": [
+    "#FFDC02",
+    "#193375"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q717927-brasil",
+   "personId": "Q717927",
+   "name": "Domingos da Guia",
+   "position": "ZAG",
+   "club": "Brasil",
+   "year": 1939,
+   "levelMin": 90,
+   "levelMax": 95,
+   "tier": "lenda",
+   "hint": "30 jogos pela seleção, 4 Copas do Mundo.",
+   "kit": [
+    "#FFDC02",
+    "#193375"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q714500-brasil",
+   "personId": "Q714500",
+   "name": "José Oscar Bernardi",
+   "position": "ZAG",
+   "club": "Brasil",
+   "year": 1981,
+   "levelMin": 90,
+   "levelMax": 95,
+   "tier": "lenda",
+   "hint": "59 jogos pela seleção, 3 Copas do Mundo.",
+   "kit": [
+    "#FFDC02",
+    "#193375"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q463460-brasil",
+   "personId": "Q463460",
+   "name": "Mauro Ramos",
+   "position": "ZAG",
+   "club": "Brasil",
+   "year": 1957,
+   "levelMin": 91,
+   "levelMax": 96,
+   "tier": "lenda",
+   "hint": "22 jogos pela seleção, 4 Copas do Mundo.",
+   "kit": [
+    "#FFDC02",
+    "#193375"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q210453-brasil",
+   "personId": "Q210453",
+   "name": "Thiago Silva",
+   "position": "ZAG",
+   "club": "Brasil",
+   "year": 2008,
+   "levelMin": 91,
+   "levelMax": 96,
+   "tier": "lenda",
+   "hint": "113 jogos pela seleção, 4 Copas do Mundo.",
+   "kit": [
+    "#FFDC02",
+    "#193375"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q312486-brasil",
+   "personId": "Q312486",
+   "name": "Didi",
+   "position": "MEI",
+   "club": "Brasil",
+   "year": 1955,
+   "levelMin": 91,
+   "levelMax": 96,
+   "tier": "lenda",
+   "hint": "68 jogos pela seleção, 4 Copas do Mundo.",
+   "kit": [
+    "#FFDC02",
+    "#193375"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q531814-brasil",
+   "personId": "Q531814",
+   "name": "Kaká",
+   "position": "MEI",
+   "club": "Brasil",
+   "year": 2009,
+   "levelMin": 91,
+   "levelMax": 96,
+   "tier": "lenda",
+   "hint": "92 jogos pela seleção, 4 Copas do Mundo.",
+   "kit": [
+    "#FFDC02",
+    "#193375"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q483577-brasil",
+   "personId": "Q483577",
+   "name": "Rivaldo",
+   "position": "MEI",
+   "club": "Brasil",
+   "year": 1996,
+   "levelMin": 91,
+   "levelMax": 96,
+   "tier": "lenda",
+   "hint": "74 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#FFDC02",
+    "#193375"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q220283-brasil",
+   "personId": "Q220283",
+   "name": "Rivelino",
+   "position": "MEI",
+   "club": "Brasil",
+   "year": 1973,
+   "levelMin": 93,
+   "levelMax": 98,
+   "tier": "lenda",
+   "hint": "92 jogos pela seleção, 3 Copas do Mundo.",
+   "kit": [
+    "#FFDC02",
+    "#193375"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q102331-brasil",
+   "personId": "Q102331",
+   "name": "Sócrates",
+   "position": "MEI",
+   "club": "Brasil",
+   "year": 1981,
+   "levelMin": 93,
+   "levelMax": 98,
+   "tier": "lenda",
+   "hint": "60 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#FFDC02",
+    "#193375"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q311407-brasil",
+   "personId": "Q311407",
+   "name": "Tostão",
+   "position": "MEI",
+   "club": "Brasil",
+   "year": 1971,
+   "levelMin": 92,
+   "levelMax": 97,
+   "tier": "lenda",
+   "hint": "54 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#FFDC02",
+    "#193375"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q47526-brasil",
+   "personId": "Q47526",
+   "name": "Zico",
+   "position": "MEI",
+   "club": "Brasil",
+   "year": 1980,
+   "levelMin": 92,
+   "levelMax": 97,
+   "tier": "lenda",
+   "hint": "71 jogos pela seleção, 3 Copas do Mundo.",
+   "kit": [
+    "#FFDC02",
+    "#193375"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q372092-brasil",
+   "personId": "Q372092",
+   "name": "Zito",
+   "position": "MEI",
+   "club": "Brasil",
+   "year": 1959,
+   "levelMin": 93,
+   "levelMax": 98,
+   "tier": "lenda",
+   "hint": "52 jogos pela seleção, 3 Copas do Mundo.",
+   "kit": [
+    "#FFDC02",
+    "#193375"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q332012-brasil",
+   "personId": "Q332012",
+   "name": "Ademir Menezes",
+   "position": "ATA",
+   "club": "Brasil",
+   "year": 1949,
+   "levelMin": 93,
+   "levelMax": 98,
+   "tier": "lenda",
+   "hint": "39 jogos pela seleção, 5 Copas do Mundo.",
+   "kit": [
+    "#FFDC02",
+    "#193375"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q180642-brasil",
+   "personId": "Q180642",
+   "name": "Garrincha",
+   "position": "ATA",
+   "club": "Brasil",
+   "year": 1960,
+   "levelMin": 93,
+   "levelMax": 98,
+   "tier": "lenda",
+   "hint": "50 jogos pela seleção, 3 Copas do Mundo.",
+   "kit": [
+    "#FFDC02",
+    "#193375"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q12897-brasil",
+   "personId": "Q12897",
+   "name": "Pelé",
+   "position": "ATA",
+   "club": "Brasil",
+   "year": 1967,
+   "levelMin": 95,
+   "levelMax": 100,
+   "tier": "lenda",
+   "hint": "92 jogos pela seleção, 5 Copas do Mundo.",
+   "kit": [
+    "#FFDC02",
+    "#193375"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q178649-brasil",
+   "personId": "Q178649",
+   "name": "Romário",
+   "position": "ATA",
+   "club": "Brasil",
+   "year": 1995,
+   "levelMin": 92,
+   "levelMax": 97,
+   "tier": "lenda",
+   "hint": "70 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#FFDC02",
+    "#193375"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q39444-brasil",
+   "personId": "Q39444",
+   "name": "Ronaldinho",
+   "position": "ATA",
+   "club": "Brasil",
+   "year": 2011,
+   "levelMin": 92,
+   "levelMax": 97,
+   "tier": "lenda",
+   "hint": "97 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#FFDC02",
+    "#193375"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q529207-brasil",
+   "personId": "Q529207",
+   "name": "Ronaldo",
+   "position": "ATA",
+   "club": "Brasil",
+   "year": 2003,
+   "levelMin": 93,
+   "levelMax": 98,
+   "tier": "lenda",
+   "hint": "98 jogos pela seleção, 4 Copas do Mundo.",
+   "kit": [
+    "#FFDC02",
+    "#193375"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q311511-brasil",
+   "personId": "Q311511",
+   "name": "Zagallo",
+   "position": "ATA",
+   "club": "Brasil",
+   "year": 1958,
+   "levelMin": 92,
+   "levelMax": 97,
+   "tier": "lenda",
+   "hint": "33 jogos pela seleção, 6 Copas do Mundo.",
+   "kit": [
+    "#FFDC02",
+    "#193375"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q358075-croacia",
+   "personId": "Q358075",
+   "name": "Danijel Subašić",
+   "position": "GOL",
+   "club": "Croácia",
+   "year": 2012,
+   "levelMin": 79,
+   "levelMax": 85,
+   "tier": "titular",
+   "hint": "44 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#FFFFFF",
+    "#E30613"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q18207229-croacia",
+   "personId": "Q18207229",
+   "name": "Dominik Livaković",
+   "position": "GOL",
+   "club": "Croácia",
+   "year": 2022,
+   "levelMin": 80,
+   "levelMax": 88,
+   "tier": "craque",
+   "hint": "83 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#FFFFFF",
+    "#E30613"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q208706-croacia",
+   "personId": "Q208706",
+   "name": "Stipe Pletikosa",
+   "position": "GOL",
+   "club": "Croácia",
+   "year": 2010,
+   "levelMin": 81,
+   "levelMax": 89,
+   "tier": "craque",
+   "hint": "114 jogos pela seleção, 3 Copas do Mundo.",
+   "kit": [
+    "#FFFFFF",
+    "#E30613"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q314083-croacia",
+   "personId": "Q314083",
+   "name": "Ivan Strinić",
+   "position": "LAT",
+   "club": "Croácia",
+   "year": 2014,
+   "levelMin": 74,
+   "levelMax": 82,
+   "tier": "titular",
+   "hint": "49 jogos pela seleção, 1 Copa do Mundo.",
+   "kit": [
+    "#FFFFFF",
+    "#E30613"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q311898-croacia",
+   "personId": "Q311898",
+   "name": "Robert Jarni",
+   "position": "LAT",
+   "club": "Croácia",
+   "year": 1995,
+   "levelMin": 77,
+   "levelMax": 85,
+   "tier": "titular",
+   "hint": "81 jogos pela seleção, 3 Copas do Mundo.",
+   "kit": [
+    "#FFFFFF",
+    "#E30613"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q391628-croacia",
+   "personId": "Q391628",
+   "name": "Šime Vrsaljko",
+   "position": "LAT",
+   "club": "Croácia",
+   "year": 2019,
+   "levelMin": 76,
+   "levelMax": 84,
+   "tier": "titular",
+   "hint": "52 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#FFFFFF",
+    "#E30613"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q7807765-croacia",
+   "personId": "Q7807765",
+   "name": "Tin Jedvaj",
+   "position": "LAT",
+   "club": "Croácia",
+   "year": 2021,
+   "levelMin": 71,
+   "levelMax": 77,
+   "tier": "operario",
+   "hint": "26 jogos pela seleção, 1 Copa do Mundo.",
+   "kit": [
+    "#FFFFFF",
+    "#E30613"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q206306-croacia",
+   "personId": "Q206306",
+   "name": "Vedran Ćorluka",
+   "position": "LAT",
+   "club": "Croácia",
+   "year": 2012,
+   "levelMin": 82,
+   "levelMax": 88,
+   "tier": "craque",
+   "hint": "103 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#FFFFFF",
+    "#E30613"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q242193-croacia",
+   "personId": "Q242193",
+   "name": "Dario Šimić",
+   "position": "ZAG",
+   "club": "Croácia",
+   "year": 2002,
+   "levelMin": 83,
+   "levelMax": 89,
+   "tier": "craque",
+   "hint": "100 jogos pela seleção, 3 Copas do Mundo.",
+   "kit": [
+    "#FFFFFF",
+    "#E30613"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q349125-croacia",
+   "personId": "Q349125",
+   "name": "Dejan Lovren",
+   "position": "ZAG",
+   "club": "Croácia",
+   "year": 2016,
+   "levelMin": 81,
+   "levelMax": 87,
+   "tier": "craque",
+   "hint": "78 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#FFFFFF",
+    "#E30613"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q314227-croacia",
+   "personId": "Q314227",
+   "name": "Domagoj Vida",
+   "position": "ZAG",
+   "club": "Croácia",
+   "year": 2011,
+   "levelMin": 76,
+   "levelMax": 82,
+   "tier": "titular",
+   "hint": "105 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#FFFFFF",
+    "#E30613"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q276544-croacia",
+   "personId": "Q276544",
+   "name": "Igor Tudor",
+   "position": "ZAG",
+   "club": "Croácia",
+   "year": 2005,
+   "levelMin": 76,
+   "levelMax": 84,
+   "tier": "titular",
+   "hint": "55 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#FFFFFF",
+    "#E30613"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q271882-croacia",
+   "personId": "Q271882",
+   "name": "Robert Kovač",
+   "position": "ZAG",
+   "club": "Croácia",
+   "year": 2005,
+   "levelMin": 80,
+   "levelMax": 86,
+   "tier": "titular",
+   "hint": "84 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#FFFFFF",
+    "#E30613"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q115453-croacia",
+   "personId": "Q115453",
+   "name": "Ivan Rakitić",
+   "position": "MEI",
+   "club": "Croácia",
+   "year": 2015,
+   "levelMin": 88,
+   "levelMax": 93,
+   "tier": "lenda",
+   "hint": "106 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#FFFFFF",
+    "#E30613"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q483837-croacia",
+   "personId": "Q483837",
+   "name": "Luka Modrić",
+   "position": "MEI",
+   "club": "Croácia",
+   "year": 2012,
+   "levelMin": 92,
+   "levelMax": 97,
+   "tier": "lenda",
+   "hint": "206 jogos pela seleção, 5 Copas do Mundo.",
+   "kit": [
+    "#FFFFFF",
+    "#E30613"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q3845710-croacia",
+   "personId": "Q3845710",
+   "name": "Marcelo Brozović",
+   "position": "MEI",
+   "club": "Croácia",
+   "year": 2019,
+   "levelMin": 79,
+   "levelMax": 87,
+   "tier": "titular",
+   "hint": "99 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#FFFFFF",
+    "#E30613"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q14625183-croacia",
+   "personId": "Q14625183",
+   "name": "Mario Pašalić",
+   "position": "MEI",
+   "club": "Croácia",
+   "year": 2022,
+   "levelMin": 75,
+   "levelMax": 83,
+   "tier": "titular",
+   "hint": "93 jogos pela seleção, 1 Copa do Mundo.",
+   "kit": [
+    "#FFFFFF",
+    "#E30613"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q701297-croacia",
+   "personId": "Q701297",
+   "name": "Mateo Kovačić",
+   "position": "MEI",
+   "club": "Croácia",
+   "year": 2021,
+   "levelMin": 84,
+   "levelMax": 92,
+   "tier": "craque",
+   "hint": "121 jogos pela seleção, 4 Copas do Mundo.",
+   "kit": [
+    "#FFFFFF",
+    "#E30613"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q433120-croacia",
+   "personId": "Q433120",
+   "name": "Milan Badelj",
+   "position": "MEI",
+   "club": "Croácia",
+   "year": 2016,
+   "levelMin": 76,
+   "levelMax": 84,
+   "tier": "titular",
+   "hint": "55 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#FFFFFF",
+    "#E30613"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q154305-croacia",
+   "personId": "Q154305",
+   "name": "Niko Kovač",
+   "position": "MEI",
+   "club": "Croácia",
+   "year": 2001,
+   "levelMin": 80,
+   "levelMax": 86,
+   "tier": "titular",
+   "hint": "83 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#FFFFFF",
+    "#E30613"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q298190-croacia",
+   "personId": "Q298190",
+   "name": "Robert Prosinečki",
+   "position": "MEI",
+   "club": "Croácia",
+   "year": 1994,
+   "levelMin": 78,
+   "levelMax": 84,
+   "tier": "titular",
+   "hint": "49 jogos pela seleção, 3 Copas do Mundo.",
+   "kit": [
+    "#FFFFFF",
+    "#E30613"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q313518-croacia",
+   "personId": "Q313518",
+   "name": "Alen Bokšić",
+   "position": "ATA",
+   "club": "Croácia",
+   "year": 1997,
+   "levelMin": 76,
+   "levelMax": 84,
+   "tier": "titular",
+   "hint": "40 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#FFFFFF",
+    "#E30613"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q3209607-croacia",
+   "personId": "Q3209607",
+   "name": "Ante Rebić",
+   "position": "ATA",
+   "club": "Croácia",
+   "year": 2020,
+   "levelMin": 80,
+   "levelMax": 86,
+   "tier": "titular",
+   "hint": "42 jogos pela seleção, 3 Copas do Mundo.",
+   "kit": [
+    "#FFFFFF",
+    "#E30613"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q189217-croacia",
+   "personId": "Q189217",
+   "name": "Davor Šuker",
+   "position": "ATA",
+   "club": "Croácia",
+   "year": 1996,
+   "levelMin": 86,
+   "levelMax": 92,
+   "tier": "craque",
+   "hint": "69 jogos pela seleção, 3 Copas do Mundo.",
+   "kit": [
+    "#FFFFFF",
+    "#E30613"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q180444-croacia",
+   "personId": "Q180444",
+   "name": "Eduardo da Silva",
+   "position": "ATA",
+   "club": "Croácia",
+   "year": 2014,
+   "levelMin": 86,
+   "levelMax": 92,
+   "tier": "craque",
+   "hint": "64 jogos pela seleção, 1 Copa do Mundo.",
+   "kit": [
+    "#FFFFFF",
+    "#E30613"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q161054-croacia",
+   "personId": "Q161054",
+   "name": "Ivan Perišić",
+   "position": "ATA",
+   "club": "Croácia",
+   "year": 2016,
+   "levelMin": 89,
+   "levelMax": 95,
+   "tier": "lenda",
+   "hint": "150 jogos pela seleção, 3 Copas do Mundo.",
+   "kit": [
+    "#FFFFFF",
+    "#E30613"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q150484-croacia",
+   "personId": "Q150484",
+   "name": "Ivica Olić",
+   "position": "ATA",
+   "club": "Croácia",
+   "year": 2006,
+   "levelMin": 81,
+   "levelMax": 89,
+   "tier": "craque",
+   "hint": "104 jogos pela seleção, 3 Copas do Mundo.",
+   "kit": [
+    "#FFFFFF",
+    "#E30613"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q187171-croacia",
+   "personId": "Q187171",
+   "name": "Mario Mandžukić",
+   "position": "ATA",
+   "club": "Croácia",
+   "year": 2013,
+   "levelMin": 83,
+   "levelMax": 89,
+   "tier": "craque",
+   "hint": "89 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#FFFFFF",
+    "#E30613"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q295797-dinamarca",
+   "personId": "Q295797",
+   "name": "Kasper Schmeichel",
+   "position": "GOL",
+   "club": "Dinamarca",
+   "year": 2009,
+   "levelMin": 78,
+   "levelMax": 84,
+   "tier": "titular",
+   "hint": "120 jogos pela seleção, 1 Copa do Mundo.",
+   "kit": [
+    "#C60C30",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q182314-dinamarca",
+   "personId": "Q182314",
+   "name": "Peter Schmeichel",
+   "position": "GOL",
+   "club": "Dinamarca",
+   "year": 1991,
+   "levelMin": 90,
+   "levelMax": 95,
+   "tier": "lenda",
+   "hint": "129 jogos pela seleção, 1 Copa do Mundo.",
+   "kit": [
+    "#C60C30",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q514329-dinamarca",
+   "personId": "Q514329",
+   "name": "John Sivebæk",
+   "position": "LAT",
+   "club": "Dinamarca",
+   "year": 1987,
+   "levelMin": 74,
+   "levelMax": 80,
+   "tier": "titular",
+   "hint": "87 jogos pela seleção, 1 Copa do Mundo.",
+   "kit": [
+    "#C60C30",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q128925-dinamarca",
+   "personId": "Q128925",
+   "name": "Nicolai Boilesen",
+   "position": "LAT",
+   "club": "Dinamarca",
+   "year": 2019,
+   "levelMin": 76,
+   "levelMax": 84,
+   "tier": "titular",
+   "hint": "16 jogos pela seleção, 16 Copas do Mundo.",
+   "kit": [
+    "#C60C30",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q298470-dinamarca",
+   "personId": "Q298470",
+   "name": "Simon Poulsen",
+   "position": "LAT",
+   "club": "Dinamarca",
+   "year": 2011,
+   "levelMin": 74,
+   "levelMax": 82,
+   "tier": "titular",
+   "hint": "7 jogos pela seleção, 1 Copa do Mundo.",
+   "kit": [
+    "#C60C30",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q16063229-dinamarca",
+   "personId": "Q16063229",
+   "name": "Andreas Christensen",
+   "position": "ZAG",
+   "club": "Dinamarca",
+   "year": 2022,
+   "levelMin": 81,
+   "levelMax": 87,
+   "tier": "craque",
+   "hint": "81 jogos pela seleção, 1 Copa do Mundo.",
+   "kit": [
+    "#C60C30",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q184205-dinamarca",
+   "personId": "Q184205",
+   "name": "Daniel Agger",
+   "position": "ZAG",
+   "club": "Dinamarca",
+   "year": 2011,
+   "levelMin": 76,
+   "levelMax": 84,
+   "tier": "titular",
+   "hint": "74 jogos pela seleção, 1 Copa do Mundo.",
+   "kit": [
+    "#C60C30",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q446107-dinamarca",
+   "personId": "Q446107",
+   "name": "Jan Heintze",
+   "position": "ZAG",
+   "club": "Dinamarca",
+   "year": 1990,
+   "levelMin": 78,
+   "levelMax": 84,
+   "tier": "titular",
+   "hint": "86 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#C60C30",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q248938-dinamarca",
+   "personId": "Q248938",
+   "name": "Mathias Jørgensen",
+   "position": "ZAG",
+   "club": "Dinamarca",
+   "year": 2017,
+   "levelMin": 75,
+   "levelMax": 83,
+   "tier": "titular",
+   "hint": "37 jogos pela seleção, 1 Copa do Mundo.",
+   "kit": [
+    "#C60C30",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q208638-dinamarca",
+   "personId": "Q208638",
+   "name": "Simon Kjær",
+   "position": "ZAG",
+   "club": "Dinamarca",
+   "year": 2020,
+   "levelMin": 86,
+   "levelMax": 92,
+   "tier": "craque",
+   "hint": "132 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#C60C30",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q294951-dinamarca",
+   "personId": "Q294951",
+   "name": "Christian Eriksen",
+   "position": "MEI",
+   "club": "Dinamarca",
+   "year": 2019,
+   "levelMin": 88,
+   "levelMax": 94,
+   "tier": "lenda",
+   "hint": "146 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#C60C30",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q204141-dinamarca",
+   "personId": "Q204141",
+   "name": "Christian Poulsen",
+   "position": "MEI",
+   "club": "Dinamarca",
+   "year": 2007,
+   "levelMin": 80,
+   "levelMax": 88,
+   "tier": "craque",
+   "hint": "92 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#C60C30",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q207665-dinamarca",
+   "personId": "Q207665",
+   "name": "Dennis Rommedahl",
+   "position": "MEI",
+   "club": "Dinamarca",
+   "year": 2004,
+   "levelMin": 80,
+   "levelMax": 86,
+   "tier": "titular",
+   "hint": "126 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#C60C30",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q375781-dinamarca",
+   "personId": "Q375781",
+   "name": "Jan Mølby",
+   "position": "MEI",
+   "club": "Dinamarca",
+   "year": 1990,
+   "levelMin": 78,
+   "levelMax": 86,
+   "tier": "titular",
+   "hint": "33 jogos pela seleção, 1 Copa do Mundo.",
+   "kit": [
+    "#C60C30",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q296457-dinamarca",
+   "personId": "Q296457",
+   "name": "Jesper Grønkjær",
+   "position": "MEI",
+   "club": "Dinamarca",
+   "year": 2004,
+   "levelMin": 77,
+   "levelMax": 85,
+   "tier": "titular",
+   "hint": "80 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#C60C30",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q188720-dinamarca",
+   "personId": "Q188720",
+   "name": "Michael Laudrup",
+   "position": "MEI",
+   "club": "Dinamarca",
+   "year": 1991,
+   "levelMin": 86,
+   "levelMax": 92,
+   "tier": "craque",
+   "hint": "104 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#C60C30",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q11059683-dinamarca",
+   "personId": "Q11059683",
+   "name": "Pierre Højbjerg",
+   "position": "MEI",
+   "club": "Dinamarca",
+   "year": 2022,
+   "levelMin": 83,
+   "levelMax": 89,
+   "tier": "craque",
+   "hint": "101 jogos pela seleção, 12 Copas do Mundo.",
+   "kit": [
+    "#C60C30",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q961878-dinamarca",
+   "personId": "Q961878",
+   "name": "Thomas Delaney",
+   "position": "MEI",
+   "club": "Dinamarca",
+   "year": 2018,
+   "levelMin": 78,
+   "levelMax": 86,
+   "tier": "titular",
+   "hint": "11 jogos pela seleção, 20 Copas do Mundo.",
+   "kit": [
+    "#C60C30",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q153463-dinamarca",
+   "personId": "Q153463",
+   "name": "Allan Simonsen",
+   "position": "ATA",
+   "club": "Dinamarca",
+   "year": 1979,
+   "levelMin": 80,
+   "levelMax": 86,
+   "tier": "titular",
+   "hint": "55 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#C60C30",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q212854-dinamarca",
+   "personId": "Q212854",
+   "name": "Brian Laudrup",
+   "position": "ATA",
+   "club": "Dinamarca",
+   "year": 1992,
+   "levelMin": 81,
+   "levelMax": 87,
+   "tier": "craque",
+   "hint": "82 jogos pela seleção, 1 Copa do Mundo.",
+   "kit": [
+    "#C60C30",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q203657-dinamarca",
+   "personId": "Q203657",
+   "name": "Jon Dahl Tomasson",
+   "position": "ATA",
+   "club": "Dinamarca",
+   "year": 2003,
+   "levelMin": 77,
+   "levelMax": 85,
+   "tier": "titular",
+   "hint": "112 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#C60C30",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q2440999-dinamarca",
+   "personId": "Q2440999",
+   "name": "Martin Braithwaite",
+   "position": "ATA",
+   "club": "Dinamarca",
+   "year": 2024,
+   "levelMin": 81,
+   "levelMax": 89,
+   "tier": "craque",
+   "hint": "69 jogos pela seleção, 1 Copa do Mundo.",
+   "kit": [
+    "#C60C30",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q167240-dinamarca",
+   "personId": "Q167240",
+   "name": "Nicklas Bendtner",
+   "position": "ATA",
+   "club": "Dinamarca",
+   "year": 2014,
+   "levelMin": 80,
+   "levelMax": 86,
+   "tier": "titular",
+   "hint": "81 jogos pela seleção, 1 Copa do Mundo.",
+   "kit": [
+    "#C60C30",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q66467324-dinamarca",
+   "personId": "Q66467324",
+   "name": "Rasmus Højlund",
+   "position": "ATA",
+   "club": "Dinamarca",
+   "year": 2026,
+   "levelMin": 78,
+   "levelMax": 86,
+   "tier": "titular",
+   "hint": "39 jogos pela seleção.",
+   "kit": [
+    "#C60C30",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q74152-dinamarca",
+   "personId": "Q74152",
+   "name": "Viktor Fischer",
+   "position": "ATA",
+   "club": "Dinamarca",
+   "year": 2021,
+   "levelMin": 76,
+   "levelMax": 84,
+   "tier": "titular",
+   "hint": "21 jogos pela seleção, 19 Copas do Mundo.",
+   "kit": [
+    "#C60C30",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q215963-espanha",
+   "personId": "Q215963",
+   "name": "Andoni Zubizarreta",
+   "position": "GOL",
+   "club": "Espanha",
+   "year": 1988,
+   "levelMin": 89,
+   "levelMax": 94,
+   "tier": "lenda",
+   "hint": "126 jogos pela seleção, 4 Copas do Mundo.",
+   "kit": [
+    "#C60B1E",
+    "#FFC400"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q11584-espanha",
+   "personId": "Q11584",
+   "name": "Iker Casillas",
+   "position": "GOL",
+   "club": "Espanha",
+   "year": 2008,
+   "levelMin": 93,
+   "levelMax": 98,
+   "tier": "lenda",
+   "hint": "167 jogos pela seleção, 5 Copas do Mundo.",
+   "kit": [
+    "#C60B1E",
+    "#FFC400"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q163666-espanha",
+   "personId": "Q163666",
+   "name": "Pepe Reina",
+   "position": "GOL",
+   "club": "Espanha",
+   "year": 2009,
+   "levelMin": 89,
+   "levelMax": 94,
+   "tier": "lenda",
+   "hint": "36 jogos pela seleção, 5 Copas do Mundo.",
+   "kit": [
+    "#C60B1E",
+    "#FFC400"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q185093-espanha",
+   "personId": "Q185093",
+   "name": "Jesús Navas",
+   "position": "LAT",
+   "club": "Espanha",
+   "year": 2012,
+   "levelMin": 84,
+   "levelMax": 90,
+   "tier": "craque",
+   "hint": "56 jogos pela seleção, 1 Copa do Mundo.",
+   "kit": [
+    "#C60B1E",
+    "#FFC400"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q188793-espanha",
+   "personId": "Q188793",
+   "name": "Joan Capdevila",
+   "position": "LAT",
+   "club": "Espanha",
+   "year": 2000,
+   "levelMin": 78,
+   "levelMax": 84,
+   "tier": "titular",
+   "hint": "60 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#C60B1E",
+    "#FFC400"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q187159-espanha",
+   "personId": "Q187159",
+   "name": "Jordi Alba",
+   "position": "LAT",
+   "club": "Espanha",
+   "year": 2016,
+   "levelMin": 89,
+   "levelMax": 94,
+   "tier": "lenda",
+   "hint": "93 jogos pela seleção, 3 Copas do Mundo.",
+   "kit": [
+    "#C60B1E",
+    "#FFC400"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q15396247-espanha",
+   "personId": "Q15396247",
+   "name": "José Luis Gayà",
+   "position": "LAT",
+   "club": "Espanha",
+   "year": 2022,
+   "levelMin": 79,
+   "levelMax": 87,
+   "tier": "titular",
+   "hint": "22 jogos pela seleção.",
+   "kit": [
+    "#C60B1E",
+    "#FFC400"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q210914-espanha",
+   "personId": "Q210914",
+   "name": "Juanfran Torres",
+   "position": "LAT",
+   "club": "Espanha",
+   "year": 2019,
+   "levelMin": 79,
+   "levelMax": 87,
+   "tier": "titular",
+   "hint": "22 jogos pela seleção, 1 Copa do Mundo.",
+   "kit": [
+    "#C60B1E",
+    "#FFC400"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q17158-espanha",
+   "personId": "Q17158",
+   "name": "Carles Puyol",
+   "position": "ZAG",
+   "club": "Espanha",
+   "year": 2005,
+   "levelMin": 89,
+   "levelMax": 94,
+   "tier": "lenda",
+   "hint": "100 jogos pela seleção, 4 Copas do Mundo.",
+   "kit": [
+    "#C60B1E",
+    "#FFC400"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q205499-espanha",
+   "personId": "Q205499",
+   "name": "Fernando Hierro",
+   "position": "ZAG",
+   "club": "Espanha",
+   "year": 1995,
+   "levelMin": 83,
+   "levelMax": 91,
+   "tier": "craque",
+   "hint": "89 jogos pela seleção, 4 Copas do Mundo.",
+   "kit": [
+    "#C60B1E",
+    "#FFC400"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q17507-espanha",
+   "personId": "Q17507",
+   "name": "Gerard Piqué",
+   "position": "ZAG",
+   "club": "Espanha",
+   "year": 2014,
+   "levelMin": 91,
+   "levelMax": 96,
+   "tier": "lenda",
+   "hint": "102 jogos pela seleção, 4 Copas do Mundo.",
+   "kit": [
+    "#C60B1E",
+    "#FFC400"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q4599-espanha",
+   "personId": "Q4599",
+   "name": "Raúl Albiol",
+   "position": "ZAG",
+   "club": "Espanha",
+   "year": 2013,
+   "levelMin": 84,
+   "levelMax": 90,
+   "tier": "craque",
+   "hint": "58 jogos pela seleção, 3 Copas do Mundo.",
+   "kit": [
+    "#C60B1E",
+    "#FFC400"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q483309-espanha",
+   "personId": "Q483309",
+   "name": "Sergio Ramos",
+   "position": "ZAG",
+   "club": "Espanha",
+   "year": 2013,
+   "levelMin": 92,
+   "levelMax": 97,
+   "tier": "lenda",
+   "hint": "180 jogos pela seleção, 5 Copas do Mundo.",
+   "kit": [
+    "#C60B1E",
+    "#FFC400"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q43729-espanha",
+   "personId": "Q43729",
+   "name": "Andrés Iniesta",
+   "position": "MEI",
+   "club": "Espanha",
+   "year": 2011,
+   "levelMin": 91,
+   "levelMax": 96,
+   "tier": "lenda",
+   "hint": "131 jogos pela seleção, 4 Copas do Mundo.",
+   "kit": [
+    "#C60B1E",
+    "#FFC400"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q17499-espanha",
+   "personId": "Q17499",
+   "name": "Cesc Fàbregas",
+   "position": "MEI",
+   "club": "Espanha",
+   "year": 2011,
+   "levelMin": 89,
+   "levelMax": 94,
+   "tier": "lenda",
+   "hint": "110 jogos pela seleção, 4 Copas do Mundo.",
+   "kit": [
+    "#C60B1E",
+    "#FFC400"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q161069-espanha",
+   "personId": "Q161069",
+   "name": "David Silva",
+   "position": "MEI",
+   "club": "Espanha",
+   "year": 2013,
+   "levelMin": 89,
+   "levelMax": 94,
+   "tier": "lenda",
+   "hint": "125 jogos pela seleção, 4 Copas do Mundo.",
+   "kit": [
+    "#C60B1E",
+    "#FFC400"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q276091-espanha",
+   "personId": "Q276091",
+   "name": "Koke",
+   "position": "MEI",
+   "club": "Espanha",
+   "year": 2019,
+   "levelMin": 83,
+   "levelMax": 89,
+   "tier": "craque",
+   "hint": "70 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#C60B1E",
+    "#FFC400"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q270367-espanha",
+   "personId": "Q270367",
+   "name": "Luis Suárez Miramontes",
+   "position": "MEI",
+   "club": "Espanha",
+   "year": 1962,
+   "levelMin": 85,
+   "levelMax": 91,
+   "tier": "craque",
+   "hint": "32 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#C60B1E",
+    "#FFC400"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q49704-espanha",
+   "personId": "Q49704",
+   "name": "Sergio Busquets",
+   "position": "MEI",
+   "club": "Espanha",
+   "year": 2015,
+   "levelMin": 91,
+   "levelMax": 96,
+   "tier": "lenda",
+   "hint": "143 jogos pela seleção, 4 Copas do Mundo.",
+   "kit": [
+    "#C60B1E",
+    "#FFC400"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q208104-espanha",
+   "personId": "Q208104",
+   "name": "Xabi Alonso",
+   "position": "MEI",
+   "club": "Espanha",
+   "year": 2009,
+   "levelMin": 89,
+   "levelMax": 94,
+   "tier": "lenda",
+   "hint": "114 jogos pela seleção, 4 Copas do Mundo.",
+   "kit": [
+    "#C60B1E",
+    "#FFC400"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q17500-espanha",
+   "personId": "Q17500",
+   "name": "Xavi",
+   "position": "MEI",
+   "club": "Espanha",
+   "year": 2007,
+   "levelMin": 91,
+   "levelMax": 96,
+   "tier": "lenda",
+   "hint": "133 jogos pela seleção, 5 Copas do Mundo.",
+   "kit": [
+    "#C60B1E",
+    "#FFC400"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q164546-espanha",
+   "personId": "Q164546",
+   "name": "Alfredo Di Stéfano",
+   "position": "ATA",
+   "club": "Espanha",
+   "year": 1953,
+   "levelMin": 90,
+   "levelMax": 95,
+   "tier": "lenda",
+   "hint": "31 jogos pela seleção, 1 Copa do Mundo.",
+   "kit": [
+    "#C60B1E",
+    "#FFC400"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q83006-espanha",
+   "personId": "Q83006",
+   "name": "David Villa",
+   "position": "ATA",
+   "club": "Espanha",
+   "year": 2008,
+   "levelMin": 89,
+   "levelMax": 94,
+   "tier": "lenda",
+   "hint": "98 jogos pela seleção, 4 Copas do Mundo.",
+   "kit": [
+    "#C60B1E",
+    "#FFC400"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q42731-espanha",
+   "personId": "Q42731",
+   "name": "Fernando Torres",
+   "position": "ATA",
+   "club": "Espanha",
+   "year": 2007,
+   "levelMin": 89,
+   "levelMax": 94,
+   "tier": "lenda",
+   "hint": "110 jogos pela seleção, 4 Copas do Mundo.",
+   "kit": [
+    "#C60B1E",
+    "#FFC400"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q168740-espanha",
+   "personId": "Q168740",
+   "name": "Juan Mata",
+   "position": "ATA",
+   "club": "Espanha",
+   "year": 2015,
+   "levelMin": 86,
+   "levelMax": 92,
+   "tier": "craque",
+   "hint": "41 jogos pela seleção, 3 Copas do Mundo.",
+   "kit": [
+    "#C60B1E",
+    "#FFC400"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q222789-espanha",
+   "personId": "Q222789",
+   "name": "Luis Enrique",
+   "position": "ATA",
+   "club": "Espanha",
+   "year": 1997,
+   "levelMin": 85,
+   "levelMax": 91,
+   "tier": "craque",
+   "hint": "62 jogos pela seleção, 3 Copas do Mundo.",
+   "kit": [
+    "#C60B1E",
+    "#FFC400"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q493081-espanha",
+   "personId": "Q493081",
+   "name": "Paco Gento",
+   "position": "ATA",
+   "club": "Espanha",
+   "year": 1960,
+   "levelMin": 86,
+   "levelMax": 92,
+   "tier": "craque",
+   "hint": "43 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#C60B1E",
+    "#FFC400"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q11576-espanha",
+   "personId": "Q11576",
+   "name": "Raúl",
+   "position": "ATA",
+   "club": "Espanha",
+   "year": 2004,
+   "levelMin": 90,
+   "levelMax": 95,
+   "tier": "lenda",
+   "hint": "102 jogos pela seleção, 3 Copas do Mundo.",
+   "kit": [
+    "#C60B1E",
+    "#FFC400"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q241378-estados-unidos",
+   "personId": "Q241378",
+   "name": "Brad Friedel",
+   "position": "GOL",
+   "club": "Estados Unidos",
+   "year": 1998,
+   "levelMin": 78,
+   "levelMax": 84,
+   "tier": "titular",
+   "hint": "82 jogos pela seleção, 3 Copas do Mundo.",
+   "kit": [
+    "#FFFFFF",
+    "#1F2F6B"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q24663885-estados-unidos",
+   "personId": "Q24663885",
+   "name": "Matt Turner",
+   "position": "GOL",
+   "club": "Estados Unidos",
+   "year": 2021,
+   "levelMin": 72,
+   "levelMax": 80,
+   "tier": "titular",
+   "hint": "23 jogos pela seleção, 1 Copa do Mundo.",
+   "kit": [
+    "#FFFFFF",
+    "#1F2F6B"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q200785-estados-unidos",
+   "personId": "Q200785",
+   "name": "Tim Howard",
+   "position": "GOL",
+   "club": "Estados Unidos",
+   "year": 2006,
+   "levelMin": 88,
+   "levelMax": 94,
+   "tier": "lenda",
+   "hint": "121 jogos pela seleção, 4 Copas do Mundo.",
+   "kit": [
+    "#FFFFFF",
+    "#1F2F6B"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q6381120-estados-unidos",
+   "personId": "Q6381120",
+   "name": "DeAndre Yedlin",
+   "position": "LAT",
+   "club": "Estados Unidos",
+   "year": 2020,
+   "levelMin": 67,
+   "levelMax": 75,
+   "tier": "operario",
+   "hint": "4 jogos pela seleção, 1 Copa do Mundo.",
+   "kit": [
+    "#FFFFFF",
+    "#1F2F6B"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q821211-estados-unidos",
+   "personId": "Q821211",
+   "name": "John Brooks",
+   "position": "LAT",
+   "club": "Estados Unidos",
+   "year": 2020,
+   "levelMin": 69,
+   "levelMax": 77,
+   "tier": "operario",
+   "hint": "45 jogos pela seleção, 1 Copa do Mundo.",
+   "kit": [
+    "#FFFFFF",
+    "#1F2F6B"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q57456989-estados-unidos",
+   "personId": "Q57456989",
+   "name": "Sergiño Dest",
+   "position": "LAT",
+   "club": "Estados Unidos",
+   "year": 2026,
+   "levelMin": 74,
+   "levelMax": 82,
+   "tier": "titular",
+   "hint": "33 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#FFFFFF",
+    "#1F2F6B"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q1200809-estados-unidos",
+   "personId": "Q1200809",
+   "name": "Desmond Armstrong",
+   "position": "ZAG",
+   "club": "Estados Unidos",
+   "year": 1991,
+   "levelMin": 75,
+   "levelMax": 83,
+   "tier": "titular",
+   "hint": "81 jogos pela seleção, 1 Copa do Mundo.",
+   "kit": [
+    "#FFFFFF",
+    "#1F2F6B"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q161041-estados-unidos",
+   "personId": "Q161041",
+   "name": "Jonathan Spector",
+   "position": "ZAG",
+   "club": "Estados Unidos",
+   "year": 2006,
+   "levelMin": 62,
+   "levelMax": 70,
+   "tier": "perna",
+   "hint": "36 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#FFFFFF",
+    "#1F2F6B"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q207464-estados-unidos",
+   "personId": "Q207464",
+   "name": "Oguchi Onyewu",
+   "position": "ZAG",
+   "club": "Estados Unidos",
+   "year": 2009,
+   "levelMin": 77,
+   "levelMax": 85,
+   "tier": "titular",
+   "hint": "69 jogos pela seleção, 3 Copas do Mundo.",
+   "kit": [
+    "#FFFFFF",
+    "#1F2F6B"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q22279773-estados-unidos",
+   "personId": "Q22279773",
+   "name": "Christian Pulisic",
+   "position": "MEI",
+   "club": "Estados Unidos",
+   "year": 2025,
+   "levelMin": 77,
+   "levelMax": 85,
+   "tier": "titular",
+   "hint": "90 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#FFFFFF",
+    "#1F2F6B"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q363257-estados-unidos",
+   "personId": "Q363257",
+   "name": "Claudio Reyna",
+   "position": "MEI",
+   "club": "Estados Unidos",
+   "year": 2003,
+   "levelMin": 83,
+   "levelMax": 89,
+   "tier": "craque",
+   "hint": "112 jogos pela seleção, 4 Copas do Mundo.",
+   "kit": [
+    "#FFFFFF",
+    "#1F2F6B"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q313035-estados-unidos",
+   "personId": "Q313035",
+   "name": "DaMarcus Beasley",
+   "position": "MEI",
+   "club": "Estados Unidos",
+   "year": 2007,
+   "levelMin": 82,
+   "levelMax": 88,
+   "tier": "craque",
+   "hint": "126 jogos pela seleção, 5 Copas do Mundo.",
+   "kit": [
+    "#FFFFFF",
+    "#1F2F6B"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q75019636-estados-unidos",
+   "personId": "Q75019636",
+   "name": "Gio Reyna",
+   "position": "MEI",
+   "club": "Estados Unidos",
+   "year": 2026,
+   "levelMin": 77,
+   "levelMax": 85,
+   "tier": "titular",
+   "hint": "17 jogos pela seleção, 1 Copa do Mundo.",
+   "kit": [
+    "#FFFFFF",
+    "#1F2F6B"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q280829-estados-unidos",
+   "personId": "Q280829",
+   "name": "Jermaine Jones",
+   "position": "MEI",
+   "club": "Estados Unidos",
+   "year": 2008,
+   "levelMin": 74,
+   "levelMax": 82,
+   "tier": "titular",
+   "hint": "8 jogos pela seleção, 1 Copa do Mundo.",
+   "kit": [
+    "#FFFFFF",
+    "#1F2F6B"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q208425-estados-unidos",
+   "personId": "Q208425",
+   "name": "Michael Bradley",
+   "position": "MEI",
+   "club": "Estados Unidos",
+   "year": 2014,
+   "levelMin": 82,
+   "levelMax": 88,
+   "tier": "craque",
+   "hint": "151 jogos pela seleção, 4 Copas do Mundo.",
+   "kit": [
+    "#FFFFFF",
+    "#1F2F6B"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q29998966-estados-unidos",
+   "personId": "Q29998966",
+   "name": "Weston McKennie",
+   "position": "MEI",
+   "club": "Estados Unidos",
+   "year": 2025,
+   "levelMin": 78,
+   "levelMax": 86,
+   "tier": "titular",
+   "hint": "71 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#FFFFFF",
+    "#1F2F6B"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q8024748-estados-unidos",
+   "personId": "Q8024748",
+   "name": "Windsor del Llano",
+   "position": "MEI",
+   "club": "Estados Unidos",
+   "year": 1976,
+   "levelMin": 73,
+   "levelMax": 81,
+   "tier": "titular",
+   "hint": "30 jogos pela seleção.",
+   "kit": [
+    "#FFFFFF",
+    "#1F2F6B"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q201860-estados-unidos",
+   "personId": "Q201860",
+   "name": "Clint Dempsey",
+   "position": "ATA",
+   "club": "Estados Unidos",
+   "year": 2010,
+   "levelMin": 84,
+   "levelMax": 92,
+   "tier": "craque",
+   "hint": "141 jogos pela seleção, 4 Copas do Mundo.",
+   "kit": [
+    "#FFFFFF",
+    "#1F2F6B"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q464385-estados-unidos",
+   "personId": "Q464385",
+   "name": "Cobi Jones",
+   "position": "ATA",
+   "club": "Estados Unidos",
+   "year": 1996,
+   "levelMin": 78,
+   "levelMax": 84,
+   "tier": "titular",
+   "hint": "164 jogos pela seleção, 3 Copas do Mundo.",
+   "kit": [
+    "#FFFFFF",
+    "#1F2F6B"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q310369-estados-unidos",
+   "personId": "Q310369",
+   "name": "Freddy Adu",
+   "position": "ATA",
+   "club": "Estados Unidos",
+   "year": 2014,
+   "levelMin": 75,
+   "levelMax": 81,
+   "tier": "titular",
+   "hint": "33 jogos pela seleção, 1 Copa do Mundo.",
+   "kit": [
+    "#FFFFFF",
+    "#1F2F6B"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q202237-estados-unidos",
+   "personId": "Q202237",
+   "name": "Landon Donovan",
+   "position": "ATA",
+   "club": "Estados Unidos",
+   "year": 2005,
+   "levelMin": 78,
+   "levelMax": 84,
+   "tier": "titular",
+   "hint": "157 jogos pela seleção, 4 Copas do Mundo.",
+   "kit": [
+    "#FFFFFF",
+    "#1F2F6B"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q96391665-estados-unidos",
+   "personId": "Q96391665",
+   "name": "Malik Tillman",
+   "position": "ATA",
+   "club": "Estados Unidos",
+   "year": 2026,
+   "levelMin": 75,
+   "levelMax": 83,
+   "tier": "titular",
+   "hint": "39 jogos pela seleção, 1 Copa do Mundo.",
+   "kit": [
+    "#FFFFFF",
+    "#1F2F6B"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q31871265-estados-unidos",
+   "personId": "Q31871265",
+   "name": "Timothy Weah",
+   "position": "ATA",
+   "club": "Estados Unidos",
+   "year": 2026,
+   "levelMin": 73,
+   "levelMax": 81,
+   "tier": "titular",
+   "hint": "31 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#FFFFFF",
+    "#1F2F6B"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q191139-franca",
+   "personId": "Q191139",
+   "name": "Fabien Barthez",
+   "position": "GOL",
+   "club": "França",
+   "year": 2000,
+   "levelMin": 86,
+   "levelMax": 92,
+   "tier": "craque",
+   "hint": "87 jogos pela seleção, 3 Copas do Mundo.",
+   "kit": [
+    "#1F2F6B",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q1907-franca",
+   "personId": "Q1907",
+   "name": "Hugo Lloris",
+   "position": "GOL",
+   "club": "França",
+   "year": 2013,
+   "levelMin": 91,
+   "levelMax": 96,
+   "tier": "lenda",
+   "hint": "145 jogos pela seleção, 4 Copas do Mundo.",
+   "kit": [
+    "#1F2F6B",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q1924-franca",
+   "personId": "Q1924",
+   "name": "Steve Mandanda",
+   "position": "GOL",
+   "club": "França",
+   "year": 2012,
+   "levelMin": 85,
+   "levelMax": 91,
+   "tier": "craque",
+   "hint": "35 jogos pela seleção, 14 Copas do Mundo.",
+   "kit": [
+    "#1F2F6B",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q1938-franca",
+   "personId": "Q1938",
+   "name": "Bacary Sagna",
+   "position": "LAT",
+   "club": "França",
+   "year": 2010,
+   "levelMin": 80,
+   "levelMax": 86,
+   "tier": "titular",
+   "hint": "65 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#1F2F6B",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q19599124-franca",
+   "personId": "Q19599124",
+   "name": "Benjamin Pavard",
+   "position": "LAT",
+   "club": "França",
+   "year": 2023,
+   "levelMin": 83,
+   "levelMax": 89,
+   "tier": "craque",
+   "hint": "55 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#1F2F6B",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q180326-franca",
+   "personId": "Q180326",
+   "name": "Lilian Thuram",
+   "position": "LAT",
+   "club": "França",
+   "year": 2001,
+   "levelMin": 91,
+   "levelMax": 96,
+   "tier": "lenda",
+   "hint": "142 jogos pela seleção, 3 Copas do Mundo.",
+   "kit": [
+    "#1F2F6B",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q1916-franca",
+   "personId": "Q1916",
+   "name": "Patrice Evra",
+   "position": "LAT",
+   "club": "França",
+   "year": 2008,
+   "levelMin": 86,
+   "levelMax": 92,
+   "tier": "craque",
+   "hint": "81 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#1F2F6B",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q299624-franca",
+   "personId": "Q299624",
+   "name": "Vincent Candela",
+   "position": "LAT",
+   "club": "França",
+   "year": 2000,
+   "levelMin": 80,
+   "levelMax": 86,
+   "tier": "titular",
+   "hint": "40 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#1F2F6B",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q30301454-franca",
+   "personId": "Q30301454",
+   "name": "Ibrahima Konaté",
+   "position": "ZAG",
+   "club": "França",
+   "year": 2026,
+   "levelMin": 80,
+   "levelMax": 86,
+   "tier": "titular",
+   "hint": "30 jogos pela seleção, 4 Copas do Mundo.",
+   "kit": [
+    "#1F2F6B",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q1839-franca",
+   "personId": "Q1839",
+   "name": "Laurent Blanc",
+   "position": "ZAG",
+   "club": "França",
+   "year": 1996,
+   "levelMin": 80,
+   "levelMax": 86,
+   "tier": "titular",
+   "hint": "97 jogos pela seleção, 1 Copa do Mundo.",
+   "kit": [
+    "#1F2F6B",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q193625-franca",
+   "personId": "Q193625",
+   "name": "Marcel Desailly",
+   "position": "ZAG",
+   "club": "França",
+   "year": 1995,
+   "levelMin": 82,
+   "levelMax": 90,
+   "tier": "craque",
+   "hint": "116 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#1F2F6B",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q489039-franca",
+   "personId": "Q489039",
+   "name": "Raphaël Varane",
+   "position": "ZAG",
+   "club": "França",
+   "year": 2020,
+   "levelMin": 81,
+   "levelMax": 89,
+   "tier": "craque",
+   "hint": "93 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#1F2F6B",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q1942-franca",
+   "personId": "Q1942",
+   "name": "Sébastien Squillaci",
+   "position": "ZAG",
+   "club": "França",
+   "year": 2007,
+   "levelMin": 80,
+   "levelMax": 88,
+   "tier": "craque",
+   "hint": "21 jogos pela seleção, 1 Copa do Mundo.",
+   "kit": [
+    "#1F2F6B",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q1921-franca",
+   "personId": "Q1921",
+   "name": "Blaise Matuidi",
+   "position": "MEI",
+   "club": "França",
+   "year": 2014,
+   "levelMin": 84,
+   "levelMax": 90,
+   "tier": "craque",
+   "hint": "84 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#1F2F6B",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q508711-franca",
+   "personId": "Q508711",
+   "name": "Didier Deschamps",
+   "position": "MEI",
+   "club": "França",
+   "year": 1995,
+   "levelMin": 87,
+   "levelMax": 93,
+   "tier": "lenda",
+   "hint": "103 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#1F2F6B",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q376247-franca",
+   "personId": "Q376247",
+   "name": "Dimitri Payet",
+   "position": "MEI",
+   "club": "França",
+   "year": 2017,
+   "levelMin": 84,
+   "levelMax": 90,
+   "tier": "craque",
+   "hint": "38 jogos pela seleção, 23 Copas do Mundo.",
+   "kit": [
+    "#1F2F6B",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q4261-franca",
+   "personId": "Q4261",
+   "name": "Michel Platini",
+   "position": "MEI",
+   "club": "França",
+   "year": 1982,
+   "levelMin": 92,
+   "levelMax": 97,
+   "tier": "lenda",
+   "hint": "72 jogos pela seleção, 3 Copas do Mundo.",
+   "kit": [
+    "#1F2F6B",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q46347-franca",
+   "personId": "Q46347",
+   "name": "Patrick Vieira",
+   "position": "MEI",
+   "club": "França",
+   "year": 2003,
+   "levelMin": 89,
+   "levelMax": 94,
+   "tier": "lenda",
+   "hint": "107 jogos pela seleção, 3 Copas do Mundo.",
+   "kit": [
+    "#1F2F6B",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q129027-franca",
+   "personId": "Q129027",
+   "name": "Paul Pogba",
+   "position": "MEI",
+   "club": "França",
+   "year": 2020,
+   "levelMin": 88,
+   "levelMax": 93,
+   "tier": "lenda",
+   "hint": "91 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#1F2F6B",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q123118-franca",
+   "personId": "Q123118",
+   "name": "Raymond Kopa",
+   "position": "MEI",
+   "club": "França",
+   "year": 1958,
+   "levelMin": 86,
+   "levelMax": 92,
+   "tier": "craque",
+   "hint": "45 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#1F2F6B",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q1835-franca",
+   "personId": "Q1835",
+   "name": "Zinédine Zidane",
+   "position": "MEI",
+   "club": "França",
+   "year": 2001,
+   "levelMin": 92,
+   "levelMax": 97,
+   "tier": "lenda",
+   "hint": "108 jogos pela seleção, 3 Copas do Mundo.",
+   "kit": [
+    "#1F2F6B",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q455462-franca",
+   "personId": "Q455462",
+   "name": "Antoine Griezmann",
+   "position": "ATA",
+   "club": "França",
+   "year": 2018,
+   "levelMin": 89,
+   "levelMax": 94,
+   "tier": "lenda",
+   "hint": "137 jogos pela seleção, 3 Copas do Mundo.",
+   "kit": [
+    "#1F2F6B",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q1918-franca",
+   "personId": "Q1918",
+   "name": "Franck Ribéry",
+   "position": "ATA",
+   "club": "França",
+   "year": 2010,
+   "levelMin": 91,
+   "levelMax": 96,
+   "tier": "lenda",
+   "hint": "81 jogos pela seleção, 16 Copas do Mundo.",
+   "kit": [
+    "#1F2F6B",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q1912-franca",
+   "personId": "Q1912",
+   "name": "Karim Benzema",
+   "position": "ATA",
+   "club": "França",
+   "year": 2014,
+   "levelMin": 92,
+   "levelMax": 97,
+   "tier": "lenda",
+   "hint": "97 jogos pela seleção, 1 Copa do Mundo.",
+   "kit": [
+    "#1F2F6B",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q21621995-franca",
+   "personId": "Q21621995",
+   "name": "Kylian Mbappé",
+   "position": "ATA",
+   "club": "França",
+   "year": 2024,
+   "levelMin": 92,
+   "levelMax": 97,
+   "tier": "lenda",
+   "hint": "107 jogos pela seleção, 3 Copas do Mundo.",
+   "kit": [
+    "#1F2F6B",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q1911-franca",
+   "personId": "Q1911",
+   "name": "Olivier Giroud",
+   "position": "ATA",
+   "club": "França",
+   "year": 2013,
+   "levelMin": 88,
+   "levelMax": 93,
+   "tier": "lenda",
+   "hint": "137 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#1F2F6B",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q20851003-franca",
+   "personId": "Q20851003",
+   "name": "Ousmane Dembélé",
+   "position": "ATA",
+   "club": "França",
+   "year": 2023,
+   "levelMin": 87,
+   "levelMax": 93,
+   "tier": "lenda",
+   "hint": "71 jogos pela seleção, 3 Copas do Mundo.",
+   "kit": [
+    "#1F2F6B",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q45901-franca",
+   "personId": "Q45901",
+   "name": "Thierry Henry",
+   "position": "ATA",
+   "club": "França",
+   "year": 2004,
+   "levelMin": 93,
+   "levelMax": 98,
+   "tier": "lenda",
+   "hint": "123 jogos pela seleção, 4 Copas do Mundo.",
+   "kit": [
+    "#1F2F6B",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q482955-holanda",
+   "personId": "Q482955",
+   "name": "Edwin van der Sar",
+   "position": "GOL",
+   "club": "Holanda",
+   "year": 1997,
+   "levelMin": 90,
+   "levelMax": 95,
+   "tier": "lenda",
+   "hint": "130 jogos pela seleção, 3 Copas do Mundo.",
+   "kit": [
+    "#F36C21",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q128719-holanda",
+   "personId": "Q128719",
+   "name": "Jasper Cillessen",
+   "position": "GOL",
+   "club": "Holanda",
+   "year": 2016,
+   "levelMin": 78,
+   "levelMax": 84,
+   "tier": "titular",
+   "hint": "65 jogos pela seleção, 1 Copa do Mundo.",
+   "kit": [
+    "#F36C21",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q208518-holanda",
+   "personId": "Q208518",
+   "name": "Michel Vorm",
+   "position": "GOL",
+   "club": "Holanda",
+   "year": 2010,
+   "levelMin": 80,
+   "levelMax": 88,
+   "tier": "craque",
+   "hint": "Jogou pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#F36C21",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q128912-holanda",
+   "personId": "Q128912",
+   "name": "Daley Blind",
+   "position": "LAT",
+   "club": "Holanda",
+   "year": 2018,
+   "levelMin": 88,
+   "levelMax": 94,
+   "tier": "lenda",
+   "hint": "108 jogos pela seleção, 27 Copas do Mundo.",
+   "kit": [
+    "#F36C21",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q19882816-holanda",
+   "personId": "Q19882816",
+   "name": "Denzel Dumfries",
+   "position": "LAT",
+   "club": "Holanda",
+   "year": 2023,
+   "levelMin": 79,
+   "levelMax": 85,
+   "tier": "titular",
+   "hint": "71 jogos pela seleção, 1 Copa do Mundo.",
+   "kit": [
+    "#F36C21",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q173360-holanda",
+   "personId": "Q173360",
+   "name": "Giovanni van Bronckhorst",
+   "position": "LAT",
+   "club": "Holanda",
+   "year": 2002,
+   "levelMin": 80,
+   "levelMax": 88,
+   "tier": "craque",
+   "hint": "106 jogos pela seleção, 3 Copas do Mundo.",
+   "kit": [
+    "#F36C21",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q932667-holanda",
+   "personId": "Q932667",
+   "name": "Paul Verhaegh",
+   "position": "LAT",
+   "club": "Holanda",
+   "year": 2010,
+   "levelMin": 76,
+   "levelMax": 84,
+   "tier": "titular",
+   "hint": "20 jogos pela seleção, 1 Copa do Mundo.",
+   "kit": [
+    "#F36C21",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q334405-holanda",
+   "personId": "Q334405",
+   "name": "Tim de Cler",
+   "position": "LAT",
+   "club": "Holanda",
+   "year": 2005,
+   "levelMin": 76,
+   "levelMax": 84,
+   "tier": "titular",
+   "hint": "17 jogos pela seleção, 1 Copa do Mundo.",
+   "kit": [
+    "#F36C21",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q208020-holanda",
+   "personId": "Q208020",
+   "name": "André Ooijer",
+   "position": "ZAG",
+   "club": "Holanda",
+   "year": 2001,
+   "levelMin": 79,
+   "levelMax": 85,
+   "tier": "titular",
+   "hint": "55 jogos pela seleção, 3 Copas do Mundo.",
+   "kit": [
+    "#F36C21",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q219657-holanda",
+   "personId": "Q219657",
+   "name": "Frank de Boer",
+   "position": "ZAG",
+   "club": "Holanda",
+   "year": 1997,
+   "levelMin": 84,
+   "levelMax": 90,
+   "tier": "craque",
+   "hint": "112 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#F36C21",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q129077-holanda",
+   "personId": "Q129077",
+   "name": "Joël Veltman",
+   "position": "ZAG",
+   "club": "Holanda",
+   "year": 2019,
+   "levelMin": 78,
+   "levelMax": 86,
+   "tier": "titular",
+   "hint": "28 jogos pela seleção, 16 Copas do Mundo.",
+   "kit": [
+    "#F36C21",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q946457-holanda",
+   "personId": "Q946457",
+   "name": "John Heitinga",
+   "position": "ZAG",
+   "club": "Holanda",
+   "year": 2008,
+   "levelMin": 80,
+   "levelMax": 86,
+   "tier": "titular",
+   "hint": "87 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#F36C21",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q133903-holanda",
+   "personId": "Q133903",
+   "name": "Virgil van Dijk",
+   "position": "ZAG",
+   "club": "Holanda",
+   "year": 2018,
+   "levelMin": 88,
+   "levelMax": 93,
+   "tier": "lenda",
+   "hint": "100 jogos pela seleção, 6 Copas do Mundo.",
+   "kit": [
+    "#F36C21",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q484909-holanda",
+   "personId": "Q484909",
+   "name": "Clarence Seedorf",
+   "position": "MEI",
+   "club": "Holanda",
+   "year": 2003,
+   "levelMin": 85,
+   "levelMax": 91,
+   "tier": "craque",
+   "hint": "87 jogos pela seleção, 1 Copa do Mundo.",
+   "kit": [
+    "#F36C21",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q129101-holanda",
+   "personId": "Q129101",
+   "name": "Davy Klaassen",
+   "position": "MEI",
+   "club": "Holanda",
+   "year": 2020,
+   "levelMin": 81,
+   "levelMax": 89,
+   "tier": "craque",
+   "hint": "41 jogos pela seleção.",
+   "kit": [
+    "#F36C21",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q169098-holanda",
+   "personId": "Q169098",
+   "name": "Frank Rijkaard",
+   "position": "MEI",
+   "club": "Holanda",
+   "year": 1989,
+   "levelMin": 85,
+   "levelMax": 91,
+   "tier": "craque",
+   "hint": "73 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#F36C21",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q185650-holanda",
+   "personId": "Q185650",
+   "name": "Nigel de Jong",
+   "position": "MEI",
+   "club": "Holanda",
+   "year": 2011,
+   "levelMin": 81,
+   "levelMax": 89,
+   "tier": "craque",
+   "hint": "81 jogos pela seleção, 32 Copas do Mundo.",
+   "kit": [
+    "#F36C21",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q163974-holanda",
+   "personId": "Q163974",
+   "name": "Rafael van der Vaart",
+   "position": "MEI",
+   "club": "Holanda",
+   "year": 2010,
+   "levelMin": 82,
+   "levelMax": 88,
+   "tier": "craque",
+   "hint": "109 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#F36C21",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q173972-holanda",
+   "personId": "Q173972",
+   "name": "Ruud Gullit",
+   "position": "MEI",
+   "club": "Holanda",
+   "year": 1989,
+   "levelMin": 87,
+   "levelMax": 93,
+   "tier": "lenda",
+   "hint": "66 jogos pela seleção, 1 Copa do Mundo.",
+   "kit": [
+    "#F36C21",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q124086-holanda",
+   "personId": "Q124086",
+   "name": "Wesley Sneijder",
+   "position": "MEI",
+   "club": "Holanda",
+   "year": 2007,
+   "levelMin": 89,
+   "levelMax": 95,
+   "tier": "lenda",
+   "hint": "134 jogos pela seleção, 3 Copas do Mundo.",
+   "kit": [
+    "#F36C21",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q297622-holanda",
+   "personId": "Q297622",
+   "name": "Willy van de Kerkhof",
+   "position": "MEI",
+   "club": "Holanda",
+   "year": 1978,
+   "levelMin": 81,
+   "levelMax": 87,
+   "tier": "craque",
+   "hint": "63 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#F36C21",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q43913-holanda",
+   "personId": "Q43913",
+   "name": "Arjen Robben",
+   "position": "ATA",
+   "club": "Holanda",
+   "year": 2011,
+   "levelMin": 89,
+   "levelMax": 94,
+   "tier": "lenda",
+   "hint": "96 jogos pela seleção, 3 Copas do Mundo.",
+   "kit": [
+    "#F36C21",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q294214-holanda",
+   "personId": "Q294214",
+   "name": "Dirk Kuyt",
+   "position": "ATA",
+   "club": "Holanda",
+   "year": 2007,
+   "levelMin": 83,
+   "levelMax": 91,
+   "tier": "craque",
+   "hint": "104 jogos pela seleção, 3 Copas do Mundo.",
+   "kit": [
+    "#F36C21",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q17163-holanda",
+   "personId": "Q17163",
+   "name": "Johan Cruyff",
+   "position": "ATA",
+   "club": "Holanda",
+   "year": 1973,
+   "levelMin": 92,
+   "levelMax": 97,
+   "tier": "lenda",
+   "hint": "48 jogos pela seleção, 1 Copa do Mundo.",
+   "kit": [
+    "#F36C21",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q313911-holanda",
+   "personId": "Q313911",
+   "name": "Luuk de Jong",
+   "position": "ATA",
+   "club": "Holanda",
+   "year": 2017,
+   "levelMin": 83,
+   "levelMax": 89,
+   "tier": "craque",
+   "hint": "39 jogos pela seleção, 18 Copas do Mundo.",
+   "kit": [
+    "#F36C21",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q483629-holanda",
+   "personId": "Q483629",
+   "name": "Marco van Basten",
+   "position": "ATA",
+   "club": "Holanda",
+   "year": 1991,
+   "levelMin": 86,
+   "levelMax": 92,
+   "tier": "craque",
+   "hint": "58 jogos pela seleção, 1 Copa do Mundo.",
+   "kit": [
+    "#F36C21",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q1894-holanda",
+   "personId": "Q1894",
+   "name": "Memphis Depay",
+   "position": "ATA",
+   "club": "Holanda",
+   "year": 2024,
+   "levelMin": 91,
+   "levelMax": 96,
+   "tier": "lenda",
+   "hint": "108 jogos pela seleção, 23 Copas do Mundo.",
+   "kit": [
+    "#F36C21",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q2339-holanda",
+   "personId": "Q2339",
+   "name": "Robin van Persie",
+   "position": "ATA",
+   "club": "Holanda",
+   "year": 2010,
+   "levelMin": 83,
+   "levelMax": 91,
+   "tier": "craque",
+   "hint": "102 jogos pela seleção, 3 Copas do Mundo.",
+   "kit": [
+    "#F36C21",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q27967807-inglaterra",
+   "personId": "Q27967807",
+   "name": "Aaron Ramsdale",
+   "position": "GOL",
+   "club": "Inglaterra",
+   "year": 2025,
+   "levelMin": 80,
+   "levelMax": 88,
+   "tier": "craque",
+   "hint": "15 jogos pela seleção, 1 Copa do Mundo.",
+   "kit": [
+    "#FFFFFF",
+    "#1C2C5B"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q187184-inglaterra",
+   "personId": "Q187184",
+   "name": "Joe Hart",
+   "position": "GOL",
+   "club": "Inglaterra",
+   "year": 2014,
+   "levelMin": 80,
+   "levelMax": 88,
+   "tier": "craque",
+   "hint": "75 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#FFFFFF",
+    "#1C2C5B"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q344902-inglaterra",
+   "personId": "Q344902",
+   "name": "Peter Bonetti",
+   "position": "GOL",
+   "club": "Inglaterra",
+   "year": 1968,
+   "levelMin": 79,
+   "levelMax": 85,
+   "tier": "titular",
+   "hint": "7 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#FFFFFF",
+    "#1C2C5B"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q133556-inglaterra",
+   "personId": "Q133556",
+   "name": "Ashley Cole",
+   "position": "LAT",
+   "club": "Inglaterra",
+   "year": 2007,
+   "levelMin": 86,
+   "levelMax": 92,
+   "tier": "craque",
+   "hint": "107 jogos pela seleção, 3 Copas do Mundo.",
+   "kit": [
+    "#FFFFFF",
+    "#1C2C5B"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q348857-inglaterra",
+   "personId": "Q348857",
+   "name": "Gary Neville",
+   "position": "LAT",
+   "club": "Inglaterra",
+   "year": 2002,
+   "levelMin": 84,
+   "levelMax": 90,
+   "tier": "craque",
+   "hint": "85 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#FFFFFF",
+    "#1C2C5B"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q185208-inglaterra",
+   "personId": "Q185208",
+   "name": "Glen Johnson",
+   "position": "LAT",
+   "club": "Inglaterra",
+   "year": 2011,
+   "levelMin": 81,
+   "levelMax": 87,
+   "tier": "craque",
+   "hint": "54 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#FFFFFF",
+    "#1C2C5B"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q40604-inglaterra",
+   "personId": "Q40604",
+   "name": "Kieran Gibbs",
+   "position": "LAT",
+   "club": "Inglaterra",
+   "year": 2016,
+   "levelMin": 80,
+   "levelMax": 88,
+   "tier": "craque",
+   "hint": "15 jogos pela seleção.",
+   "kit": [
+    "#FFFFFF",
+    "#1C2C5B"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q27569376-inglaterra",
+   "personId": "Q27569376",
+   "name": "Trent Alexander-Arnold",
+   "position": "LAT",
+   "club": "Inglaterra",
+   "year": 2025,
+   "levelMin": 81,
+   "levelMax": 87,
+   "tier": "craque",
+   "hint": "36 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#FFFFFF",
+    "#1C2C5B"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q223827-inglaterra",
+   "personId": "Q223827",
+   "name": "Gary Cahill",
+   "position": "ZAG",
+   "club": "Inglaterra",
+   "year": 2012,
+   "levelMin": 85,
+   "levelMax": 91,
+   "tier": "craque",
+   "hint": "61 jogos pela seleção, 44 Copas do Mundo.",
+   "kit": [
+    "#FFFFFF",
+    "#1C2C5B"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q172211-inglaterra",
+   "personId": "Q172211",
+   "name": "Jamie Carragher",
+   "position": "ZAG",
+   "club": "Inglaterra",
+   "year": 2005,
+   "levelMin": 85,
+   "levelMax": 91,
+   "tier": "craque",
+   "hint": "38 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#FFFFFF",
+    "#1C2C5B"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q83456-inglaterra",
+   "personId": "Q83456",
+   "name": "John Terry",
+   "position": "ZAG",
+   "club": "Inglaterra",
+   "year": 2007,
+   "levelMin": 86,
+   "levelMax": 92,
+   "tier": "craque",
+   "hint": "78 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#FFFFFF",
+    "#1C2C5B"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q483417-inglaterra",
+   "personId": "Q483417",
+   "name": "Rio Ferdinand",
+   "position": "ZAG",
+   "club": "Inglaterra",
+   "year": 2005,
+   "levelMin": 89,
+   "levelMax": 94,
+   "tier": "lenda",
+   "hint": "81 jogos pela seleção, 3 Copas do Mundo.",
+   "kit": [
+    "#FFFFFF",
+    "#1C2C5B"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q214734-inglaterra",
+   "personId": "Q214734",
+   "name": "Sol Campbell",
+   "position": "ZAG",
+   "club": "Inglaterra",
+   "year": 2001,
+   "levelMin": 82,
+   "levelMax": 88,
+   "tier": "craque",
+   "hint": "73 jogos pela seleção, 3 Copas do Mundo.",
+   "kit": [
+    "#FFFFFF",
+    "#1C2C5B"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q296583-inglaterra",
+   "personId": "Q296583",
+   "name": "Bryan Robson",
+   "position": "MEI",
+   "club": "Inglaterra",
+   "year": 1984,
+   "levelMin": 84,
+   "levelMax": 90,
+   "tier": "craque",
+   "hint": "90 jogos pela seleção, 3 Copas do Mundo.",
+   "kit": [
+    "#FFFFFF",
+    "#1C2C5B"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q10520-inglaterra",
+   "personId": "Q10520",
+   "name": "David Beckham",
+   "position": "MEI",
+   "club": "Inglaterra",
+   "year": 2002,
+   "levelMin": 93,
+   "levelMax": 98,
+   "tier": "lenda",
+   "hint": "115 jogos pela seleção, 3 Copas do Mundo.",
+   "kit": [
+    "#FFFFFF",
+    "#1C2C5B"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q41533-inglaterra",
+   "personId": "Q41533",
+   "name": "Frank Lampard",
+   "position": "MEI",
+   "club": "Inglaterra",
+   "year": 2005,
+   "levelMin": 91,
+   "levelMax": 96,
+   "tier": "lenda",
+   "hint": "106 jogos pela seleção, 3 Copas do Mundo.",
+   "kit": [
+    "#FFFFFF",
+    "#1C2C5B"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q191136-inglaterra",
+   "personId": "Q191136",
+   "name": "James Milner",
+   "position": "MEI",
+   "club": "Inglaterra",
+   "year": 2015,
+   "levelMin": 85,
+   "levelMax": 91,
+   "tier": "craque",
+   "hint": "61 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#FFFFFF",
+    "#1C2C5B"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q273715-inglaterra",
+   "personId": "Q273715",
+   "name": "Jordan Henderson",
+   "position": "MEI",
+   "club": "Inglaterra",
+   "year": 2017,
+   "levelMin": 89,
+   "levelMax": 94,
+   "tier": "lenda",
+   "hint": "91 jogos pela seleção, 4 Copas do Mundo.",
+   "kit": [
+    "#FFFFFF",
+    "#1C2C5B"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q505028-inglaterra",
+   "personId": "Q505028",
+   "name": "Martin Peters",
+   "position": "MEI",
+   "club": "Inglaterra",
+   "year": 1970,
+   "levelMin": 80,
+   "levelMax": 86,
+   "tier": "titular",
+   "hint": "67 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#FFFFFF",
+    "#1C2C5B"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q30729096-inglaterra",
+   "personId": "Q30729096",
+   "name": "Phil Foden",
+   "position": "MEI",
+   "club": "Inglaterra",
+   "year": 2026,
+   "levelMin": 86,
+   "levelMax": 92,
+   "tier": "craque",
+   "hint": "49 jogos pela seleção, 1 Copa do Mundo.",
+   "kit": [
+    "#FFFFFF",
+    "#1C2C5B"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q459830-inglaterra",
+   "personId": "Q459830",
+   "name": "Steven Gerrard",
+   "position": "MEI",
+   "club": "Inglaterra",
+   "year": 2007,
+   "levelMin": 90,
+   "levelMax": 95,
+   "tier": "lenda",
+   "hint": "114 jogos pela seleção, 3 Copas do Mundo.",
+   "kit": [
+    "#FFFFFF",
+    "#1C2C5B"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q171583-inglaterra",
+   "personId": "Q171583",
+   "name": "Bobby Charlton",
+   "position": "ATA",
+   "club": "Inglaterra",
+   "year": 1964,
+   "levelMin": 93,
+   "levelMax": 98,
+   "tier": "lenda",
+   "hint": "106 jogos pela seleção, 4 Copas do Mundo.",
+   "kit": [
+    "#FFFFFF",
+    "#1C2C5B"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q47778-inglaterra",
+   "personId": "Q47778",
+   "name": "Gary Lineker",
+   "position": "ATA",
+   "club": "Inglaterra",
+   "year": 1989,
+   "levelMin": 89,
+   "levelMax": 94,
+   "tier": "lenda",
+   "hint": "80 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#FFFFFF",
+    "#1C2C5B"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q969725-inglaterra",
+   "personId": "Q969725",
+   "name": "Harry Kane",
+   "position": "ATA",
+   "club": "Inglaterra",
+   "year": 2020,
+   "levelMin": 90,
+   "levelMax": 95,
+   "tier": "lenda",
+   "hint": "125 jogos pela seleção, 3 Copas do Mundo.",
+   "kit": [
+    "#FFFFFF",
+    "#1C2C5B"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q22951255-inglaterra",
+   "personId": "Q22951255",
+   "name": "Marcus Rashford",
+   "position": "ATA",
+   "club": "Inglaterra",
+   "year": 2024,
+   "levelMin": 89,
+   "levelMax": 94,
+   "tier": "lenda",
+   "hint": "78 jogos pela seleção, 3 Copas do Mundo.",
+   "kit": [
+    "#FFFFFF",
+    "#1C2C5B"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q128829-inglaterra",
+   "personId": "Q128829",
+   "name": "Michael Owen",
+   "position": "ATA",
+   "club": "Inglaterra",
+   "year": 2004,
+   "levelMin": 90,
+   "levelMax": 95,
+   "tier": "lenda",
+   "hint": "89 jogos pela seleção, 3 Copas do Mundo.",
+   "kit": [
+    "#FFFFFF",
+    "#1C2C5B"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q312157-inglaterra",
+   "personId": "Q312157",
+   "name": "Raheem Sterling",
+   "position": "ATA",
+   "club": "Inglaterra",
+   "year": 2021,
+   "levelMin": 88,
+   "levelMax": 93,
+   "tier": "lenda",
+   "hint": "82 jogos pela seleção, 3 Copas do Mundo.",
+   "kit": [
+    "#FFFFFF",
+    "#1C2C5B"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q266613-inglaterra",
+   "personId": "Q266613",
+   "name": "Wayne Rooney",
+   "position": "ATA",
+   "club": "Inglaterra",
+   "year": 2012,
+   "levelMin": 92,
+   "levelMax": 97,
+   "tier": "lenda",
+   "hint": "120 jogos pela seleção, 3 Copas do Mundo.",
+   "kit": [
+    "#FFFFFF",
+    "#1C2C5B"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q357664-irlanda",
+   "personId": "Q357664",
+   "name": "Keiren Westwood",
+   "position": "GOL",
+   "club": "Irlanda",
+   "year": 2011,
+   "levelMin": 76,
+   "levelMax": 84,
+   "tier": "titular",
+   "hint": "21 jogos pela seleção.",
+   "kit": [
+    "#169B62",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q215812-irlanda",
+   "personId": "Q215812",
+   "name": "Shay Given",
+   "position": "GOL",
+   "club": "Irlanda",
+   "year": 2009,
+   "levelMin": 72,
+   "levelMax": 80,
+   "tier": "titular",
+   "hint": "134 jogos pela seleção, 1 Copa do Mundo.",
+   "kit": [
+    "#169B62",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q351004-irlanda",
+   "personId": "Q351004",
+   "name": "Chris Hughton",
+   "position": "LAT",
+   "club": "Irlanda",
+   "year": 1985,
+   "levelMin": 76,
+   "levelMax": 84,
+   "tier": "titular",
+   "hint": "53 jogos pela seleção, 1 Copa do Mundo.",
+   "kit": [
+    "#169B62",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q317807-irlanda",
+   "personId": "Q317807",
+   "name": "Denis Irwin",
+   "position": "LAT",
+   "club": "Irlanda",
+   "year": 1992,
+   "levelMin": 76,
+   "levelMax": 84,
+   "tier": "titular",
+   "hint": "56 jogos pela seleção, 1 Copa do Mundo.",
+   "kit": [
+    "#169B62",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q331908-irlanda",
+   "personId": "Q331908",
+   "name": "Stephen Kelly",
+   "position": "LAT",
+   "club": "Irlanda",
+   "year": 2010,
+   "levelMin": 72,
+   "levelMax": 80,
+   "tier": "titular",
+   "hint": "39 jogos pela seleção.",
+   "kit": [
+    "#169B62",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q239914-irlanda",
+   "personId": "Q239914",
+   "name": "Steve Finnan",
+   "position": "LAT",
+   "club": "Irlanda",
+   "year": 2003,
+   "levelMin": 74,
+   "levelMax": 82,
+   "tier": "titular",
+   "hint": "53 jogos pela seleção, 1 Copa do Mundo.",
+   "kit": [
+    "#169B62",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q316717-irlanda",
+   "personId": "Q316717",
+   "name": "Steve Staunton",
+   "position": "LAT",
+   "club": "Irlanda",
+   "year": 1996,
+   "levelMin": 77,
+   "levelMax": 85,
+   "tier": "titular",
+   "hint": "102 jogos pela seleção, 3 Copas do Mundo.",
+   "kit": [
+    "#169B62",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q132026-irlanda",
+   "personId": "Q132026",
+   "name": "David O'Leary",
+   "position": "ZAG",
+   "club": "Irlanda",
+   "year": 1985,
+   "levelMin": 72,
+   "levelMax": 80,
+   "tier": "titular",
+   "hint": "68 jogos pela seleção, 1 Copa do Mundo.",
+   "kit": [
+    "#169B62",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q306351-irlanda",
+   "personId": "Q306351",
+   "name": "John O'Shea",
+   "position": "ZAG",
+   "club": "Irlanda",
+   "year": 2008,
+   "levelMin": 76,
+   "levelMax": 84,
+   "tier": "titular",
+   "hint": "118 jogos pela seleção.",
+   "kit": [
+    "#169B62",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q380200-irlanda",
+   "personId": "Q380200",
+   "name": "Paul McGrath",
+   "position": "ZAG",
+   "club": "Irlanda",
+   "year": 1986,
+   "levelMin": 77,
+   "levelMax": 85,
+   "tier": "titular",
+   "hint": "83 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#169B62",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q241502-irlanda",
+   "personId": "Q241502",
+   "name": "Richard Dunne",
+   "position": "ZAG",
+   "club": "Irlanda",
+   "year": 2006,
+   "levelMin": 76,
+   "levelMax": 84,
+   "tier": "titular",
+   "hint": "80 jogos pela seleção, 1 Copa do Mundo.",
+   "kit": [
+    "#169B62",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q544085-irlanda",
+   "personId": "Q544085",
+   "name": "Ronnie Whelan",
+   "position": "ZAG",
+   "club": "Irlanda",
+   "year": 1988,
+   "levelMin": 72,
+   "levelMax": 80,
+   "tier": "titular",
+   "hint": "53 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#169B62",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q192971-irlanda",
+   "personId": "Q192971",
+   "name": "Damien Duff",
+   "position": "MEI",
+   "club": "Irlanda",
+   "year": 2006,
+   "levelMin": 75,
+   "levelMax": 81,
+   "tier": "titular",
+   "hint": "100 jogos pela seleção, 1 Copa do Mundo.",
+   "kit": [
+    "#169B62",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q221222-irlanda",
+   "personId": "Q221222",
+   "name": "Darron Gibson",
+   "position": "MEI",
+   "club": "Irlanda",
+   "year": 2014,
+   "levelMin": 77,
+   "levelMax": 85,
+   "tier": "titular",
+   "hint": "27 jogos pela seleção, 30 Copas do Mundo.",
+   "kit": [
+    "#169B62",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q316698-irlanda",
+   "personId": "Q316698",
+   "name": "Glenn Whelan",
+   "position": "MEI",
+   "club": "Irlanda",
+   "year": 2004,
+   "levelMin": 68,
+   "levelMax": 78,
+   "tier": "operario",
+   "hint": "91 jogos pela seleção, 38 Copas do Mundo.",
+   "kit": [
+    "#169B62",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q356466-irlanda",
+   "personId": "Q356466",
+   "name": "Liam Brady",
+   "position": "MEI",
+   "club": "Irlanda",
+   "year": 1983,
+   "levelMin": 77,
+   "levelMax": 85,
+   "tier": "titular",
+   "hint": "72 jogos pela seleção.",
+   "kit": [
+    "#169B62",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q188632-irlanda",
+   "personId": "Q188632",
+   "name": "Roy Keane",
+   "position": "MEI",
+   "club": "Irlanda",
+   "year": 1998,
+   "levelMin": 85,
+   "levelMax": 91,
+   "tier": "craque",
+   "hint": "67 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#169B62",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q342826-irlanda",
+   "personId": "Q342826",
+   "name": "John Aldridge",
+   "position": "ATA",
+   "club": "Irlanda",
+   "year": 1985,
+   "levelMin": 75,
+   "levelMax": 83,
+   "tier": "titular",
+   "hint": "69 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#169B62",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q335831-irlanda",
+   "personId": "Q335831",
+   "name": "Niall Quinn",
+   "position": "ATA",
+   "club": "Irlanda",
+   "year": 1993,
+   "levelMin": 80,
+   "levelMax": 86,
+   "tier": "titular",
+   "hint": "92 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#169B62",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q184612-irlanda",
+   "personId": "Q184612",
+   "name": "Robbie Keane",
+   "position": "ATA",
+   "club": "Irlanda",
+   "year": 2007,
+   "levelMin": 80,
+   "levelMax": 88,
+   "tier": "craque",
+   "hint": "146 jogos pela seleção, 1 Copa do Mundo.",
+   "kit": [
+    "#169B62",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q470729-irlanda",
+   "personId": "Q470729",
+   "name": "Tony Cascarino",
+   "position": "ATA",
+   "club": "Irlanda",
+   "year": 1989,
+   "levelMin": 78,
+   "levelMax": 86,
+   "tier": "titular",
+   "hint": "88 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#169B62",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q67243168-irlanda",
+   "personId": "Q67243168",
+   "name": "Troy Parrott",
+   "position": "ATA",
+   "club": "Irlanda",
+   "year": 2026,
+   "levelMin": 74,
+   "levelMax": 82,
+   "tier": "titular",
+   "hint": "37 jogos pela seleção.",
+   "kit": [
+    "#169B62",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q723565-irlanda",
+   "personId": "Q723565",
+   "name": "Will Keane",
+   "position": "ATA",
+   "club": "Irlanda",
+   "year": 2020,
+   "levelMin": 74,
+   "levelMax": 82,
+   "tier": "titular",
+   "hint": "15 jogos pela seleção.",
+   "kit": [
+    "#169B62",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q180661-italia",
+   "personId": "Q180661",
+   "name": "Dino Zoff",
+   "position": "GOL",
+   "club": "Itália",
+   "year": 1972,
+   "levelMin": 92,
+   "levelMax": 97,
+   "tier": "lenda",
+   "hint": "112 jogos pela seleção, 4 Copas do Mundo.",
+   "kit": [
+    "#0066B2",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q68060-italia",
+   "personId": "Q68060",
+   "name": "Gianluigi Buffon",
+   "position": "GOL",
+   "club": "Itália",
+   "year": 2005,
+   "levelMin": 93,
+   "levelMax": 98,
+   "tier": "lenda",
+   "hint": "176 jogos pela seleção, 6 Copas do Mundo.",
+   "kit": [
+    "#0066B2",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q351994-italia",
+   "personId": "Q351994",
+   "name": "Gianpiero Combi",
+   "position": "GOL",
+   "club": "Itália",
+   "year": 1929,
+   "levelMin": 84,
+   "levelMax": 90,
+   "tier": "craque",
+   "hint": "47 jogos pela seleção, 1 Copa do Mundo.",
+   "kit": [
+    "#0066B2",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q68064-italia",
+   "personId": "Q68064",
+   "name": "Antonio Cabrini",
+   "position": "LAT",
+   "club": "Itália",
+   "year": 1984,
+   "levelMin": 81,
+   "levelMax": 89,
+   "tier": "craque",
+   "hint": "73 jogos pela seleção, 3 Copas do Mundo.",
+   "kit": [
+    "#0066B2",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q296033-italia",
+   "personId": "Q296033",
+   "name": "Davide Santon",
+   "position": "LAT",
+   "club": "Itália",
+   "year": 2018,
+   "levelMin": 80,
+   "levelMax": 88,
+   "tier": "craque",
+   "hint": "17 jogos pela seleção, 1 Copa do Mundo.",
+   "kit": [
+    "#0066B2",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q219390-italia",
+   "personId": "Q219390",
+   "name": "Giacinto Facchetti",
+   "position": "LAT",
+   "club": "Itália",
+   "year": 1969,
+   "levelMin": 89,
+   "levelMax": 94,
+   "tier": "lenda",
+   "hint": "94 jogos pela seleção, 3 Copas do Mundo.",
+   "kit": [
+    "#0066B2",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q182907-italia",
+   "personId": "Q182907",
+   "name": "Gianluca Zambrotta",
+   "position": "LAT",
+   "club": "Itália",
+   "year": 2004,
+   "levelMin": 86,
+   "levelMax": 92,
+   "tier": "craque",
+   "hint": "98 jogos pela seleção, 4 Copas do Mundo.",
+   "kit": [
+    "#0066B2",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q483027-italia",
+   "personId": "Q483027",
+   "name": "Paolo Maldini",
+   "position": "LAT",
+   "club": "Itália",
+   "year": 1995,
+   "levelMin": 93,
+   "levelMax": 98,
+   "tier": "lenda",
+   "hint": "126 jogos pela seleção, 4 Copas do Mundo.",
+   "kit": [
+    "#0066B2",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q102027-italia",
+   "personId": "Q102027",
+   "name": "Fabio Cannavaro",
+   "position": "ZAG",
+   "club": "Itália",
+   "year": 2004,
+   "levelMin": 91,
+   "levelMax": 96,
+   "tier": "lenda",
+   "hint": "136 jogos pela seleção, 7 Copas do Mundo.",
+   "kit": [
+    "#0066B2",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q189984-italia",
+   "personId": "Q189984",
+   "name": "Franco Baresi",
+   "position": "ZAG",
+   "club": "Itália",
+   "year": 1987,
+   "levelMin": 89,
+   "levelMax": 94,
+   "tier": "lenda",
+   "hint": "81 jogos pela seleção, 3 Copas do Mundo.",
+   "kit": [
+    "#0066B2",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q80306-italia",
+   "personId": "Q80306",
+   "name": "Giorgio Chiellini",
+   "position": "ZAG",
+   "club": "Itália",
+   "year": 2011,
+   "levelMin": 89,
+   "levelMax": 94,
+   "tier": "lenda",
+   "hint": "117 jogos pela seleção, 5 Copas do Mundo.",
+   "kit": [
+    "#0066B2",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q235159-italia",
+   "personId": "Q235159",
+   "name": "Giuseppe Bergomi",
+   "position": "ZAG",
+   "club": "Itália",
+   "year": 1990,
+   "levelMin": 89,
+   "levelMax": 94,
+   "tier": "lenda",
+   "hint": "81 jogos pela seleção, 4 Copas do Mundo.",
+   "kit": [
+    "#0066B2",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q208050-italia",
+   "personId": "Q208050",
+   "name": "Leonardo Bonucci",
+   "position": "ZAG",
+   "club": "Itália",
+   "year": 2014,
+   "levelMin": 88,
+   "levelMax": 93,
+   "tier": "lenda",
+   "hint": "121 jogos pela seleção, 16 Copas do Mundo.",
+   "kit": [
+    "#0066B2",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q43926-italia",
+   "personId": "Q43926",
+   "name": "Andrea Pirlo",
+   "position": "MEI",
+   "club": "Itália",
+   "year": 2006,
+   "levelMin": 89,
+   "levelMax": 94,
+   "tier": "lenda",
+   "hint": "116 jogos pela seleção, 4 Copas do Mundo.",
+   "kit": [
+    "#0066B2",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q179995-italia",
+   "personId": "Q179995",
+   "name": "Claudio Marchisio",
+   "position": "MEI",
+   "club": "Itália",
+   "year": 2013,
+   "levelMin": 85,
+   "levelMax": 91,
+   "tier": "craque",
+   "hint": "55 jogos pela seleção, 3 Copas do Mundo.",
+   "kit": [
+    "#0066B2",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q168497-italia",
+   "personId": "Q168497",
+   "name": "Daniele De Rossi",
+   "position": "MEI",
+   "club": "Itália",
+   "year": 2010,
+   "levelMin": 88,
+   "levelMax": 93,
+   "tier": "lenda",
+   "hint": "117 jogos pela seleção, 4 Copas do Mundo.",
+   "kit": [
+    "#0066B2",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q245011-italia",
+   "personId": "Q245011",
+   "name": "Demetrio Albertini",
+   "position": "MEI",
+   "club": "Itália",
+   "year": 1998,
+   "levelMin": 86,
+   "levelMax": 92,
+   "tier": "craque",
+   "hint": "79 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#0066B2",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q116980-italia",
+   "personId": "Q116980",
+   "name": "Gennaro Gattuso",
+   "position": "MEI",
+   "club": "Itália",
+   "year": 2005,
+   "levelMin": 86,
+   "levelMax": 92,
+   "tier": "craque",
+   "hint": "73 jogos pela seleção, 4 Copas do Mundo.",
+   "kit": [
+    "#0066B2",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q68050-italia",
+   "personId": "Q68050",
+   "name": "Giampiero Boniperti",
+   "position": "MEI",
+   "club": "Itália",
+   "year": 1955,
+   "levelMin": 89,
+   "levelMax": 94,
+   "tier": "lenda",
+   "hint": "38 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#0066B2",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q230046-italia",
+   "personId": "Q230046",
+   "name": "Gianni Rivera",
+   "position": "MEI",
+   "club": "Itália",
+   "year": 1970,
+   "levelMin": 90,
+   "levelMax": 95,
+   "tier": "lenda",
+   "hint": "63 jogos pela seleção, 4 Copas do Mundo.",
+   "kit": [
+    "#0066B2",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q314856-italia",
+   "personId": "Q314856",
+   "name": "Sandro Mazzola",
+   "position": "MEI",
+   "club": "Itália",
+   "year": 1969,
+   "levelMin": 89,
+   "levelMax": 94,
+   "tier": "lenda",
+   "hint": "70 jogos pela seleção, 3 Copas do Mundo.",
+   "kit": [
+    "#0066B2",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q346945-italia",
+   "personId": "Q346945",
+   "name": "Alessandro Altobelli",
+   "position": "ATA",
+   "club": "Itália",
+   "year": 1982,
+   "levelMin": 86,
+   "levelMax": 92,
+   "tier": "craque",
+   "hint": "61 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#0066B2",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q624-italia",
+   "personId": "Q624",
+   "name": "Alessandro Del Piero",
+   "position": "ATA",
+   "club": "Itália",
+   "year": 2001,
+   "levelMin": 93,
+   "levelMax": 98,
+   "tier": "lenda",
+   "hint": "91 jogos pela seleção, 3 Copas do Mundo.",
+   "kit": [
+    "#0066B2",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q126503-italia",
+   "personId": "Q126503",
+   "name": "Filippo Inzaghi",
+   "position": "ATA",
+   "club": "Itália",
+   "year": 2001,
+   "levelMin": 86,
+   "levelMax": 92,
+   "tier": "craque",
+   "hint": "57 jogos pela seleção, 3 Copas do Mundo.",
+   "kit": [
+    "#0066B2",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q20110-italia",
+   "personId": "Q20110",
+   "name": "Francesco Totti",
+   "position": "ATA",
+   "club": "Itália",
+   "year": 2003,
+   "levelMin": 92,
+   "levelMax": 97,
+   "tier": "lenda",
+   "hint": "58 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#0066B2",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q62182-italia",
+   "personId": "Q62182",
+   "name": "Mazzola",
+   "position": "ATA",
+   "club": "Itália",
+   "year": 1965,
+   "levelMin": 86,
+   "levelMax": 92,
+   "tier": "craque",
+   "hint": "8 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#0066B2",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q178628-italia",
+   "personId": "Q178628",
+   "name": "Paolo Rossi",
+   "position": "ATA",
+   "club": "Itália",
+   "year": 1983,
+   "levelMin": 86,
+   "levelMax": 92,
+   "tier": "craque",
+   "hint": "48 jogos pela seleção, 3 Copas do Mundo.",
+   "kit": [
+    "#0066B2",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q67964-italia",
+   "personId": "Q67964",
+   "name": "Roberto Baggio",
+   "position": "ATA",
+   "club": "Itália",
+   "year": 1994,
+   "levelMin": 91,
+   "levelMax": 96,
+   "tier": "lenda",
+   "hint": "56 jogos pela seleção, 3 Copas do Mundo.",
+   "kit": [
+    "#0066B2",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q2118086-mexico",
+   "personId": "Q2118086",
+   "name": "Alfredo Talavera",
+   "position": "GOL",
+   "club": "México",
+   "year": 2009,
+   "levelMin": 72,
+   "levelMax": 80,
+   "tier": "titular",
+   "hint": "Jogou pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#006847",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q313761-mexico",
+   "personId": "Q313761",
+   "name": "Jorge Campos",
+   "position": "GOL",
+   "club": "México",
+   "year": 1993,
+   "levelMin": 81,
+   "levelMax": 87,
+   "tier": "craque",
+   "hint": "130 jogos pela seleção, 3 Copas do Mundo.",
+   "kit": [
+    "#006847",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q208689-mexico",
+   "personId": "Q208689",
+   "name": "Carlos Salcido",
+   "position": "LAT",
+   "club": "México",
+   "year": 2007,
+   "levelMin": 79,
+   "levelMax": 85,
+   "tier": "titular",
+   "hint": "124 jogos pela seleção, 3 Copas do Mundo.",
+   "kit": [
+    "#006847",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q315702-mexico",
+   "personId": "Q315702",
+   "name": "Efraín Juárez",
+   "position": "LAT",
+   "club": "México",
+   "year": 2015,
+   "levelMin": 76,
+   "levelMax": 84,
+   "tier": "titular",
+   "hint": "5 jogos pela seleção, 1 Copa do Mundo.",
+   "kit": [
+    "#006847",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q2358664-mexico",
+   "personId": "Q2358664",
+   "name": "Miguel Layún",
+   "position": "LAT",
+   "club": "México",
+   "year": 2015,
+   "levelMin": 76,
+   "levelMax": 84,
+   "tier": "titular",
+   "hint": "71 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#006847",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q27859514-mexico",
+   "personId": "Q27859514",
+   "name": "Edson Álvarez",
+   "position": "ZAG",
+   "club": "México",
+   "year": 2024,
+   "levelMin": 81,
+   "levelMax": 89,
+   "tier": "craque",
+   "hint": "102 jogos pela seleção, 3 Copas do Mundo.",
+   "kit": [
+    "#006847",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q215469-mexico",
+   "personId": "Q215469",
+   "name": "Francisco Javier Rodríguez",
+   "position": "ZAG",
+   "club": "México",
+   "year": 2008,
+   "levelMin": 80,
+   "levelMax": 88,
+   "tier": "craque",
+   "hint": "108 jogos pela seleção, 3 Copas do Mundo.",
+   "kit": [
+    "#006847",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q313158-mexico",
+   "personId": "Q313158",
+   "name": "Héctor Moreno",
+   "position": "ZAG",
+   "club": "México",
+   "year": 2015,
+   "levelMin": 83,
+   "levelMax": 89,
+   "tier": "craque",
+   "hint": "132 jogos pela seleção, 4 Copas do Mundo.",
+   "kit": [
+    "#006847",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q24034870-mexico",
+   "personId": "Q24034870",
+   "name": "Jorge Sánchez",
+   "position": "ZAG",
+   "club": "México",
+   "year": 2024,
+   "levelMin": 77,
+   "levelMax": 85,
+   "tier": "titular",
+   "hint": "63 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#006847",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q186330-mexico",
+   "personId": "Q186330",
+   "name": "Rafael Márquez",
+   "position": "ZAG",
+   "club": "México",
+   "year": 2006,
+   "levelMin": 89,
+   "levelMax": 95,
+   "tier": "lenda",
+   "hint": "146 jogos pela seleção, 5 Copas do Mundo.",
+   "kit": [
+    "#006847",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q19364-mexico",
+   "personId": "Q19364",
+   "name": "Andrés Guardado",
+   "position": "MEI",
+   "club": "México",
+   "year": 2013,
+   "levelMin": 86,
+   "levelMax": 92,
+   "tier": "craque",
+   "hint": "180 jogos pela seleção, 5 Copas do Mundo.",
+   "kit": [
+    "#006847",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q309672-mexico",
+   "personId": "Q309672",
+   "name": "Gerardo Torrado",
+   "position": "MEI",
+   "club": "México",
+   "year": 2004,
+   "levelMin": 79,
+   "levelMax": 85,
+   "tier": "titular",
+   "hint": "146 jogos pela seleção, 3 Copas do Mundo.",
+   "kit": [
+    "#006847",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q562337-mexico",
+   "personId": "Q562337",
+   "name": "Giovani dos Santos",
+   "position": "MEI",
+   "club": "México",
+   "year": 2012,
+   "levelMin": 82,
+   "levelMax": 88,
+   "tier": "craque",
+   "hint": "106 jogos pela seleção, 3 Copas do Mundo.",
+   "kit": [
+    "#006847",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q2297174-mexico",
+   "personId": "Q2297174",
+   "name": "Héctor Herrera",
+   "position": "MEI",
+   "club": "México",
+   "year": 2017,
+   "levelMin": 77,
+   "levelMax": 85,
+   "tier": "titular",
+   "hint": "105 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#006847",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q17633812-mexico",
+   "personId": "Q17633812",
+   "name": "Hirving Lozano",
+   "position": "MEI",
+   "club": "México",
+   "year": 2022,
+   "levelMin": 76,
+   "levelMax": 84,
+   "tier": "titular",
+   "hint": "75 jogos pela seleção, 1 Copa do Mundo.",
+   "kit": [
+    "#006847",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q2408770-mexico",
+   "personId": "Q2408770",
+   "name": "Javier Aquino",
+   "position": "MEI",
+   "club": "México",
+   "year": 2017,
+   "levelMin": 76,
+   "levelMax": 84,
+   "tier": "titular",
+   "hint": "31 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#006847",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q607790-mexico",
+   "personId": "Q607790",
+   "name": "Jesús Manuel Corona",
+   "position": "MEI",
+   "club": "México",
+   "year": 2020,
+   "levelMin": 80,
+   "levelMax": 88,
+   "tier": "craque",
+   "hint": "15 jogos pela seleção, 1 Copa do Mundo.",
+   "kit": [
+    "#006847",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q17492-mexico",
+   "personId": "Q17492",
+   "name": "Jonathan dos Santos",
+   "position": "MEI",
+   "club": "México",
+   "year": 2014,
+   "levelMin": 75,
+   "levelMax": 81,
+   "tier": "titular",
+   "hint": "57 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#006847",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q519030-mexico",
+   "personId": "Q519030",
+   "name": "Antonio de Nigris",
+   "position": "ATA",
+   "club": "México",
+   "year": 2005,
+   "levelMin": 73,
+   "levelMax": 81,
+   "tier": "titular",
+   "hint": "16 jogos pela seleção.",
+   "kit": [
+    "#006847",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q47950-mexico",
+   "personId": "Q47950",
+   "name": "Carlos Vela",
+   "position": "ATA",
+   "club": "México",
+   "year": 2012,
+   "levelMin": 82,
+   "levelMax": 88,
+   "tier": "craque",
+   "hint": "72 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#006847",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q487155-mexico",
+   "personId": "Q487155",
+   "name": "Hugo Sánchez",
+   "position": "ATA",
+   "club": "México",
+   "year": 1985,
+   "levelMin": 79,
+   "levelMax": 87,
+   "tier": "titular",
+   "hint": "58 jogos pela seleção, 3 Copas do Mundo.",
+   "kit": [
+    "#006847",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q312334-mexico",
+   "personId": "Q312334",
+   "name": "Jared Borgetti",
+   "position": "ATA",
+   "club": "México",
+   "year": 2005,
+   "levelMin": 75,
+   "levelMax": 81,
+   "tier": "titular",
+   "hint": "89 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#006847",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q165125-mexico",
+   "personId": "Q165125",
+   "name": "Javier Hernández",
+   "position": "ATA",
+   "club": "México",
+   "year": 2015,
+   "levelMin": 84,
+   "levelMax": 92,
+   "tier": "craque",
+   "hint": "109 jogos pela seleção, 29 Copas do Mundo.",
+   "kit": [
+    "#006847",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q1925465-mexico",
+   "personId": "Q1925465",
+   "name": "Raúl Jiménez",
+   "position": "ATA",
+   "club": "México",
+   "year": 2018,
+   "levelMin": 83,
+   "levelMax": 89,
+   "tier": "craque",
+   "hint": "127 jogos pela seleção, 5 Copas do Mundo.",
+   "kit": [
+    "#006847",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q33296979-mexico",
+   "personId": "Q33296979",
+   "name": "Santiago Giménez",
+   "position": "ATA",
+   "club": "México",
+   "year": 2026,
+   "levelMin": 69,
+   "levelMax": 77,
+   "tier": "operario",
+   "hint": "51 jogos pela seleção, 1 Copa do Mundo.",
+   "kit": [
+    "#006847",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q6294052-portugal",
+   "personId": "Q6294052",
+   "name": "José Sá",
+   "position": "GOL",
+   "club": "Portugal",
+   "year": 2020,
+   "levelMin": 80,
+   "levelMax": 88,
+   "tier": "craque",
+   "hint": "16 jogos pela seleção, 1 Copa do Mundo.",
+   "kit": [
+    "#C8102E",
+    "#006600"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q294980-portugal",
+   "personId": "Q294980",
+   "name": "Rui Patrício",
+   "position": "GOL",
+   "club": "Portugal",
+   "year": 2015,
+   "levelMin": 84,
+   "levelMax": 90,
+   "tier": "craque",
+   "hint": "108 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#C8102E",
+    "#006600"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q295887-portugal",
+   "personId": "Q295887",
+   "name": "Vítor Baía",
+   "position": "GOL",
+   "club": "Portugal",
+   "year": 1996,
+   "levelMin": 81,
+   "levelMax": 87,
+   "tier": "craque",
+   "hint": "80 jogos pela seleção, 1 Copa do Mundo.",
+   "kit": [
+    "#C8102E",
+    "#006600"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q481330-portugal",
+   "personId": "Q481330",
+   "name": "Cédric Soares",
+   "position": "LAT",
+   "club": "Portugal",
+   "year": 2025,
+   "levelMin": 79,
+   "levelMax": 87,
+   "tier": "titular",
+   "hint": "34 jogos pela seleção, 1 Copa do Mundo.",
+   "kit": [
+    "#C8102E",
+    "#006600"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q26255506-portugal",
+   "personId": "Q26255506",
+   "name": "Diogo Dalot",
+   "position": "LAT",
+   "club": "Portugal",
+   "year": 2026,
+   "levelMin": 75,
+   "levelMax": 83,
+   "tier": "titular",
+   "hint": "37 jogos pela seleção, 1 Copa do Mundo.",
+   "kit": [
+    "#C8102E",
+    "#006600"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q484384-portugal",
+   "personId": "Q484384",
+   "name": "Fábio Coentrão",
+   "position": "LAT",
+   "club": "Portugal",
+   "year": 2015,
+   "levelMin": 77,
+   "levelMax": 85,
+   "tier": "titular",
+   "hint": "52 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#C8102E",
+    "#006600"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q6298063-portugal",
+   "personId": "Q6298063",
+   "name": "João Cancelo",
+   "position": "LAT",
+   "club": "Portugal",
+   "year": 2021,
+   "levelMin": 77,
+   "levelMax": 85,
+   "tier": "titular",
+   "hint": "64 jogos pela seleção, 1 Copa do Mundo.",
+   "kit": [
+    "#C8102E",
+    "#006600"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q4241680-portugal",
+   "personId": "Q4241680",
+   "name": "Raphaël Guerreiro",
+   "position": "LAT",
+   "club": "Portugal",
+   "year": 2020,
+   "levelMin": 80,
+   "levelMax": 86,
+   "tier": "titular",
+   "hint": "65 jogos pela seleção, 1 Copa do Mundo.",
+   "kit": [
+    "#C8102E",
+    "#006600"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q193000-portugal",
+   "personId": "Q193000",
+   "name": "Bruno Alves",
+   "position": "ZAG",
+   "club": "Portugal",
+   "year": 2008,
+   "levelMin": 86,
+   "levelMax": 92,
+   "tier": "craque",
+   "hint": "96 jogos pela seleção, 3 Copas do Mundo.",
+   "kit": [
+    "#C8102E",
+    "#006600"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q313468-portugal",
+   "personId": "Q313468",
+   "name": "Fernando Couto",
+   "position": "ZAG",
+   "club": "Portugal",
+   "year": 1996,
+   "levelMin": 79,
+   "levelMax": 87,
+   "tier": "titular",
+   "hint": "110 jogos pela seleção, 1 Copa do Mundo.",
+   "kit": [
+    "#C8102E",
+    "#006600"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q485697-portugal",
+   "personId": "Q485697",
+   "name": "Pepe",
+   "position": "ZAG",
+   "club": "Portugal",
+   "year": 2011,
+   "levelMin": 89,
+   "levelMax": 94,
+   "tier": "lenda",
+   "hint": "141 jogos pela seleção, 3 Copas do Mundo.",
+   "kit": [
+    "#C8102E",
+    "#006600"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q570811-portugal",
+   "personId": "Q570811",
+   "name": "Ricardo Carvalho",
+   "position": "ZAG",
+   "club": "Portugal",
+   "year": 2005,
+   "levelMin": 84,
+   "levelMax": 90,
+   "tier": "craque",
+   "hint": "89 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#C8102E",
+    "#006600"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q21621168-portugal",
+   "personId": "Q21621168",
+   "name": "Rúben Dias",
+   "position": "ZAG",
+   "club": "Portugal",
+   "year": 2024,
+   "levelMin": 81,
+   "levelMax": 89,
+   "tier": "craque",
+   "hint": "84 jogos pela seleção, 3 Copas do Mundo.",
+   "kit": [
+    "#C8102E",
+    "#006600"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q2724855-portugal",
+   "personId": "Q2724855",
+   "name": "Adrien Silva",
+   "position": "MEI",
+   "club": "Portugal",
+   "year": 2016,
+   "levelMin": 80,
+   "levelMax": 86,
+   "tier": "titular",
+   "hint": "26 jogos pela seleção, 25 Copas do Mundo.",
+   "kit": [
+    "#C8102E",
+    "#006600"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q15521306-portugal",
+   "personId": "Q15521306",
+   "name": "Bernardo Silva",
+   "position": "MEI",
+   "club": "Portugal",
+   "year": 2021,
+   "levelMin": 84,
+   "levelMax": 90,
+   "tier": "craque",
+   "hint": "115 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#C8102E",
+    "#006600"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q659634-portugal",
+   "personId": "Q659634",
+   "name": "Deco",
+   "position": "MEI",
+   "club": "Portugal",
+   "year": 2010,
+   "levelMin": 88,
+   "levelMax": 93,
+   "tier": "lenda",
+   "hint": "75 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#C8102E",
+    "#006600"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q222151-portugal",
+   "personId": "Q222151",
+   "name": "João Moutinho",
+   "position": "MEI",
+   "club": "Portugal",
+   "year": 2010,
+   "levelMin": 86,
+   "levelMax": 92,
+   "tier": "craque",
+   "hint": "146 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#C8102E",
+    "#006600"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q483145-portugal",
+   "personId": "Q483145",
+   "name": "Luís Figo",
+   "position": "MEI",
+   "club": "Portugal",
+   "year": 1999,
+   "levelMin": 91,
+   "levelMax": 96,
+   "tier": "lenda",
+   "hint": "127 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#C8102E",
+    "#006600"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q190608-portugal",
+   "personId": "Q190608",
+   "name": "Rui Costa",
+   "position": "MEI",
+   "club": "Portugal",
+   "year": 2001,
+   "levelMin": 84,
+   "levelMax": 90,
+   "tier": "craque",
+   "hint": "94 jogos pela seleção, 1 Copa do Mundo.",
+   "kit": [
+    "#C8102E",
+    "#006600"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q203665-portugal",
+   "personId": "Q203665",
+   "name": "Simão Sabrosa",
+   "position": "MEI",
+   "club": "Portugal",
+   "year": 2006,
+   "levelMin": 79,
+   "levelMax": 87,
+   "tier": "titular",
+   "hint": "85 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#C8102E",
+    "#006600"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q304416-portugal",
+   "personId": "Q304416",
+   "name": "William Carvalho",
+   "position": "MEI",
+   "club": "Portugal",
+   "year": 2018,
+   "levelMin": 80,
+   "levelMax": 86,
+   "tier": "titular",
+   "hint": "80 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#C8102E",
+    "#006600"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q11571-portugal",
+   "personId": "Q11571",
+   "name": "Cristiano Ronaldo",
+   "position": "ATA",
+   "club": "Portugal",
+   "year": 2012,
+   "levelMin": 93,
+   "levelMax": 98,
+   "tier": "lenda",
+   "hint": "233 jogos pela seleção, 6 Copas do Mundo.",
+   "kit": [
+    "#C8102E",
+    "#006600"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q162043-portugal",
+   "personId": "Q162043",
+   "name": "Eusébio",
+   "position": "ATA",
+   "club": "Portugal",
+   "year": 1969,
+   "levelMin": 91,
+   "levelMax": 96,
+   "tier": "lenda",
+   "hint": "64 jogos pela seleção, 1 Copa do Mundo.",
+   "kit": [
+    "#C8102E",
+    "#006600"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q214117-portugal",
+   "personId": "Q214117",
+   "name": "Hélder Postiga",
+   "position": "ATA",
+   "club": "Portugal",
+   "year": 2008,
+   "levelMin": 81,
+   "levelMax": 87,
+   "tier": "craque",
+   "hint": "71 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#C8102E",
+    "#006600"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q27049064-portugal",
+   "personId": "Q27049064",
+   "name": "João Félix",
+   "position": "ATA",
+   "club": "Portugal",
+   "year": 2025,
+   "levelMin": 80,
+   "levelMax": 86,
+   "tier": "titular",
+   "hint": "52 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#C8102E",
+    "#006600"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q213676-portugal",
+   "personId": "Q213676",
+   "name": "Liedson",
+   "position": "ATA",
+   "club": "Portugal",
+   "year": 2003,
+   "levelMin": 81,
+   "levelMax": 87,
+   "tier": "craque",
+   "hint": "15 jogos pela seleção, 1 Copa do Mundo.",
+   "kit": [
+    "#C8102E",
+    "#006600"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q482947-portugal",
+   "personId": "Q482947",
+   "name": "Nani",
+   "position": "ATA",
+   "club": "Portugal",
+   "year": 2013,
+   "levelMin": 86,
+   "levelMax": 92,
+   "tier": "craque",
+   "hint": "112 jogos pela seleção, 1 Copa do Mundo.",
+   "kit": [
+    "#C8102E",
+    "#006600"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q218165-portugal",
+   "personId": "Q218165",
+   "name": "Pauleta",
+   "position": "ATA",
+   "club": "Portugal",
+   "year": 2003,
+   "levelMin": 84,
+   "levelMax": 90,
+   "tier": "craque",
+   "hint": "88 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#C8102E",
+    "#006600"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q4162928-servia",
+   "personId": "Q4162928",
+   "name": "Marko Dmitrović",
+   "position": "GOL",
+   "club": "Sérvia",
+   "year": 2019,
+   "levelMin": 69,
+   "levelMax": 77,
+   "tier": "operario",
+   "hint": "19 jogos pela seleção, 1 Copa do Mundo.",
+   "kit": [
+    "#C6363C",
+    "#0C4076"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q215460-servia",
+   "personId": "Q215460",
+   "name": "Vladimir Stojković",
+   "position": "GOL",
+   "club": "Sérvia",
+   "year": 2010,
+   "levelMin": 77,
+   "levelMax": 85,
+   "tier": "titular",
+   "hint": "84 jogos pela seleção, 3 Copas do Mundo.",
+   "kit": [
+    "#C6363C",
+    "#0C4076"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q211451-servia",
+   "personId": "Q211451",
+   "name": "Aleksandar Kolarov",
+   "position": "LAT",
+   "club": "Sérvia",
+   "year": 2012,
+   "levelMin": 80,
+   "levelMax": 86,
+   "tier": "titular",
+   "hint": "94 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#C6363C",
+    "#0C4076"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q321567-servia",
+   "personId": "Q321567",
+   "name": "Antonio Rukavina",
+   "position": "LAT",
+   "club": "Sérvia",
+   "year": 2011,
+   "levelMin": 76,
+   "levelMax": 84,
+   "tier": "titular",
+   "hint": "59 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#C6363C",
+    "#0C4076"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q181921-servia",
+   "personId": "Q181921",
+   "name": "Branislav Ivanović",
+   "position": "LAT",
+   "club": "Sérvia",
+   "year": 2011,
+   "levelMin": 85,
+   "levelMax": 91,
+   "tier": "craque",
+   "hint": "104 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#C6363C",
+    "#0C4076"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q464524-servia",
+   "personId": "Q464524",
+   "name": "Dušan Basta",
+   "position": "LAT",
+   "club": "Sérvia",
+   "year": 2011,
+   "levelMin": 72,
+   "levelMax": 80,
+   "tier": "titular",
+   "hint": "18 jogos pela seleção, 1 Copa do Mundo.",
+   "kit": [
+    "#C6363C",
+    "#0C4076"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q310615-servia",
+   "personId": "Q310615",
+   "name": "Ivica Dragutinović",
+   "position": "ZAG",
+   "club": "Sérvia",
+   "year": 2002,
+   "levelMin": 74,
+   "levelMax": 82,
+   "tier": "titular",
+   "hint": "28 jogos pela seleção, 1 Copa do Mundo.",
+   "kit": [
+    "#C6363C",
+    "#0C4076"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q16237064-servia",
+   "personId": "Q16237064",
+   "name": "Miloš Veljković",
+   "position": "ZAG",
+   "club": "Sérvia",
+   "year": 2022,
+   "levelMin": 72,
+   "levelMax": 80,
+   "tier": "titular",
+   "hint": "35 jogos pela seleção, 1 Copa do Mundo.",
+   "kit": [
+    "#C6363C",
+    "#0C4076"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q163564-servia",
+   "personId": "Q163564",
+   "name": "Nemanja Vidić",
+   "position": "ZAG",
+   "club": "Sérvia",
+   "year": 2008,
+   "levelMin": 77,
+   "levelMax": 85,
+   "tier": "titular",
+   "hint": "56 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#C6363C",
+    "#0C4076"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q161038-servia",
+   "personId": "Q161038",
+   "name": "Neven Subotić",
+   "position": "ZAG",
+   "club": "Sérvia",
+   "year": 2015,
+   "levelMin": 74,
+   "levelMax": 82,
+   "tier": "titular",
+   "hint": "36 jogos pela seleção, 1 Copa do Mundo.",
+   "kit": [
+    "#C6363C",
+    "#0C4076"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q61899299-servia",
+   "personId": "Q61899299",
+   "name": "Strahinja Pavlović",
+   "position": "ZAG",
+   "club": "Sérvia",
+   "year": 2026,
+   "levelMin": 69,
+   "levelMax": 77,
+   "tier": "operario",
+   "hint": "59 jogos pela seleção.",
+   "kit": [
+    "#C6363C",
+    "#0C4076"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q192640-servia",
+   "personId": "Q192640",
+   "name": "Dejan Stanković",
+   "position": "MEI",
+   "club": "Sérvia",
+   "year": 2005,
+   "levelMin": 79,
+   "levelMax": 87,
+   "tier": "titular",
+   "hint": "103 jogos pela seleção, 3 Copas do Mundo.",
+   "kit": [
+    "#C6363C",
+    "#0C4076"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q16239548-servia",
+   "personId": "Q16239548",
+   "name": "Marko Grujić",
+   "position": "MEI",
+   "club": "Sérvia",
+   "year": 2023,
+   "levelMin": 79,
+   "levelMax": 87,
+   "tier": "titular",
+   "hint": "28 jogos pela seleção, 1 Copa do Mundo.",
+   "kit": [
+    "#C6363C",
+    "#0C4076"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q201910-servia",
+   "personId": "Q201910",
+   "name": "Miloš Krasić",
+   "position": "MEI",
+   "club": "Sérvia",
+   "year": 2011,
+   "levelMin": 76,
+   "levelMax": 84,
+   "tier": "titular",
+   "hint": "46 jogos pela seleção, 1 Copa do Mundo.",
+   "kit": [
+    "#C6363C",
+    "#0C4076"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q16236874-servia",
+   "personId": "Q16236874",
+   "name": "Nemanja Maksimović",
+   "position": "MEI",
+   "club": "Sérvia",
+   "year": 2022,
+   "levelMin": 80,
+   "levelMax": 88,
+   "tier": "craque",
+   "hint": "48 jogos pela seleção.",
+   "kit": [
+    "#C6363C",
+    "#0C4076"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q297603-servia",
+   "personId": "Q297603",
+   "name": "Nemanja Matić",
+   "position": "MEI",
+   "club": "Sérvia",
+   "year": 2015,
+   "levelMin": 75,
+   "levelMax": 83,
+   "tier": "titular",
+   "hint": "48 jogos pela seleção, 1 Copa do Mundo.",
+   "kit": [
+    "#C6363C",
+    "#0C4076"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q23771922-servia",
+   "personId": "Q23771922",
+   "name": "Nemanja Radonjić",
+   "position": "MEI",
+   "club": "Sérvia",
+   "year": 2023,
+   "levelMin": 76,
+   "levelMax": 84,
+   "tier": "titular",
+   "hint": "44 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#C6363C",
+    "#0C4076"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q15673000-servia",
+   "personId": "Q15673000",
+   "name": "Sergej Milinković-Savić",
+   "position": "MEI",
+   "club": "Sérvia",
+   "year": 2022,
+   "levelMin": 75,
+   "levelMax": 83,
+   "tier": "titular",
+   "hint": "56 jogos pela seleção, 1 Copa do Mundo.",
+   "kit": [
+    "#C6363C",
+    "#0C4076"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q211596-servia",
+   "personId": "Q211596",
+   "name": "Zoran Tošić",
+   "position": "MEI",
+   "club": "Sérvia",
+   "year": 2014,
+   "levelMin": 75,
+   "levelMax": 83,
+   "tier": "titular",
+   "hint": "76 jogos pela seleção, 1 Copa do Mundo.",
+   "kit": [
+    "#C6363C",
+    "#0C4076"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q433125-servia",
+   "personId": "Q433125",
+   "name": "Danijel Ljuboja",
+   "position": "ATA",
+   "club": "Sérvia",
+   "year": 2005,
+   "levelMin": 72,
+   "levelMax": 80,
+   "tier": "titular",
+   "hint": "17 jogos pela seleção, 1 Copa do Mundo.",
+   "kit": [
+    "#C6363C",
+    "#0C4076"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q313050-servia",
+   "personId": "Q313050",
+   "name": "Darko Kovačević",
+   "position": "ATA",
+   "club": "Sérvia",
+   "year": 2000,
+   "levelMin": 76,
+   "levelMax": 84,
+   "tier": "titular",
+   "hint": "59 jogos pela seleção, 1 Copa do Mundo.",
+   "kit": [
+    "#C6363C",
+    "#0C4076"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q713895-servia",
+   "personId": "Q713895",
+   "name": "Dušan Tadić",
+   "position": "ATA",
+   "club": "Sérvia",
+   "year": 2015,
+   "levelMin": 77,
+   "levelMax": 85,
+   "tier": "titular",
+   "hint": "111 jogos pela seleção, 1 Copa do Mundo.",
+   "kit": [
+    "#C6363C",
+    "#0C4076"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q285518-servia",
+   "personId": "Q285518",
+   "name": "Filip Đuričić",
+   "position": "ATA",
+   "club": "Sérvia",
+   "year": 2019,
+   "levelMin": 72,
+   "levelMax": 80,
+   "tier": "titular",
+   "hint": "44 jogos pela seleção.",
+   "kit": [
+    "#C6363C",
+    "#0C4076"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q207399-servia",
+   "personId": "Q207399",
+   "name": "Marko Pantelić",
+   "position": "ATA",
+   "club": "Sérvia",
+   "year": 2005,
+   "levelMin": 75,
+   "levelMax": 83,
+   "tier": "titular",
+   "hint": "43 jogos pela seleção, 1 Copa do Mundo.",
+   "kit": [
+    "#C6363C",
+    "#0C4076"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q204059-servia",
+   "personId": "Q204059",
+   "name": "Mateja Kežman",
+   "position": "ATA",
+   "club": "Sérvia",
+   "year": 2004,
+   "levelMin": 79,
+   "levelMax": 85,
+   "tier": "titular",
+   "hint": "49 jogos pela seleção, 1 Copa do Mundo.",
+   "kit": [
+    "#C6363C",
+    "#0C4076"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q201373-servia",
+   "personId": "Q201373",
+   "name": "Nikola Žigić",
+   "position": "ATA",
+   "club": "Sérvia",
+   "year": 2007,
+   "levelMin": 76,
+   "levelMax": 84,
+   "tier": "titular",
+   "hint": "57 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#C6363C",
+    "#0C4076"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q122354-suica",
+   "personId": "Q122354",
+   "name": "Diego Benaglio",
+   "position": "GOL",
+   "club": "Suíça",
+   "year": 2017,
+   "levelMin": 72,
+   "levelMax": 80,
+   "tier": "titular",
+   "hint": "61 jogos pela seleção, 3 Copas do Mundo.",
+   "kit": [
+    "#D52B1E",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q36184031-suica",
+   "personId": "Q36184031",
+   "name": "Gregor Kobel",
+   "position": "GOL",
+   "club": "Suíça",
+   "year": 2024,
+   "levelMin": 76,
+   "levelMax": 84,
+   "tier": "titular",
+   "hint": "30 jogos pela seleção, 3 Copas do Mundo.",
+   "kit": [
+    "#D52B1E",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q667596-suica",
+   "personId": "Q667596",
+   "name": "Yann Sommer",
+   "position": "GOL",
+   "club": "Suíça",
+   "year": 2023,
+   "levelMin": 72,
+   "levelMax": 80,
+   "tier": "titular",
+   "hint": "94 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#D52B1E",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q116067-suica",
+   "personId": "Q116067",
+   "name": "Philipp Degen",
+   "position": "LAT",
+   "club": "Suíça",
+   "year": 2010,
+   "levelMin": 69,
+   "levelMax": 77,
+   "tier": "operario",
+   "hint": "32 jogos pela seleção, 1 Copa do Mundo.",
+   "kit": [
+    "#D52B1E",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q666506-suica",
+   "personId": "Q666506",
+   "name": "Ricardo Rodríguez",
+   "position": "LAT",
+   "club": "Suíça",
+   "year": 2019,
+   "levelMin": 85,
+   "levelMax": 91,
+   "tier": "craque",
+   "hint": "148 jogos pela seleção, 4 Copas do Mundo.",
+   "kit": [
+    "#D52B1E",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q208586-suica",
+   "personId": "Q208586",
+   "name": "Stephan Lichtsteiner",
+   "position": "LAT",
+   "club": "Suíça",
+   "year": 2011,
+   "levelMin": 82,
+   "levelMax": 88,
+   "tier": "craque",
+   "hint": "108 jogos pela seleção, 3 Copas do Mundo.",
+   "kit": [
+    "#D52B1E",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q215770-suica",
+   "personId": "Q215770",
+   "name": "Johan Djourou",
+   "position": "ZAG",
+   "club": "Suíça",
+   "year": 2014,
+   "levelMin": 83,
+   "levelMax": 89,
+   "tier": "craque",
+   "hint": "76 jogos pela seleção, 3 Copas do Mundo.",
+   "kit": [
+    "#D52B1E",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q19938984-suica",
+   "personId": "Q19938984",
+   "name": "Manuel Akanji",
+   "position": "ZAG",
+   "club": "Suíça",
+   "year": 2022,
+   "levelMin": 80,
+   "levelMax": 86,
+   "tier": "titular",
+   "hint": "86 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#D52B1E",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q315336-suica",
+   "personId": "Q315336",
+   "name": "Patrick Müller",
+   "position": "ZAG",
+   "club": "Suíça",
+   "year": 2003,
+   "levelMin": 74,
+   "levelMax": 80,
+   "tier": "titular",
+   "hint": "89 jogos pela seleção, 1 Copa do Mundo.",
+   "kit": [
+    "#D52B1E",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q187450-suica",
+   "personId": "Q187450",
+   "name": "Philippe Senderos",
+   "position": "ZAG",
+   "club": "Suíça",
+   "year": 2012,
+   "levelMin": 75,
+   "levelMax": 83,
+   "tier": "titular",
+   "hint": "57 jogos pela seleção, 3 Copas do Mundo.",
+   "kit": [
+    "#D52B1E",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q313137-suica",
+   "personId": "Q313137",
+   "name": "Stéphane Henchoz",
+   "position": "ZAG",
+   "club": "Suíça",
+   "year": 2001,
+   "levelMin": 69,
+   "levelMax": 77,
+   "tier": "operario",
+   "hint": "72 jogos pela seleção.",
+   "kit": [
+    "#D52B1E",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q253348-suica",
+   "personId": "Q253348",
+   "name": "Blerim Džemaili",
+   "position": "MEI",
+   "club": "Suíça",
+   "year": 2013,
+   "levelMin": 79,
+   "levelMax": 85,
+   "tier": "titular",
+   "hint": "69 jogos pela seleção, 3 Copas do Mundo.",
+   "kit": [
+    "#D52B1E",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q21066260-suica",
+   "personId": "Q21066260",
+   "name": "Denis Zakaria",
+   "position": "MEI",
+   "club": "Suíça",
+   "year": 2023,
+   "levelMin": 80,
+   "levelMax": 86,
+   "tier": "titular",
+   "hint": "69 jogos pela seleção, 3 Copas do Mundo.",
+   "kit": [
+    "#D52B1E",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q213095-suica",
+   "personId": "Q213095",
+   "name": "Gelson Fernandes",
+   "position": "MEI",
+   "club": "Suíça",
+   "year": 2013,
+   "levelMin": 77,
+   "levelMax": 85,
+   "tier": "titular",
+   "hint": "67 jogos pela seleção, 3 Copas do Mundo.",
+   "kit": [
+    "#D52B1E",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q298448-suica",
+   "personId": "Q298448",
+   "name": "Gökhan İnler",
+   "position": "MEI",
+   "club": "Suíça",
+   "year": 2011,
+   "levelMin": 80,
+   "levelMax": 86,
+   "tier": "titular",
+   "hint": "89 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#D52B1E",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q514427-suica",
+   "personId": "Q514427",
+   "name": "Granit Xhaka",
+   "position": "MEI",
+   "club": "Suíça",
+   "year": 2019,
+   "levelMin": 88,
+   "levelMax": 94,
+   "tier": "lenda",
+   "hint": "152 jogos pela seleção, 4 Copas do Mundo.",
+   "kit": [
+    "#D52B1E",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q81615-suica",
+   "personId": "Q81615",
+   "name": "Pirmin Schwegler",
+   "position": "MEI",
+   "club": "Suíça",
+   "year": 2014,
+   "levelMin": 78,
+   "levelMax": 86,
+   "tier": "titular",
+   "hint": "20 jogos pela seleção, 1 Copa do Mundo.",
+   "kit": [
+    "#D52B1E",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q207949-suica",
+   "personId": "Q207949",
+   "name": "Tranquillo Barnetta",
+   "position": "MEI",
+   "club": "Suíça",
+   "year": 2012,
+   "levelMin": 82,
+   "levelMax": 88,
+   "tier": "craque",
+   "hint": "75 jogos pela seleção, 3 Copas do Mundo.",
+   "kit": [
+    "#D52B1E",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q217389-suica",
+   "personId": "Q217389",
+   "name": "Valon Behrami",
+   "position": "MEI",
+   "club": "Suíça",
+   "year": 2012,
+   "levelMin": 83,
+   "levelMax": 89,
+   "tier": "craque",
+   "hint": "83 jogos pela seleção, 4 Copas do Mundo.",
+   "kit": [
+    "#D52B1E",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q358862-suica",
+   "personId": "Q358862",
+   "name": "Admir Mehmedi",
+   "position": "ATA",
+   "club": "Suíça",
+   "year": 2018,
+   "levelMin": 75,
+   "levelMax": 81,
+   "tier": "titular",
+   "hint": "76 jogos pela seleção, 1 Copa do Mundo.",
+   "kit": [
+    "#D52B1E",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q193024-suica",
+   "personId": "Q193024",
+   "name": "Alexander Frei",
+   "position": "ATA",
+   "club": "Suíça",
+   "year": 2006,
+   "levelMin": 77,
+   "levelMax": 85,
+   "tier": "titular",
+   "hint": "86 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#D52B1E",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q15956282-suica",
+   "personId": "Q15956282",
+   "name": "Breel Embolo",
+   "position": "ATA",
+   "club": "Suíça",
+   "year": 2024,
+   "levelMin": 80,
+   "levelMax": 86,
+   "tier": "titular",
+   "hint": "92 jogos pela seleção, 3 Copas do Mundo.",
+   "kit": [
+    "#D52B1E",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q283762-suica",
+   "personId": "Q283762",
+   "name": "Haris Seferović",
+   "position": "ATA",
+   "club": "Suíça",
+   "year": 2019,
+   "levelMin": 83,
+   "levelMax": 89,
+   "tier": "craque",
+   "hint": "93 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#D52B1E",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q2420047-suica",
+   "personId": "Q2420047",
+   "name": "Josip Drmić",
+   "position": "ATA",
+   "club": "Suíça",
+   "year": 2019,
+   "levelMin": 75,
+   "levelMax": 83,
+   "tier": "titular",
+   "hint": "35 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#D52B1E",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q313438-suica",
+   "personId": "Q313438",
+   "name": "Stéphane Chapuisat",
+   "position": "ATA",
+   "club": "Suíça",
+   "year": 1996,
+   "levelMin": 77,
+   "levelMax": 85,
+   "tier": "titular",
+   "hint": "103 jogos pela seleção, 1 Copa do Mundo.",
+   "kit": [
+    "#D52B1E",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q252190-suica",
+   "personId": "Q252190",
+   "name": "Xherdan Shaqiri",
+   "position": "ATA",
+   "club": "Suíça",
+   "year": 2018,
+   "levelMin": 84,
+   "levelMax": 92,
+   "tier": "craque",
+   "hint": "125 jogos pela seleção, 3 Copas do Mundo.",
+   "kit": [
+    "#D52B1E",
+    "#FFFFFF"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q203749-uruguai",
+   "personId": "Q203749",
+   "name": "Fernando Muslera",
+   "position": "GOL",
+   "club": "Uruguai",
+   "year": 2011,
+   "levelMin": 85,
+   "levelMax": 91,
+   "tier": "craque",
+   "hint": "137 jogos pela seleção, 5 Copas do Mundo.",
+   "kit": [
+    "#5CBFEB",
+    "#111111"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q329545-uruguai",
+   "personId": "Q329545",
+   "name": "Martín Silva",
+   "position": "GOL",
+   "club": "Uruguai",
+   "year": 2013,
+   "levelMin": 80,
+   "levelMax": 88,
+   "tier": "craque",
+   "hint": "14 jogos pela seleção, 3 Copas do Mundo.",
+   "kit": [
+    "#5CBFEB",
+    "#111111"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q443423-uruguai",
+   "personId": "Q443423",
+   "name": "Rodolfo Rodríguez",
+   "position": "GOL",
+   "club": "Uruguai",
+   "year": 1984,
+   "levelMin": 82,
+   "levelMax": 88,
+   "tier": "craque",
+   "hint": "78 jogos pela seleção, 1 Copa do Mundo.",
+   "kit": [
+    "#5CBFEB",
+    "#111111"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q214898-uruguai",
+   "personId": "Q214898",
+   "name": "Álvaro Pereira",
+   "position": "LAT",
+   "club": "Uruguai",
+   "year": 2014,
+   "levelMin": 81,
+   "levelMax": 87,
+   "tier": "craque",
+   "hint": "Jogou pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#5CBFEB",
+    "#111111"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q13422031-uruguai",
+   "personId": "Q13422031",
+   "name": "Guillermo Varela",
+   "position": "LAT",
+   "club": "Uruguai",
+   "year": 2014,
+   "levelMin": 66,
+   "levelMax": 76,
+   "tier": "operario",
+   "hint": "16 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#5CBFEB",
+    "#111111"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q178599-uruguai",
+   "personId": "Q178599",
+   "name": "Jorge Fucile",
+   "position": "LAT",
+   "club": "Uruguai",
+   "year": 2012,
+   "levelMin": 80,
+   "levelMax": 88,
+   "tier": "craque",
+   "hint": "Jogou pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#5CBFEB",
+    "#111111"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q194107-uruguai",
+   "personId": "Q194107",
+   "name": "Martín Cáceres",
+   "position": "LAT",
+   "club": "Uruguai",
+   "year": 2014,
+   "levelMin": 85,
+   "levelMax": 91,
+   "tier": "craque",
+   "hint": "116 jogos pela seleção, 3 Copas do Mundo.",
+   "kit": [
+    "#5CBFEB",
+    "#111111"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q214886-uruguai",
+   "personId": "Q214886",
+   "name": "Maxi Pereira",
+   "position": "LAT",
+   "club": "Uruguai",
+   "year": 2011,
+   "levelMin": 83,
+   "levelMax": 89,
+   "tier": "craque",
+   "hint": "125 jogos pela seleção, 3 Copas do Mundo.",
+   "kit": [
+    "#5CBFEB",
+    "#111111"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q687174-uruguai",
+   "personId": "Q687174",
+   "name": "Darío Pereyra",
+   "position": "ZAG",
+   "club": "Uruguai",
+   "year": 1983,
+   "levelMin": 80,
+   "levelMax": 86,
+   "tier": "titular",
+   "hint": "32 jogos pela seleção, 1 Copa do Mundo.",
+   "kit": [
+    "#5CBFEB",
+    "#111111"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q214903-uruguai",
+   "personId": "Q214903",
+   "name": "Diego Godín",
+   "position": "ZAG",
+   "club": "Uruguai",
+   "year": 2013,
+   "levelMin": 89,
+   "levelMax": 94,
+   "tier": "lenda",
+   "hint": "161 jogos pela seleção, 3 Copas do Mundo.",
+   "kit": [
+    "#5CBFEB",
+    "#111111"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q373547-uruguai",
+   "personId": "Q373547",
+   "name": "Diego Lugano",
+   "position": "ZAG",
+   "club": "Uruguai",
+   "year": 2006,
+   "levelMin": 86,
+   "levelMax": 92,
+   "tier": "craque",
+   "hint": "95 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#5CBFEB",
+    "#111111"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q2087275-uruguai",
+   "personId": "Q2087275",
+   "name": "Hugo de León",
+   "position": "ZAG",
+   "club": "Uruguai",
+   "year": 1984,
+   "levelMin": 80,
+   "levelMax": 86,
+   "tier": "titular",
+   "hint": "48 jogos pela seleção, 1 Copa do Mundo.",
+   "kit": [
+    "#5CBFEB",
+    "#111111"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q1609495-uruguai",
+   "personId": "Q1609495",
+   "name": "Jorge Manicera",
+   "position": "ZAG",
+   "club": "Uruguai",
+   "year": 1967,
+   "levelMin": 80,
+   "levelMax": 86,
+   "tier": "titular",
+   "hint": "21 jogos pela seleção, 1 Copa do Mundo.",
+   "kit": [
+    "#5CBFEB",
+    "#111111"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q5041766-uruguai",
+   "personId": "Q5041766",
+   "name": "Carlos Sánchez",
+   "position": "MEI",
+   "club": "Uruguai",
+   "year": 2018,
+   "levelMin": 77,
+   "levelMax": 85,
+   "tier": "titular",
+   "hint": "38 jogos pela seleção, 1 Copa do Mundo.",
+   "kit": [
+    "#5CBFEB",
+    "#111111"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q314376-uruguai",
+   "personId": "Q314376",
+   "name": "Cristian Rodríguez",
+   "position": "MEI",
+   "club": "Uruguai",
+   "year": 2015,
+   "levelMin": 82,
+   "levelMax": 90,
+   "tier": "craque",
+   "hint": "110 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#5CBFEB",
+    "#111111"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q309662-uruguai",
+   "personId": "Q309662",
+   "name": "Diego Pérez",
+   "position": "MEI",
+   "club": "Uruguai",
+   "year": 2007,
+   "levelMin": 77,
+   "levelMax": 85,
+   "tier": "titular",
+   "hint": "89 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#5CBFEB",
+    "#111111"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q13578003-uruguai",
+   "personId": "Q13578003",
+   "name": "Giorgian de Arrascaeta",
+   "position": "MEI",
+   "club": "Uruguai",
+   "year": 2021,
+   "levelMin": 89,
+   "levelMax": 94,
+   "tier": "lenda",
+   "hint": "58 jogos pela seleção, 3 Copas do Mundo.",
+   "kit": [
+    "#5CBFEB",
+    "#111111"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q27960175-uruguai",
+   "personId": "Q27960175",
+   "name": "Manuel Ugarte",
+   "position": "MEI",
+   "club": "Uruguai",
+   "year": 2026,
+   "levelMin": 78,
+   "levelMax": 86,
+   "tier": "titular",
+   "hint": "22 jogos pela seleção, 1 Copa do Mundo.",
+   "kit": [
+    "#5CBFEB",
+    "#111111"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q2053358-uruguai",
+   "personId": "Q2053358",
+   "name": "Matías Vecino",
+   "position": "MEI",
+   "club": "Uruguai",
+   "year": 2018,
+   "levelMin": 79,
+   "levelMax": 85,
+   "tier": "titular",
+   "hint": "70 jogos pela seleção, 1 Copa do Mundo.",
+   "kit": [
+    "#5CBFEB",
+    "#111111"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q309808-uruguai",
+   "personId": "Q309808",
+   "name": "Nicolás Lodeiro",
+   "position": "MEI",
+   "club": "Uruguai",
+   "year": 2014,
+   "levelMin": 86,
+   "levelMax": 92,
+   "tier": "craque",
+   "hint": "60 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#5CBFEB",
+    "#111111"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q18817134-uruguai",
+   "personId": "Q18817134",
+   "name": "Rodrigo Betancur",
+   "position": "MEI",
+   "club": "Uruguai",
+   "year": 2022,
+   "levelMin": 80,
+   "levelMax": 86,
+   "tier": "titular",
+   "hint": "80 jogos pela seleção, 2 Copas do Mundo.",
+   "kit": [
+    "#5CBFEB",
+    "#111111"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q318456-uruguai",
+   "personId": "Q318456",
+   "name": "Abel Hernández",
+   "position": "ATA",
+   "club": "Uruguai",
+   "year": 2021,
+   "levelMin": 83,
+   "levelMax": 89,
+   "tier": "craque",
+   "hint": "29 jogos pela seleção, 1 Copa do Mundo.",
+   "kit": [
+    "#5CBFEB",
+    "#111111"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q46372260-uruguai",
+   "personId": "Q46372260",
+   "name": "Darwin Núñez",
+   "position": "ATA",
+   "club": "Uruguai",
+   "year": 2025,
+   "levelMin": 80,
+   "levelMax": 86,
+   "tier": "titular",
+   "hint": "41 jogos pela seleção, 4 Copas do Mundo.",
+   "kit": [
+    "#5CBFEB",
+    "#111111"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q261534-uruguai",
+   "personId": "Q261534",
+   "name": "Diego Forlán",
+   "position": "ATA",
+   "club": "Uruguai",
+   "year": 2007,
+   "levelMin": 89,
+   "levelMax": 94,
+   "tier": "lenda",
+   "hint": "112 jogos pela seleção, 3 Copas do Mundo.",
+   "kit": [
+    "#5CBFEB",
+    "#111111"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q167790-uruguai",
+   "personId": "Q167790",
+   "name": "Edinson Cavani",
+   "position": "ATA",
+   "club": "Uruguai",
+   "year": 2014,
+   "levelMin": 91,
+   "levelMax": 96,
+   "tier": "lenda",
+   "hint": "136 jogos pela seleção, 5 Copas do Mundo.",
+   "kit": [
+    "#5CBFEB",
+    "#111111"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q26517-uruguai",
+   "personId": "Q26517",
+   "name": "Luis Suárez",
+   "position": "ATA",
+   "club": "Uruguai",
+   "year": 2014,
+   "levelMin": 93,
+   "levelMax": 98,
+   "tier": "lenda",
+   "hint": "143 jogos pela seleção, 3 Copas do Mundo.",
+   "kit": [
+    "#5CBFEB",
+    "#111111"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q316551-uruguai",
+   "personId": "Q316551",
+   "name": "Marcelo Zalayeta",
+   "position": "ATA",
+   "club": "Uruguai",
+   "year": 2005,
+   "levelMin": 80,
+   "levelMax": 88,
+   "tier": "craque",
+   "hint": "47 jogos pela seleção.",
+   "kit": [
+    "#5CBFEB",
+    "#111111"
+   ],
+   "series": "SEL"
+  },
+  {
+   "id": "sel-Q516417-uruguai",
+   "personId": "Q516417",
+   "name": "Pedro Rocha",
+   "position": "ATA",
+   "club": "Uruguai",
+   "year": 1970,
+   "levelMin": 89,
+   "levelMax": 94,
+   "tier": "lenda",
+   "hint": "52 jogos pela seleção, 4 Copas do Mundo.",
+   "kit": [
+    "#5CBFEB",
+    "#111111"
+   ],
+   "series": "SEL"
+  }
+ ]
+}

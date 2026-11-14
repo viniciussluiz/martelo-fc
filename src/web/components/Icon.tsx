@@ -1,7 +1,7 @@
 import type { CrestConfig } from '../../shared/crest';
 import { Crest } from './crest/Crest';
 
-/** Ícones próprios do Martelo FC (traço 2px, 24×24). */
+/** Ícones próprios do Leilão FC (traço 2px, 24×24). */
 const PATHS: Record<string, string> = {
   martelo: 'M14.5 3.5l6 6-3 3-6-6 3-3zM11.5 6.5l-8 8M8 15.5l-4.5 4.5M17.5 12.5l-4 4',
   'martelo-ouro': 'M14.5 3.5l6 6-3 3-6-6 3-3zM11.5 9.5l-8 8 3 3 8-8M4 21h7',
@@ -77,7 +77,7 @@ export function Icon({ name, size, title }: { name: string; size?: number; title
   );
 }
 
-/** Escudo do próprio Martelo FC (marca do jogo). */
+/** Escudo do próprio Leilão FC (marca do jogo). */
 export const BRAND_CREST: CrestConfig = {
   shape: 'brasao',
   pattern: 'topo',
@@ -85,7 +85,7 @@ export const BRAND_CREST: CrestConfig = {
   secondary: '#FFC81E',
   detail: '#FFC81E',
   symbol: 'martelo',
-  initials: 'MFC',
+  initials: 'LFC',
   motto: 'DESDE 2026',
   stars: 0,
   ribbon: false,

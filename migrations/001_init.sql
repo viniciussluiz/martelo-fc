@@ -1,4 +1,4 @@
--- Martelo FC — esquema inicial.
+-- Leilão FC — esquema inicial.
 -- Convenções: ids TEXT (uuid/nanoid), datas ISO-8601 em UTC (TEXT), booleanos INTEGER 0/1.
 
 CREATE TABLE users (

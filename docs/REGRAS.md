@@ -16,8 +16,9 @@
 | Carta-surpresa | 35% das levas têm uma carta com nome oculto | sala: “Cartas-surpresa” |
 | Monte Final | grátis, um por vez; quem tem mais vagas começa; escolha automática no prazo | — |
 
-Prazos (modo normal): envelope 45 s, desempate 20 s, Monte 20 s, convocação 90 s (leilão de clubes), cerimônia 45 s, rodada da liga 20 s,
-jogo de copa 20 s (o seu jogo passa no campinho, com a bola andando e entrando no gol nos gols). Modo turbo ≈ metade.
+Prazos (modo normal): envelope 45 s, desempate 20 s, Monte 20 s, convocação 90 s (leilão de clubes), cerimônia 65 s (45 s + 20 s para
+escolher os batedores de pênalti, falta e escanteio), rodada da liga 40 s, jogo de copa 40 s (o seu jogo passa no campinho: os 22
+jogadores no gramado, a bola de pé em pé, com pênalti, falta, escanteio e impedimento). Modo turbo ≈ metade.
 
 ### Leilão de clubes (sala: “Tipo de leilão” → Clubes)
 Inspirado no modo “Clubes” do Leilão Legends. Em vez de um jogador por lance, cada lote é um **setor de um clube** (ex.: os goleiros do
@@ -43,11 +44,33 @@ Durante a disputa há um botão “Sair da sala” (com confirmação) no topo d
 Monte e na convocação o jogo escolhe por ele; dá para voltar pelo código da sala e retomar o time. Se ninguém mais estiver jogando
 (ou na partida rápida), a disputa termina sem resultado.
 
+### Leilão de seleções (sala: “Tipo de leilão” → Seleções)
+Igual ao leilão de clubes, mas cada lote é um **setor de uma seleção** (os atacantes do Brasil, os goleiros da Itália…).
+- Só entra quem jogou pela seleção principal (15+ jogos ou Copa do Mundo), e de cada seleção só os melhores de cada setor:
+  3 goleiros, 5 laterais, 5 zagueiros, 8 meias e 7 atacantes. Uma carta por jogador.
+- Seleções no baralho (as que fecham todos os setores): Brasil, Argentina, Uruguai, México, Estados Unidos, Itália, Alemanha,
+  França, Espanha, Inglaterra, Holanda, Portugal, Croácia, Sérvia, Suíça, Dinamarca e Irlanda. Com mais de 16 técnicos, os
+  pacotes que faltarem saem “combinados” (jogadores de várias seleções).
+- Lances, Monte, convocação, sobras e novo ciclo: como no leilão de clubes. As cartas de seleção não aparecem nos outros modos.
+- Detalhes do baralho e dos escudos: `docs/BARALHO.md`.
+
 ## Liga e copas
 - Liga: 20 times (técnicos + clubes do jogo), turno e returno, 3/1/0, critérios: pontos, vitórias, saldo, gols pró, sorteio prévio.
 - Partida: cada jogador rende um valor sorteado dentro da sua faixa; ataque/meio/defesa geram médias de gols (Poisson):
   ~1,3 gol para cada lado entre times iguais (≈ 2,8 por jogo) e cada ponto de ataque acima da defesa rival vale ~3,5% de gols
   (10 pontos de diferença em tudo ≈ 2,2 × 0,75); mando +10%; Retranca (−4 ataque, +5 defesa), Ataque (+5 ataque, −4 defesa).
+- Bola parada: na cerimônia cada técnico escolhe quem bate pênalti, falta e escanteio (sem escolha, o jogo indica o melhor do elenco;
+  CPU e clubes do jogo usam a indicação). A média de gols não muda — parte dos gols passa a nascer de bola parada:
+  - **Pênalti:** raro (≈ 1 a cada 4 jogos) e quase sempre gol: 78% de acerto, de 66% a 90% conforme o batedor.
+  - **Falta na entrada da área:** ≈ 1 por jogo; entra 30% das vezes (de 20% a 40% conforme o batedor). O resto para no goleiro, na
+    barreira, na trave ou vai para fora.
+  - **Escanteio:** ≈ 15% dos gols de bola rolando saem de escanteio, de cabeça, com assistência de quem cobrou.
+  - Gol de pênalti ou de falta é de quem bateu e não tem assistência.
+- Expulsão: rara — cada time tem 1,5% de chance por jogo (um vermelho a cada ~33 jogos), entre os 15 e os 85 minutos, mais para
+  zagueiros, laterais e meias. O expulso sai do campinho e não faz mais gol nem dá passe; no tempo que resta, o time com um a menos
+  cria até 30% menos e o adversário até 30% mais (proporcional ao tempo que falta). Não há suspensão para o jogo seguinte.
+- Súmula: embaixo do nome de cada time, no placar do jogo ao vivo, aparecem os goleadores com o minuto — “(P)” para pênalti,
+  “(Falta)” para falta direta — e os expulsos.
 - Clubes do jogo (os que completam a liga): calibrados pela média dos elencos montados no leilão — as forças vão por igual de
   11 pontos abaixo até 1 ponto abaixo dessa média (na copa continental, de 9 abaixo a 1 acima). Em simulação de 40 temporadas
   com 4 técnicos: campeão com ~83 pontos, saldo ~+45 e ~6 derrotas; um clube do jogo é campeão em ~1 de cada 6 temporadas.

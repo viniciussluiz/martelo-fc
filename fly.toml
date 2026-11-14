@@ -1,4 +1,4 @@
-# Martelo FC no Fly.io (região São Paulo).
+# Leilão FC no Fly.io (região São Paulo).
 # Troque "app" por um nome livre antes do primeiro deploy (fly apps create <nome>).
 #
 # Uma máquina só: as salas vivem na memória do processo e o banco é um arquivo SQLite no volume.

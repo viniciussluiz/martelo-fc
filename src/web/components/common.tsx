@@ -33,7 +33,7 @@ export const REACH_LABEL: Record<string, string> = {
 
 export const CUP_FORMAT_LABEL: Record<string, string> = {
   copa8: 'Copa dos 8',
-  libertadores: 'Taça Continental',
+  libertadores: 'Libertadores',
   mundial: 'Torneio Mundial',
   nenhuma: 'Só liga',
 };

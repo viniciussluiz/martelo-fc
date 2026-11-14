@@ -72,7 +72,12 @@ export function RulesPage() {
             <p>
               Na Cerimônia da Revelação aparecem as faixas de nível (por exemplo, 78–86). Em cada partida, cada jogador rende um valor dentro da
               sua faixa. A liga tem 20 times — os técnicos da sala e clubes do jogo — em turno e returno. Depois, conforme a sala, vem a Copa dos
-              8, a Taça Continental (grupos e mata-mata) ou o Torneio Mundial (jogos únicos).
+              8, a Libertadores (grupos e mata-mata) ou o Torneio Mundial (jogos únicos).
+            </p>
+            <p>
+              Na Cerimônia você também escolhe quem bate <strong>pênalti</strong>, <strong>falta</strong> e <strong>escanteio</strong>. O seu
+              jogo passa no campinho com os 22 jogadores e a bola de pé em pé: pênalti é raro e quase sempre vira gol; falta na entrada da
+              área entra perto de uma a cada três; no escanteio, quem cobra dá a assistência.
             </p>
           </div>
         </section>

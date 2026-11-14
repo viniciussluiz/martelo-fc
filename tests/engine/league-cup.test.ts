@@ -150,7 +150,7 @@ describe('Copa dos 8', () => {
 });
 
 describe('copas com grupos', () => {
-  it('Taça Continental: 32 times, 8 grupos, 6 rodadas de grupo e mata-mata de ida e volta', () => {
+  it('Taça Libertadores: 32 times, 8 grupos, 6 rodadas de grupo e mata-mata de ida e volta', () => {
     const q = teams(8, 'q');
     const extras = makeContinentalBots(24, 'lib').map((b) => ({ teamId: b.teamId, name: b.name, squad: b.squad, participantId: null, human: false }));
     const cup = Cup.create('libertadores', q, extras, 'lib');

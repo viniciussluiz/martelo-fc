@@ -49,10 +49,18 @@ export function LiveMatch({
   const goalsSoFar = timeline.goals.filter((g) => over || g.t <= exact);
   const home = over ? match.homeGoals : goalsSoFar.filter((g) => g.side === 'home').length;
   const away = over ? match.awayGoals : goalsSoFar.filter((g) => g.side === 'away').length;
+  // Súmula embaixo de cada time: gols (com o minuto em que a bola entrou na tela) e expulsões.
+  const sheetGoals = match.goals
+    .map((g, i) => ({ side: g.side, cardId: g.cardId, name: g.name, kind: g.kind, at: timeline.goals[i]?.t ?? g.minute }))
+    .filter((g) => over || g.at <= exact);
+  const sheetCards = (match.redCards ?? [])
+    .map((c) => ({ side: c.side, cardId: c.cardId, name: c.name, at: timeline.cards.find((k) => k.side === c.side && k.cardId === c.cardId)?.t ?? c.minute }))
+    .filter((c) => over || c.at <= exact);
   const events = (match.events ?? [])
     .map((e, i) => ({ e, at: timeline.moments[i] ?? e.minute }))
     .filter(({ e, at }) => (over ? true : at <= exact && e.type !== 'fim' && e.type !== 'penaltis'))
-    .map(({ e }) => e)
+    // O minuto narrado é o do relógio na hora em que o lance passa no campo.
+    .map(({ e, at }) => ({ ...e, minute: Math.min(90, Math.floor(at)) }))
     .reverse();
   return (
     <div className="live" data-state={over ? 'fim' : 'live'}>
@@ -84,6 +92,8 @@ export function LiveMatch({
           </span>
           <span className="live-team-name">{match.awayName}</span>
         </div>
+        <ScoreSheet side="home" goals={sheetGoals} cards={sheetCards} />
+        <ScoreSheet side="away" goals={sheetGoals} cards={sheetCards} />
         {over && ((match.homeId === you && match.homeGoals > match.awayGoals) || (match.awayId === you && match.awayGoals > match.homeGoals)) && (
           <Confetti seed={match.homeGoals * 7 + match.awayGoals} count={20} />
         )}
@@ -110,6 +120,50 @@ export function LiveMatch({
         <span style={{ width: `${(Math.min(90, exact) / 90) * 100}%` }} />
       </div>
       {footer}
+    </div>
+  );
+}
+
+interface SheetGoal {
+  side: 'home' | 'away';
+  cardId: string;
+  name: string;
+  kind?: 'penalti' | 'falta' | 'escanteio';
+  at: number;
+}
+
+/** Quem fez os gols de um time (pênalti = “P”, falta = “Falta”) e quem foi expulso. */
+function ScoreSheet({ side, goals, cards }: { side: 'home' | 'away'; goals: SheetGoal[]; cards: Array<Omit<SheetGoal, 'kind'>> }) {
+  const mine = goals.filter((g) => g.side === side);
+  const reds = cards.filter((c) => c.side === side);
+  if (mine.length === 0 && reds.length === 0) return <div className="live-sheet" data-side={side} data-empty />;
+  const minute = (at: number) => `${Math.min(90, Math.floor(at))}'`;
+  // Um item por goleador, com todos os gols dele.
+  const scorers: Array<{ cardId: string; name: string; marks: string[] }> = [];
+  for (const g of mine) {
+    const mark = `${minute(g.at)}${g.kind === 'penalti' ? ' (P)' : g.kind === 'falta' ? ' (Falta)' : ''}`;
+    const cur = scorers.find((s) => s.cardId === g.cardId);
+    if (cur) cur.marks.push(mark);
+    else scorers.push({ cardId: g.cardId, name: g.name, marks: [mark] });
+  }
+  return (
+    <div className="live-sheet" data-side={side}>
+      {scorers.length > 0 && (
+        <p className="live-sheet-goals" aria-label="Gols">
+          {scorers.map((s, i) => (
+            <span key={s.cardId}>
+              {s.name} <span className="live-sheet-min">{s.marks.join(', ')}</span>
+              {i < scorers.length - 1 ? ', ' : ''}
+            </span>
+          ))}
+        </p>
+      )}
+      {reds.map((c) => (
+        <p key={c.cardId} className="live-sheet-red" aria-label="Expulsão">
+          <span className="red-card" aria-hidden="true" />
+          {c.name} <span className="live-sheet-min">{minute(c.at)}</span>
+        </p>
+      ))}
     </div>
   );
 }

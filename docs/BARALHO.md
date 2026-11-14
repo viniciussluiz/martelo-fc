@@ -61,13 +61,15 @@ as constantes em `src/tools/wikidata/build.ts` e rode `npm run deck:wikidata -- 
 salas só do Brasil e de Real Madrid/Barcelona para a Europa; o leilão nunca põe duas versões da mesma pessoa juntas
 (`personId`). Cada grupo é montado à parte: a melhor versão dos mais famosos entra sempre (top 10% no Brasil, 5% na Europa);
 o resto é estratificado por posição e faixa (para haver também operários e pernas-de-pau), preferindo os nomes mais
-conhecidos. O baralho atual tem 2.112 cartas: Série A 816 (≈12% Lendas), Série B 330 e Europa 966 (≈14% Lendas). O teto das Lendas é
+conhecidos. O baralho atual tem 2.114 cartas: Série A 818 (≈12% Lendas), Série B 330 e Europa 966 (≈14% Lendas). O teto das Lendas é
 93–98; só Pelé e Messi vão a 95–100 (ajuste manual, abaixo).
 
 **Ajustes manuais** (`data/deck-ajustes.json`), aplicados pelo `npm run deck:wikidata` ao montar o baralho:
 - `excluir`: cartas que nunca entram — típico quando o Wikidata tem uma passagem sem data de saída, que vira carta “de 2026”
   de quem já saiu do clube (ex.: Marquinhos no Atlético-MG);
-- `nivel`: faixa de nível fixa (ex.: Pelé e Messi 95–100).
+- `nivel`: faixa de nível fixa (ex.: Pelé e Messi 95–100);
+- `incluir`: cartas completas feitas à mão, para quem o Wikidata não tem ou a nota calculada deixou de fora (ex.: Dirceu Lopes,
+  Cruzeiro 1966, e Ronaldo Fenômeno, Cruzeiro 1993). Entram no fim do baralho.
 O `id` casa por prefixo: `wd-<jogador>` pega todas as cartas do jogador, `wd-<jogador>-<clube>` as daquela passagem, e com o
 ano no fim só aquela carta.
 
@@ -127,3 +129,32 @@ avalie com um advogado antes de lançar.
 
 ## Baralho fictício
 `npm run deck:generate` recria `data/deck.json` (320 cartas, determinístico). É usado nos testes e quando não há baralho real.
+
+## Seleções (modo “Seleções”)
+
+```bash
+npm run deck:selecoes     # monta data/deck-selecoes.json (rode depois de npm run deck:wikidata)
+npm run escudos           # também busca o escudo de cada seleção
+```
+
+O servidor soma `data/deck-selecoes.json` ao baralho de jogadores reais (outro caminho: `NATIONAL_DECK_PATH`). As cartas levam
+o grupo `SEL` e só entram no leilão de seleções; o “clube” da carta é a seleção.
+
+**Pente-fino** (`src/tools/wikidata/national.ts`):
+- só quem tem 15+ jogos pela seleção principal ou disputou Copa do Mundo;
+- de cada seleção, os melhores de cada setor: 3 goleiros, 5 laterais, 5 zagueiros, 8 meias e 7 atacantes;
+- só ficam as seleções que fecham todos os setores com folga para a convocação (hoje 17, com 456 cartas);
+- nota: a do melhor momento do jogador no baralho de clubes (sobe até 3 pontos quando a história na seleção é maior que a
+  carta, ex.: quem só tem carta de uma passagem menor); quem não tem carta de clube recebe a nota típica de quem tem história
+  parecida (artigos, prêmios, jogos e Copas pela seleção).
+
+Os dados são os mesmos do baralho de clubes: só existem jogadores que passaram pelos clubes da lista (Séries A e B e grandes
+da Europa). Por isso seleções como Colômbia, Chile ou Bélgica ainda não fecham todos os setores, e algum ídolo que só jogou em
+clubes fora da lista fica de fora. Correções à mão ficam em `national.ts`: `POSITION_FIXES` (posição na seleção) e
+`NATIONALITY_FIXES` (por qual país jogou quem o Wikidata lista com dois). As seleções, siglas, cores e nomes de busca ficam em
+`src/shared/selecoes.ts`.
+
+**Escudos das seleções.** Vêm do TheSportsDB (a mesma fonte reserva dos clubes), que tem o escudo da federação de cada seleção
+— a busca é pelo nome exato e só aceita times que disputam torneios de seleções. A API Futebol não é usada para seleções.
+Sem escudo baixado, a seleção aparece com o selo genérico (sigla e cores do uniforme).
+

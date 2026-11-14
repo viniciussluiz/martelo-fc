@@ -1,3 +1,5 @@
+import { nationalTeam } from '../../shared/selecoes.js';
+
 /**
  * Como cada clube do baralho aparece nas fontes de escudo.
  *  - `aliases`: nomes aceitos na API Futebol (comparação exata, sem acento/caixa/pontuação).
@@ -9,6 +11,8 @@ export interface ClubRef {
   aliases: string[];
   tsdb: string[];
   country: string;
+  /** Seleção nacional (modo “Seleções”): o escudo é o da federação, buscado só no TheSportsDB. */
+  national?: boolean;
 }
 
 const br = (aliases: string[], tsdb: string[]): ClubRef => ({ aliases, tsdb, country: 'Brazil' });
@@ -89,14 +93,19 @@ export const CLUB_DIRECTORY: Record<string, ClubRef> = {
   PSV: eu('The Netherlands', ['PSV', 'PSV Eindhoven'], ['PSV Eindhoven', 'PSV']),
 };
 
-export type ClubGroup = 'BR' | 'EU';
+export type ClubGroup = 'BR' | 'EU' | 'SEL';
 
 export function clubRef(club: string): ClubRef {
-  return CLUB_DIRECTORY[club] ?? { aliases: [club], tsdb: [club], country: '' };
+  const known = CLUB_DIRECTORY[club];
+  if (known) return known;
+  const team = nationalTeam(club);
+  if (team) return { aliases: [team.name, ...team.tsdb], tsdb: team.tsdb, country: '', national: true };
+  return { aliases: [club], tsdb: [club], country: '' };
 }
 
 export function clubGroup(club: string): ClubGroup {
-  return clubRef(club).country === 'Brazil' ? 'BR' : 'EU';
+  const ref = clubRef(club);
+  return ref.national ? 'SEL' : ref.country === 'Brazil' ? 'BR' : 'EU';
 }
 
 /** Normaliza nomes para comparar: sem acento, minúsculo, só letras e números separados por espaço. */

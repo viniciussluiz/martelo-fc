@@ -1,8 +1,9 @@
 import type { GameSpeed } from '../config.js';
 
 /**
- * Ritmo do jogo (ms). Envelopes como no original (45 s); cada jogo dura 20 s na tela (10 s no turbo),
- * com a bola andando no campo — a liga de 38 rodadas leva ~13 min (~6,5 no turbo).
+ * Ritmo do jogo (ms). Envelopes como no original (45 s); cada jogo dura 40 s na tela (20 s no turbo),
+ * com os 22 jogadores no campinho e a bola passando de pé em pé — a liga de 38 rodadas leva ~25 min
+ * (~13 no turbo). A cerimônia tem 20 s a mais (10 no turbo) para escolher os batedores de bola parada.
  */
 export interface Timing {
   bidMs: number;
@@ -31,9 +32,9 @@ export const TIMINGS: Record<GameSpeed, Timing> = {
     cpuStepMs: 900,
     revealItemMs: 1_400,
     revealTailMs: 1_500,
-    ceremonyMs: 45_000,
-    leagueRoundMs: 20_000,
-    cupMatchdayMs: 20_000,
+    ceremonyMs: 65_000,
+    leagueRoundMs: 40_000,
+    cupMatchdayMs: 40_000,
     cupIntroMs: 6_000,
     continuationScale: 1,
   },
@@ -45,9 +46,9 @@ export const TIMINGS: Record<GameSpeed, Timing> = {
     cpuStepMs: 400,
     revealItemMs: 650,
     revealTailMs: 800,
-    ceremonyMs: 20_000,
-    leagueRoundMs: 10_000,
-    cupMatchdayMs: 10_000,
+    ceremonyMs: 30_000,
+    leagueRoundMs: 20_000,
+    cupMatchdayMs: 20_000,
     cupIntroMs: 2_500,
     continuationScale: 1,
   },

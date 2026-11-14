@@ -7,6 +7,7 @@ import {
   qualityBand,
   type AcquisitionSource,
   type AuctionConfig,
+  isPackageMode,
   type AuctionMode,
   type Card,
   type Participant,
@@ -264,7 +265,7 @@ export class Auction {
     const cards: Record<string, Card> = {};
     for (const c of [...params.pool, ...params.reserve]) cards[c.id] = c;
     const levas = emptyByPos<string[][]>(() => []);
-    const clubs = params.config.mode === 'clubes';
+    const clubs = isPackageMode(params.config.mode);
     for (const pos of POSITIONS) {
       if (clubs) {
         // Um lote por setor com todos os pacotes (o tamanho já é técnicos + 1).
@@ -298,7 +299,7 @@ export class Auction {
       stepCounter: 0,
       ...(clubs
         ? {
-            mode: 'clubes' as const,
+            mode: params.config.mode!,
             packages: Object.fromEntries((params.packages ?? []).map((p) => [p.id, p])),
             packs: Object.fromEntries(params.participants.map((p) => [p.id, {}])),
             convocacaoLog: [],
@@ -346,7 +347,7 @@ export class Auction {
   }
 
   get isClubs(): boolean {
-    return this.state.mode === 'clubes';
+    return isPackageMode(this.state.mode);
   }
 
   /** Posição de um item do leilão (carta ou pacote). */

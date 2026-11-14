@@ -93,7 +93,9 @@ function ClubsField({ deck, value, editable, onChange }: { deck: DeckInfo; value
 
 export function SettingsPanel({ room, editable }: { room: RoomView; editable: boolean }) {
   const s = room.settings;
-  const clubs = s.auctionMode === 'clubes';
+  const clubs = s.auctionMode !== 'jogador';
+  const national = s.auctionMode === 'selecoes';
+  const hasNational = (room.deck.groups.SEL ?? 0) > 0;
   const set = (patch: Partial<RoomSettings>) => void act({ t: 'room:settings', settings: patch });
   return (
     <section className="panel">
@@ -108,18 +110,29 @@ export function SettingsPanel({ room, editable }: { room: RoomView; editable: bo
             <button type="button" aria-pressed={!clubs} disabled={!editable} onClick={() => set({ auctionMode: 'jogador' })}>
               Jogador
             </button>
-            <button type="button" aria-pressed={clubs} disabled={!editable} onClick={() => set({ auctionMode: 'clubes' })}>
-              Clubes <span className="badge badge-new">novo</span>
+            <button type="button" aria-pressed={s.auctionMode === 'clubes'} disabled={!editable} onClick={() => set({ auctionMode: 'clubes' })}>
+              Clubes
             </button>
+            {hasNational && (
+              <button type="button" aria-pressed={national} disabled={!editable} onClick={() => set({ auctionMode: 'selecoes' })}>
+                Seleções
+              </button>
+            )}
           </div>
           <p className="hint">
-            {clubs
-              ? 'Cada lote é o setor de um clube (os goleiros do Corinthians, por exemplo). Quem leva o pacote escolhe no fim quem joga; sem escolha a tempo, entra o pior. As sobras vão para os times da liga.'
-              : 'O leilão de sempre: um jogador por lance.'}
+            {national
+              ? 'Cada lote é o setor de uma seleção (os atacantes do Brasil, por exemplo), só com os melhores que jogaram por ela. Quem leva o pacote escolhe no fim quem joga; sem escolha a tempo, entra o pior. As sobras vão para os times da liga.'
+              : clubs
+                ? 'Cada lote é o setor de um clube (os goleiros do Corinthians, por exemplo). Quem leva o pacote escolhe no fim quem joga; sem escolha a tempo, entra o pior. As sobras vão para os times da liga.'
+                : 'O leilão de sempre: um jogador por lance.'}
           </p>
         </div>
         {clubs ? (
-          <p className="hint">No leilão de clubes entram todos os clubes (Brasil e Europa).</p>
+          <p className="hint">
+            {national
+              ? `Entram ${(room.deck.clubs.SEL ?? []).length} seleções: ${(room.deck.clubs.SEL ?? []).join(' · ')}.`
+              : 'No leilão de clubes entram todos os clubes (Brasil e Europa).'}
+          </p>
         ) : (
           <ClubsField deck={room.deck} value={s.series ?? 'ALL'} editable={editable} onChange={(v) => set({ series: v })} />
         )}
@@ -177,7 +190,7 @@ export function SettingsPanel({ room, editable }: { room: RoomView; editable: bo
             </>
           )}
         </div>
-        {clubs && <p className="hint">No leilão de clubes os pacotes são sorteados de novo a cada ciclo.</p>}
+        {clubs && <p className="hint">No leilão de {national ? 'seleções' : 'clubes'} os pacotes são sorteados de novo a cada ciclo.</p>}
         <div className="row settings-row">
           <div className="field">
             <label htmlFor="cont">Tempo para decidir se continua (s)</label>

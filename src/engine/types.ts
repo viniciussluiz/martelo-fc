@@ -24,8 +24,11 @@ export const SQUAD_SIZE = 11;
 /** Faixas de nível (decisão própria — o original exibe faixas como “76–84”). */
 export type Tier = 'lenda' | 'craque' | 'titular' | 'operario' | 'perna';
 
-/** Grupo do clube da carta: Série A ou B do Brasileirão, ou um grande clube da Europa. */
-export type Series = 'A' | 'B' | 'EU';
+/**
+ * Grupo do clube da carta: Série A ou B do Brasileirão, ou um grande clube da Europa.
+ * `SEL` são as cartas de seleção (modo “Seleções”): ficam fora dos leilões de jogador e de clubes.
+ */
+export type Series = 'A' | 'B' | 'EU' | 'SEL';
 /** Quais cartas a sala usa. */
 export type SeriesScope = 'ALL' | 'AB' | 'A' | 'B' | 'EU';
 export const SERIES_SCOPES: readonly SeriesScope[] = ['ALL', 'AB', 'A', 'B', 'EU'];
@@ -120,10 +123,21 @@ export type CupFormat = 'copa8' | 'libertadores' | 'mundial' | 'nenhuma';
 
 /**
  * Tipo de leilão: “jogador” é o de sempre (um jogador por lance); em “clubes” cada lote é um setor
- * de um clube (ex.: os goleiros do Corinthians), quem leva o pacote convoca no fim quem joga.
+ * de um clube (ex.: os goleiros do Corinthians), quem leva o pacote convoca no fim quem joga;
+ * “selecoes” é o mesmo com seleções (os goleiros do Brasil), só com quem jogou pela seleção.
  */
-export type AuctionMode = 'jogador' | 'clubes';
-export const AUCTION_MODES: readonly AuctionMode[] = ['jogador', 'clubes'];
+export type AuctionMode = 'jogador' | 'clubes' | 'selecoes';
+export const AUCTION_MODES: readonly AuctionMode[] = ['jogador', 'clubes', 'selecoes'];
+
+/** Leilão por pacotes (setor de um clube ou de uma seleção), com convocação no fim. */
+export function isPackageMode(mode: AuctionMode | undefined): boolean {
+  return mode === 'clubes' || mode === 'selecoes';
+}
+
+/** Cartas de seleção do baralho (modo “Seleções”). */
+export function nationalDeck(deck: Card[]): Card[] {
+  return deck.filter((c) => c.series === 'SEL');
+}
 
 export interface AuctionConfig {
   /** Tipo de leilão (ausente = 'jogador'). */

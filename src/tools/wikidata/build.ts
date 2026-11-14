@@ -15,6 +15,9 @@ import type { RawClub, RawDump, RawPerson, RawStint } from './types.js';
  * Assim o mesmo nome vale diferente conforme o clube e o ano, como no jogo original.
  */
 
+/** Grupos de clubes do baralho (as cartas de seleção, `SEL`, são montadas à parte: ver national.ts). */
+export type ClubSeries = Exclude<Series, 'SEL'>;
+
 export interface BuildOptions {
   deckId: string;
   deckName: string;
@@ -26,7 +29,7 @@ export interface BuildOptions {
    */
   clubs: SeriesClub[] | null;
   /** Cartas por posição em cada série (cada série sozinha precisa bastar para uma sala de 20). */
-  countsBySeries: Record<Series, Record<Position, number>>;
+  countsBySeries: Record<ClubSeries, Record<Position, number>>;
   /** Cartas por posição quando não há séries (`clubs: null`). */
   counts: Record<Position, number>;
   /** Máximo de versões (clube/ano) do mesmo jogador no baralho. */
@@ -710,7 +713,7 @@ export function buildDeck(raw: RawDump, options: Partial<BuildOptions> = {}): { 
   const picked: Card[] = [];
   const positions = Object.keys(opts.counts) as Position[];
   const groups: Array<{ pool: Candidate[]; counts: Record<Position, number> }> = seriesClub
-    ? (Object.keys(opts.countsBySeries) as Series[]).map((sr) => ({
+    ? (Object.keys(opts.countsBySeries) as ClubSeries[]).map((sr) => ({
         pool: candidates.filter((c) => c.card.series === sr),
         counts: opts.countsBySeries[sr],
       }))
@@ -766,7 +769,7 @@ export function buildDeck(raw: RawDump, options: Partial<BuildOptions> = {}): { 
       id: opts.deckId,
       name: opts.deckName,
       version: 1,
-      source: 'Wikidata (https://www.wikidata.org) — dados estruturados sob CC0. Notas calculadas pelo Martelo FC.',
+      source: 'Wikidata (https://www.wikidata.org) — dados estruturados sob CC0. Notas calculadas pelo Leilão FC.',
       license: 'CC0-1.0 (dados de origem)',
       generatedAt: new Date().toISOString(),
       fetchedAt: raw.fetchedAt,

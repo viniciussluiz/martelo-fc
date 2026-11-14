@@ -2,7 +2,7 @@
  "id": "brasileirao-2026-wikidata",
  "name": "Brasileirão 2026 (Séries A e B) + grandes da Europa",
  "version": 1,
- "source": "Wikidata (https://www.wikidata.org) — dados estruturados sob CC0. Notas calculadas pelo Martelo FC.",
+ "source": "Wikidata (https://www.wikidata.org) — dados estruturados sob CC0. Notas calculadas pelo Leilão FC.",
  "license": "CC0-1.0 (dados de origem)",
  "generatedAt": "2026-10-19T22:45:34.247Z",
  "fetchedAt": "2026-10-19T22:37:07.482Z",
@@ -35910,6 +35910,40 @@
     "#DA291C"
    ],
    "series": "EU"
+  },
+  {
+   "id": "wd-Q2570335-Q188277-1966",
+   "personId": "Q2570335",
+   "name": "Dirceu Lopes",
+   "position": "ATA",
+   "club": "Cruzeiro",
+   "year": 1966,
+   "levelMin": 92,
+   "levelMax": 97,
+   "tier": "lenda",
+   "hint": "Ídolo do Cruzeiro de 1963 a 1977, campeão da Taça Brasil de 1966. 20 anos em 1966. 14 jogos pela seleção.",
+   "kit": [
+    "#0033A0",
+    "#FFFFFF"
+   ],
+   "series": "A"
+  },
+  {
+   "id": "wd-Q529207-Q188277-1993",
+   "personId": "Q529207",
+   "name": "Ronaldo Fenômeno",
+   "position": "ATA",
+   "club": "Cruzeiro",
+   "year": 1993,
+   "levelMin": 90,
+   "levelMax": 95,
+   "tier": "lenda",
+   "hint": "Revelado pelo Cruzeiro, onde jogou em 1993 e 1994. 17 anos em 1993. 98 jogos pela seleção.",
+   "kit": [
+    "#0033A0",
+    "#FFFFFF"
+   ],
+   "series": "A"
   }
  ]
 }

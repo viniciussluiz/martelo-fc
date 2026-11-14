@@ -1,4 +1,4 @@
-/* Martelo FC — “tarde de pregão”.
+/* Leilão FC — “tarde de pregão”.
    Um jogo de futebol de navegador dos anos 2000 com acabamento de hoje: fundo amarelo envelhecido
    (papel de álbum de figurinhas), placas claras com contorno de tinta marrom e sombra dura, gramado
    verde para o que é jogo e confirmação, dourado para moedas e taças, vermelho para disputa e alerta.
@@ -1238,6 +1238,118 @@ img.club-badge {
 }
 
 /* Confete */
+/* Pôster do campeão (resumo do ciclo) */
+.champs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 18px;
+  margin: 6px 0 18px;
+}
+.champ {
+  position: relative;
+  flex: 0 1 320px;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  overflow: hidden;
+  border: 3px solid var(--ink);
+  border-radius: var(--r-l);
+  box-shadow: var(--lift-l);
+  background: #0b0b0b;
+  animation: champ-in 0.7s cubic-bezier(0.2, 0.9, 0.3, 1.2) both;
+}
+.champ:nth-child(2) {
+  animation-delay: 0.25s;
+}
+.champ-art {
+  aspect-ratio: 2 / 3;
+  background-size: cover;
+  background-position: center;
+}
+.champ-team {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  background: linear-gradient(#1c1408, #0b0b0b);
+  border-bottom: 2px solid #c98f12;
+}
+.champ-who {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+.champ-crest {
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.7));
+  animation: champ-crest 2.6s ease-in-out infinite;
+}
+.champ-name {
+  font-family: var(--f-display);
+  font-size: clamp(1.1rem, 3vw, 1.45rem);
+  line-height: 1.05;
+  color: #fff;
+  text-shadow:
+    0 2px 0 #000,
+    0 0 14px rgba(255, 200, 60, 0.55);
+  overflow-wrap: anywhere;
+}
+.champ-title {
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #ffd76a;
+  text-shadow: 0 1px 0 #000;
+}
+.champ-confetti {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  overflow: hidden;
+  pointer-events: none;
+}
+.champ-confetti i {
+  position: absolute;
+  top: -6%;
+  border-radius: 1.5px;
+  background: linear-gradient(135deg, #fff6cf, var(--tone, #f5b82e) 45%, #a8750a);
+  box-shadow: 0 0 6px rgba(255, 205, 80, 0.45);
+  animation: champ-fall linear infinite;
+}
+@keyframes champ-fall {
+  from {
+    transform: translate3d(0, 0, 0) rotate(0) rotateY(0);
+  }
+  to {
+    transform: translate3d(var(--drift, 0), 720px, 0) rotate(var(--spin, 360deg)) rotateY(540deg);
+  }
+}
+@keyframes champ-in {
+  from {
+    transform: translateY(24px) scale(0.92);
+    opacity: 0;
+  }
+}
+@keyframes champ-crest {
+  50% {
+    transform: translateY(-4px) scale(1.05);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .champ,
+  .champ-crest {
+    animation: none;
+  }
+  .champ-confetti {
+    display: none;
+  }
+}
+
 .confetti {
   position: absolute;
   inset: 0;
@@ -4531,6 +4643,45 @@ li[data-award='mao-furada'] .award-icon {
   border-bottom: 4px solid var(--ink);
   overflow: hidden;
 }
+/* Súmula embaixo de cada time: goleadores e expulsões */
+.live-sheet {
+  grid-row: 2;
+  min-width: 0;
+  font-size: 0.86rem;
+  line-height: 1.35;
+  color: rgba(255, 255, 255, 0.86);
+}
+.live-sheet[data-empty] {
+  display: none;
+}
+.live-sheet[data-side='home'] {
+  grid-column: 1;
+}
+.live-sheet[data-side='away'] {
+  grid-column: 3;
+  text-align: right;
+}
+.live-sheet p {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+.live-sheet-min {
+  color: var(--led);
+  font-variant-numeric: tabular-nums;
+}
+.live-sheet-red {
+  margin-top: 2px;
+}
+.red-card {
+  display: inline-block;
+  width: 0.6em;
+  height: 0.85em;
+  margin-right: 0.35em;
+  border-radius: 1.5px;
+  background: #e5484d;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.5);
+  vertical-align: -0.08em;
+}
 .live-team {
   display: flex;
   align-items: center;
@@ -4754,6 +4905,18 @@ li[data-award='mao-furada'] .award-icon {
   color: var(--ink-2);
 }
 
+/* Batedores de bola parada (cerimônia) */
+.setpieces-note {
+  margin: 0 0 10px;
+}
+.setpieces {
+  display: grid;
+  gap: 10px;
+}
+.setpieces .field select {
+  width: 100%;
+}
+
 /* Campo do jogo ao vivo */
 .match-pitch {
   position: relative;
@@ -4797,6 +4960,46 @@ li[data-award='mao-furada'] .award-icon {
   font-size: 2.6px;
   fill: rgba(255, 255, 255, 0.75);
 }
+.mp-team[data-side='home'] {
+  fill: #ffd23f;
+}
+.mp-team[data-side='away'] {
+  fill: #ff8f8f;
+}
+/* Jogadores no gramado: mandante amarelo, visitante vermelho, goleiros com outra camisa. */
+.mp-player circle {
+  stroke: var(--ink);
+  stroke-width: 0.32;
+}
+.mp-player[data-side='home'] circle {
+  fill: #ffd23f;
+}
+.mp-player[data-side='away'] circle {
+  fill: #e5484d;
+}
+.mp-player[data-side='home'][data-keeper] circle {
+  fill: #2fbf71;
+}
+.mp-player[data-side='away'][data-keeper] circle {
+  fill: #6e56cf;
+}
+.mp-player[data-ball] circle {
+  stroke: var(--white);
+  stroke-width: 0.5;
+}
+.mp-player-shadow {
+  fill: rgba(0, 0, 0, 0.28);
+}
+.mp-holder {
+  font-family: var(--f-sport);
+  font-weight: 800;
+  font-size: 2.5px;
+  fill: var(--white);
+  stroke: rgba(11, 18, 34, 0.85);
+  stroke-width: 0.7;
+  paint-order: stroke;
+  pointer-events: none;
+}
 .mp-ball circle:first-child {
   fill: var(--white);
   stroke: var(--ink);
@@ -4832,6 +5035,14 @@ li[data-award='mao-furada'] .award-icon {
   letter-spacing: 0.04em;
   animation: goal-pop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
   pointer-events: none;
+}
+.mp-goal[data-kind='lance'] {
+  font-size: clamp(1.1rem, 3.4vw, 1.9rem);
+  color: var(--white);
+  top: 13%;
+  text-shadow:
+    var(--outline-text),
+    0 3px 0 var(--ink);
 }
 .mp-goal[hidden] {
   display: none;

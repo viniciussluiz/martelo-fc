@@ -4,11 +4,12 @@ import { makeContinentalBots, makeLeagueBots, type BotClub } from './bots.js';
 import { Cup, REACH_ORDER, type CupReach, type CupState } from './cup.js';
 import { GameRuleError } from './errors.js';
 import { aggregateScorers, League, type LeagueState, type LeagueTeam, type StandingRow } from './league.js';
-import type { MatchResult, SquadPlayer } from './match.js';
+import { resolveTakers, SET_PIECES, type MatchResult, type SetPieceTakers, type SquadPlayer } from './match.js';
 import { buildClubPackages } from './packages.js';
 import { Rng } from './rng.js';
 import {
   FORMATIONS,
+  isPackageMode,
   MAX_PARTICIPANTS,
   POSITIONS,
   QUALITY_BANDS,
@@ -110,6 +111,8 @@ export interface DisputeState {
   league: LeagueState | null;
   cup: CupState | null;
   tactics: Record<string, Tactic>;
+  /** Batedores de pênalti, falta e escanteio escolhidos por cada técnico (ausente = o jogo escolhe). */
+  setPieces?: Record<string, SetPieceTakers>;
   result: DisputeResult | null;
 }
 
@@ -234,7 +237,7 @@ export class Dispute {
     if (seats.length > MAX_PARTICIPANTS) {
       throw new GameRuleError('lotado', `No máximo ${MAX_PARTICIPANTS} técnicos por disputa.`);
     }
-    const clubs = params.config.auction.mode === 'clubes';
+    const clubs = isPackageMode(params.config.auction.mode);
     // No leilão de clubes os pacotes são sorteados de novo a cada ciclo (não há herdadas).
     const carried = params.config.carryOverPreviousCycle && !clubs ? (params.carried ?? []) : [];
     const packed = clubs ? buildClubPackages({ participants: seats.length, deck: params.deck, seed: params.seed }) : null;
@@ -279,6 +282,7 @@ export class Dispute {
       league: null,
       cup: null,
       tactics: Object.fromEntries(seats.map((s) => [s.id, 'equilibrio' as Tactic])),
+      setPieces: {},
       result: null,
     };
     const d = new Dispute(state);
@@ -318,6 +322,32 @@ export class Dispute {
     if (!['retranca', 'equilibrio', 'ataque'].includes(tactic)) throw new GameRuleError('tatica_invalida', 'Tática inválida.');
     this.participant(participantId);
     this.state.tactics[participantId] = tactic;
+  }
+
+  /**
+   * Batedores de bola parada de um técnico. Vale da cerimônia em diante (o elenco já está fechado);
+   * cada batedor precisa estar no elenco. Só troca o que vier no pedido.
+   */
+  setSetPieces(participantId: string, takers: SetPieceTakers) {
+    if (this.state.phase === 'auction' || this.state.phase === 'finished') {
+      throw new GameRuleError('fora_de_hora', 'Os batedores são escolhidos depois do leilão.');
+    }
+    const p = this.participant(participantId);
+    const next: SetPieceTakers = { ...(this.state.setPieces?.[participantId] ?? {}) };
+    for (const kind of SET_PIECES) {
+      const id = takers?.[kind];
+      if (id === undefined) continue;
+      if (typeof id !== 'string' || !p.roster.some((r) => r.cardId === id)) {
+        throw new GameRuleError('batedor_invalido', 'O batedor precisa ser um jogador do seu time.');
+      }
+      next[kind] = id;
+    }
+    this.state.setPieces = { ...(this.state.setPieces ?? {}), [participantId]: next };
+  }
+
+  /** Batedores valendo para um técnico: os escolhidos e, no que faltar, os mais indicados do elenco. */
+  takersOf(participantId: string): SetPieceTakers {
+    return resolveTakers(this.squadOf(participantId), this.state.setPieces?.[participantId]);
   }
 
   /** Chamar após cada passo do leilão; muda de fase quando o leilão termina. */
@@ -381,7 +411,7 @@ export class Dispute {
 
   playLeagueRound(): MatchResult[] {
     if (this.state.phase !== 'league' || !this.league) throw new GameRuleError('fora_de_hora', 'A liga não está em andamento.');
-    const results = this.league.playRound(this.state.tactics);
+    const results = this.league.playRound(this.state.tactics, this.state.setPieces ?? {});
     if (this.league.done) {
       if (this.state.config.cupFormat === 'nenhuma') this.finish();
       else this.startCup();
@@ -410,7 +440,7 @@ export class Dispute {
 
   playCupMatchday(): MatchResult[] {
     if (this.state.phase !== 'cup' || !this.cup) throw new GameRuleError('fora_de_hora', 'A copa não está em andamento.');
-    const results = this.cup.playNextMatchday(this.state.tactics);
+    const results = this.cup.playNextMatchday(this.state.tactics, this.state.setPieces ?? {});
     if (this.cup.done) this.finish();
     return results;
   }

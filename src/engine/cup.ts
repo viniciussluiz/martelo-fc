@@ -1,6 +1,6 @@
 import { Rng } from './rng.js';
 import { computeStandings, type LeagueTeam, type StandingRow } from './league.js';
-import { matchWinner, penaltyShootout, simulateMatch, type MatchResult } from './match.js';
+import { matchWinner, penaltyShootout, simulateMatch, type MatchResult, type SetPieceTakers } from './match.js';
 import type { CupFormat, Tactic } from './types.js';
 
 /**
@@ -29,7 +29,7 @@ export const REACH_LABEL: Record<CupReach, string> = {
 
 export const CUP_NAME: Record<CupFormat, string> = {
   copa8: 'Copa dos 8',
-  libertadores: 'Taça Continental',
+  libertadores: 'Taça Libertadores',
   mundial: 'Torneio Mundial',
   nenhuma: '—',
 };
@@ -228,7 +228,7 @@ export class Cup {
     s.matchdayIndex = 0;
   }
 
-  playNextMatchday(tactics: Record<string, Tactic> = {}): MatchResult[] {
+  playNextMatchday(tactics: Record<string, Tactic> = {}, takers: Record<string, SetPieceTakers> = {}): MatchResult[] {
     const s = this.state;
     if (s.done) return [];
     const day = s.matchdays[s.matchdayIndex] ?? [];
@@ -244,6 +244,8 @@ export class Cup {
         away,
         homeTactic: home.participantId ? tactics[home.participantId] : 'equilibrio',
         awayTactic: away.participantId ? tactics[away.participantId] : 'equilibrio',
+        ...(home.participantId && takers[home.participantId] ? { homeTakers: takers[home.participantId] } : {}),
+        ...(away.participantId && takers[away.participantId] ? { awayTakers: takers[away.participantId] } : {}),
         neutral: m.neutral,
         needWinner: singleKnockout,
         withEvents: home.human || away.human,

@@ -2,7 +2,7 @@
   "name": "martelo-fc",
   "version": "0.4.0",
   "private": true,
-  "description": "Martelo FC — leilão às cegas de futebol, multiplayer, com continuidade de salas, histórico de confrontos e Sala de Troféus.",
+  "description": "Leilão FC — leilão às cegas de futebol, multiplayer, com continuidade de salas, histórico de confrontos e Sala de Troféus.",
   "type": "module",
   "engines": {
     "node": ">=20.11"
@@ -22,6 +22,7 @@
     "test:e2e": "playwright test",
     "test:all": "npm run typecheck && npm test && npm run build && npm run test:e2e",
     "deck:wikidata": "tsx scripts/deck-wikidata.ts",
+    "deck:selecoes": "tsx scripts/deck-selecoes.ts",
     "escudos": "tsx scripts/escudos.ts"
   },
   "dependencies": {

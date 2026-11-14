@@ -1,7 +1,7 @@
 import { memo, useEffect, useRef, useState, type ReactNode } from 'react';
 
 /**
- * Peças da identidade visual do Martelo FC, reaproveitadas em todas as telas:
+ * Peças da identidade visual do Leilão FC, reaproveitadas em todas as telas:
  * moeda em pixel art, número que conta, chapinha de posição, faixa de abertura de fase,
  * confete de vitória e a bolinha de “carregando”.
  */

@@ -3,10 +3,11 @@
  *
  *   API_FUTEBOL_KEY=live_...   (no .env) usa a API Futebol primeiro; o que faltar vem do TheSportsDB.
  *   --sem-baixar               só atualiza data/escudos/fontes.json (o navegador carrega direto da fonte).
+ *   --tudo                     busca de novo também os que já têm escudo baixado (sem isso, só os que faltam).
  *
  * Reinicie o servidor depois para ele ler os escudos novos.
  */
-import { readFileSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import { relative } from 'node:path';
 import type { Card } from '../src/engine/types.js';
 import { loadConfig, loadDotEnv, ROOT_DIR } from '../src/server/config.js';
@@ -16,14 +17,19 @@ import { syncCrests } from '../src/tools/escudos/sync.js';
 loadDotEnv();
 const config = loadConfig();
 const download = !process.argv.includes('--sem-baixar');
+// Por padrão só busca quem ainda não tem escudo baixado; --tudo refaz todos.
+const onlyMissing = !process.argv.includes('--tudo');
 const deck = JSON.parse(readFileSync(config.deckPath, 'utf8')) as { name?: string; cards: Card[] };
-const clubs = [...new Map(deck.cards.map((c) => [c.club, c])).values()].map((c) => ({
+// As seleções do modo “Seleções” ficam num arquivo à parte.
+const national = existsSync(config.nationalDeckPath) ? (JSON.parse(readFileSync(config.nationalDeckPath, 'utf8')) as { cards: Card[] }).cards : [];
+const clubs = [...new Map([...deck.cards, ...national].map((c) => [c.club, c])).values()].map((c) => ({
   name: c.club,
-  group: c.series === 'EU' ? ('EU' as const) : c.series === 'A' || c.series === 'B' ? ('BR' as const) : clubGroup(c.club),
+  group: c.series === 'SEL' ? ('SEL' as const) : c.series === 'EU' ? ('EU' as const) : c.series === 'A' || c.series === 'B' ? ('BR' as const) : clubGroup(c.club),
 }));
 
 const key = process.env.API_FUTEBOL_KEY?.trim();
-console.log(`Escudos para ${clubs.length} clubes do baralho “${deck.name ?? 'Baralho'}”.`);
+const teams = clubs.filter((c) => c.group === 'SEL').length;
+console.log(`Escudos para ${clubs.length - teams} clubes${teams ? ` e ${teams} seleções` : ''} do baralho “${deck.name ?? 'Baralho'}”.`);
 if (!key) console.log('Sem API_FUTEBOL_KEY no .env: usando só o TheSportsDB. Coloque sua chave da API Futebol para usá-la primeiro.');
 
 const report = await syncCrests({
@@ -32,6 +38,7 @@ const report = await syncCrests({
   apiFutebolKey: key,
   theSportsDbKey: process.env.THESPORTSDB_KEY?.trim(),
   download,
+  onlyMissing,
   log: (m) => console.log(m),
 });
 

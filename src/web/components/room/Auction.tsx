@@ -37,7 +37,7 @@ export function AuctionScreen({ room }: { room: RoomView }) {
   const a = d.auction!;
   const me = d.participants.find((p) => p.id === d.you);
   const step = a.step;
-  const clubs = d.auctionMode === 'clubes';
+  const clubs = d.auctionMode !== 'jogador';
   const now = useNow(a.reveal ? 100 : 30_000);
   const revealIdx = a.reveal ? revealIndex(a.reveal, now) : -1;
   const pending = useMemo(() => unrevealed(a.reveal, revealIdx), [a.reveal, revealIdx]);
@@ -72,7 +72,7 @@ export function AuctionScreen({ room }: { room: RoomView }) {
 
 /** Quanto o técnico já pagou no pregão (sem contar o que a revelação ainda não mostrou). */
 function spentBy(d: DisputeView, p: ParticipantView, pending: Unrevealed): number {
-  if (d.auctionMode === 'clubes') return (p.packs ?? []).filter((x) => !pending.cards.has(x.packageId)).reduce((n, x) => n + x.price, 0);
+  if (d.auctionMode !== 'jogador') return (p.packs ?? []).filter((x) => !pending.cards.has(x.packageId)).reduce((n, x) => n + x.price, 0);
   return p.roster.filter((r) => !pending.cards.has(r.cardId)).reduce((n, r) => n + r.price, 0);
 }
 
@@ -80,7 +80,7 @@ function spentBy(d: DisputeView, p: ParticipantView, pending: Unrevealed): numbe
 function AuctionHead({ d, pending }: { d: DisputeView; pending: Unrevealed }) {
   const a = d.auction!;
   const step = a.step;
-  const clubs = d.auctionMode === 'clubes';
+  const clubs = d.auctionMode !== 'jogador';
   const me = d.participants.find((p) => p.id === d.you);
   const sub = a.reveal ? 'Do menor para o maior pote' : step?.kind === 'bid' && step.batchCount > 1 ? `Leva ${step.batchIndex + 1} de ${step.batchCount}` : null;
   const coins = me ? me.coins + (pending.coins.get(me.id) ?? 0) : 0;
@@ -218,7 +218,7 @@ function ItemFace({ d, id, compact, children }: { d: DisputeView; id: string; co
 
 function RoomTable({ d, pending }: { d: DisputeView; pending: Unrevealed }) {
   const step = d.auction?.step;
-  const clubs = d.auctionMode === 'clubes';
+  const clubs = d.auctionMode !== 'jogador';
   const sealed = new Set(step && step.kind !== 'monte' ? step.sealed : []);
   const eligible = new Set(step && step.kind !== 'monte' ? step.eligible : []);
   const convocando = step?.kind === 'convocacao';
@@ -375,7 +375,7 @@ interface Hammer {
 /** Martelos já batidos neste pregão (o que a revelação ainda não mostrou fica de fora). */
 function HammerLog({ d, pending }: { d: DisputeView; pending: Unrevealed }) {
   const [all, setAll] = useState(false);
-  const clubs = d.auctionMode === 'clubes';
+  const clubs = d.auctionMode !== 'jogador';
   const rows: Hammer[] = [];
   for (const p of d.participants) {
     if (clubs) {
@@ -434,7 +434,7 @@ function BidBoard({ step, d }: { step: BidStepView; d: DisputeView }) {
   const [sealing, setSealing] = useState(false);
   const [bumps, setBumps] = useState<Record<string, { k: number; delta: number }>>({});
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const clubs = d.auctionMode === 'clubes';
+  const clubs = d.auctionMode !== 'jogador';
   const total = Object.values(draft).reduce((s, v) => s + (v || 0), 0);
   const count = Object.values(draft).filter((v) => v > 0).length;
   const overSlots = count > step.myOpenSlots;
@@ -519,7 +519,7 @@ function BidBoard({ step, d }: { step: BidStepView; d: DisputeView }) {
     <div className="stack">
       {clubs ? (
         <p className="lot-intro">
-          Dê lance em <strong>um pacote</strong>: quem pagar mais leva o setor inteiro do clube e escolhe quem joga na convocação. Os nomes só
+          Dê lance em <strong>um pacote</strong>: quem pagar mais leva o setor inteiro {d.auctionMode === 'selecoes' ? 'da seleção' : 'do clube'} e escolhe quem joga na convocação. Os nomes só
           aparecem lá.
         </p>
       ) : (
@@ -697,7 +697,7 @@ function TiebreakBoard({ step, d }: { step: TiebreakStepView; d: DisputeView }) 
 
 function MonteBoard({ step, d }: { step: MonteStepView; d: DisputeView }) {
   const mine = step.current === d.you;
-  const clubs = d.auctionMode === 'clubes';
+  const clubs = d.auctionMode !== 'jogador';
   const currentName = d.participants.find((p) => p.id === step.current)?.name ?? '—';
   const options = new Set(step.myOptions);
   return (

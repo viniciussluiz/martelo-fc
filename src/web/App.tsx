@@ -85,7 +85,7 @@ function TopBar() {
           <span className="brand-crest">
             <Logo size={46} />
           </span>
-          <span className="brand-name">Martelo FC</span>
+          <span className="brand-name">Leilão FC</span>
         </a>
         <nav className="nav" aria-label="Principal">
           {link('/', 'Jogar', 'bola', path === '/' || path.startsWith('/sala'))}
@@ -161,7 +161,7 @@ function Footer() {
   if (!info) return null;
   return (
     <footer className="app-footer">
-      <span>Martelo FC {info.version}</span>
+      <span>Leilão FC {info.version}</span>
       <span>
         Baralho {info.deck}, {info.cards} cartas
       </span>

@@ -26,7 +26,7 @@ function TitleScreen({ compact }: { compact?: boolean }) {
           <span className="ts-logo-crest" aria-hidden="true">
             <Logo size={compact ? 74 : 104} />
           </span>
-          <span className="ts-logo-word">Martelo FC</span>
+          <span className="ts-logo-word">Leilão FC</span>
         </h1>
         <p className="ts-tag">
           Leilão às cegas de futebol. Cada técnico tem 100 moedas e um envelope: você escreve quanto vale cada nome e só descobre se comprou

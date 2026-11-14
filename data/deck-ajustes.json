@@ -1,5 +1,5 @@
 {
-  "_leia": "Correções manuais do baralho, aplicadas ao montar com npm run deck:wikidata (data/deck-wikidata.json já sai com elas). \"id\" é o id da carta: wd-<jogador> pega todas as cartas do jogador, wd-<jogador>-<clube> todas as daquela passagem, e com o ano no fim só aquela carta.",
+  "_leia": "Correções manuais do baralho, aplicadas ao montar com npm run deck:wikidata (data/deck-wikidata.json já sai com elas). \"id\" é o id da carta: wd-<jogador> pega todas as cartas do jogador, wd-<jogador>-<clube> todas as daquela passagem, e com o ano no fim só aquela carta. \"incluir\" traz cartas completas feitas à mão (jogadores ou passagens que o Wikidata não tem ou que a nota calculada deixou de fora); entram no fim do baralho.",
   "excluir": [
     {
       "id": "wd-Q56248407-Q270995",
@@ -12,14 +12,58 @@
     {
       "id": "wd-Q12897",
       "jogador": "Pelé",
-      "faixa": [95, 100],
+      "faixa": [
+        95,
+        100
+      ],
       "motivo": "Os dois maiores do baralho ficam acima do teto das outras Lendas (93–98)."
     },
     {
       "id": "wd-Q615",
       "jogador": "Lionel Messi",
-      "faixa": [95, 100],
+      "faixa": [
+        95,
+        100
+      ],
       "motivo": "Os dois maiores do baralho ficam acima do teto das outras Lendas (93–98)."
+    }
+  ],
+  "incluir": [
+    {
+      "id": "wd-Q2570335-Q188277-1966",
+      "personId": "Q2570335",
+      "name": "Dirceu Lopes",
+      "position": "ATA",
+      "club": "Cruzeiro",
+      "year": 1966,
+      "levelMin": 92,
+      "levelMax": 97,
+      "tier": "lenda",
+      "hint": "Ídolo do Cruzeiro de 1963 a 1977, campeão da Taça Brasil de 1966. 20 anos em 1966. 14 jogos pela seleção.",
+      "kit": [
+        "#0033A0",
+        "#FFFFFF"
+      ],
+      "series": "A",
+      "motivo": "Ídolo do Cruzeiro que ficou fora do baralho; no ataque, com a mesma faixa do Tostão (92–97)."
+    },
+    {
+      "id": "wd-Q529207-Q188277-1993",
+      "personId": "Q529207",
+      "name": "Ronaldo Fenômeno",
+      "position": "ATA",
+      "club": "Cruzeiro",
+      "year": 1993,
+      "levelMin": 90,
+      "levelMax": 95,
+      "tier": "lenda",
+      "hint": "Revelado pelo Cruzeiro, onde jogou em 1993 e 1994. 17 anos em 1993. 98 jogos pela seleção.",
+      "kit": [
+        "#0033A0",
+        "#FFFFFF"
+      ],
+      "series": "A",
+      "motivo": "Passagem pelo Cruzeiro (1993) não virou carta; Lenda, um pouco abaixo do Dirceu Lopes e do Tostão."
     }
   ]
 }

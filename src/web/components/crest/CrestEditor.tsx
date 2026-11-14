@@ -125,7 +125,7 @@ export function CrestEditor({
     setPop((n) => n + 1);
   };
   const roll = () => {
-    const r = randomCrest(teamName || 'Martelo FC');
+    const r = randomCrest(teamName || 'Leilão FC');
     onChange({ ...r, initials: value.initials || r.initials, motto: value.motto || r.motto });
     setPop((n) => n + 1);
   };

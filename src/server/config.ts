@@ -8,6 +8,8 @@ export interface ServerConfig {
   host: string;
   dbPath: string;
   deckPath: string;
+  /** Cartas de seleção (modo “Seleções”), somadas ao baralho de jogadores reais. */
+  nationalDeckPath: string;
   staticDir: string;
   /** Pasta com escudos oficiais, para quem tem autorização de usá-los (opcional; ver docs/BARALHO.md). */
   crestsDir: string;
@@ -59,6 +61,7 @@ export function loadConfig(env: NodeJS.ProcessEnv = process.env): ServerConfig {
     host: env.HOST ?? '0.0.0.0',
     dbPath: env.DATABASE_PATH ?? resolve(root, 'data/martelo.db'),
     deckPath: resolveDeckPath(env),
+    nationalDeckPath: env.NATIONAL_DECK_PATH ?? resolve(root, 'data/deck-selecoes.json'),
     staticDir: env.STATIC_DIR ?? resolve(root, 'dist'),
     crestsDir: env.CRESTS_DIR ?? resolve(root, 'data/escudos'),
     forceSpeed: speed && ['normal', 'turbo', 'test', 'e2e'].includes(speed) ? speed : null,
