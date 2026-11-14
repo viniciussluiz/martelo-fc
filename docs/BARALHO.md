@@ -61,7 +61,7 @@ as constantes em `src/tools/wikidata/build.ts` e rode `npm run deck:wikidata -- 
 salas só do Brasil e de Real Madrid/Barcelona para a Europa; o leilão nunca põe duas versões da mesma pessoa juntas
 (`personId`). Cada grupo é montado à parte: a melhor versão dos mais famosos entra sempre (top 10% no Brasil, 5% na Europa);
 o resto é estratificado por posição e faixa (para haver também operários e pernas-de-pau), preferindo os nomes mais
-conhecidos. O baralho atual tem 2.114 cartas: Série A 818 (≈12% Lendas), Série B 330 e Europa 966 (≈14% Lendas). O teto das Lendas é
+conhecidos. O baralho atual tem 2.189 cartas: Série A 841, Série B 330 e Europa 1.018 (contando as 77 feitas à mão). O teto das Lendas é
 93–98; só Pelé e Messi vão a 95–100 (ajuste manual, abaixo).
 
 **Ajustes manuais** (`data/deck-ajustes.json`), aplicados pelo `npm run deck:wikidata` ao montar o baralho:
@@ -69,7 +69,8 @@ conhecidos. O baralho atual tem 2.114 cartas: Série A 818 (≈12% Lendas), Sér
   de quem já saiu do clube (ex.: Marquinhos no Atlético-MG);
 - `nivel`: faixa de nível fixa (ex.: Pelé e Messi 95–100);
 - `incluir`: cartas completas feitas à mão, para quem o Wikidata não tem ou a nota calculada deixou de fora (ex.: Dirceu Lopes,
-  Cruzeiro 1966, e Ronaldo Fenômeno, Cruzeiro 1993). Entram no fim do baralho.
+  Cruzeiro 1966, e Ronaldo Fenômeno, Cruzeiro 1993). Entram no fim do baralho. Podem ser de clubes fora da lista (Parma,
+  Deportivo La Coruña, Villarreal…): essas cartas ficam no grupo Europa e não formam pacote no leilão de clubes.
 O `id` casa por prefixo: `wd-<jogador>` pega todas as cartas do jogador, `wd-<jogador>-<clube>` as daquela passagem, e com o
 ano no fim só aquela carta.
 

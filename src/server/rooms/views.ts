@@ -1,7 +1,8 @@
 import { FORMATIONS, POSITIONS, type Card, type Position } from '../../engine/types.js';
 import { packageLabel } from '../../engine/packages.js';
-import type { MatchResult } from '../../engine/match.js';
+import { defaultTakers, type MatchResult, type SquadPlayer } from '../../engine/match.js';
 import { aggregateAssists, aggregateScorers, playerStats } from '../../engine/league.js';
+import type { Dispute } from '../../engine/dispute.js';
 import type {
   AuctionView,
   CardView,
@@ -285,15 +286,31 @@ function auctionView(room: RoomActor, myPid: string): AuctionView {
   };
 }
 
+/** Capitão de um time: o escolhido pelo técnico; nos times do jogo (e sem escolha), o melhor do elenco. */
+function captainFinder(d: Dispute, squadOf: (teamId: string) => SquadPlayer[]): (teamId: string) => string | undefined {
+  const mine = new Set(d.participants.map((p) => p.id));
+  return (teamId) => (mine.has(teamId) ? d.takersOf(teamId) : defaultTakers(squadOf(teamId))).capitao;
+}
+
 type SquadOf = (teamId: string) => Array<{ cardId: string; name: string; position: Position }>;
 
 /** Os 11 de cada lado (só nome e posição: o nível não vai junto). */
-function lineupsOf(m: MatchResult, squadOf: SquadOf): NonNullable<MatchView['lineups']> {
-  const slim = (id: string) => squadOf(id).map((p) => ({ cardId: p.cardId, name: p.name, position: p.position }));
+function lineupsOf(m: MatchResult, squadOf: SquadOf, captainOf: (teamId: string) => string | undefined): NonNullable<MatchView['lineups']> {
+  const slim = (id: string) => {
+    const captain = captainOf(id);
+    return squadOf(id).map((p) => ({ cardId: p.cardId, name: p.name, position: p.position, ...(p.cardId === captain ? { captain: true } : {}) }));
+  };
   return { home: slim(m.homeId), away: slim(m.awayId) };
 }
 
-function matchView(m: MatchResult, names: Record<string, string>, withEvents: boolean, stage?: string, squadOf?: SquadOf): MatchView {
+function matchView(
+  m: MatchResult,
+  names: Record<string, string>,
+  withEvents: boolean,
+  stage?: string,
+  squadOf?: SquadOf,
+  captainOf: (teamId: string) => string | undefined = () => undefined,
+): MatchView {
   const v: MatchView = {
     id: m.id,
     homeId: m.homeId,
@@ -307,7 +324,7 @@ function matchView(m: MatchResult, names: Record<string, string>, withEvents: bo
   if (m.penalties) v.penalties = m.penalties;
   if (m.redCards?.length) v.redCards = m.redCards;
   if (withEvents && m.events) v.events = m.events;
-  if (squadOf) v.lineups = lineupsOf(m, squadOf);
+  if (squadOf) v.lineups = lineupsOf(m, squadOf, captainOf);
   if (stage) v.stage = stage;
   return v;
 }
@@ -321,6 +338,7 @@ function leagueView(room: RoomActor, myPid: string, names: Record<string, string
   const mine = last.find((m) => m.homeId === myPid || m.awayId === myPid) ?? null;
   const next = league.state.fixtures[round]?.find((f) => f.homeId === myPid || f.awayId === myPid) ?? null;
   const squadOf: SquadOf = (id) => league.team(id).squad;
+  const captainOf = captainFinder(d, (id) => league.team(id).squad);
   const fixture: FixtureView | null = next
     ? { homeId: next.homeId, awayId: next.awayId, homeName: names[next.homeId]!, awayName: names[next.awayId]!, label: `Rodada ${next.round}` }
     : null;
@@ -329,8 +347,8 @@ function leagueView(room: RoomActor, myPid: string, names: Record<string, string
     totalRounds: league.totalRounds,
     table: league.standings(),
     // Quem só assiste vê o 1º jogo da rodada no campinho: ele também leva as escalações.
-    lastResults: last.map((m, i) => matchView(m, names, false, undefined, !mine && i === 0 ? squadOf : undefined)),
-    myLastMatch: mine ? matchView(mine, names, true, undefined, squadOf) : null,
+    lastResults: last.map((m, i) => matchView(m, names, false, undefined, !mine && i === 0 ? squadOf : undefined, captainOf)),
+    myLastMatch: mine ? matchView(mine, names, true, undefined, squadOf, captainOf) : null,
     myNextFixture: d.phase === 'league' ? fixture : null,
     topScorers: league.topScorers(10),
     topAssists: league.topAssists(10),
@@ -352,6 +370,7 @@ function cupView(room: RoomActor, myPid: string, names: Record<string, string>):
   const mine = last.find((m) => m.homeId === myPid || m.awayId === myPid) ?? null;
   const nextDay = cup.peekMatchday();
   const squadOf: SquadOf = (id) => cup.team(id).squad;
+  const captainOf = captainFinder(d, (id) => cup.team(id).squad);
   const next = nextDay.find((m) => m.homeId === myPid || m.awayId === myPid) ?? null;
   return {
     name: s.name,
@@ -361,8 +380,8 @@ function cupView(room: RoomActor, myPid: string, names: Record<string, string>):
     ties: s.ties,
     groupTables: s.groups.length ? cup.groupStandings() : null,
     groups: s.groups,
-    lastResults: last.map((m, i) => matchView(m, names, false, STAGE_LABEL[stageOf(m.id)], !mine && i === 0 ? squadOf : undefined)),
-    myLastMatch: mine ? matchView(mine, names, true, STAGE_LABEL[stageOf(mine.id)], squadOf) : null,
+    lastResults: last.map((m, i) => matchView(m, names, false, STAGE_LABEL[stageOf(m.id)], !mine && i === 0 ? squadOf : undefined, captainOf)),
+    myLastMatch: mine ? matchView(mine, names, true, STAGE_LABEL[stageOf(mine.id)], squadOf, captainOf) : null,
     myNextFixture: next
       ? {
           homeId: next.homeId,

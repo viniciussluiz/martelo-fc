@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import type { DisputeView, RoomView } from '../../../shared/protocol';
-import type { SetPiece } from '../../../engine/match';
+import type { TeamRole } from '../../../engine/match';
 import { act } from '../../lib/socket';
 import { Countdown } from '../common';
 import { SquadPitch } from './Squad';
@@ -17,14 +17,15 @@ const AWARD_ICON: Record<string, string> = {
   'perna-de-pau': 'zebra',
 };
 
-const SET_PIECE_FIELDS: Array<{ id: SetPiece; label: string; note: string }> = [
+const SET_PIECE_FIELDS: Array<{ id: TeamRole; label: string; note: string }> = [
+  { id: 'capitao', label: 'Capitão', note: 'Usa a braçadeira: aparece com o “C” no campinho.' },
   { id: 'penalti', label: 'Pênalti', note: 'Raro, mas quase sempre gol.' },
   { id: 'falta', label: 'Falta', note: 'Na entrada da área: entra uma a cada três.' },
   { id: 'escanteio', label: 'Escanteio', note: 'Quem cobra dá a assistência.' },
 ];
 const TAKER_ORDER = ['ATA', 'MEI', 'LAT', 'ZAG', 'GOL'];
 
-/** Batedores de bola parada do seu time (pênalti, falta e escanteio). */
+/** Capitão e batedores de bola parada do seu time (pênalti, falta e escanteio). */
 function SetPiecesPanel({ d }: { d: DisputeView }) {
   const me = d.participants.find((p) => p.id === d.you);
   if (!me || !d.setPieces) return null;
@@ -32,10 +33,10 @@ function SetPiecesPanel({ d }: { d: DisputeView }) {
   return (
     <section className="panel setpieces-panel">
       <div className="panel-head">
-        <h3>Bola parada</h3>
+        <h3>Capitão e bola parada</h3>
       </div>
       <div className="panel-body">
-      <p className="small muted setpieces-note">Escolha quem bate. Se não escolher, vale a indicação do jogo.</p>
+      <p className="small muted setpieces-note">Escolha o capitão e quem bate. Se não escolher, vale a indicação do jogo.</p>
       <div className="setpieces">
         {SET_PIECE_FIELDS.map((f) => (
           <div className="field" key={f.id}>
@@ -82,8 +83,8 @@ export function CeremonyScreen({ room }: { room: RoomView }) {
         <div className="comp-title">
           <h2 className="sb-title">Cerimônia da Revelação</h2>
           <span className="comp-sub">
-            As faixas de nível abrem agora: em cada jogo, o jogador rende um valor dentro da faixa. Aproveite para definir quem bate pênalti,
-            falta e escanteio.
+            As faixas de nível abrem agora: em cada jogo, o jogador rende um valor dentro da faixa. Aproveite para definir o capitão e quem bate
+            pênalti, falta e escanteio.
           </span>
         </div>
         {c && (

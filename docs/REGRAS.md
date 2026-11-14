@@ -19,6 +19,8 @@
 Prazos (modo normal): envelope 45 s, desempate 20 s, Monte 20 s, convocação 90 s (leilão de clubes), cerimônia 65 s (45 s + 20 s para
 escolher os batedores de pênalti, falta e escanteio), rodada da liga 40 s, jogo de copa 40 s (o seu jogo passa no campinho: os 22
 jogadores no gramado, a bola de pé em pé, com pênalti, falta, escanteio e impedimento). Modo turbo ≈ metade.
+A duração da partida é escolha da sala (“Tempo de cada partida”: 20 ou 40 segundos), independente do ritmo do leilão; trocar o
+ritmo para turbo põe 20 s, e dá para voltar a 40 s.
 
 ### Leilão de clubes (sala: “Tipo de leilão” → Clubes)
 Inspirado no modo “Clubes” do Leilão Legends. Em vez de um jogador por lance, cada lote é um **setor de um clube** (ex.: os goleiros do
@@ -59,6 +61,8 @@ Igual ao leilão de clubes, mas cada lote é um **setor de uma seleção** (os a
 - Partida: cada jogador rende um valor sorteado dentro da sua faixa; ataque/meio/defesa geram médias de gols (Poisson):
   ~1,3 gol para cada lado entre times iguais (≈ 2,8 por jogo) e cada ponto de ataque acima da defesa rival vale ~3,5% de gols
   (10 pontos de diferença em tudo ≈ 2,2 × 0,75); mando +10%; Retranca (−4 ataque, +5 defesa), Ataque (+5 ataque, −4 defesa).
+- Capitão: na cerimônia, junto dos batedores, cada técnico escolhe o capitão (sem escolha, o melhor do elenco). Ele aparece com
+  o “C” no campinho e na escalação; não muda o resultado dos jogos.
 - Bola parada: na cerimônia cada técnico escolhe quem bate pênalti, falta e escanteio (sem escolha, o jogo indica o melhor do elenco;
   CPU e clubes do jogo usam a indicação). A média de gols não muda — parte dos gols passa a nascer de bola parada:
   - **Pênalti:** raro (≈ 1 a cada 4 jogos) e quase sempre gol: 78% de acerto, de 66% a 90% conforme o batedor.

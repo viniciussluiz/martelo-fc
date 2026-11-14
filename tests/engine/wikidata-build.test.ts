@@ -358,9 +358,20 @@ describe('baralho real gerado (data/deck-wikidata.json)', () => {
       const scoped = deckForScope(cards, scope);
       for (const [pos, n] of Object.entries(need)) expect(scoped.filter((c) => c.position === pos).length, `${scope} ${pos}`).toBeGreaterThanOrEqual(n);
     }
+    // Fora da lista só entram clubes de cartas feitas à mão (data/deck-ajustes.json → incluir), sempre no grupo Europa.
+    const manual = (JSON.parse(readFileSync(join(process.cwd(), 'data/deck-ajustes.json'), 'utf8')) as { incluir?: Card[] }).incluir ?? [];
+    const manualIds = new Set(manual.map((c) => c.id));
     const allowed = new Set(SERIES_CLUBS.map((c) => c.name));
-    expect(cards.filter((c) => !allowed.has(c.club)).map((c) => c.club)).toEqual([]);
-    for (const c of cards) expect(SERIES_CLUBS.find((x) => x.name === c.club)!.series).toBe(c.series);
+    expect(cards.filter((c) => !allowed.has(c.club) && !manualIds.has(c.id)).map((c) => c.club)).toEqual([]);
+    for (const c of cards) {
+      const listed = SERIES_CLUBS.find((x) => x.name === c.club);
+      expect(listed ? listed.series : 'EU', c.id).toBe(c.series);
+    }
+    // Toda carta feita à mão está no baralho, do jeito que foi escrita.
+    for (const m of manual) {
+      const { motivo: _motivo, ...card } = m as Card & { motivo?: string };
+      expect(cards.find((c) => c.id === m.id)).toEqual(card);
+    }
   });
 });
 

@@ -4,7 +4,7 @@ import { makeContinentalBots, makeLeagueBots, type BotClub } from './bots.js';
 import { Cup, REACH_ORDER, type CupReach, type CupState } from './cup.js';
 import { GameRuleError } from './errors.js';
 import { aggregateScorers, League, type LeagueState, type LeagueTeam, type StandingRow } from './league.js';
-import { resolveTakers, SET_PIECES, type MatchResult, type SetPieceTakers, type SquadPlayer } from './match.js';
+import { resolveTakers, TEAM_ROLES, type MatchResult, type SetPieceTakers, type SquadPlayer } from './match.js';
 import { buildClubPackages } from './packages.js';
 import { Rng } from './rng.js';
 import {
@@ -111,7 +111,7 @@ export interface DisputeState {
   league: LeagueState | null;
   cup: CupState | null;
   tactics: Record<string, Tactic>;
-  /** Batedores de pênalti, falta e escanteio escolhidos por cada técnico (ausente = o jogo escolhe). */
+  /** Batedores de pênalti, falta e escanteio e o capitão escolhidos por cada técnico (ausente = o jogo escolhe). */
   setPieces?: Record<string, SetPieceTakers>;
   result: DisputeResult | null;
 }
@@ -325,7 +325,7 @@ export class Dispute {
   }
 
   /**
-   * Batedores de bola parada de um técnico. Vale da cerimônia em diante (o elenco já está fechado);
+   * Batedores de bola parada e capitão de um técnico. Vale da cerimônia em diante (o elenco já está fechado);
    * cada batedor precisa estar no elenco. Só troca o que vier no pedido.
    */
   setSetPieces(participantId: string, takers: SetPieceTakers) {
@@ -334,11 +334,11 @@ export class Dispute {
     }
     const p = this.participant(participantId);
     const next: SetPieceTakers = { ...(this.state.setPieces?.[participantId] ?? {}) };
-    for (const kind of SET_PIECES) {
+    for (const kind of TEAM_ROLES) {
       const id = takers?.[kind];
       if (id === undefined) continue;
       if (typeof id !== 'string' || !p.roster.some((r) => r.cardId === id)) {
-        throw new GameRuleError('batedor_invalido', 'O batedor precisa ser um jogador do seu time.');
+        throw new GameRuleError('batedor_invalido', kind === 'capitao' ? 'O capitão precisa ser um jogador do seu time.' : 'O batedor precisa ser um jogador do seu time.');
       }
       next[kind] = id;
     }

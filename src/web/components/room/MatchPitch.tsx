@@ -88,7 +88,7 @@ export function MatchPitch({
       men.current.forEach((el, i) => el?.toggleAttribute('data-ball', i === hi));
       if (label.current) {
         const who = hi >= 0 ? timeline.players[hi]! : null;
-        const text = who ? shortName(who.name) : '';
+        const text = who && who.name ? `${shortName(who.name)}${who.captain ? ' (C)' : ''}` : '';
         if (text !== shown) {
           label.current.textContent = text;
           shown = text;
@@ -244,6 +244,11 @@ export function MatchPitch({
             >
               <ellipse className="mp-player-shadow" cx={0.3} cy={0.9} rx={PLAYER_R} ry={0.7} />
               <circle r={PLAYER_R} />
+              {p.captain && (
+                <text className="mp-cap" textAnchor="middle" y={0.72}>
+                  C
+                </text>
+              )}
             </g>
           ))}
         </g>

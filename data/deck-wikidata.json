@@ -35944,6 +35944,1281 @@
     "#FFFFFF"
    ],
    "series": "A"
+  },
+  {
+   "id": "wd-Q605817-bolton-2003",
+   "personId": "Q605817",
+   "name": "Jay-Jay Okocha",
+   "position": "MEI",
+   "club": "Bolton",
+   "year": 2003,
+   "levelMin": 88,
+   "levelMax": 93,
+   "tier": "lenda",
+   "hint": "No Bolton em 2003. 30 anos em 2003. 75 jogos pela seleção.",
+   "kit": [
+    "#FFFFFF",
+    "#1B2A5C"
+   ],
+   "series": "EU"
+  },
+  {
+   "id": "wd-Q192965-villarreal-2005",
+   "personId": "Q192965",
+   "name": "Juan Román Riquelme",
+   "position": "MEI",
+   "club": "Villarreal",
+   "year": 2005,
+   "levelMin": 91,
+   "levelMax": 96,
+   "tier": "lenda",
+   "hint": "No Villarreal em 2005. 27 anos em 2005. 51 jogos pela seleção.",
+   "kit": [
+    "#FFE667",
+    "#005187"
+   ],
+   "series": "EU"
+  },
+  {
+   "id": "wd-Q189892-galatasaray-1997",
+   "personId": "Q189892",
+   "name": "Gheorghe Hagi",
+   "position": "MEI",
+   "club": "Galatasaray",
+   "year": 1997,
+   "levelMin": 90,
+   "levelMax": 95,
+   "tier": "lenda",
+   "hint": "No Galatasaray em 1997. 32 anos em 1997. 125 jogos pela seleção.",
+   "kit": [
+    "#A90432",
+    "#FDB912"
+   ],
+   "series": "EU"
+  },
+  {
+   "id": "wd-Q47489-deportivo-la-coruna-2000",
+   "personId": "Q47489",
+   "name": "Djalminha",
+   "position": "MEI",
+   "club": "Deportivo La Coruña",
+   "year": 2000,
+   "levelMin": 88,
+   "levelMax": 93,
+   "tier": "lenda",
+   "hint": "No Deportivo La Coruña em 2000. 30 anos em 2000. 14 jogos pela seleção.",
+   "kit": [
+    "#0A4DA2",
+    "#FFFFFF"
+   ],
+   "series": "EU"
+  },
+  {
+   "id": "wd-Q317863-Q128446-1999",
+   "personId": "Q317863",
+   "name": "Jardel",
+   "position": "ATA",
+   "club": "Porto",
+   "year": 1999,
+   "levelMin": 89,
+   "levelMax": 94,
+   "tier": "lenda",
+   "hint": "No Porto em 1999. 26 anos em 1999. 10 jogos pela seleção.",
+   "kit": [
+    "#003893",
+    "#FFFFFF"
+   ],
+   "series": "EU"
+  },
+  {
+   "id": "man-dario-hubner-piacenza-2002",
+   "personId": "man-dario-hubner",
+   "name": "Dario Hübner",
+   "position": "ATA",
+   "club": "Piacenza",
+   "year": 2002,
+   "levelMin": 85,
+   "levelMax": 90,
+   "tier": "craque",
+   "hint": "No Piacenza em 2002.",
+   "kit": [
+    "#D50000",
+    "#FFFFFF"
+   ],
+   "series": "EU"
+  },
+  {
+   "id": "wd-Q299493-Q1422-1996",
+   "personId": "Q299493",
+   "name": "Fabrizio Ravanelli",
+   "position": "ATA",
+   "club": "Juventus",
+   "year": 1996,
+   "levelMin": 87,
+   "levelMax": 92,
+   "tier": "craque",
+   "hint": "Na Juventus em 1996. 28 anos em 1996. 22 jogos pela seleção.",
+   "kit": [
+    "#FFFFFF",
+    "#111111"
+   ],
+   "series": "EU"
+  },
+  {
+   "id": "wd-Q296467-Q180305-2004",
+   "personId": "Q296467",
+   "name": "Dado Pršo",
+   "position": "ATA",
+   "club": "Monaco",
+   "year": 2004,
+   "levelMin": 85,
+   "levelMax": 90,
+   "tier": "craque",
+   "hint": "No Monaco em 2004. 30 anos em 2004. 32 jogos pela seleção.",
+   "kit": [
+    "#E2001A",
+    "#FFFFFF"
+   ],
+   "series": "EU"
+  },
+  {
+   "id": "wd-Q135625-Q1543-1994",
+   "personId": "Q135625",
+   "name": "Dejan Savićević",
+   "position": "MEI",
+   "club": "Milan",
+   "year": 1994,
+   "levelMin": 90,
+   "levelMax": 95,
+   "tier": "lenda",
+   "hint": "No Milan em 1994. 28 anos em 1994. 56 jogos pela seleção.",
+   "kit": [
+    "#FB090B",
+    "#111111"
+   ],
+   "series": "EU"
+  },
+  {
+   "id": "wd-Q128725-parma-2002",
+   "personId": "Q128725",
+   "name": "Hidetoshi Nakata",
+   "position": "MEI",
+   "club": "Parma",
+   "year": 2002,
+   "levelMin": 85,
+   "levelMax": 90,
+   "tier": "craque",
+   "hint": "No Parma em 2002. 25 anos em 2002. 77 jogos pela seleção.",
+   "kit": [
+    "#FFD200",
+    "#1B4094"
+   ],
+   "series": "EU"
+  },
+  {
+   "id": "wd-Q217482-Q631-1997",
+   "personId": "Q217482",
+   "name": "Youri Djorkaeff",
+   "position": "ATA",
+   "club": "Inter de Milão",
+   "year": 1997,
+   "levelMin": 88,
+   "levelMax": 93,
+   "tier": "lenda",
+   "hint": "Na Inter de Milão em 1997. 29 anos em 1997. 82 jogos pela seleção.",
+   "kit": [
+    "#0068A8",
+    "#111111"
+   ],
+   "series": "EU"
+  },
+  {
+   "id": "wd-Q295456-Q8682-2000",
+   "personId": "Q295456",
+   "name": "Fernando Redondo",
+   "position": "MEI",
+   "club": "Real Madrid",
+   "year": 2000,
+   "levelMin": 90,
+   "levelMax": 95,
+   "tier": "lenda",
+   "hint": "No Real Madrid em 2000. 31 anos em 2000. 29 jogos pela seleção.",
+   "kit": [
+    "#FFFFFF",
+    "#FEBE10"
+   ],
+   "series": "EU"
+  },
+  {
+   "id": "wd-Q295410-Q10333-2001",
+   "personId": "Q295410",
+   "name": "Gaizka Mendieta",
+   "position": "MEI",
+   "club": "Valencia",
+   "year": 2001,
+   "levelMin": 88,
+   "levelMax": 93,
+   "tier": "lenda",
+   "hint": "No Valencia em 2001. 27 anos em 2001. 40 jogos pela seleção.",
+   "kit": [
+    "#FFFFFF",
+    "#111111"
+   ],
+   "series": "EU"
+  },
+  {
+   "id": "wd-Q366109-Q15789-1999",
+   "personId": "Q366109",
+   "name": "Mario Basler",
+   "position": "MEI",
+   "club": "Bayern de Munique",
+   "year": 1999,
+   "levelMin": 86,
+   "levelMax": 91,
+   "tier": "craque",
+   "hint": "No Bayern de Munique em 1999. 31 anos em 1999. 30 jogos pela seleção.",
+   "kit": [
+    "#DC052D",
+    "#FFFFFF"
+   ],
+   "series": "EU"
+  },
+  {
+   "id": "wd-Q160206-Q2609-2001",
+   "personId": "Q160206",
+   "name": "Hernán Crespo",
+   "position": "ATA",
+   "club": "Lazio",
+   "year": 2001,
+   "levelMin": 90,
+   "levelMax": 95,
+   "tier": "lenda",
+   "hint": "Na Lazio em 2001. 26 anos em 2001. 64 jogos pela seleção.",
+   "kit": [
+    "#87D8F7",
+    "#FFFFFF"
+   ],
+   "series": "EU"
+  },
+  {
+   "id": "wd-Q190608-fiorentina-1999",
+   "personId": "Q190608",
+   "name": "Rui Costa",
+   "position": "MEI",
+   "club": "Fiorentina",
+   "year": 1999,
+   "levelMin": 89,
+   "levelMax": 94,
+   "tier": "lenda",
+   "hint": "Na Fiorentina em 1999. 27 anos em 1999. 94 jogos pela seleção.",
+   "kit": [
+    "#5B2B82",
+    "#FFFFFF"
+   ],
+   "series": "EU"
+  },
+  {
+   "id": "wd-Q206548-Q1130849-1996",
+   "personId": "Q206548",
+   "name": "Robbie Fowler",
+   "position": "ATA",
+   "club": "Liverpool",
+   "year": 1996,
+   "levelMin": 89,
+   "levelMax": 94,
+   "tier": "lenda",
+   "hint": "No Liverpool em 1996. 21 anos em 1996. 26 jogos pela seleção.",
+   "kit": [
+    "#C8102E",
+    "#FFFFFF"
+   ],
+   "series": "EU"
+  },
+  {
+   "id": "wd-Q192035-Q631-1998",
+   "personId": "Q192035",
+   "name": "Iván Zamorano",
+   "position": "ATA",
+   "club": "Inter de Milão",
+   "year": 1998,
+   "levelMin": 88,
+   "levelMax": 93,
+   "tier": "lenda",
+   "hint": "Na Inter de Milão em 1998. 31 anos em 1998. 69 jogos pela seleção.",
+   "kit": [
+    "#0068A8",
+    "#111111"
+   ],
+   "series": "EU"
+  },
+  {
+   "id": "man-shinji-ono-feyenoord-2002",
+   "personId": "man-shinji-ono",
+   "name": "Shinji Ono",
+   "position": "MEI",
+   "club": "Feyenoord",
+   "year": 2002,
+   "levelMin": 85,
+   "levelMax": 90,
+   "tier": "craque",
+   "hint": "No Feyenoord em 2002.",
+   "kit": [
+    "#E30613",
+    "#FFFFFF"
+   ],
+   "series": "EU"
+  },
+  {
+   "id": "wd-Q318184-Q8701-1998",
+   "personId": "Q318184",
+   "name": "Juninho Paulista",
+   "position": "MEI",
+   "club": "Atlético de Madrid",
+   "year": 1998,
+   "levelMin": 87,
+   "levelMax": 92,
+   "tier": "craque",
+   "hint": "No Atlético de Madrid em 1998. 25 anos em 1998. 49 jogos pela seleção.",
+   "kit": [
+    "#CB3524",
+    "#FFFFFF"
+   ],
+   "series": "EU"
+  },
+  {
+   "id": "wd-Q170452-Q631-2005",
+   "personId": "Q170452",
+   "name": "Adriano",
+   "position": "ATA",
+   "club": "Inter de Milão",
+   "year": 2005,
+   "levelMin": 91,
+   "levelMax": 96,
+   "tier": "lenda",
+   "hint": "Na Inter de Milão em 2005. 23 anos em 2005. 48 jogos pela seleção.",
+   "kit": [
+    "#0068A8",
+    "#111111"
+   ],
+   "series": "EU"
+  },
+  {
+   "id": "wd-Q209650-Q81888-1995",
+   "personId": "Q209650",
+   "name": "Jari Litmanen",
+   "position": "MEI",
+   "club": "Ajax",
+   "year": 1995,
+   "levelMin": 90,
+   "levelMax": 95,
+   "tier": "lenda",
+   "hint": "No Ajax em 1995. 24 anos em 1995. 137 jogos pela seleção.",
+   "kit": [
+    "#FFFFFF",
+    "#D2122E"
+   ],
+   "series": "EU"
+  },
+  {
+   "id": "wd-Q189217-Q10329-1993",
+   "personId": "Q189217",
+   "name": "Davor Šuker",
+   "position": "ATA",
+   "club": "Sevilla",
+   "year": 1993,
+   "levelMin": 88,
+   "levelMax": 93,
+   "tier": "lenda",
+   "hint": "No Sevilla em 1993. 25 anos em 1993. 69 jogos pela seleção.",
+   "kit": [
+    "#FFFFFF",
+    "#D50000"
+   ],
+   "series": "EU"
+  },
+  {
+   "id": "wd-Q237964-Q8682-1998",
+   "personId": "Q237964",
+   "name": "Predrag Mijatović",
+   "position": "ATA",
+   "club": "Real Madrid",
+   "year": 1998,
+   "levelMin": 88,
+   "levelMax": 93,
+   "tier": "lenda",
+   "hint": "No Real Madrid em 1998. 29 anos em 1998. 64 jogos pela seleção.",
+   "kit": [
+    "#FFFFFF",
+    "#FEBE10"
+   ],
+   "series": "EU"
+  },
+  {
+   "id": "wd-Q67964-brescia-2001",
+   "personId": "Q67964",
+   "name": "Roberto Baggio",
+   "position": "ATA",
+   "club": "Brescia",
+   "year": 2001,
+   "levelMin": 91,
+   "levelMax": 96,
+   "tier": "lenda",
+   "hint": "No Brescia em 2001. 34 anos em 2001. 56 jogos pela seleção.",
+   "kit": [
+    "#0055A4",
+    "#FFFFFF"
+   ],
+   "series": "EU"
+  },
+  {
+   "id": "wd-Q221432-anderlecht-1991",
+   "personId": "Q221432",
+   "name": "Enzo Scifo",
+   "position": "MEI",
+   "club": "Anderlecht",
+   "year": 1991,
+   "levelMin": 86,
+   "levelMax": 91,
+   "tier": "craque",
+   "hint": "No Anderlecht em 1991. 25 anos em 1991. 84 jogos pela seleção.",
+   "kit": [
+    "#5B2B82",
+    "#FFFFFF"
+   ],
+   "series": "EU"
+  },
+  {
+   "id": "wd-Q257548-nagoya-grampus-1995",
+   "personId": "Q257548",
+   "name": "Dragan Stojković",
+   "position": "MEI",
+   "club": "Nagoya Grampus",
+   "year": 1995,
+   "levelMin": 88,
+   "levelMax": 93,
+   "tier": "lenda",
+   "hint": "No Nagoya Grampus em 1995. 30 anos em 1995. 84 jogos pela seleção.",
+   "kit": [
+    "#D80C18",
+    "#F8B500"
+   ],
+   "series": "EU"
+  },
+  {
+   "id": "wd-Q187125-Q7156-1994",
+   "personId": "Q187125",
+   "name": "Hristo Stoichkov",
+   "position": "ATA",
+   "club": "Barcelona",
+   "year": 1994,
+   "levelMin": 91,
+   "levelMax": 96,
+   "tier": "lenda",
+   "hint": "No Barcelona em 1994. 28 anos em 1994. 84 jogos pela seleção.",
+   "kit": [
+    "#A50044",
+    "#004D98"
+   ],
+   "series": "EU"
+  },
+  {
+   "id": "wd-Q42601-Q18741-1999",
+   "personId": "Q42601",
+   "name": "David Ginola",
+   "position": "ATA",
+   "club": "Tottenham",
+   "year": 1999,
+   "levelMin": 87,
+   "levelMax": 92,
+   "tier": "craque",
+   "hint": "No Tottenham em 1999. 32 anos em 1999. 17 jogos pela seleção.",
+   "kit": [
+    "#FFFFFF",
+    "#132257"
+   ],
+   "series": "EU"
+  },
+  {
+   "id": "man-tomas-brolin-parma-1993",
+   "personId": "man-tomas-brolin",
+   "name": "Tomas Brolin",
+   "position": "ATA",
+   "club": "Parma",
+   "year": 1993,
+   "levelMin": 86,
+   "levelMax": 91,
+   "tier": "craque",
+   "hint": "No Parma em 1993.",
+   "kit": [
+    "#FFD200",
+    "#1B4094"
+   ],
+   "series": "EU"
+  },
+  {
+   "id": "wd-Q154156-Q15789-2001",
+   "personId": "Q154156",
+   "name": "Mehmet Scholl",
+   "position": "MEI",
+   "club": "Bayern de Munique",
+   "year": 2001,
+   "levelMin": 87,
+   "levelMax": 92,
+   "tier": "craque",
+   "hint": "No Bayern de Munique em 2001. 31 anos em 2001. 36 jogos pela seleção.",
+   "kit": [
+    "#DC052D",
+    "#FFFFFF"
+   ],
+   "series": "EU"
+  },
+  {
+   "id": "wd-Q155911-Q2739-1992",
+   "personId": "Q155911",
+   "name": "Thomas Häßler",
+   "position": "MEI",
+   "club": "Roma",
+   "year": 1992,
+   "levelMin": 86,
+   "levelMax": 91,
+   "tier": "craque",
+   "hint": "Na Roma em 1992. 26 anos em 1992. 101 jogos pela seleção.",
+   "kit": [
+    "#8E1F2F",
+    "#F0BC42"
+   ],
+   "series": "EU"
+  },
+  {
+   "id": "wd-Q152725-deportivo-la-coruna-2003",
+   "personId": "Q152725",
+   "name": "Roy Makaay",
+   "position": "ATA",
+   "club": "Deportivo La Coruña",
+   "year": 2003,
+   "levelMin": 89,
+   "levelMax": 94,
+   "tier": "lenda",
+   "hint": "No Deportivo La Coruña em 2003. 28 anos em 2003. 43 jogos pela seleção.",
+   "kit": [
+    "#0A4DA2",
+    "#FFFFFF"
+   ],
+   "series": "EU"
+  },
+  {
+   "id": "man-diego-tristan-deportivo-la-coruna-2002",
+   "personId": "man-diego-tristan",
+   "name": "Diego Tristán",
+   "position": "ATA",
+   "club": "Deportivo La Coruña",
+   "year": 2002,
+   "levelMin": 87,
+   "levelMax": 92,
+   "tier": "craque",
+   "hint": "No Deportivo La Coruña em 2002.",
+   "kit": [
+    "#0A4DA2",
+    "#FFFFFF"
+   ],
+   "series": "EU"
+  },
+  {
+   "id": "wd-Q45567-Q8682-2002",
+   "personId": "Q45567",
+   "name": "Fernando Morientes",
+   "position": "ATA",
+   "club": "Real Madrid",
+   "year": 2002,
+   "levelMin": 88,
+   "levelMax": 93,
+   "tier": "lenda",
+   "hint": "No Real Madrid em 2002. 26 anos em 2002. 47 jogos pela seleção.",
+   "kit": [
+    "#FFFFFF",
+    "#FEBE10"
+   ],
+   "series": "EU"
+  },
+  {
+   "id": "wd-Q1939-Q9617-1999",
+   "personId": "Q1939",
+   "name": "Nicolas Anelka",
+   "position": "ATA",
+   "club": "Arsenal",
+   "year": 1999,
+   "levelMin": 88,
+   "levelMax": 93,
+   "tier": "lenda",
+   "hint": "No Arsenal em 1999. 20 anos em 1999. 69 jogos pela seleção.",
+   "kit": [
+    "#EF0107",
+    "#FFFFFF"
+   ],
+   "series": "EU"
+  },
+  {
+   "id": "wd-Q223176-Q9616-2001",
+   "personId": "Q223176",
+   "name": "Jimmy Floyd Hasselbaink",
+   "position": "ATA",
+   "club": "Chelsea",
+   "year": 2001,
+   "levelMin": 88,
+   "levelMax": 93,
+   "tier": "lenda",
+   "hint": "No Chelsea em 2001. 29 anos em 2001. 23 jogos pela seleção.",
+   "kit": [
+    "#034694",
+    "#FFFFFF"
+   ],
+   "series": "EU"
+  },
+  {
+   "id": "man-mark-viduka-leeds-united-2001",
+   "personId": "man-mark-viduka",
+   "name": "Mark Viduka",
+   "position": "ATA",
+   "club": "Leeds United",
+   "year": 2001,
+   "levelMin": 87,
+   "levelMax": 92,
+   "tier": "craque",
+   "hint": "No Leeds United em 2001.",
+   "kit": [
+    "#FFFFFF",
+    "#1D428A"
+   ],
+   "series": "EU"
+  },
+  {
+   "id": "wd-Q269883-Q9617-1998",
+   "personId": "Q269883",
+   "name": "Emmanuel Petit",
+   "position": "MEI",
+   "club": "Arsenal",
+   "year": 1998,
+   "levelMin": 88,
+   "levelMax": 93,
+   "tier": "lenda",
+   "hint": "No Arsenal em 1998. 28 anos em 1998. 63 jogos pela seleção.",
+   "kit": [
+    "#EF0107",
+    "#FFFFFF"
+   ],
+   "series": "EU"
+  },
+  {
+   "id": "wd-Q189686-Q7156-1999",
+   "personId": "Q189686",
+   "name": "Patrick Kluivert",
+   "position": "ATA",
+   "club": "Barcelona",
+   "year": 1999,
+   "levelMin": 89,
+   "levelMax": 94,
+   "tier": "lenda",
+   "hint": "No Barcelona em 1999. 23 anos em 1999. 79 jogos pela seleção.",
+   "kit": [
+    "#A50044",
+    "#004D98"
+   ],
+   "series": "EU"
+  },
+  {
+   "id": "wd-Q180326-parma-1999",
+   "personId": "Q180326",
+   "name": "Lilian Thuram",
+   "position": "LAT",
+   "club": "Parma",
+   "year": 1999,
+   "levelMin": 89,
+   "levelMax": 94,
+   "tier": "lenda",
+   "hint": "No Parma em 1999. 27 anos em 1999. 142 jogos pela seleção.",
+   "kit": [
+    "#FFD200",
+    "#1B4094"
+   ],
+   "series": "EU"
+  },
+  {
+   "id": "wd-Q216917-Q18656-1999",
+   "personId": "Q216917",
+   "name": "Jaap Stam",
+   "position": "ZAG",
+   "club": "Manchester United",
+   "year": 1999,
+   "levelMin": 89,
+   "levelMax": 94,
+   "tier": "lenda",
+   "hint": "No Manchester United em 1999. 27 anos em 1999. 67 jogos pela seleção.",
+   "kit": [
+    "#DA291C",
+    "#111111"
+   ],
+   "series": "EU"
+  },
+  {
+   "id": "wd-Q193702-Q631-2010",
+   "personId": "Q193702",
+   "name": "Walter Samuel",
+   "position": "ZAG",
+   "club": "Inter de Milão",
+   "year": 2010,
+   "levelMin": 88,
+   "levelMax": 93,
+   "tier": "lenda",
+   "hint": "Na Inter de Milão em 2010. 32 anos em 2010. 56 jogos pela seleção.",
+   "kit": [
+    "#0068A8",
+    "#111111"
+   ],
+   "series": "EU"
+  },
+  {
+   "id": "wd-Q156822-Q631-2010",
+   "personId": "Q156822",
+   "name": "Lúcio",
+   "position": "ZAG",
+   "club": "Inter de Milão",
+   "year": 2010,
+   "levelMin": 90,
+   "levelMax": 95,
+   "tier": "lenda",
+   "hint": "Na Inter de Milão em 2010. 32 anos em 2010. 105 jogos pela seleção.",
+   "kit": [
+    "#0068A8",
+    "#111111"
+   ],
+   "series": "EU"
+  },
+  {
+   "id": "wd-Q189535-Q10333-2002",
+   "personId": "Q189535",
+   "name": "Roberto Ayala",
+   "position": "ZAG",
+   "club": "Valencia",
+   "year": 2002,
+   "levelMin": 88,
+   "levelMax": 93,
+   "tier": "lenda",
+   "hint": "No Valencia em 2002. 29 anos em 2002. 115 jogos pela seleção.",
+   "kit": [
+    "#FFFFFF",
+    "#111111"
+   ],
+   "series": "EU"
+  },
+  {
+   "id": "wd-Q102027-Q8682-2006",
+   "personId": "Q102027",
+   "name": "Fabio Cannavaro",
+   "position": "ZAG",
+   "club": "Real Madrid",
+   "year": 2006,
+   "levelMin": 92,
+   "levelMax": 97,
+   "tier": "lenda",
+   "hint": "No Real Madrid em 2006. 33 anos em 2006. 136 jogos pela seleção.",
+   "kit": [
+    "#FFFFFF",
+    "#FEBE10"
+   ],
+   "series": "EU"
+  },
+  {
+   "id": "wd-Q44073-Q15789-2001",
+   "personId": "Q44073",
+   "name": "Bixente Lizarazu",
+   "position": "LAT",
+   "club": "Bayern de Munique",
+   "year": 2001,
+   "levelMin": 87,
+   "levelMax": 92,
+   "tier": "craque",
+   "hint": "No Bayern de Munique em 2001. 32 anos em 2001. 97 jogos pela seleção.",
+   "kit": [
+    "#DC052D",
+    "#FFFFFF"
+   ],
+   "series": "EU"
+  },
+  {
+   "id": "wd-Q168287-Q2739-2001",
+   "personId": "Q168287",
+   "name": "Christian Panucci",
+   "position": "LAT",
+   "club": "Roma",
+   "year": 2001,
+   "levelMin": 86,
+   "levelMax": 91,
+   "tier": "craque",
+   "hint": "Na Roma em 2001. 28 anos em 2001. 57 jogos pela seleção.",
+   "kit": [
+    "#8E1F2F",
+    "#F0BC42"
+   ],
+   "series": "EU"
+  },
+  {
+   "id": "wd-Q294501-Q8682-2000",
+   "personId": "Q294501",
+   "name": "Steve McManaman",
+   "position": "ATA",
+   "club": "Real Madrid",
+   "year": 2000,
+   "levelMin": 87,
+   "levelMax": 92,
+   "tier": "craque",
+   "hint": "No Real Madrid em 2000. 28 anos em 2000. 37 jogos pela seleção.",
+   "kit": [
+    "#FFFFFF",
+    "#FEBE10"
+   ],
+   "series": "EU"
+  },
+  {
+   "id": "wd-Q313205-Q7156-1996",
+   "personId": "Q313205",
+   "name": "Gheorghe Popescu",
+   "position": "ZAG",
+   "club": "Barcelona",
+   "year": 1996,
+   "levelMin": 86,
+   "levelMax": 91,
+   "tier": "craque",
+   "hint": "No Barcelona em 1996. 29 anos em 1996. 115 jogos pela seleção.",
+   "kit": [
+    "#A50044",
+    "#004D98"
+   ],
+   "series": "EU"
+  },
+  {
+   "id": "wd-Q46502-Q2609-2000",
+   "personId": "Q46502",
+   "name": "Juan Sebastián Verón",
+   "position": "MEI",
+   "club": "Lazio",
+   "year": 2000,
+   "levelMin": 90,
+   "levelMax": 95,
+   "tier": "lenda",
+   "hint": "Na Lazio em 2000. 25 anos em 2000. 73 jogos pela seleção.",
+   "kit": [
+    "#87D8F7",
+    "#FFFFFF"
+   ],
+   "series": "EU"
+  },
+  {
+   "id": "wd-Q192640-Q631-2010",
+   "personId": "Q192640",
+   "name": "Dejan Stanković",
+   "position": "MEI",
+   "club": "Inter de Milão",
+   "year": 2010,
+   "levelMin": 88,
+   "levelMax": 93,
+   "tier": "lenda",
+   "hint": "Na Inter de Milão em 2010. 32 anos em 2010. 103 jogos pela seleção.",
+   "kit": [
+    "#0068A8",
+    "#111111"
+   ],
+   "series": "EU"
+  },
+  {
+   "id": "wd-Q742644-Q270995-1977",
+   "personId": "Q742644",
+   "name": "Reinaldo",
+   "position": "ATA",
+   "club": "Atlético-MG",
+   "year": 1977,
+   "levelMin": 92,
+   "levelMax": 97,
+   "tier": "lenda",
+   "hint": "No Atlético-MG em 1977. 20 anos em 1977. 37 jogos pela seleção.",
+   "kit": [
+    "#111111",
+    "#FFFFFF"
+   ],
+   "series": "A"
+  },
+  {
+   "id": "wd-Q39444-Q270995-2013",
+   "personId": "Q39444",
+   "name": "Ronaldinho",
+   "position": "MEI",
+   "club": "Atlético-MG",
+   "year": 2013,
+   "levelMin": 93,
+   "levelMax": 98,
+   "tier": "lenda",
+   "hint": "No Atlético-MG em 2013. 33 anos em 2013. 97 jogos pela seleção.",
+   "kit": [
+    "#111111",
+    "#FFFFFF"
+   ],
+   "series": "A"
+  },
+  {
+   "id": "wd-Q517914-Q270995-1971",
+   "personId": "Q517914",
+   "name": "Dadá Maravilha",
+   "position": "ATA",
+   "club": "Atlético-MG",
+   "year": 1971,
+   "levelMin": 89,
+   "levelMax": 94,
+   "tier": "lenda",
+   "hint": "No Atlético-MG em 1971. 25 anos em 1971. 7 jogos pela seleção.",
+   "kit": [
+    "#111111",
+    "#FFFFFF"
+   ],
+   "series": "A"
+  },
+  {
+   "id": "wd-Q905206-Q270995-2013",
+   "personId": "Q905206",
+   "name": "Diego Tardelli",
+   "position": "ATA",
+   "club": "Atlético-MG",
+   "year": 2013,
+   "levelMin": 89,
+   "levelMax": 94,
+   "tier": "lenda",
+   "hint": "No Atlético-MG em 2013. 28 anos em 2013. 2 jogos pela seleção.",
+   "kit": [
+    "#111111",
+    "#FFFFFF"
+   ],
+   "series": "A"
+  },
+  {
+   "id": "wd-Q1353703-Q270995-1982",
+   "personId": "Q1353703",
+   "name": "Luizinho",
+   "position": "ZAG",
+   "club": "Atlético-MG",
+   "year": 1982,
+   "levelMin": 88,
+   "levelMax": 93,
+   "tier": "lenda",
+   "hint": "No Atlético-MG em 1982. 24 anos em 1982. 34 jogos pela seleção.",
+   "kit": [
+    "#111111",
+    "#FFFFFF"
+   ],
+   "series": "A"
+  },
+  {
+   "id": "wd-Q969872-Q17479-1981",
+   "personId": "Q969872",
+   "name": "Leandro",
+   "position": "LAT",
+   "club": "Flamengo",
+   "year": 1981,
+   "levelMin": 91,
+   "levelMax": 96,
+   "tier": "lenda",
+   "hint": "No Flamengo em 1981. 22 anos em 1981. 27 jogos pela seleção.",
+   "kit": [
+    "#C8102E",
+    "#111111"
+   ],
+   "series": "A"
+  },
+  {
+   "id": "wd-Q2448647-Q17479-1981",
+   "personId": "Q2448647",
+   "name": "Nunes",
+   "position": "ATA",
+   "club": "Flamengo",
+   "year": 1981,
+   "levelMin": 88,
+   "levelMax": 93,
+   "tier": "lenda",
+   "hint": "No Flamengo em 1981. 27 anos em 1981. 6 jogos pela seleção.",
+   "kit": [
+    "#C8102E",
+    "#111111"
+   ],
+   "series": "A"
+  },
+  {
+   "id": "wd-Q2520149-Q17479-1981",
+   "personId": "Q2520149",
+   "name": "Andrade",
+   "position": "MEI",
+   "club": "Flamengo",
+   "year": 1981,
+   "levelMin": 88,
+   "levelMax": 93,
+   "tier": "lenda",
+   "hint": "No Flamengo em 1981. 24 anos em 1981. 11 jogos pela seleção.",
+   "kit": [
+    "#C8102E",
+    "#111111"
+   ],
+   "series": "A"
+  },
+  {
+   "id": "wd-Q2578811-Q17479-2009",
+   "personId": "Q2578811",
+   "name": "Léo Moura",
+   "position": "LAT",
+   "club": "Flamengo",
+   "year": 2009,
+   "levelMin": 87,
+   "levelMax": 92,
+   "tier": "craque",
+   "hint": "No Flamengo em 2009. 31 anos em 2009. 1 jogos pela seleção.",
+   "kit": [
+    "#C8102E",
+    "#111111"
+   ],
+   "series": "A"
+  },
+  {
+   "id": "wd-Q677923-Q188277-2013",
+   "personId": "Q677923",
+   "name": "Fábio",
+   "position": "GOL",
+   "club": "Cruzeiro",
+   "year": 2013,
+   "levelMin": 90,
+   "levelMax": 95,
+   "tier": "lenda",
+   "hint": "No Cruzeiro em 2013. 33 anos em 2013. 3 jogos pela seleção.",
+   "kit": [
+    "#0033A0",
+    "#FFFFFF"
+   ],
+   "series": "A"
+  },
+  {
+   "id": "wd-Q180889-Q188277-2003",
+   "personId": "Q180889",
+   "name": "Ricardinho",
+   "position": "MEI",
+   "club": "Cruzeiro",
+   "year": 2003,
+   "levelMin": 88,
+   "levelMax": 93,
+   "tier": "lenda",
+   "hint": "No Cruzeiro em 2003. 27 anos em 2003. 3 jogos pela seleção.",
+   "kit": [
+    "#0033A0",
+    "#FFFFFF"
+   ],
+   "series": "A"
+  },
+  {
+   "id": "wd-Q928137-Q188277-1997",
+   "personId": "Q928137",
+   "name": "Marcelo Ramos",
+   "position": "ATA",
+   "club": "Cruzeiro",
+   "year": 1997,
+   "levelMin": 88,
+   "levelMax": 93,
+   "tier": "lenda",
+   "hint": "No Cruzeiro em 1997. 24 anos em 1997. 1 jogos pela seleção.",
+   "kit": [
+    "#0033A0",
+    "#FFFFFF"
+   ],
+   "series": "A"
+  },
+  {
+   "id": "wd-Q3878239-Q188277-1997",
+   "personId": "Q3878239",
+   "name": "Nonato",
+   "position": "LAT",
+   "club": "Cruzeiro",
+   "year": 1997,
+   "levelMin": 86,
+   "levelMax": 91,
+   "tier": "craque",
+   "hint": "No Cruzeiro em 1997. 30 anos em 1997. 3 jogos pela seleção.",
+   "kit": [
+    "#0033A0",
+    "#FFFFFF"
+   ],
+   "series": "A"
+  },
+  {
+   "id": "wd-Q2308830-Q35933-1990",
+   "personId": "Q2308830",
+   "name": "Neto",
+   "position": "MEI",
+   "club": "Corinthians",
+   "year": 1990,
+   "levelMin": 89,
+   "levelMax": 94,
+   "tier": "lenda",
+   "hint": "No Corinthians em 1990. 24 anos em 1990. 26 jogos pela seleção.",
+   "kit": [
+    "#FFFFFF",
+    "#111111"
+   ],
+   "series": "A"
+  },
+  {
+   "id": "wd-Q920039-Q35933-2012",
+   "personId": "Q920039",
+   "name": "Cássio",
+   "position": "GOL",
+   "club": "Corinthians",
+   "year": 2012,
+   "levelMin": 91,
+   "levelMax": 96,
+   "tier": "lenda",
+   "hint": "No Corinthians em 2012. 25 anos em 2012. 10 jogos pela seleção.",
+   "kit": [
+    "#FFFFFF",
+    "#111111"
+   ],
+   "series": "A"
+  },
+  {
+   "id": "wd-Q1982869-Q35933-1999",
+   "personId": "Q1982869",
+   "name": "Vampeta",
+   "position": "MEI",
+   "club": "Corinthians",
+   "year": 1999,
+   "levelMin": 88,
+   "levelMax": 93,
+   "tier": "lenda",
+   "hint": "No Corinthians em 1999. 25 anos em 1999. 39 jogos pela seleção.",
+   "kit": [
+    "#FFFFFF",
+    "#111111"
+   ],
+   "series": "A"
+  },
+  {
+   "id": "wd-Q72886-Q35933-2002",
+   "personId": "Q72886",
+   "name": "Ricardinho",
+   "position": "MEI",
+   "club": "Corinthians",
+   "year": 2002,
+   "levelMin": 89,
+   "levelMax": 94,
+   "tier": "lenda",
+   "hint": "No Corinthians em 2002. 26 anos em 2002.",
+   "kit": [
+    "#FFFFFF",
+    "#111111"
+   ],
+   "series": "A"
+  },
+  {
+   "id": "wd-Q312687-Q38568-2005",
+   "personId": "Q312687",
+   "name": "Mineiro",
+   "position": "MEI",
+   "club": "São Paulo",
+   "year": 2005,
+   "levelMin": 88,
+   "levelMax": 93,
+   "tier": "lenda",
+   "hint": "No São Paulo em 2005. 30 anos em 2005. 24 jogos pela seleção.",
+   "kit": [
+    "#FFFFFF",
+    "#D0021B"
+   ],
+   "series": "A"
+  },
+  {
+   "id": "wd-Q731260-Q38568-1982",
+   "personId": "Q731260",
+   "name": "Serginho Chulapa",
+   "position": "ATA",
+   "club": "São Paulo",
+   "year": 1982,
+   "levelMin": 89,
+   "levelMax": 94,
+   "tier": "lenda",
+   "hint": "No São Paulo em 1982. 29 anos em 1982. 20 jogos pela seleção.",
+   "kit": [
+    "#FFFFFF",
+    "#D0021B"
+   ],
+   "series": "A"
+  },
+  {
+   "id": "wd-Q58441-Q80955-2004",
+   "personId": "Q58441",
+   "name": "Robinho",
+   "position": "ATA",
+   "club": "Santos",
+   "year": 2004,
+   "levelMin": 91,
+   "levelMax": 96,
+   "tier": "lenda",
+   "hint": "No Santos em 2004. 20 anos em 2004. 100 jogos pela seleção.",
+   "kit": [
+    "#FFFFFF",
+    "#111111"
+   ],
+   "series": "A"
+  },
+  {
+   "id": "wd-Q382069-Q80955-1995",
+   "personId": "Q382069",
+   "name": "Giovanni",
+   "position": "MEI",
+   "club": "Santos",
+   "year": 1995,
+   "levelMin": 89,
+   "levelMax": 94,
+   "tier": "lenda",
+   "hint": "No Santos em 1995. 23 anos em 1995. 20 jogos pela seleção.",
+   "kit": [
+    "#FFFFFF",
+    "#111111"
+   ],
+   "series": "A"
+  },
+  {
+   "id": "wd-Q109428-Q80955-2002",
+   "personId": "Q109428",
+   "name": "Diego Ribas",
+   "position": "MEI",
+   "club": "Santos",
+   "year": 2002,
+   "levelMin": 89,
+   "levelMax": 94,
+   "tier": "lenda",
+   "hint": "No Santos em 2002. 17 anos em 2002. 33 jogos pela seleção.",
+   "kit": [
+    "#FFFFFF",
+    "#111111"
+   ],
+   "series": "A"
+  },
+  {
+   "id": "wd-Q313835-Q80955-2010",
+   "personId": "Q313835",
+   "name": "Ganso",
+   "position": "MEI",
+   "club": "Santos",
+   "year": 2010,
+   "levelMin": 90,
+   "levelMax": 95,
+   "tier": "lenda",
+   "hint": "No Santos em 2010. 21 anos em 2010. 8 jogos pela seleção.",
+   "kit": [
+    "#FFFFFF",
+    "#111111"
+   ],
+   "series": "A"
   }
  ]
 }

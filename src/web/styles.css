@@ -1600,6 +1600,53 @@ img.club-badge {
 .found-name {
   max-width: 460px;
 }
+.notice-ok {
+  margin: 0;
+  padding: 10px 12px;
+  border: 2px solid var(--ink);
+  border-radius: var(--r-m);
+  background: #dff3d6;
+  font-weight: 600;
+}
+.account-page {
+  max-width: 560px;
+  margin: 0 auto;
+}
+
+/* Entrar / criar conta, em destaque na tela de entrada */
+.account-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px 14px;
+  padding: 10px 12px;
+  border: 2px solid var(--ink);
+  border-radius: var(--r-m, 10px);
+  background: var(--sun-hi);
+  font-size: 0.92rem;
+}
+.account-bar-actions {
+  display: inline-flex;
+  gap: 8px;
+  flex: none;
+}
+.header-login {
+  flex: none;
+  white-space: nowrap;
+  text-decoration: none;
+}
+.club-card-guest {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 10px 12px;
+  border: 2px dashed var(--ink);
+  border-radius: var(--r-m, 10px);
+  background: var(--sun-hi);
+  text-align: left;
+}
+
 .found-foot {
   display: flex;
   flex-wrap: wrap;
@@ -4986,6 +5033,20 @@ li[data-award='mao-furada'] .award-icon {
 .mp-player[data-ball] circle {
   stroke: var(--white);
   stroke-width: 0.5;
+}
+.badge-cap {
+  background: var(--sun);
+  color: var(--ink);
+  border: 1.5px solid var(--ink);
+  font-weight: 800;
+  padding: 0 5px;
+}
+.mp-cap {
+  font-family: var(--f-sport);
+  font-weight: 800;
+  font-size: 2.1px;
+  fill: var(--ink);
+  pointer-events: none;
 }
 .mp-player-shadow {
   fill: rgba(0, 0, 0, 0.28);

@@ -21,6 +21,8 @@ export interface PitchPlayer {
   cardId: string;
   name: string;
   position: Position;
+  /** Capitão do time. */
+  captain?: boolean;
   /** Lugar na formação, no sentido do próprio ataque (0 = o próprio gol, 1 = o gol atacado). */
   bx: number;
   by: number;
@@ -123,7 +125,7 @@ export function layoutTeam(side: Side, lineup: LineupPlayer[]): PitchPlayer[] {
     const by = spread(p.position, n)[k]!;
     // Centroavante um pouco à frente dos pontas; goleiro reserva (não deveria existir) fica no gol.
     const bx = LINE_X[p.position] + (p.position === 'ATA' && n >= 3 && k === Math.floor(n / 2) ? 0.04 : 0);
-    out.push({ side, idx, cardId: p.cardId, name: p.name, position: p.position, bx, by });
+    out.push({ side, idx, cardId: p.cardId, name: p.name, position: p.position, bx, by, ...(p.captain ? { captain: true } : {}) });
   });
   return out;
 }

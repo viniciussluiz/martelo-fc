@@ -68,6 +68,18 @@ O `fly deploy` envia a pasta local (com o baralho e os escudos de `data/escudos`
 `docker run -d -p 8080:8080 -v martelo-data:/data --restart unless-stopped martelo-fc`, atrás de um proxy com HTTPS
 (Caddy, Nginx) que repasse o WebSocket de `/ws`. Hospedagens que constroem a partir do GitHub só veem o que foi commitado.
 
+## Contas e recuperação de senha
+Quem joga pode entrar como convidado (o time fica só naquele aparelho) ou criar conta com usuário e senha, para entrar de
+qualquer lugar. Em “Conta e senha” dá para trocar a senha.
+
+A recuperação por e-mail fica **desligada e escondida** enquanto o servidor não tiver um SMTP: o site não pede e-mail no
+cadastro nem mostra “Esqueci a senha”. Com SMTP configurado (qualquer provedor: Gmail com senha de app, Brevo, Resend…),
+o cadastro passa a pedir e-mail e “Esqueci a senha” manda um link de uso único, que vale 1 hora. No Fly:
+```bash
+fly secrets set SMTP_HOST=smtp.gmail.com SMTP_PORT=465 SMTP_USER=voce@gmail.com SMTP_PASS='senha de app' MAIL_FROM='Leilão FC <voce@gmail.com>'
+```
+`PUBLIC_URL` (no `fly.toml`) é o endereço do site que vai no link. Localmente, use o `.env` (veja `.env.example`).
+
 ## Banco e migrações
 As migrações SQL ficam em `migrations/` e são aplicadas automaticamente no boot. Para aplicar manualmente:
 ```bash

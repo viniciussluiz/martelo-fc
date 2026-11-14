@@ -175,6 +175,21 @@ export function SettingsPanel({ room, editable }: { room: RoomView; editable: bo
             </div>
           </div>
         </div>
+        <div className="field">
+          <label>Tempo de cada partida</label>
+          <div className="seg" role="group" aria-label="Tempo de cada partida">
+            {([20, 40] as const).map((n) => (
+              <button key={n} type="button" aria-pressed={(s.matchSeconds ?? 40) === n} disabled={!editable} onClick={() => set({ matchSeconds: n })}>
+                {n} segundos
+              </button>
+            ))}
+          </div>
+          <p className="hint">
+            {(s.matchSeconds ?? 40) === 20
+              ? 'Jogo corrido: a liga de 38 rodadas passa em uns 13 minutos.'
+              : 'Dá para acompanhar os lances com calma: a liga de 38 rodadas leva uns 25 minutos.'}
+          </p>
+        </div>
         <div className="checks">
           <Toggle label="Repescagem das sobras de cada posição" checked={s.repescagem} disabled={!editable} onChange={(v) => set({ repescagem: v })} />
           <Toggle label="Desempate às cegas antes do sorteio" checked={s.tiebreakRound} disabled={!editable} onChange={(v) => set({ tiebreakRound: v })} />

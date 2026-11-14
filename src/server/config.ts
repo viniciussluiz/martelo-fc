@@ -1,5 +1,6 @@
 import { existsSync, readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
+import { smtpFromEnv, type Mailer, type SmtpConfig } from './mail.js';
 
 export type GameSpeed = 'normal' | 'turbo' | 'test' | 'e2e';
 
@@ -21,6 +22,12 @@ export interface ServerConfig {
   /** Sala sem atividade (ninguém conectado) por mais que isso é fechada (minutos). */
   idleRoomCloseMin: number;
   logLevel: 'debug' | 'info' | 'warn' | 'error';
+  /** Endereço público do site, usado nos links enviados por e-mail (ex.: https://leilao-fc.fly.dev). */
+  publicUrl: string;
+  /** SMTP para a recuperação de senha por e-mail (nulo = desligada). */
+  smtp: SmtpConfig | null;
+  /** Substitui o envio de e-mail (testes). */
+  mailer?: Mailer;
 }
 
 const root = resolve(import.meta.dirname, '../..');
@@ -69,6 +76,8 @@ export function loadConfig(env: NodeJS.ProcessEnv = process.env): ServerConfig {
     abandonAfterMin: Number(env.ABANDON_AFTER_MIN ?? 30),
     idleRoomCloseMin: Number(env.IDLE_ROOM_CLOSE_MIN ?? 120),
     logLevel: (env.LOG_LEVEL as ServerConfig['logLevel']) ?? 'info',
+    publicUrl: (env.PUBLIC_URL?.trim() || `http://localhost:${Number(env.PORT ?? 3210)}`).replace(/\/+$/, ''),
+    smtp: smtpFromEnv(env),
   };
 }
 

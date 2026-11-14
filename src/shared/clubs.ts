@@ -78,6 +78,19 @@ export const CLUB_CODES: Record<string, string> = {
   Sporting: 'SCP',
   Ajax: 'AJA',
   PSV: 'PSV',
+  // Clubes de cartas feitas à mão (data/deck-ajustes.json)
+  Bolton: 'BOL',
+  Villarreal: 'VIL',
+  Galatasaray: 'GAL',
+  'Deportivo La Coruña': 'DEP',
+  Piacenza: 'PIA',
+  Parma: 'PAR',
+  Fiorentina: 'FIO',
+  Feyenoord: 'FEY',
+  Brescia: 'BRE',
+  Anderlecht: 'AND',
+  'Nagoya Grampus': 'NAG',
+  'Leeds United': 'LEE',
 };
 
 const plain = (s: string) => s.normalize('NFD').replace(/[̀-ͯ]/g, '');

@@ -8,7 +8,9 @@ import { api, ApiError } from './lib/api';
 import { matchPath, navigate, usePath } from './lib/router';
 import { socket } from './lib/socket';
 import { persistToken, store, useStore } from './lib/store';
+import { AccountPage } from './pages/AccountPage';
 import { AuthPage } from './pages/AuthPage';
+import { ResetPage } from './pages/ResetPage';
 import { HomePage } from './pages/HomePage';
 import { ProfilePage } from './pages/ProfilePage';
 import { RivalPage } from './pages/RivalPage';
@@ -93,6 +95,19 @@ function TopBar() {
           {user && link(`/trofeus/${user.id}`, 'Troféus', 'trofeu', path.startsWith('/trofeus'))}
           {link('/regras', 'Regras', 'apito', path.startsWith('/regras'))}
         </nav>
+        {(!user || user.isGuest) && !path.startsWith('/entrar') && (
+          <a
+            className={user ? 'btn btn-sm header-login' : 'btn btn-sm btn-primary header-login'}
+            href="/entrar"
+            title={user ? 'Crie usuário e senha para entrar com este time em qualquer aparelho' : 'Entrar com usuário e senha'}
+            onClick={(e) => {
+              e.preventDefault();
+              navigate('/entrar');
+            }}
+          >
+            {user ? 'Criar conta' : 'Entrar'}
+          </a>
+        )}
         {user && (
           <a
             className="me-chip"
@@ -146,6 +161,8 @@ function Routes() {
   if ((m = matchPath('/perfil/:id', path))) return user ? <ProfilePage userId={m.id!} /> : <HomePage />;
   if ((m = matchPath('/trofeus/:id', path))) return user ? <TrophyPage userId={m.id!} /> : <HomePage />;
   if (matchPath('/entrar', path)) return <AuthPage />;
+  if (matchPath('/redefinir', path)) return <ResetPage />;
+  if (matchPath('/conta', path)) return <AccountPage />;
   if (matchPath('/regras', path)) return <RulesPage />;
   return <HomePage />;
 }

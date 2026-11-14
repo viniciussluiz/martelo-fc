@@ -8,7 +8,8 @@ import { validateDeck } from '../engine/deck-generator.js';
 import { GameRuleError } from '../engine/errors.js';
 import type { Card } from '../engine/types.js';
 import type { ClientMessage, DeckInfo, ServerMessage } from '../shared/protocol.js';
-import { AuthError, AuthService, type PublicUser } from './auth.js';
+import { AuthError, AuthService, RESET_TTL_MIN, type PublicUser } from './auth.js';
+import { noMailer, passwordResetMail, smtpMailer, type Mailer } from './mail.js';
 import { APP_VERSION, configNotes, loadConfig, type ServerConfig } from './config.js';
 import { loadCrests, loadCrestSources, resolveCrests, type CrestSources } from './crests.js';
 import { migrate, openDatabase, type DB } from './db.js';
@@ -105,6 +106,8 @@ export async function createApp(overrides: Partial<ServerConfig> = {}, logger?: 
     log.warn('baralho sem jogadores reais em uso (fictício ou personalizado)', { path: config.deckPath, name: deckInfo.name });
   }
   const auth = new AuthService(db, config.sessionTtlDays);
+  const mailer: Mailer = config.mailer ?? (config.smtp ? smtpMailer(config.smtp) : noMailer);
+  if (!mailer.configured) log.info('recuperação de senha por e-mail desligada (defina SMTP_HOST, SMTP_USER e SMTP_PASS)');
   const achievements = new AchievementService(db);
   const results = new ResultsService(db, achievements);
   const h2h = new H2HService(db);
@@ -137,7 +140,7 @@ export async function createApp(overrides: Partial<ServerConfig> = {}, logger?: 
     .on('POST', '/api/auth/register', (ctx) => {
       limitAuth(ctx);
       const b = body(ctx);
-      return auth.register({ username: b.username, password: b.password, displayName: b.displayName, crest: b.crest });
+      return auth.register({ username: b.username, password: b.password, displayName: b.displayName, crest: b.crest, email: b.email });
     })
     .on('POST', '/api/auth/login', (ctx) => {
       limitAuth(ctx);
@@ -153,7 +156,43 @@ export async function createApp(overrides: Partial<ServerConfig> = {}, logger?: 
       limitAuth(ctx);
       const user = requireUser(ctx);
       const b = body(ctx);
-      return { user: auth.upgradeGuest(user.id, { username: b.username, password: b.password }) };
+      return { user: auth.upgradeGuest(user.id, { username: b.username, password: b.password, email: b.email }) };
+    })
+    // O site só oferece “Esqueci a senha” quando há envio de e-mail configurado.
+    .on('GET', '/api/auth/options', () => ({ recovery: mailer.configured }))
+    .on('POST', '/api/auth/forgot', (ctx) => {
+      limitAuth(ctx);
+      if (!mailer.configured) throw new HttpError(503, 'sem_email', 'A recuperação por e-mail não está ligada neste servidor.');
+      const req = auth.requestPasswordReset(body(ctx).identifier);
+      if (req) {
+        const link = `${config.publicUrl}/redefinir?token=${encodeURIComponent(req.token)}`;
+        // Envia sem segurar a resposta: ela sai igual (e no mesmo tempo) exista ou não a conta, para não revelar quem está cadastrado.
+        void mailer
+          .send(passwordResetMail({ to: req.email, teamName: req.displayName, username: req.username, link, minutes: RESET_TTL_MIN }))
+          .then(() => log.info('e-mail de redefinição enviado', { usuario: req.username }))
+          .catch((err: unknown) => log.error('falha ao enviar e-mail de redefinição', { usuario: req.username, error: err instanceof Error ? err.message : String(err) }));
+      }
+      return { ok: true };
+    })
+    .on('POST', '/api/auth/reset', (ctx) => {
+      limitAuth(ctx);
+      const b = body(ctx);
+      return auth.resetPassword({ token: b.token, password: b.password });
+    })
+    .on('POST', '/api/auth/password', (ctx) => {
+      limitAuth(ctx);
+      const user = requireUser(ctx);
+      const b = body(ctx);
+      const header = ctx.req.headers.authorization ?? '';
+      auth.changePassword(user.id, { current: b.current, next: b.next }, header.startsWith('Bearer ') ? header.slice(7) : null);
+      return { ok: true };
+    })
+    .on('GET', '/api/account', (ctx) => ({ account: auth.account(requireUser(ctx).id), recovery: mailer.configured }))
+    .on('PUT', '/api/account/email', (ctx) => {
+      limitAuth(ctx);
+      const user = requireUser(ctx);
+      const b = body(ctx);
+      return { account: auth.setEmail(user.id, { email: b.email, password: b.password }) };
     })
     .on('GET', '/api/me', (ctx) => {
       const user = requireUser(ctx);
@@ -235,7 +274,12 @@ export async function createApp(overrides: Partial<ServerConfig> = {}, logger?: 
 
   const server = createServer(async (req, res) => {
     const url = new URL(req.url ?? '/', 'http://localhost');
-    const ip = (req.headers['x-forwarded-for'] as string | undefined)?.split(',')[0]?.trim() || req.socket.remoteAddress || '?';
+    // No Fly, o endereço de quem chama vem em Fly-Client-IP (posto pelo proxy; o cliente não consegue forjar).
+    const ip =
+      (req.headers['fly-client-ip'] as string | undefined)?.trim() ||
+      (req.headers['x-forwarded-for'] as string | undefined)?.split(',')[0]?.trim() ||
+      req.socket.remoteAddress ||
+      '?';
     if (url.pathname.startsWith('/api/')) {
       for (const [k, v] of Object.entries(SECURITY_HEADERS)) res.setHeader(k, v);
       try {

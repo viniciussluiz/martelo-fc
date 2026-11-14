@@ -16,6 +16,8 @@ import type { AcquisitionSource, AuctionMode, CupFormat, Formation, Position, Se
 export type RoomMode = 'online' | 'solo';
 export type RoomStatus = 'lobby' | 'in_dispute' | 'post_dispute' | 'closed';
 export type SpeedSetting = 'normal' | 'turbo';
+export type MatchSeconds = 20 | 40;
+export const MATCH_SECONDS: readonly MatchSeconds[] = [20, 40];
 export type MemberStatus = 'active' | 'inactive' | 'left';
 export type ContinueChoice = 'continue' | 'leave';
 
@@ -27,6 +29,8 @@ export interface RoomSettings {
   series: SeriesScope;
   cpuCount: number;
   speed: SpeedSetting;
+  /** Quanto dura cada partida na tela, em segundos (20 ou 40). */
+  matchSeconds: MatchSeconds;
   maxHumans: number;
   carryOver: boolean;
   repescagem: boolean;
@@ -226,6 +230,8 @@ export interface LineupPlayer {
   cardId: string;
   name: string;
   position: Position;
+  /** Capitão do time (braçadeira no campinho). */
+  captain?: boolean;
 }
 
 export interface FixtureView {
@@ -297,7 +303,7 @@ export interface DisputeView {
   league: LeagueView | null;
   cup: CupView | null;
   tactic: Tactic | null;
-  /** Seus batedores de pênalti, falta e escanteio (os escolhidos ou, sem escolha, os que o jogo indica). */
+  /** Seu capitão e seus batedores de pênalti, falta e escanteio (os escolhidos ou, sem escolha, os que o jogo indica). */
   setPieces: SetPieceTakers | null;
   result: DisputeResult | null;
 }

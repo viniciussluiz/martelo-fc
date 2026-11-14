@@ -91,6 +91,19 @@ export const CLUB_DIRECTORY: Record<string, ClubRef> = {
   Sporting: eu('Portugal', ['Sporting', 'Sporting CP', 'Sporting Lisboa'], ['Sporting CP', 'Sporting Lisbon']),
   Ajax: eu('The Netherlands', ['Ajax'], ['Ajax']),
   PSV: eu('The Netherlands', ['PSV', 'PSV Eindhoven'], ['PSV Eindhoven', 'PSV']),
+  // Clubes de cartas feitas à mão (data/deck-ajustes.json)
+  Bolton: eu('England', ['Bolton', 'Bolton Wanderers'], ['Bolton Wanderers', 'Bolton']),
+  Villarreal: eu('Spain', ['Villarreal'], ['Villarreal']),
+  Galatasaray: eu('Turkey', ['Galatasaray'], ['Galatasaray']),
+  'Deportivo La Coruña': eu('Spain', ['Deportivo La Coruña', 'Deportivo', 'La Coruña'], ['Deportivo La Coruna', 'Deportivo']),
+  Piacenza: eu('Italy', ['Piacenza'], ['Piacenza']),
+  Parma: eu('Italy', ['Parma'], ['Parma']),
+  Fiorentina: eu('Italy', ['Fiorentina'], ['Fiorentina']),
+  Feyenoord: eu('The Netherlands', ['Feyenoord'], ['Feyenoord']),
+  Brescia: eu('Italy', ['Brescia'], ['Brescia']),
+  Anderlecht: eu('Belgium', ['Anderlecht'], ['Anderlecht']),
+  'Nagoya Grampus': eu('Japan', ['Nagoya Grampus'], ['Nagoya Grampus']),
+  'Leeds United': eu('England', ['Leeds United', 'Leeds'], ['Leeds United', 'Leeds']),
 };
 
 export type ClubGroup = 'BR' | 'EU' | 'SEL';

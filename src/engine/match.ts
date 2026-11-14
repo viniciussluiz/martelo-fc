@@ -28,8 +28,15 @@ export interface TeamSheet {
 export type SetPiece = 'penalti' | 'falta' | 'escanteio';
 export const SET_PIECES: readonly SetPiece[] = ['penalti', 'falta', 'escanteio'];
 
-/** Quem bate cada bola parada (id da carta). Sem escolha, o jogo usa o mais indicado do elenco. */
-export type SetPieceTakers = Partial<Record<SetPiece, string>>;
+/** Papéis que o técnico distribui no time: os batedores de bola parada e o capitão. */
+export type TeamRole = SetPiece | 'capitao';
+export const TEAM_ROLES: readonly TeamRole[] = [...SET_PIECES, 'capitao'];
+
+/**
+ * Quem bate cada bola parada e quem é o capitão (id da carta). Sem escolha, o jogo usa o mais indicado do elenco.
+ * O capitão usa a braçadeira (aparece com o “C” no campinho); não muda o resultado dos jogos.
+ */
+export type SetPieceTakers = Partial<Record<TeamRole, string>>;
 
 /**
  * Lances narrados. `gol`, `trave`, `defesa` e `chance` (para fora) são o desfecho de uma finalização —
@@ -203,13 +210,16 @@ export function defaultTakers(squad: SquadPlayer[]): SetPieceTakers {
     const score = (p: SquadPlayer) => ((p.levelMin + p.levelMax) / 2) * TAKER_WEIGHT[kind][p.position];
     out[kind] = squad.reduce((a, b) => (score(b) > score(a) ? b : a)).cardId;
   }
+  // Capitão: o melhor do elenco, em qualquer posição.
+  const level = (p: SquadPlayer) => (p.levelMin + p.levelMax) / 2;
+  out.capitao = squad.reduce((a, b) => (level(b) > level(a) ? b : a)).cardId;
   return out;
 }
 
 /** Batedores valendo: a escolha do técnico, se o jogador está no elenco; senão, o mais indicado. */
 export function resolveTakers(squad: SquadPlayer[], chosen?: SetPieceTakers): SetPieceTakers {
   const out = defaultTakers(squad);
-  for (const kind of SET_PIECES) {
+  for (const kind of TEAM_ROLES) {
     const id = chosen?.[kind];
     if (id && squad.some((p) => p.cardId === id)) out[kind] = id;
   }

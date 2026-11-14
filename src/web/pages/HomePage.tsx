@@ -99,6 +99,23 @@ function GuestForm({ joinCode }: { joinCode?: string }) {
         <span className="panel-head-aside">Leva 30 segundos</span>
       </div>
       <div className="panel-body stack">
+        <div className="account-bar">
+          <span>
+            <strong>Já tem conta?</strong> Entre com usuário e senha e jogue com o mesmo time em qualquer aparelho.
+          </span>
+          <span className="account-bar-actions">
+            <button type="button" className="btn btn-sm" onClick={() => navigate(`/entrar${joinCode ? `?sala=${encodeURIComponent(joinCode.toUpperCase())}` : ''}`)}>
+              Entrar
+            </button>
+            <button
+              type="button"
+              className="btn btn-sm"
+              onClick={() => navigate(`/entrar?modo=criar${joinCode ? `&sala=${encodeURIComponent(joinCode.toUpperCase())}` : ''}`)}
+            >
+              Criar conta
+            </button>
+          </span>
+        </div>
         <div className="field found-name">
           <label htmlFor="team">Nome do time</label>
           <input
@@ -116,17 +133,7 @@ function GuestForm({ joinCode }: { joinCode?: string }) {
         {error && <p className="error-text">{error}</p>}
         <div className="found-foot">
           <p className="small muted">
-            Não precisa de cadastro. Para guardar troféus e histórico em outro aparelho,{' '}
-            <a
-              href="/entrar"
-              onClick={(e) => {
-                e.preventDefault();
-                navigate('/entrar');
-              }}
-            >
-              crie uma conta ou entre
-            </a>
-            .
+            Sem cadastro, o time fica só neste aparelho. Dá para criar usuário e senha depois, sem perder nada.
           </p>
           <button className="btn btn-primary btn-lg" disabled={busy || name.trim().length < 2}>
             <Icon name="play" /> {joinCode ? 'Entrar na sala' : 'Entrar no pregão'}
@@ -154,22 +161,21 @@ function MyClubCard({ user }: { user: PublicUserView }) {
         <button type="button" className="btn btn-sm btn-ghost" onClick={() => navigate(`/perfil/${user.id}`)}>
           <Icon name="perfil" /> Perfil
         </button>
-      </div>
-      <p className="small club-card-note">
-        {user.isGuest && (
-          <>
-            <a
-              href="/entrar"
-              onClick={(e) => {
-                e.preventDefault();
-                navigate('/entrar');
-              }}
-            >
-              Transformar em conta
-            </a>{' '}
-            para não perder o histórico.{' '}
-          </>
+        {!user.isGuest && (
+          <button type="button" className="btn btn-sm btn-ghost" onClick={() => navigate('/conta')}>
+            <Icon name="cadeado" /> Conta e senha
+          </button>
         )}
+      </div>
+      {user.isGuest && (
+        <div className="club-card-guest">
+          <span className="small">Este time só existe neste aparelho. Crie usuário e senha para entrar em qualquer lugar e não perder o histórico.</span>
+          <button type="button" className="btn btn-sm btn-primary" onClick={() => navigate('/entrar')}>
+            Criar usuário e senha
+          </button>
+        </div>
+      )}
+      <p className="small club-card-note">
         <button className="link-btn" onClick={signOut}>
           Sair
         </button>

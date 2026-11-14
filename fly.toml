@@ -16,6 +16,8 @@ kill_timeout = "10s"
   HOST = "0.0.0.0"
   DATABASE_PATH = "/data/martelo.db"
   LOG_LEVEL = "info"
+  # Endereço do site nos links enviados por e-mail (troque se usar domínio próprio).
+  PUBLIC_URL = "https://leilao-fc.fly.dev"
 
 [[mounts]]
   source = "martelo_data"

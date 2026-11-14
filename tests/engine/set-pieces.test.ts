@@ -78,7 +78,7 @@ describe('bola parada', () => {
     const pen = home.squad.find((p) => p.position === 'ZAG')!.cardId;
     const fk = home.squad.find((p) => p.position === 'LAT')!.cardId;
     const chosen = { penalti: pen, falta: fk, escanteio: 'nao-existe' };
-    expect(resolveTakers(home.squad, chosen)).toEqual({ penalti: pen, falta: fk, escanteio: defaultTakers(home.squad).escanteio });
+    expect(resolveTakers(home.squad, chosen)).toEqual({ penalti: pen, falta: fk, escanteio: defaultTakers(home.squad).escanteio, capitao: defaultTakers(home.squad).capitao });
     let seen = 0;
     for (let i = 0; i < 400; i++) {
       const r = simulateMatch({ id: `tk${i}`, home, away, homeTakers: chosen, withEvents: true, rng: new Rng(`tk${i}`) });
@@ -117,9 +117,17 @@ describe('bola parada', () => {
     d.setSetPieces('u:ana', { penalti: zag });
     d.setSetPieces('u:ana', { falta: lat });
     expect(d.takersOf('u:ana')).toMatchObject({ penalti: zag, falta: lat });
+    // Capitão: sem escolha é o melhor do elenco; o técnico pode dar a braçadeira a qualquer um do time (e só do time).
+    const squad = d.squadOf('u:ana');
+    const best = squad.reduce((a, b) => ((b.levelMin + b.levelMax) / 2 > (a.levelMin + a.levelMax) / 2 ? b : a));
+    expect(d.takersOf('u:ana').capitao).toBe(best.cardId);
+    expect(() => d.setSetPieces('u:ana', { capitao: rival })).toThrow(/capitão/);
+    const keeper = mine.find((r) => r.position === 'GOL')!.cardId;
+    d.setSetPieces('u:ana', { capitao: keeper });
+    expect(d.takersOf('u:ana')).toMatchObject({ penalti: zag, falta: lat, capitao: keeper });
     // Sobrevive ao snapshot e vale na liga.
     const back = Dispute.fromJSON(JSON.parse(JSON.stringify(d.toJSON())));
-    expect(back.takersOf('u:ana')).toMatchObject({ penalti: zag, falta: lat });
+    expect(back.takersOf('u:ana')).toMatchObject({ penalti: zag, falta: lat, capitao: keeper });
     back.runToEnd();
     const games = [...Object.values(back.league!.state.results), ...Object.values(back.cup?.state.results ?? {})];
     const kicks = games.flatMap((m) => m.goals.filter((g) => (g.kind === 'penalti' || g.kind === 'falta') && (g.side === 'home' ? m.homeId : m.awayId) === 'u:ana'));

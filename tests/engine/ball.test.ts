@@ -153,6 +153,10 @@ describe('bola do jogo ao vivo', () => {
     const tl = buildTimeline({ ...match(events), lineups: { home: lineup('h'), away: lineup('a') } });
     const [pen, fk, corner, cleared, offside] = [1, 2, 3, 4, 5].map((i) => tl.moments[i]!);
     expect(tl.banners.map((b) => b.text)).toEqual(['Pênalti!', 'Falta!', 'Escanteio!', 'Escanteio!', 'Impedimento!']);
+    // Sem capitão marcado na escalação, ninguém leva a braçadeira; marcado, só ele.
+    expect(tl.players.some((p) => p.captain)).toBe(false);
+    const withCaptain = buildTimeline({ ...match(events), lineups: { home: lineup('h').map((p, i) => (i === 5 ? { ...p, captain: true } : p)), away: lineup('a') } });
+    expect(withCaptain.players.filter((p) => p.captain).map((p) => p.cardId)).toEqual(['h5']);
     const who = (t: number) => {
       const h = holderAt(tl.keys, t);
       return h ? tl.players.find((p) => p.side === h.side && p.idx === h.idx)!.cardId : null;

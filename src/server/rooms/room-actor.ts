@@ -34,6 +34,7 @@ import { nowIso, type DB } from '../db.js';
 import type { Logger } from '../log.js';
 import type { ResultsService } from '../services/results.js';
 import { TIMINGS, type Timing } from './timing.js';
+import { MATCH_SECONDS } from '../../shared/protocol.js';
 import { buildRoomView } from './views.js';
 import { CPU_TEAM_NAMES } from '../../shared/teams.js';
 import { userCrests } from '../services/team-crests.js';
@@ -77,6 +78,7 @@ export const DEFAULT_SETTINGS: Record<RoomMode, RoomSettings> = {
     series: 'ALL',
     cpuCount: 0,
     speed: 'normal',
+    matchSeconds: 40,
     maxHumans: 20,
     carryOver: true,
     repescagem: true,
@@ -91,6 +93,7 @@ export const DEFAULT_SETTINGS: Record<RoomMode, RoomSettings> = {
     series: 'ALL',
     cpuCount: 3,
     speed: 'normal',
+    matchSeconds: 40,
     maxHumans: 1,
     carryOver: true,
     repescagem: true,
@@ -128,6 +131,12 @@ export function sanitizeSettings(mode: RoomMode, base: RoomSettings, patch: Part
   if (patch.speed !== undefined) {
     if (!['normal', 'turbo'].includes(patch.speed)) throw new GameRuleError('config_invalida', 'Velocidade inválida.');
     s.speed = patch.speed;
+    // Trocar o ritmo leva junto a duração da partida (turbo = 20 s), a não ser que ela venha no mesmo pedido.
+    if (patch.matchSeconds === undefined) s.matchSeconds = patch.speed === 'turbo' ? 20 : 40;
+  }
+  if (patch.matchSeconds !== undefined) {
+    if (!MATCH_SECONDS.includes(patch.matchSeconds)) throw new GameRuleError('config_invalida', 'Duração da partida inválida: 20 ou 40 segundos.');
+    s.matchSeconds = patch.matchSeconds;
   }
   const int = (v: unknown, min: number, max: number, label: string) => {
     if (!Number.isInteger(v) || (v as number) < min || (v as number) > max) throw new GameRuleError('config_invalida', `${label}: de ${min} a ${max}.`);
@@ -195,7 +204,12 @@ export class RoomActor {
   }
 
   get timing(): Timing {
-    return TIMINGS[this.deps.config.forceSpeed ?? this.settings.speed];
+    const forced = this.deps.config.forceSpeed;
+    const base = TIMINGS[forced ?? this.settings.speed];
+    // Testes automatizados usam o ritmo deles; nas salas, a partida dura o que o anfitrião escolheu.
+    if (forced) return base;
+    const matchMs = (this.settings.matchSeconds ?? (this.settings.speed === 'turbo' ? 20 : 40)) * 1000;
+    return base.leagueRoundMs === matchMs && base.cupMatchdayMs === matchMs ? base : { ...base, leagueRoundMs: matchMs, cupMatchdayMs: matchMs };
   }
 
   get log() {

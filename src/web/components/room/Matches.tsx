@@ -439,6 +439,11 @@ function Lineup({
                       <span className="roster-player">
                         <PosChip pos={r.position} />
                         <span className="roster-name">{c.name}</span>
+                        {view === d.you && d.setPieces?.capitao === r.cardId && (
+                          <span className="badge badge-cap" title="Capitão">
+                            C
+                          </span>
+                        )}
                         {c.levelMin !== undefined && (
                           <span className="band" title="Faixa de nível">
                             {c.levelMin}–{c.levelMax}
