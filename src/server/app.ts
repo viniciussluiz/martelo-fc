@@ -272,6 +272,7 @@ export async function createApp(overrides: Partial<ServerConfig> = {}, logger?: 
       return achievements.trophyRoom(ctx.params.id!);
     });
 
+  const redirectHosts = new Set(config.redirectHosts ?? []);
   const server = createServer(async (req, res) => {
     const url = new URL(req.url ?? '/', 'http://localhost');
     // No Fly, o endereço de quem chama vem em Fly-Client-IP (posto pelo proxy; o cliente não consegue forjar).
@@ -296,6 +297,13 @@ export async function createApp(overrides: Partial<ServerConfig> = {}, logger?: 
           sendJson(res, 500, { error: 'interno', message: 'Erro interno. Tente de novo.' });
         }
       }
+      return;
+    }
+    // Endereço antigo (ou www): as páginas vão para o endereço oficial. A API e o WebSocket continuam atendendo nos dois.
+    const host = (req.headers.host ?? '').toLowerCase().replace(/:\d+$/, '');
+    if (redirectHosts.has(host) && (req.method === 'GET' || req.method === 'HEAD')) {
+      res.writeHead(301, { Location: `${config.publicUrl}${req.url ?? '/'}`, 'Cache-Control': 'public, max-age=3600' });
+      res.end();
       return;
     }
     if ((req.method === 'GET' || req.method === 'HEAD') && url.pathname.startsWith('/escudos/')) {

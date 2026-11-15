@@ -17,7 +17,9 @@ kill_timeout = "10s"
   DATABASE_PATH = "/data/martelo.db"
   LOG_LEVEL = "info"
   # Endereço do site nos links enviados por e-mail (troque se usar domínio próprio).
-  PUBLIC_URL = "https://leilao-fc.fly.dev"
+  PUBLIC_URL = "https://leilaofc.com.br"
+  # Quem abrir o site por estes endereços é levado para o PUBLIC_URL.
+  REDIRECT_HOSTS = "leilao-fc.fly.dev,www.leilaofc.com.br"
   # Envio do link de “Esqueci a senha”. Falta só o segredo: fly secrets set SMTP_PASS='senha de app do Gmail'
   SMTP_HOST = "smtp.gmail.com"
   SMTP_PORT = "465"

@@ -1,4 +1,5 @@
 import { mkdtempSync } from 'node:fs';
+import { request } from 'node:http';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest';
@@ -186,6 +187,31 @@ describe('e-mail da conta, troca e recuperação de senha', () => {
     } finally {
       await fresh.stop();
       cleanupDir(fresh.dir);
+    }
+  });
+});
+
+describe('endereço oficial', () => {
+  it('páginas abertas no endereço antigo vão para o oficial; a API continua atendendo', async () => {
+    const dir = mkdtempSync(join(tmpdir(), 'leilao-redir-'));
+    const env2 = await startTestApp(dir, undefined, { publicUrl: 'https://leilao.test', redirectHosts: ['antigo.test'] });
+    try {
+      const { port } = env2.app.server.address() as { port: number };
+      const get = (path: string, host: string) =>
+        new Promise<{ status: number; location?: string }>((ok, fail) => {
+          request({ host: '127.0.0.1', port, path, headers: { host } }, (res) => {
+            res.resume();
+            ok({ status: res.statusCode ?? 0, location: res.headers.location });
+          })
+            .on('error', fail)
+            .end();
+        });
+      expect(await get('/sala/ABCD?x=1', 'antigo.test')).toEqual({ status: 301, location: 'https://leilao.test/sala/ABCD?x=1' });
+      expect((await get('/api/health', 'antigo.test')).status).toBe(200);
+      expect((await get('/sala/ABCD', 'leilao.test')).status).not.toBe(301);
+    } finally {
+      await env2.stop();
+      cleanupDir(dir);
     }
   });
 });

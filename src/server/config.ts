@@ -22,8 +22,10 @@ export interface ServerConfig {
   /** Sala sem atividade (ninguém conectado) por mais que isso é fechada (minutos). */
   idleRoomCloseMin: number;
   logLevel: 'debug' | 'info' | 'warn' | 'error';
-  /** Endereço público do site, usado nos links enviados por e-mail (ex.: https://leilao-fc.fly.dev). */
+  /** Endereço público do site, usado nos links enviados por e-mail (ex.: https://leilaofc.com.br). */
   publicUrl: string;
+  /** Endereços antigos ou alternativos do site: as páginas abertas neles vão (301) para o `publicUrl`. */
+  redirectHosts?: string[];
   /** SMTP para a recuperação de senha por e-mail (nulo = desligada). */
   smtp: SmtpConfig | null;
   /** Substitui o envio de e-mail (testes). */
@@ -77,6 +79,10 @@ export function loadConfig(env: NodeJS.ProcessEnv = process.env): ServerConfig {
     idleRoomCloseMin: Number(env.IDLE_ROOM_CLOSE_MIN ?? 120),
     logLevel: (env.LOG_LEVEL as ServerConfig['logLevel']) ?? 'info',
     publicUrl: (env.PUBLIC_URL?.trim() || `http://localhost:${Number(env.PORT ?? 3210)}`).replace(/\/+$/, ''),
+    redirectHosts: (env.REDIRECT_HOSTS ?? '')
+      .split(',')
+      .map((h) => h.trim().toLowerCase())
+      .filter(Boolean),
     smtp: smtpFromEnv(env),
   };
 }
