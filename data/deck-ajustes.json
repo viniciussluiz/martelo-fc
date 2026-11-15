@@ -1432,6 +1432,3318 @@
       ],
       "series": "EU",
       "motivo": "Pedido: o goleiro do Chelsea não tinha carta no baralho."
+    },
+    {
+      "id": "wd-Q196897-Q38568-1993",
+      "personId": "Q196897",
+      "name": "Zetti",
+      "position": "GOL",
+      "club": "São Paulo",
+      "year": 1993,
+      "levelMin": 89,
+      "levelMax": 94,
+      "tier": "lenda",
+      "hint": "155 jogos pelo São Paulo de 1990 a 1996. 28 anos em 1993. 17 jogos pela seleção.",
+      "kit": [
+        "#FFFFFF",
+        "#D0021B"
+      ],
+      "series": "A",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q195426-Q80964-1993",
+      "personId": "Q195426",
+      "name": "Evair",
+      "position": "ATA",
+      "club": "Palmeiras",
+      "year": 1993,
+      "levelMin": 89,
+      "levelMax": 94,
+      "tier": "lenda",
+      "hint": "51 jogos e 21 gols pelo Palmeiras de 1991 a 1994. 28 anos em 1993. 9 jogos pela seleção.",
+      "kit": [
+        "#006437",
+        "#FFFFFF"
+      ],
+      "series": "A",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q1378124-Q35933-1982",
+      "personId": "Q1378124",
+      "name": "Casagrande",
+      "position": "ATA",
+      "club": "Corinthians",
+      "year": 1982,
+      "levelMin": 88,
+      "levelMax": 93,
+      "tier": "lenda",
+      "hint": "46 jogos e 11 gols pelo Corinthians de 1982 a 1984. 19 anos em 1982. 19 jogos pela seleção.",
+      "kit": [
+        "#FFFFFF",
+        "#111111"
+      ],
+      "series": "A",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q2119081-Q35933-1982",
+      "personId": "Q2119081",
+      "name": "Wladimir",
+      "position": "LAT",
+      "club": "Corinthians",
+      "year": 1982,
+      "levelMin": 88,
+      "levelMax": 93,
+      "tier": "lenda",
+      "hint": "259 jogos e 12 gols pelo Corinthians de 1972 a 1985. 28 anos em 1982. 5 jogos pela seleção.",
+      "kit": [
+        "#FFFFFF",
+        "#111111"
+      ],
+      "series": "A",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q579566-Q35933-1982",
+      "personId": "Q579566",
+      "name": "Biro-Biro",
+      "position": "MEI",
+      "club": "Corinthians",
+      "year": 1982,
+      "levelMin": 85,
+      "levelMax": 91,
+      "tier": "craque",
+      "hint": "No Corinthians de 1978 a 1989. 23 anos em 1982.",
+      "kit": [
+        "#FFFFFF",
+        "#111111"
+      ],
+      "series": "A",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q509812-Q35933-1993",
+      "personId": "Q509812",
+      "name": "Viola",
+      "position": "ATA",
+      "club": "Corinthians",
+      "year": 1993,
+      "levelMin": 84,
+      "levelMax": 90,
+      "tier": "craque",
+      "hint": "73 jogos e 35 gols pelo Corinthians de 1992 a 1995. 24 anos em 1993. 10 jogos pela seleção.",
+      "kit": [
+        "#FFFFFF",
+        "#111111"
+      ],
+      "series": "A",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q73018-Q35933-2012",
+      "personId": "Q73018",
+      "name": "Ralf",
+      "position": "MEI",
+      "club": "Corinthians",
+      "year": 2012,
+      "levelMin": 84,
+      "levelMax": 90,
+      "tier": "craque",
+      "hint": "187 jogos e 6 gols pelo Corinthians de 2010 a 2015. 28 anos em 2012. 8 jogos pela seleção.",
+      "kit": [
+        "#FFFFFF",
+        "#111111"
+      ],
+      "series": "A",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q1345763-Q221695-1983",
+      "personId": "Q1345763",
+      "name": "Renato Gaúcho",
+      "position": "ATA",
+      "club": "Grêmio",
+      "year": 1983,
+      "levelMin": 91,
+      "levelMax": 96,
+      "tier": "lenda",
+      "hint": "No Grêmio de 1982 a 1986. 21 anos em 1983. 41 jogos pela seleção.",
+      "kit": [
+        "#0D80BF",
+        "#111111"
+      ],
+      "series": "A",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q2734022-Q221695-1996",
+      "personId": "Q2734022",
+      "name": "Paulo Nunes",
+      "position": "ATA",
+      "club": "Grêmio",
+      "year": 1996,
+      "levelMin": 86,
+      "levelMax": 92,
+      "tier": "craque",
+      "hint": "44 jogos e 21 gols pelo Grêmio de 1995 a 1997. 25 anos em 1996. 6 jogos pela seleção.",
+      "kit": [
+        "#0D80BF",
+        "#111111"
+      ],
+      "series": "A",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q953573-Q221695-1996",
+      "personId": "Q953573",
+      "name": "Danrlei",
+      "position": "GOL",
+      "club": "Grêmio",
+      "year": 1996,
+      "levelMin": 88,
+      "levelMax": 93,
+      "tier": "lenda",
+      "hint": "594 jogos pelo Grêmio de 1993 a 2003. 23 anos em 1996. 7 jogos pela seleção.",
+      "kit": [
+        "#0D80BF",
+        "#111111"
+      ],
+      "series": "A",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q3612361-Q221695-2017",
+      "personId": "Q3612361",
+      "name": "Walter Kannemann",
+      "position": "ZAG",
+      "club": "Grêmio",
+      "year": 2017,
+      "levelMin": 86,
+      "levelMax": 92,
+      "tier": "craque",
+      "hint": "Argentina. No Grêmio desde 2016. 26 anos em 2017.",
+      "kit": [
+        "#0D80BF",
+        "#111111"
+      ],
+      "series": "A",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q664053-Q80845-2006",
+      "personId": "Q664053",
+      "name": "Fernandão",
+      "position": "ATA",
+      "club": "Internacional",
+      "year": 2006,
+      "levelMin": 90,
+      "levelMax": 95,
+      "tier": "lenda",
+      "hint": "100 jogos e 42 gols pelo Internacional de 2004 a 2008. 28 anos em 2006. 1 jogo pela seleção.",
+      "kit": [
+        "#D50000",
+        "#FFFFFF"
+      ],
+      "series": "A",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q313741-Q80845-2010",
+      "personId": "Q313741",
+      "name": "Andrés D'Alessandro",
+      "position": "MEI",
+      "club": "Internacional",
+      "year": 2010,
+      "levelMin": 90,
+      "levelMax": 95,
+      "tier": "lenda",
+      "hint": "Argentina. 181 jogos e 45 gols pelo Internacional de 2008 a 2016. 29 anos em 2010. 28 jogos pela seleção.",
+      "kit": [
+        "#D50000",
+        "#FFFFFF"
+      ],
+      "series": "A",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q2066580-Q80845-2006",
+      "personId": "Q2066580",
+      "name": "Iarley",
+      "position": "ATA",
+      "club": "Internacional",
+      "year": 2006,
+      "levelMin": 84,
+      "levelMax": 90,
+      "tier": "craque",
+      "hint": "130 jogos e 30 gols pelo Internacional de 2005 a 2008. 32 anos em 2006.",
+      "kit": [
+        "#D50000",
+        "#FFFFFF"
+      ],
+      "series": "A",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q350493-Q80845-2006",
+      "personId": "Q350493",
+      "name": "Rafael Sobis",
+      "position": "ATA",
+      "club": "Internacional",
+      "year": 2006,
+      "levelMin": 85,
+      "levelMax": 91,
+      "tier": "craque",
+      "hint": "82 jogos e 28 gols pelo Internacional de 2004 a 2006. 21 anos em 2006. 16 jogos pela seleção.",
+      "kit": [
+        "#D50000",
+        "#FFFFFF"
+      ],
+      "series": "A",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q4025436-Q188277-2014",
+      "personId": "Q4025436",
+      "name": "Everton Ribeiro",
+      "position": "MEI",
+      "club": "Cruzeiro",
+      "year": 2014,
+      "levelMin": 88,
+      "levelMax": 93,
+      "tier": "lenda",
+      "hint": "52 jogos e 10 gols pelo Cruzeiro de 2013 a 2014. 25 anos em 2014. 4 jogos pela seleção.",
+      "kit": [
+        "#0033A0",
+        "#FFFFFF"
+      ],
+      "series": "A",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q4025436-Q17479-2019",
+      "personId": "Q4025436",
+      "name": "Everton Ribeiro",
+      "position": "MEI",
+      "club": "Flamengo",
+      "year": 2019,
+      "levelMin": 86,
+      "levelMax": 92,
+      "tier": "craque",
+      "hint": "No Flamengo de 2017 a 2023. 30 anos em 2019. 4 jogos pela seleção.",
+      "kit": [
+        "#C8102E",
+        "#111111"
+      ],
+      "series": "A",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q7322659-Q188277-2014",
+      "personId": "Q7322659",
+      "name": "Ricardo Goulart",
+      "position": "MEI",
+      "club": "Cruzeiro",
+      "year": 2014,
+      "levelMin": 86,
+      "levelMax": 92,
+      "tier": "craque",
+      "hint": "59 jogos e 25 gols pelo Cruzeiro de 2013 a 2014. 23 anos em 2014.",
+      "kit": [
+        "#0033A0",
+        "#FFFFFF"
+      ],
+      "series": "A",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q1616952-Q188277-1976",
+      "personId": "Q1616952",
+      "name": "Raul Plassmann",
+      "position": "GOL",
+      "club": "Cruzeiro",
+      "year": 1976,
+      "levelMin": 88,
+      "levelMax": 93,
+      "tier": "lenda",
+      "hint": "106 jogos pelo Cruzeiro de 1965 a 1978. 32 anos em 1976. 8 jogos pela seleção.",
+      "kit": [
+        "#0033A0",
+        "#FFFFFF"
+      ],
+      "series": "A",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q370014-Q80987-2008",
+      "personId": "Q370014",
+      "name": "Thiago Neves",
+      "position": "MEI",
+      "club": "Fluminense",
+      "year": 2008,
+      "levelMin": 86,
+      "levelMax": 92,
+      "tier": "craque",
+      "hint": "No Fluminense de 2007 a 2008. 23 anos em 2008. 7 jogos pela seleção.",
+      "kit": [
+        "#7A1E32",
+        "#00613A"
+      ],
+      "series": "A",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q470113-Q80987-2010",
+      "personId": "Q470113",
+      "name": "Darío Conca",
+      "position": "MEI",
+      "club": "Fluminense",
+      "year": 2010,
+      "levelMin": 89,
+      "levelMax": 94,
+      "tier": "lenda",
+      "hint": "Argentina. 81 jogos e 17 gols pelo Fluminense de 2009 a 2011. 27 anos em 2010. 9 jogos pela seleção.",
+      "kit": [
+        "#7A1E32",
+        "#00613A"
+      ],
+      "series": "A",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q2602055-Q5014111-1998",
+      "personId": "Q2602055",
+      "name": "Pedrinho",
+      "position": "MEI",
+      "club": "Vasco",
+      "year": 1998,
+      "levelMin": 84,
+      "levelMax": 90,
+      "tier": "craque",
+      "hint": "57 jogos e 12 gols pelo Vasco de 1995 a 2001. 21 anos em 1998. 5 jogos pela seleção.",
+      "kit": [
+        "#111111",
+        "#FFFFFF"
+      ],
+      "series": "A",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q2604130-Q80958-1959",
+      "personId": "Q2604130",
+      "name": "Quarentinha",
+      "position": "ATA",
+      "club": "Botafogo",
+      "year": 1959,
+      "levelMin": 88,
+      "levelMax": 93,
+      "tier": "lenda",
+      "hint": "417 jogos e 313 gols pelo Botafogo de 1956 a 1965. 26 anos em 1959.",
+      "kit": [
+        "#111111",
+        "#FFFFFF"
+      ],
+      "series": "A",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q380405-Q17479-1981",
+      "personId": "Q380405",
+      "name": "Adílio",
+      "position": "MEI",
+      "club": "Flamengo",
+      "year": 1981,
+      "levelMin": 88,
+      "levelMax": 93,
+      "tier": "lenda",
+      "hint": "615 jogos e 128 gols pelo Flamengo de 1975 a 1987. 25 anos em 1981. 2 jogos pela seleção.",
+      "kit": [
+        "#C8102E",
+        "#111111"
+      ],
+      "series": "A",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q372451-Q17479-1995",
+      "personId": "Q372451",
+      "name": "Sávio",
+      "position": "ATA",
+      "club": "Flamengo",
+      "year": 1995,
+      "levelMin": 86,
+      "levelMax": 92,
+      "tier": "craque",
+      "hint": "75 jogos e 20 gols pelo Flamengo de 1992 a 1997. 21 anos em 1995. 21 jogos pela seleção.",
+      "kit": [
+        "#C8102E",
+        "#111111"
+      ],
+      "series": "A",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q2417923-Q38568-1957",
+      "personId": "Q2417923",
+      "name": "Canhoteiro",
+      "position": "ATA",
+      "club": "São Paulo",
+      "year": 1957,
+      "levelMin": 88,
+      "levelMax": 93,
+      "tier": "lenda",
+      "hint": "383 jogos e 85 gols pelo São Paulo de 1954 a 1963. 25 anos em 1957. 15 jogos pela seleção.",
+      "kit": [
+        "#FFFFFF",
+        "#D0021B"
+      ],
+      "series": "A",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q712145-Q38568-2001",
+      "personId": "Q712145",
+      "name": "França",
+      "position": "ATA",
+      "club": "São Paulo",
+      "year": 2001,
+      "levelMin": 86,
+      "levelMax": 92,
+      "tier": "craque",
+      "hint": "105 jogos e 46 gols pelo São Paulo de 1996 a 2002. 25 anos em 2001. 8 jogos pela seleção.",
+      "kit": [
+        "#FFFFFF",
+        "#D0021B"
+      ],
+      "series": "A",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q16298050-Q38568-2022",
+      "personId": "Q16298050",
+      "name": "Jonathan Calleri",
+      "position": "ATA",
+      "club": "São Paulo",
+      "year": 2022,
+      "levelMin": 85,
+      "levelMax": 91,
+      "tier": "craque",
+      "hint": "Argentina. No São Paulo desde 2021. 29 anos em 2022.",
+      "kit": [
+        "#FFFFFF",
+        "#D0021B"
+      ],
+      "series": "A",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q428431-Q38568-1989",
+      "personId": "Q428431",
+      "name": "Ricardo Rocha",
+      "position": "ZAG",
+      "club": "São Paulo",
+      "year": 1989,
+      "levelMin": 86,
+      "levelMax": 92,
+      "tier": "craque",
+      "hint": "43 jogos pelo São Paulo de 1989 a 1991. 27 anos em 1989. 38 jogos pela seleção.",
+      "kit": [
+        "#FFFFFF",
+        "#D0021B"
+      ],
+      "series": "A",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q115332579-Q80964-2024",
+      "personId": "Q115332579",
+      "name": "Estêvão",
+      "position": "ATA",
+      "club": "Palmeiras",
+      "year": 2024,
+      "levelMin": 85,
+      "levelMax": 91,
+      "tier": "craque",
+      "hint": "No Palmeiras de 2023 a 2025. 17 anos em 2024.",
+      "kit": [
+        "#006437",
+        "#FFFFFF"
+      ],
+      "series": "A",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q27443365-Q80964-2021",
+      "personId": "Q27443365",
+      "name": "Raphael Veiga",
+      "position": "MEI",
+      "club": "Palmeiras",
+      "year": 2021,
+      "levelMin": 88,
+      "levelMax": 93,
+      "tier": "lenda",
+      "hint": "226 jogos e 65 gols pelo Palmeiras desde 2017. 26 anos em 2021. 6 jogos pela seleção.",
+      "kit": [
+        "#006437",
+        "#FFFFFF"
+      ],
+      "series": "A",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q1033783-Q80964-2021",
+      "personId": "Q1033783",
+      "name": "Gustavo Gómez",
+      "position": "ZAG",
+      "club": "Palmeiras",
+      "year": 2021,
+      "levelMin": 89,
+      "levelMax": 94,
+      "tier": "lenda",
+      "hint": "Paraguai. No Palmeiras desde 2018. 28 anos em 2021. 25 jogos pela seleção.",
+      "kit": [
+        "#006437",
+        "#FFFFFF"
+      ],
+      "series": "A",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q2089039-Q80964-2011",
+      "personId": "Q2089039",
+      "name": "Marcos Assunção",
+      "position": "MEI",
+      "club": "Palmeiras",
+      "year": 2011,
+      "levelMin": 84,
+      "levelMax": 90,
+      "tier": "craque",
+      "hint": "78 jogos e 16 gols pelo Palmeiras de 2010 a 2012. 35 anos em 2011. 11 jogos pela seleção.",
+      "kit": [
+        "#006437",
+        "#FFFFFF"
+      ],
+      "series": "A",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q315831-Q80964-1999",
+      "personId": "Q315831",
+      "name": "Roque Júnior",
+      "position": "ZAG",
+      "club": "Palmeiras",
+      "year": 1999,
+      "levelMin": 85,
+      "levelMax": 91,
+      "tier": "craque",
+      "hint": "192 jogos e 15 gols pelo Palmeiras de 1995 a 2000. 23 anos em 1999. 48 jogos pela seleção.",
+      "kit": [
+        "#006437",
+        "#FFFFFF"
+      ],
+      "series": "A",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q314225-Q478317-2008",
+      "personId": "Q314225",
+      "name": "Keirrison",
+      "position": "ATA",
+      "club": "Coritiba",
+      "year": 2008,
+      "levelMin": 83,
+      "levelMax": 89,
+      "tier": "craque",
+      "hint": "31 jogos e 21 gols pelo Coritiba de 2006 a 2009. 20 anos em 2008.",
+      "kit": [
+        "#00613A",
+        "#FFFFFF"
+      ],
+      "series": "A",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q210066-Q198032-1999",
+      "personId": "Q210066",
+      "name": "Uéslei",
+      "position": "ATA",
+      "club": "Bahia",
+      "year": 1999,
+      "levelMin": 83,
+      "levelMax": 89,
+      "tier": "craque",
+      "hint": "No Bahia de 1999 a 2000. 27 anos em 1999.",
+      "kit": [
+        "#0055A4",
+        "#E30613"
+      ],
+      "series": "A",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q181139-Q5014111-1998",
+      "personId": "Q181139",
+      "name": "Ramon Menezes",
+      "position": "MEI",
+      "club": "Vasco",
+      "year": 1998,
+      "levelMin": 84,
+      "levelMax": 90,
+      "tier": "craque",
+      "hint": "81 jogos e 26 gols pelo Vasco de 1996 a 1999. 26 anos em 1998. 5 jogos pela seleção.",
+      "kit": [
+        "#111111",
+        "#FFFFFF"
+      ],
+      "series": "A",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q1041763-Q219098-2008",
+      "personId": "Q1041763",
+      "name": "Carlinhos Bala",
+      "position": "ATA",
+      "club": "Sport",
+      "year": 2008,
+      "levelMin": 81,
+      "levelMax": 87,
+      "tier": "craque",
+      "hint": "117 jogos e 35 gols pelo Sport de 2007 a 2008. 29 anos em 2008.",
+      "kit": [
+        "#D50000",
+        "#111111"
+      ],
+      "series": "B",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q3960898-Q73971-2005",
+      "personId": "Q3960898",
+      "name": "Kuki",
+      "position": "ATA",
+      "club": "Náutico",
+      "year": 2005,
+      "levelMin": 83,
+      "levelMax": 89,
+      "tier": "craque",
+      "hint": "No Náutico de 2003 a 2007. 34 anos em 2005.",
+      "kit": [
+        "#D50000",
+        "#FFFFFF"
+      ],
+      "series": "B",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q602525-Q1130849-2018",
+      "personId": "Q602525",
+      "name": "Roberto Firmino",
+      "position": "ATA",
+      "club": "Liverpool",
+      "year": 2018,
+      "levelMin": 88,
+      "levelMax": 93,
+      "tier": "lenda",
+      "hint": "256 jogos e 82 gols pelo Liverpool de 2015 a 2023. 27 anos em 2018. 55 jogos pela seleção.",
+      "kit": [
+        "#C8102E",
+        "#FFFFFF"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q61460651-Q9617-2023",
+      "personId": "Q61460651",
+      "name": "Gabriel Martinelli",
+      "position": "ATA",
+      "club": "Arsenal",
+      "year": 2023,
+      "levelMin": 84,
+      "levelMax": 90,
+      "tier": "craque",
+      "hint": "191 jogos e 41 gols pelo Arsenal de 2019 a 2026. 22 anos em 2023. 27 jogos pela seleção.",
+      "kit": [
+        "#EF0107",
+        "#FFFFFF"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q192635-Q7156-1992",
+      "personId": "Q192635",
+      "name": "Ronald Koeman",
+      "position": "ZAG",
+      "club": "Barcelona",
+      "year": 1992,
+      "levelMin": 90,
+      "levelMax": 95,
+      "tier": "lenda",
+      "hint": "Países Baixos. 192 jogos e 67 gols pelo Barcelona de 1989 a 1995. 29 anos em 1992. 78 jogos pela seleção.",
+      "kit": [
+        "#A50044",
+        "#004D98"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q164038-Q7156-1997",
+      "personId": "Q164038",
+      "name": "Pep Guardiola",
+      "position": "MEI",
+      "club": "Barcelona",
+      "year": 1997,
+      "levelMin": 88,
+      "levelMax": 93,
+      "tier": "lenda",
+      "hint": "Espanha. 263 jogos e 6 gols pelo Barcelona de 1990 a 2001. 26 anos em 1997. 47 jogos pela seleção.",
+      "kit": [
+        "#A50044",
+        "#004D98"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q295732-Q7156-1955",
+      "personId": "Q295732",
+      "name": "László Kubala",
+      "position": "ATA",
+      "club": "Barcelona",
+      "year": 1955,
+      "levelMin": 91,
+      "levelMax": 96,
+      "tier": "lenda",
+      "hint": "Hungria. 186 jogos e 131 gols pelo Barcelona de 1951 a 1961. 28 anos em 1955. 19 jogos pela seleção.",
+      "kit": [
+        "#A50044",
+        "#004D98"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q66606355-Q7156-2025",
+      "personId": "Q66606355",
+      "name": "Pedri",
+      "position": "MEI",
+      "club": "Barcelona",
+      "year": 2025,
+      "levelMin": 88,
+      "levelMax": 93,
+      "tier": "lenda",
+      "hint": "Espanha. 173 jogos e 23 gols pelo Barcelona desde 2020. 23 anos em 2025. 53 jogos pela seleção.",
+      "kit": [
+        "#A50044",
+        "#004D98"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q47548-Q7156-2009",
+      "personId": "Q47548",
+      "name": "Víctor Valdés",
+      "position": "GOL",
+      "club": "Barcelona",
+      "year": 2009,
+      "levelMin": 86,
+      "levelMax": 92,
+      "tier": "craque",
+      "hint": "Espanha. 387 jogos pelo Barcelona de 2002 a 2014. 27 anos em 2009. 20 jogos pela seleção.",
+      "kit": [
+        "#A50044",
+        "#004D98"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q184586-Q8682-2016",
+      "personId": "Q184586",
+      "name": "Gareth Bale",
+      "position": "ATA",
+      "club": "Real Madrid",
+      "year": 2016,
+      "levelMin": 89,
+      "levelMax": 94,
+      "tier": "lenda",
+      "hint": "País de Gales. 176 jogos e 81 gols pelo Real Madrid de 2013 a 2022. 27 anos em 2016. 111 jogos pela seleção.",
+      "kit": [
+        "#FFFFFF",
+        "#FEBE10"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q184586-Q18741-2012",
+      "personId": "Q184586",
+      "name": "Gareth Bale",
+      "position": "ATA",
+      "club": "Tottenham",
+      "year": 2012,
+      "levelMin": 88,
+      "levelMax": 93,
+      "tier": "lenda",
+      "hint": "País de Gales. 146 jogos e 42 gols pelo Tottenham de 2007 a 2013. 23 anos em 2012. 111 jogos pela seleção.",
+      "kit": [
+        "#FFFFFF",
+        "#132257"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q205499-Q8682-1998",
+      "personId": "Q205499",
+      "name": "Fernando Hierro",
+      "position": "ZAG",
+      "club": "Real Madrid",
+      "year": 1998,
+      "levelMin": 90,
+      "levelMax": 95,
+      "tier": "lenda",
+      "hint": "Espanha. 439 jogos e 102 gols pelo Real Madrid de 1989 a 2003. 30 anos em 1998. 89 jogos pela seleção.",
+      "kit": [
+        "#FFFFFF",
+        "#FEBE10"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q41235-Q8682-1988",
+      "personId": "Q41235",
+      "name": "Emilio Butragueño",
+      "position": "ATA",
+      "club": "Real Madrid",
+      "year": 1988,
+      "levelMin": 90,
+      "levelMax": 95,
+      "tier": "lenda",
+      "hint": "Espanha. 341 jogos e 123 gols pelo Real Madrid de 1984 a 1995. 25 anos em 1988. 69 jogos pela seleção.",
+      "kit": [
+        "#FFFFFF",
+        "#FEBE10"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q487155-Q8682-1988",
+      "personId": "Q487155",
+      "name": "Hugo Sánchez",
+      "position": "ATA",
+      "club": "Real Madrid",
+      "year": 1988,
+      "levelMin": 91,
+      "levelMax": 96,
+      "tier": "lenda",
+      "hint": "México. 207 jogos e 164 gols pelo Real Madrid de 1985 a 1992. 30 anos em 1988. 58 jogos pela seleção.",
+      "kit": [
+        "#FFFFFF",
+        "#FEBE10"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q66241169-Q8682-2024",
+      "personId": "Q66241169",
+      "name": "Jude Bellingham",
+      "position": "MEI",
+      "club": "Real Madrid",
+      "year": 2024,
+      "levelMin": 90,
+      "levelMax": 95,
+      "tier": "lenda",
+      "hint": "Inglaterra. 95 jogos e 37 gols pelo Real Madrid desde 2023. 21 anos em 2024. 60 jogos pela seleção.",
+      "kit": [
+        "#FFFFFF",
+        "#FEBE10"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q19509544-Q8682-2024",
+      "personId": "Q19509544",
+      "name": "Federico Valverde",
+      "position": "MEI",
+      "club": "Real Madrid",
+      "year": 2024,
+      "levelMin": 88,
+      "levelMax": 93,
+      "tier": "lenda",
+      "hint": "Uruguai. 252 jogos e 25 gols pelo Real Madrid desde 2018. 26 anos em 2024. 76 jogos pela seleção.",
+      "kit": [
+        "#FFFFFF",
+        "#FEBE10"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q184362-Q9616-2005",
+      "personId": "Q184362",
+      "name": "Claude Makélélé",
+      "position": "MEI",
+      "club": "Chelsea",
+      "year": 2005,
+      "levelMin": 88,
+      "levelMax": 93,
+      "tier": "lenda",
+      "hint": "França. 144 jogos e 2 gols pelo Chelsea de 2003 a 2008. 32 anos em 2005. 71 jogos pela seleção.",
+      "kit": [
+        "#034694",
+        "#FFFFFF"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q184362-Q8682-2002",
+      "personId": "Q184362",
+      "name": "Claude Makélélé",
+      "position": "MEI",
+      "club": "Real Madrid",
+      "year": 2002,
+      "levelMin": 88,
+      "levelMax": 93,
+      "tier": "lenda",
+      "hint": "França. 94 jogos pelo Real Madrid de 2000 a 2003. 29 anos em 2002. 71 jogos pela seleção.",
+      "kit": [
+        "#FFFFFF",
+        "#FEBE10"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q194461-Q8682-2003",
+      "personId": "Q194461",
+      "name": "Guti",
+      "position": "MEI",
+      "club": "Real Madrid",
+      "year": 2003,
+      "levelMin": 85,
+      "levelMax": 91,
+      "tier": "craque",
+      "hint": "Espanha. 387 jogos e 46 gols pelo Real Madrid de 1995 a 2010. 27 anos em 2003. 13 jogos pela seleção.",
+      "kit": [
+        "#FFFFFF",
+        "#FEBE10"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q231468-Q1543-1994",
+      "personId": "Q231468",
+      "name": "Zvonimir Boban",
+      "position": "MEI",
+      "club": "Milan",
+      "year": 1994,
+      "levelMin": 88,
+      "levelMax": 93,
+      "tier": "lenda",
+      "hint": "Croácia. 178 jogos e 21 gols pelo Milan de 1992 a 2001. 26 anos em 1994. 51 jogos pela seleção.",
+      "kit": [
+        "#FB090B",
+        "#111111"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q213828-Q1543-1994",
+      "personId": "Q213828",
+      "name": "Alessandro Costacurta",
+      "position": "ZAG",
+      "club": "Milan",
+      "year": 1994,
+      "levelMin": 88,
+      "levelMax": 93,
+      "tier": "lenda",
+      "hint": "Itália. 458 jogos e 3 gols pelo Milan de 1986 a 2007. 28 anos em 1994. 59 jogos pela seleção.",
+      "kit": [
+        "#FB090B",
+        "#111111"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q23703372-Q1543-2022",
+      "personId": "Q23703372",
+      "name": "Theo Hernández",
+      "position": "LAT",
+      "club": "Milan",
+      "year": 2022,
+      "levelMin": 86,
+      "levelMax": 92,
+      "tier": "craque",
+      "hint": "França. 195 jogos e 31 gols pelo Milan de 2019 a 2025. 25 anos em 2022. 42 jogos pela seleção.",
+      "kit": [
+        "#FB090B",
+        "#111111"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q299608-Q1422-1982",
+      "personId": "Q299608",
+      "name": "Gaetano Scirea",
+      "position": "ZAG",
+      "club": "Juventus",
+      "year": 1982,
+      "levelMin": 91,
+      "levelMax": 96,
+      "tier": "lenda",
+      "hint": "Itália. 377 jogos e 24 gols pelo Juventus de 1974 a 1988. 29 anos em 1982. 78 jogos pela seleção.",
+      "kit": [
+        "#FFFFFF",
+        "#111111"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q183967-Q1422-2002",
+      "personId": "Q183967",
+      "name": "David Trezeguet",
+      "position": "ATA",
+      "club": "Juventus",
+      "year": 2002,
+      "levelMin": 89,
+      "levelMax": 94,
+      "tier": "lenda",
+      "hint": "França. 245 jogos e 138 gols pelo Juventus de 2000 a 2010. 25 anos em 2002. 71 jogos pela seleção.",
+      "kit": [
+        "#FFFFFF",
+        "#111111"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q166317-Q1422-2018",
+      "personId": "Q166317",
+      "name": "Paulo Dybala",
+      "position": "ATA",
+      "club": "Juventus",
+      "year": 2018,
+      "levelMin": 88,
+      "levelMax": 93,
+      "tier": "lenda",
+      "hint": "Argentina. 210 jogos e 82 gols pelo Juventus de 2015 a 2022. 25 anos em 2018. 40 jogos pela seleção.",
+      "kit": [
+        "#FFFFFF",
+        "#111111"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q315839-Q1422-1982",
+      "personId": "Q315839",
+      "name": "Claudio Gentile",
+      "position": "ZAG",
+      "club": "Juventus",
+      "year": 1982,
+      "levelMin": 88,
+      "levelMax": 93,
+      "tier": "lenda",
+      "hint": "Itália. 283 jogos e 9 gols pelo Juventus de 1973 a 1984. 29 anos em 1982. 71 jogos pela seleção.",
+      "kit": [
+        "#FFFFFF",
+        "#111111"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q68064-Q1422-1983",
+      "personId": "Q68064",
+      "name": "Antonio Cabrini",
+      "position": "LAT",
+      "club": "Juventus",
+      "year": 1983,
+      "levelMin": 89,
+      "levelMax": 94,
+      "tier": "lenda",
+      "hint": "Itália. 297 jogos e 33 gols pelo Juventus de 1976 a 1989. 26 anos em 1983. 73 jogos pela seleção.",
+      "kit": [
+        "#FFFFFF",
+        "#111111"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q192122-Q631-2010",
+      "personId": "Q192122",
+      "name": "Esteban Cambiasso",
+      "position": "MEI",
+      "club": "Inter de Milão",
+      "year": 2010,
+      "levelMin": 88,
+      "levelMax": 93,
+      "tier": "lenda",
+      "hint": "Argentina. 315 jogos e 50 gols pelo Inter de Milão de 2004 a 2014. 30 anos em 2010. 52 jogos pela seleção.",
+      "kit": [
+        "#0068A8",
+        "#111111"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q159045-Q631-1989",
+      "personId": "Q159045",
+      "name": "Andreas Brehme",
+      "position": "LAT",
+      "club": "Inter de Milão",
+      "year": 1989,
+      "levelMin": 89,
+      "levelMax": 94,
+      "tier": "lenda",
+      "hint": "Alemanha. 116 jogos e 11 gols pelo Inter de Milão de 1988 a 1992. 29 anos em 1989. 86 jogos pela seleção.",
+      "kit": [
+        "#0068A8",
+        "#111111"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q204108-Q631-2001",
+      "personId": "Q204108",
+      "name": "Álvaro Recoba",
+      "position": "ATA",
+      "club": "Inter de Milão",
+      "year": 2001,
+      "levelMin": 85,
+      "levelMax": 91,
+      "tier": "craque",
+      "hint": "Uruguai. 248 jogos e 72 gols pelo Inter de Milão de 1997 a 2008. 25 anos em 2001. 69 jogos pela seleção.",
+      "kit": [
+        "#0068A8",
+        "#111111"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q20090225-Q631-2023",
+      "personId": "Q20090225",
+      "name": "Nicolò Barella",
+      "position": "MEI",
+      "club": "Inter de Milão",
+      "year": 2023,
+      "levelMin": 88,
+      "levelMax": 93,
+      "tier": "lenda",
+      "hint": "Itália. 216 jogos e 21 gols pelo Inter de Milão desde 2020. 26 anos em 2023. 73 jogos pela seleção.",
+      "kit": [
+        "#0068A8",
+        "#111111"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q136986-Q631-2018",
+      "personId": "Q136986",
+      "name": "Mauro Icardi",
+      "position": "ATA",
+      "club": "Inter de Milão",
+      "year": 2018,
+      "levelMin": 86,
+      "levelMax": 92,
+      "tier": "craque",
+      "hint": "Argentina. 188 jogos e 111 gols pelo Inter de Milão de 2013 a 2020. 25 anos em 2018. 8 jogos pela seleção.",
+      "kit": [
+        "#0068A8",
+        "#111111"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q213002-Q631-2017",
+      "personId": "Q213002",
+      "name": "Samir Handanović",
+      "position": "GOL",
+      "club": "Inter de Milão",
+      "year": 2017,
+      "levelMin": 86,
+      "levelMax": 92,
+      "tier": "craque",
+      "hint": "Eslovénia. 380 jogos pelo Inter de Milão de 2012 a 2023. 33 anos em 2017. 81 jogos pela seleção.",
+      "kit": [
+        "#0068A8",
+        "#111111"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q231348-Q631-2006",
+      "personId": "Q231348",
+      "name": "Iván Córdoba",
+      "position": "ZAG",
+      "club": "Inter de Milão",
+      "year": 2006,
+      "levelMin": 85,
+      "levelMax": 91,
+      "tier": "craque",
+      "hint": "Colômbia. 324 jogos e 15 gols pelo Inter de Milão de 2000 a 2012. 30 anos em 2006. 73 jogos pela seleção.",
+      "kit": [
+        "#0068A8",
+        "#111111"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q297768-Q2739-2001",
+      "personId": "Q297768",
+      "name": "Vincenzo Montella",
+      "position": "ATA",
+      "club": "Roma",
+      "year": 2001,
+      "levelMin": 86,
+      "levelMax": 92,
+      "tier": "craque",
+      "hint": "Itália. 192 jogos e 84 gols pelo Roma de 1999 a 2009. 27 anos em 2001. 20 jogos pela seleção.",
+      "kit": [
+        "#8E1F2F",
+        "#F0BC42"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q355923-Q2739-1983",
+      "personId": "Q355923",
+      "name": "Bruno Conti",
+      "position": "ATA",
+      "club": "Roma",
+      "year": 1983,
+      "levelMin": 89,
+      "levelMax": 94,
+      "tier": "lenda",
+      "hint": "Itália. 304 jogos e 37 gols pelo Roma de 1973 a 1991. 28 anos em 1983. 47 jogos pela seleção.",
+      "kit": [
+        "#8E1F2F",
+        "#F0BC42"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q517192-Q2739-2017",
+      "personId": "Q517192",
+      "name": "Radja Nainggolan",
+      "position": "MEI",
+      "club": "Roma",
+      "year": 2017,
+      "levelMin": 86,
+      "levelMax": 92,
+      "tier": "craque",
+      "hint": "Bélgica. 138 jogos e 26 gols pelo Roma de 2014 a 2018. 29 anos em 2017. 30 jogos pela seleção.",
+      "kit": [
+        "#8E1F2F",
+        "#F0BC42"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q15673000-Q2609-2018",
+      "personId": "Q15673000",
+      "name": "Sergej Milinković-Savić",
+      "position": "MEI",
+      "club": "Lazio",
+      "year": 2018,
+      "levelMin": 86,
+      "levelMax": 92,
+      "tier": "craque",
+      "hint": "Sérvia. 267 jogos e 57 gols pelo Lazio de 2015 a 2023. 23 anos em 2018. 56 jogos pela seleção.",
+      "kit": [
+        "#87D8F7",
+        "#FFFFFF"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q13002-Q18741-1990",
+      "personId": "Q13002",
+      "name": "Paul Gascoigne",
+      "position": "MEI",
+      "club": "Tottenham",
+      "year": 1990,
+      "levelMin": 89,
+      "levelMax": 94,
+      "tier": "lenda",
+      "hint": "Inglaterra. 92 jogos e 19 gols pelo Tottenham de 1988 a 1992. 23 anos em 1990. 57 jogos pela seleção.",
+      "kit": [
+        "#FFFFFF",
+        "#132257"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q483846-Q2641-2016",
+      "personId": "Q483846",
+      "name": "Gonzalo Higuaín",
+      "position": "ATA",
+      "club": "Napoli",
+      "year": 2016,
+      "levelMin": 89,
+      "levelMax": 94,
+      "tier": "lenda",
+      "hint": "Argentina. 104 jogos e 71 gols pelo Napoli de 2013 a 2016. 29 anos em 2016. 75 jogos pela seleção.",
+      "kit": [
+        "#12A0D7",
+        "#FFFFFF"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q11954-Q2641-2017",
+      "personId": "Q11954",
+      "name": "Dries Mertens",
+      "position": "ATA",
+      "club": "Napoli",
+      "year": 2017,
+      "levelMin": 86,
+      "levelMax": 92,
+      "tier": "craque",
+      "hint": "Bélgica. 295 jogos e 113 gols pelo Napoli de 2013 a 2022. 30 anos em 2017. 109 jogos pela seleção.",
+      "kit": [
+        "#12A0D7",
+        "#FFFFFF"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q25253293-Q2641-2023",
+      "personId": "Q25253293",
+      "name": "Victor Osimhen",
+      "position": "ATA",
+      "club": "Napoli",
+      "year": 2023,
+      "levelMin": 88,
+      "levelMax": 93,
+      "tier": "lenda",
+      "hint": "Nigéria. 108 jogos e 65 gols pelo Napoli de 2020 a 2025. 25 anos em 2023. 51 jogos pela seleção.",
+      "kit": [
+        "#12A0D7",
+        "#FFFFFF"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q61780902-Q2641-2023",
+      "personId": "Q61780902",
+      "name": "Khvicha Kvaratskhelia",
+      "position": "ATA",
+      "club": "Napoli",
+      "year": 2023,
+      "levelMin": 88,
+      "levelMax": 93,
+      "tier": "lenda",
+      "hint": "Geórgia. 85 jogos e 28 gols pelo Napoli de 2022 a 2025. 22 anos em 2023. 54 jogos pela seleção.",
+      "kit": [
+        "#12A0D7",
+        "#FFFFFF"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q615292-Q2641-1989",
+      "personId": "Q615292",
+      "name": "Alemão",
+      "position": "MEI",
+      "club": "Napoli",
+      "year": 1989,
+      "levelMin": 85,
+      "levelMax": 91,
+      "tier": "craque",
+      "hint": "No Napoli de 1988 a 1992. 28 anos em 1989. 39 jogos pela seleção.",
+      "kit": [
+        "#12A0D7",
+        "#FFFFFF"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q96072055-Q15789-2024",
+      "personId": "Q96072055",
+      "name": "Jamal Musiala",
+      "position": "MEI",
+      "club": "Bayern de Munique",
+      "year": 2024,
+      "levelMin": 88,
+      "levelMax": 93,
+      "tier": "lenda",
+      "hint": "Alemanha. 154 jogos e 48 gols pelo Bayern de Munique desde 2020. 21 anos em 2024. 42 jogos pela seleção.",
+      "kit": [
+        "#DC052D",
+        "#FFFFFF"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q44820-Q15789-1974",
+      "personId": "Q44820",
+      "name": "Georg Schwarzenbeck",
+      "position": "ZAG",
+      "club": "Bayern de Munique",
+      "year": 1974,
+      "levelMin": 86,
+      "levelMax": 92,
+      "tier": "craque",
+      "hint": "Alemanha. 416 jogos e 21 gols pelo Bayern de Munique de 1966 a 1981. 26 anos em 1974. 44 jogos pela seleção.",
+      "kit": [
+        "#DC052D",
+        "#FFFFFF"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q159948-Q15789-1987",
+      "personId": "Q159948",
+      "name": "Klaus Augenthaler",
+      "position": "ZAG",
+      "club": "Bayern de Munique",
+      "year": 1987,
+      "levelMin": 88,
+      "levelMax": 93,
+      "tier": "lenda",
+      "hint": "Alemanha. 404 jogos e 52 gols pelo Bayern de Munique de 1976 a 1991. 30 anos em 1987. 27 jogos pela seleção.",
+      "kit": [
+        "#DC052D",
+        "#FFFFFF"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q152377-Q41420-2016",
+      "personId": "Q152377",
+      "name": "Marco Reus",
+      "position": "ATA",
+      "club": "Borussia Dortmund",
+      "year": 2016,
+      "levelMin": 88,
+      "levelMax": 93,
+      "tier": "lenda",
+      "hint": "Alemanha. 294 jogos e 120 gols pelo Borussia Dortmund de 2012 a 2024. 27 anos em 2016. 48 jogos pela seleção.",
+      "kit": [
+        "#FDE100",
+        "#111111"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q30148558-Q41420-2020",
+      "personId": "Q30148558",
+      "name": "Jadon Sancho",
+      "position": "ATA",
+      "club": "Borussia Dortmund",
+      "year": 2020,
+      "levelMin": 85,
+      "levelMax": 91,
+      "tier": "craque",
+      "hint": "Inglaterra. 104 jogos e 38 gols pelo Borussia Dortmund de 2017 a 2021. 20 anos em 2020. 23 jogos pela seleção.",
+      "kit": [
+        "#FDE100",
+        "#111111"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q152340-Q41420-2002",
+      "personId": "Q152340",
+      "name": "Jan Koller",
+      "position": "ATA",
+      "club": "Borussia Dortmund",
+      "year": 2002,
+      "levelMin": 84,
+      "levelMax": 90,
+      "tier": "craque",
+      "hint": "Chéquia. 138 jogos e 59 gols pelo Borussia Dortmund de 2001 a 2006. 29 anos em 2002. 91 jogos pela seleção.",
+      "kit": [
+        "#FDE100",
+        "#111111"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q94699949-Q104761-2024",
+      "personId": "Q94699949",
+      "name": "Florian Wirtz",
+      "position": "MEI",
+      "club": "Bayer Leverkusen",
+      "year": 2024,
+      "levelMin": 89,
+      "levelMax": 94,
+      "tier": "lenda",
+      "hint": "Alemanha. 140 jogos e 35 gols pelo Bayer Leverkusen de 2020 a 2025. 21 anos em 2024. 48 jogos pela seleção.",
+      "kit": [
+        "#E32221",
+        "#111111"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q310519-Q104761-1997",
+      "personId": "Q310519",
+      "name": "Ulf Kirsten",
+      "position": "ATA",
+      "club": "Bayer Leverkusen",
+      "year": 1997,
+      "levelMin": 86,
+      "levelMax": 92,
+      "tier": "craque",
+      "hint": "Alemanha. 350 jogos e 182 gols pelo Bayer Leverkusen de 1990 a 2003. 32 anos em 1997. 51 jogos pela seleção.",
+      "kit": [
+        "#E32221",
+        "#111111"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q170235-Q18741-2007",
+      "personId": "Q170235",
+      "name": "Dimitar Berbatov",
+      "position": "ATA",
+      "club": "Tottenham",
+      "year": 2007,
+      "levelMin": 86,
+      "levelMax": 92,
+      "tier": "craque",
+      "hint": "Bulgária. 70 jogos e 27 gols pelo Tottenham de 2006 a 2008. 26 anos em 2007. 78 jogos pela seleção.",
+      "kit": [
+        "#FFFFFF",
+        "#132257"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q233565-Q18656-1964",
+      "personId": "Q233565",
+      "name": "Denis Law",
+      "position": "ATA",
+      "club": "Manchester United",
+      "year": 1964,
+      "levelMin": 91,
+      "levelMax": 96,
+      "tier": "lenda",
+      "hint": "Escócia. 309 jogos e 171 gols pelo Manchester United de 1962 a 1973. 24 anos em 1964. 55 jogos pela seleção.",
+      "kit": [
+        "#DA291C",
+        "#111111"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q170328-Q18656-1996",
+      "personId": "Q170328",
+      "name": "Éric Cantona",
+      "position": "ATA",
+      "club": "Manchester United",
+      "year": 1996,
+      "levelMin": 92,
+      "levelMax": 97,
+      "tier": "lenda",
+      "hint": "França. 143 jogos e 64 gols pelo Manchester United de 1992 a 1997. 30 anos em 1996. 45 jogos pela seleção.",
+      "kit": [
+        "#DA291C",
+        "#111111"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q10524-Q18656-1999",
+      "personId": "Q10524",
+      "name": "Ryan Giggs",
+      "position": "MEI",
+      "club": "Manchester United",
+      "year": 1999,
+      "levelMin": 91,
+      "levelMax": 96,
+      "tier": "lenda",
+      "hint": "País de Gales. 672 jogos e 114 gols pelo Manchester United de 1990 a 2014. 26 anos em 1999. 64 jogos pela seleção.",
+      "kit": [
+        "#DA291C",
+        "#111111"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q45613-Q18656-2003",
+      "personId": "Q45613",
+      "name": "Paul Scholes",
+      "position": "MEI",
+      "club": "Manchester United",
+      "year": 2003,
+      "levelMin": 91,
+      "levelMax": 96,
+      "tier": "lenda",
+      "hint": "Inglaterra. 466 jogos e 102 gols pelo Manchester United de 1993 a 2011. 29 anos em 2003. 66 jogos pela seleção.",
+      "kit": [
+        "#DA291C",
+        "#111111"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q163564-Q18656-2009",
+      "personId": "Q163564",
+      "name": "Nemanja Vidić",
+      "position": "ZAG",
+      "club": "Manchester United",
+      "year": 2009,
+      "levelMin": 89,
+      "levelMax": 94,
+      "tier": "lenda",
+      "hint": "Sérvia. 211 jogos e 15 gols pelo Manchester United de 2006 a 2014. 28 anos em 2009. 56 jogos pela seleção.",
+      "kit": [
+        "#DA291C",
+        "#111111"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q45626-Q18656-2003",
+      "personId": "Q45626",
+      "name": "Ruud van Nistelrooy",
+      "position": "ATA",
+      "club": "Manchester United",
+      "year": 2003,
+      "levelMin": 90,
+      "levelMax": 95,
+      "tier": "lenda",
+      "hint": "Países Baixos. 150 jogos e 95 gols pelo Manchester United de 2001 a 2006. 27 anos em 2003. 70 jogos pela seleção.",
+      "kit": [
+        "#DA291C",
+        "#111111"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q4979316-Q18656-2021",
+      "personId": "Q4979316",
+      "name": "Bruno Fernandes",
+      "position": "MEI",
+      "club": "Manchester United",
+      "year": 2021,
+      "levelMin": 88,
+      "levelMax": 93,
+      "tier": "lenda",
+      "hint": "Portugal. 235 jogos e 74 gols pelo Manchester United desde 2020. 27 anos em 2021. 97 jogos pela seleção.",
+      "kit": [
+        "#DA291C",
+        "#111111"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q192175-Q18656-1999",
+      "personId": "Q192175",
+      "name": "Dwight Yorke",
+      "position": "ATA",
+      "club": "Manchester United",
+      "year": 1999,
+      "levelMin": 85,
+      "levelMax": 91,
+      "tier": "craque",
+      "hint": "Trindade e Tobago. 96 jogos e 48 gols pelo Manchester United de 1998 a 2002. 28 anos em 1999. 74 jogos pela seleção.",
+      "kit": [
+        "#DA291C",
+        "#111111"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q18976-Q18656-1999",
+      "personId": "Q18976",
+      "name": "Ole Gunnar Solskjær",
+      "position": "ATA",
+      "club": "Manchester United",
+      "year": 1999,
+      "levelMin": 84,
+      "levelMax": 90,
+      "tier": "craque",
+      "hint": "Noruega. 235 jogos e 91 gols pelo Manchester United de 1996 a 2007. 26 anos em 1999. 67 jogos pela seleção.",
+      "kit": [
+        "#DA291C",
+        "#111111"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q29566-Q18656-2008",
+      "personId": "Q29566",
+      "name": "Michael Carrick",
+      "position": "MEI",
+      "club": "Manchester United",
+      "year": 2008,
+      "levelMin": 85,
+      "levelMax": 91,
+      "tier": "craque",
+      "hint": "Inglaterra. 316 jogos e 17 gols pelo Manchester United de 2006 a 2018. 27 anos em 2008. 34 jogos pela seleção.",
+      "kit": [
+        "#DA291C",
+        "#111111"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q317807-Q18656-1994",
+      "personId": "Q317807",
+      "name": "Denis Irwin",
+      "position": "LAT",
+      "club": "Manchester United",
+      "year": 1994,
+      "levelMin": 85,
+      "levelMax": 91,
+      "tier": "craque",
+      "hint": "Irlanda. 368 jogos e 22 gols pelo Manchester United de 1990 a 2002. 29 anos em 1994. 56 jogos pela seleção.",
+      "kit": [
+        "#DA291C",
+        "#111111"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q219354-Q1130849-1984",
+      "personId": "Q219354",
+      "name": "Ian Rush",
+      "position": "ATA",
+      "club": "Liverpool",
+      "year": 1984,
+      "levelMin": 91,
+      "levelMax": 96,
+      "tier": "lenda",
+      "hint": "País de Gales. 182 jogos e 109 gols pelo Liverpool de 1980 a 1986. 23 anos em 1984. 73 jogos pela seleção.",
+      "kit": [
+        "#C8102E",
+        "#FFFFFF"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q374189-Q1130849-1984",
+      "personId": "Q374189",
+      "name": "Alan Hansen",
+      "position": "ZAG",
+      "club": "Liverpool",
+      "year": 1984,
+      "levelMin": 88,
+      "levelMax": 93,
+      "tier": "lenda",
+      "hint": "Escócia. 434 jogos e 8 gols pelo Liverpool de 1977 a 1991. 29 anos em 1984. 26 jogos pela seleção.",
+      "kit": [
+        "#C8102E",
+        "#FFFFFF"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q363148-Q1130849-1977",
+      "personId": "Q363148",
+      "name": "Ray Clemence",
+      "position": "GOL",
+      "club": "Liverpool",
+      "year": 1977,
+      "levelMin": 89,
+      "levelMax": 94,
+      "tier": "lenda",
+      "hint": "Inglaterra. 470 jogos pelo Liverpool de 1967 a 1981. 29 anos em 1977. 61 jogos pela seleção.",
+      "kit": [
+        "#C8102E",
+        "#FFFFFF"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q444295-Q1130849-1984",
+      "personId": "Q444295",
+      "name": "Bruce Grobbelaar",
+      "position": "GOL",
+      "club": "Liverpool",
+      "year": 1984,
+      "levelMin": 84,
+      "levelMax": 90,
+      "tier": "craque",
+      "hint": "Zimbábue. 440 jogos pelo Liverpool de 1981 a 1994. 27 anos em 1984. 32 jogos pela seleção.",
+      "kit": [
+        "#C8102E",
+        "#FFFFFF"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q185389-Q9617-1998",
+      "personId": "Q185389",
+      "name": "Dennis Bergkamp",
+      "position": "ATA",
+      "club": "Arsenal",
+      "year": 1998,
+      "levelMin": 92,
+      "levelMax": 97,
+      "tier": "lenda",
+      "hint": "Países Baixos. 315 jogos e 87 gols pelo Arsenal de 1995 a 2006. 29 anos em 1998. 79 jogos pela seleção.",
+      "kit": [
+        "#EF0107",
+        "#FFFFFF"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q113156-Q9617-2002",
+      "personId": "Q113156",
+      "name": "Robert Pirès",
+      "position": "MEI",
+      "club": "Arsenal",
+      "year": 2002,
+      "levelMin": 88,
+      "levelMax": 93,
+      "tier": "lenda",
+      "hint": "França. 284 jogos e 84 gols pelo Arsenal de 2000 a 2006. 29 anos em 2002. 79 jogos pela seleção.",
+      "kit": [
+        "#EF0107",
+        "#FFFFFF"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q10560-Q9617-2002",
+      "personId": "Q10560",
+      "name": "Freddie Ljungberg",
+      "position": "MEI",
+      "club": "Arsenal",
+      "year": 2002,
+      "levelMin": 85,
+      "levelMax": 91,
+      "tier": "craque",
+      "hint": "Suécia. 216 jogos e 46 gols pelo Arsenal de 1998 a 2007. 25 anos em 2002. 75 jogos pela seleção.",
+      "kit": [
+        "#EF0107",
+        "#FFFFFF"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q299391-Q9617-1998",
+      "personId": "Q299391",
+      "name": "Tony Adams",
+      "position": "ZAG",
+      "club": "Arsenal",
+      "year": 1998,
+      "levelMin": 89,
+      "levelMax": 94,
+      "tier": "lenda",
+      "hint": "Inglaterra. 504 jogos e 32 gols pelo Arsenal de 1983 a 2002. 32 anos em 1998. 66 jogos pela seleção.",
+      "kit": [
+        "#EF0107",
+        "#FFFFFF"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q312595-Q9617-1994",
+      "personId": "Q312595",
+      "name": "Ian Wright",
+      "position": "ATA",
+      "club": "Arsenal",
+      "year": 1994,
+      "levelMin": 88,
+      "levelMax": 93,
+      "tier": "lenda",
+      "hint": "Inglaterra. 221 jogos e 128 gols pelo Arsenal de 1991 a 1998. 31 anos em 1994. 33 jogos pela seleção.",
+      "kit": [
+        "#EF0107",
+        "#FFFFFF"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q2339-Q9617-2012",
+      "personId": "Q2339",
+      "name": "Robin van Persie",
+      "position": "ATA",
+      "club": "Arsenal",
+      "year": 2012,
+      "levelMin": 89,
+      "levelMax": 94,
+      "tier": "lenda",
+      "hint": "Países Baixos. 194 jogos e 96 gols pelo Arsenal de 2003 a 2012. 29 anos em 2012. 102 jogos pela seleção.",
+      "kit": [
+        "#EF0107",
+        "#FFFFFF"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q30007142-Q9617-2024",
+      "personId": "Q30007142",
+      "name": "Declan Rice",
+      "position": "MEI",
+      "club": "Arsenal",
+      "year": 2024,
+      "levelMin": 88,
+      "levelMax": 93,
+      "tier": "lenda",
+      "hint": "Inglaterra. 115 jogos e 15 gols pelo Arsenal desde 2023. 25 anos em 2024. 80 jogos pela seleção.",
+      "kit": [
+        "#EF0107",
+        "#FFFFFF"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q185225-Q9617-2013",
+      "personId": "Q185225",
+      "name": "Santi Cazorla",
+      "position": "MEI",
+      "club": "Arsenal",
+      "year": 2013,
+      "levelMin": 85,
+      "levelMax": 91,
+      "tier": "craque",
+      "hint": "Espanha. 129 jogos e 25 gols pelo Arsenal de 2012 a 2018. 29 anos em 2013. 81 jogos pela seleção.",
+      "kit": [
+        "#EF0107",
+        "#FFFFFF"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q219248-Q9617-1998",
+      "personId": "Q219248",
+      "name": "Marc Overmars",
+      "position": "ATA",
+      "club": "Arsenal",
+      "year": 1998,
+      "levelMin": 86,
+      "levelMax": 92,
+      "tier": "craque",
+      "hint": "Países Baixos. 100 jogos e 25 gols pelo Arsenal de 1997 a 2000. 25 anos em 1998. 86 jogos pela seleção.",
+      "kit": [
+        "#EF0107",
+        "#FFFFFF"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q969520-Q9616-2006",
+      "personId": "Q969520",
+      "name": "Michael Essien",
+      "position": "MEI",
+      "club": "Chelsea",
+      "year": 2006,
+      "levelMin": 88,
+      "levelMax": 93,
+      "tier": "lenda",
+      "hint": "Gana. 168 jogos e 17 gols pelo Chelsea de 2005 a 2014. 24 anos em 2006. 59 jogos pela seleção.",
+      "kit": [
+        "#034694",
+        "#FFFFFF"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q16665941-Q9616-2017",
+      "personId": "Q16665941",
+      "name": "N'Golo Kanté",
+      "position": "MEI",
+      "club": "Chelsea",
+      "year": 2017,
+      "levelMin": 90,
+      "levelMax": 95,
+      "tier": "lenda",
+      "hint": "França. 190 jogos e 11 gols pelo Chelsea de 2016 a 2023. 26 anos em 2017. 69 jogos pela seleção.",
+      "kit": [
+        "#034694",
+        "#FFFFFF"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q294806-Q9616-2017",
+      "personId": "Q294806",
+      "name": "César Azpilicueta",
+      "position": "LAT",
+      "club": "Chelsea",
+      "year": 2017,
+      "levelMin": 85,
+      "levelMax": 91,
+      "tier": "craque",
+      "hint": "Espanha. 349 jogos e 10 gols pelo Chelsea de 2012 a 2023. 28 anos em 2017. 44 jogos pela seleção.",
+      "kit": [
+        "#034694",
+        "#FFFFFF"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q193625-Q1543-1994",
+      "personId": "Q193625",
+      "name": "Marcel Desailly",
+      "position": "ZAG",
+      "club": "Milan",
+      "year": 1994,
+      "levelMin": 90,
+      "levelMax": 95,
+      "tier": "lenda",
+      "hint": "França. 137 jogos e 5 gols pelo Milan de 1993 a 1998. 26 anos em 1994. 116 jogos pela seleção.",
+      "kit": [
+        "#FB090B",
+        "#111111"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q99760796-Q9616-2024",
+      "personId": "Q99760796",
+      "name": "Cole Palmer",
+      "position": "MEI",
+      "club": "Chelsea",
+      "year": 2024,
+      "levelMin": 88,
+      "levelMax": 93,
+      "tier": "lenda",
+      "hint": "Inglaterra. 102 jogos e 49 gols pelo Chelsea desde 2023. 22 anos em 2024. 15 jogos pela seleção.",
+      "kit": [
+        "#034694",
+        "#FFFFFF"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q201381-Q50602-2012",
+      "personId": "Q201381",
+      "name": "Vincent Kompany",
+      "position": "ZAG",
+      "club": "Manchester City",
+      "year": 2012,
+      "levelMin": 89,
+      "levelMax": 94,
+      "tier": "lenda",
+      "hint": "Bélgica. 265 jogos e 18 gols pelo Manchester City de 2008 a 2019. 26 anos em 2012. 89 jogos pela seleção.",
+      "kit": [
+        "#6CABDD",
+        "#FFFFFF"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q20994118-Q50602-2024",
+      "personId": "Q20994118",
+      "name": "Rodri",
+      "position": "MEI",
+      "club": "Manchester City",
+      "year": 2024,
+      "levelMin": 91,
+      "levelMax": 96,
+      "tier": "lenda",
+      "hint": "Espanha. 196 jogos e 23 gols pelo Manchester City de 2019 a 2026. 28 anos em 2024. 74 jogos pela seleção.",
+      "kit": [
+        "#6CABDD",
+        "#FFFFFF"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q59108-Q50602-2019",
+      "personId": "Q59108",
+      "name": "Kyle Walker",
+      "position": "LAT",
+      "club": "Manchester City",
+      "year": 2019,
+      "levelMin": 86,
+      "levelMax": 92,
+      "tier": "craque",
+      "hint": "Inglaterra. 212 jogos e 3 gols pelo Manchester City de 2017 a 2025. 29 anos em 2019. 96 jogos pela seleção.",
+      "kit": [
+        "#6CABDD",
+        "#FFFFFF"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q244790-Q50602-2013",
+      "personId": "Q244790",
+      "name": "Pablo Zabaleta",
+      "position": "LAT",
+      "club": "Manchester City",
+      "year": 2013,
+      "levelMin": 85,
+      "levelMax": 91,
+      "tier": "craque",
+      "hint": "Argentina. 230 jogos e 9 gols pelo Manchester City de 2008 a 2017. 28 anos em 2013. 58 jogos pela seleção.",
+      "kit": [
+        "#6CABDD",
+        "#FFFFFF"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q187184-Q50602-2012",
+      "personId": "Q187184",
+      "name": "Joe Hart",
+      "position": "GOL",
+      "club": "Manchester City",
+      "year": 2012,
+      "levelMin": 85,
+      "levelMax": 91,
+      "tier": "craque",
+      "hint": "Inglaterra. 266 jogos pelo Manchester City de 2006 a 2018. 25 anos em 2012. 75 jogos pela seleção.",
+      "kit": [
+        "#6CABDD",
+        "#FFFFFF"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q452563-Q50602-1970",
+      "personId": "Q452563",
+      "name": "Colin Bell",
+      "position": "MEI",
+      "club": "Manchester City",
+      "year": 1970,
+      "levelMin": 88,
+      "levelMax": 93,
+      "tier": "lenda",
+      "hint": "Inglaterra. 394 jogos e 117 gols pelo Manchester City de 1966 a 1979. 24 anos em 1970. 48 jogos pela seleção.",
+      "kit": [
+        "#6CABDD",
+        "#FFFFFF"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q297271-Q18741-1963",
+      "personId": "Q297271",
+      "name": "Jimmy Greaves",
+      "position": "ATA",
+      "club": "Tottenham",
+      "year": 1963,
+      "levelMin": 91,
+      "levelMax": 96,
+      "tier": "lenda",
+      "hint": "Inglaterra. 321 jogos e 220 gols pelo Tottenham de 1961 a 1970. 23 anos em 1963. 57 jogos pela seleção.",
+      "kit": [
+        "#FFFFFF",
+        "#132257"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q313170-Q18741-2017",
+      "personId": "Q313170",
+      "name": "Jan Vertonghen",
+      "position": "ZAG",
+      "club": "Tottenham",
+      "year": 2017,
+      "levelMin": 85,
+      "levelMax": 91,
+      "tier": "craque",
+      "hint": "Bélgica. 232 jogos e 6 gols pelo Tottenham de 2012 a 2020. 30 anos em 2017. 157 jogos pela seleção.",
+      "kit": [
+        "#FFFFFF",
+        "#132257"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q251683-Q483020-2016",
+      "personId": "Q251683",
+      "name": "Ángel Di María",
+      "position": "ATA",
+      "club": "PSG",
+      "year": 2016,
+      "levelMin": 88,
+      "levelMax": 93,
+      "tier": "lenda",
+      "hint": "Argentina. 197 jogos e 56 gols pelo PSG de 2015 a 2022. 28 anos em 2016. 145 jogos pela seleção.",
+      "kit": [
+        "#004170",
+        "#DA291C"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q251683-Q8682-2014",
+      "personId": "Q251683",
+      "name": "Ángel Di María",
+      "position": "ATA",
+      "club": "Real Madrid",
+      "year": 2014,
+      "levelMin": 88,
+      "levelMax": 93,
+      "tier": "lenda",
+      "hint": "Argentina. 124 jogos e 22 gols pelo Real Madrid de 2010 a 2014. 26 anos em 2014. 145 jogos pela seleção.",
+      "kit": [
+        "#FFFFFF",
+        "#FEBE10"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q317536-Q483020-1986",
+      "personId": "Q317536",
+      "name": "Safet Sušić",
+      "position": "MEI",
+      "club": "PSG",
+      "year": 1986,
+      "levelMin": 88,
+      "levelMax": 93,
+      "tier": "lenda",
+      "hint": "Jugoslávia. 287 jogos e 67 gols pelo PSG de 1982 a 1991. 31 anos em 1986. 54 jogos pela seleção.",
+      "kit": [
+        "#004170",
+        "#DA291C"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q66818509-Q483020-2025",
+      "personId": "Q66818509",
+      "name": "Vitinha",
+      "position": "MEI",
+      "club": "PSG",
+      "year": 2025,
+      "levelMin": 88,
+      "levelMax": 93,
+      "tier": "lenda",
+      "hint": "Portugal. 128 jogos e 16 gols pelo PSG desde 2022. 25 anos em 2025. 47 jogos pela seleção.",
+      "kit": [
+        "#004170",
+        "#DA291C"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q276434-Q483020-2013",
+      "personId": "Q276434",
+      "name": "Javier Pastore",
+      "position": "MEI",
+      "club": "PSG",
+      "year": 2013,
+      "levelMin": 84,
+      "levelMax": 90,
+      "tier": "craque",
+      "hint": "Argentina. 186 jogos e 29 gols pelo PSG de 2011 a 2018. 24 anos em 2013. 29 jogos pela seleção.",
+      "kit": [
+        "#004170",
+        "#DA291C"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q233819-Q81888-1972",
+      "personId": "Q233819",
+      "name": "Johan Neeskens",
+      "position": "MEI",
+      "club": "Ajax",
+      "year": 1972,
+      "levelMin": 91,
+      "levelMax": 96,
+      "tier": "lenda",
+      "hint": "Países Baixos. 124 jogos e 33 gols pelo Ajax de 1970 a 1974. 21 anos em 1972. 49 jogos pela seleção.",
+      "kit": [
+        "#FFFFFF",
+        "#D2122E"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q26069-Q81888-2007",
+      "personId": "Q26069",
+      "name": "Klaas-Jan Huntelaar",
+      "position": "ATA",
+      "club": "Ajax",
+      "year": 2007,
+      "levelMin": 85,
+      "levelMax": 91,
+      "tier": "craque",
+      "hint": "Países Baixos. 92 jogos e 76 gols pelo Ajax de 2006 a 2008. 24 anos em 2007. 76 jogos pela seleção.",
+      "kit": [
+        "#FFFFFF",
+        "#D2122E"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q26259982-Q81888-2019",
+      "personId": "Q26259982",
+      "name": "Matthijs de Ligt",
+      "position": "ZAG",
+      "club": "Ajax",
+      "year": 2019,
+      "levelMin": 86,
+      "levelMax": 92,
+      "tier": "craque",
+      "hint": "Países Baixos. 117 jogos e 13 gols pelo Ajax de 2016 a 2019. 20 anos em 2019. 50 jogos pela seleção.",
+      "kit": [
+        "#FFFFFF",
+        "#D2122E"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q713895-Q81888-2019",
+      "personId": "Q713895",
+      "name": "Dušan Tadić",
+      "position": "ATA",
+      "club": "Ajax",
+      "year": 2019,
+      "levelMin": 86,
+      "levelMax": 92,
+      "tier": "craque",
+      "hint": "Sérvia. 161 jogos e 77 gols pelo Ajax de 2018 a 2023. 31 anos em 2019. 111 jogos pela seleção.",
+      "kit": [
+        "#FFFFFF",
+        "#D2122E"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q13494-Q132885-1991",
+      "personId": "Q13494",
+      "name": "Jean-Pierre Papin",
+      "position": "ATA",
+      "club": "Olympique de Marseille",
+      "year": 1991,
+      "levelMin": 91,
+      "levelMax": 96,
+      "tier": "lenda",
+      "hint": "França. 215 jogos e 134 gols pelo Olympique de Marseille de 1986 a 1992. 28 anos em 1991. 54 jogos pela seleção.",
+      "kit": [
+        "#FFFFFF",
+        "#2FAEE0"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q352878-Q132885-1991",
+      "personId": "Q352878",
+      "name": "Chris Waddle",
+      "position": "ATA",
+      "club": "Olympique de Marseille",
+      "year": 1991,
+      "levelMin": 86,
+      "levelMax": 92,
+      "tier": "craque",
+      "hint": "Inglaterra. 107 jogos e 22 gols pelo Olympique de Marseille de 1989 a 1992. 31 anos em 1991. 62 jogos pela seleção.",
+      "kit": [
+        "#FFFFFF",
+        "#2FAEE0"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q315114-Q132885-1971",
+      "personId": "Q315114",
+      "name": "Josip Skoblar",
+      "position": "ATA",
+      "club": "Olympique de Marseille",
+      "year": 1971,
+      "levelMin": 88,
+      "levelMax": 93,
+      "tier": "lenda",
+      "hint": "Jugoslávia. No Olympique de Marseille de 1969 a 1974. 30 anos em 1971. 32 jogos pela seleção.",
+      "kit": [
+        "#FFFFFF",
+        "#2FAEE0"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q210083-Q132885-1990",
+      "personId": "Q210083",
+      "name": "Enzo Francescoli",
+      "position": "MEI",
+      "club": "Olympique de Marseille",
+      "year": 1990,
+      "levelMin": 86,
+      "levelMax": 92,
+      "tier": "craque",
+      "hint": "Uruguai. 28 jogos e 11 gols pelo Olympique de Marseille de 1989 a 1990. 29 anos em 1990. 73 jogos pela seleção.",
+      "kit": [
+        "#FFFFFF",
+        "#2FAEE0"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q28801927-Q11938-2022",
+      "personId": "Q28801927",
+      "name": "Cody Gakpo",
+      "position": "ATA",
+      "club": "PSV",
+      "year": 2022,
+      "levelMin": 85,
+      "levelMax": 91,
+      "tier": "craque",
+      "hint": "Países Baixos. 106 jogos e 36 gols pelo PSV de 2018 a 2023. 23 anos em 2022. 56 jogos pela seleção.",
+      "kit": [
+        "#ED1C24",
+        "#FFFFFF"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q576614-Q8701-1970",
+      "personId": "Q576614",
+      "name": "Luis Aragonés",
+      "position": "ATA",
+      "club": "Atlético de Madrid",
+      "year": 1970,
+      "levelMin": 86,
+      "levelMax": 92,
+      "tier": "craque",
+      "hint": "Espanha. 265 jogos e 173 gols pelo Atlético de Madrid de 1964 a 1974. 32 anos em 1970. 11 jogos pela seleção.",
+      "kit": [
+        "#CB3524",
+        "#FFFFFF"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q203665-Q131499-2005",
+      "personId": "Q203665",
+      "name": "Simão Sabrosa",
+      "position": "ATA",
+      "club": "Benfica",
+      "year": 2005,
+      "levelMin": 86,
+      "levelMax": 92,
+      "tier": "craque",
+      "hint": "Portugal. 172 jogos e 76 gols pelo Benfica de 2001 a 2007. 26 anos em 2005. 85 jogos pela seleção.",
+      "kit": [
+        "#E83030",
+        "#FFFFFF"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q130215-Q10333-2002",
+      "personId": "Q130215",
+      "name": "Pablo Aimar",
+      "position": "MEI",
+      "club": "Valencia",
+      "year": 2002,
+      "levelMin": 88,
+      "levelMax": 93,
+      "tier": "lenda",
+      "hint": "Argentina. 162 jogos e 27 gols pelo Valencia de 2001 a 2006. 23 anos em 2002. 52 jogos pela seleção.",
+      "kit": [
+        "#FFFFFF",
+        "#111111"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q186071-Q7156-2002",
+      "personId": "Q186071",
+      "name": "Javier Saviola",
+      "position": "ATA",
+      "club": "Barcelona",
+      "year": 2002,
+      "levelMin": 84,
+      "levelMax": 90,
+      "tier": "craque",
+      "hint": "Argentina. 123 jogos e 49 gols pelo Barcelona de 2001 a 2007. 21 anos em 2002. 39 jogos pela seleção.",
+      "kit": [
+        "#A50044",
+        "#004D98"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q213437-Q131499-2010",
+      "personId": "Q213437",
+      "name": "Óscar Cardozo",
+      "position": "ATA",
+      "club": "Benfica",
+      "year": 2010,
+      "levelMin": 85,
+      "levelMax": 91,
+      "tier": "craque",
+      "hint": "Paraguai. 175 jogos e 112 gols pelo Benfica de 2007 a 2014. 27 anos em 2010. 58 jogos pela seleção.",
+      "kit": [
+        "#E83030",
+        "#FFFFFF"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q193568-Q131499-1999",
+      "personId": "Q193568",
+      "name": "Nuno Gomes",
+      "position": "ATA",
+      "club": "Benfica",
+      "year": 1999,
+      "levelMin": 84,
+      "levelMax": 90,
+      "tier": "craque",
+      "hint": "Portugal. 101 jogos e 60 gols pelo Benfica de 1997 a 2000. 23 anos em 1999. 79 jogos pela seleção.",
+      "kit": [
+        "#E83030",
+        "#FFFFFF"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q19392-Q10329-2016",
+      "personId": "Q19392",
+      "name": "Éver Banega",
+      "position": "MEI",
+      "club": "Sevilla",
+      "year": 2016,
+      "levelMin": 85,
+      "levelMax": 91,
+      "tier": "craque",
+      "hint": "Argentina. 59 jogos e 8 gols pelo Sevilla de 2014 a 2016. 28 anos em 2016. 65 jogos pela seleção.",
+      "kit": [
+        "#FFFFFF",
+        "#D50000"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q212223-Q10329-2007",
+      "personId": "Q212223",
+      "name": "Andrés Palop",
+      "position": "GOL",
+      "club": "Sevilla",
+      "year": 2007,
+      "levelMin": 84,
+      "levelMax": 90,
+      "tier": "craque",
+      "hint": "Espanha. 217 jogos pelo Sevilla de 2005 a 2013. 34 anos em 2007.",
+      "kit": [
+        "#FFFFFF",
+        "#D50000"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q276399-Q10329-2003",
+      "personId": "Q276399",
+      "name": "José Antonio Reyes",
+      "position": "ATA",
+      "club": "Sevilla",
+      "year": 2003,
+      "levelMin": 84,
+      "levelMax": 90,
+      "tier": "craque",
+      "hint": "Espanha. 86 jogos e 21 gols pelo Sevilla de 2000 a 2004. 20 anos em 2003. 21 jogos pela seleção.",
+      "kit": [
+        "#FFFFFF",
+        "#D50000"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q210916-Q10329-2011",
+      "personId": "Q210916",
+      "name": "Álvaro Negredo",
+      "position": "ATA",
+      "club": "Sevilla",
+      "year": 2011,
+      "levelMin": 84,
+      "levelMax": 90,
+      "tier": "craque",
+      "hint": "Espanha. 139 jogos e 70 gols pelo Sevilla de 2009 a 2013. 26 anos em 2011. 21 jogos pela seleção.",
+      "kit": [
+        "#FFFFFF",
+        "#D50000"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q188241-Q128446-2007",
+      "personId": "Q188241",
+      "name": "Ricardo Quaresma",
+      "position": "ATA",
+      "club": "Porto",
+      "year": 2007,
+      "levelMin": 86,
+      "levelMax": 92,
+      "tier": "craque",
+      "hint": "Portugal. 114 jogos e 24 gols pelo Porto de 2004 a 2008. 24 anos em 2007. 80 jogos pela seleção.",
+      "kit": [
+        "#003893",
+        "#FFFFFF"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q219771-Q180305-2004",
+      "personId": "Q219771",
+      "name": "Ludovic Giuly",
+      "position": "ATA",
+      "club": "Monaco",
+      "year": 2004,
+      "levelMin": 85,
+      "levelMax": 91,
+      "tier": "craque",
+      "hint": "França. 184 jogos e 47 gols pelo Monaco de 1998 a 2004. 28 anos em 2004. 17 jogos pela seleção.",
+      "kit": [
+        "#E2001A",
+        "#FFFFFF"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q294852-Q10333-2002",
+      "personId": "Q294852",
+      "name": "David Albelda",
+      "position": "MEI",
+      "club": "Valencia",
+      "year": 2002,
+      "levelMin": 85,
+      "levelMax": 91,
+      "tier": "craque",
+      "hint": "Espanha. 351 jogos e 6 gols pelo Valencia de 1996 a 2013. 25 anos em 2002. 51 jogos pela seleção.",
+      "kit": [
+        "#FFFFFF",
+        "#111111"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q299488-Q10333-2002",
+      "personId": "Q299488",
+      "name": "Rubén Baraja",
+      "position": "MEI",
+      "club": "Valencia",
+      "year": 2002,
+      "levelMin": 86,
+      "levelMax": 92,
+      "tier": "craque",
+      "hint": "Espanha. 262 jogos e 41 gols pelo Valencia de 2000 a 2010. 27 anos em 2002. 43 jogos pela seleção.",
+      "kit": [
+        "#FFFFFF",
+        "#111111"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q363377-Q2609-1974",
+      "personId": "Q363377",
+      "name": "Giorgio Chinaglia",
+      "position": "ATA",
+      "club": "Lazio",
+      "year": 1974,
+      "levelMin": 88,
+      "levelMax": 93,
+      "tier": "lenda",
+      "hint": "Itália. 209 jogos e 98 gols pelo Lazio de 1969 a 1976. 27 anos em 1974. 14 jogos pela seleção.",
+      "kit": [
+        "#87D8F7",
+        "#FFFFFF"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q296276-Q2609-1937",
+      "personId": "Q296276",
+      "name": "Silvio Piola",
+      "position": "ATA",
+      "club": "Lazio",
+      "year": 1937,
+      "levelMin": 90,
+      "levelMax": 95,
+      "tier": "lenda",
+      "hint": "Itália. 227 jogos e 143 gols pelo Lazio de 1934 a 1943. 24 anos em 1937. 34 jogos pela seleção.",
+      "kit": [
+        "#87D8F7",
+        "#FFFFFF"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q47075606-Q75729-2024",
+      "personId": "Q47075606",
+      "name": "Viktor Gyökeres",
+      "position": "ATA",
+      "club": "Sporting",
+      "year": 2024,
+      "levelMin": 89,
+      "levelMax": 94,
+      "tier": "lenda",
+      "hint": "Suécia. 66 jogos e 68 gols pelo Sporting de 2023 a 2025. 26 anos em 2024. 41 jogos pela seleção.",
+      "kit": [
+        "#008057",
+        "#FFFFFF"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q313380-Q75729-1994",
+      "personId": "Q313380",
+      "name": "Krasimir Balakov",
+      "position": "MEI",
+      "club": "Sporting",
+      "year": 1994,
+      "levelMin": 85,
+      "levelMax": 91,
+      "tier": "craque",
+      "hint": "Bulgária. 138 jogos e 43 gols pelo Sporting de 1991 a 1995. 28 anos em 1994. 92 jogos pela seleção.",
+      "kit": [
+        "#008057",
+        "#FFFFFF"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q13306-Q704-2016",
+      "personId": "Q13306",
+      "name": "Alexandre Lacazette",
+      "position": "ATA",
+      "club": "Lyon",
+      "year": 2016,
+      "levelMin": 86,
+      "levelMax": 92,
+      "tier": "craque",
+      "hint": "França. 203 jogos e 100 gols pelo Lyon de 2010 a 2017. 25 anos em 2016. 16 jogos pela seleção.",
+      "kit": [
+        "#FFFFFF",
+        "#1E3A8A"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q1913-Q704-2006",
+      "personId": "Q1913",
+      "name": "Florent Malouda",
+      "position": "ATA",
+      "club": "Lyon",
+      "year": 2006,
+      "levelMin": 85,
+      "levelMax": 91,
+      "tier": "craque",
+      "hint": "França. 138 jogos e 25 gols pelo Lyon de 2003 a 2007. 26 anos em 2006. 80 jogos pela seleção.",
+      "kit": [
+        "#FFFFFF",
+        "#1E3A8A"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q1935-Q7156-2010",
+      "personId": "Q1935",
+      "name": "Éric Abidal",
+      "position": "LAT",
+      "club": "Barcelona",
+      "year": 2010,
+      "levelMin": 86,
+      "levelMax": 92,
+      "tier": "craque",
+      "hint": "França. 125 jogos pelo Barcelona de 2007 a 2013. 31 anos em 2010. 67 jogos pela seleção.",
+      "kit": [
+        "#A50044",
+        "#004D98"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q13488-Q704-2005",
+      "personId": "Q13488",
+      "name": "Grégory Coupet",
+      "position": "GOL",
+      "club": "Lyon",
+      "year": 2005,
+      "levelMin": 86,
+      "levelMax": 92,
+      "tier": "craque",
+      "hint": "França. 370 jogos pelo Lyon de 1997 a 2008. 33 anos em 2005. 34 jogos pela seleção.",
+      "kit": [
+        "#FFFFFF",
+        "#1E3A8A"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q299367-Q704-2006",
+      "personId": "Q299367",
+      "name": "Cris",
+      "position": "ZAG",
+      "club": "Lyon",
+      "year": 2006,
+      "levelMin": 85,
+      "levelMax": 91,
+      "tier": "craque",
+      "hint": "225 jogos e 20 gols pelo Lyon de 2004 a 2012. 29 anos em 2006. 17 jogos pela seleção.",
+      "kit": [
+        "#FFFFFF",
+        "#1E3A8A"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q311089-deportivo-2002",
+      "personId": "Q311089",
+      "name": "Juan Carlos Valerón",
+      "position": "MEI",
+      "club": "Deportivo La Coruña",
+      "year": 2002,
+      "levelMin": 86,
+      "levelMax": 92,
+      "tier": "craque",
+      "hint": "Espanha. No Deportivo La Coruña de 2000 a 2013. 27 anos em 2002. 46 jogos pela seleção.",
+      "kit": [
+        "#0A4DA2",
+        "#FFFFFF"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q36386-Q631-1989",
+      "personId": "Q36386",
+      "name": "Lothar Matthäus",
+      "position": "MEI",
+      "club": "Inter de Milão",
+      "year": 1989,
+      "levelMin": 93,
+      "levelMax": 98,
+      "tier": "lenda",
+      "hint": "Alemanha. 115 jogos e 40 gols pelo Inter de Milão de 1988 a 1992. 28 anos em 1989. 150 jogos pela seleção.",
+      "kit": [
+        "#0068A8",
+        "#111111"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q36386-Q15789-1987",
+      "personId": "Q36386",
+      "name": "Lothar Matthäus",
+      "position": "MEI",
+      "club": "Bayern de Munique",
+      "year": 1987,
+      "levelMin": 91,
+      "levelMax": 96,
+      "tier": "lenda",
+      "hint": "Alemanha. 113 jogos e 57 gols pelo Bayern de Munique de 1984 a 1988. 26 anos em 1987. 150 jogos pela seleção.",
+      "kit": [
+        "#DC052D",
+        "#FFFFFF"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q59306386-Q9617-2024",
+      "personId": "Q59306386",
+      "name": "Bukayo Saka",
+      "position": "ATA",
+      "club": "Arsenal",
+      "year": 2024,
+      "levelMin": 89,
+      "levelMax": 94,
+      "tier": "lenda",
+      "hint": "Inglaterra. 232 jogos e 63 gols pelo Arsenal desde 2018. 23 anos em 2024.",
+      "kit": [
+        "#EF0107",
+        "#FFFFFF"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q10536-Q1130849-1988",
+      "personId": "Q10536",
+      "name": "John Barnes",
+      "position": "ATA",
+      "club": "Liverpool",
+      "year": 1988,
+      "levelMin": 89,
+      "levelMax": 94,
+      "tier": "lenda",
+      "hint": "Inglaterra. 314 jogos e 84 gols pelo Liverpool de 1987 a 1997. 25 anos em 1988. 79 jogos pela seleção.",
+      "kit": [
+        "#C8102E",
+        "#FFFFFF"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q313180-Q81888-1972",
+      "personId": "Q313180",
+      "name": "Ruud Krol",
+      "position": "ZAG",
+      "club": "Ajax",
+      "year": 1972,
+      "levelMin": 90,
+      "levelMax": 95,
+      "tier": "lenda",
+      "hint": "Países Baixos. 339 jogos e 23 gols pelo Ajax de 1968 a 1980. 23 anos em 1972. 83 jogos pela seleção.",
+      "kit": [
+        "#FFFFFF",
+        "#D2122E"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q524390-Q132885-1993",
+      "personId": "Q524390",
+      "name": "Basile Boli",
+      "position": "ZAG",
+      "club": "Olympique de Marseille",
+      "year": 1993,
+      "levelMin": 86,
+      "levelMax": 92,
+      "tier": "craque",
+      "hint": "França. 163 jogos e 27 gols pelo Olympique de Marseille de 1990 a 1994. 26 anos em 1993. 45 jogos pela seleção.",
+      "kit": [
+        "#FFFFFF",
+        "#2FAEE0"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q11958-Q7156-2000",
+      "personId": "Q11958",
+      "name": "Phillip Cocu",
+      "position": "MEI",
+      "club": "Barcelona",
+      "year": 2000,
+      "levelMin": 85,
+      "levelMax": 91,
+      "tier": "craque",
+      "hint": "Países Baixos. 205 jogos e 31 gols pelo Barcelona de 1998 a 2004. 30 anos em 2000. 101 jogos pela seleção.",
+      "kit": [
+        "#A50044",
+        "#004D98"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q970617-Q11938-1978",
+      "personId": "Q970617",
+      "name": "Willy van der Kuijlen",
+      "position": "ATA",
+      "club": "PSV",
+      "year": 1978,
+      "levelMin": 86,
+      "levelMax": 92,
+      "tier": "craque",
+      "hint": "Países Baixos. 528 jogos e 308 gols pelo PSV de 1964 a 1981. 32 anos em 1978. 22 jogos pela seleção.",
+      "kit": [
+        "#ED1C24",
+        "#FFFFFF"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q552946-Q8701-1970",
+      "personId": "Q552946",
+      "name": "José Eulogio Gárate",
+      "position": "ATA",
+      "club": "Atlético de Madrid",
+      "year": 1970,
+      "levelMin": 86,
+      "levelMax": 92,
+      "tier": "craque",
+      "hint": "Espanha. 241 jogos e 109 gols pelo Atlético de Madrid de 1966 a 1977. 26 anos em 1970. 18 jogos pela seleção.",
+      "kit": [
+        "#CB3524",
+        "#FFFFFF"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q358688-Q8701-2014",
+      "personId": "Q358688",
+      "name": "Gabi",
+      "position": "MEI",
+      "club": "Atlético de Madrid",
+      "year": 2014,
+      "levelMin": 84,
+      "levelMax": 90,
+      "tier": "craque",
+      "hint": "Espanha. 239 jogos e 6 gols pelo Atlético de Madrid de 2011 a 2018. 31 anos em 2014.",
+      "kit": [
+        "#CB3524",
+        "#FFFFFF"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q263391-Q8701-1996",
+      "personId": "Q263391",
+      "name": "Kiko",
+      "position": "ATA",
+      "club": "Atlético de Madrid",
+      "year": 1996,
+      "levelMin": 85,
+      "levelMax": 91,
+      "tier": "craque",
+      "hint": "Espanha. 225 jogos e 48 gols pelo Atlético de Madrid de 1993 a 2001. 24 anos em 1996. 26 jogos pela seleção.",
+      "kit": [
+        "#CB3524",
+        "#FFFFFF"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q705585-Q131499-1962",
+      "personId": "Q705585",
+      "name": "Mário Coluna",
+      "position": "MEI",
+      "club": "Benfica",
+      "year": 1962,
+      "levelMin": 90,
+      "levelMax": 95,
+      "tier": "lenda",
+      "hint": "Portugal. 364 jogos e 89 gols pelo Benfica de 1954 a 1970. 27 anos em 1962. 57 jogos pela seleção.",
+      "kit": [
+        "#E83030",
+        "#FFFFFF"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q172306-Q131499-1983",
+      "personId": "Q172306",
+      "name": "Fernando Chalana",
+      "position": "ATA",
+      "club": "Benfica",
+      "year": 1983,
+      "levelMin": 86,
+      "levelMax": 92,
+      "tier": "craque",
+      "hint": "Portugal. 193 jogos e 33 gols pelo Benfica de 1976 a 1984. 24 anos em 1983. 27 jogos pela seleção.",
+      "kit": [
+        "#E83030",
+        "#FFFFFF"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q730529-Q131499-1973",
+      "personId": "Q730529",
+      "name": "Humberto Coelho",
+      "position": "ZAG",
+      "club": "Benfica",
+      "year": 1973,
+      "levelMin": 86,
+      "levelMax": 92,
+      "tier": "craque",
+      "hint": "Portugal. 188 jogos e 24 gols pelo Benfica de 1968 a 1975. 23 anos em 1973. 64 jogos pela seleção.",
+      "kit": [
+        "#E83030",
+        "#FFFFFF"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q945064-Q75729-1947",
+      "personId": "Q945064",
+      "name": "Fernando Peyroteo",
+      "position": "ATA",
+      "club": "Sporting",
+      "year": 1947,
+      "levelMin": 90,
+      "levelMax": 95,
+      "tier": "lenda",
+      "hint": "Portugal. 197 jogos e 329 gols pelo Sporting de 1937 a 1949. 29 anos em 1947. 20 jogos pela seleção.",
+      "kit": [
+        "#008057",
+        "#FFFFFF"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q708118-Q75729-1980",
+      "personId": "Q708118",
+      "name": "Rui Jordão",
+      "position": "ATA",
+      "club": "Sporting",
+      "year": 1980,
+      "levelMin": 86,
+      "levelMax": 92,
+      "tier": "craque",
+      "hint": "Portugal. No Sporting de 1977 a 1987. 28 anos em 1980. 43 jogos pela seleção.",
+      "kit": [
+        "#008057",
+        "#FFFFFF"
+      ],
+      "series": "EU",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q2051961-Q198032-1988",
+      "personId": "Q2051961",
+      "name": "Bobô",
+      "position": "MEI",
+      "club": "Bahia",
+      "year": 1988,
+      "levelMin": 86,
+      "levelMax": 92,
+      "tier": "craque",
+      "hint": "No Bahia de 1985 a 1989. 26 anos em 1988. 3 jogos pela seleção.",
+      "kit": [
+        "#0055A4",
+        "#E30613"
+      ],
+      "series": "A",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q10312139-Q35933-1977",
+      "personId": "Q10312139",
+      "name": "Basílio",
+      "position": "MEI",
+      "club": "Corinthians",
+      "year": 1977,
+      "levelMin": 84,
+      "levelMax": 90,
+      "tier": "craque",
+      "hint": "No Corinthians de 1975 a 1981. 28 anos em 1977.",
+      "kit": [
+        "#FFFFFF",
+        "#111111"
+      ],
+      "series": "A",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "wd-Q4113776-Q478317-1970",
+      "personId": "Q4113776",
+      "name": "Dirceu Krüger",
+      "position": "MEI",
+      "club": "Coritiba",
+      "year": 1970,
+      "levelMin": 85,
+      "levelMax": 91,
+      "tier": "craque",
+      "hint": "No Coritiba de 1966 a 1975. 25 anos em 1970.",
+      "kit": [
+        "#00613A",
+        "#FFFFFF"
+      ],
+      "series": "A",
+      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
     }
   ]
 }
