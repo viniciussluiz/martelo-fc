@@ -18,6 +18,11 @@ kill_timeout = "10s"
   LOG_LEVEL = "info"
   # Endereço do site nos links enviados por e-mail (troque se usar domínio próprio).
   PUBLIC_URL = "https://leilao-fc.fly.dev"
+  # Envio do link de “Esqueci a senha”. Falta só o segredo: fly secrets set SMTP_PASS='senha de app do Gmail'
+  SMTP_HOST = "smtp.gmail.com"
+  SMTP_PORT = "465"
+  SMTP_USER = "leilaofc.oficial@gmail.com"
+  MAIL_FROM = "Leilão FC <leilaofc.oficial@gmail.com>"
 
 [[mounts]]
   source = "martelo_data"

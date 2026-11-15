@@ -99,7 +99,7 @@ function TopBar() {
           <a
             className={user ? 'btn btn-sm header-login' : 'btn btn-sm btn-primary header-login'}
             href="/entrar"
-            title={user ? 'Crie usuário e senha para entrar com este time em qualquer aparelho' : 'Entrar com usuário e senha'}
+            title={user ? 'Crie sua conta com e-mail e senha para entrar com este time em qualquer aparelho' : 'Entrar com e-mail e senha'}
             onClick={(e) => {
               e.preventDefault();
               navigate('/entrar');

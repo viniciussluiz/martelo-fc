@@ -41,9 +41,9 @@ export function AccountPage() {
           <h2>Conta</h2>
         </div>
         <div className="panel-body stack">
-          <p>{user ? 'Seu time ainda é de convidado: crie usuário e senha para entrar com ele em qualquer aparelho.' : 'Entre na sua conta para ver estes dados.'}</p>
+          <p>{user ? 'Seu time ainda é de convidado: crie sua conta com e-mail e senha para entrar com ele em qualquer aparelho.' : 'Entre na sua conta para ver estes dados.'}</p>
           <button className="btn btn-primary" onClick={() => navigate('/entrar')}>
-            {user ? 'Criar usuário e senha' : 'Entrar'}
+            {user ? 'Criar conta' : 'Entrar'}
           </button>
         </div>
       </div>
@@ -88,18 +88,16 @@ export function AccountPage() {
 
   return (
     <div className="stack account-page">
-      {/* E-mail só aparece quando o servidor consegue enviar o link de recuperação. */}
-      {recovery && (
       <form className="panel auth" onSubmit={saveEmail}>
         <div className="panel-head">
           <h2>Conta</h2>
-          <span className="panel-head-aside">@{user.username}</span>
+          <span className="panel-head-aside">{account?.email ?? (user.username ? `@${user.username}` : '')}</span>
         </div>
         <div className="panel-body stack">
           <p className="muted">
             {account?.email
-              ? 'Se você esquecer a senha, o link para criar outra vai para este e-mail.'
-              : 'Sem e-mail não há como recuperar a senha. Cadastre um agora.'}
+              ? 'É com este e-mail que você entra. Se esquecer a senha, o link para criar outra vai para ele.'
+              : 'Sua conta ainda entra pelo usuário antigo. Cadastre um e-mail para entrar com ele e poder recuperar a senha.'}
           </p>
           <div className="row auth-fields">
             <div className="field">
@@ -117,11 +115,10 @@ export function AccountPage() {
           </button>
         </div>
       </form>
-      )}
       <form className="panel auth" onSubmit={savePassword}>
         <div className="panel-head">
           <h2>Trocar senha</h2>
-          <span className="panel-head-aside">@{user.username}</span>
+          <span className="panel-head-aside">{account?.email ?? (user.username ? `@${user.username}` : '')}</span>
         </div>
         <div className="panel-body stack">
           <div className="field">

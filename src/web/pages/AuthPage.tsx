@@ -16,12 +16,11 @@ export function AuthPage() {
   // Veio de um convite para uma sala: depois de entrar, vai direto para ela.
   const room = queryParam('sala');
   const done = () => navigate(room && /^[A-Za-z0-9]{4,10}$/.test(room) ? `/sala/${room.toUpperCase()}` : '/');
-  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
   const [identifier, setIdentifier] = useState('');
   const [sent, setSent] = useState(false);
-  // E-mail e “Esqueci a senha” só aparecem quando o servidor consegue enviar e-mail (SMTP configurado).
+  // “Esqueci a senha” só aparece quando o servidor consegue enviar e-mail (SMTP configurado).
   const [recovery, setRecovery] = useState(false);
   useEffect(() => {
     void api<{ recovery: boolean }>('GET', '/api/auth/options')
@@ -60,14 +59,14 @@ export function AuthPage() {
         return;
       }
       if (mode === 'converter') {
-        const r = await api<{ user: PublicUserView }>('POST', '/api/auth/upgrade', { username, password, ...(recovery ? { email } : {}) });
+        const r = await api<{ user: PublicUserView }>('POST', '/api/auth/upgrade', { email, password });
         store.set({ user: r.user });
         toast({ kind: 'sucesso', title: 'Conta criada', body: 'Seu histórico e seus troféus ficaram guardados.' });
       } else {
         const r = await api<{ token: string; user: PublicUserView }>(
           'POST',
           mode === 'entrar' ? '/api/auth/login' : '/api/auth/register',
-          mode === 'entrar' ? { username, password } : { username, password, displayName, crest, ...(recovery ? { email } : {}) },
+          mode === 'entrar' ? { email, password } : { email, password, displayName, crest },
         );
         await signIn(r.token, r.user);
       }
@@ -101,15 +100,15 @@ export function AuthPage() {
           )}
         </div>
         {mode === 'converter' && (
-          <p className="muted">Escolha usuário e senha. Seus resultados, seu escudo e seus troféus continuam valendo, e você entra com eles em qualquer aparelho.</p>
+          <p className="muted">Informe seu e-mail e crie uma senha. Seus resultados, seu escudo e seus troféus continuam valendo, e você entra com eles em qualquer aparelho.</p>
         )}
         {mode === 'entrar' && (
           <p className="muted">
-            Use o usuário e a senha da sua conta.
+            Use o e-mail e a senha da sua conta.
             {user?.isGuest ? ' Atenção: ao entrar em outra conta, o time convidado deste aparelho fica para trás.' : ''}
           </p>
         )}
-        {mode === 'criar' && <p className="muted">Com usuário e senha, seu time, seus troféus e seu histórico valem em qualquer aparelho.</p>}
+        {mode === 'criar' && <p className="muted">Com e-mail e senha, seu time, seus troféus e seu histórico valem em qualquer aparelho.</p>}
         {mode === 'criar' && (
           <div className="field">
             <label htmlFor="dn">Nome do time</label>
@@ -130,30 +129,36 @@ export function AuthPage() {
         {mode === 'esqueci' &&
           (sent ? (
             <p className="notice-ok">
-              Se existe uma conta com esse e-mail ou usuário, o link para criar a senha nova já foi enviado. Ele vale por 1 hora. Confira também a
+              Se existe uma conta com esse e-mail, o link para criar a senha nova já foi enviado. Ele vale por 1 hora. Confira também a
               caixa de spam.
             </p>
           ) : (
             <>
-              <p className="muted">Diga o e-mail (ou o usuário) da conta. Mandamos um link para o e-mail cadastrado nela.</p>
+              <p className="muted">Diga o e-mail da conta. Mandamos para ele um link para criar a senha nova.</p>
               <div className="field">
-                <label htmlFor="idf">E-mail ou usuário</label>
+                <label htmlFor="idf">E-mail</label>
                 <input id="idf" className="input" value={identifier} onChange={(e) => setIdentifier(e.target.value)} autoComplete="username" maxLength={254} required />
               </div>
             </>
           ))}
-        {recovery && (mode === 'criar' || mode === 'converter') && (
-          <div className="field">
-            <label htmlFor="em">E-mail</label>
-            <input id="em" className="input" type="email" value={email} onChange={(e) => setEmail(e.target.value)} autoComplete="email" maxLength={254} required />
-            <span className="small muted">Só para recuperar a senha se você esquecer. Não aparece para ninguém.</span>
-          </div>
-        )}
         {mode !== 'esqueci' && (
         <div className="row auth-fields">
           <div className="field">
-            <label htmlFor="un">Usuário</label>
-            <input id="un" className="input" value={username} onChange={(e) => setUsername(e.target.value)} autoComplete="username" required />
+            <label htmlFor="em">E-mail</label>
+            {/* No "Entrar" o campo aceita também o usuário das contas antigas, por isso não é type="email". */}
+            <input
+              id="em"
+              className="input"
+              type={mode === 'entrar' ? 'text' : 'email'}
+              inputMode="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              autoComplete={mode === 'entrar' ? 'username' : 'email'}
+              autoCapitalize="none"
+              maxLength={254}
+              required
+            />
+            {mode !== 'entrar' && <span className="small muted">É com ele que você entra e recupera a senha. Não aparece para ninguém.</span>}
           </div>
           <div className="field">
             <label htmlFor="pw">Senha</label>
@@ -182,7 +187,7 @@ export function AuthPage() {
               type="button"
               className="link-btn"
               onClick={() => {
-                setIdentifier(username);
+                setIdentifier(email);
                 setError(null);
                 setSent(false);
                 setMode('esqueci');

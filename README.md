@@ -69,14 +69,16 @@ O `fly deploy` envia a pasta local (com o baralho e os escudos de `data/escudos`
 (Caddy, Nginx) que repasse o WebSocket de `/ws`. Hospedagens que constroem a partir do GitHub só veem o que foi commitado.
 
 ## Contas e recuperação de senha
-Quem joga pode entrar como convidado (o time fica só naquele aparelho) ou criar conta com usuário e senha, para entrar de
-qualquer lugar. Em “Conta e senha” dá para trocar a senha.
+Quem joga pode entrar como convidado (o time fica só naquele aparelho) ou criar conta com e-mail e senha, para entrar de
+qualquer lugar. O e-mail identifica a conta e não aparece para os outros técnicos. Contas antigas, criadas com nome de
+usuário, continuam entrando com ele e podem cadastrar um e-mail em “Conta e senha”, onde também se troca a senha.
 
-A recuperação por e-mail fica **desligada e escondida** enquanto o servidor não tiver um SMTP: o site não pede e-mail no
-cadastro nem mostra “Esqueci a senha”. Com SMTP configurado (qualquer provedor: Gmail com senha de app, Brevo, Resend…),
-o cadastro passa a pedir e-mail e “Esqueci a senha” manda um link de uso único, que vale 1 hora. No Fly:
+“Esqueci a senha” manda para o e-mail da conta um link de uso único, que vale 1 hora. Ele só aparece no site quando o
+servidor tem SMTP completo (host, usuário e senha). No Fly, host, porta, usuário e remetente já estão no `fly.toml`
+(Gmail `leilaofc.oficial@gmail.com`); falta só a senha, que é um segredo. No Gmail ela é uma **senha de app** (exige
+verificação em duas etapas na conta; crie em https://myaccount.google.com/apppasswords):
 ```bash
-fly secrets set SMTP_HOST=smtp.gmail.com SMTP_PORT=465 SMTP_USER=voce@gmail.com SMTP_PASS='senha de app' MAIL_FROM='Leilão FC <voce@gmail.com>'
+fly secrets set SMTP_PASS='senha de app de 16 letras'
 ```
 `PUBLIC_URL` (no `fly.toml`) é o endereço do site que vai no link. Localmente, use o `.env` (veja `.env.example`).
 

@@ -101,7 +101,7 @@ function GuestForm({ joinCode }: { joinCode?: string }) {
       <div className="panel-body stack">
         <div className="account-bar">
           <span>
-            <strong>Já tem conta?</strong> Entre com usuário e senha e jogue com o mesmo time em qualquer aparelho.
+            <strong>Já tem conta?</strong> Entre com e-mail e senha e jogue com o mesmo time em qualquer aparelho.
           </span>
           <span className="account-bar-actions">
             <button type="button" className="btn btn-sm" onClick={() => navigate(`/entrar${joinCode ? `?sala=${encodeURIComponent(joinCode.toUpperCase())}` : ''}`)}>
@@ -133,7 +133,7 @@ function GuestForm({ joinCode }: { joinCode?: string }) {
         {error && <p className="error-text">{error}</p>}
         <div className="found-foot">
           <p className="small muted">
-            Sem cadastro, o time fica só neste aparelho. Dá para criar usuário e senha depois, sem perder nada.
+            Sem cadastro, o time fica só neste aparelho. Dá para criar a conta com e-mail e senha depois, sem perder nada.
           </p>
           <button className="btn btn-primary btn-lg" disabled={busy || name.trim().length < 2}>
             <Icon name="play" /> {joinCode ? 'Entrar na sala' : 'Entrar no pregão'}
@@ -153,7 +153,7 @@ function MyClubCard({ user }: { user: PublicUserView }) {
         <TeamCrest userId={user.id} name={user.displayName} crest={user.crest} size={128} />
       </div>
       <div className="club-card-name">{user.displayName}</div>
-      <div className="club-card-sub">{user.isGuest ? 'Técnico convidado' : `@${user.username}`}</div>
+      <div className="club-card-sub">{user.isGuest ? 'Técnico convidado' : user.username ? `@${user.username}` : 'Conta registrada'}</div>
       <div className="club-card-actions">
         <button type="button" className="btn btn-sm" onClick={() => setEditing(true)}>
           <Icon name="pincel" /> Editar escudo
@@ -169,9 +169,9 @@ function MyClubCard({ user }: { user: PublicUserView }) {
       </div>
       {user.isGuest && (
         <div className="club-card-guest">
-          <span className="small">Este time só existe neste aparelho. Crie usuário e senha para entrar em qualquer lugar e não perder o histórico.</span>
+          <span className="small">Este time só existe neste aparelho. Crie sua conta com e-mail e senha para entrar em qualquer lugar e não perder o histórico.</span>
           <button type="button" className="btn btn-sm btn-primary" onClick={() => navigate('/entrar')}>
-            Criar usuário e senha
+            Criar conta
           </button>
         </div>
       )}

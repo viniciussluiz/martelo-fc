@@ -140,12 +140,12 @@ export async function createApp(overrides: Partial<ServerConfig> = {}, logger?: 
     .on('POST', '/api/auth/register', (ctx) => {
       limitAuth(ctx);
       const b = body(ctx);
-      return auth.register({ username: b.username, password: b.password, displayName: b.displayName, crest: b.crest, email: b.email });
+      return auth.register({ email: b.email, password: b.password, displayName: b.displayName, crest: b.crest });
     })
     .on('POST', '/api/auth/login', (ctx) => {
       limitAuth(ctx);
       const b = body(ctx);
-      return auth.login({ username: b.username, password: b.password });
+      return auth.login({ email: b.email ?? b.username, password: b.password });
     })
     .on('POST', '/api/auth/logout', (ctx) => {
       const header = ctx.req.headers.authorization ?? '';
@@ -156,7 +156,7 @@ export async function createApp(overrides: Partial<ServerConfig> = {}, logger?: 
       limitAuth(ctx);
       const user = requireUser(ctx);
       const b = body(ctx);
-      return { user: auth.upgradeGuest(user.id, { username: b.username, password: b.password, email: b.email }) };
+      return { user: auth.upgradeGuest(user.id, { email: b.email, password: b.password }) };
     })
     // O site só oferece “Esqueci a senha” quando há envio de e-mail configurado.
     .on('GET', '/api/auth/options', () => ({ recovery: mailer.configured }))
@@ -168,9 +168,9 @@ export async function createApp(overrides: Partial<ServerConfig> = {}, logger?: 
         const link = `${config.publicUrl}/redefinir?token=${encodeURIComponent(req.token)}`;
         // Envia sem segurar a resposta: ela sai igual (e no mesmo tempo) exista ou não a conta, para não revelar quem está cadastrado.
         void mailer
-          .send(passwordResetMail({ to: req.email, teamName: req.displayName, username: req.username, link, minutes: RESET_TTL_MIN }))
-          .then(() => log.info('e-mail de redefinição enviado', { usuario: req.username }))
-          .catch((err: unknown) => log.error('falha ao enviar e-mail de redefinição', { usuario: req.username, error: err instanceof Error ? err.message : String(err) }));
+          .send(passwordResetMail({ to: req.email, teamName: req.displayName, link, minutes: RESET_TTL_MIN }))
+          .then(() => log.info('e-mail de redefinição enviado', { usuario: req.userId }))
+          .catch((err: unknown) => log.error('falha ao enviar e-mail de redefinição', { usuario: req.userId, error: err instanceof Error ? err.message : String(err) }));
       }
       return { ok: true };
     })

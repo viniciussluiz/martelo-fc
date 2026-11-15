@@ -17,11 +17,14 @@ afterAll(async () => {
 
 describe('login e cadastro', () => {
   it('conta criada num aparelho entra em outro com usuário e senha, com o mesmo time', async () => {
-    const created = await api(env.app, 'POST', '/api/auth/register', { username: 'ana.tecnica', password: 'segredo123', displayName: 'Unidos da Ana' });
+    const created = await api(env.app, 'POST', '/api/auth/register', { email: 'ana.tecnica@exemplo.com', password: 'segredo123', displayName: 'Unidos da Ana' });
     expect(created.status).toBe(200);
-    expect(created.data.user).toMatchObject({ username: 'ana.tecnica', displayName: 'Unidos da Ana', isGuest: false });
+    expect(created.data.user).toMatchObject({ username: null, displayName: 'Unidos da Ana', isGuest: false });
     // “Outro aparelho”: não tem o token, só usuário e senha.
-    const other = await api(env.app, 'POST', '/api/auth/login', { username: 'ana.tecnica', password: 'segredo123' });
+    const other = await api(env.app, 'POST', '/api/auth/login', { email: 'ana.tecnica@exemplo.com', password: 'segredo123' });
+    // O e-mail vale em qualquer caixa, e sem e-mail não há cadastro.
+    expect((await api(env.app, 'POST', '/api/auth/login', { email: ' ANA.Tecnica@Exemplo.com ', password: 'segredo123' })).status).toBe(200);
+    expect((await api(env.app, 'POST', '/api/auth/register', { password: 'segredo123', displayName: 'Sem E-mail' })).status).toBe(400);
     expect(other.status).toBe(200);
     expect(other.data.user.id).toBe(created.data.user.id);
     expect(other.data.token).not.toBe(created.data.token);
@@ -38,21 +41,21 @@ describe('login e cadastro', () => {
   });
 
   it('senha errada, usuário que não existe e usuário repetido são recusados', async () => {
-    await api(env.app, 'POST', '/api/auth/register', { username: 'beto', password: 'segredo123', displayName: 'Beto FC' });
-    expect((await api(env.app, 'POST', '/api/auth/login', { username: 'beto', password: 'errada123' })).status).toBe(401);
-    expect((await api(env.app, 'POST', '/api/auth/login', { username: 'ninguem', password: 'segredo123' })).status).toBe(401);
-    const again = await api(env.app, 'POST', '/api/auth/register', { username: 'beto', password: 'outra1234', displayName: 'Outro Beto' });
+    await api(env.app, 'POST', '/api/auth/register', { email: 'beto@exemplo.com', password: 'segredo123', displayName: 'Beto FC' });
+    expect((await api(env.app, 'POST', '/api/auth/login', { email: 'beto@exemplo.com', password: 'errada123' })).status).toBe(401);
+    expect((await api(env.app, 'POST', '/api/auth/login', { email: 'ninguem@exemplo.com', password: 'segredo123' })).status).toBe(401);
+    const again = await api(env.app, 'POST', '/api/auth/register', { email: 'beto@exemplo.com', password: 'outra1234', displayName: 'Outro Beto' });
     expect(again.status).toBe(409);
-    expect((await api(env.app, 'POST', '/api/auth/register', { username: 'curta', password: '123', displayName: 'Senha Curta' })).status).toBe(400);
+    expect((await api(env.app, 'POST', '/api/auth/register', { email: 'curta@exemplo.com', password: '123', displayName: 'Senha Curta' })).status).toBe(400);
   });
 
   it('convidado vira conta sem trocar de time e depois entra em outro aparelho', async () => {
     const guest = await api(env.app, 'POST', '/api/auth/guest', { displayName: 'Time do Caio' });
     expect(guest.data.user.isGuest).toBe(true);
-    const up = await api(env.app, 'POST', '/api/auth/upgrade', { username: 'caio', password: 'segredo123' }, guest.data.token);
+    const up = await api(env.app, 'POST', '/api/auth/upgrade', { email: 'caio@exemplo.com', password: 'segredo123' }, guest.data.token);
     expect(up.status).toBe(200);
-    expect(up.data.user).toMatchObject({ id: guest.data.user.id, username: 'caio', isGuest: false, displayName: 'Time do Caio' });
-    const other = await api(env.app, 'POST', '/api/auth/login', { username: 'caio', password: 'segredo123' });
+    expect(up.data.user).toMatchObject({ id: guest.data.user.id, username: null, isGuest: false, displayName: 'Time do Caio' });
+    const other = await api(env.app, 'POST', '/api/auth/login', { email: 'caio@exemplo.com', password: 'segredo123' });
     expect(other.data.user.id).toBe(guest.data.user.id);
     // Convidado sem conta não tem como entrar em outro lugar: não existe usuário para ele.
     const lonely = await api(env.app, 'POST', '/api/auth/guest', { displayName: 'Só Aqui' });
@@ -86,47 +89,47 @@ describe('e-mail da conta, troca e recuperação de senha', () => {
   });
 
   it('o e-mail fica na conta, é único e não aparece para os outros', async () => {
-    const dora = await api(mailEnv.app, 'POST', '/api/auth/register', { username: 'dora', password: 'segredo123', displayName: 'Dora FC', email: ' Dora@Exemplo.com ' });
+    const dora = await api(mailEnv.app, 'POST', '/api/auth/register', { password: 'segredo123', displayName: 'Dora FC', email: ' Dora@Exemplo.com ' });
     expect(dora.status).toBe(200);
     expect(JSON.stringify(dora.data)).not.toContain('exemplo.com');
     const account = await api(mailEnv.app, 'GET', '/api/account', undefined, dora.data.token);
-    expect(account.data).toEqual({ account: { username: 'dora', email: 'dora@exemplo.com', isGuest: false }, recovery: true });
+    expect(account.data).toEqual({ account: { username: null, email: 'dora@exemplo.com', isGuest: false }, recovery: true });
     expect(JSON.stringify((await api(mailEnv.app, 'GET', '/api/me', undefined, dora.data.token)).data)).not.toContain('exemplo.com');
     // Mesmo e-mail em outra conta (mesmo com outra caixa) e e-mail torto são recusados.
-    expect((await api(mailEnv.app, 'POST', '/api/auth/register', { username: 'dora2', password: 'segredo123', displayName: 'Dora 2', email: 'DORA@exemplo.com' })).status).toBe(409);
-    expect((await api(mailEnv.app, 'POST', '/api/auth/register', { username: 'dora3', password: 'segredo123', displayName: 'Dora 3', email: 'sem-arroba' })).status).toBe(400);
+    expect((await api(mailEnv.app, 'POST', '/api/auth/register', { password: 'segredo123', displayName: 'Dora 2', email: 'DORA@exemplo.com' })).status).toBe(409);
+    expect((await api(mailEnv.app, 'POST', '/api/auth/register', { password: 'segredo123', displayName: 'Dora 3', email: 'sem-arroba' })).status).toBe(400);
     // Trocar o e-mail pede a senha atual.
     expect((await api(mailEnv.app, 'PUT', '/api/account/email', { email: 'nova@exemplo.com', password: 'errada123' }, dora.data.token)).status).toBe(401);
     const changed = await api(mailEnv.app, 'PUT', '/api/account/email', { email: 'nova@exemplo.com', password: 'segredo123' }, dora.data.token);
     expect(changed.data.account.email).toBe('nova@exemplo.com');
     // Convidado vira conta já com e-mail.
     const guest = await api(mailEnv.app, 'POST', '/api/auth/guest', { displayName: 'Time da Eva' });
-    await api(mailEnv.app, 'POST', '/api/auth/upgrade', { username: 'eva', password: 'segredo123', email: 'eva@exemplo.com' }, guest.data.token);
+    await api(mailEnv.app, 'POST', '/api/auth/upgrade', { email: 'eva@exemplo.com', password: 'segredo123' }, guest.data.token);
     expect((await api(mailEnv.app, 'GET', '/api/account', undefined, guest.data.token)).data.account.email).toBe('eva@exemplo.com');
   });
 
   it('trocar a senha: pede a atual, derruba os outros aparelhos e mantém este', async () => {
-    const a = await api(mailEnv.app, 'POST', '/api/auth/register', { username: 'fabio', password: 'antiga123', displayName: 'Fábio FC', email: 'fabio@exemplo.com' });
-    const b = await api(mailEnv.app, 'POST', '/api/auth/login', { username: 'fabio', password: 'antiga123' });
+    const a = await api(mailEnv.app, 'POST', '/api/auth/register', { password: 'antiga123', displayName: 'Fábio FC', email: 'fabio@exemplo.com' });
+    const b = await api(mailEnv.app, 'POST', '/api/auth/login', { email: 'fabio@exemplo.com', password: 'antiga123' });
     expect((await api(mailEnv.app, 'POST', '/api/auth/password', { current: 'errada123', next: 'nova12345' }, a.data.token)).status).toBe(401);
     expect((await api(mailEnv.app, 'POST', '/api/auth/password', { current: 'antiga123', next: '123' }, a.data.token)).status).toBe(400);
     expect((await api(mailEnv.app, 'POST', '/api/auth/password', { current: 'antiga123', next: 'nova12345' }, a.data.token)).status).toBe(200);
     expect((await api(mailEnv.app, 'GET', '/api/me', undefined, a.data.token)).status).toBe(200);
     expect((await api(mailEnv.app, 'GET', '/api/me', undefined, b.data.token)).status).toBe(401);
-    expect((await api(mailEnv.app, 'POST', '/api/auth/login', { username: 'fabio', password: 'antiga123' })).status).toBe(401);
-    expect((await api(mailEnv.app, 'POST', '/api/auth/login', { username: 'fabio', password: 'nova12345' })).status).toBe(200);
+    expect((await api(mailEnv.app, 'POST', '/api/auth/login', { email: 'fabio@exemplo.com', password: 'antiga123' })).status).toBe(401);
+    expect((await api(mailEnv.app, 'POST', '/api/auth/login', { email: 'fabio@exemplo.com', password: 'nova12345' })).status).toBe(200);
     // Convidado não tem senha para trocar.
     const guest = await api(mailEnv.app, 'POST', '/api/auth/guest', { displayName: 'Sem Senha' });
     expect((await api(mailEnv.app, 'POST', '/api/auth/password', { current: 'x', next: 'nova12345' }, guest.data.token)).status).toBe(400);
   });
 
   it('esqueci a senha: link por e-mail, de uso único, que cria a senha nova e derruba as sessões antigas', async () => {
-    const gil = await api(mailEnv.app, 'POST', '/api/auth/register', { username: 'gil', password: 'antiga123', displayName: 'Gil & Cia', email: 'gil@exemplo.com' });
+    const gil = await api(mailEnv.app, 'POST', '/api/auth/register', { password: 'antiga123', displayName: 'Gil & Cia', email: 'gil@exemplo.com' });
     outbox.length = 0;
     // Conta que não existe (ou sem e-mail): mesma resposta, nenhum e-mail.
     expect((await api(mailEnv.app, 'POST', '/api/auth/forgot', { identifier: 'ninguem@exemplo.com' })).data).toEqual({ ok: true });
-    await api(mailEnv.app, 'POST', '/api/auth/register', { username: 'semmail', password: 'segredo123', displayName: 'Sem Mail' });
-    expect((await api(mailEnv.app, 'POST', '/api/auth/forgot', { identifier: 'semmail' })).data).toEqual({ ok: true });
+    await api(mailEnv.app, 'POST', '/api/auth/register', { email: 'semmail@exemplo.com', password: 'segredo123', displayName: 'Sem Mail' });
+    expect((await api(mailEnv.app, 'POST', '/api/auth/forgot', { identifier: 'ninguem@exemplo.com' })).data).toEqual({ ok: true });
     expect(outbox).toHaveLength(0);
     // Pelo e-mail (em qualquer caixa): chega o link do site público.
     expect((await api(mailEnv.app, 'POST', '/api/auth/forgot', { identifier: 'GIL@exemplo.com' })).data).toEqual({ ok: true });
@@ -134,12 +137,11 @@ describe('e-mail da conta, troca e recuperação de senha', () => {
     const mail = outbox[0]!;
     expect(mail.to).toBe('gil@exemplo.com');
     expect(mail.text).toContain('https://leilao.test/redefinir?token=');
-    expect(mail.text).toContain('“gil”');
     // O nome do time vai escapado no HTML.
     expect(mail.html).toContain('Gil &amp; Cia');
     expect(mail.html).not.toContain('Gil & Cia');
     // Pedir de novo em seguida não manda outro e-mail.
-    await api(mailEnv.app, 'POST', '/api/auth/forgot', { identifier: 'gil' });
+    await api(mailEnv.app, 'POST', '/api/auth/forgot', { identifier: 'gil@exemplo.com' });
     await new Promise((r) => setTimeout(r, 30));
     expect(outbox).toHaveLength(1);
 
@@ -152,8 +154,8 @@ describe('e-mail da conta, troca e recuperação de senha', () => {
     // Já entra com a sessão nova; a antiga caiu; a senha antiga não vale mais; o link não serve duas vezes.
     expect((await api(mailEnv.app, 'GET', '/api/me', undefined, reset.data.token)).status).toBe(200);
     expect((await api(mailEnv.app, 'GET', '/api/me', undefined, gil.data.token)).status).toBe(401);
-    expect((await api(mailEnv.app, 'POST', '/api/auth/login', { username: 'gil', password: 'antiga123' })).status).toBe(401);
-    expect((await api(mailEnv.app, 'POST', '/api/auth/login', { username: 'gil', password: 'nova12345' })).status).toBe(200);
+    expect((await api(mailEnv.app, 'POST', '/api/auth/login', { email: 'gil@exemplo.com', password: 'antiga123' })).status).toBe(401);
+    expect((await api(mailEnv.app, 'POST', '/api/auth/login', { email: 'gil@exemplo.com', password: 'nova12345' })).status).toBe(200);
     expect((await api(mailEnv.app, 'POST', '/api/auth/reset', { token, password: 'outra12345' })).status).toBe(400);
   });
 
@@ -161,13 +163,13 @@ describe('e-mail da conta, troca e recuperação de senha', () => {
     // Servidor à parte: os testes acima já gastaram o limite de tentativas por minuto deste endereço.
     const fresh = await startTestApp(mkdtempSync(join(tmpdir(), 'leilao-vencido-')), undefined, { mailer, publicUrl: 'https://leilao.test' });
     try {
-      await api(fresh.app, 'POST', '/api/auth/register', { username: 'hugo', password: 'antiga123', displayName: 'Hugo FC', email: 'hugo@exemplo.com' });
+      await api(fresh.app, 'POST', '/api/auth/register', { password: 'antiga123', displayName: 'Hugo FC', email: 'hugo@exemplo.com' });
       outbox.length = 0;
-      await api(fresh.app, 'POST', '/api/auth/forgot', { identifier: 'hugo' });
+      await api(fresh.app, 'POST', '/api/auth/forgot', { identifier: 'hugo@exemplo.com' });
       await vi.waitFor(() => expect(outbox).toHaveLength(1));
       fresh.app.db.prepare(`UPDATE password_resets SET expires_at = '2000-01-01T00:00:00.000Z'`).run();
       expect((await api(fresh.app, 'POST', '/api/auth/reset', { token: lastToken(), password: 'nova12345' })).status).toBe(400);
-      expect((await api(fresh.app, 'POST', '/api/auth/login', { username: 'hugo', password: 'antiga123' })).status).toBe(200);
+      expect((await api(fresh.app, 'POST', '/api/auth/login', { email: 'hugo@exemplo.com', password: 'antiga123' })).status).toBe(200);
     } finally {
       await fresh.stop();
       cleanupDir(fresh.dir);

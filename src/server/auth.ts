@@ -5,8 +5,9 @@ import { nowIso, type DB } from './db.js';
 /**
  * Contas e sessões.
  * - Convidado: entra só com o nome do time (como no original, não precisa cadastro).
- * - Conta registrada: usuário + senha (scrypt). Um convidado pode “virar conta” sem perder histórico.
- * - E-mail (opcional no servidor, pedido no cadastro): serve só para recuperar a senha por um link de uso único.
+ * - Conta registrada: e-mail + senha (scrypt). Um convidado pode “virar conta” sem perder histórico.
+ * - O e-mail identifica a conta e recebe o link de uso único para recuperar a senha; nunca aparece para os outros técnicos.
+ * - Contas antigas, criadas com nome de usuário, continuam entrando com ele.
  * O token de sessão é aleatório; no banco guardamos apenas o hash SHA-256.
  */
 
@@ -98,14 +99,6 @@ export function cleanDisplayName(raw: unknown): string {
   return name;
 }
 
-function cleanUsername(raw: unknown): string {
-  const u = String(raw ?? '').trim();
-  if (!/^[a-zA-Z0-9_.-]{3,24}$/.test(u)) {
-    throw new AuthError(400, 'usuario_invalido', 'Usuário: 3 a 24 caracteres (letras, números, _ . -).');
-  }
-  return u;
-}
-
 /** E-mail normalizado (minúsculas) ou nulo quando não veio. */
 export function cleanEmail(raw: unknown, required = false): string | null {
   const e = String(raw ?? '').trim().toLowerCase();
@@ -151,35 +144,28 @@ export class AuthService {
     return !!row && row.id !== exceptUserId;
   }
 
-  register(input: { username: unknown; password: unknown; displayName: unknown; crest?: unknown; email?: unknown }): { token: string; user: PublicUser } {
-    const username = cleanUsername(input.username);
+  register(input: { email: unknown; password: unknown; displayName: unknown; crest?: unknown }): { token: string; user: PublicUser } {
+    const email = cleanEmail(input.email, true)!;
     const password = cleanPassword(input.password);
     const name = cleanDisplayName(input.displayName);
     const recipe = cleanCrest(input.crest);
-    const email = cleanEmail(input.email);
-    const exists = this.db.prepare('SELECT 1 FROM users WHERE username = ?').get(username);
-    if (exists) throw new AuthError(409, 'usuario_existe', 'Esse usuário já existe.');
-    if (email && this.emailTaken(email)) throw new AuthError(409, 'email_existe', 'Já existe uma conta com esse e-mail.');
+    if (this.emailTaken(email)) throw new AuthError(409, 'email_existe', 'Já existe uma conta com esse e-mail.');
     const id = randomUUID();
     this.db
-      .prepare('INSERT INTO users (id, username, display_name, password_hash, is_guest, created_at, crest_json, email) VALUES (?, ?, ?, ?, 0, ?, ?, ?)')
-      .run(id, username, name, hashPassword(password), nowIso(), recipe ? JSON.stringify(recipe) : null, email);
+      .prepare('INSERT INTO users (id, display_name, password_hash, is_guest, created_at, crest_json, email) VALUES (?, ?, ?, 0, ?, ?, ?)')
+      .run(id, name, hashPassword(password), nowIso(), recipe ? JSON.stringify(recipe) : null, email);
     return { token: this.createSession(id), user: this.getUser(id)! };
   }
 
   /** Transforma o convidado atual em conta, preservando id (e portanto todo o histórico). */
-  upgradeGuest(userId: string, input: { username: unknown; password: unknown; email?: unknown }): PublicUser {
-    const username = cleanUsername(input.username);
+  upgradeGuest(userId: string, input: { email: unknown; password: unknown }): PublicUser {
+    const email = cleanEmail(input.email, true)!;
     const password = cleanPassword(input.password);
-    const email = cleanEmail(input.email);
     const user = this.db.prepare('SELECT * FROM users WHERE id = ?').get(userId) as UserRow | undefined;
     if (!user) throw new AuthError(404, 'usuario_inexistente', 'Usuário não encontrado.');
     if (!user.is_guest) throw new AuthError(400, 'ja_registrado', 'Esta conta já está registrada.');
-    if (this.db.prepare('SELECT 1 FROM users WHERE username = ?').get(username)) {
-      throw new AuthError(409, 'usuario_existe', 'Esse usuário já existe.');
-    }
-    if (email && this.emailTaken(email, userId)) throw new AuthError(409, 'email_existe', 'Já existe uma conta com esse e-mail.');
-    this.db.prepare('UPDATE users SET username = ?, password_hash = ?, is_guest = 0, email = ? WHERE id = ?').run(username, hashPassword(password), email, userId);
+    if (this.emailTaken(email, userId)) throw new AuthError(409, 'email_existe', 'Já existe uma conta com esse e-mail.');
+    this.db.prepare('UPDATE users SET password_hash = ?, is_guest = 0, email = ? WHERE id = ?').run(hashPassword(password), email, userId);
     return this.getUser(userId)!;
   }
 
@@ -193,7 +179,7 @@ export class AuthService {
   private registered(userId: string): UserRow & { password_hash: string } {
     const row = this.db.prepare('SELECT * FROM users WHERE id = ?').get(userId) as UserRow | undefined;
     if (!row) throw new AuthError(404, 'usuario_inexistente', 'Usuário não encontrado.');
-    if (row.is_guest || !row.password_hash) throw new AuthError(400, 'sem_conta', 'Crie usuário e senha primeiro.');
+    if (row.is_guest || !row.password_hash) throw new AuthError(400, 'sem_conta', 'Crie sua conta com e-mail e senha primeiro.');
     return row as UserRow & { password_hash: string };
   }
 
@@ -221,10 +207,10 @@ export class AuthService {
   }
 
   /**
-   * Pedido de “esqueci a senha”, pelo e-mail ou pelo usuário. Devolve o que mandar por e-mail, ou nulo
+   * Pedido de “esqueci a senha”, pelo e-mail (ou pelo usuário, nas contas antigas). Devolve o que mandar por e-mail, ou nulo
    * quando não há conta com e-mail (quem chama responde igual nos dois casos, para não revelar quem existe).
    */
-  requestPasswordReset(identifier: unknown): { email: string; username: string; displayName: string; token: string } | null {
+  requestPasswordReset(identifier: unknown): { userId: string; email: string; displayName: string; token: string } | null {
     const id = String(identifier ?? '').trim();
     if (!id || id.length > 254) return null;
     const row = (
@@ -232,7 +218,7 @@ export class AuthService {
         ? this.db.prepare('SELECT * FROM users WHERE email = ? COLLATE NOCASE').get(id.toLowerCase())
         : this.db.prepare('SELECT * FROM users WHERE username = ?').get(id)
     ) as UserRow | undefined;
-    if (!row || row.is_guest || !row.email || !row.username) return null;
+    if (!row || row.is_guest || !row.email) return null;
     const now = Date.now();
     this.db.prepare('DELETE FROM password_resets WHERE expires_at < ?').run(new Date(now).toISOString());
     const last = this.db.prepare('SELECT MAX(created_at) AS at FROM password_resets WHERE user_id = ?').get(row.id) as { at: string | null };
@@ -242,7 +228,7 @@ export class AuthService {
     this.db
       .prepare('INSERT INTO password_resets (token_hash, user_id, created_at, expires_at) VALUES (?, ?, ?, ?)')
       .run(sha256(token), row.id, new Date(now).toISOString(), new Date(now + RESET_TTL_MIN * 60_000).toISOString());
-    return { email: row.email, username: row.username, displayName: row.display_name, token };
+    return { userId: row.id, email: row.email, displayName: row.display_name, token };
   }
 
   /** Cria a senha nova com o token do e-mail (uso único). Todas as sessões antigas caem e nasce uma nova. */
@@ -264,13 +250,20 @@ export class AuthService {
     return { token: this.createSession(row.user_id), user: this.getUser(row.user_id)! };
   }
 
-  login(input: { username: unknown; password: unknown }): { token: string; user: PublicUser } {
-    const username = String(input.username ?? '').trim();
+  /** Entra com o e-mail da conta; contas antigas também entram com o nome de usuário. */
+  login(input: { email: unknown; password: unknown }): { token: string; user: PublicUser } {
+    const id = String(input.email ?? '').trim();
     const password = String(input.password ?? '');
-    const row = this.db.prepare('SELECT * FROM users WHERE username = ?').get(username) as UserRow | undefined;
+    const row = (
+      !id || id.length > 254
+        ? undefined
+        : id.includes('@')
+          ? this.db.prepare('SELECT * FROM users WHERE email = ? COLLATE NOCASE').get(id.toLowerCase())
+          : this.db.prepare('SELECT * FROM users WHERE username = ?').get(id)
+    ) as UserRow | undefined;
     // Mesmo custo de CPU com ou sem usuário, para não vazar quem existe.
     const ok = row?.password_hash ? verifyPassword(password, row.password_hash) : (verifyPassword(password, hashPassword('x')), false);
-    if (!row || !ok) throw new AuthError(401, 'credenciais', 'Usuário ou senha incorretos.');
+    if (!row || !ok) throw new AuthError(401, 'credenciais', 'E-mail ou senha incorretos.');
     return { token: this.createSession(row.id), user: toPublic(row) };
   }
 

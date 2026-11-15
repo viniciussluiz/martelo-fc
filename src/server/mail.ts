@@ -70,12 +70,12 @@ export function smtpMailer(config: SmtpConfig): Mailer {
 const escapeHtml = (s: string) => s.replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]!);
 
 /** E-mail com o link para criar uma senha nova. */
-export function passwordResetMail(params: { to: string; teamName: string; username: string; link: string; minutes: number }): MailMessage {
-  const { teamName, username, link, minutes } = params;
+export function passwordResetMail(params: { to: string; teamName: string; link: string; minutes: number }): MailMessage {
+  const { teamName, link, minutes } = params;
   const text = [
     `Olá, técnico do ${teamName}!`,
     '',
-    `Recebemos um pedido para criar uma senha nova para a conta “${username}” no Leilão FC.`,
+    `Recebemos um pedido para criar uma senha nova para a sua conta no Leilão FC.`,
     `Abra o link abaixo (vale por ${minutes} minutos e só uma vez):`,
     '',
     link,
@@ -85,7 +85,7 @@ export function passwordResetMail(params: { to: string; teamName: string; userna
   const html = `<div style="font-family:system-ui,-apple-system,Segoe UI,sans-serif;max-width:520px;margin:0 auto;color:#24160c">
   <h1 style="font-size:22px;margin:0 0 12px">Leilão FC</h1>
   <p>Olá, técnico do <strong>${escapeHtml(teamName)}</strong>!</p>
-  <p>Recebemos um pedido para criar uma senha nova para a conta <strong>${escapeHtml(username)}</strong>.</p>
+  <p>Recebemos um pedido para criar uma senha nova para a sua conta.</p>
   <p style="margin:22px 0"><a href="${escapeHtml(link)}" style="background:#ffc81e;color:#24160c;font-weight:700;text-decoration:none;padding:12px 18px;border-radius:10px;border:2px solid #24160c;display:inline-block">Criar senha nova</a></p>
   <p style="font-size:14px">O link vale por ${minutes} minutos e só pode ser usado uma vez. Se o botão não abrir, copie este endereço:<br><span style="word-break:break-all">${escapeHtml(link)}</span></p>
   <p style="font-size:14px;color:#6b5a48">Se não foi você, ignore este e-mail: a senha continua a mesma.</p>
