@@ -61,7 +61,7 @@ as constantes em `src/tools/wikidata/build.ts` e rode `npm run deck:wikidata -- 
 salas só do Brasil e de Real Madrid/Barcelona para a Europa; o leilão nunca põe duas versões da mesma pessoa juntas
 (`personId`). Cada grupo é montado à parte: a melhor versão dos mais famosos entra sempre (top 10% no Brasil, 5% na Europa);
 o resto é estratificado por posição e faixa (para haver também operários e pernas-de-pau), preferindo os nomes mais
-conhecidos. O baralho atual tem 2.189 cartas: Série A 841, Série B 330 e Europa 1.018 (contando as 77 feitas à mão). O teto das Lendas é
+conhecidos. O baralho atual tem 2.190 cartas: Série A 841, Série B 330 e Europa 1.019 (contando as 78 feitas à mão). O teto das Lendas é
 93–98; só Pelé e Messi vão a 95–100 (ajuste manual, abaixo).
 
 **Ajustes manuais** (`data/deck-ajustes.json`), aplicados pelo `npm run deck:wikidata` ao montar o baralho:

@@ -182,6 +182,8 @@ export class RoomActor {
   nextTickAt = 0;
   /** Partidas jogadas na última rodada/jornada (para a transmissão “ao vivo”). */
   lastTickMatchIds: string[] = [];
+  /** Intervalo entre a liga e a copa: a sala mostra o campeão da liga e conta o tempo até o 1º jogo da copa. */
+  cupIntro = false;
   paused = false;
   private pausedAt = 0;
   private abandonTimer: NodeJS.Timeout | null = null;
@@ -707,6 +709,18 @@ export class RoomActor {
     this.afterAction();
   }
 
+  /** O anfitrião encerra a festa do campeão da liga e começa a copa já (depois que a última rodada passou na tela). */
+  startCupNow(userId: string) {
+    this.requireHost(userId);
+    const d = this.dispute;
+    if (!d || d.phase !== 'cup' || !this.cupIntro) throw new GameRuleError('fora_de_hora', 'A copa já começou (ou ainda não é hora).');
+    const now = Date.now();
+    const lastRoundOver = this.tickStartedAt + Math.round(this.timing.leagueRoundMs * 0.85);
+    this.nextTickAt = Math.max(now, lastRoundOver);
+    this.drive();
+    this.broadcast();
+  }
+
   setSetPieces(userId: string, takers: SetPieceTakers) {
     const pid = this.requireParticipant(userId);
     if (!takers || typeof takers !== 'object') throw new GameRuleError('batedor_invalido', 'Batedores inválidos.');
@@ -858,6 +872,7 @@ export class RoomActor {
     const now = Date.now();
     this.tickStartedAt = now;
     this.lastTickMatchIds = [];
+    this.cupIntro = false;
     // A 1ª rodada começa logo (as seguintes esperam o jogo anterior acabar na tela).
     this.nextTickAt = now + Math.min(this.timing.leagueRoundMs, 3_000);
     this.persistDispute(true);
@@ -872,8 +887,11 @@ export class RoomActor {
     if (d.phase === 'league') {
       this.lastTickMatchIds = d.playLeagueRound().map((m) => m.id);
       this.tickStartedAt = now;
-      this.nextTickAt = now + ((d.phase as string) === 'cup' ? this.timing.leagueRoundMs + this.timing.cupIntroMs : this.timing.leagueRoundMs);
+      // Acabou a liga e vem a copa: a última rodada passa na tela e depois fica a festa do campeão.
+      this.cupIntro = (d.phase as string) === 'cup';
+      this.nextTickAt = now + (this.cupIntro ? this.timing.leagueRoundMs + this.timing.cupIntroMs : this.timing.leagueRoundMs);
     } else if (d.phase === 'cup') {
+      this.cupIntro = false;
       this.lastTickMatchIds = d.playCupMatchday().map((m) => m.id);
       this.tickStartedAt = now;
       this.nextTickAt = now + this.timing.cupMatchdayMs;

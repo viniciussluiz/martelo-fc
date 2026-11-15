@@ -4,7 +4,8 @@ import type { DisputeView, FixtureView, MatchView, RoomView } from '../../../sha
 import { act } from '../../lib/socket';
 import { buildTimeline } from '../../lib/ball';
 import { useId, useMemo, useRef, useState, type KeyboardEvent, type ReactNode } from 'react';
-import { REACH_LABEL, useNow } from '../common';
+import { Countdown, REACH_LABEL, useNow } from '../common';
+import { CHAMPION_ART, ChampionModal } from './Champion';
 import { matchMinute, MatchPitch, useMatchTimeline } from './MatchPitch';
 import { SquadPitch } from './Squad';
 import { TeamCrest } from '../crest/TeamCrest';
@@ -703,16 +704,96 @@ function TieCard({ t, names, you }: { t: CupTie; names: Record<string, string>; 
   );
 }
 
+const BRACKET_STAGES = ['oitavas', 'quartas', 'semi', 'final'] as const;
+
+/** Uma linha do confronto no chaveamento: quem passou fica em destaque, quem saiu fica apagado. */
+function BracketTeam({ id, names, score, state, me }: { id: string | null; names: Record<string, string>; score: number | null; state: 'win' | 'out' | 'open'; me: boolean }) {
+  return (
+    <div className="bk-team" data-state={state} data-me={me || undefined}>
+      {id ? <TeamCrest id={id} name={names[id] ?? id} size={20} /> : <span className="bk-tbd" aria-hidden="true" />}
+      <span className="bk-name">{id ? (names[id] ?? id) : 'A definir'}</span>
+      <span className="bk-score">{score ?? '–'}</span>
+    </div>
+  );
+}
+
+function BracketMatch({ t, names, you }: { t: CupTie | null; names: Record<string, string>; you: string | null }) {
+  const state = (id: string) => (!t?.winnerId ? 'open' : t.winnerId === id ? 'win' : 'out');
+  return (
+    <div className="bk-match" data-me={(!!t && !!you && (t.aId === you || t.bId === you)) || undefined} data-done={!!t?.winnerId || undefined}>
+      <BracketTeam id={t?.aId ?? null} names={names} score={t?.aggregate?.a ?? null} state={t ? state(t.aId) : 'open'} me={!!t && t.aId === you} />
+      <BracketTeam id={t?.bId ?? null} names={names} score={t?.aggregate?.b ?? null} state={t ? state(t.bId) : 'open'} me={!!t && t.bId === you} />
+      {t?.penalties && (
+        <span className="bk-note">
+          Pênaltis {t.penalties.a}×{t.penalties.b}
+        </span>
+      )}
+    </div>
+  );
+}
+
+/**
+ * Chaveamento do mata-mata, da primeira fase até a final: cada confronto fica entre os dois de onde
+ * vêm os times; as fases que ainda não têm confronto aparecem como “A definir”.
+ */
+function Bracket({ ties, names, you, championId }: { ties: CupTie[]; names: Record<string, string>; you: string | null; championId: string | null }) {
+  const first = BRACKET_STAGES.find((s) => ties.some((t) => t.stage === s));
+  if (!first) return null;
+  const order = (t: CupTie) => Number(t.id.split('-').pop());
+  const of = (stage: string) => ties.filter((t) => t.stage === stage).sort((a, b) => order(a) - order(b));
+  const size = of(first).length;
+  const columns = BRACKET_STAGES.slice(BRACKET_STAGES.indexOf(first)).map((stage, k) => {
+    const list = of(stage);
+    const n = Math.max(1, size >> k);
+    return { stage, slots: Array.from({ length: n }, (_, i) => list[i] ?? null) };
+  });
+  return (
+    <div className="bracket-scroll">
+      <div className="bracket" style={{ '--rows': size } as React.CSSProperties}>
+        {columns.map((col) => (
+          <div key={col.stage} className="bk-col" data-stage={col.stage}>
+            <strong className="bk-head">{STAGE_NAME[col.stage]}</strong>
+            <div className="bk-list">
+              {/* Os confrontos andam em duplas: os vencedores de cada dupla se enfrentam na fase seguinte. */}
+              {Array.from({ length: Math.ceil(col.slots.length / 2) }, (_, p) => col.slots.slice(p * 2, p * 2 + 2)).map((pair, p) => (
+                <div key={p} className="bk-pair" data-single={pair.length === 1 || undefined}>
+                  {pair.map((t, i) => (
+                    <BracketMatch key={t?.id ?? `${col.stage}-${p}-${i}`} t={t} names={names} you={you} />
+                  ))}
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+        <div className="bk-col bk-champion" data-on={!!championId || undefined}>
+          <strong className="bk-head">Campeão</strong>
+          <div className="bk-list">
+            <div className="bk-cup" data-me={(!!championId && championId === you) || undefined}>
+              {championId ? <TeamCrest id={championId} name={names[championId] ?? championId} size={54} /> : <span className="bk-tbd bk-tbd-big" aria-hidden="true" />}
+              <span className="bk-cup-name">{championId ? (names[championId] ?? championId) : 'A definir'}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export function CupScreen({ room }: { room: RoomView }) {
   const d = room.dispute!;
   const live = d.cup;
   // Chaves, grupos e resultados só mudam no apito final do jogo que está passando.
   const c = useAfterWhistle(live, live?.tickStartedAt ?? 0, live?.tickMs ?? 0);
   const phase = useAfterWhistle(d.phase, live?.tickStartedAt ?? 0, live?.tickMs ?? 0);
+  const [introClosed, setIntroClosed] = useState<string | null>(null);
   if (!live || !c) return d.league ? <LeagueScreen room={room} /> : null;
   const myReach = d.you ? c.reached[d.you] : undefined;
   const stages = STAGE_ORDER.filter((s) => s !== 'grupos' && c.ties.some((t) => t.stage === s));
   const featured = live.myLastMatch ?? live.lastResults[0] ?? null;
+  // Intervalo antes da copa: acabou a liga (a última rodada já passou na tela) e a sala festeja o campeão.
+  const leagueChampion = d.league?.table[0];
+  const intro = d.cupIntro && c === live && leagueChampion && introClosed !== d.id ? d.cupIntro : null;
+  const isHost = room.hostUserId === room.you;
   const tabs: Tab[] = [];
   if (c.groupTables) {
     tabs.push({
@@ -734,25 +815,7 @@ export function CupScreen({ room }: { room: RoomView }) {
     tabs.push({
       id: 'chaves',
       label: 'Mata-mata',
-      content: (
-        <div className="stack" style={{ gap: 12 }}>
-          {stages
-            .slice()
-            .reverse()
-            .map((s) => (
-              <div key={s} className="stack" style={{ gap: 8 }}>
-                <strong className="tab-sub">{STAGE_NAME[s]}</strong>
-                <div className="ties">
-                  {c.ties
-                    .filter((t) => t.stage === s)
-                    .map((t) => (
-                      <TieCard key={t.id} t={t} names={d.teamNames} you={d.you} />
-                    ))}
-                </div>
-              </div>
-            ))}
-        </div>
-      ),
+      content: <Bracket ties={c.ties} names={d.teamNames} you={d.you} championId={c.championId} />,
     });
   }
   tabs.push({
@@ -777,6 +840,44 @@ export function CupScreen({ room }: { room: RoomView }) {
           </span>
         )}
       </header>
+      {intro && leagueChampion && (
+        <ChampionModal
+          champions={[
+            {
+              art: CHAMPION_ART.liga!,
+              title: 'Campeão da liga',
+              teamId: leagueChampion.teamId,
+              name: leagueChampion.name,
+              userId: d.participants.find((p) => p.id === leagueChampion.teamId)?.userId ?? null,
+            },
+          ]}
+          seed={d.seq}
+          onClose={() => setIntroClosed(d.id)}
+        >
+          <div className="champ-next">
+            <span>{c.name} começa em</span>
+            <Countdown deadline={intro.startsAt} urgentAt={5} />
+            {isHost ? (
+              <button type="button" className="btn btn-primary" onClick={() => void act({ t: 'cup:start-now' })}>
+                Começar a copa agora
+              </button>
+            ) : (
+              <span className="small">O anfitrião pode começar antes.</span>
+            )}
+          </div>
+        </ChampionModal>
+      )}
+      {d.cupIntro && c === live && !intro && (
+        <div className="notice" data-kind="done">
+          <strong>{c.name} começa em</strong>
+          <Countdown deadline={d.cupIntro.startsAt} urgentAt={5} />
+          {isHost && (
+            <button type="button" className="btn btn-sm btn-primary" onClick={() => void act({ t: 'cup:start-now' })}>
+              Começar agora
+            </button>
+          )}
+        </div>
+      )}
       {phase === 'finished' && (
         <div className="notice" data-kind="done">
           <strong>Apito final.</strong>

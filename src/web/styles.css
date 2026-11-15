@@ -1326,7 +1326,7 @@ img.club-badge {
     transform: translate3d(0, 0, 0) rotate(0) rotateY(0);
   }
   to {
-    transform: translate3d(var(--drift, 0), 720px, 0) rotate(var(--spin, 360deg)) rotateY(540deg);
+    transform: translate3d(var(--drift, 0), 110vh, 0) rotate(var(--spin, 360deg)) rotateY(540deg);
   }
 }
 @keyframes champ-in {
@@ -1348,6 +1348,262 @@ img.club-badge {
   .champ-confetti {
     display: none;
   }
+}
+
+/* Festa do campeão em tela quase cheia */
+.champ-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 14px;
+  background: rgba(12, 9, 4, 0.9);
+  overflow: hidden;
+  animation: champ-fade 0.35s ease both;
+}
+.champ-modal > .champ-confetti {
+  z-index: 0;
+}
+.champ-modal-posters {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 16px;
+  max-width: 100%;
+}
+.champ-modal .champ {
+  flex: none;
+  /* O pôster ocupa quase a tela toda, sem cortar: largura limitada pela altura disponível. */
+  width: min(480px, 92vw, calc((100vh - 190px) / 1.5));
+  box-shadow: 0 0 0 3px #c98f12, 0 18px 60px rgba(0, 0, 0, 0.7);
+}
+.champ-modal-posters[data-count='2'] .champ {
+  width: min(420px, 45vw, calc((100vh - 190px) / 1.5));
+}
+.champ-modal-foot {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+.champ-next {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 8px 14px;
+  border: 2px solid #c98f12;
+  border-radius: var(--r-m);
+  background: #1c1408;
+  color: #fff;
+  font-family: var(--f-sport);
+  font-weight: 700;
+}
+.champs-more {
+  margin: -8px 0 14px;
+  text-align: center;
+}
+@keyframes champ-fade {
+  from {
+    opacity: 0;
+  }
+}
+
+/* Chaveamento do mata-mata */
+.bracket-scroll {
+  overflow-x: auto;
+  padding-bottom: 6px;
+}
+.bracket {
+  --slot: 84px;
+  --gap: 30px;
+  display: flex;
+  gap: var(--gap);
+  min-width: max-content;
+}
+.bk-col {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 208px;
+}
+.bk-head {
+  font-family: var(--f-display);
+  font-weight: 400;
+  font-size: 1.05rem;
+  text-align: center;
+}
+.bk-list {
+  display: flex;
+  flex-direction: column;
+  height: calc(var(--rows) * var(--slot));
+  min-height: calc(2 * var(--slot));
+}
+.bk-pair {
+  position: relative;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+/* Liga os dois confrontos da dupla e leva a linha até o confronto da fase seguinte. */
+.bk-pair:not([data-single])::after {
+  content: '';
+  position: absolute;
+  left: 100%;
+  top: 25%;
+  bottom: 25%;
+  width: calc(var(--gap) / 2);
+  border: 2px solid var(--ink);
+  border-left: 0;
+  border-radius: 0 6px 6px 0;
+}
+.bk-col:not(:first-child) .bk-match::before,
+.bk-cup::before {
+  content: '';
+  position: absolute;
+  right: 100%;
+  top: 50%;
+  width: calc(var(--gap) / 2);
+  border-top: 2px solid var(--ink);
+}
+.bk-pair[data-single]::after {
+  content: '';
+  position: absolute;
+  left: 100%;
+  top: 50%;
+  width: calc(var(--gap) / 2);
+  border-top: 2px solid var(--ink);
+}
+.bk-match {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: var(--paper);
+  border: 2px solid var(--ink);
+  border-radius: 10px;
+  box-shadow: var(--lift-s);
+}
+.bk-match[data-me] {
+  box-shadow:
+    inset 5px 0 0 var(--me-edge),
+    var(--lift-s);
+}
+.bk-team {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+  padding: 4px 6px 4px 8px;
+  min-height: 29px;
+}
+.bk-team + .bk-team {
+  border-top: 1.5px dashed rgba(36, 22, 12, 0.25);
+}
+.bk-team:first-child {
+  border-radius: 8px 8px 0 0;
+}
+.bk-name {
+  flex: 1;
+  min-width: 0;
+  font-family: var(--f-sport);
+  font-weight: 700;
+  font-size: 0.92rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.bk-score {
+  flex: none;
+  min-width: 24px;
+  text-align: center;
+  padding: 1px 4px 0;
+  background: var(--board);
+  color: var(--led);
+  border-radius: 5px;
+  font-family: var(--f-led);
+  font-size: 0.85rem;
+}
+/* Quem passou: destaque. Quem saiu: apagado. */
+.bk-team[data-state='win'] {
+  background: var(--sun-hi);
+}
+.bk-team[data-state='win'] .bk-name {
+  font-weight: 800;
+}
+.bk-team[data-state='out'] {
+  opacity: 0.42;
+  filter: grayscale(1);
+}
+.bk-team[data-state='out'] .bk-name {
+  text-decoration: line-through;
+  text-decoration-thickness: 1.5px;
+}
+.bk-team[data-me] .bk-name {
+  text-decoration-line: underline;
+}
+.bk-team[data-me][data-state='out'] .bk-name {
+  text-decoration-line: underline line-through;
+}
+.bk-note {
+  position: absolute;
+  left: 8px;
+  top: 100%;
+  margin-top: 1px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: var(--ink-2);
+  white-space: nowrap;
+}
+.bk-tbd {
+  flex: none;
+  width: 20px;
+  height: 20px;
+  border: 2px dashed rgba(36, 22, 12, 0.35);
+  border-radius: 50%;
+}
+.bk-tbd-big {
+  width: 54px;
+  height: 54px;
+}
+.bk-champion {
+  width: 150px;
+}
+.bk-champion .bk-list {
+  justify-content: center;
+}
+.bk-cup {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 12px 8px;
+  text-align: center;
+  background: var(--paper);
+  border: 2px dashed var(--ink);
+  border-radius: 12px;
+}
+.bk-champion[data-on] .bk-cup {
+  border-style: solid;
+  background: var(--sun);
+  box-shadow: var(--lift-s);
+}
+.bk-cup-name {
+  font-family: var(--f-display);
+  font-size: 1rem;
+  line-height: 1.1;
+  overflow-wrap: anywhere;
 }
 
 .confetti {
@@ -5475,8 +5731,22 @@ tr[data-zone='z4'] .pos-num {
   border-spacing: 0;
   overflow: hidden;
 }
+.roster-table {
+  table-layout: fixed;
+  width: 100%;
+}
+.roster-table th.r {
+  width: 58px;
+}
 .roster-table td {
   padding: 5px 8px;
+}
+.roster-table td:first-child {
+  overflow: hidden;
+}
+.roster-player .band,
+.roster-player .badge {
+  flex: none;
 }
 .roster-table th:first-child {
   border-top-left-radius: 8px;

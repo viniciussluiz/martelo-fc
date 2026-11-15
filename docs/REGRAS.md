@@ -82,6 +82,8 @@ Igual ao leilão de clubes, mas cada lote é um **setor de uma seleção** (os a
 - Copa dos 8: G8 da liga; ida e volta (agregado e pênaltis), final única em campo neutro.
 - Taça Continental: G8 + 24 clubes; 8 grupos de 4 (turno e returno); oitavas, quartas e semi em ida e volta; final única.
 - Torneio Mundial: igual, mas grupos em turno único e mata-mata em jogo único.
+
+Quando a liga termina, a sala festeja o campeão em tela cheia e abre um intervalo de 30 s (15 s no turbo) antes da copa. O anfitrião pode começar a copa na hora. O mata-mata aparece como chaveamento, da primeira fase até a final: quem passou fica em destaque e quem saiu fica apagado.
 - Ranking do ciclo: número de títulos; depois posição na liga; depois fase da copa.
 
 ## Continuidade da sala (política explícita)

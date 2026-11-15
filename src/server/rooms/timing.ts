@@ -17,7 +17,7 @@ export interface Timing {
   ceremonyMs: number;
   leagueRoundMs: number;
   cupMatchdayMs: number;
-  /** Intervalo entre o fim da liga e o 1º jogo da copa. */
+  /** Intervalo entre o fim da liga e o 1º jogo da copa: a festa do campeão da liga (o anfitrião pode encurtar). */
   cupIntroMs: number;
   /** Multiplicador do prazo de continuidade (testes usam prazos curtos). */
   continuationScale: number;
@@ -35,7 +35,7 @@ export const TIMINGS: Record<GameSpeed, Timing> = {
     ceremonyMs: 65_000,
     leagueRoundMs: 40_000,
     cupMatchdayMs: 40_000,
-    cupIntroMs: 6_000,
+    cupIntroMs: 30_000,
     continuationScale: 1,
   },
   turbo: {
@@ -49,7 +49,7 @@ export const TIMINGS: Record<GameSpeed, Timing> = {
     ceremonyMs: 30_000,
     leagueRoundMs: 20_000,
     cupMatchdayMs: 20_000,
-    cupIntroMs: 2_500,
+    cupIntroMs: 15_000,
     continuationScale: 1,
   },
   test: {

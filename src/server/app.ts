@@ -436,6 +436,9 @@ export async function createApp(overrides: Partial<ServerConfig> = {}, logger?: 
             case 'setpieces':
               room.setSetPieces(u, msg.takers);
               break;
+            case 'cup:start-now':
+              room.startCupNow(u);
+              break;
             case 'continue:vote':
               room.vote(u, String(msg.disputeId), msg.choice);
               break;

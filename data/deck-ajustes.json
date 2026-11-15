@@ -1414,6 +1414,24 @@
       ],
       "series": "A",
       "motivo": "Pedido: jogador (ou passagem por este clube) que faltava no baralho; faixa em torno da nota pedida."
+    },
+    {
+      "id": "wd-Q483137-Q9616-2005",
+      "personId": "Q483137",
+      "name": "Petr Čech",
+      "position": "GOL",
+      "club": "Chelsea",
+      "year": 2005,
+      "levelMin": 90,
+      "levelMax": 95,
+      "tier": "lenda",
+      "hint": "Goleiro do Chelsea de 2004 a 2015. 23 anos em 2005. 124 jogos pela seleção.",
+      "kit": [
+        "#034694",
+        "#FFFFFF"
+      ],
+      "series": "EU",
+      "motivo": "Pedido: o goleiro do Chelsea não tinha carta no baralho."
     }
   ]
 }

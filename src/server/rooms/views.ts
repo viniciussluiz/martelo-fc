@@ -181,6 +181,7 @@ function disputeView(room: RoomActor, userId: string): DisputeView {
         : null,
     league: d.league ? leagueView(room, myPid, teamNames) : null,
     cup: d.cup ? cupView(room, myPid, teamNames) : null,
+    cupIntro: room.cupIntro && d.phase === 'cup' ? { startsAt: room.nextTickAt } : null,
     tactic: me ? (d.state.tactics[me.id] ?? 'equilibrio') : null,
     setPieces: me && d.phase !== 'auction' ? d.takersOf(me.id) : null,
     result: d.state.result,

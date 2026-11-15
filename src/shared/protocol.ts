@@ -302,6 +302,8 @@ export interface DisputeView {
   ceremony: CeremonyView | null;
   league: LeagueView | null;
   cup: CupView | null;
+  /** Intervalo entre a liga e a copa: quando a copa começa (o anfitrião pode começar antes). Nulo fora dele. */
+  cupIntro: { startsAt: number } | null;
   tactic: Tactic | null;
   /** Seu capitão e seus batedores de pênalti, falta e escanteio (os escolhidos ou, sem escolha, os que o jogo indica). */
   setPieces: SetPieceTakers | null;
@@ -371,6 +373,7 @@ export type ClientMessage =
   | { t: 'ceremony:ready'; reqId?: string }
   | { t: 'tactic'; tactic: Tactic; reqId?: string }
   | { t: 'setpieces'; takers: SetPieceTakers; reqId?: string }
+  | { t: 'cup:start-now'; reqId?: string }
   | { t: 'continue:vote'; disputeId: string; choice: ContinueChoice; reqId?: string }
   | { t: 'continue:start-now'; disputeId: string; reqId?: string }
   | { t: 'ping'; reqId?: string };

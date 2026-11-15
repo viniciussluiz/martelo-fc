@@ -243,8 +243,8 @@ export function HomePage({ joinCode }: { joinCode?: string }) {
               <Icon name="martelo" size={34} />
             </span>
             <span className="mode-text">
-              <span className="mode-title">Partida rápida</span>
-              <span className="mode-desc">Você contra a CPU: leilão, liga e copa. No fim, dá para jogar de novo na mesma sala.</span>
+              <span className="mode-title">Partida rápida (CPU)</span>
+              <span className="mode-desc">Só você contra a CPU, sem outros jogadores: leilão, liga e copa. No fim, dá para jogar de novo na mesma sala.</span>
             </span>
             <span className="mode-go" aria-hidden="true">
               <Icon name="play" size={22} />

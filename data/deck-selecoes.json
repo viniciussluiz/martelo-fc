@@ -4,7 +4,7 @@
  "version": 1,
  "source": "Wikidata (https://www.wikidata.org) — dados estruturados sob CC0. Notas calculadas pelo Leilão FC.",
  "license": "CC0-1.0 (dados de origem)",
- "generatedAt": "2026-11-14T14:35:08.987Z",
+ "generatedAt": "2026-11-15T15:20:26.979Z",
  "fetchedAt": "2026-10-19T22:37:07.482Z",
  "cards": [
   {
@@ -178,16 +178,16 @@
    "series": "SEL"
   },
   {
-   "id": "sel-Q60435-alemanha",
-   "personId": "Q60435",
-   "name": "Karl-Heinz Schnellinger",
+   "id": "sel-Q308925-alemanha",
+   "personId": "Q308925",
+   "name": "Jürgen Kohler",
    "position": "ZAG",
    "club": "Alemanha",
-   "year": 1966,
+   "year": 1992,
    "levelMin": 85,
    "levelMax": 91,
    "tier": "craque",
-   "hint": "47 jogos pela seleção, 4 Copas do Mundo.",
+   "hint": "105 jogos pela seleção, 3 Copas do Mundo.",
    "kit": [
     "#FFFFFF",
     "#111111"
@@ -4961,8 +4961,8 @@
    "position": "ATA",
    "club": "Irlanda",
    "year": 2007,
-   "levelMin": 81,
-   "levelMax": 89,
+   "levelMin": 82,
+   "levelMax": 90,
    "tier": "craque",
    "hint": "146 jogos pela seleção, 1 Copa do Mundo.",
    "kit": [
