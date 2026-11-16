@@ -408,7 +408,8 @@ p {
   margin: 0;
   line-height: 1.55;
 }
-.info-page a {
+/* Só os links de texto: os botões (.btn) mantêm as cores deles. */
+.info-page a:not(.btn) {
   color: var(--grass-deep);
   font-weight: 700;
   text-underline-offset: 3px;
