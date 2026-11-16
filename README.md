@@ -82,6 +82,16 @@ fly secrets set SMTP_PASS='senha de app de 16 letras'
 ```
 `PUBLIC_URL` (no `fly.toml`) é o endereço do site que vai no link. Localmente, use o `.env` (veja `.env.example`).
 
+## Páginas institucionais e anúncios
+O site tem Sobre (`/sobre`), Contato (`/contato`) e Política de Privacidade (`/privacidade`), com links no rodapé, e um
+aviso de cookies. Os anúncios do Google AdSense ficam desligados até o servidor receber o id do editor:
+```bash
+fly secrets set ADSENSE_CLIENT=ca-pub-XXXXXXXXXXXXXXXX      # verificação do site, /ads.txt e scripts do Google liberados
+fly secrets set ADSENSE_SLOT=1234567890                     # depois da aprovação: o bloco “display responsivo” criado no AdSense
+```
+Os espaços de anúncio aparecem só fora do jogo (início, regras, perfil, troféus, sobre e o resumo depois da disputa);
+nunca no leilão nem durante as partidas. Quem escolhe “Só o essencial” no aviso de cookies recebe anúncios não personalizados.
+
 ## Banco e migrações
 As migrações SQL ficam em `migrations/` e são aplicadas automaticamente no boot. Para aplicar manualmente:
 ```bash

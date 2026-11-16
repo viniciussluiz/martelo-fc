@@ -26,6 +26,8 @@ export interface ServerConfig {
   publicUrl: string;
   /** Endereços antigos ou alternativos do site: as páginas abertas neles vão (301) para o `publicUrl`. */
   redirectHosts?: string[];
+  /** Google AdSense: id do editor (ca-pub-…) e, opcional, o bloco de anúncio dos espaços do site. Nulo = sem anúncios. */
+  adsense?: { client: string; slot: string | null } | null;
   /** SMTP para a recuperação de senha por e-mail (nulo = desligada). */
   smtp: SmtpConfig | null;
   /** Substitui o envio de e-mail (testes). */
@@ -33,6 +35,14 @@ export interface ServerConfig {
 }
 
 const root = resolve(import.meta.dirname, '../..');
+
+/** Lê ADSENSE_CLIENT (ca-pub-…) e ADSENSE_SLOT (número do bloco). Valor fora do formato é ignorado. */
+export function adsenseFromEnv(env: NodeJS.ProcessEnv): { client: string; slot: string | null } | null {
+  const client = env.ADSENSE_CLIENT?.trim() ?? '';
+  if (!/^ca-pub-\d{10,20}$/.test(client)) return null;
+  const slot = env.ADSENSE_SLOT?.trim() ?? '';
+  return { client, slot: /^\d{6,14}$/.test(slot) ? slot : null };
+}
 
 /** Usa o baralho de jogadores reais (Wikidata) quando existir; senão, o fictício. */
 function defaultDeckPath(): string {
@@ -83,6 +93,7 @@ export function loadConfig(env: NodeJS.ProcessEnv = process.env): ServerConfig {
       .split(',')
       .map((h) => h.trim().toLowerCase())
       .filter(Boolean),
+    adsense: adsenseFromEnv(env),
     smtp: smtpFromEnv(env),
   };
 }

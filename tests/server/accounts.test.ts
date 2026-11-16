@@ -215,3 +215,29 @@ describe('endereço oficial', () => {
     }
   });
 });
+
+describe('anúncios (AdSense)', () => {
+  it('sem ADSENSE_CLIENT o site não muda; com ele, publica o ads.txt e avisa o cliente', async () => {
+    const { adsenseFromEnv } = await import('../../src/server/config.js');
+    expect(adsenseFromEnv({})).toBeNull();
+    expect(adsenseFromEnv({ ADSENSE_CLIENT: 'qualquer coisa' })).toBeNull();
+    expect(adsenseFromEnv({ ADSENSE_CLIENT: 'ca-pub-1234567890123456', ADSENSE_SLOT: 'x' })).toEqual({ client: 'ca-pub-1234567890123456', slot: null });
+    expect((await api(env.app, 'GET', '/api/health')).data.ads).toBeNull();
+    expect((await fetch(`${env.app.url}/ads.txt`)).status).toBe(404);
+
+    const dir = mkdtempSync(join(tmpdir(), 'leilao-ads-'));
+    const withAds = await startTestApp(dir, undefined, { adsense: { client: 'ca-pub-1234567890123456', slot: '9876543210' } });
+    try {
+      expect((await api(withAds.app, 'GET', '/api/health')).data.ads).toEqual({ client: 'ca-pub-1234567890123456', slot: '9876543210' });
+      const txt = await fetch(`${withAds.app.url}/ads.txt`);
+      expect(txt.status).toBe(200);
+      expect(await txt.text()).toBe('google.com, pub-1234567890123456, DIRECT, f08c47fec0942fa0\n');
+      // A política de conteúdo passa a aceitar os scripts do Google.
+      expect((await fetch(`${withAds.app.url}/api/health`)).headers.get('content-security-policy')).toContain("script-src 'self' 'unsafe-inline' 'unsafe-eval' https:");
+      expect((await fetch(`${env.app.url}/api/health`)).headers.get('content-security-policy')).toContain("script-src 'self';");
+    } finally {
+      await withAds.stop();
+      cleanupDir(dir);
+    }
+  });
+});

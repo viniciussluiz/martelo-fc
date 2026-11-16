@@ -113,6 +113,25 @@ export const SECURITY_HEADERS: Record<string, string> = {
     `default-src 'self'; img-src 'self' data: ${CREST_REMOTE_ORIGINS.join(' ')}; style-src 'self' 'unsafe-inline'; font-src 'self' data:; connect-src 'self' ws: wss:; script-src 'self'; frame-ancestors 'none'`,
 };
 
+/**
+ * Com anúncios do Google ligados, a política de conteúdo precisa aceitar os scripts, quadros e imagens
+ * que o AdSense carrega (de vários domínios do Google e dos anunciantes).
+ */
+export function securityHeaders(ads: boolean): Record<string, string> {
+  if (!ads) return SECURITY_HEADERS;
+  return {
+    ...SECURITY_HEADERS,
+    'referrer-policy': 'strict-origin-when-cross-origin',
+    'content-security-policy':
+      `default-src 'self'; img-src 'self' data: https:; style-src 'self' 'unsafe-inline'; font-src 'self' data:; connect-src 'self' ws: wss: https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https:; frame-src https:; frame-ancestors 'none'`,
+  };
+}
+
+/** Trecho do AdSense para o <head>: a verificação do site e o script dos anúncios. */
+export function adsenseHead(client: string): string {
+  return `<meta name="google-adsense-account" content="${client}" />\n    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${client}" crossorigin="anonymous"></script>\n  `;
+}
+
 const buildCache = new Map<string, { mtimeMs: number; id: string | undefined }>();
 
 /**
@@ -132,7 +151,12 @@ export function clientBuildId(staticDir: string): string | undefined {
 }
 
 /** Serve o build do cliente (dist/) com fallback de SPA para index.html. */
-export function serveStatic(staticDir: string, pathname: string, res: ServerResponse): boolean {
+export function serveStatic(
+  staticDir: string,
+  pathname: string,
+  res: ServerResponse,
+  opts: { headers?: Record<string, string>; head?: string } = {},
+): boolean {
   const root = resolve(staticDir);
   if (!existsSync(join(root, 'index.html'))) return false;
   const safe = normalize(decodeURIComponent(pathname)).replace(/^(\.\.[/\\])+/, '');
@@ -144,9 +168,11 @@ export function serveStatic(staticDir: string, pathname: string, res: ServerResp
   res.writeHead(200, {
     'content-type': type,
     'cache-control': immutable ? 'public, max-age=31536000, immutable' : 'no-cache',
-    ...SECURITY_HEADERS,
+    ...(opts.headers ?? SECURITY_HEADERS),
   });
-  createReadStream(file).pipe(res);
+  // A página leva no <head> o que o servidor acrescenta (ex.: o código do AdSense).
+  if (opts.head && file === join(root, 'index.html')) res.end(readFileSync(file, 'utf8').replace('</head>', `${opts.head}</head>`));
+  else createReadStream(file).pipe(res);
   return true;
 }
 

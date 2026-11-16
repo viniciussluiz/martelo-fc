@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import type { PublicUserView } from '../shared/protocol';
 import { Spinner } from './components/common';
 import { TeamCrest } from './components/crest/TeamCrest';
@@ -8,7 +8,10 @@ import { api, ApiError } from './lib/api';
 import { matchPath, navigate, usePath } from './lib/router';
 import { socket } from './lib/socket';
 import { persistToken, store, useStore } from './lib/store';
+import { AdSlot, CookieNotice } from './components/Ads';
+import { useSiteInfo } from './lib/site';
 import { AccountPage } from './pages/AccountPage';
+import { AboutPage, ContactPage, PrivacyPage } from './pages/InfoPages';
 import { AuthPage } from './pages/AuthPage';
 import { ResetPage } from './pages/ResetPage';
 import { HomePage } from './pages/HomePage';
@@ -164,26 +167,50 @@ function Routes() {
   if (matchPath('/redefinir', path)) return <ResetPage />;
   if (matchPath('/conta', path)) return <AccountPage />;
   if (matchPath('/regras', path)) return <RulesPage />;
+  if (matchPath('/sobre', path)) return <AboutPage />;
+  if (matchPath('/contato', path)) return <ContactPage />;
+  if (matchPath('/privacidade', path)) return <PrivacyPage />;
   return <HomePage />;
 }
 
-/** Rodapé com versão e baralho do servidor: ajuda a saber qual cópia do jogo está rodando. */
+/** Rodapé: as páginas institucionais e, embaixo, a versão e o baralho do servidor. */
 function Footer() {
-  const [info, setInfo] = useState<{ version: string; deck: string; cards: number } | null>(null);
-  useEffect(() => {
-    void api<{ version: string; deck: string; cards: number }>('GET', '/api/health')
-      .then(setInfo)
-      .catch(() => undefined);
-  }, []);
-  if (!info) return null;
+  const info = useSiteInfo();
+  const link = (href: string, label: string) => (
+    <a
+      href={href}
+      onClick={(e) => {
+        e.preventDefault();
+        navigate(href);
+      }}
+    >
+      {label}
+    </a>
+  );
   return (
     <footer className="app-footer">
-      <span>Leilão FC {info.version}</span>
-      <span>
-        Baralho {info.deck}, {info.cards} cartas
-      </span>
+      <nav className="app-footer-links" aria-label="Institucional">
+        {link('/sobre', 'Sobre')}
+        {link('/regras', 'Como funciona')}
+        {link('/contato', 'Contato')}
+        {link('/privacidade', 'Privacidade')}
+      </nav>
+      {info && (
+        <span className="app-footer-meta">
+          Leilão FC {info.version} · Baralho {info.deck}, {info.cards} cartas
+        </span>
+      )}
     </footer>
   );
+}
+
+/** Anúncio só fora do jogo: páginas abertas e o resumo depois da disputa; nunca no leilão nem na partida. */
+function PageAd() {
+  const path = usePath();
+  const status = useStore((s) => s.room?.status);
+  const quiet = ['/entrar', '/redefinir', '/conta', '/privacidade', '/contato'].some((p) => path.startsWith(p));
+  if (quiet || (path.startsWith('/sala') && status !== 'post_dispute')) return null;
+  return <AdSlot />;
 }
 
 export function App() {
@@ -193,8 +220,10 @@ export function App() {
       <TopBar />
       <main className="page">
         <Routes />
+        <PageAd />
       </main>
       <Footer />
+      <CookieNotice />
       <Toasts />
     </div>
   );

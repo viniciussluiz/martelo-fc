@@ -13,7 +13,7 @@ import { noMailer, passwordResetMail, smtpMailer, type Mailer } from './mail.js'
 import { APP_VERSION, configNotes, loadConfig, type ServerConfig } from './config.js';
 import { loadCrests, loadCrestSources, resolveCrests, type CrestSources } from './crests.js';
 import { migrate, openDatabase, type DB } from './db.js';
-import { clientBuildId, HttpError, RateLimiter, readJson, Router, SECURITY_HEADERS, sendJson, serveStatic, type Ctx } from './http.js';
+import { adsenseHead, clientBuildId, HttpError, RateLimiter, readJson, Router, securityHeaders, sendJson, serveStatic, type Ctx } from './http.js';
 import { createLogger, type Logger } from './log.js';
 import { RoomManager } from './rooms/room-manager.js';
 import type { RoomActor } from './rooms/room-actor.js';
@@ -131,7 +131,15 @@ export async function createApp(overrides: Partial<ServerConfig> = {}, logger?: 
   const body = (ctx: Ctx) => (ctx.body ?? {}) as Record<string, unknown>;
 
   router
-    .on('GET', '/api/health', () => ({ ok: true, version: APP_VERSION, deck: deckInfo.name, cards: deckInfo.total, rooms: rooms.all().length, time: new Date().toISOString() }))
+    .on('GET', '/api/health', () => ({
+      ok: true,
+      version: APP_VERSION,
+      deck: deckInfo.name,
+      cards: deckInfo.total,
+      rooms: rooms.all().length,
+      time: new Date().toISOString(),
+      ads: config.adsense ?? null,
+    }))
     .on('POST', '/api/auth/guest', (ctx) => {
       limitAuth(ctx);
       const b = body(ctx);
@@ -273,6 +281,8 @@ export async function createApp(overrides: Partial<ServerConfig> = {}, logger?: 
     });
 
   const redirectHosts = new Set(config.redirectHosts ?? []);
+  const headers = securityHeaders(!!config.adsense);
+  const adsHead = config.adsense ? adsenseHead(config.adsense.client) : null;
   const server = createServer(async (req, res) => {
     const url = new URL(req.url ?? '/', 'http://localhost');
     // No Fly, o endereço de quem chama vem em Fly-Client-IP (posto pelo proxy; o cliente não consegue forjar).
@@ -282,7 +292,7 @@ export async function createApp(overrides: Partial<ServerConfig> = {}, logger?: 
       req.socket.remoteAddress ||
       '?';
     if (url.pathname.startsWith('/api/')) {
-      for (const [k, v] of Object.entries(SECURITY_HEADERS)) res.setHeader(k, v);
+      for (const [k, v] of Object.entries(headers)) res.setHeader(k, v);
       try {
         const match = router.match(req.method ?? 'GET', url.pathname);
         if (!match) throw new HttpError(404, 'rota_inexistente', 'Rota não encontrada.');
@@ -311,16 +321,22 @@ export async function createApp(overrides: Partial<ServerConfig> = {}, logger?: 
       const file = decodeURIComponent(url.pathname.slice('/escudos/'.length));
       const known = [...crestFiles.values()].includes(file) ? file : null;
       if (!known) {
-        res.writeHead(404, { 'content-type': 'text/plain; charset=utf-8', ...SECURITY_HEADERS });
+        res.writeHead(404, { 'content-type': 'text/plain; charset=utf-8', ...headers });
         res.end('Escudo não encontrado.');
         return;
       }
       const type = file.endsWith('.svg') ? 'image/svg+xml' : file.endsWith('.png') ? 'image/png' : file.endsWith('.webp') ? 'image/webp' : 'image/jpeg';
-      res.writeHead(200, { 'content-type': type, 'cache-control': 'public, max-age=86400', ...SECURITY_HEADERS });
+      res.writeHead(200, { 'content-type': type, 'cache-control': 'public, max-age=86400', ...headers });
       createReadStream(join(config.crestsDir, known)).pipe(res);
       return;
     }
-    if ((req.method === 'GET' || req.method === 'HEAD') && serveStatic(config.staticDir, url.pathname, res)) return;
+    // ads.txt: diz aos anunciantes que o Google pode vender os espaços deste site.
+    if (url.pathname === '/ads.txt' && config.adsense) {
+      res.writeHead(200, { 'content-type': 'text/plain; charset=utf-8', 'cache-control': 'public, max-age=3600', ...headers });
+      res.end(`google.com, ${config.adsense.client.replace(/^ca-/, '')}, DIRECT, f08c47fec0942fa0\n`);
+      return;
+    }
+    if ((req.method === 'GET' || req.method === 'HEAD') && serveStatic(config.staticDir, url.pathname, res, { headers, ...(adsHead ? { head: adsHead } : {}) })) return;
     res.writeHead(404, { 'content-type': 'text/plain; charset=utf-8' });
     res.end('Cliente não compilado. Rode `npm run build` ou use `npm run dev`.');
   });
