@@ -8,6 +8,7 @@ import { SectionTitle } from '../components/ui';
 import { api } from '../lib/api';
 import { navigate } from '../lib/router';
 import { useStore } from '../lib/store';
+import { RenameTeamForm } from '../components/RenameTeam';
 
 interface Rec {
   total: number;
@@ -63,6 +64,7 @@ export function ProfilePage({ userId }: { userId: string }) {
   const [opps, setOpps] = useState<Opponent[] | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [editing, setEditing] = useState(false);
+  const [renaming, setRenaming] = useState(false);
   useEffect(() => {
     setP(null);
     setOpps(null);
@@ -79,11 +81,13 @@ export function ProfilePage({ userId }: { userId: string }) {
   const isMe = me?.id === userId;
   // O seu escudo pode ter mudado agora há pouco no criador.
   const crest = isMe && me ? me.crest : p.user.crest;
+  // O nome também pode ter acabado de mudar aqui mesmo.
+  const name = isMe && me ? me.displayName : p.user.displayName;
   return (
     <div className="profile">
       <header className="profile-head">
         <div className="profile-crest">
-          <TeamCrest userId={p.user.id} name={p.user.displayName} crest={crest} size={150} />
+          <TeamCrest userId={p.user.id} name={name} crest={crest} size={150} />
           {isMe && (
             <button type="button" className="btn btn-sm" onClick={() => setEditing(true)}>
               <Icon name="pincel" /> Editar escudo
@@ -91,7 +95,18 @@ export function ProfilePage({ userId }: { userId: string }) {
           )}
         </div>
         <div className="profile-id">
-          <h1>{p.user.displayName}</h1>
+          {isMe && me && renaming ? (
+            <RenameTeamForm user={me} onDone={() => setRenaming(false)} />
+          ) : (
+            <h1>
+              {name}
+              {isMe && (
+                <button type="button" className="btn btn-sm profile-rename" onClick={() => setRenaming(true)}>
+                  <Icon name="pincel" /> Trocar nome
+                </button>
+              )}
+            </h1>
+          )}
           <p className="profile-since">
             Técnico desde {fmtDate(p.user.createdAt)}
             {p.user.isGuest ? ' (convidado)' : ''}
