@@ -9,7 +9,7 @@ import { Icon, Logo } from '../components/Icon';
 import { PixelCoin, PosChip } from '../components/ui';
 import { api } from '../lib/api';
 import { navigate } from '../lib/router';
-import { toast, useStore } from '../lib/store';
+import { store, toast, useStore } from '../lib/store';
 
 interface ActiveRoom {
   code: string;
@@ -147,17 +147,80 @@ function GuestForm({ joinCode }: { joinCode?: string }) {
 /** Cartão do seu clube no menu: escudo, nome e atalhos. */
 function MyClubCard({ user }: { user: PublicUserView }) {
   const [editing, setEditing] = useState(false);
+  // Troca do nome do time, ali mesmo no cartão.
+  const [renaming, setRenaming] = useState(false);
+  const [name, setName] = useState(user.displayName);
+  const [saving, setSaving] = useState(false);
+  const [nameError, setNameError] = useState<string | null>(null);
+  const rename = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const next = name.trim();
+    if (next === user.displayName) {
+      setRenaming(false);
+      return;
+    }
+    setSaving(true);
+    setNameError(null);
+    try {
+      const r = await api<{ user: PublicUserView }>('PATCH', '/api/me', { displayName: next });
+      store.set({ user: r.user });
+      toast({ kind: 'sucesso', title: 'Nome do time alterado', body: r.user.displayName });
+      setRenaming(false);
+    } catch (err) {
+      setNameError((err as Error).message);
+    } finally {
+      setSaving(false);
+    }
+  };
   return (
     <aside className="club-card">
       <div className="club-card-crest">
         <TeamCrest userId={user.id} name={user.displayName} crest={user.crest} size={128} />
       </div>
-      <div className="club-card-name">{user.displayName}</div>
+      {renaming ? (
+        <form className="club-card-rename" onSubmit={rename}>
+          <label className="sr-only" htmlFor="club-name">
+            Nome do time
+          </label>
+          <input id="club-name" className="input" value={name} onChange={(e) => setName(e.target.value)} maxLength={28} minLength={2} required autoFocus />
+          {nameError && <p className="error-text small">{nameError}</p>}
+          <div className="club-card-actions">
+            <button className="btn btn-sm btn-primary" disabled={saving}>
+              Salvar
+            </button>
+            <button
+              type="button"
+              className="btn btn-sm btn-ghost"
+              onClick={() => {
+                setRenaming(false);
+                setName(user.displayName);
+                setNameError(null);
+              }}
+            >
+              Cancelar
+            </button>
+          </div>
+        </form>
+      ) : (
+        <div className="club-card-name">{user.displayName}</div>
+      )}
       <div className="club-card-sub">{user.isGuest ? 'Técnico convidado' : user.username ? `@${user.username}` : 'Conta registrada'}</div>
       <div className="club-card-actions">
         <button type="button" className="btn btn-sm" onClick={() => setEditing(true)}>
           <Icon name="pincel" /> Editar escudo
         </button>
+        {!renaming && (
+          <button
+            type="button"
+            className="btn btn-sm"
+            onClick={() => {
+              setName(user.displayName);
+              setRenaming(true);
+            }}
+          >
+            <Icon name="pincel" /> Trocar nome
+          </button>
+        )}
         <button type="button" className="btn btn-sm btn-ghost" onClick={() => navigate(`/perfil/${user.id}`)}>
           <Icon name="perfil" /> Perfil
         </button>

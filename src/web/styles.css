@@ -2226,6 +2226,14 @@ button.mode:disabled {
 .club-card-crest {
   filter: drop-shadow(0 6px 0 rgba(36, 22, 12, 0.3));
 }
+.club-card-rename {
+  display: grid;
+  gap: 8px;
+  width: 100%;
+}
+.club-card-rename .input {
+  text-align: center;
+}
 .club-card-name {
   font-family: var(--f-display);
   font-size: 1.6rem;
