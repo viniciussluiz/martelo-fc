@@ -54,7 +54,7 @@ export function AboutPage() {
         <SectionTitle>Quem faz</SectionTitle>
         <p>
           O Leilão FC é um projeto independente, criado e mantido por Vinicius Luiz Alves de Oliveira, desenvolvedor brasileiro, com a ajuda de quem
-          joga. Sugestões, correções de
+          joga. Quem quiser ajudar a pagar o servidor pode <Go to="/apoiar">apoiar com um Pix</Go>. Sugestões, correções de
           jogadores e relatos de erro são bem-vindos pela página de <Go to="/contato">Contato</Go>.
         </p>
         <p className="small muted">

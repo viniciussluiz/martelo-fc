@@ -28,6 +28,7 @@
   "dependencies": {
     "better-sqlite3": "12.4.1",
     "nodemailer": "10.5.0",
+    "qrcode-generator": "^1.5.2",
     "tsx": "4.20.6",
     "ws": "8.22.0"
   },

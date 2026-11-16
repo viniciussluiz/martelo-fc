@@ -12,6 +12,7 @@ import { AdSlot, CookieNotice } from './components/Ads';
 import { useSiteInfo } from './lib/site';
 import { AccountPage } from './pages/AccountPage';
 import { AboutPage, ContactPage, PrivacyPage } from './pages/InfoPages';
+import { SupportPage } from './pages/SupportPage';
 import { AuthPage } from './pages/AuthPage';
 import { ResetPage } from './pages/ResetPage';
 import { HomePage } from './pages/HomePage';
@@ -167,6 +168,7 @@ function Routes() {
   if (matchPath('/redefinir', path)) return <ResetPage />;
   if (matchPath('/conta', path)) return <AccountPage />;
   if (matchPath('/regras', path)) return <RulesPage />;
+  if (matchPath('/apoiar', path)) return <SupportPage />;
   if (matchPath('/sobre', path)) return <AboutPage />;
   if (matchPath('/contato', path)) return <ContactPage />;
   if (matchPath('/privacidade', path)) return <PrivacyPage />;
@@ -190,6 +192,7 @@ function Footer() {
   return (
     <footer className="app-footer">
       <nav className="app-footer-links" aria-label="Institucional">
+        {link('/apoiar', 'Apoie')}
         {link('/sobre', 'Sobre')}
         {link('/regras', 'Como funciona')}
         {link('/contato', 'Contato')}
@@ -208,9 +211,28 @@ function Footer() {
 function PageAd() {
   const path = usePath();
   const status = useStore((s) => s.room?.status);
-  const quiet = ['/entrar', '/redefinir', '/conta', '/privacidade', '/contato'].some((p) => path.startsWith(p));
+  const quiet = ['/entrar', '/redefinir', '/conta', '/privacidade', '/contato', '/apoiar'].some((p) => path.startsWith(p));
   if (quiet || (path.startsWith('/sala') && status !== 'post_dispute')) return null;
-  return <AdSlot />;
+  return (
+    <>
+      <aside className="support-strip">
+        <span>
+          <strong>Curtiu o Leilão FC?</strong> O jogo é gratuito e feito por uma pessoa só.
+        </span>
+        <a
+          className="btn btn-sm btn-primary"
+          href="/apoiar"
+          onClick={(e) => {
+            e.preventDefault();
+            navigate('/apoiar');
+          }}
+        >
+          Apoiar com Pix
+        </a>
+      </aside>
+      <AdSlot />
+    </>
+  );
 }
 
 export function App() {

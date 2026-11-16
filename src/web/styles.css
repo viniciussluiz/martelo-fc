@@ -421,6 +421,65 @@ p {
   line-height: 1.5;
 }
 
+/* Apoio por Pix */
+.support-strip {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 8px 16px;
+  margin: 26px auto 0;
+  max-width: 780px;
+  padding: 10px 14px;
+  background: var(--paper);
+  border: 3px solid var(--ink);
+  border-radius: var(--r-m);
+  box-shadow: var(--lift-s);
+  text-align: center;
+}
+.pix-box {
+  display: grid;
+  grid-template-columns: minmax(180px, 260px) minmax(0, 1fr);
+  gap: 20px;
+  align-items: start;
+  padding: 16px;
+  background: var(--paper);
+  border: 3px solid var(--ink);
+  border-radius: var(--r-m);
+  box-shadow: var(--lift-s);
+}
+@media (max-width: 620px) {
+  .pix-box {
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+}
+.pix-qr {
+  width: 100%;
+  max-width: 260px;
+  border: 3px solid var(--ink);
+  border-radius: 10px;
+}
+.pix-side {
+  display: grid;
+  gap: 12px;
+  justify-items: start;
+}
+.pix-key {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 4px 12px;
+  margin: 0;
+}
+.pix-key dt {
+  color: var(--ink-2);
+}
+.pix-key dd {
+  margin: 0;
+  font-family: var(--f-sport);
+  font-weight: 800;
+}
+
 /* Espaço de anúncio (fora da área de jogo) */
 .ad-slot {
   margin: 22px auto 0;
