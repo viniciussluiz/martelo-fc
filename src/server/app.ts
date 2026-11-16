@@ -15,6 +15,7 @@ import { loadCrests, loadCrestSources, resolveCrests, type CrestSources } from '
 import { migrate, openDatabase, type DB } from './db.js';
 import { adsenseHead, clientBuildId, HttpError, RateLimiter, readJson, Router, securityHeaders, sendJson, serveStatic, type Ctx } from './http.js';
 import { createLogger, type Logger } from './log.js';
+import { applySeo } from '../shared/seo.js';
 import { RoomManager } from './rooms/room-manager.js';
 import type { RoomActor } from './rooms/room-actor.js';
 import { AchievementService } from './services/achievements.js';
@@ -336,7 +337,7 @@ export async function createApp(overrides: Partial<ServerConfig> = {}, logger?: 
       res.end(`google.com, ${config.adsense.client.replace(/^ca-/, '')}, DIRECT, f08c47fec0942fa0\n`);
       return;
     }
-    if ((req.method === 'GET' || req.method === 'HEAD') && serveStatic(config.staticDir, url.pathname, res, { headers, ...(adsHead ? { head: adsHead } : {}) })) return;
+    if ((req.method === 'GET' || req.method === 'HEAD') && serveStatic(config.staticDir, url.pathname, res, { headers, page: (html, path) => applySeo(html, path, config.publicUrl), ...(adsHead ? { head: adsHead } : {}) })) return;
     res.writeHead(404, { 'content-type': 'text/plain; charset=utf-8' });
     res.end('Cliente não compilado. Rode `npm run build` ou use `npm run dev`.');
   });

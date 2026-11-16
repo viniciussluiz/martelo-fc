@@ -10,9 +10,11 @@ import { socket } from './lib/socket';
 import { persistToken, store, useStore } from './lib/store';
 import { AdSlot, CookieNotice } from './components/Ads';
 import { useSiteInfo } from './lib/site';
+import { pageMeta } from '../shared/seo';
 import { AccountPage } from './pages/AccountPage';
 import { AboutPage, ContactPage, PrivacyPage } from './pages/InfoPages';
 import { SupportPage } from './pages/SupportPage';
+import { HowToPlayPage } from './pages/HowToPlayPage';
 import { AuthPage } from './pages/AuthPage';
 import { ResetPage } from './pages/ResetPage';
 import { HomePage } from './pages/HomePage';
@@ -168,6 +170,7 @@ function Routes() {
   if (matchPath('/redefinir', path)) return <ResetPage />;
   if (matchPath('/conta', path)) return <AccountPage />;
   if (matchPath('/regras', path)) return <RulesPage />;
+  if (matchPath('/como-jogar', path)) return <HowToPlayPage />;
   if (matchPath('/apoiar', path)) return <SupportPage />;
   if (matchPath('/sobre', path)) return <AboutPage />;
   if (matchPath('/contato', path)) return <ContactPage />;
@@ -194,7 +197,8 @@ function Footer() {
       <nav className="app-footer-links" aria-label="Institucional">
         {link('/apoiar', 'Apoie')}
         {link('/sobre', 'Sobre')}
-        {link('/regras', 'Como funciona')}
+        {link('/como-jogar', 'Como jogar')}
+        {link('/regras', 'Regras')}
         {link('/contato', 'Contato')}
         {link('/privacidade', 'Privacidade')}
       </nav>
@@ -235,8 +239,19 @@ function PageAd() {
   );
 }
 
+/** Ao navegar, a aba e o resumo da página acompanham a rota (o servidor já entrega certo no primeiro carregamento). */
+function usePageMeta() {
+  const path = usePath();
+  useEffect(() => {
+    const meta = pageMeta(path);
+    document.title = meta.title;
+    document.querySelector('meta[name="description"]')?.setAttribute('content', meta.description);
+  }, [path]);
+}
+
 export function App() {
   useBoot();
+  usePageMeta();
   return (
     <div className="shell">
       <TopBar />

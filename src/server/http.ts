@@ -157,7 +157,7 @@ export function serveStatic(
   staticDir: string,
   pathname: string,
   res: ServerResponse,
-  opts: { headers?: Record<string, string>; head?: string } = {},
+  opts: { headers?: Record<string, string>; head?: string; page?: (html: string, pathname: string) => string } = {},
 ): boolean {
   const root = resolve(staticDir);
   if (!existsSync(join(root, 'index.html'))) return false;
@@ -173,8 +173,13 @@ export function serveStatic(
     ...(opts.headers ?? SECURITY_HEADERS),
   });
   // A página leva no <head> o que o servidor acrescenta (ex.: o código do AdSense).
-  if (opts.head && file === join(root, 'index.html')) res.end(readFileSync(file, 'utf8').replace('</head>', `${opts.head}</head>`));
-  else createReadStream(file).pipe(res);
+  if ((opts.head || opts.page) && file === join(root, 'index.html')) {
+    let html = readFileSync(file, 'utf8');
+    // Título, resumo e endereço oficial de cada rota (a mesma página serve todas).
+    if (opts.page) html = opts.page(html, pathname);
+    if (opts.head) html = html.replace('</head>', `${opts.head}</head>`);
+    res.end(html);
+  } else createReadStream(file).pipe(res);
   return true;
 }
 
