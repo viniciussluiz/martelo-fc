@@ -8,6 +8,7 @@ import { Countdown, REACH_LABEL, useNow } from '../common';
 import { CHAMPION_ART, ChampionModal } from './Champion';
 import { matchMinute, MatchPitch, useMatchTimeline } from './MatchPitch';
 import { RivalRecord } from './RivalRecord';
+import { PenaltyDots, ShootoutFeed, ShootoutGoal, shootoutScore, shootoutState } from './Shootout';
 import { SquadPitch } from './Squad';
 import { TeamCrest } from '../crest/TeamCrest';
 import { Confetti, PosChip } from '../ui';
@@ -64,8 +65,16 @@ export function LiveMatch({
     // O minuto narrado é o do relógio na hora em que o lance passa no campo.
     .map(({ e, at }) => ({ ...e, minute: Math.min(90, Math.floor(at)) }))
     .reverse();
+  // Empate em mata-mata: depois do apito, a disputa de pênaltis passa cobrança por cobrança.
+  const so = over ? shootoutState(match, tickMs, now - (tickStartedAt + playMs)) : null;
+  const pens = so ? shootoutScore(match.penaltyKicks!, so.done) : null;
+  const soWinner = so?.over ? (match.penalties!.home > match.penalties!.away ? 'home' : 'away') : null;
+  const youWon = so
+    ? !!soWinner && (soWinner === 'home' ? match.homeId : match.awayId) === you
+    : (match.homeId === you && match.homeGoals > match.awayGoals) || (match.awayId === you && match.awayGoals > match.homeGoals);
+  const finished = over && (!so || so.over);
   return (
-    <div className="live" data-state={over ? 'fim' : 'live'}>
+    <div className="live" data-state={finished ? 'fim' : 'live'}>
       <div className="live-score">
         <div className="live-team" data-me={match.homeId === you}>
           <span className="live-crest" key={`hc${home}`} data-scored={home > 0 || undefined}>
@@ -74,18 +83,32 @@ export function LiveMatch({
           <span className="live-team-name">{match.homeName}</span>
         </div>
         <div className="live-board">
-          {match.stage && <span className="live-stage">{match.stage}</span>}
-          <span className="live-goals" aria-label={`${home} a ${away}`}>
-            <span className="live-digit" key={`h${home}`}>
-              {home}
+          {(match.stage || pens) && (
+            <span className="live-stage">
+              {[match.stage, pens ? `${home} : ${away} no tempo normal` : null].filter(Boolean).join(' · ')}
+            </span>
+          )}
+          <span className="live-goals" aria-label={pens ? `Pênaltis: ${pens.home} a ${pens.away}` : `${home} a ${away}`}>
+            <span className="live-digit" key={`h${pens ? `p${pens.home}` : home}`}>
+              {pens ? pens.home : home}
             </span>
             <span className="live-x">:</span>
-            <span className="live-digit" key={`a${away}`}>
-              {away}
+            <span className="live-digit" key={`a${pens ? `p${pens.away}` : away}`}>
+              {pens ? pens.away : away}
             </span>
           </span>
-          <span className="live-state" data-state={over ? 'fim' : 'live'}>
-            {over ? (match.penalties ? `Pênaltis ${match.penalties.home}×${match.penalties.away}` : 'Fim de jogo') : `Ao vivo · ${minute}'`}
+          <span className="live-state" data-state={finished ? 'fim' : 'live'}>
+            {so
+              ? so.over
+                ? `Fim · ${soWinner === 'home' ? match.homeName : match.awayName} vence nos pênaltis`
+                : so.current === null
+                  ? 'Vai para os pênaltis'
+                  : `Pênaltis · ${so.current + 1}ª cobrança`
+              : over
+                ? match.penalties
+                  ? `Pênaltis ${match.penalties.home}×${match.penalties.away}`
+                  : 'Fim de jogo'
+                : `Ao vivo · ${minute}'`}
           </span>
         </div>
         <div className="live-team away" data-me={match.awayId === you}>
@@ -96,11 +119,17 @@ export function LiveMatch({
         </div>
         <ScoreSheet side="home" goals={sheetGoals} cards={sheetCards} />
         <ScoreSheet side="away" goals={sheetGoals} cards={sheetCards} />
-        {over && ((match.homeId === you && match.homeGoals > match.awayGoals) || (match.awayId === you && match.awayGoals > match.homeGoals)) && (
+        {finished && youWon && (
           <Confetti seed={match.homeGoals * 7 + match.awayGoals} count={20} />
         )}
       </div>
       <RivalRecord you={you} homeId={match.homeId} awayId={match.awayId} opponentName={match.homeId === you ? match.awayName : match.homeName} />
+      {so ? (
+        <div className="live-body">
+          <ShootoutGoal match={match} state={so} tickMs={tickMs} />
+          <ShootoutFeed match={match} state={so} />
+        </div>
+      ) : (
       <div className="live-body">
         <MatchPitch match={match} timeline={timeline} tickStartedAt={tickStartedAt} playMs={playMs} />
         <div className="live-feed">
@@ -119,6 +148,7 @@ export function LiveMatch({
           </ul>
         </div>
       </div>
+      )}
       <div className="live-bar">
         <span style={{ width: `${(Math.min(90, exact) / 90) * 100}%` }} />
       </div>
@@ -180,13 +210,14 @@ export function playTime(tickMs: number): number {
  * Enquanto o jogo da rodada passa na tela, o resto (tabela, artilharia, resultados, chaves da copa)
  * continua como estava antes dela; o resultado novo aparece no apito final.
  */
-export function useAfterWhistle<T>(value: T, tickStartedAt: number, tickMs: number): T {
+export function useAfterWhistle<T>(value: T, tickStartedAt: number, tickMs: number, extraMs = 0): T {
   const now = useNow(250);
   const store = useRef<{ tick: number; before: T; current: T } | null>(null);
   if (!store.current) store.current = { tick: tickStartedAt, before: value, current: value };
   else if (store.current.tick !== tickStartedAt) store.current = { tick: tickStartedAt, before: store.current.current, current: value };
   else store.current.current = value;
-  return now < tickStartedAt + playTime(tickMs) ? store.current.before : store.current.current;
+  // extraMs: disputa de pênaltis depois do apito (chaves e fases só mudam quando ela acaba).
+  return now < tickStartedAt + playTime(tickMs) + extraMs ? store.current.before : store.current.current;
 }
 
 const TACTICS = [
@@ -537,8 +568,11 @@ function LiveRound({
             const a = over || !tl ? m.awayGoals : sofar.filter((g) => g.side === 'away').length;
             // Mesmo tempo do “GOL!” no campo: some na saída de bola do meio-campo.
             const flash = !over && tl ? tl.goals.find((g) => exact >= g.t && exact < Math.min(g.until, g.t + tl.goalShow))?.side : undefined;
-            const pens = over && m.penalties ? m.penalties : null;
-            const lead = pens ? (pens.home > pens.away ? 'home' : 'away') : h > a ? 'home' : a > h ? 'away' : null;
+            // Disputa de pênaltis: as bolinhas andam no mesmo ritmo da disputa que passa no campo.
+            const so = over ? shootoutState(m, tickMs, now - (tickStartedAt + playMs)) : null;
+            const pens = so ? shootoutScore(m.penaltyKicks!, so.done) : over && m.penalties ? m.penalties : null;
+            const settled = !so || so.over;
+            const lead = pens ? (settled && pens.home !== pens.away ? (pens.home > pens.away ? 'home' : 'away') : null) : h > a ? 'home' : a > h ? 'away' : null;
             return (
               <li key={m.id} data-me={isMine(m, you) || undefined}>
                 <span className="sc-time" data-state={over ? 'fim' : 'live'}>
@@ -547,8 +581,14 @@ function LiveRound({
                 <ScoreLine id={m.homeId} name={m.homeName} goals={h} lead={lead === 'home'} flash={flash === 'home'} me={m.homeId === you} />
                 <ScoreLine id={m.awayId} name={m.awayName} goals={a} lead={lead === 'away'} flash={flash === 'away'} me={m.awayId === you} />
                 {pens && (
-                  <span className="sc-note">
+                  <span className="sc-note" data-live={!settled || undefined}>
                     Pênaltis {pens.home}×{pens.away}
+                    {so && (
+                      <span className="sc-pens">
+                        <PenaltyDots kicks={m.penaltyKicks!} side="home" state={so} mini />
+                        <PenaltyDots kicks={m.penaltyKicks!} side="away" state={so} mini />
+                      </span>
+                    )}
                   </span>
                 )}
               </li>
@@ -781,21 +821,72 @@ function Bracket({ ties, names, you, championId }: { ties: CupTie[]; names: Reco
   );
 }
 
+/**
+ * Intervalo entre a liga e a copa: assim que a última rodada termina na tela, a sala inteira vê a
+ * festa do campeão da liga, com a contagem para a copa; o anfitrião pode começar antes.
+ * Fica fora das telas de liga e copa porque, durante o intervalo, é a da liga que continua no ar.
+ */
+export function CupIntro({ room }: { room: RoomView }) {
+  const d = room.dispute;
+  const now = useNow(250);
+  const [closed, setClosed] = useState<string | null>(null);
+  const lg = d?.league;
+  if (!d || !d.cupIntro || !lg || !d.cup) return null;
+  const champion = lg.table[0];
+  if (!champion || now < lg.tickStartedAt + playTime(lg.tickMs)) return null;
+  const isHost = room.hostUserId === room.you;
+  if (closed === d.id) {
+    return (
+      <div className="notice" data-kind="done">
+        <strong>{d.cup.name} começa em</strong>
+        <Countdown deadline={d.cupIntro.startsAt} urgentAt={5} />
+        {isHost && (
+          <button type="button" className="btn btn-sm btn-primary" onClick={() => void act({ t: 'cup:start-now' })}>
+            Começar agora
+          </button>
+        )}
+      </div>
+    );
+  }
+  return (
+    <ChampionModal
+      champions={[
+        {
+          art: CHAMPION_ART.liga!,
+          title: 'Campeão da liga',
+          teamId: champion.teamId,
+          name: champion.name,
+          userId: d.participants.find((p) => p.id === champion.teamId)?.userId ?? null,
+        },
+      ]}
+      seed={d.seq}
+      onClose={() => setClosed(d.id)}
+    >
+      <div className="champ-next">
+        <span>{d.cup.name} começa em</span>
+        <Countdown deadline={d.cupIntro.startsAt} urgentAt={5} />
+        {isHost ? (
+          <button type="button" className="btn btn-primary" onClick={() => void act({ t: 'cup:start-now' })}>
+            Começar a copa agora
+          </button>
+        ) : (
+          <span className="small">O anfitrião pode começar antes.</span>
+        )}
+      </div>
+    </ChampionModal>
+  );
+}
+
 export function CupScreen({ room }: { room: RoomView }) {
   const d = room.dispute!;
   const live = d.cup;
   // Chaves, grupos e resultados só mudam no apito final do jogo que está passando.
-  const c = useAfterWhistle(live, live?.tickStartedAt ?? 0, live?.tickMs ?? 0);
-  const phase = useAfterWhistle(d.phase, live?.tickStartedAt ?? 0, live?.tickMs ?? 0);
-  const [introClosed, setIntroClosed] = useState<string | null>(null);
+  const c = useAfterWhistle(live, live?.tickStartedAt ?? 0, live?.tickMs ?? 0, live?.shootoutMs ?? 0);
+  const phase = useAfterWhistle(d.phase, live?.tickStartedAt ?? 0, live?.tickMs ?? 0, live?.shootoutMs ?? 0);
   if (!live || !c) return d.league ? <LeagueScreen room={room} /> : null;
   const myReach = d.you ? c.reached[d.you] : undefined;
   const stages = STAGE_ORDER.filter((s) => s !== 'grupos' && c.ties.some((t) => t.stage === s));
   const featured = live.myLastMatch ?? live.lastResults[0] ?? null;
-  // Intervalo antes da copa: acabou a liga (a última rodada já passou na tela) e a sala festeja o campeão.
-  const leagueChampion = d.league?.table[0];
-  const intro = d.cupIntro && c === live && leagueChampion && introClosed !== d.id ? d.cupIntro : null;
-  const isHost = room.hostUserId === room.you;
   const tabs: Tab[] = [];
   if (c.groupTables) {
     tabs.push({
@@ -842,44 +933,6 @@ export function CupScreen({ room }: { room: RoomView }) {
           </span>
         )}
       </header>
-      {intro && leagueChampion && (
-        <ChampionModal
-          champions={[
-            {
-              art: CHAMPION_ART.liga!,
-              title: 'Campeão da liga',
-              teamId: leagueChampion.teamId,
-              name: leagueChampion.name,
-              userId: d.participants.find((p) => p.id === leagueChampion.teamId)?.userId ?? null,
-            },
-          ]}
-          seed={d.seq}
-          onClose={() => setIntroClosed(d.id)}
-        >
-          <div className="champ-next">
-            <span>{c.name} começa em</span>
-            <Countdown deadline={intro.startsAt} urgentAt={5} />
-            {isHost ? (
-              <button type="button" className="btn btn-primary" onClick={() => void act({ t: 'cup:start-now' })}>
-                Começar a copa agora
-              </button>
-            ) : (
-              <span className="small">O anfitrião pode começar antes.</span>
-            )}
-          </div>
-        </ChampionModal>
-      )}
-      {d.cupIntro && c === live && !intro && (
-        <div className="notice" data-kind="done">
-          <strong>{c.name} começa em</strong>
-          <Countdown deadline={d.cupIntro.startsAt} urgentAt={5} />
-          {isHost && (
-            <button type="button" className="btn btn-sm btn-primary" onClick={() => void act({ t: 'cup:start-now' })}>
-              Começar agora
-            </button>
-          )}
-        </div>
-      )}
       {phase === 'finished' && (
         <div className="notice" data-kind="done">
           <strong>Apito final.</strong>

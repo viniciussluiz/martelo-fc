@@ -5109,6 +5109,168 @@ li[data-award='mao-furada'] .award-icon {
   }
 }
 
+/* Disputa de pênaltis: o gol de frente, cobrança por cobrança */
+.pk-stage {
+  position: relative;
+  min-height: 300px;
+  overflow: hidden;
+  background: repeating-linear-gradient(90deg, #3b9a36 0 70px, #348c30 70px 140px);
+}
+.pk-stage svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.pk-ball-body,
+.pk-keeper-body {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+.pk-ball-body {
+  animation: pk-ball calc(var(--pk-per, 1500ms) * 0.55) cubic-bezier(0.2, 0.7, 0.3, 1) calc(var(--pk-per, 1500ms) * 0.08) both;
+}
+.pk-keeper-body {
+  animation: pk-keeper calc(var(--pk-per, 1500ms) * 0.45) ease-out calc(var(--pk-per, 1500ms) * 0.2) both;
+}
+.pk-stage[data-idle] .pk-ball-body,
+.pk-stage[data-idle] .pk-keeper-body {
+  animation: none;
+}
+@keyframes pk-ball {
+  to {
+    transform: translate(var(--pk-dx, 0), var(--pk-dy, 0)) scale(0.82);
+  }
+}
+@keyframes pk-keeper {
+  to {
+    transform: translate(var(--pk-kx, 0), var(--pk-ky, 0)) rotate(var(--pk-kr, 0deg));
+  }
+}
+.pk-caption {
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+.pk-kicker {
+  padding: 3px 10px;
+  background: var(--white);
+  border: 3px solid var(--ink);
+  border-radius: 10px;
+  font-family: var(--f-sport);
+  font-weight: 800;
+}
+.pk-stamp {
+  padding: 2px 14px;
+  border: 3px solid var(--ink);
+  border-radius: 10px;
+  font-family: var(--f-display);
+  font-size: 1.6rem;
+  line-height: 1.2;
+  animation: pk-stamp calc(var(--pk-per, 1500ms) * 0.2) ease-out calc(var(--pk-per, 1500ms) * 0.6) both;
+}
+.pk-stamp[data-r='gol'] {
+  background: var(--sun);
+  color: var(--ink);
+}
+.pk-stamp[data-r='erro'] {
+  background: #e5483a;
+  color: #fff;
+}
+@keyframes pk-stamp {
+  from {
+    opacity: 0;
+    transform: scale(1.5);
+  }
+}
+.pk-tally {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 8px 10px;
+  padding: 12px 14px;
+  border-bottom: 2px dashed rgba(36, 22, 12, 0.2);
+  font-family: var(--f-sport);
+  font-weight: 700;
+}
+.pk-tally-name {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.pk-dots {
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 5px;
+}
+.pk-dots i {
+  width: 22px;
+  height: 22px;
+  border: 3px solid var(--ink);
+  border-radius: 50%;
+  background: var(--paper);
+  display: grid;
+  place-items: center;
+  font-style: normal;
+  font-weight: 900;
+  font-size: 12px;
+  line-height: 1;
+  color: #fff;
+}
+.pk-dots i[data-r='gol'] {
+  background: var(--grass);
+}
+.pk-dots i[data-r='gol']::before {
+  content: '✓';
+}
+.pk-dots i[data-r='erro'] {
+  background: #e5483a;
+}
+.pk-dots i[data-r='erro']::before {
+  content: '✕';
+}
+.pk-dots i[data-now] {
+  box-shadow: 0 0 0 3px var(--sun);
+}
+.pk-dots[data-mini] {
+  gap: 2px;
+}
+.pk-dots[data-mini] i {
+  width: 10px;
+  height: 10px;
+  border-width: 2px;
+}
+.pk-dots[data-mini] i::before {
+  content: none;
+}
+.pk-dots[data-mini] i[data-now] {
+  box-shadow: 0 0 0 2px var(--sun);
+}
+.sc-pens {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-left: 8px;
+  vertical-align: middle;
+}
+@media (prefers-reduced-motion: reduce) {
+  .pk-ball-body,
+  .pk-keeper-body,
+  .pk-stamp {
+    animation-duration: 1ms;
+    animation-delay: 0ms;
+  }
+}
+
 /* Retrospecto contra o técnico adversário, entre o placar e o campo */
 .live-rival {
   display: flex;

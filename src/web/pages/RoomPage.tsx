@@ -7,7 +7,7 @@ import { CUP_FORMAT_LABEL } from '../components/common';
 import { AuctionScreen } from '../components/room/Auction';
 import { CeremonyScreen } from '../components/room/Ceremony';
 import { Lobby } from '../components/room/Lobby';
-import { CupScreen, LeagueScreen } from '../components/room/Matches';
+import { CupIntro, CupScreen, LeagueScreen } from '../components/room/Matches';
 import { PostDispute } from '../components/room/Summary';
 import { navigate } from '../lib/router';
 import { act, socket } from '../lib/socket';
@@ -92,6 +92,7 @@ export function RoomPage({ code }: { code: string }) {
           <span>Você entrou no meio desta disputa. No fim dela, dá para entrar no próximo ciclo.</span>
         </div>
       )}
+      <CupIntro room={room} />
       <div className="phase-screen" key={screen}>
         {screen === 'auction' && <AuctionScreen room={room} />}
         {screen === 'ceremony' && <CeremonyScreen room={room} />}

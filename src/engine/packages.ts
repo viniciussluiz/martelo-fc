@@ -11,7 +11,8 @@ import { FORMATIONS, POSITIONS, QUALITY_BANDS, type Card, type Position, type Qu
  *  - cada técnico leva no máximo um pacote por setor;
  *  - todo pacote tem pelo menos um jogador a mais do que a formação mais exigente pede
  *    no setor (goleiros 2, laterais 3, zagueiros 3, meias 5, atacantes 4), para sempre haver escolha;
- *  - pacotes muito grandes são cortados (sorteio) para a convocação caber na tela;
+ *  - pacotes muito grandes são cortados para a convocação caber na tela: os melhores do clube no
+ *    setor ficam sempre (ninguém leva o Bayern sem o Beckenbauer) e o resto das vagas é sorteado;
  *  - uma pessoa nunca aparece em dois pacotes do mesmo leilão;
  *  - o lote mistura clubes fortes, médios e fracos (terços, pela força do pacote) e tem pelo
  *    menos um pacote com Lenda quando o baralho permite.
@@ -37,8 +38,10 @@ export const PACK_MIN: Record<Position, number> = Object.fromEntries(POSITIONS.m
   number
 >;
 
-/** Tamanho máximo de um pacote (clubes enormes no baralho são cortados por sorteio). */
+/** Tamanho máximo de um pacote (clubes enormes no baralho são cortados). */
 export const PACK_MAX = 10;
+/** No corte, quantos dos melhores do clube no setor têm vaga garantida; o resto é sorteio. */
+export const PACK_KEEP = 5;
 
 export const SECTOR_LABEL: Record<Position, string> = {
   GOL: 'Goleiros',
@@ -102,7 +105,11 @@ export function buildClubPackages(params: { participants: number; deck: Card[]; 
       byClub.set(c.club, list);
     }
     const toCandidate = (club: string, all: Card[]): Candidate => {
-      const cut = all.length > PACK_MAX ? rng.shuffle(all).slice(0, PACK_MAX) : all.slice();
+      let cut = all.slice();
+      if (all.length > PACK_MAX) {
+        const ranked = all.slice().sort((x, y) => mid(y) - mid(x) || x.id.localeCompare(y.id));
+        cut = [...ranked.slice(0, PACK_KEEP), ...rng.shuffle(ranked.slice(PACK_KEEP)).slice(0, PACK_MAX - PACK_KEEP)];
+      }
       return { club, all, cards: cut, strength: packageStrength(cut, pos) };
     };
     let candidates = [...byClub.entries()].filter(([, l]) => l.length >= PACK_MIN[pos]).map(([club, l]) => toCandidate(club, l));

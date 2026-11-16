@@ -35,6 +35,7 @@ import type { Logger } from '../log.js';
 import type { ResultsService } from '../services/results.js';
 import { TIMINGS, type Timing } from './timing.js';
 import { MATCH_SECONDS } from '../../shared/protocol.js';
+import { shootoutMs } from '../../shared/shootout.js';
 import { buildRoomView } from './views.js';
 import { CPU_TEAM_NAMES } from '../../shared/teams.js';
 import { userCrests } from '../services/team-crests.js';
@@ -184,6 +185,8 @@ export class RoomActor {
   lastTickMatchIds: string[] = [];
   /** Intervalo entre a liga e a copa: a sala mostra o campeão da liga e conta o tempo até o 1º jogo da copa. */
   cupIntro = false;
+  /** Cobranças da disputa de pênaltis mais longa da última rodada da copa (0 = nenhuma). */
+  lastShootoutKicks = 0;
   paused = false;
   private pausedAt = 0;
   private abandonTimer: NodeJS.Timeout | null = null;
@@ -864,6 +867,11 @@ export class RoomActor {
     this.broadcast();
   }
 
+  /** Quanto a rodada atual da copa se alonga para a disputa de pênaltis passar na tela. */
+  shootoutExtraMs(): number {
+    return this.dispute?.cup && this.dispute.phase !== 'league' ? shootoutMs(this.lastShootoutKicks, this.timing.cupMatchdayMs) : 0;
+  }
+
   private startLeague() {
     const d = this.dispute;
     if (!d || d.phase !== 'ceremony') return;
@@ -872,6 +880,7 @@ export class RoomActor {
     const now = Date.now();
     this.tickStartedAt = now;
     this.lastTickMatchIds = [];
+    this.lastShootoutKicks = 0;
     this.cupIntro = false;
     // A 1ª rodada começa logo (as seguintes esperam o jogo anterior acabar na tela).
     this.nextTickAt = now + Math.min(this.timing.leagueRoundMs, 3_000);
@@ -892,15 +901,18 @@ export class RoomActor {
       this.nextTickAt = now + (this.cupIntro ? this.timing.leagueRoundMs + this.timing.cupIntroMs : this.timing.leagueRoundMs);
     } else if (d.phase === 'cup') {
       this.cupIntro = false;
-      this.lastTickMatchIds = d.playCupMatchday().map((m) => m.id);
+      const played = d.playCupMatchday();
+      this.lastTickMatchIds = played.map((m) => m.id);
       this.tickStartedAt = now;
-      this.nextTickAt = now + this.timing.cupMatchdayMs;
+      // Jogo decidido nos pênaltis: a rodada espera a disputa passar na tela, cobrança por cobrança.
+      this.lastShootoutKicks = Math.max(0, ...played.map((m) => m.penaltyKicks?.length ?? 0));
+      this.nextTickAt = now + this.timing.cupMatchdayMs + this.shootoutExtraMs();
     }
     if (d.phase === 'finished') {
       // Deixa o último jogo “acontecer” na tela antes do resumo.
       this.persistDispute(true);
       this.broadcast();
-      this.schedule(this.timing.cupMatchdayMs, () => this.finalize());
+      this.schedule(this.timing.cupMatchdayMs + this.shootoutExtraMs(), () => this.finalize());
       return;
     }
     this.persistDispute();

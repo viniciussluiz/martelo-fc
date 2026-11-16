@@ -9,7 +9,7 @@ import type { PregaoAward } from '../engine/awards.js';
 import type { CupReach, CupTie } from '../engine/cup.js';
 import type { DisputePhase, DisputeResult } from '../engine/dispute.js';
 import type { StandingRow } from '../engine/league.js';
-import type { MatchEvent, Goal, RedCard, SetPieceTakers } from '../engine/match.js';
+import type { MatchEvent, Goal, PenaltyKick, RedCard, SetPieceTakers } from '../engine/match.js';
 import type { CrestConfig } from './crest.js';
 import type { AcquisitionSource, AuctionMode, CupFormat, Formation, Position, Series, SeriesScope, Tactic, Tier } from '../engine/types.js';
 
@@ -217,6 +217,8 @@ export interface MatchView {
   homeGoals: number;
   awayGoals: number;
   penalties?: { home: number; away: number };
+  /** A disputa de pênaltis, cobrança por cobrança. */
+  penaltyKicks?: PenaltyKick[];
   goals: Goal[];
   /** Expulsões do jogo (raras). */
   redCards?: RedCard[];
@@ -276,6 +278,8 @@ export interface CupView {
   playerStats: Record<string, Record<string, [number, number]>>;
   tickStartedAt: number;
   tickMs: number;
+  /** Tempo a mais desta rodada, depois do apito, para a disputa de pênaltis mais longa passar na tela. */
+  shootoutMs: number;
 }
 
 export interface CeremonyView {

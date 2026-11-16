@@ -323,6 +323,7 @@ function matchView(
     goals: m.goals,
   };
   if (m.penalties) v.penalties = m.penalties;
+  if (m.penaltyKicks?.length) v.penaltyKicks = m.penaltyKicks;
   if (m.redCards?.length) v.redCards = m.redCards;
   if (withEvents && m.events) v.events = m.events;
   if (squadOf) v.lineups = lineupsOf(m, squadOf, captainOf);
@@ -399,5 +400,6 @@ function cupView(room: RoomActor, myPid: string, names: Record<string, string>):
     playerStats: playerStats(Object.values(s.results), new Set(d.participants.map((p) => p.id))),
     tickStartedAt: room.tickStartedAt,
     tickMs: d.phase === 'cup' ? room.timing.cupMatchdayMs : room.timing.leagueRoundMs,
+    shootoutMs: room.shootoutExtraMs(),
   };
 }

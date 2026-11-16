@@ -89,7 +89,26 @@ export interface MatchResult {
   /** Expulsões do jogo (raras; ausente quando não houve). */
   redCards?: RedCard[];
   penalties?: { home: number; away: number };
+  /** A disputa de pênaltis, cobrança por cobrança (na ordem em que foram batidas). */
+  penaltyKicks?: PenaltyKick[];
   events?: MatchEvent[];
+}
+
+export type KickOutcome = 'gol' | 'defesa' | 'trave' | 'fora';
+
+/** Uma cobrança da disputa de pênaltis. */
+export interface PenaltyKick {
+  side: 'home' | 'away';
+  cardId: string;
+  name: string;
+  outcome: KickOutcome;
+  text: string;
+}
+
+export interface Shootout {
+  home: number;
+  away: number;
+  kicks: PenaltyKick[];
 }
 
 export interface SimulateParams {
@@ -399,7 +418,9 @@ export function simulateMatch(params: SimulateParams): MatchResult {
   if (reds.length) result.redCards = reds;
 
   if (params.needWinner && homeGoals === awayGoals) {
-    result.penalties = shootout(rng, h, a);
+    const so = shootout(rng, h, a, home, away, { home: sides[0]!.takers.penalti, away: sides[1]!.takers.penalti }, reds);
+    result.penalties = { home: so.home, away: so.away };
+    result.penaltyKicks = so.kicks;
   }
 
   if (params.withEvents) {
@@ -517,28 +538,85 @@ export function simulateMatch(params: SimulateParams): MatchResult {
 }
 
 /** Disputa de pênaltis isolada (usada no fim de confrontos de ida e volta). */
-export function penaltyShootout(rng: Rng, home: TeamSheet, away: TeamSheet): { home: number; away: number } {
-  return shootout(rng, rateTeam(home, rng), rateTeam(away, rng));
+export function penaltyShootout(rng: Rng, home: TeamSheet, away: TeamSheet, takers: { home?: string; away?: string } = {}): Shootout {
+  return shootout(rng, rateTeam(home, rng), rateTeam(away, rng), home, away, takers, []);
 }
 
-function shootout(rng: Rng, h: Sectors, a: Sectors): { home: number; away: number } {
-  const pHome = Math.min(0.88, Math.max(0.6, 0.75 + (h.att - a.def) / 200));
-  const pAway = Math.min(0.88, Math.max(0.6, 0.75 + (a.att - h.def) / 200));
-  let home = 0;
-  let away = 0;
-  for (let i = 0; i < 5; i++) {
-    if (rng.next() < pHome) home++;
-    if (rng.next() < pAway) away++;
+// As frases não dizem canto nem altura: quem desenha a cobrança na tela escolhe o lado.
+const KICK_TEXT: Record<KickOutcome, string[]> = {
+  gol: [
+    '{p} desloca o goleiro. Gol.',
+    '{p} bate forte e converte.',
+    '{p} com categoria: bola de um lado, goleiro do outro.',
+    '{p} bate firme, sem chance para o goleiro.',
+    '{p} converte com tranquilidade.',
+  ],
+  defesa: ['{p} bate e o goleiro espalma!', 'O goleiro adivinha o canto e pega a cobrança de {p}!', '{p} para nas mãos do goleiro!'],
+  trave: ['{p} carimba a trave!', '{p} acerta a trave e a bola sai!'],
+  fora: ['{p} manda para fora!', '{p} desperdiça: a bola passa longe do gol!'],
+};
+const KICK_RANK: Record<Position, number> = { ATA: 0, MEI: 1, LAT: 2, ZAG: 3, GOL: 4 };
+
+/** Fila de batedores: o cobrador escolhido abre, depois ataque, meio, laterais, zaga e, por último, o goleiro. */
+function kickOrder(team: TeamSheet, taker: string | undefined, out: Set<string>): SquadPlayer[] {
+  const list = team.squad.filter((p) => !out.has(p.cardId));
+  const pool = list.length ? list : team.squad;
+  return pool
+    .slice()
+    .sort(
+      (x, y) =>
+        Number(y.cardId === taker) - Number(x.cardId === taker) ||
+        KICK_RANK[x.position] - KICK_RANK[y.position] ||
+        y.levelMin + y.levelMax - (x.levelMin + x.levelMax) ||
+        x.cardId.localeCompare(y.cardId),
+    );
+}
+
+/**
+ * Disputa de pênaltis, cobrança por cobrança: cinco para cada lado, alternadas (para quando um time
+ * não alcança mais o outro) e, se seguir empatada, uma de cada até alguém errar sozinho.
+ */
+function shootout(rng: Rng, h: Sectors, a: Sectors, home: TeamSheet, away: TeamSheet, takers: { home?: string; away?: string }, reds: RedCard[]): Shootout {
+  const p = {
+    home: Math.min(0.88, Math.max(0.6, 0.75 + (h.att - a.def) / 200)),
+    away: Math.min(0.88, Math.max(0.6, 0.75 + (a.att - h.def) / 200)),
+  };
+  const outOf = (side: 'home' | 'away') => new Set(reds.filter((r) => r.side === side).map((r) => r.cardId));
+  const queue = { home: kickOrder(home, takers.home, outOf('home')), away: kickOrder(away, takers.away, outOf('away')) };
+  const taken = { home: 0, away: 0 };
+  const score = { home: 0, away: 0 };
+  const kicks: PenaltyKick[] = [];
+  const first: 'home' | 'away' = rng.next() < 0.5 ? 'home' : 'away';
+  const second: 'home' | 'away' = first === 'home' ? 'away' : 'home';
+  const kick = (side: 'home' | 'away', forced?: boolean) => {
+    const list = queue[side];
+    const player = list[taken[side] % list.length]!;
+    taken[side]++;
+    const scored = forced ?? rng.next() < p[side];
+    const miss = rng.next();
+    const outcome: KickOutcome = scored ? 'gol' : miss < 0.6 ? 'defesa' : miss < 0.8 ? 'trave' : 'fora';
+    if (scored) score[side]++;
+    kicks.push({ side, cardId: player.cardId, name: player.name, outcome, text: fill(rng.pick(KICK_TEXT[outcome]), player.name) });
+  };
+  // Série de cinco: acaba antes quando a vantagem já não pode ser tirada.
+  const decided = () => score.home - score.away > 5 - taken.away || score.away - score.home > 5 - taken.home;
+  for (let i = 0; i < 5 && !decided(); i++) {
+    kick(first);
+    if (decided()) break;
+    kick(second);
   }
+  // Alternadas: uma para cada lado até o placar desempatar.
   let guard = 0;
-  while (home === away && guard++ < 30) {
-    const hs = rng.next() < pHome;
-    const as = rng.next() < pAway;
-    if (hs) home++;
-    if (as) away++;
+  while (score.home === score.away) {
+    if (guard++ < 30) {
+      kick(first);
+      kick(second);
+    } else {
+      kick(first, true);
+      kick(second, false);
+    }
   }
-  if (home === away) home++;
-  return { home, away };
+  return { home: score.home, away: score.away, kicks };
 }
 
 /** Vencedor de um jogo único (considerando pênaltis). */

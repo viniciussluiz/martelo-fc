@@ -251,7 +251,10 @@ export class Cup {
         withEvents: home.human || away.human,
         rng: new Rng(`${s.seed}:${m.id}`),
       });
-      if (tie && tie.twoLegs && m.leg === 2) this.settleTwoLegTie(tie, result);
+      if (tie && tie.twoLegs && m.leg === 2) this.settleTwoLegTie(tie, result, {
+          ...(home.participantId && takers[home.participantId]?.penalti ? { home: takers[home.participantId]!.penalti } : {}),
+          ...(away.participantId && takers[away.participantId]?.penalti ? { away: takers[away.participantId]!.penalti } : {}),
+        });
       s.results[m.id] = result;
       if (tie && !tie.twoLegs) {
         tie.winnerId = matchWinner(result);
@@ -273,7 +276,7 @@ export class Cup {
     return out;
   }
 
-  private settleTwoLegTie(tie: CupTie, leg2: MatchResult) {
+  private settleTwoLegTie(tie: CupTie, leg2: MatchResult, takers: { home?: string; away?: string } = {}) {
     const leg1 = this.state.results[tie.legs[0]!]!;
     // Ida: a em casa. Volta: b em casa.
     const aGoals = leg1.homeGoals + leg2.awayGoals;
@@ -282,8 +285,9 @@ export class Cup {
     if (aGoals > bGoals) tie.winnerId = tie.aId;
     else if (bGoals > aGoals) tie.winnerId = tie.bId;
     else {
-      const pens = penaltyShootout(new Rng(`${this.state.seed}:${tie.id}:pen`), this.team(leg2.homeId), this.team(leg2.awayId));
-      leg2.penalties = pens;
+      const pens = penaltyShootout(new Rng(`${this.state.seed}:${tie.id}:pen`), this.team(leg2.homeId), this.team(leg2.awayId), takers);
+      leg2.penalties = { home: pens.home, away: pens.away };
+      leg2.penaltyKicks = pens.kicks;
       // leg2: home = b
       tie.penalties = { a: pens.away, b: pens.home };
       tie.winnerId = pens.home > pens.away ? tie.bId : tie.aId;

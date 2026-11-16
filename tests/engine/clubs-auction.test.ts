@@ -192,3 +192,19 @@ describe('leilão de clubes', () => {
     expect(lateSpend).toBeGreaterThan(6);
   });
 });
+
+describe('corte dos pacotes grandes', () => {
+  it('os melhores do clube no setor ficam sempre no pacote (Beckenbauer na zaga do Bayern)', () => {
+    let seen = 0;
+    for (let i = 0; i < 40; i++) {
+      const { packages, cards } = buildClubPackages({ participants: 9, deck: REAL, seed: `corte${i}` });
+      const bayern = packages.find((p) => p.club === 'Bayern de Munique' && p.position === 'ZAG');
+      if (!bayern) continue;
+      seen++;
+      expect(bayern.cardIds.length).toBeLessThanOrEqual(PACK_MAX);
+      const names = bayern.cardIds.map((id) => cards.find((c) => c.id === id)!.name);
+      expect(names, `semente corte${i}`).toContain('Franz Beckenbauer');
+    }
+    expect(seen).toBeGreaterThan(0);
+  });
+});

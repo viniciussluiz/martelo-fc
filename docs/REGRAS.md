@@ -83,6 +83,8 @@ Igual ao leilão de clubes, mas cada lote é um **setor de uma seleção** (os a
 - Taça Continental: G8 + 24 clubes; 8 grupos de 4 (turno e returno); oitavas, quartas e semi em ida e volta; final única.
 - Torneio Mundial: igual, mas grupos em turno único e mata-mata em jogo único.
 
+Mata-mata empatado em jogo único (ou no agregado da ida e volta) vai para os pênaltis, e a disputa passa na tela cobrança por cobrança, em todo jogo, com ou sem técnico: cinco para cada lado, alternadas, parando quando um time não alcança mais o outro; se seguir empatada, uma de cada até alguém errar sozinho. O batedor de pênalti escolhido abre a série do time, depois vêm ataque, meio, laterais e zaga, e o goleiro fica por último; expulso não bate. A rodada seguinte espera a disputa mais longa terminar (cerca de 1,5 s por cobrança).
+
 Quando a liga termina, a sala festeja o campeão em tela cheia e abre um intervalo de 30 s (15 s no turbo) antes da copa. O anfitrião pode começar a copa na hora. O mata-mata aparece como chaveamento, da primeira fase até a final: quem passou fica em destaque e quem saiu fica apagado.
 - Ranking do ciclo: número de títulos; depois posição na liga; depois fase da copa.
 
