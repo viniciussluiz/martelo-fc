@@ -7,6 +7,7 @@ import { useId, useMemo, useRef, useState, type KeyboardEvent, type ReactNode } 
 import { Countdown, REACH_LABEL, useNow } from '../common';
 import { CHAMPION_ART, ChampionModal } from './Champion';
 import { matchMinute, MatchPitch, useMatchTimeline } from './MatchPitch';
+import { RivalRecord } from './RivalRecord';
 import { SquadPitch } from './Squad';
 import { TeamCrest } from '../crest/TeamCrest';
 import { Confetti, PosChip } from '../ui';
@@ -99,6 +100,7 @@ export function LiveMatch({
           <Confetti seed={match.homeGoals * 7 + match.awayGoals} count={20} />
         )}
       </div>
+      <RivalRecord you={you} homeId={match.homeId} awayId={match.awayId} opponentName={match.homeId === you ? match.awayName : match.homeName} />
       <div className="live-body">
         <MatchPitch match={match} timeline={timeline} tickStartedAt={tickStartedAt} playMs={playMs} />
         <div className="live-feed">

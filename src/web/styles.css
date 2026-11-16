@@ -5109,6 +5109,56 @@ li[data-award='mao-furada'] .award-icon {
   }
 }
 
+/* Retrospecto contra o técnico adversário, entre o placar e o campo */
+.live-rival {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 6px 12px;
+  padding: 7px 12px;
+  background: #1c1408;
+  border-top: 3px solid var(--ink);
+  color: rgba(255, 255, 255, 0.88);
+  font-family: var(--f-sport);
+  font-weight: 700;
+  font-size: 0.92rem;
+}
+.live-rival-rec {
+  display: inline-flex;
+  gap: 5px;
+}
+.live-rival-rec b {
+  padding: 1px 7px 0;
+  border: 2px solid #000;
+  border-radius: 6px;
+  font-family: var(--f-led);
+  font-weight: 400;
+  color: #1c1408;
+}
+.live-rival-rec [data-r='V'] {
+  background: var(--grass-hi);
+}
+.live-rival-rec [data-r='E'] {
+  background: var(--led-dim);
+}
+.live-rival-rec [data-r='D'] {
+  background: #ff6b5a;
+}
+.live-rival-verdict {
+  padding: 1px 9px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.14);
+}
+.live-rival[data-tone='up'] .live-rival-verdict {
+  background: var(--grass-hi);
+  color: #10240f;
+}
+.live-rival[data-tone='down'] .live-rival-verdict {
+  background: #ff6b5a;
+  color: #2a0d08;
+}
+
 .live-body {
   display: grid;
   grid-template-columns: minmax(0, 1.6fr) minmax(200px, 1fr);
