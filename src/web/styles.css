@@ -4938,6 +4938,18 @@ li[data-state='lacrado'] .rt-state {
   height: 100%;
   border-radius: 9px;
 }
+.legend-figure img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 9px;
+  object-fit: cover;
+  object-position: 50% 30%;
+  background: var(--ink);
+}
+.legend-figure[data-art='wide'] img {
+  object-position: 50% 0;
+}
 .legend-crown {
   position: absolute;
   top: -14px;

@@ -150,7 +150,7 @@ export function SquadPitch({
           >
             {legend && (
               <span className="field-hex">
-                <LegendFigure club={card.club} kit={card.kit} size={48} />
+                <LegendFigure club={card.club} kit={card.kit} cardId={card.id} size={48} />
               </span>
             )}
             <span className="field-pos">{slot.pos}</span>

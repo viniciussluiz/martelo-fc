@@ -124,7 +124,7 @@ export function CardFace({ card, children, compact, band }: { card: CardView; ch
         </div>
       )}
       <div className="sticker-row">
-        {legend && <LegendFigure club={card.club} kit={card.kit} size={compact ? 32 : 40} />}
+        {legend && <LegendFigure club={card.club} kit={card.kit} cardId={card.id} size={compact ? 36 : 48} />}
         <CardIdentity card={card} crestSize={compact ? 22 : 40} />
         {children}
       </div>

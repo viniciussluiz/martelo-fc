@@ -1,9 +1,10 @@
 import { memo, useId } from 'react';
+import { legendArtUrl } from '../lib/legendArt';
 
 /**
  * Figura da Lenda: só aparece depois do martelo, quando a carta vendida é uma Lenda.
- * Não retrata o jogador: rosto amarelo (sem tom de pele), sem cabelo nem traços, com a
- * camisa nas cores do clube. Jogadores comuns não têm figura nenhuma.
+ * Quando a Lenda tem retrato ilustrado (lib/legendArt), mostra o retrato; senão, a figura
+ * genérica de rosto amarelo com a camisa nas cores do clube. Jogadores comuns não têm figura.
  */
 
 const PATTERNS = ['liso', 'listras', 'faixa', 'metade', 'aros'] as const;
@@ -46,10 +47,31 @@ interface Props {
   club: string;
   kit?: [string, string] | undefined;
   size?: number;
+  /** Id da carta: usado para achar o retrato ilustrado da Lenda, quando existe. */
+  cardId?: string | undefined;
+  /** Retrato largo (com a bandeira), para a carta grande da revelação. */
+  wide?: boolean;
 }
 
-function LegendFigureImpl({ club, kit, size = 64 }: Props) {
+const CROWN = (
+  <span className="legend-crown" aria-hidden="true">
+    <svg viewBox="0 0 24 24">
+      <path d="M3 8l4.5 4L12 5l4.5 7L21 8l-2 11H5L3 8z" />
+    </svg>
+  </span>
+);
+
+function LegendFigureImpl({ club, kit, size = 64, cardId, wide }: Props) {
   const uid = useId().replace(/:/g, '');
+  const art = legendArtUrl(cardId);
+  if (art) {
+    return (
+      <span className="legend-figure" data-art={wide ? 'wide' : 'square'} style={{ width: wide ? Math.round(size * 1.5) : size, height: size }} role="img" aria-label="Lenda">
+        <img src={art} alt="" loading="lazy" decoding="async" />
+        {CROWN}
+      </span>
+    );
+  }
   const hc = hash(club);
   const [primary, secondaryRaw] = kit ?? FALLBACK_KITS[hc % FALLBACK_KITS.length]!;
   // Garante contraste entre as duas cores da camisa.
