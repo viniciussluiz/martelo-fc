@@ -66,7 +66,7 @@ function LegendFigureImpl({ club, kit, size = 64, cardId, wide }: Props) {
   const art = legendArtUrl(cardId);
   if (art) {
     return (
-      <span className="legend-figure" data-art={wide ? 'wide' : 'square'} style={{ width: wide ? Math.round(size * 1.5) : size, height: size }} role="img" aria-label="Lenda">
+      <span className="legend-figure" data-art={wide ? 'wide' : 'square'} style={{ width: wide ? Math.round(size * 1.3) : size, height: size }} role="img" aria-label="Lenda">
         <img src={art} alt="" loading="lazy" decoding="async" />
         {CROWN}
       </span>

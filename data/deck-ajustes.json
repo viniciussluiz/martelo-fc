@@ -26,6 +26,786 @@
         100
       ],
       "motivo": "Os dois maiores do baralho ficam acima do teto das outras Lendas (93–98)."
+    },
+    {
+      "id": "wd-Q2712945-Q38568-1949",
+      "jogador": "Rui Campos",
+      "faixa": [
+        84,
+        90
+      ],
+      "tier": "craque",
+      "motivo": "Rebaixado de Lenda para Craque (prata) a pedido: fica só o grupo principal de Lendas."
+    },
+    {
+      "id": "wd-Q133903-Q1130849-2018",
+      "jogador": "Virgil van Dijk",
+      "faixa": [
+        83,
+        89
+      ],
+      "tier": "craque",
+      "motivo": "Rebaixado de Lenda para Craque (prata) a pedido: fica só o grupo principal de Lendas."
+    },
+    {
+      "id": "wd-Q535520-Q188277-1970",
+      "jogador": "Wilson Piazza",
+      "faixa": [
+        83,
+        89
+      ],
+      "tier": "craque",
+      "motivo": "Rebaixado de Lenda para Craque (prata) a pedido: fica só o grupo principal de Lendas."
+    },
+    {
+      "id": "wd-Q2321775-Q35933-1976",
+      "jogador": "Zé Maria",
+      "faixa": [
+        84,
+        90
+      ],
+      "tier": "craque",
+      "motivo": "Rebaixado de Lenda para Craque (prata) a pedido: fica só o grupo principal de Lendas."
+    },
+    {
+      "id": "wd-Q180553-Q9617-2015",
+      "jogador": "Alexis Sánchez",
+      "faixa": [
+        83,
+        89
+      ],
+      "tier": "craque",
+      "motivo": "Rebaixado de Lenda para Craque (prata) a pedido: fica só o grupo principal de Lendas."
+    },
+    {
+      "id": "wd-Q192671-Q1422-2014",
+      "jogador": "Arturo Vidal",
+      "faixa": [
+        83,
+        89
+      ],
+      "tier": "craque",
+      "motivo": "Rebaixado de Lenda para Craque (prata) a pedido: fica só o grupo principal de Lendas."
+    },
+    {
+      "id": "wd-Q44298-Q15789-2011",
+      "jogador": "Bastian Schweinsteiger",
+      "faixa": [
+        84,
+        90
+      ],
+      "tier": "craque",
+      "motivo": "Rebaixado de Lenda para Craque (prata) a pedido: fica só o grupo principal de Lendas."
+    },
+    {
+      "id": "wd-Q703634-Q38568-1952",
+      "jogador": "Bauer",
+      "faixa": [
+        84,
+        90
+      ],
+      "tier": "craque",
+      "motivo": "Rebaixado de Lenda para Craque (prata) a pedido: fica só o grupo principal de Lendas."
+    },
+    {
+      "id": "wd-Q58323172-Q506832-2020",
+      "jogador": "Bruno Guimarães",
+      "faixa": [
+        83,
+        89
+      ],
+      "tier": "craque",
+      "motivo": "Rebaixado de Lenda para Craque (prata) a pedido: fica só o grupo principal de Lendas."
+    },
+    {
+      "id": "wd-Q17499-Q9617-2011",
+      "jogador": "Cesc Fàbregas",
+      "faixa": [
+        83,
+        89
+      ],
+      "tier": "craque",
+      "motivo": "Rebaixado de Lenda para Craque (prata) a pedido: fica só o grupo principal de Lendas."
+    },
+    {
+      "id": "wd-Q168497-Q2739-2010",
+      "jogador": "Daniele De Rossi",
+      "faixa": [
+        83,
+        89
+      ],
+      "tier": "craque",
+      "motivo": "Rebaixado de Lenda para Craque (prata) a pedido: fica só o grupo principal de Lendas."
+    },
+    {
+      "id": "wd-Q161069-Q50602-2013",
+      "jogador": "David Silva",
+      "faixa": [
+        84,
+        90
+      ],
+      "tier": "craque",
+      "motivo": "Rebaixado de Lenda para Craque (prata) a pedido: fica só o grupo principal de Lendas."
+    },
+    {
+      "id": "wd-Q659634-Q80987-2010",
+      "jogador": "Deco",
+      "faixa": [
+        83,
+        89
+      ],
+      "tier": "craque",
+      "motivo": "Rebaixado de Lenda para Craque (prata) a pedido: fica só o grupo principal de Lendas."
+    },
+    {
+      "id": "wd-Q508711-Q1422-1995",
+      "jogador": "Didier Deschamps",
+      "faixa": [
+        83,
+        89
+      ],
+      "tier": "craque",
+      "motivo": "Rebaixado de Lenda para Craque (prata) a pedido: fica só o grupo principal de Lendas."
+    },
+    {
+      "id": "wd-Q2268949-Q270995-2020",
+      "jogador": "Eduardo Vargas",
+      "faixa": [
+        84,
+        90
+      ],
+      "tier": "craque",
+      "motivo": "Rebaixado de Lenda para Craque (prata) a pedido: fica só o grupo principal de Lendas."
+    },
+    {
+      "id": "wd-Q225837-Q35933-1997",
+      "jogador": "Freddy Rincón",
+      "faixa": [
+        84,
+        90
+      ],
+      "tier": "craque",
+      "motivo": "Rebaixado de Lenda para Craque (prata) a pedido: fica só o grupo principal de Lendas."
+    },
+    {
+      "id": "wd-Q68050-Q1422-1955",
+      "jogador": "Giampiero Boniperti",
+      "faixa": [
+        84,
+        90
+      ],
+      "tier": "craque",
+      "motivo": "Rebaixado de Lenda para Craque (prata) a pedido: fica só o grupo principal de Lendas."
+    },
+    {
+      "id": "wd-Q230046-Q1543-1970",
+      "jogador": "Gianni Rivera",
+      "faixa": [
+        84,
+        90
+      ],
+      "tier": "craque",
+      "motivo": "Rebaixado de Lenda para Craque (prata) a pedido: fica só o grupo principal de Lendas."
+    },
+    {
+      "id": "wd-Q13578003-Q17479-2021",
+      "jogador": "Giorgian de Arrascaeta",
+      "faixa": [
+        84,
+        90
+      ],
+      "tier": "craque",
+      "motivo": "Rebaixado de Lenda para Craque (prata) a pedido: fica só o grupo principal de Lendas."
+    },
+    {
+      "id": "wd-Q115453-Q7156-2015",
+      "jogador": "Ivan Rakitić",
+      "faixa": [
+        83,
+        89
+      ],
+      "tier": "craque",
+      "motivo": "Rebaixado de Lenda para Craque (prata) a pedido: fica só o grupo principal de Lendas."
+    },
+    {
+      "id": "wd-Q978042-Q80964-1949",
+      "jogador": "Jair Rosa Pinto",
+      "faixa": [
+        84,
+        90
+      ],
+      "tier": "craque",
+      "motivo": "Rebaixado de Lenda para Craque (prata) a pedido: fica só o grupo principal de Lendas."
+    },
+    {
+      "id": "wd-Q151025-Q41420-2012",
+      "jogador": "Jakub Błaszczykowski",
+      "faixa": [
+        83,
+        89
+      ],
+      "tier": "craque",
+      "motivo": "Rebaixado de Lenda para Craque (prata) a pedido: fica só o grupo principal de Lendas."
+    },
+    {
+      "id": "wd-Q931197-Q17479-1958",
+      "jogador": "Joel Antônio Martins",
+      "faixa": [
+        83,
+        89
+      ],
+      "tier": "craque",
+      "motivo": "Rebaixado de Lenda para Craque (prata) a pedido: fica só o grupo principal de Lendas."
+    },
+    {
+      "id": "wd-Q166984-Q9616-2014",
+      "jogador": "John Obi Mikel",
+      "faixa": [
+        84,
+        90
+      ],
+      "tier": "craque",
+      "motivo": "Rebaixado de Lenda para Craque (prata) a pedido: fica só o grupo principal de Lendas."
+    },
+    {
+      "id": "wd-Q273715-Q1130849-2017",
+      "jogador": "Jordan Henderson",
+      "faixa": [
+        84,
+        90
+      ],
+      "tier": "craque",
+      "motivo": "Rebaixado de Lenda para Craque (prata) a pedido: fica só o grupo principal de Lendas."
+    },
+    {
+      "id": "wd-Q47314-Q80964-1986",
+      "jogador": "Jorginho Putinatti",
+      "faixa": [
+        84,
+        90
+      ],
+      "tier": "craque",
+      "motivo": "Rebaixado de Lenda para Craque (prata) a pedido: fica só o grupo principal de Lendas."
+    },
+    {
+      "id": "wd-Q378101-Q35933-1998",
+      "jogador": "Marcelinho Carioca",
+      "faixa": [
+        83,
+        89
+      ],
+      "tier": "craque",
+      "motivo": "Rebaixado de Lenda para Craque (prata) a pedido: fica só o grupo principal de Lendas."
+    },
+    {
+      "id": "wd-Q201825-Q2641-2014",
+      "jogador": "Marek Hamšík",
+      "faixa": [
+        84,
+        90
+      ],
+      "tier": "craque",
+      "motivo": "Rebaixado de Lenda para Craque (prata) a pedido: fica só o grupo principal de Lendas."
+    },
+    {
+      "id": "wd-Q83488-Q9617-2015",
+      "jogador": "Mesut Özil",
+      "faixa": [
+        84,
+        90
+      ],
+      "tier": "craque",
+      "motivo": "Rebaixado de Lenda para Craque (prata) a pedido: fica só o grupo principal de Lendas."
+    },
+    {
+      "id": "wd-Q11948-Q15789-2003",
+      "jogador": "Michael Ballack",
+      "faixa": [
+        84,
+        90
+      ],
+      "tier": "craque",
+      "motivo": "Rebaixado de Lenda para Craque (prata) a pedido: fica só o grupo principal de Lendas."
+    },
+    {
+      "id": "wd-Q46347-Q9617-2003",
+      "jogador": "Patrick Vieira",
+      "faixa": [
+        84,
+        90
+      ],
+      "tier": "craque",
+      "motivo": "Rebaixado de Lenda para Craque (prata) a pedido: fica só o grupo principal de Lendas."
+    },
+    {
+      "id": "wd-Q129027-Q18656-2020",
+      "jogador": "Paul Pogba",
+      "faixa": [
+        83,
+        89
+      ],
+      "tier": "craque",
+      "motivo": "Rebaixado de Lenda para Craque (prata) a pedido: fica só o grupo principal de Lendas."
+    },
+    {
+      "id": "wd-Q171295-Q1422-1999",
+      "jogador": "Pavel Nedvěd",
+      "faixa": [
+        83,
+        89
+      ],
+      "tier": "craque",
+      "motivo": "Rebaixado de Lenda para Craque (prata) a pedido: fica só o grupo principal de Lendas."
+    },
+    {
+      "id": "wd-Q8338725-Q50602-2018",
+      "jogador": "Riyad Mahrez",
+      "faixa": [
+        83,
+        89
+      ],
+      "tier": "craque",
+      "motivo": "Rebaixado de Lenda para Craque (prata) a pedido: fica só o grupo principal de Lendas."
+    },
+    {
+      "id": "wd-Q54094-Q8682-2014",
+      "jogador": "Sami Khedira",
+      "faixa": [
+        83,
+        89
+      ],
+      "tier": "craque",
+      "motivo": "Rebaixado de Lenda para Craque (prata) a pedido: fica só o grupo principal de Lendas."
+    },
+    {
+      "id": "wd-Q314856-Q631-1969",
+      "jogador": "Sandro Mazzola",
+      "faixa": [
+        84,
+        90
+      ],
+      "tier": "craque",
+      "motivo": "Rebaixado de Lenda para Craque (prata) a pedido: fica só o grupo principal de Lendas."
+    },
+    {
+      "id": "wd-Q552917-Q270995-1982",
+      "jogador": "Toninho Cerezo",
+      "faixa": [
+        83,
+        89
+      ],
+      "tier": "craque",
+      "motivo": "Rebaixado de Lenda para Craque (prata) a pedido: fica só o grupo principal de Lendas."
+    },
+    {
+      "id": "wd-Q124086-Q81888-2007",
+      "jogador": "Wesley Sneijder",
+      "faixa": [
+        83,
+        89
+      ],
+      "tier": "craque",
+      "motivo": "Rebaixado de Lenda para Craque (prata) a pedido: fica só o grupo principal de Lendas."
+    },
+    {
+      "id": "wd-Q208104-Q8682-2009",
+      "jogador": "Xabi Alonso",
+      "faixa": [
+        84,
+        90
+      ],
+      "tier": "craque",
+      "motivo": "Rebaixado de Lenda para Craque (prata) a pedido: fica só o grupo principal de Lendas."
+    },
+    {
+      "id": "wd-Q204555-Q17479-1992",
+      "jogador": "Zinho",
+      "faixa": [
+        83,
+        89
+      ],
+      "tier": "craque",
+      "motivo": "Rebaixado de Lenda para Craque (prata) a pedido: fica só o grupo principal de Lendas."
+    },
+    {
+      "id": "wd-Q455462-Q8701-2018",
+      "jogador": "Antoine Griezmann",
+      "faixa": [
+        84,
+        90
+      ],
+      "tier": "craque",
+      "motivo": "Rebaixado de Lenda para Craque (prata) a pedido: fica só o grupo principal de Lendas."
+    },
+    {
+      "id": "wd-Q1378184-Q35933-1953",
+      "jogador": "Baltazar Silva",
+      "faixa": [
+        84,
+        90
+      ],
+      "tier": "craque",
+      "motivo": "Rebaixado de Lenda para Craque (prata) a pedido: fica só o grupo principal de Lendas."
+    },
+    {
+      "id": "wd-Q83006-Q10333-2008",
+      "jogador": "David Villa",
+      "faixa": [
+        84,
+        90
+      ],
+      "tier": "craque",
+      "motivo": "Rebaixado de Lenda para Craque (prata) a pedido: fica só o grupo principal de Lendas."
+    },
+    {
+      "id": "wd-Q261534-Q8701-2007",
+      "jogador": "Diego Forlán",
+      "faixa": [
+        84,
+        90
+      ],
+      "tier": "craque",
+      "motivo": "Rebaixado de Lenda para Craque (prata) a pedido: fica só o grupo principal de Lendas."
+    },
+    {
+      "id": "wd-Q214204-Q9616-2018",
+      "jogador": "Eden Hazard",
+      "faixa": [
+        84,
+        90
+      ],
+      "tier": "craque",
+      "motivo": "Rebaixado de Lenda para Craque (prata) a pedido: fica só o grupo principal de Lendas."
+    },
+    {
+      "id": "wd-Q153786-Q2739-2015",
+      "jogador": "Edin Džeko",
+      "faixa": [
+        83,
+        89
+      ],
+      "tier": "craque",
+      "motivo": "Rebaixado de Lenda para Craque (prata) a pedido: fica só o grupo principal de Lendas."
+    },
+    {
+      "id": "wd-Q167790-Q483020-2014",
+      "jogador": "Edinson Cavani",
+      "faixa": [
+        84,
+        90
+      ],
+      "tier": "craque",
+      "motivo": "Rebaixado de Lenda para Craque (prata) a pedido: fica só o grupo principal de Lendas."
+    },
+    {
+      "id": "wd-Q386876-Q9617-2009",
+      "jogador": "Emmanuel Adebayor",
+      "faixa": [
+        83,
+        89
+      ],
+      "tier": "craque",
+      "motivo": "Rebaixado de Lenda para Craque (prata) a pedido: fica só o grupo principal de Lendas."
+    },
+    {
+      "id": "wd-Q42731-Q8701-2007",
+      "jogador": "Fernando Torres",
+      "faixa": [
+        84,
+        90
+      ],
+      "tier": "craque",
+      "motivo": "Rebaixado de Lenda para Craque (prata) a pedido: fica só o grupo principal de Lendas."
+    },
+    {
+      "id": "wd-Q2713004-Q80964-1952",
+      "jogador": "Francisco Rodrigues",
+      "faixa": [
+        84,
+        90
+      ],
+      "tier": "craque",
+      "motivo": "Rebaixado de Lenda para Craque (prata) a pedido: fica só o grupo principal de Lendas."
+    },
+    {
+      "id": "wd-Q720548-Q5014111-1953",
+      "jogador": "Friaça",
+      "faixa": [
+        84,
+        90
+      ],
+      "tier": "craque",
+      "motivo": "Rebaixado de Lenda para Craque (prata) a pedido: fica só o grupo principal de Lendas."
+    },
+    {
+      "id": "wd-Q47778-Q18741-1989",
+      "jogador": "Gary Lineker",
+      "faixa": [
+        84,
+        90
+      ],
+      "tier": "craque",
+      "motivo": "Rebaixado de Lenda para Craque (prata) a pedido: fica só o grupo principal de Lendas."
+    },
+    {
+      "id": "wd-Q173139-Q1543-1995",
+      "jogador": "George Weah",
+      "faixa": [
+        84,
+        90
+      ],
+      "tier": "craque",
+      "motivo": "Rebaixado de Lenda para Craque (prata) a pedido: fica só o grupo principal de Lendas."
+    },
+    {
+      "id": "wd-Q735449-Q80958-1947",
+      "jogador": "Heleno de Freitas",
+      "faixa": [
+        84,
+        90
+      ],
+      "tier": "craque",
+      "motivo": "Rebaixado de Lenda para Craque (prata) a pedido: fica só o grupo principal de Lendas."
+    },
+    {
+      "id": "wd-Q368441-Q8682-2018",
+      "jogador": "James Rodríguez",
+      "faixa": [
+        84,
+        90
+      ],
+      "tier": "craque",
+      "motivo": "Rebaixado de Lenda para Craque (prata) a pedido: fica só o grupo principal de Lendas."
+    },
+    {
+      "id": "wd-Q2294406-Q80955-1976",
+      "jogador": "Jonas Eduardo Américo",
+      "faixa": [
+        85,
+        91
+      ],
+      "tier": "craque",
+      "motivo": "Rebaixado de Lenda para Craque (prata) a pedido: fica só o grupo principal de Lendas."
+    },
+    {
+      "id": "wd-Q187198-Q1130849-1978",
+      "jogador": "Kenny Dalglish",
+      "faixa": [
+        84,
+        90
+      ],
+      "tier": "craque",
+      "motivo": "Rebaixado de Lenda para Craque (prata) a pedido: fica só o grupo principal de Lendas."
+    },
+    {
+      "id": "wd-Q2538560-Q80964-1938",
+      "jogador": "Luís Mesquita",
+      "faixa": [
+        83,
+        89
+      ],
+      "tier": "craque",
+      "motivo": "Rebaixado de Lenda para Craque (prata) a pedido: fica só o grupo principal de Lendas."
+    },
+    {
+      "id": "wd-Q483457-Q80987-2003",
+      "jogador": "Magno Alves",
+      "faixa": [
+        84,
+        90
+      ],
+      "tier": "craque",
+      "motivo": "Rebaixado de Lenda para Craque (prata) a pedido: fica só o grupo principal de Lendas."
+    },
+    {
+      "id": "wd-Q22951255-Q18656-2024",
+      "jogador": "Marcus Rashford",
+      "faixa": [
+        84,
+        90
+      ],
+      "tier": "craque",
+      "motivo": "Rebaixado de Lenda para Craque (prata) a pedido: fica só o grupo principal de Lendas."
+    },
+    {
+      "id": "wd-Q45766-Q15789-2012",
+      "jogador": "Mario Gómez",
+      "faixa": [
+        84,
+        90
+      ],
+      "tier": "craque",
+      "motivo": "Rebaixado de Lenda para Craque (prata) a pedido: fica só o grupo principal de Lendas."
+    },
+    {
+      "id": "wd-Q197729-Q270995-2000",
+      "jogador": "Marques",
+      "faixa": [
+        83,
+        89
+      ],
+      "tier": "craque",
+      "motivo": "Rebaixado de Lenda para Craque (prata) a pedido: fica só o grupo principal de Lendas."
+    },
+    {
+      "id": "wd-Q1894-Q35933-2024",
+      "jogador": "Memphis Depay",
+      "faixa": [
+        85,
+        91
+      ],
+      "tier": "craque",
+      "motivo": "Rebaixado de Lenda para Craque (prata) a pedido: fica só o grupo principal de Lendas."
+    },
+    {
+      "id": "wd-Q128829-Q1130849-2004",
+      "jogador": "Michael Owen",
+      "faixa": [
+        84,
+        90
+      ],
+      "tier": "craque",
+      "motivo": "Rebaixado de Lenda para Craque (prata) a pedido: fica só o grupo principal de Lendas."
+    },
+    {
+      "id": "wd-Q1911-Q9617-2013",
+      "jogador": "Olivier Giroud",
+      "faixa": [
+        83,
+        89
+      ],
+      "tier": "craque",
+      "motivo": "Rebaixado de Lenda para Craque (prata) a pedido: fica só o grupo principal de Lendas."
+    },
+    {
+      "id": "wd-Q20851003-Q7156-2023",
+      "jogador": "Ousmane Dembélé",
+      "faixa": [
+        83,
+        89
+      ],
+      "tier": "craque",
+      "motivo": "Rebaixado de Lenda para Craque (prata) a pedido: fica só o grupo principal de Lendas."
+    },
+    {
+      "id": "wd-Q156802-Q35933-2012",
+      "jogador": "Paolo Guerrero",
+      "faixa": [
+        84,
+        90
+      ],
+      "tier": "craque",
+      "motivo": "Rebaixado de Lenda para Craque (prata) a pedido: fica só o grupo principal de Lendas."
+    },
+    {
+      "id": "wd-Q552922-Q80958-1972",
+      "jogador": "Paulo Cézar Caju",
+      "faixa": [
+        84,
+        90
+      ],
+      "tier": "craque",
+      "motivo": "Rebaixado de Lenda para Craque (prata) a pedido: fica só o grupo principal de Lendas."
+    },
+    {
+      "id": "wd-Q516417-Q38568-1970",
+      "jogador": "Pedro Rocha",
+      "faixa": [
+        84,
+        90
+      ],
+      "tier": "craque",
+      "motivo": "Rebaixado de Lenda para Craque (prata) a pedido: fica só o grupo principal de Lendas."
+    },
+    {
+      "id": "wd-Q311872-Q5014111-2024",
+      "jogador": "Philippe Coutinho",
+      "faixa": [
+        84,
+        90
+      ],
+      "tier": "craque",
+      "motivo": "Rebaixado de Lenda para Craque (prata) a pedido: fica só o grupo principal de Lendas."
+    },
+    {
+      "id": "wd-Q44977-Q41420-2016",
+      "jogador": "Pierre-Emerick Aubameyang",
+      "faixa": [
+        83,
+        89
+      ],
+      "tier": "craque",
+      "motivo": "Rebaixado de Lenda para Craque (prata) a pedido: fica só o grupo principal de Lendas."
+    },
+    {
+      "id": "wd-Q456600-Q80987-1937",
+      "jogador": "Preguinho",
+      "faixa": [
+        83,
+        89
+      ],
+      "tier": "craque",
+      "motivo": "Rebaixado de Lenda para Craque (prata) a pedido: fica só o grupo principal de Lendas."
+    },
+    {
+      "id": "wd-Q312157-Q50602-2021",
+      "jogador": "Raheem Sterling",
+      "faixa": [
+        83,
+        89
+      ],
+      "tier": "craque",
+      "motivo": "Rebaixado de Lenda para Craque (prata) a pedido: fica só o grupo principal de Lendas."
+    },
+    {
+      "id": "wd-Q614391-Q80958-1970",
+      "jogador": "Roberto Miranda",
+      "faixa": [
+        84,
+        90
+      ],
+      "tier": "craque",
+      "motivo": "Rebaixado de Lenda para Craque (prata) a pedido: fica só o grupo principal de Lendas."
+    },
+    {
+      "id": "wd-Q2538550-Q80958-1942",
+      "jogador": "Rodolfo Barteczko",
+      "faixa": [
+        83,
+        89
+      ],
+      "tier": "craque",
+      "motivo": "Rebaixado de Lenda para Craque (prata) a pedido: fica só o grupo principal de Lendas."
+    },
+    {
+      "id": "wd-Q209942-Q1130849-2019",
+      "jogador": "Sadio Mané",
+      "faixa": [
+        84,
+        90
+      ],
+      "tier": "craque",
+      "motivo": "Rebaixado de Lenda para Craque (prata) a pedido: fica só o grupo principal de Lendas."
+    },
+    {
+      "id": "wd-Q439722-Q18741-2019",
+      "jogador": "Son Heung-min",
+      "faixa": [
+        84,
+        90
+      ],
+      "tier": "craque",
+      "motivo": "Rebaixado de Lenda para Craque (prata) a pedido: fica só o grupo principal de Lendas."
+    },
+    {
+      "id": "wd-Q44340-Q15789-1979",
+      "jogador": "Uli Hoeneß",
+      "faixa": [
+        84,
+        90
+      ],
+      "tier": "craque",
+      "motivo": "Rebaixado de Lenda para Craque (prata) a pedido: fica só o grupo principal de Lendas."
     }
   ],
   "incluir": [
@@ -72,9 +852,9 @@
       "position": "MEI",
       "club": "Bolton",
       "year": 2003,
-      "levelMin": 88,
-      "levelMax": 93,
-      "tier": "lenda",
+      "levelMin": 83,
+      "levelMax": 89,
+      "tier": "craque",
       "hint": "No Bolton em 2003. 30 anos em 2003. 75 jogos pela seleção.",
       "kit": [
         "#FFFFFF",
@@ -126,9 +906,9 @@
       "position": "MEI",
       "club": "Deportivo La Coruña",
       "year": 2000,
-      "levelMin": 88,
-      "levelMax": 93,
-      "tier": "lenda",
+      "levelMin": 83,
+      "levelMax": 89,
+      "tier": "craque",
       "hint": "No Deportivo La Coruña em 2000. 30 anos em 2000. 14 jogos pela seleção.",
       "kit": [
         "#0A4DA2",
@@ -144,9 +924,9 @@
       "position": "ATA",
       "club": "Porto",
       "year": 1999,
-      "levelMin": 89,
-      "levelMax": 94,
-      "tier": "lenda",
+      "levelMin": 84,
+      "levelMax": 90,
+      "tier": "craque",
       "hint": "No Porto em 1999. 26 anos em 1999. 10 jogos pela seleção.",
       "kit": [
         "#003893",
@@ -216,9 +996,9 @@
       "position": "MEI",
       "club": "Milan",
       "year": 1994,
-      "levelMin": 90,
-      "levelMax": 95,
-      "tier": "lenda",
+      "levelMin": 84,
+      "levelMax": 90,
+      "tier": "craque",
       "hint": "No Milan em 1994. 28 anos em 1994. 56 jogos pela seleção.",
       "kit": [
         "#FB090B",
@@ -252,9 +1032,9 @@
       "position": "ATA",
       "club": "Inter de Milão",
       "year": 1997,
-      "levelMin": 88,
-      "levelMax": 93,
-      "tier": "lenda",
+      "levelMin": 83,
+      "levelMax": 89,
+      "tier": "craque",
       "hint": "Na Inter de Milão em 1997. 29 anos em 1997. 82 jogos pela seleção.",
       "kit": [
         "#0068A8",
@@ -270,9 +1050,9 @@
       "position": "MEI",
       "club": "Real Madrid",
       "year": 2000,
-      "levelMin": 90,
-      "levelMax": 95,
-      "tier": "lenda",
+      "levelMin": 84,
+      "levelMax": 90,
+      "tier": "craque",
       "hint": "No Real Madrid em 2000. 31 anos em 2000. 29 jogos pela seleção.",
       "kit": [
         "#FFFFFF",
@@ -288,9 +1068,9 @@
       "position": "MEI",
       "club": "Valencia",
       "year": 2001,
-      "levelMin": 88,
-      "levelMax": 93,
-      "tier": "lenda",
+      "levelMin": 83,
+      "levelMax": 89,
+      "tier": "craque",
       "hint": "No Valencia em 2001. 27 anos em 2001. 40 jogos pela seleção.",
       "kit": [
         "#FFFFFF",
@@ -324,9 +1104,9 @@
       "position": "ATA",
       "club": "Lazio",
       "year": 2001,
-      "levelMin": 90,
-      "levelMax": 95,
-      "tier": "lenda",
+      "levelMin": 84,
+      "levelMax": 90,
+      "tier": "craque",
       "hint": "Na Lazio em 2001. 26 anos em 2001. 64 jogos pela seleção.",
       "kit": [
         "#87D8F7",
@@ -342,9 +1122,9 @@
       "position": "MEI",
       "club": "Fiorentina",
       "year": 1999,
-      "levelMin": 89,
-      "levelMax": 94,
-      "tier": "lenda",
+      "levelMin": 84,
+      "levelMax": 90,
+      "tier": "craque",
       "hint": "Na Fiorentina em 1999. 27 anos em 1999. 94 jogos pela seleção.",
       "kit": [
         "#5B2B82",
@@ -360,9 +1140,9 @@
       "position": "ATA",
       "club": "Liverpool",
       "year": 1996,
-      "levelMin": 89,
-      "levelMax": 94,
-      "tier": "lenda",
+      "levelMin": 84,
+      "levelMax": 90,
+      "tier": "craque",
       "hint": "No Liverpool em 1996. 21 anos em 1996. 26 jogos pela seleção.",
       "kit": [
         "#C8102E",
@@ -378,9 +1158,9 @@
       "position": "ATA",
       "club": "Inter de Milão",
       "year": 1998,
-      "levelMin": 88,
-      "levelMax": 93,
-      "tier": "lenda",
+      "levelMin": 83,
+      "levelMax": 89,
+      "tier": "craque",
       "hint": "Na Inter de Milão em 1998. 31 anos em 1998. 69 jogos pela seleção.",
       "kit": [
         "#0068A8",
@@ -450,9 +1230,9 @@
       "position": "MEI",
       "club": "Ajax",
       "year": 1995,
-      "levelMin": 90,
-      "levelMax": 95,
-      "tier": "lenda",
+      "levelMin": 84,
+      "levelMax": 90,
+      "tier": "craque",
       "hint": "No Ajax em 1995. 24 anos em 1995. 137 jogos pela seleção.",
       "kit": [
         "#FFFFFF",
@@ -468,9 +1248,9 @@
       "position": "ATA",
       "club": "Sevilla",
       "year": 1993,
-      "levelMin": 88,
-      "levelMax": 93,
-      "tier": "lenda",
+      "levelMin": 83,
+      "levelMax": 89,
+      "tier": "craque",
       "hint": "No Sevilla em 1993. 25 anos em 1993. 69 jogos pela seleção.",
       "kit": [
         "#FFFFFF",
@@ -486,9 +1266,9 @@
       "position": "ATA",
       "club": "Real Madrid",
       "year": 1998,
-      "levelMin": 88,
-      "levelMax": 93,
-      "tier": "lenda",
+      "levelMin": 83,
+      "levelMax": 89,
+      "tier": "craque",
       "hint": "No Real Madrid em 1998. 29 anos em 1998. 64 jogos pela seleção.",
       "kit": [
         "#FFFFFF",
@@ -540,9 +1320,9 @@
       "position": "MEI",
       "club": "Nagoya Grampus",
       "year": 1995,
-      "levelMin": 88,
-      "levelMax": 93,
-      "tier": "lenda",
+      "levelMin": 83,
+      "levelMax": 89,
+      "tier": "craque",
       "hint": "No Nagoya Grampus em 1995. 30 anos em 1995. 84 jogos pela seleção.",
       "kit": [
         "#D80C18",
@@ -648,9 +1428,9 @@
       "position": "ATA",
       "club": "Deportivo La Coruña",
       "year": 2003,
-      "levelMin": 89,
-      "levelMax": 94,
-      "tier": "lenda",
+      "levelMin": 84,
+      "levelMax": 90,
+      "tier": "craque",
       "hint": "No Deportivo La Coruña em 2003. 28 anos em 2003. 43 jogos pela seleção.",
       "kit": [
         "#0A4DA2",
@@ -684,9 +1464,9 @@
       "position": "ATA",
       "club": "Real Madrid",
       "year": 2002,
-      "levelMin": 88,
-      "levelMax": 93,
-      "tier": "lenda",
+      "levelMin": 83,
+      "levelMax": 89,
+      "tier": "craque",
       "hint": "No Real Madrid em 2002. 26 anos em 2002. 47 jogos pela seleção.",
       "kit": [
         "#FFFFFF",
@@ -702,9 +1482,9 @@
       "position": "ATA",
       "club": "Arsenal",
       "year": 1999,
-      "levelMin": 88,
-      "levelMax": 93,
-      "tier": "lenda",
+      "levelMin": 83,
+      "levelMax": 89,
+      "tier": "craque",
       "hint": "No Arsenal em 1999. 20 anos em 1999. 69 jogos pela seleção.",
       "kit": [
         "#EF0107",
@@ -720,9 +1500,9 @@
       "position": "ATA",
       "club": "Chelsea",
       "year": 2001,
-      "levelMin": 88,
-      "levelMax": 93,
-      "tier": "lenda",
+      "levelMin": 83,
+      "levelMax": 89,
+      "tier": "craque",
       "hint": "No Chelsea em 2001. 29 anos em 2001. 23 jogos pela seleção.",
       "kit": [
         "#034694",
@@ -756,9 +1536,9 @@
       "position": "MEI",
       "club": "Arsenal",
       "year": 1998,
-      "levelMin": 88,
-      "levelMax": 93,
-      "tier": "lenda",
+      "levelMin": 83,
+      "levelMax": 89,
+      "tier": "craque",
       "hint": "No Arsenal em 1998. 28 anos em 1998. 63 jogos pela seleção.",
       "kit": [
         "#EF0107",
@@ -774,9 +1554,9 @@
       "position": "ATA",
       "club": "Barcelona",
       "year": 1999,
-      "levelMin": 89,
-      "levelMax": 94,
-      "tier": "lenda",
+      "levelMin": 84,
+      "levelMax": 90,
+      "tier": "craque",
       "hint": "No Barcelona em 1999. 23 anos em 1999. 79 jogos pela seleção.",
       "kit": [
         "#A50044",
@@ -828,9 +1608,9 @@
       "position": "ZAG",
       "club": "Inter de Milão",
       "year": 2010,
-      "levelMin": 88,
-      "levelMax": 93,
-      "tier": "lenda",
+      "levelMin": 83,
+      "levelMax": 89,
+      "tier": "craque",
       "hint": "Na Inter de Milão em 2010. 32 anos em 2010. 56 jogos pela seleção.",
       "kit": [
         "#0068A8",
@@ -864,9 +1644,9 @@
       "position": "ZAG",
       "club": "Valencia",
       "year": 2002,
-      "levelMin": 88,
-      "levelMax": 93,
-      "tier": "lenda",
+      "levelMin": 83,
+      "levelMax": 89,
+      "tier": "craque",
       "hint": "No Valencia em 2002. 29 anos em 2002. 115 jogos pela seleção.",
       "kit": [
         "#FFFFFF",
@@ -972,9 +1752,9 @@
       "position": "MEI",
       "club": "Lazio",
       "year": 2000,
-      "levelMin": 90,
-      "levelMax": 95,
-      "tier": "lenda",
+      "levelMin": 84,
+      "levelMax": 90,
+      "tier": "craque",
       "hint": "Na Lazio em 2000. 25 anos em 2000. 73 jogos pela seleção.",
       "kit": [
         "#87D8F7",
@@ -990,9 +1770,9 @@
       "position": "MEI",
       "club": "Inter de Milão",
       "year": 2010,
-      "levelMin": 88,
-      "levelMax": 93,
-      "tier": "lenda",
+      "levelMin": 83,
+      "levelMax": 89,
+      "tier": "craque",
       "hint": "Na Inter de Milão em 2010. 32 anos em 2010. 103 jogos pela seleção.",
       "kit": [
         "#0068A8",
@@ -1062,9 +1842,9 @@
       "position": "ATA",
       "club": "Atlético-MG",
       "year": 2013,
-      "levelMin": 89,
-      "levelMax": 94,
-      "tier": "lenda",
+      "levelMin": 84,
+      "levelMax": 90,
+      "tier": "craque",
       "hint": "No Atlético-MG em 2013. 28 anos em 2013. 2 jogos pela seleção.",
       "kit": [
         "#111111",
@@ -1116,9 +1896,9 @@
       "position": "ATA",
       "club": "Flamengo",
       "year": 1981,
-      "levelMin": 88,
-      "levelMax": 93,
-      "tier": "lenda",
+      "levelMin": 83,
+      "levelMax": 89,
+      "tier": "craque",
       "hint": "No Flamengo em 1981. 27 anos em 1981. 6 jogos pela seleção.",
       "kit": [
         "#C8102E",
@@ -1134,9 +1914,9 @@
       "position": "MEI",
       "club": "Flamengo",
       "year": 1981,
-      "levelMin": 88,
-      "levelMax": 93,
-      "tier": "lenda",
+      "levelMin": 83,
+      "levelMax": 89,
+      "tier": "craque",
       "hint": "No Flamengo em 1981. 24 anos em 1981. 11 jogos pela seleção.",
       "kit": [
         "#C8102E",
@@ -1188,9 +1968,9 @@
       "position": "MEI",
       "club": "Cruzeiro",
       "year": 2003,
-      "levelMin": 88,
-      "levelMax": 93,
-      "tier": "lenda",
+      "levelMin": 83,
+      "levelMax": 89,
+      "tier": "craque",
       "hint": "No Cruzeiro em 2003. 27 anos em 2003. 3 jogos pela seleção.",
       "kit": [
         "#0033A0",
@@ -1206,9 +1986,9 @@
       "position": "ATA",
       "club": "Cruzeiro",
       "year": 1997,
-      "levelMin": 88,
-      "levelMax": 93,
-      "tier": "lenda",
+      "levelMin": 83,
+      "levelMax": 89,
+      "tier": "craque",
       "hint": "No Cruzeiro em 1997. 24 anos em 1997. 1 jogos pela seleção.",
       "kit": [
         "#0033A0",
@@ -1242,9 +2022,9 @@
       "position": "MEI",
       "club": "Corinthians",
       "year": 1990,
-      "levelMin": 89,
-      "levelMax": 94,
-      "tier": "lenda",
+      "levelMin": 84,
+      "levelMax": 90,
+      "tier": "craque",
       "hint": "No Corinthians em 1990. 24 anos em 1990. 26 jogos pela seleção.",
       "kit": [
         "#FFFFFF",
@@ -1278,9 +2058,9 @@
       "position": "MEI",
       "club": "Corinthians",
       "year": 1999,
-      "levelMin": 88,
-      "levelMax": 93,
-      "tier": "lenda",
+      "levelMin": 83,
+      "levelMax": 89,
+      "tier": "craque",
       "hint": "No Corinthians em 1999. 25 anos em 1999. 39 jogos pela seleção.",
       "kit": [
         "#FFFFFF",
@@ -1296,9 +2076,9 @@
       "position": "MEI",
       "club": "Corinthians",
       "year": 2002,
-      "levelMin": 89,
-      "levelMax": 94,
-      "tier": "lenda",
+      "levelMin": 84,
+      "levelMax": 90,
+      "tier": "craque",
       "hint": "No Corinthians em 2002. 26 anos em 2002.",
       "kit": [
         "#FFFFFF",
@@ -1314,9 +2094,9 @@
       "position": "MEI",
       "club": "São Paulo",
       "year": 2005,
-      "levelMin": 88,
-      "levelMax": 93,
-      "tier": "lenda",
+      "levelMin": 83,
+      "levelMax": 89,
+      "tier": "craque",
       "hint": "No São Paulo em 2005. 30 anos em 2005. 24 jogos pela seleção.",
       "kit": [
         "#FFFFFF",
@@ -1332,9 +2112,9 @@
       "position": "ATA",
       "club": "São Paulo",
       "year": 1982,
-      "levelMin": 89,
-      "levelMax": 94,
-      "tier": "lenda",
+      "levelMin": 84,
+      "levelMax": 90,
+      "tier": "craque",
       "hint": "No São Paulo em 1982. 29 anos em 1982. 20 jogos pela seleção.",
       "kit": [
         "#FFFFFF",
@@ -1368,9 +2148,9 @@
       "position": "MEI",
       "club": "Santos",
       "year": 1995,
-      "levelMin": 89,
-      "levelMax": 94,
-      "tier": "lenda",
+      "levelMin": 84,
+      "levelMax": 90,
+      "tier": "craque",
       "hint": "No Santos em 1995. 23 anos em 1995. 20 jogos pela seleção.",
       "kit": [
         "#FFFFFF",
@@ -1386,9 +2166,9 @@
       "position": "MEI",
       "club": "Santos",
       "year": 2002,
-      "levelMin": 89,
-      "levelMax": 94,
-      "tier": "lenda",
+      "levelMin": 84,
+      "levelMax": 90,
+      "tier": "craque",
       "hint": "No Santos em 2002. 17 anos em 2002. 33 jogos pela seleção.",
       "kit": [
         "#FFFFFF",
@@ -1404,9 +2184,9 @@
       "position": "MEI",
       "club": "Santos",
       "year": 2010,
-      "levelMin": 90,
-      "levelMax": 95,
-      "tier": "lenda",
+      "levelMin": 84,
+      "levelMax": 90,
+      "tier": "craque",
       "hint": "No Santos em 2010. 21 anos em 2010. 8 jogos pela seleção.",
       "kit": [
         "#FFFFFF",
@@ -1476,9 +2256,9 @@
       "position": "ATA",
       "club": "Corinthians",
       "year": 1982,
-      "levelMin": 88,
-      "levelMax": 93,
-      "tier": "lenda",
+      "levelMin": 83,
+      "levelMax": 89,
+      "tier": "craque",
       "hint": "46 jogos e 11 gols pelo Corinthians de 1982 a 1984. 19 anos em 1982. 19 jogos pela seleção.",
       "kit": [
         "#FFFFFF",
@@ -1638,9 +2418,9 @@
       "position": "ATA",
       "club": "Internacional",
       "year": 2006,
-      "levelMin": 90,
-      "levelMax": 95,
-      "tier": "lenda",
+      "levelMin": 84,
+      "levelMax": 90,
+      "tier": "craque",
       "hint": "100 jogos e 42 gols pelo Internacional de 2004 a 2008. 28 anos em 2006. 1 jogo pela seleção.",
       "kit": [
         "#D50000",
@@ -1656,9 +2436,9 @@
       "position": "MEI",
       "club": "Internacional",
       "year": 2010,
-      "levelMin": 90,
-      "levelMax": 95,
-      "tier": "lenda",
+      "levelMin": 84,
+      "levelMax": 90,
+      "tier": "craque",
       "hint": "Argentina. 181 jogos e 45 gols pelo Internacional de 2008 a 2016. 29 anos em 2010. 28 jogos pela seleção.",
       "kit": [
         "#D50000",
@@ -1710,9 +2490,9 @@
       "position": "MEI",
       "club": "Cruzeiro",
       "year": 2014,
-      "levelMin": 88,
-      "levelMax": 93,
-      "tier": "lenda",
+      "levelMin": 83,
+      "levelMax": 89,
+      "tier": "craque",
       "hint": "52 jogos e 10 gols pelo Cruzeiro de 2013 a 2014. 25 anos em 2014. 4 jogos pela seleção.",
       "kit": [
         "#0033A0",
@@ -1800,9 +2580,9 @@
       "position": "MEI",
       "club": "Fluminense",
       "year": 2010,
-      "levelMin": 89,
-      "levelMax": 94,
-      "tier": "lenda",
+      "levelMin": 84,
+      "levelMax": 90,
+      "tier": "craque",
       "hint": "Argentina. 81 jogos e 17 gols pelo Fluminense de 2009 a 2011. 27 anos em 2010. 9 jogos pela seleção.",
       "kit": [
         "#7A1E32",
@@ -1836,9 +2616,9 @@
       "position": "ATA",
       "club": "Botafogo",
       "year": 1959,
-      "levelMin": 88,
-      "levelMax": 93,
-      "tier": "lenda",
+      "levelMin": 83,
+      "levelMax": 89,
+      "tier": "craque",
       "hint": "417 jogos e 313 gols pelo Botafogo de 1956 a 1965. 26 anos em 1959.",
       "kit": [
         "#111111",
@@ -1854,9 +2634,9 @@
       "position": "MEI",
       "club": "Flamengo",
       "year": 1981,
-      "levelMin": 88,
-      "levelMax": 93,
-      "tier": "lenda",
+      "levelMin": 83,
+      "levelMax": 89,
+      "tier": "craque",
       "hint": "615 jogos e 128 gols pelo Flamengo de 1975 a 1987. 25 anos em 1981. 2 jogos pela seleção.",
       "kit": [
         "#C8102E",
@@ -1890,9 +2670,9 @@
       "position": "ATA",
       "club": "São Paulo",
       "year": 1957,
-      "levelMin": 88,
-      "levelMax": 93,
-      "tier": "lenda",
+      "levelMin": 83,
+      "levelMax": 89,
+      "tier": "craque",
       "hint": "383 jogos e 85 gols pelo São Paulo de 1954 a 1963. 25 anos em 1957. 15 jogos pela seleção.",
       "kit": [
         "#FFFFFF",
@@ -1980,9 +2760,9 @@
       "position": "MEI",
       "club": "Palmeiras",
       "year": 2021,
-      "levelMin": 88,
-      "levelMax": 93,
-      "tier": "lenda",
+      "levelMin": 83,
+      "levelMax": 89,
+      "tier": "craque",
       "hint": "226 jogos e 65 gols pelo Palmeiras desde 2017. 26 anos em 2021. 6 jogos pela seleção.",
       "kit": [
         "#006437",
@@ -2142,9 +2922,9 @@
       "position": "ATA",
       "club": "Liverpool",
       "year": 2018,
-      "levelMin": 88,
-      "levelMax": 93,
-      "tier": "lenda",
+      "levelMin": 83,
+      "levelMax": 89,
+      "tier": "craque",
       "hint": "256 jogos e 82 gols pelo Liverpool de 2015 a 2023. 27 anos em 2018. 55 jogos pela seleção.",
       "kit": [
         "#C8102E",
@@ -2178,9 +2958,9 @@
       "position": "ZAG",
       "club": "Barcelona",
       "year": 1992,
-      "levelMin": 90,
-      "levelMax": 95,
-      "tier": "lenda",
+      "levelMin": 84,
+      "levelMax": 90,
+      "tier": "craque",
       "hint": "Países Baixos. 192 jogos e 67 gols pelo Barcelona de 1989 a 1995. 29 anos em 1992. 78 jogos pela seleção.",
       "kit": [
         "#A50044",
@@ -2196,9 +2976,9 @@
       "position": "MEI",
       "club": "Barcelona",
       "year": 1997,
-      "levelMin": 88,
-      "levelMax": 93,
-      "tier": "lenda",
+      "levelMin": 83,
+      "levelMax": 89,
+      "tier": "craque",
       "hint": "Espanha. 263 jogos e 6 gols pelo Barcelona de 1990 a 2001. 26 anos em 1997. 47 jogos pela seleção.",
       "kit": [
         "#A50044",
@@ -2214,9 +2994,9 @@
       "position": "ATA",
       "club": "Barcelona",
       "year": 1955,
-      "levelMin": 91,
-      "levelMax": 96,
-      "tier": "lenda",
+      "levelMin": 85,
+      "levelMax": 91,
+      "tier": "craque",
       "hint": "Hungria. 186 jogos e 131 gols pelo Barcelona de 1951 a 1961. 28 anos em 1955. 19 jogos pela seleção.",
       "kit": [
         "#A50044",
@@ -2232,9 +3012,9 @@
       "position": "MEI",
       "club": "Barcelona",
       "year": 2025,
-      "levelMin": 88,
-      "levelMax": 93,
-      "tier": "lenda",
+      "levelMin": 83,
+      "levelMax": 89,
+      "tier": "craque",
       "hint": "Espanha. 173 jogos e 23 gols pelo Barcelona desde 2020. 23 anos em 2025. 53 jogos pela seleção.",
       "kit": [
         "#A50044",
@@ -2376,9 +3156,9 @@
       "position": "MEI",
       "club": "Real Madrid",
       "year": 2024,
-      "levelMin": 88,
-      "levelMax": 93,
-      "tier": "lenda",
+      "levelMin": 83,
+      "levelMax": 89,
+      "tier": "craque",
       "hint": "Uruguai. 252 jogos e 25 gols pelo Real Madrid desde 2018. 26 anos em 2024. 76 jogos pela seleção.",
       "kit": [
         "#FFFFFF",
@@ -2394,9 +3174,9 @@
       "position": "MEI",
       "club": "Chelsea",
       "year": 2005,
-      "levelMin": 88,
-      "levelMax": 93,
-      "tier": "lenda",
+      "levelMin": 83,
+      "levelMax": 89,
+      "tier": "craque",
       "hint": "França. 144 jogos e 2 gols pelo Chelsea de 2003 a 2008. 32 anos em 2005. 71 jogos pela seleção.",
       "kit": [
         "#034694",
@@ -2412,9 +3192,9 @@
       "position": "MEI",
       "club": "Real Madrid",
       "year": 2002,
-      "levelMin": 88,
-      "levelMax": 93,
-      "tier": "lenda",
+      "levelMin": 83,
+      "levelMax": 89,
+      "tier": "craque",
       "hint": "França. 94 jogos pelo Real Madrid de 2000 a 2003. 29 anos em 2002. 71 jogos pela seleção.",
       "kit": [
         "#FFFFFF",
@@ -2448,9 +3228,9 @@
       "position": "MEI",
       "club": "Milan",
       "year": 1994,
-      "levelMin": 88,
-      "levelMax": 93,
-      "tier": "lenda",
+      "levelMin": 83,
+      "levelMax": 89,
+      "tier": "craque",
       "hint": "Croácia. 178 jogos e 21 gols pelo Milan de 1992 a 2001. 26 anos em 1994. 51 jogos pela seleção.",
       "kit": [
         "#FB090B",
@@ -2520,9 +3300,9 @@
       "position": "ATA",
       "club": "Juventus",
       "year": 2002,
-      "levelMin": 89,
-      "levelMax": 94,
-      "tier": "lenda",
+      "levelMin": 84,
+      "levelMax": 90,
+      "tier": "craque",
       "hint": "França. 245 jogos e 138 gols pelo Juventus de 2000 a 2010. 25 anos em 2002. 71 jogos pela seleção.",
       "kit": [
         "#FFFFFF",
@@ -2538,9 +3318,9 @@
       "position": "ATA",
       "club": "Juventus",
       "year": 2018,
-      "levelMin": 88,
-      "levelMax": 93,
-      "tier": "lenda",
+      "levelMin": 83,
+      "levelMax": 89,
+      "tier": "craque",
       "hint": "Argentina. 210 jogos e 82 gols pelo Juventus de 2015 a 2022. 25 anos em 2018. 40 jogos pela seleção.",
       "kit": [
         "#FFFFFF",
@@ -2592,9 +3372,9 @@
       "position": "MEI",
       "club": "Inter de Milão",
       "year": 2010,
-      "levelMin": 88,
-      "levelMax": 93,
-      "tier": "lenda",
+      "levelMin": 83,
+      "levelMax": 89,
+      "tier": "craque",
       "hint": "Argentina. 315 jogos e 50 gols pelo Inter de Milão de 2004 a 2014. 30 anos em 2010. 52 jogos pela seleção.",
       "kit": [
         "#0068A8",
@@ -2646,9 +3426,9 @@
       "position": "MEI",
       "club": "Inter de Milão",
       "year": 2023,
-      "levelMin": 88,
-      "levelMax": 93,
-      "tier": "lenda",
+      "levelMin": 83,
+      "levelMax": 89,
+      "tier": "craque",
       "hint": "Itália. 216 jogos e 21 gols pelo Inter de Milão desde 2020. 26 anos em 2023. 73 jogos pela seleção.",
       "kit": [
         "#0068A8",
@@ -2736,9 +3516,9 @@
       "position": "ATA",
       "club": "Roma",
       "year": 1983,
-      "levelMin": 89,
-      "levelMax": 94,
-      "tier": "lenda",
+      "levelMin": 84,
+      "levelMax": 90,
+      "tier": "craque",
       "hint": "Itália. 304 jogos e 37 gols pelo Roma de 1973 a 1991. 28 anos em 1983. 47 jogos pela seleção.",
       "kit": [
         "#8E1F2F",
@@ -2790,9 +3570,9 @@
       "position": "MEI",
       "club": "Tottenham",
       "year": 1990,
-      "levelMin": 89,
-      "levelMax": 94,
-      "tier": "lenda",
+      "levelMin": 84,
+      "levelMax": 90,
+      "tier": "craque",
       "hint": "Inglaterra. 92 jogos e 19 gols pelo Tottenham de 1988 a 1992. 23 anos em 1990. 57 jogos pela seleção.",
       "kit": [
         "#FFFFFF",
@@ -2808,9 +3588,9 @@
       "position": "ATA",
       "club": "Napoli",
       "year": 2016,
-      "levelMin": 89,
-      "levelMax": 94,
-      "tier": "lenda",
+      "levelMin": 84,
+      "levelMax": 90,
+      "tier": "craque",
       "hint": "Argentina. 104 jogos e 71 gols pelo Napoli de 2013 a 2016. 29 anos em 2016. 75 jogos pela seleção.",
       "kit": [
         "#12A0D7",
@@ -2844,9 +3624,9 @@
       "position": "ATA",
       "club": "Napoli",
       "year": 2023,
-      "levelMin": 88,
-      "levelMax": 93,
-      "tier": "lenda",
+      "levelMin": 83,
+      "levelMax": 89,
+      "tier": "craque",
       "hint": "Nigéria. 108 jogos e 65 gols pelo Napoli de 2020 a 2025. 25 anos em 2023. 51 jogos pela seleção.",
       "kit": [
         "#12A0D7",
@@ -2862,9 +3642,9 @@
       "position": "ATA",
       "club": "Napoli",
       "year": 2023,
-      "levelMin": 88,
-      "levelMax": 93,
-      "tier": "lenda",
+      "levelMin": 83,
+      "levelMax": 89,
+      "tier": "craque",
       "hint": "Geórgia. 85 jogos e 28 gols pelo Napoli de 2022 a 2025. 22 anos em 2023. 54 jogos pela seleção.",
       "kit": [
         "#12A0D7",
@@ -2898,9 +3678,9 @@
       "position": "MEI",
       "club": "Bayern de Munique",
       "year": 2024,
-      "levelMin": 88,
-      "levelMax": 93,
-      "tier": "lenda",
+      "levelMin": 83,
+      "levelMax": 89,
+      "tier": "craque",
       "hint": "Alemanha. 154 jogos e 48 gols pelo Bayern de Munique desde 2020. 21 anos em 2024. 42 jogos pela seleção.",
       "kit": [
         "#DC052D",
@@ -2952,9 +3732,9 @@
       "position": "ATA",
       "club": "Borussia Dortmund",
       "year": 2016,
-      "levelMin": 88,
-      "levelMax": 93,
-      "tier": "lenda",
+      "levelMin": 83,
+      "levelMax": 89,
+      "tier": "craque",
       "hint": "Alemanha. 294 jogos e 120 gols pelo Borussia Dortmund de 2012 a 2024. 27 anos em 2016. 48 jogos pela seleção.",
       "kit": [
         "#FDE100",
@@ -3006,9 +3786,9 @@
       "position": "MEI",
       "club": "Bayer Leverkusen",
       "year": 2024,
-      "levelMin": 89,
-      "levelMax": 94,
-      "tier": "lenda",
+      "levelMin": 84,
+      "levelMax": 90,
+      "tier": "craque",
       "hint": "Alemanha. 140 jogos e 35 gols pelo Bayer Leverkusen de 2020 a 2025. 21 anos em 2024. 48 jogos pela seleção.",
       "kit": [
         "#E32221",
@@ -3060,9 +3840,9 @@
       "position": "ATA",
       "club": "Manchester United",
       "year": 1964,
-      "levelMin": 91,
-      "levelMax": 96,
-      "tier": "lenda",
+      "levelMin": 85,
+      "levelMax": 91,
+      "tier": "craque",
       "hint": "Escócia. 309 jogos e 171 gols pelo Manchester United de 1962 a 1973. 24 anos em 1964. 55 jogos pela seleção.",
       "kit": [
         "#DA291C",
@@ -3168,9 +3948,9 @@
       "position": "MEI",
       "club": "Manchester United",
       "year": 2021,
-      "levelMin": 88,
-      "levelMax": 93,
-      "tier": "lenda",
+      "levelMin": 83,
+      "levelMax": 89,
+      "tier": "craque",
       "hint": "Portugal. 235 jogos e 74 gols pelo Manchester United desde 2020. 27 anos em 2021. 97 jogos pela seleção.",
       "kit": [
         "#DA291C",
@@ -3258,9 +4038,9 @@
       "position": "ATA",
       "club": "Liverpool",
       "year": 1984,
-      "levelMin": 91,
-      "levelMax": 96,
-      "tier": "lenda",
+      "levelMin": 85,
+      "levelMax": 91,
+      "tier": "craque",
       "hint": "País de Gales. 182 jogos e 109 gols pelo Liverpool de 1980 a 1986. 23 anos em 1984. 73 jogos pela seleção.",
       "kit": [
         "#C8102E",
@@ -3348,9 +4128,9 @@
       "position": "MEI",
       "club": "Arsenal",
       "year": 2002,
-      "levelMin": 88,
-      "levelMax": 93,
-      "tier": "lenda",
+      "levelMin": 83,
+      "levelMax": 89,
+      "tier": "craque",
       "hint": "França. 284 jogos e 84 gols pelo Arsenal de 2000 a 2006. 29 anos em 2002. 79 jogos pela seleção.",
       "kit": [
         "#EF0107",
@@ -3384,9 +4164,9 @@
       "position": "ZAG",
       "club": "Arsenal",
       "year": 1998,
-      "levelMin": 89,
-      "levelMax": 94,
-      "tier": "lenda",
+      "levelMin": 84,
+      "levelMax": 90,
+      "tier": "craque",
       "hint": "Inglaterra. 504 jogos e 32 gols pelo Arsenal de 1983 a 2002. 32 anos em 1998. 66 jogos pela seleção.",
       "kit": [
         "#EF0107",
@@ -3402,9 +4182,9 @@
       "position": "ATA",
       "club": "Arsenal",
       "year": 1994,
-      "levelMin": 88,
-      "levelMax": 93,
-      "tier": "lenda",
+      "levelMin": 83,
+      "levelMax": 89,
+      "tier": "craque",
       "hint": "Inglaterra. 221 jogos e 128 gols pelo Arsenal de 1991 a 1998. 31 anos em 1994. 33 jogos pela seleção.",
       "kit": [
         "#EF0107",
@@ -3420,9 +4200,9 @@
       "position": "ATA",
       "club": "Arsenal",
       "year": 2012,
-      "levelMin": 89,
-      "levelMax": 94,
-      "tier": "lenda",
+      "levelMin": 84,
+      "levelMax": 90,
+      "tier": "craque",
       "hint": "Países Baixos. 194 jogos e 96 gols pelo Arsenal de 2003 a 2012. 29 anos em 2012. 102 jogos pela seleção.",
       "kit": [
         "#EF0107",
@@ -3438,9 +4218,9 @@
       "position": "MEI",
       "club": "Arsenal",
       "year": 2024,
-      "levelMin": 88,
-      "levelMax": 93,
-      "tier": "lenda",
+      "levelMin": 83,
+      "levelMax": 89,
+      "tier": "craque",
       "hint": "Inglaterra. 115 jogos e 15 gols pelo Arsenal desde 2023. 25 anos em 2024. 80 jogos pela seleção.",
       "kit": [
         "#EF0107",
@@ -3492,9 +4272,9 @@
       "position": "MEI",
       "club": "Chelsea",
       "year": 2006,
-      "levelMin": 88,
-      "levelMax": 93,
-      "tier": "lenda",
+      "levelMin": 83,
+      "levelMax": 89,
+      "tier": "craque",
       "hint": "Gana. 168 jogos e 17 gols pelo Chelsea de 2005 a 2014. 24 anos em 2006. 59 jogos pela seleção.",
       "kit": [
         "#034694",
@@ -3510,9 +4290,9 @@
       "position": "MEI",
       "club": "Chelsea",
       "year": 2017,
-      "levelMin": 90,
-      "levelMax": 95,
-      "tier": "lenda",
+      "levelMin": 84,
+      "levelMax": 90,
+      "tier": "craque",
       "hint": "França. 190 jogos e 11 gols pelo Chelsea de 2016 a 2023. 26 anos em 2017. 69 jogos pela seleção.",
       "kit": [
         "#034694",
@@ -3564,9 +4344,9 @@
       "position": "MEI",
       "club": "Chelsea",
       "year": 2024,
-      "levelMin": 88,
-      "levelMax": 93,
-      "tier": "lenda",
+      "levelMin": 83,
+      "levelMax": 89,
+      "tier": "craque",
       "hint": "Inglaterra. 102 jogos e 49 gols pelo Chelsea desde 2023. 22 anos em 2024. 15 jogos pela seleção.",
       "kit": [
         "#034694",
@@ -3582,9 +4362,9 @@
       "position": "ZAG",
       "club": "Manchester City",
       "year": 2012,
-      "levelMin": 89,
-      "levelMax": 94,
-      "tier": "lenda",
+      "levelMin": 84,
+      "levelMax": 90,
+      "tier": "craque",
       "hint": "Bélgica. 265 jogos e 18 gols pelo Manchester City de 2008 a 2019. 26 anos em 2012. 89 jogos pela seleção.",
       "kit": [
         "#6CABDD",
@@ -3672,9 +4452,9 @@
       "position": "MEI",
       "club": "Manchester City",
       "year": 1970,
-      "levelMin": 88,
-      "levelMax": 93,
-      "tier": "lenda",
+      "levelMin": 83,
+      "levelMax": 89,
+      "tier": "craque",
       "hint": "Inglaterra. 394 jogos e 117 gols pelo Manchester City de 1966 a 1979. 24 anos em 1970. 48 jogos pela seleção.",
       "kit": [
         "#6CABDD",
@@ -3690,9 +4470,9 @@
       "position": "ATA",
       "club": "Tottenham",
       "year": 1963,
-      "levelMin": 91,
-      "levelMax": 96,
-      "tier": "lenda",
+      "levelMin": 85,
+      "levelMax": 91,
+      "tier": "craque",
       "hint": "Inglaterra. 321 jogos e 220 gols pelo Tottenham de 1961 a 1970. 23 anos em 1963. 57 jogos pela seleção.",
       "kit": [
         "#FFFFFF",
@@ -3726,9 +4506,9 @@
       "position": "ATA",
       "club": "PSG",
       "year": 2016,
-      "levelMin": 88,
-      "levelMax": 93,
-      "tier": "lenda",
+      "levelMin": 83,
+      "levelMax": 89,
+      "tier": "craque",
       "hint": "Argentina. 197 jogos e 56 gols pelo PSG de 2015 a 2022. 28 anos em 2016. 145 jogos pela seleção.",
       "kit": [
         "#004170",
@@ -3744,9 +4524,9 @@
       "position": "ATA",
       "club": "Real Madrid",
       "year": 2014,
-      "levelMin": 88,
-      "levelMax": 93,
-      "tier": "lenda",
+      "levelMin": 83,
+      "levelMax": 89,
+      "tier": "craque",
       "hint": "Argentina. 124 jogos e 22 gols pelo Real Madrid de 2010 a 2014. 26 anos em 2014. 145 jogos pela seleção.",
       "kit": [
         "#FFFFFF",
@@ -3762,9 +4542,9 @@
       "position": "MEI",
       "club": "PSG",
       "year": 1986,
-      "levelMin": 88,
-      "levelMax": 93,
-      "tier": "lenda",
+      "levelMin": 83,
+      "levelMax": 89,
+      "tier": "craque",
       "hint": "Jugoslávia. 287 jogos e 67 gols pelo PSG de 1982 a 1991. 31 anos em 1986. 54 jogos pela seleção.",
       "kit": [
         "#004170",
@@ -3780,9 +4560,9 @@
       "position": "MEI",
       "club": "PSG",
       "year": 2025,
-      "levelMin": 88,
-      "levelMax": 93,
-      "tier": "lenda",
+      "levelMin": 83,
+      "levelMax": 89,
+      "tier": "craque",
       "hint": "Portugal. 128 jogos e 16 gols pelo PSG desde 2022. 25 anos em 2025. 47 jogos pela seleção.",
       "kit": [
         "#004170",
@@ -3888,9 +4668,9 @@
       "position": "ATA",
       "club": "Olympique de Marseille",
       "year": 1991,
-      "levelMin": 91,
-      "levelMax": 96,
-      "tier": "lenda",
+      "levelMin": 85,
+      "levelMax": 91,
+      "tier": "craque",
       "hint": "França. 215 jogos e 134 gols pelo Olympique de Marseille de 1986 a 1992. 28 anos em 1991. 54 jogos pela seleção.",
       "kit": [
         "#FFFFFF",
@@ -3924,9 +4704,9 @@
       "position": "ATA",
       "club": "Olympique de Marseille",
       "year": 1971,
-      "levelMin": 88,
-      "levelMax": 93,
-      "tier": "lenda",
+      "levelMin": 83,
+      "levelMax": 89,
+      "tier": "craque",
       "hint": "Jugoslávia. No Olympique de Marseille de 1969 a 1974. 30 anos em 1971. 32 jogos pela seleção.",
       "kit": [
         "#FFFFFF",
@@ -4014,9 +4794,9 @@
       "position": "MEI",
       "club": "Valencia",
       "year": 2002,
-      "levelMin": 88,
-      "levelMax": 93,
-      "tier": "lenda",
+      "levelMin": 83,
+      "levelMax": 89,
+      "tier": "craque",
       "hint": "Argentina. 162 jogos e 27 gols pelo Valencia de 2001 a 2006. 23 anos em 2002. 52 jogos pela seleção.",
       "kit": [
         "#FFFFFF",
@@ -4230,9 +5010,9 @@
       "position": "ATA",
       "club": "Lazio",
       "year": 1974,
-      "levelMin": 88,
-      "levelMax": 93,
-      "tier": "lenda",
+      "levelMin": 83,
+      "levelMax": 89,
+      "tier": "craque",
       "hint": "Itália. 209 jogos e 98 gols pelo Lazio de 1969 a 1976. 27 anos em 1974. 14 jogos pela seleção.",
       "kit": [
         "#87D8F7",
@@ -4248,9 +5028,9 @@
       "position": "ATA",
       "club": "Lazio",
       "year": 1937,
-      "levelMin": 90,
-      "levelMax": 95,
-      "tier": "lenda",
+      "levelMin": 84,
+      "levelMax": 90,
+      "tier": "craque",
       "hint": "Itália. 227 jogos e 143 gols pelo Lazio de 1934 a 1943. 24 anos em 1937. 34 jogos pela seleção.",
       "kit": [
         "#87D8F7",
@@ -4266,9 +5046,9 @@
       "position": "ATA",
       "club": "Sporting",
       "year": 2024,
-      "levelMin": 89,
-      "levelMax": 94,
-      "tier": "lenda",
+      "levelMin": 84,
+      "levelMax": 90,
+      "tier": "craque",
       "hint": "Suécia. 66 jogos e 68 gols pelo Sporting de 2023 a 2025. 26 anos em 2024. 41 jogos pela seleção.",
       "kit": [
         "#008057",
@@ -4446,9 +5226,9 @@
       "position": "ATA",
       "club": "Arsenal",
       "year": 2024,
-      "levelMin": 89,
-      "levelMax": 94,
-      "tier": "lenda",
+      "levelMin": 84,
+      "levelMax": 90,
+      "tier": "craque",
       "hint": "Inglaterra. 232 jogos e 63 gols pelo Arsenal desde 2018. 23 anos em 2024.",
       "kit": [
         "#EF0107",
@@ -4464,9 +5244,9 @@
       "position": "ATA",
       "club": "Liverpool",
       "year": 1988,
-      "levelMin": 89,
-      "levelMax": 94,
-      "tier": "lenda",
+      "levelMin": 84,
+      "levelMax": 90,
+      "tier": "craque",
       "hint": "Inglaterra. 314 jogos e 84 gols pelo Liverpool de 1987 a 1997. 25 anos em 1988. 79 jogos pela seleção.",
       "kit": [
         "#C8102E",
@@ -4482,9 +5262,9 @@
       "position": "ZAG",
       "club": "Ajax",
       "year": 1972,
-      "levelMin": 90,
-      "levelMax": 95,
-      "tier": "lenda",
+      "levelMin": 84,
+      "levelMax": 90,
+      "tier": "craque",
       "hint": "Países Baixos. 339 jogos e 23 gols pelo Ajax de 1968 a 1980. 23 anos em 1972. 83 jogos pela seleção.",
       "kit": [
         "#FFFFFF",
@@ -4608,9 +5388,9 @@
       "position": "MEI",
       "club": "Benfica",
       "year": 1962,
-      "levelMin": 90,
-      "levelMax": 95,
-      "tier": "lenda",
+      "levelMin": 84,
+      "levelMax": 90,
+      "tier": "craque",
       "hint": "Portugal. 364 jogos e 89 gols pelo Benfica de 1954 a 1970. 27 anos em 1962. 57 jogos pela seleção.",
       "kit": [
         "#E83030",
@@ -4662,9 +5442,9 @@
       "position": "ATA",
       "club": "Sporting",
       "year": 1947,
-      "levelMin": 90,
-      "levelMax": 95,
-      "tier": "lenda",
+      "levelMin": 84,
+      "levelMax": 90,
+      "tier": "craque",
       "hint": "Portugal. 197 jogos e 329 gols pelo Sporting de 1937 a 1949. 29 anos em 1947. 20 jogos pela seleção.",
       "kit": [
         "#008057",

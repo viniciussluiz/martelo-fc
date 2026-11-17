@@ -1,11 +1,11 @@
 import { existsSync, readFileSync } from 'node:fs';
-import type { Card } from '../../engine/types.js';
+import type { Card, Tier } from '../../engine/types.js';
 
 /**
  * Correções manuais do baralho (`data/deck-ajustes.json`), para quando o Wikidata erra ou quando a
  * nota calculada não faz justiça a alguém:
  *  - `excluir`: cartas que nunca entram (ex.: passagem sem data de saída que vira carta “de 2026”);
- *  - `nivel`: faixa de nível fixa (ex.: Pelé e Messi 95–100);
+ *  - `nivel`: faixa de nível fixa (ex.: Pelé e Messi 95–100) e, se quiser, a faixa do jogo (`tier`);
  *  - `incluir`: cartas completas feitas à mão (ex.: Dirceu Lopes e Ronaldo no Cruzeiro), que entram no fim do baralho.
  * O `id` casa por prefixo: `wd-<jogador>` pega todas as cartas do jogador, `wd-<jogador>-<clube>`
  * todas daquela passagem, e o id completo só aquela carta.
@@ -21,6 +21,8 @@ export interface LevelOverride {
   id: string;
   jogador?: string;
   faixa: [number, number];
+  /** Faixa do jogo fixada à mão (ex.: rebaixar uma Lenda para Craque). Sem ela, faixa ≥ 86 vira Lenda. */
+  tier?: Tier;
   motivo?: string;
 }
 
@@ -32,6 +34,8 @@ export interface DeckAdjustments {
   nivel: LevelOverride[];
   incluir?: Inclusion[];
 }
+
+const TIERS: Tier[] = ['lenda', 'craque', 'titular', 'operario', 'perna'];
 
 export function loadAdjustments(path: string): DeckAdjustments {
   if (!existsSync(path)) return { excluir: [], nivel: [] };
@@ -78,7 +82,8 @@ export function isExcluded(card: Pick<Card, 'id'>, exclusions: Exclusion[]): boo
 }
 
 /**
- * Aplica as correções: tira as excluídas, fixa as faixas de nível (quem ganha faixa ≥ 86 vira Lenda) e
+ * Aplica as correções: tira as excluídas, fixa as faixas de nível (com `tier` vale o que está escrito;
+ * sem ele, quem ganha faixa ≥ 86 vira Lenda) e
  * põe no fim as cartas feitas à mão (uma com o mesmo id de uma carta do baralho fica no lugar dela).
  */
 export function applyAdjustments<T extends Pick<Card, 'id' | 'levelMin' | 'levelMax' | 'tier'>>(
@@ -91,7 +96,8 @@ export function applyAdjustments<T extends Pick<Card, 'id' | 'levelMin' | 'level
   const out = kept.map((c) => {
     const o = adj.nivel.find((n) => matchesId(c, n.id));
     if (!o) return c;
-    const next = { ...c, levelMin: o.faixa[0], levelMax: o.faixa[1], ...(o.faixa[0] >= 86 ? { tier: 'lenda' as const } : {}) };
+    const tier = o.tier && TIERS.includes(o.tier) ? o.tier : o.faixa[0] >= 86 ? ('lenda' as const) : undefined;
+    const next = { ...c, levelMin: o.faixa[0], levelMax: o.faixa[1], ...(tier ? { tier } : {}) };
     leveled.push(next);
     return next;
   });

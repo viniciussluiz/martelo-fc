@@ -953,7 +953,7 @@ function RevealStage({ reveal, idx, d }: { reveal: RevealView; idx: number; d: D
         <div className="reveal-card" key={item.cardId} data-legend={legend || undefined} data-pack={pack ? true : undefined} data-sold={sold}>
           {mineWin && <Confetti seed={idx + 1} />}
           <div className="reveal-item">
-            {legend && card && <LegendFigure club={card.club} kit={card.kit} cardId={card.id} wide size={112} />}
+            {legend && card && <LegendFigure club={card.club} kit={card.kit} cardId={card.id} wide size={128} />}
             <div className="reveal-body">
               {!pack && card && (
                 <div className="reveal-tags">
