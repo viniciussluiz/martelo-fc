@@ -10,6 +10,7 @@ import {
   isPackageMode,
   type AuctionMode,
   type Card,
+  type Formation,
   type Participant,
   type Position,
   type RosterEntry,
@@ -484,6 +485,7 @@ export class Auction {
           ? POSITIONS.reduce((n, x) => n + (this.vacancies(pid)[x] > 0 ? FORMATIONS[p.formation][x] : 0), 0)
           : this.totalVacancies(pid),
         ...(this.isClubs ? { playersPerItem: FORMATIONS[p.formation][pos] } : {}),
+        demand: eligible.reduce((n, id) => n + Math.max(0, this.vacancies(id)[pos]), 0),
         round,
       });
       step.bids[pid] = plan;
@@ -630,6 +632,30 @@ export class Auction {
     }
     step.picks[participantId] = clean;
     if (seal) step.sealed.push(participantId);
+  }
+
+  /**
+   * Troca a formação do técnico durante a convocação (leilão de clubes): os pacotes são os mesmos,
+   * muda quantos de cada setor entram em campo. Vale qualquer formação de `FORMATIONS` que os pacotes
+   * do técnico consigam preencher (um pacote de 4 meias não dá um 4-5-1). O que já estava convocado
+   * continua; no setor que encolheu, saem os últimos escolhidos.
+   */
+  setConvocaFormation(participantId: string, formation: Formation): void {
+    const step = this.state.step;
+    if (!step || step.kind !== 'convocacao') throw new GameRuleError('fora_de_hora', 'A formação só muda durante a convocação.');
+    if (!step.eligible.includes(participantId)) throw new GameRuleError('nao_elegivel', 'Você não está nesta convocação.');
+    if (step.sealed.includes(participantId)) throw new GameRuleError('envelope_lacrado', 'Sua convocação já foi fechada.');
+    const need = FORMATIONS[formation];
+    if (!need) throw new GameRuleError('formacao_invalida', 'Formação inválida.');
+    const options = this.convocaOptions(participantId);
+    const short = POSITIONS.find((pos) => options[pos].length < need[pos]);
+    if (short) throw new GameRuleError('formacao_sem_jogadores', `Seu pacote de ${short} não tem jogadores para o ${formation}.`);
+    this.participant(participantId).formation = formation;
+    const count = emptyByPosWith(() => 0);
+    step.picks[participantId] = (step.picks[participantId] ?? []).filter((id) => {
+      const pos = POSITIONS.find((x) => options[x].includes(id));
+      return !!pos && ++count[pos] <= need[pos];
+    });
   }
 
   private startConvocacao(): void {

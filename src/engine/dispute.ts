@@ -3,7 +3,7 @@ import { computePregaoAwards, type PregaoAward } from './awards.js';
 import { makeContinentalBots, makeLeagueBots, type BotClub } from './bots.js';
 import { Cup, REACH_ORDER, type CupReach, type CupState } from './cup.js';
 import { GameRuleError } from './errors.js';
-import { aggregateScorers, League, type LeagueState, type LeagueTeam, type StandingRow } from './league.js';
+import { aggregateScorers, computeStandings, League, type LeagueState, type LeagueTeam, type StandingRow } from './league.js';
 import { resolveTakers, TEAM_ROLES, type MatchResult, type SetPieceTakers, type SquadPlayer } from './match.js';
 import { buildClubPackages } from './packages.js';
 import { Rng } from './rng.js';
@@ -84,8 +84,9 @@ export interface ParticipantOutcome {
 export interface DisputeResult {
   cupFormat: DisputeConfig['cupFormat'];
   cupName: string | null;
-  leagueChampionTeamId: string;
-  leagueChampionName: string;
+  /** `null` quando a sala não teve liga (“Só Libertadores”). */
+  leagueChampionTeamId: string | null;
+  leagueChampionName: string | null;
   cupChampionTeamId: string | null;
   cupChampionName: string | null;
   cupRunnerUpTeamId: string | null;
@@ -387,8 +388,19 @@ export class Dispute {
     });
   }
 
+  /** Sala sem liga: os técnicos vão direto para a copa (só nos formatos com fase de grupos). */
+  get skipsLeague(): boolean {
+    const format = this.state.config.cupFormat;
+    return !!this.state.config.skipLeague && (format === 'libertadores' || format === 'mundial');
+  }
+
+  /** Começa os jogos depois da cerimônia: a liga ou, na sala sem liga, direto a copa. */
   startLeague(): void {
     if (this.state.phase !== 'ceremony') throw new GameRuleError('fora_de_hora', 'A liga só começa depois da cerimônia.');
+    if (this.skipsLeague) {
+      this.startCup();
+      return;
+    }
     const teams: LeagueTeam[] = this.participants.map((p) => ({
       teamId: p.id,
       name: p.name,
@@ -420,19 +432,25 @@ export class Dispute {
   }
 
   private startCup() {
-    const table = this.league!.standings();
-    const qualified = table.slice(0, 8).map((r) => this.league!.team(r.teamId));
+    const league = this.league;
     const format = this.state.config.cupFormat;
-    const extras: LeagueTeam[] =
-      format === 'copa8'
-        ? []
-        : makeContinentalBots(24, this.state.seed, this.auctionSquadLevel()).map((b) => ({
-            teamId: b.teamId,
-            name: b.name,
-            squad: b.squad,
-            participantId: null,
-            human: false,
-          }));
+    // Com liga, vão os 8 primeiros (em ordem de classificação); sem liga, todos os técnicos, em ordem sorteada.
+    const qualified: LeagueTeam[] = league
+      ? league
+          .standings()
+          .slice(0, 8)
+          .map((r) => league.team(r.teamId))
+      : new Rng(`potes:${this.state.seed}`).shuffle(this.participants).map((p) => ({
+          teamId: p.id,
+          name: p.name,
+          squad: this.squadOf(p.id),
+          participantId: p.id,
+          human: !p.isCpu,
+        }));
+    const bots = format === 'copa8' ? [] : makeContinentalBots(32 - qualified.length, this.state.seed, this.auctionSquadLevel());
+    // Leilão de clubes sem liga: quem ficou de fora dos pacotes vai para os clubes do continente.
+    if (!league && this.auction.isClubs) giveLeftoversToBots(bots, this.leftoverPackageCards(), new Rng(`sobras:${this.state.seed}`));
+    const extras: LeagueTeam[] = bots.map((b) => ({ teamId: b.teamId, name: b.name, squad: b.squad, participantId: null, human: false }));
     this.cup = Cup.create(format, qualified, extras, this.state.seed);
     this.state.cup = this.cup.state;
     this.state.phase = 'cup';
@@ -474,17 +492,20 @@ export class Dispute {
   }
 
   private finish() {
-    const league = this.league!;
-    const table = league.standings();
+    const league = this.league;
     const cup = this.cup;
+    if (!league && !cup) throw new Error('Disputa sem liga e sem copa');
+    const table = league ? league.standings() : [];
     const participants = this.participants;
     const pids = new Set(participants.map((p) => p.id));
-    const champion = table[0]!;
+    const champion = table[0] ?? null;
+    // Sem liga, a “posição” do técnico é a colocação geral na copa: fase alcançada, depois a campanha.
+    const campaign = league ? table : cupPlacings(cup!);
     const outcomes: ParticipantOutcome[] = participants.map((p) => {
-      const row = table.find((r) => r.teamId === p.id)!;
+      const row = campaign.find((r) => r.teamId === p.id)!;
       const reach = cup ? (cup.state.reached[p.id] ?? null) : null;
       const titles: Array<'liga' | 'copa'> = [];
-      if (champion.teamId === p.id) titles.push('liga');
+      if (champion?.teamId === p.id) titles.push('liga');
       if (cup?.state.championId === p.id) titles.push('copa');
       const squad = this.squadOf(p.id);
       return {
@@ -531,7 +552,7 @@ export class Dispute {
         }
       }
     };
-    collect(Object.values(league.state.results), 'liga', (id) => `rodada ${id.split('-')[0]!.slice(1)}`);
+    if (league) collect(Object.values(league.state.results), 'liga', (id) => `rodada ${id.split('-')[0]!.slice(1)}`);
     const cupDuels: CupDuel[] = [];
     if (cup) {
       collect(Object.values(cup.state.results), 'copa', (id) => (id.startsWith('C-G') ? 'grupos' : id.split('-')[1]!));
@@ -550,8 +571,9 @@ export class Dispute {
       }
     }
     const cupChampionName = cup?.state.championId ? cup.team(cup.state.championId).name : null;
-    const headline =
-      cup && cup.state.championId && cup.state.championId !== champion.teamId
+    const headline = !champion
+      ? `${cupChampionName} é o campeão ${/^torneio/i.test(cup!.state.name) ? 'do' : 'da'} ${cup!.state.name}!`
+      : cup && cup.state.championId && cup.state.championId !== champion.teamId
         ? `Temporada dividida: ${champion.name} leva a liga, ${cupChampionName} leva a ${cup.state.name}.`
         : cup && cup.state.championId === champion.teamId
           ? `${champion.name} faz a dobradinha: liga e ${cup.state.name}!`
@@ -560,14 +582,14 @@ export class Dispute {
     this.state.result = {
       cupFormat: this.state.config.cupFormat,
       cupName: cup ? cup.state.name : null,
-      leagueChampionTeamId: champion.teamId,
-      leagueChampionName: champion.name,
+      leagueChampionTeamId: champion?.teamId ?? null,
+      leagueChampionName: champion?.name ?? null,
       cupChampionTeamId: cup?.state.championId ?? null,
       cupChampionName,
       cupRunnerUpTeamId: cup?.state.runnerUpId ?? null,
       outcomes: outcomes.sort((a, b) => a.rank - b.rank),
       leagueTable: table,
-      leagueTopScorers: league.topScorers(10),
+      leagueTopScorers: league ? league.topScorers(10) : [],
       cupTopScorers: cup ? aggregateScorers(Object.values(cup.state.results), 5) : [],
       directMatches,
       cupDuels,
@@ -597,6 +619,21 @@ export class Dispute {
   acquiredCards(): Card[] {
     return this.participants.flatMap((p) => p.roster.map((r) => this.cards[r.cardId]!)).filter((c) => !c.id.startsWith('fill-'));
   }
+}
+
+/**
+ * Colocação geral na copa (sala sem liga): quem foi mais longe fica na frente; na mesma fase,
+ * vale a campanha (pontos, saldo e gols em todos os jogos da copa).
+ */
+export function cupPlacings(cup: Cup): StandingRow[] {
+  const s = cup.state;
+  const draw = [...s.teams].sort((a, b) => (s.seedRank[a.teamId] ?? 999) - (s.seedRank[b.teamId] ?? 999)).map((t) => t.teamId);
+  const rows = computeStandings(s.teams, Object.values(s.results), draw);
+  const reach = (id: string) => REACH_ORDER[s.reached[id] ?? 'grupos'] ?? 0;
+  return rows
+    .map((row, i) => ({ row, i }))
+    .sort((a, b) => reach(b.row.teamId) - reach(a.row.teamId) || a.i - b.i)
+    .map(({ row }, i) => ({ ...row, position: i + 1 }));
 }
 
 /** Até quantos pontos de nível uma sobra pode ficar do jogador inventado que ela substitui. */

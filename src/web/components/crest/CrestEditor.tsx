@@ -11,9 +11,10 @@ import {
 } from '../../../shared/crest';
 import type { PublicUserView } from '../../../shared/protocol';
 import { api } from '../../lib/api';
-import { store, toast } from '../../lib/store';
+import { store, toast, useStore } from '../../lib/store';
 import { Icon } from '../Icon';
 import { Crest } from './Crest';
+import { KitEditor } from './KitEditor';
 import { SYMBOL_LABEL } from './symbols';
 
 /**
@@ -68,7 +69,8 @@ const TABS: Array<{ id: Tab; label: string }> = [
   { id: 'enfeites', label: 'Enfeites' },
 ];
 
-function ColorRow({ label, value, onPick }: { label: string; value: string; onPick: (hex: string) => void }) {
+
+export function ColorRow({ label, value, onPick }: { label: string; value: string; onPick: (hex: string) => void }) {
   const custom = !CREST_COLORS.some((c) => c.hex === value.toUpperCase());
   return (
     <div className="ce-colors">
@@ -126,7 +128,8 @@ export function CrestEditor({
   };
   const roll = () => {
     const r = randomCrest(teamName || 'Leilão FC');
-    onChange({ ...r, initials: value.initials || r.initials, motto: value.motto || r.motto });
+    // Sortear troca o escudo; uniformes escolhidos à mão ficam como estão.
+    onChange({ ...r, initials: value.initials || r.initials, motto: value.motto || r.motto, ...(value.kits ? { kits: value.kits } : {}) });
     setPop((n) => n + 1);
   };
   const onTabKey = (e: KeyboardEvent, i: number) => {
@@ -298,16 +301,42 @@ export function CrestEditor({
               <Toggle label="Ramos de louro" checked={value.laurel} onChange={(v) => set({ laurel: v })} />
             </>
           )}
+
         </div>
       </div>
     </div>
   );
 }
 
-/** Janela com o criador para quem já tem time: salva na conta e vale em todas as telas. */
-export function CrestEditorDialog({ open, onClose, initial, teamName }: { open: boolean; onClose: () => void; initial: CrestConfig; teamName: string }) {
+type Section = 'nome' | 'escudo' | 'uniforme';
+const SECTIONS: Array<{ id: Section; label: string }> = [
+  { id: 'nome', label: 'Nome' },
+  { id: 'escudo', label: 'Escudo' },
+  { id: 'uniforme', label: 'Uniforme' },
+];
+
+/**
+ * “Editar clube”: uma janela só para tudo que é do time — nome, escudo e uniformes. Salva na conta
+ * e vale em todas as telas. `section` escolhe em que parte ela abre.
+ */
+export function ClubEditorDialog({
+  open,
+  onClose,
+  initial,
+  teamName,
+  section = 'escudo',
+}: {
+  open: boolean;
+  onClose: () => void;
+  initial: CrestConfig;
+  teamName: string;
+  section?: Section;
+}) {
   const ref = useRef<HTMLDialogElement | null>(null);
+  const user = useStore((s) => s.user);
   const [draft, setDraft] = useState(initial);
+  const [name, setName] = useState(user?.displayName ?? teamName);
+  const [part, setPart] = useState<Section>(section);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
   useEffect(() => {
@@ -315,22 +344,32 @@ export function CrestEditorDialog({ open, onClose, initial, teamName }: { open: 
     if (!d) return;
     if (open && !d.open) {
       setDraft(initial);
+      setName(user?.displayName ?? teamName);
+      setPart(section);
       setError(null);
       d.showModal();
     } else if (!open && d.open) d.close();
-    // `initial` só importa na abertura.
+    // `initial` e o nome só importam na abertura.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [open]);
   const save = async () => {
+    const nextName = name.trim();
+    if (nextName.length < 2) {
+      setPart('nome');
+      setError('O nome do clube precisa de pelo menos 2 letras.');
+      return;
+    }
     setBusy(true);
     setError(null);
     try {
+      // Primeiro o nome (se mudou), depois escudo e uniformes: a última resposta traz o clube inteiro.
+      if (user && nextName !== user.displayName) await api<{ user: PublicUserView }>('PATCH', '/api/me', { displayName: nextName });
       const r = await api<{ user: PublicUserView }>('PUT', '/api/me/crest', { crest: draft });
       store.set((s) => ({
         user: r.user,
         room: s.room ? { ...s.room, crests: { ...s.room.crests, [r.user.id]: r.user.crest } } : s.room,
       }));
-      toast({ kind: 'sucesso', title: 'Escudo salvo', body: 'Ele já aparece no placar, na tabela e no seu perfil.', icon: 'escudo' });
+      toast({ kind: 'sucesso', title: 'Clube salvo', body: 'Nome, escudo e uniforme já valem no placar, na tabela, nos jogos e no seu perfil.', icon: 'escudo' });
       onClose();
     } catch (err) {
       setError((err as Error).message);
@@ -338,16 +377,35 @@ export function CrestEditorDialog({ open, onClose, initial, teamName }: { open: 
       setBusy(false);
     }
   };
+  const shownName = name.trim() || teamName;
   return (
     <dialog ref={ref} className="dialog crest-dialog" onClose={onClose} aria-labelledby="crest-dialog-title">
       <div className="dialog-head">
-        <h2 id="crest-dialog-title">Escudo do {teamName}</h2>
+        <h2 id="crest-dialog-title">Editar clube</h2>
         <button type="button" className="dialog-x" onClick={onClose} aria-label="Fechar">
           ×
         </button>
       </div>
-      <div className="dialog-body">
-        <CrestEditor value={draft} onChange={setDraft} teamName={teamName} />
+      <div className="dialog-body club-editor">
+        <div className="seg club-sections" role="group" aria-label="O que editar">
+          {SECTIONS.map((x) => (
+            <button key={x.id} type="button" aria-pressed={part === x.id} onClick={() => setPart(x.id)}>
+              {x.label}
+            </button>
+          ))}
+        </div>
+        {part === 'nome' && (
+          <div className="club-name-edit">
+            <Crest crest={draft} size={120} title={`Escudo de ${shownName}`} />
+            <label className="ce-field">
+              <span className="ce-label">Nome do clube</span>
+              <input className="input" value={name} onChange={(e) => setName(e.target.value)} maxLength={28} minLength={2} aria-label="Nome do clube" />
+              <span className="small muted">De 2 a 28 letras. É o nome que aparece no perfil, nas salas novas e no histórico.</span>
+            </label>
+          </div>
+        )}
+        {part === 'escudo' && <CrestEditor value={draft} onChange={setDraft} teamName={shownName} />}
+        {part === 'uniforme' && <KitEditor value={draft} onChange={setDraft} teamName={shownName} />}
       </div>
       <div className="dialog-foot">
         {error && <p className="error-text">{error}</p>}
@@ -355,7 +413,7 @@ export function CrestEditorDialog({ open, onClose, initial, teamName }: { open: 
           Cancelar
         </button>
         <button type="button" className="btn btn-primary" onClick={() => void save()} disabled={busy}>
-          <Icon name="escudo" /> Salvar escudo
+          <Icon name="escudo" /> Salvar clube
         </button>
       </div>
     </dialog>

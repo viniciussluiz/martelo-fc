@@ -14,9 +14,12 @@ test('partida rápida completa, continuidade na mesma sala e Sala de Troféus', 
   await expect(page.getByText('Grupos em turno único')).toBeVisible();
   // Clubes das cartas: por padrão tudo (Brasil + Europa); aqui, só a Série A.
   const clubs = page.getByRole('group', { name: 'Clubes das cartas' });
-  await expect(clubs.getByRole('button', { name: 'Tudo', exact: true })).toHaveAttribute('aria-pressed', 'true');
-  await clubs.getByRole('button', { name: 'Série A', exact: true }).click();
-  await expect(clubs.getByRole('button', { name: 'Série A', exact: true })).toHaveAttribute('aria-pressed', 'true');
+  await expect(clubs.getByRole('checkbox', { name: 'Tudo', exact: true })).toBeChecked();
+  await clubs.getByText('Europa', { exact: true }).click();
+  await clubs.getByText('Série B', { exact: true }).click();
+  await expect(clubs.getByRole('checkbox', { name: 'Série A', exact: true })).toBeChecked();
+  await expect(clubs.getByRole('checkbox', { name: 'Europa', exact: true })).not.toBeChecked();
+  await expect(clubs.getByRole('checkbox', { name: 'Tudo', exact: true })).not.toBeChecked();
   await page.getByRole('button', { name: 'Ver clubes' }).click();
   await expect(page.getByText(/Flamengo · /)).toBeVisible();
   await page.getByRole('button', { name: /Abrir o pregão/ }).click();

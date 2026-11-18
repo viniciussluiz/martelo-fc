@@ -1,5 +1,5 @@
 import { Rng } from './rng.js';
-import { FORMATIONS, POSITIONS, QUALITY_BANDS, type Card, type Position, type QualityBand } from './types.js';
+import { AUCTION_FORMATIONS, FORMATIONS, POSITIONS, QUALITY_BANDS, type Card, type Position, type QualityBand } from './types.js';
 
 /**
  * Leilão de clubes: em vez de um jogador por lance, cada lote é um SETOR de um clube
@@ -14,8 +14,9 @@ import { FORMATIONS, POSITIONS, QUALITY_BANDS, type Card, type Position, type Qu
  *  - pacotes muito grandes são cortados para a convocação caber na tela: os melhores do clube no
  *    setor ficam sempre (ninguém leva o Bayern sem o Beckenbauer) e o resto das vagas é sorteado;
  *  - uma pessoa nunca aparece em dois pacotes do mesmo leilão;
- *  - o lote mistura clubes fortes, médios e fracos (terços, pela força do pacote) e tem pelo
- *    menos um pacote com Lenda quando o baralho permite.
+ *  - o lote tem 1/3 de clubes fortes, 1/3 de médios e 1/3 de fracos (terços, pela força do pacote;
+ *    a sobra da divisão vai para os fortes) e pelo menos um pacote com Lenda quando o baralho permite;
+ *  - com Europa e Brasil no baralho da sala, metade dos pacotes do lote é de cada origem.
  */
 
 export interface ClubPackage {
@@ -27,9 +28,9 @@ export interface ClubPackage {
   mixed?: boolean;
 }
 
-/** Quantos jogadores o setor pede na formação mais exigente (4-3-3 ou 4-4-2). */
+/** Quantos jogadores o setor pede na formação de leilão mais exigente (4-3-3 ou 4-4-2). */
 export const SECTOR_NEED: Record<Position, number> = Object.fromEntries(
-  POSITIONS.map((pos) => [pos, Math.max(...Object.values(FORMATIONS).map((f) => f[pos]))]),
+  POSITIONS.map((pos) => [pos, Math.max(...AUCTION_FORMATIONS.map((f) => FORMATIONS[f][pos]))]),
 ) as Record<Position, number>;
 
 /** Tamanho mínimo de um pacote: o que a formação mais exigente pede + 1. */
@@ -83,6 +84,16 @@ interface Candidate {
   /** O pacote (corte de até PACK_MAX). */
   cards: Card[];
   strength: number;
+  /** Origem do clube: Europa ou Brasil (Séries A e B); `null` em baralhos sem grupo e nas seleções. */
+  region: Region | null;
+}
+
+type Region = 'eu' | 'br';
+
+function regionOf(cards: Card[]): Region | null {
+  const series = cards[0]?.series;
+  if (series === 'EU') return 'eu';
+  return series === 'A' || series === 'B' ? 'br' : null;
 }
 
 export function buildClubPackages(params: { participants: number; deck: Card[]; seed: string }): { packages: ClubPackage[]; cards: Card[] } {
@@ -110,7 +121,7 @@ export function buildClubPackages(params: { participants: number; deck: Card[]; 
         const ranked = all.slice().sort((x, y) => mid(y) - mid(x) || x.id.localeCompare(y.id));
         cut = [...ranked.slice(0, PACK_KEEP), ...rng.shuffle(ranked.slice(PACK_KEEP)).slice(0, PACK_MAX - PACK_KEEP)];
       }
-      return { club, all, cards: cut, strength: packageStrength(cut, pos) };
+      return { club, all, cards: cut, strength: packageStrength(cut, pos), region: regionOf(all) };
     };
     let candidates = [...byClub.entries()].filter(([, l]) => l.length >= PACK_MIN[pos]).map(([club, l]) => toCandidate(club, l));
     // Poucos clubes com elenco completo: aceita os que têm o mínimo da formação (sem sobra).
@@ -154,7 +165,13 @@ export function buildClubPackages(params: { participants: number; deck: Card[]; 
   return { packages, cards };
 }
 
-/** Escolhe `n` pacotes misturando os terços de força (fortes, médios e fracos). */
+/**
+ * Escolhe `n` pacotes com duas garantias (quando o baralho permite):
+ *  - força: os clubes do setor são divididos em terços (fortes, médios, fracos) e o lote leva
+ *    1/3 de cada; o que sobra da divisão vai primeiro para os fortes, depois para os médios
+ *    (3 pacotes = 1/1/1, 4 = 2/1/1, 5 = 2/2/1) — nunca um lote só de fracos;
+ *  - origem: metade Europa, metade Brasil (com número ímpar, o pacote a mais é sorteado).
+ */
 function pickBalanced(candidates: Candidate[], n: number, rng: Rng): Candidate[] {
   if (n >= candidates.length) return candidates.slice();
   const ranked = [...candidates].sort((a, b) => b.strength - a.strength);
@@ -164,14 +181,62 @@ function pickBalanced(candidates: Candidate[], n: number, rng: Rng): Candidate[]
     medio: rng.shuffle(ranked.slice(third, 2 * third)),
     ruim: rng.shuffle(ranked.slice(2 * third)),
   };
+
+  // Cotas por faixa de força; faixa sem clubes suficientes repassa a vaga (fortes primeiro).
+  const quota: Record<QualityBand, number> = {
+    bom: Math.floor(n / 3) + (n % 3 >= 1 ? 1 : 0),
+    medio: Math.floor(n / 3) + (n % 3 === 2 ? 1 : 0),
+    ruim: Math.floor(n / 3),
+  };
+  let spare = 0;
+  for (const b of QUALITY_BANDS) {
+    const over = quota[b] - bands[b].length;
+    if (over > 0) {
+      quota[b] -= over;
+      spare += over;
+    }
+  }
+  for (const b of QUALITY_BANDS) {
+    const room = Math.min(spare, bands[b].length - quota[b]);
+    quota[b] += room;
+    spare -= room;
+  }
+
+  // Cotas por origem (só quando o baralho da sala tem Europa e Brasil).
+  const total: Record<Region, number> = { eu: 0, br: 0 };
+  for (const c of candidates) if (c.region) total[c.region]++;
+  const mixRegions = total.eu > 0 && total.br > 0;
+  const left: Record<Region, number> = { eu: 0, br: 0 };
+  if (mixRegions) {
+    const others = candidates.length - total.eu - total.br;
+    const slots = Math.max(0, n - Math.min(others, Math.floor(n / 3)));
+    let eu = Math.floor(slots / 2) + (slots % 2 === 1 && rng.next() < 0.5 ? 1 : 0);
+    eu = Math.max(slots - total.br, Math.min(total.eu, eu));
+    left.eu = eu;
+    left.br = slots - eu;
+  }
+
   const out: Candidate[] = [];
-  const order = rng.shuffle(QUALITY_BANDS);
-  let i = 0;
-  while (out.length < n) {
-    const band = order[i++ % order.length]!;
-    const next = bands[band].shift() ?? (['bom', 'medio', 'ruim'] as const).map((b) => bands[b].shift()).find(Boolean);
-    if (!next) break;
-    out.push(next);
+  // Os fracos primeiro: é a faixa com menos opções de origem (quase não há europeu fraco),
+  // e as faixas seguintes compensam o que faltar.
+  for (const band of ['ruim', 'medio', 'bom'] as const) {
+    for (let k = 0; k < quota[band]; k++) {
+      const pool = bands[band];
+      let idx = 0;
+      if (mixRegions) {
+        const prefer: Region[] =
+          left.eu === left.br ? rng.shuffle<Region>(['eu', 'br']) : left.eu > left.br ? ['eu', 'br'] : ['br', 'eu'];
+        const hit = prefer
+          .filter((r) => left[r] > 0)
+          .map((r) => pool.findIndex((c) => c.region === r))
+          .find((j) => j >= 0);
+        if (hit !== undefined) idx = hit;
+      }
+      const [next] = pool.splice(idx, 1);
+      if (!next) break;
+      if (next.region && left[next.region] > 0) left[next.region]--;
+      out.push(next);
+    }
   }
   return out;
 }
@@ -190,14 +255,18 @@ function ensureLegend(chosen: Candidate[], candidates: Candidate[], rng: Rng) {
     host.strength = packageStrength(host.cards, legend.position);
     return;
   }
-  // 2) Troca o pacote mais fraco por um clube de fora que tenha Lenda.
+  // 2) Troca um pacote por um clube de fora que tenha Lenda. Sai o mais forte da mesma origem
+  //    (clube com Lenda é clube forte: assim a mistura de força e de origem do lote não muda);
+  //    sem ninguém da mesma origem, sai o mais fraco.
   const outside = rng.shuffle(candidates.filter((c) => !chosen.includes(c) && hasLegend(c.all)))[0];
   if (!outside) return;
   if (!hasLegend(outside.cards)) {
     const legend = rng.pick(outside.all.filter((c) => c.tier === 'lenda'));
     const worst = [...outside.cards].sort((a, b) => mid(a) - mid(b))[0]!;
     outside.cards = outside.cards.map((c) => (c === worst ? legend : c));
+    outside.strength = packageStrength(outside.cards, legend.position);
   }
-  const weakest = [...chosen].sort((a, b) => a.strength - b.strength)[0]!;
-  chosen[chosen.indexOf(weakest)] = outside;
+  const byStrength = [...chosen].sort((a, b) => b.strength - a.strength);
+  const leaving = byStrength.find((c) => c.region === outside.region) ?? byStrength[byStrength.length - 1]!;
+  chosen[chosen.indexOf(leaving)] = outside;
 }

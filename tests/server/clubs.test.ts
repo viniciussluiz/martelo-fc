@@ -55,6 +55,13 @@ describe('leilão de clubes na sala', () => {
       // Só os próprios pacotes trazem nomes, e nenhuma carta mostra faixa ou nível.
       for (const [id, pk] of Object.entries(cd.packages)) expect(!!pk.cardIds).toBe(mine.includes(id));
       expect(Object.values(cd.cards).every((c) => c.levelMin === undefined && c.tier === undefined)).toBe(true);
+      // A única coisa que aparece é quem é Lenda, e só nos próprios pacotes.
+      const room = env.app.rooms.get(ana.room!.code)!;
+      const real = room.dispute!.cards;
+      const myCards = mine.flatMap((id) => cd.packages[id]!.cardIds ?? []);
+      expect(myCards.length).toBeGreaterThan(11);
+      for (const id of myCards) expect(!!cd.cards[id]!.legend, real[id]!.name).toBe(real[id]!.tier === 'lenda');
+      expect(Object.values(cd.cards).filter((c) => c.legend).every((c) => myCards.includes(c.id))).toBe(true);
     }
 
     const done = await ana.waitFor((x) => x?.status === 'post_dispute' && !!x.continuation, 30_000, 'fim do ciclo');

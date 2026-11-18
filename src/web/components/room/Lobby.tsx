@@ -1,11 +1,12 @@
 import { useState } from 'react';
-import type { Formation, Series, SeriesScope } from '../../../engine/types';
+import { CLUB_SERIES, scopeOfSeries, scopeSeries, type Formation, type Series, type SeriesScope } from '../../../engine/types';
+import type { MatchSeconds } from '../../../shared/protocol';
 import type { DeckInfo, RoomSettings, RoomView } from '../../../shared/protocol';
 import { CPU_TEAM_NAMES } from '../../../shared/teams';
 import { act } from '../../lib/socket';
 import { toast, useStore } from '../../lib/store';
-import { CUP_FORMAT_LABEL, fmtDateTime } from '../common';
-import { CrestEditorDialog } from '../crest/CrestEditor';
+import { CUP_FORMAT_LABEL, fmtDateTime, ONLY_CUP_LABEL } from '../common';
+import { ClubEditorDialog } from '../crest/CrestEditor';
 import { TeamCrest } from '../crest/TeamCrest';
 import { Icon } from '../Icon';
 import { StatusLight } from '../ui';
@@ -52,36 +53,66 @@ function Toggle({ label, checked, disabled, onChange }: { label: string; checked
   );
 }
 
-const SCOPES: Array<{ id: SeriesScope; label: string; groups: Series[]; desc: string }> = [
-  { id: 'ALL', label: 'Tudo', groups: ['A', 'B', 'EU'], desc: 'Séries A e B do Brasileirão e os grandes da Europa.' },
-  { id: 'AB', label: 'Séries A e B', groups: ['A', 'B'], desc: 'Só clubes da Série A e da Série B do Brasileirão.' },
-  { id: 'EU', label: 'Europa', groups: ['EU'], desc: 'Só os grandes clubes da Europa.' },
-  { id: 'A', label: 'Série A', groups: ['A'], desc: 'Só os clubes da Série A.' },
-  { id: 'B', label: 'Série B', groups: ['B'], desc: 'Só os clubes da Série B.' },
+/** Duração das partidas: o nome diz o ritmo (os segundos não aparecem na tela). */
+const MATCH_PACES: Array<{ seconds: MatchSeconds; label: string; league: string; cup: string }> = [
+  {
+    seconds: 10,
+    label: 'Jogo rápido',
+    league: 'Só o essencial de cada jogo: a liga inteira passa em uns 7 minutos. As 5 últimas rodadas e o mata-mata da copa ganham um pouco mais de tempo.',
+    cup: 'Só o essencial de cada jogo. O mata-mata ganha um pouco mais de tempo que a fase de grupos.',
+  },
+  {
+    seconds: 20,
+    label: 'Melhores momentos',
+    league: 'Jogo corrido, com os principais lances: a liga de 38 rodadas passa em uns 13 minutos.',
+    cup: 'Jogo corrido, com os principais lances de cada partida.',
+  },
+  {
+    seconds: 40,
+    label: 'Jogo completo',
+    league: 'Dá para acompanhar os lances com calma: a liga de 38 rodadas leva uns 25 minutos.',
+    cup: 'Dá para acompanhar os lances de cada partida com calma.',
+  },
 ];
 
-/** Escolha dos clubes das cartas (só aparece quando o baralho tem jogadores reais separados por grupo). */
+const GROUP_LABEL: Record<string, string> = { EU: 'Europa', A: 'Série A', B: 'Série B' };
+
+/** “Série A e Europa”, “Série A, Série B e Europa”… */
+function listGroups(groups: readonly Series[]): string {
+  const names = groups.map((g) => GROUP_LABEL[g] ?? g);
+  return names.length <= 1 ? (names[0] ?? '') : `${names.slice(0, -1).join(', ')} e ${names[names.length - 1]}`;
+}
+
+/**
+ * Escolha dos clubes das cartas (só aparece quando o baralho tem jogadores reais separados por grupo):
+ * marca-se cada grupo que entra — Europa, Série A, Série B — ou “Tudo”. Pelo menos um fica marcado.
+ */
 function ClubsField({ deck, value, editable, onChange }: { deck: DeckInfo; value: SeriesScope; editable: boolean; onChange: (v: SeriesScope) => void }) {
   const [showClubs, setShowClubs] = useState(false);
-  const available = SCOPES.filter((o) => o.groups.some((g) => deck.groups[g]));
+  const available = CLUB_SERIES.filter((g) => deck.groups[g]);
   if (available.length === 0) {
     return <p className="small muted">Baralho: {deck.name}</p>;
   }
-  const current = SCOPES.find((o) => o.id === value) ?? SCOPES[0]!;
-  const count = current.groups.reduce((n, g) => n + (deck.groups[g] ?? 0), 0);
-  const clubs = current.groups.flatMap((g) => deck.clubs[g] ?? []);
+  const picked = available.filter((g) => scopeSeries(value).includes(g));
+  const all = picked.length === available.length;
+  const toggle = (g: Series, on: boolean) => {
+    const next = scopeOfSeries(on ? [...picked, g] : picked.filter((x) => x !== g));
+    // Desmarcar o último grupo não faz nada: a sala precisa de cartas.
+    if (next) onChange(next);
+  };
+  const count = picked.reduce((n, g) => n + (deck.groups[g] ?? 0), 0);
+  const clubs = picked.flatMap((g) => deck.clubs[g] ?? []);
   return (
     <div className="field">
       <label>Clubes das cartas</label>
-      <div className="seg seg-grid seg-clubs" role="group" aria-label="Clubes das cartas">
-        {available.map((o) => (
-          <button key={o.id} type="button" aria-pressed={value === o.id} disabled={!editable} onClick={() => onChange(o.id)}>
-            {o.label}
-          </button>
+      <div className="checks checks-row" role="group" aria-label="Clubes das cartas">
+        {available.length > 1 && <Toggle label="Tudo" checked={all} disabled={!editable || all} onChange={() => onChange('ALL')} />}
+        {available.map((g) => (
+          <Toggle key={g} label={GROUP_LABEL[g]!} checked={picked.includes(g)} disabled={!editable || (picked.length === 1 && picked[0] === g)} onChange={(on) => toggle(g, on)} />
         ))}
       </div>
       <p className="hint">
-        {current.desc} {count} cartas, de {clubs.length} clubes.{' '}
+        {all && available.length > 1 ? 'Séries A e B do Brasileirão e os grandes da Europa.' : `Só clubes de: ${listGroups(picked)}.`} {count} cartas, de {clubs.length} clubes.{' '}
         <button type="button" className="link-btn" onClick={() => setShowClubs((v) => !v)} aria-expanded={showClubs}>
           {showClubs ? 'Esconder clubes' : 'Ver clubes'}
         </button>
@@ -96,6 +127,7 @@ export function SettingsPanel({ room, editable }: { room: RoomView; editable: bo
   const clubs = s.auctionMode !== 'jogador';
   const national = s.auctionMode === 'selecoes';
   const hasNational = (room.deck.groups.SEL ?? 0) > 0;
+  const onlyCup = s.cupFormat === 'libertadores' && !!s.skipLeague;
   const set = (patch: Partial<RoomSettings>) => void act({ t: 'room:settings', settings: patch });
   return (
     <section className="panel">
@@ -137,18 +169,22 @@ export function SettingsPanel({ room, editable }: { room: RoomView; editable: bo
           <ClubsField deck={room.deck} value={s.series ?? 'ALL'} editable={editable} onChange={(v) => set({ series: v })} />
         )}
         <div className="field">
-          <label>Depois da liga</label>
-          <div className="seg seg-grid" role="group" aria-label="Copa">
+          <label>Competições</label>
+          <div className="seg seg-grid" role="group" aria-label="Competições">
             {(['copa8', 'libertadores', 'mundial', 'nenhuma'] as const).map((f) => (
-              <button key={f} type="button" aria-pressed={s.cupFormat === f} disabled={!editable} onClick={() => set({ cupFormat: f })}>
-                {CUP_FORMAT_LABEL[f]}
+              <button key={f} type="button" aria-pressed={s.cupFormat === f && !onlyCup} disabled={!editable} onClick={() => set({ cupFormat: f, skipLeague: false })}>
+                {f === 'nenhuma' ? CUP_FORMAT_LABEL[f] : `Liga + ${CUP_FORMAT_LABEL[f]}`}
               </button>
             ))}
+            <button type="button" aria-pressed={onlyCup} disabled={!editable} onClick={() => set({ cupFormat: 'libertadores', skipLeague: true })}>
+              {ONLY_CUP_LABEL}
+            </button>
           </div>
           <p className="hint">
-            {s.cupFormat === 'copa8' && 'Os 8 primeiros da liga jogam mata-mata em ida e volta; final em jogo único.'}
-            {s.cupFormat === 'libertadores' && 'Os 8 primeiros entram em 8 grupos com 24 clubes do continente; passam 2; mata-mata ida e volta.'}
-            {s.cupFormat === 'mundial' && 'Grupos em turno único com 32 clubes e mata-mata em jogo único.'}
+            {s.cupFormat === 'copa8' && 'Depois da liga, os 8 primeiros jogam mata-mata em ida e volta; final em jogo único.'}
+            {s.cupFormat === 'libertadores' && !onlyCup && 'Depois da liga, os 8 primeiros entram em 8 grupos com 24 clubes do continente; passam 2; mata-mata ida e volta.'}
+            {onlyCup && 'Sem liga: depois do leilão, todos os técnicos vão direto para a Libertadores, em 8 grupos com clubes do continente; passam 2 de cada grupo; mata-mata ida e volta.'}
+            {s.cupFormat === 'mundial' && 'Depois da liga, grupos em turno único com 32 clubes e mata-mata em jogo único.'}
             {s.cupFormat === 'nenhuma' && 'Termina a liga e já sai o resultado.'}
           </p>
         </div>
@@ -176,19 +212,15 @@ export function SettingsPanel({ room, editable }: { room: RoomView; editable: bo
           </div>
         </div>
         <div className="field">
-          <label>Tempo de cada partida</label>
-          <div className="seg" role="group" aria-label="Tempo de cada partida">
-            {([20, 40] as const).map((n) => (
-              <button key={n} type="button" aria-pressed={(s.matchSeconds ?? 40) === n} disabled={!editable} onClick={() => set({ matchSeconds: n })}>
-                {n} segundos
+          <label>Partidas</label>
+          <div className="seg seg-grid" role="group" aria-label="Partidas">
+            {MATCH_PACES.map((o) => (
+              <button key={o.seconds} type="button" aria-pressed={(s.matchSeconds ?? 40) === o.seconds} disabled={!editable} onClick={() => set({ matchSeconds: o.seconds })}>
+                {o.label}
               </button>
             ))}
           </div>
-          <p className="hint">
-            {(s.matchSeconds ?? 40) === 20
-              ? 'Jogo corrido: a liga de 38 rodadas passa em uns 13 minutos.'
-              : 'Dá para acompanhar os lances com calma: a liga de 38 rodadas leva uns 25 minutos.'}
-          </p>
+          <p className="hint">{(MATCH_PACES.find((o) => o.seconds === (s.matchSeconds ?? 40)) ?? MATCH_PACES[2]!)[onlyCup ? 'cup' : 'league']}</p>
         </div>
         <div className="checks">
           <Toggle label="Repescagem das sobras de cada posição" checked={s.repescagem} disabled={!editable} onChange={(v) => set({ repescagem: v })} />
@@ -313,7 +345,7 @@ function MyTeamPanel({ room }: { room: RoomView }) {
         <div className="my-team-crest">
           <TeamCrest userId={room.you} name={me.teamName} size={112} />
           <button type="button" className="btn btn-sm" onClick={() => setEditing(true)} disabled={!crest}>
-            <Icon name="pincel" /> Editar escudo
+            <Icon name="pincel" /> Editar clube
           </button>
         </div>
         <div className="stack my-team-fields">
@@ -350,7 +382,7 @@ function MyTeamPanel({ room }: { room: RoomView }) {
           </div>
         </div>
       </div>
-      {crest && <CrestEditorDialog open={editing} onClose={() => setEditing(false)} initial={crest} teamName={me.teamName} />}
+      {crest && <ClubEditorDialog open={editing} onClose={() => setEditing(false)} initial={crest} teamName={me.teamName} />}
     </section>
   );
 }

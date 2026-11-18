@@ -193,7 +193,7 @@ export class ResultsService {
           titlesB: ob.titles,
         });
         // Liga: posição final na tabela (não existe empate de posição).
-        put('liga', 'liga', 'liga', a, b, oa.leaguePosition < ob.leaguePosition ? a : b, oa.leaguePosition, ob.leaguePosition, null);
+        if (dispute.league) put('liga', 'liga', 'liga', a, b, oa.leaguePosition < ob.leaguePosition ? a : b, oa.leaguePosition, ob.leaguePosition, null);
         // Copa: só se os dois disputaram; melhor fase alcançada vence; mesma fase = empate.
         if (oa.cupReach && ob.cupReach) {
           const ra = REACH_ORDER[oa.cupReach];

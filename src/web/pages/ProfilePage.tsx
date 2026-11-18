@@ -1,14 +1,13 @@
 import { useEffect, useState } from 'react';
 import type { CrestConfig } from '../../shared/crest';
 import { Empty, Spinner, fmtDate, REACH_LABEL } from '../components/common';
-import { CrestEditorDialog } from '../components/crest/CrestEditor';
+import { ClubEditorDialog } from '../components/crest/CrestEditor';
 import { TeamCrest } from '../components/crest/TeamCrest';
 import { Icon } from '../components/Icon';
 import { SectionTitle } from '../components/ui';
 import { api } from '../lib/api';
 import { navigate } from '../lib/router';
 import { useStore } from '../lib/store';
-import { RenameTeamForm } from '../components/RenameTeam';
 
 interface Rec {
   total: number;
@@ -64,7 +63,6 @@ export function ProfilePage({ userId }: { userId: string }) {
   const [opps, setOpps] = useState<Opponent[] | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [editing, setEditing] = useState(false);
-  const [renaming, setRenaming] = useState(false);
   useEffect(() => {
     setP(null);
     setOpps(null);
@@ -90,23 +88,12 @@ export function ProfilePage({ userId }: { userId: string }) {
           <TeamCrest userId={p.user.id} name={name} crest={crest} size={150} />
           {isMe && (
             <button type="button" className="btn btn-sm" onClick={() => setEditing(true)}>
-              <Icon name="pincel" /> Editar escudo
+              <Icon name="pincel" /> Editar clube
             </button>
           )}
         </div>
         <div className="profile-id">
-          {isMe && me && renaming ? (
-            <RenameTeamForm user={me} onDone={() => setRenaming(false)} />
-          ) : (
-            <h1>
-              {name}
-              {isMe && (
-                <button type="button" className="btn btn-sm profile-rename" onClick={() => setRenaming(true)}>
-                  <Icon name="pincel" /> Trocar nome
-                </button>
-              )}
-            </h1>
-          )}
+          <h1>{name}</h1>
           <p className="profile-since">
             Técnico desde {fmtDate(p.user.createdAt)}
             {p.user.isGuest ? ' (convidado)' : ''}
@@ -128,7 +115,7 @@ export function ProfilePage({ userId }: { userId: string }) {
         <button className="btn btn-primary profile-trophies" onClick={() => navigate(`/trofeus/${userId}`)}>
           <Icon name="trofeu" /> Sala de Troféus ({p.trophiesUnlocked})
         </button>
-        {isMe && <CrestEditorDialog open={editing} onClose={() => setEditing(false)} initial={crest} teamName={p.user.displayName} />}
+        {isMe && <ClubEditorDialog open={editing} onClose={() => setEditing(false)} initial={crest} teamName={p.user.displayName} />}
       </header>
 
       <section className="stat-strip" aria-label="Números">

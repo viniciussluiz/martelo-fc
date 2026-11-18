@@ -170,12 +170,21 @@ describe('bola do jogo ao vivo', () => {
     expect(who(pen! - 0.3)).toBe('h9');
     expect(ballAt(tl.keys, pen! + 0.05).x).toBeGreaterThan(1);
 
-    // Falta do visitante: na entrada da área do mandante, com barreira de três entre a bola e o gol.
+    // Falta do visitante: no campo de ataque dele, fora da área do mandante, com barreira de três a
+    // 9,15 m, entre a bola e o gol.
     const ball = ballAt(tl.keys, fk! - 1.5);
-    expect(ball.x).toBeGreaterThan(0.19);
-    expect(ball.x).toBeLessThan(0.25);
-    const wall = playersAt(tl, fk! - 0.3).filter((p, i) => tl.players[i]!.side === 'home' && Math.abs(p.x - (ball.x - 0.087)) < 0.01 && Math.abs(p.y - 0.5) < 0.2);
+    expect(ball.x).toBeGreaterThan(0.13);
+    expect(ball.x).toBeLessThan(0.31);
+    expect(ball.x > 16.5 / 105 || Math.abs(ball.y - 0.5) > 20.16 / 68).toBe(true);
+    const toBall = (p: { x: number; y: number }) => Math.hypot((p.x - ball.x) * 105, (p.y - ball.y) * 68);
+    const toGoal = (p: { x: number; y: number }) => Math.hypot(p.x * 105, (p.y - 0.5) * 68);
+    const wall = playersAt(tl, fk! - 0.3).filter((p, i) => tl.players[i]!.side === 'home' && toBall(p) > 8 && toBall(p) < 10.5 && toGoal(p) < toGoal(ball));
     expect(wall).toHaveLength(3);
+    // Quem sofreu a falta estava com a bola ali mesmo, um instante antes do aviso: a falta não surge do nada.
+    const foul = tl.banners.find((x) => x.text === 'Falta!')!;
+    const before = ballAt(tl.keys, foul.from - 0.05);
+    expect(Math.hypot((before.x - ball.x) * 105, (before.y - ball.y) * 68)).toBeLessThan(3);
+    expect(holderAt(tl.keys, foul.from - 0.05)?.side).toBe('away');
     expect(who(fk! - 0.3)).toBe('a6');
     expect(tl.goals.some((g) => Math.abs(g.t - fk!) < 0.5)).toBe(false);
 
@@ -185,9 +194,61 @@ describe('bola do jogo ao vivo', () => {
     expect(tl.keys.some((k) => k.holder && tl.players.find((p) => p.side === k.holder!.side && p.idx === k.holder!.idx)!.cardId === 'h5' && k.x > 0.98)).toBe(true);
     expect(who(corner! - 0.05)).toBe('h3');
     expect(tl.goals.map((g) => g.side)).toEqual(['home', 'home']);
+    // Antes do aviso, o ataque já estava na ponta daquele lado e a bola saiu pela linha de fundo ali.
+    const cornerBanner = tl.banners.find((x) => x.text === 'Escanteio!')!;
+    const gone = ballAt(tl.keys, cornerBanner.from - 0.01);
+    expect(gone.x).toBeGreaterThan(0.97);
+    expect(gone.y < 0.5).toBe(flag.y < 0.5);
+    const cross = ballAt(tl.keys, cornerBanner.from - 1.6);
+    expect(cross.x).toBeGreaterThan(0.6);
     // Escanteio afastado e impedimento não mexem no placar.
     expect(ballAt(tl.keys, cleared! + 0.01).x).toBeLessThan(0.5);
     expect(bannerAt(tl, offside! + 0.2)?.text).toBe('Impedimento!');
+  });
+
+  it('quem recebe na cara do gol finaliza (para fora ou travado): ninguém toca para trás dali', () => {
+    let shots = 0;
+    for (let i = 0; i < 40; i++) {
+      const tl = buildTimeline(match(EVENTS, `cara-do-gol-${i}`));
+      for (let k = 0; k < tl.keys.length - 1; k++) {
+        const key = tl.keys[k]!;
+        const next = tl.keys[k + 1]!;
+        if (!key.holder || key.jump || key.shot) continue;
+        const who = tl.players.find((p) => p.side === key.holder!.side && p.idx === key.holder!.idx)!;
+        if (who.position === 'GOL') continue;
+        const pos = playerAt(tl, who, key.t);
+        const dir = who.side === 'home' ? 1 : -1;
+        const facingGoal = dir * (pos.x - 0.5) > 0.32 && Math.abs(pos.y - 0.5) < 0.25;
+        if (!facingGoal) continue;
+        // Bola parada sendo armada (o mesmo ponto, parada) não conta.
+        if (next.jump || (Math.abs(next.x - key.x) < 0.004 && Math.abs(next.y - key.y) < 0.004)) continue;
+        // Dali, a bola só anda para a frente (chute, ou um toque para quem está mais perto do gol).
+        const forward = dir * (next.x - key.x);
+        if (next.shot) shots++;
+        expect(next.shot || forward > -0.02, `jogo ${i}, minuto ${key.t.toFixed(1)}: de ${pos.x.toFixed(2)} para ${next.x.toFixed(2)}`).toBe(true);
+      }
+    }
+    expect(shots).toBeGreaterThan(20);
+  });
+
+  it('a falta muda de lugar de um jogo para o outro: pela esquerda, pela direita e de frente', () => {
+    const events: MatchView['events'] = [
+      { minute: 0, type: 'apito', side: null, text: '' },
+      { minute: 40, type: 'defesa', side: 'home', cardId: 'h9', setPiece: 'falta', text: '' },
+      { minute: 90, type: 'fim', side: null, text: '' },
+    ];
+    const spots = Array.from({ length: 60 }, (_, i) => {
+      const tl = buildTimeline({ ...match(events), id: `falta-${i}` });
+      return ballAt(tl.keys, tl.moments[1]! - 1.5);
+    });
+    expect(spots.filter((s) => s.y < 0.32).length).toBeGreaterThan(8);
+    expect(spots.filter((s) => s.y > 0.68).length).toBeGreaterThan(8);
+    expect(spots.filter((s) => s.y >= 0.34 && s.y <= 0.66).length).toBeGreaterThan(5);
+    // Sempre no campo de ataque e nunca dentro da área.
+    for (const s of spots) {
+      expect(s.x).toBeGreaterThan(0.69);
+      expect(s.x < 1 - 16.5 / 105 || Math.abs(s.y - 0.5) > 20.16 / 68).toBe(true);
+    }
   });
 
   it('no turbo os lances encolhem e o jogo todo ainda cabe antes do apito', () => {

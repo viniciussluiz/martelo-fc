@@ -15,6 +15,8 @@ import {
   type CpuStyle,
   type DisputeConfig,
   type Formation,
+  AUCTION_FORMATIONS,
+  FORMATION_LIST,
   type Tactic,
 } from '../../engine/types.js';
 import type {
@@ -34,7 +36,7 @@ import { nowIso, type DB } from '../db.js';
 import type { Logger } from '../log.js';
 import type { ResultsService } from '../services/results.js';
 import { TIMINGS, type Timing } from './timing.js';
-import { MATCH_SECONDS } from '../../shared/protocol.js';
+import { FAST_MATCH, MATCH_SECONDS } from '../../shared/protocol.js';
 import { shootoutMs } from '../../shared/shootout.js';
 import { buildRoomView } from './views.js';
 import { CPU_TEAM_NAMES } from '../../shared/teams.js';
@@ -125,6 +127,9 @@ export function sanitizeSettings(mode: RoomMode, base: RoomSettings, patch: Part
     if (!['copa8', 'libertadores', 'mundial', 'nenhuma'].includes(patch.cupFormat)) throw new GameRuleError('config_invalida', 'Formato de copa inválido.');
     s.cupFormat = patch.cupFormat;
   }
+  if (patch.skipLeague !== undefined) s.skipLeague = !!patch.skipLeague;
+  // “Sem liga” só existe na Libertadores: trocar de formato desliga.
+  if (s.cupFormat !== 'libertadores') s.skipLeague = false;
   if (patch.series !== undefined) {
     if (!SERIES_SCOPES.includes(patch.series)) throw new GameRuleError('config_invalida', 'Grupo de clubes inválido.');
     s.series = patch.series;
@@ -136,7 +141,7 @@ export function sanitizeSettings(mode: RoomMode, base: RoomSettings, patch: Part
     if (patch.matchSeconds === undefined) s.matchSeconds = patch.speed === 'turbo' ? 20 : 40;
   }
   if (patch.matchSeconds !== undefined) {
-    if (!MATCH_SECONDS.includes(patch.matchSeconds)) throw new GameRuleError('config_invalida', 'Duração da partida inválida: 20 ou 40 segundos.');
+    if (!MATCH_SECONDS.includes(patch.matchSeconds)) throw new GameRuleError('config_invalida', 'Duração da partida inválida.');
     s.matchSeconds = patch.matchSeconds;
   }
   const int = (v: unknown, min: number, max: number, label: string) => {
@@ -213,8 +218,27 @@ export class RoomActor {
     const base = TIMINGS[forced ?? this.settings.speed];
     // Testes automatizados usam o ritmo deles; nas salas, a partida dura o que o anfitrião escolheu.
     if (forced) return base;
-    const matchMs = (this.settings.matchSeconds ?? (this.settings.speed === 'turbo' ? 20 : 40)) * 1000;
+    const seconds = this.settings.matchSeconds ?? (this.settings.speed === 'turbo' ? 20 : 40);
+    if (seconds === 10) return { ...base, leagueRoundMs: this.fastLeagueRoundMs(), cupMatchdayMs: this.fastCupMatchdayMs() };
+    const matchMs = seconds * 1000;
     return base.leagueRoundMs === matchMs && base.cupMatchdayMs === matchMs ? base : { ...base, leagueRoundMs: matchMs, cupMatchdayMs: matchMs };
+  }
+
+  /** Jogo rápido, liga: a rodada que está na tela (a última jogada) dura mais se for uma das 5 últimas. */
+  private fastLeagueRoundMs(): number {
+    const league = this.dispute?.league;
+    if (!league) return FAST_MATCH.baseMs;
+    return league.state.currentRound > league.totalRounds - FAST_MATCH.lastLeagueRounds ? FAST_MATCH.decisiveMs : FAST_MATCH.baseMs;
+  }
+
+  /** Jogo rápido, copa: fase de grupos no tempo curto, mata-mata no tempo dos jogos decisivos. */
+  private fastCupMatchdayMs(): number {
+    const cup = this.dispute?.cup;
+    if (!cup) return FAST_MATCH.baseMs;
+    // Vale a rodada que está na tela; a fase atual da copa já pode ser a seguinte.
+    const onScreen = this.lastTickMatchIds.filter((id) => id.startsWith('C-') || id.startsWith('T-'));
+    const groups = onScreen.length ? onScreen.some((id) => id.startsWith('C-G')) : cup.currentStage === 'grupos';
+    return groups ? FAST_MATCH.baseMs : FAST_MATCH.decisiveMs;
   }
 
   get log() {
@@ -474,7 +498,7 @@ export class RoomActor {
     const m = this.members.get(userId);
     if (!m || m.status !== 'active') throw new GameRuleError('nao_membro', 'Você não está nesta sala.');
     if (patch.formation !== undefined) {
-      if (!['4-3-3', '4-4-2'].includes(patch.formation)) throw new GameRuleError('formacao_invalida', 'Formação inválida.');
+      if (!AUCTION_FORMATIONS.includes(patch.formation)) throw new GameRuleError('formacao_invalida', 'Formação inválida.');
       m.formation = patch.formation;
     }
     if (patch.teamName !== undefined) {
@@ -530,6 +554,7 @@ export class RoomActor {
     return {
       ...DEFAULT_DISPUTE_CONFIG,
       cupFormat: this.settings.cupFormat,
+      skipLeague: this.settings.cupFormat === 'libertadores' && !!this.settings.skipLeague,
       // Leilão de clubes: os pacotes são sorteados de novo a cada ciclo.
       carryOverPreviousCycle: this.settings.carryOver && !clubs,
       auction: {
@@ -700,6 +725,26 @@ export class RoomActor {
     this.requireStep(stepId);
     if (!Array.isArray(cardIds) || cardIds.length > 30) throw new GameRuleError('convocacao_invalida', 'Convocação inválida.');
     this.dispute!.auction.submitConvocacao(pid, cardIds.map(String), seal);
+    this.afterAction();
+  }
+
+  /**
+   * Leilão de clubes: o técnico troca a formação na hora de convocar. Vale para esta disputa; a
+   * formação com que ele entra no próximo pregão só muda se a escolhida for uma das do leilão.
+   */
+  convocaFormation(userId: string, stepId: string, formation: Formation) {
+    const pid = this.requireParticipant(userId);
+    this.requireStep(stepId);
+    if (!FORMATION_LIST.includes(formation)) throw new GameRuleError('formacao_invalida', 'Formação inválida.');
+    const d = this.dispute!;
+    d.auction.setConvocaFormation(pid, formation);
+    const seat = d.state.seats.find((s) => s.id === pid);
+    if (seat) seat.formation = formation;
+    const m = this.members.get(userId);
+    if (m && AUCTION_FORMATIONS.includes(formation)) {
+      m.formation = formation;
+      this.persistMember(m);
+    }
     this.afterAction();
   }
 

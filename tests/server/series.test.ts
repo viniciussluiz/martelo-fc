@@ -116,6 +116,17 @@ describe('clubes das cartas escolhidos na sala', () => {
     });
   }
 
+  it('com “Série A + Europa” (grupos marcados um a um), nada da Série B', async () => {
+    const f = await TestClient.guest(env.app, 'Fabi Grupos');
+    const code = await soloRoom(f);
+    await f.send({ t: 'room:settings', settings: { series: 'AEU' } });
+    await f.waitFor((r) => r?.settings.series === 'AEU', 5000, 'configurar');
+    await f.send({ t: 'room:start' });
+    await f.waitFor((r) => r?.dispute?.phase === 'auction', 5000, 'leilão');
+    expect([...poolGroups(code)].sort()).toEqual(['A', 'EU']);
+    f.close();
+  });
+
   it('com “Séries A e B”, nada da Europa', async () => {
     const d = await TestClient.guest(env.app, 'Duda Grupos');
     const code = await soloRoom(d, { series: 'AB' });

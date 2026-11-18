@@ -12,6 +12,9 @@ import type { CupFormat, Tactic } from './types.js';
  *    Ida e volta no mata-mata é decisão própria.
  *  - mundial (“Torneio Mundial”): formato próprio — 32 times, grupos em turno único e
  *    mata-mata em jogo único.
+ *
+ * Sala sem liga (“Só Libertadores”): todos os técnicos entram direto na fase de grupos (até 3 por
+ * grupo, com 20 técnicos) e os clubes do continente completam os 32.
  */
 
 export type CupStageId = 'grupos' | 'oitavas' | 'quartas' | 'semi' | 'final';
@@ -92,8 +95,9 @@ export class Cup {
   constructor(public state: CupState) {}
 
   /**
-   * @param qualified times classificados em ordem de semente (1º da liga primeiro).
-   * @param extraTeams clubes adicionais (continentais) para formatos com grupos.
+   * @param qualified times classificados em ordem de semente (1º da liga primeiro). Na Copa dos 8
+   *   são exatamente 8; nos formatos com grupos, de 1 a 32 (espalhados pelos grupos em ordem).
+   * @param extraTeams clubes adicionais (continentais) para formatos com grupos: os que faltam para 32.
    */
   static create(format: CupFormat, qualified: LeagueTeam[], extraTeams: LeagueTeam[], seed: string): Cup {
     if (format === 'nenhuma') throw new Error('Formato sem copa');
@@ -138,9 +142,16 @@ export class Cup {
     } else {
       state.stages = ['grupos', 'oitavas', 'quartas', 'semi', 'final'];
       extraTeams.forEach((t, i) => (seedRank[t.teamId] = 100 + i));
-      const pot1 = qualified.map((t) => t.teamId);
+      if (qualified.length + extraTeams.length !== GROUP_IDS.length * 4) {
+        throw new Error(`A fase de grupos precisa de ${GROUP_IDS.length * 4} times (vieram ${qualified.length + extraTeams.length})`);
+      }
+      // Classificados espalhados pelos grupos em ordem de semente (1º no A, 2º no B… 9º no A de novo).
+      const seeded = qualified.map((t) => t.teamId);
       const others = rng.shuffle(extraTeams.map((t) => t.teamId));
-      state.groups = GROUP_IDS.map((gid, i) => ({ id: gid, teamIds: [pot1[i]!, ...others.slice(i * 3, i * 3 + 3)] }));
+      state.groups = GROUP_IDS.map((gid, i) => {
+        const own = seeded.filter((_, k) => k % GROUP_IDS.length === i);
+        return { id: gid, teamIds: [...own, ...others.splice(0, 4 - own.length)] };
+      });
       for (const t of state.teams) state.reached[t.teamId] = 'grupos';
       cup.buildGroups();
     }

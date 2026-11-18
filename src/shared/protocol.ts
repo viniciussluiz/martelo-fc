@@ -16,8 +16,14 @@ import type { AcquisitionSource, AuctionMode, CupFormat, Formation, Position, Se
 export type RoomMode = 'online' | 'solo';
 export type RoomStatus = 'lobby' | 'in_dispute' | 'post_dispute' | 'closed';
 export type SpeedSetting = 'normal' | 'turbo';
-export type MatchSeconds = 20 | 40;
-export const MATCH_SECONDS: readonly MatchSeconds[] = [20, 40];
+/**
+ * Duração das partidas na tela. 40 = jogo completo, 20 = melhores momentos e 10 = jogo rápido,
+ * que dá um pouco mais de tempo aos jogos decisivos (ver `FAST_MATCH`).
+ */
+export type MatchSeconds = 10 | 20 | 40;
+export const MATCH_SECONDS: readonly MatchSeconds[] = [10, 20, 40];
+/** Jogo rápido: 10 s por rodada; as 5 últimas rodadas da liga e o mata-mata das copas têm 15 s. */
+export const FAST_MATCH = { baseMs: 10_000, decisiveMs: 15_000, lastLeagueRounds: 5 } as const;
 export type MemberStatus = 'active' | 'inactive' | 'left';
 export type ContinueChoice = 'continue' | 'leave';
 
@@ -25,11 +31,13 @@ export interface RoomSettings {
   /** Tipo de leilão: um jogador por lance (padrão) ou setores de clubes (pacotes + convocação). */
   auctionMode: AuctionMode;
   cupFormat: CupFormat;
-  /** Clubes das cartas do leilão: tudo, Séries A e B, só A, só B ou grandes da Europa. */
+  /** Sem liga: todos os técnicos vão direto para a Libertadores (só vale com `cupFormat: 'libertadores'`). */
+  skipLeague?: boolean;
+  /** Clubes das cartas do leilão: qualquer combinação de Série A, Série B e grandes da Europa. */
   series: SeriesScope;
   cpuCount: number;
   speed: SpeedSetting;
-  /** Quanto dura cada partida na tela, em segundos (20 ou 40). */
+  /** Duração das partidas na tela: 10 (jogo rápido), 20 (melhores momentos) ou 40 (jogo completo). */
   matchSeconds: MatchSeconds;
   maxHumans: number;
   carryOver: boolean;
@@ -97,6 +105,11 @@ export interface CardView {
   mystery?: boolean;
   /** Revelado no martelo (carta vendida) ou na Cerimônia. */
   tier?: Tier;
+  /**
+   * Convocação do leilão de clubes: o dono do pacote vê quais dos seus jogadores são Lenda (as outras
+   * faixas continuam fechadas até a Cerimônia).
+   */
+  legend?: boolean;
   /** Revelados apenas na Cerimônia da Revelação. */
   levelMin?: number;
   levelMax?: number;
@@ -226,6 +239,11 @@ export interface MatchView {
   /** Os 11 de cada lado, para o campinho (só no jogo que passa na tela). */
   lineups?: { home: LineupPlayer[]; away: LineupPlayer[] };
   stage?: string;
+  /**
+   * Jogo de volta do mata-mata: o placar da ida, já no sentido deste jogo (`home` = gols de quem é
+   * mandante agora). O agregado é a ida mais este jogo.
+   */
+  firstLeg?: { home: number; away: number };
 }
 
 export interface LineupPlayer {
@@ -374,6 +392,8 @@ export type ClientMessage =
   | { t: 'tiebreak:set'; stepId: string; amounts: Record<string, number>; reqId?: string }
   | { t: 'monte:pick'; stepId: string; cardId: string; reqId?: string }
   | { t: 'convoca:set'; stepId: string; cardIds: string[]; seal?: boolean; reqId?: string }
+  /** Leilão de clubes: troca a formação durante a convocação (antes de fechar). */
+  | { t: 'convoca:formation'; stepId: string; formation: Formation; reqId?: string }
   | { t: 'ceremony:ready'; reqId?: string }
   | { t: 'tactic'; tactic: Tactic; reqId?: string }
   | { t: 'setpieces'; takers: SetPieceTakers; reqId?: string }

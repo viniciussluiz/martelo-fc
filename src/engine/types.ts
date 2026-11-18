@@ -14,11 +14,28 @@ export const POSITION_LABEL: Record<Position, string> = {
   ATA: 'Ataque',
 };
 
-export type Formation = '4-3-3' | '4-4-2';
+export type Formation = '4-3-3' | '4-4-2' | '4-5-1' | '4-2-4' | '3-5-2' | '3-4-3' | '5-4-1';
+/**
+ * Quantos jogadores de cada posição a formação leva. Nas formações com 3 zagueiros, os 2 laterais
+ * jogam de alas (no 3-5-2 e no 3-4-3 contam no meio; no 5-4-1, na defesa).
+ */
 export const FORMATIONS: Record<Formation, Record<Position, number>> = {
   '4-3-3': { GOL: 1, LAT: 2, ZAG: 2, MEI: 3, ATA: 3 },
   '4-4-2': { GOL: 1, LAT: 2, ZAG: 2, MEI: 4, ATA: 2 },
+  '4-5-1': { GOL: 1, LAT: 2, ZAG: 2, MEI: 5, ATA: 1 },
+  '4-2-4': { GOL: 1, LAT: 2, ZAG: 2, MEI: 2, ATA: 4 },
+  '3-5-2': { GOL: 1, LAT: 2, ZAG: 3, MEI: 3, ATA: 2 },
+  '3-4-3': { GOL: 1, LAT: 2, ZAG: 3, MEI: 2, ATA: 3 },
+  '5-4-1': { GOL: 1, LAT: 2, ZAG: 3, MEI: 4, ATA: 1 },
 };
+/** Todas as formações, na ordem em que aparecem para escolher. */
+export const FORMATION_LIST = Object.keys(FORMATIONS) as Formation[];
+/**
+ * Formações do leilão: é com elas que o técnico entra no pregão (e que definem o tamanho dos lotes e
+ * dos pacotes). As outras só valem na convocação do leilão de clubes, onde dá para trocar de formação
+ * com os pacotes já na mão.
+ */
+export const AUCTION_FORMATIONS: readonly Formation[] = ['4-3-3', '4-4-2'];
 export const SQUAD_SIZE = 11;
 
 /** Faixas de nível (decisão própria — o original exibe faixas como “76–84”). */
@@ -30,8 +47,11 @@ export type Tier = 'lenda' | 'craque' | 'titular' | 'operario' | 'perna';
  */
 export type Series = 'A' | 'B' | 'EU' | 'SEL';
 /** Quais cartas a sala usa. */
-export type SeriesScope = 'ALL' | 'AB' | 'A' | 'B' | 'EU';
-export const SERIES_SCOPES: readonly SeriesScope[] = ['ALL', 'AB', 'A', 'B', 'EU'];
+export type SeriesScope = 'ALL' | 'AB' | 'A' | 'B' | 'EU' | 'AEU' | 'BEU';
+export const SERIES_SCOPES: readonly SeriesScope[] = ['ALL', 'AB', 'A', 'B', 'EU', 'AEU', 'BEU'];
+
+/** Grupos de clubes que a sala pode marcar (as cartas de seleção ficam de fora). */
+export const CLUB_SERIES: readonly Exclude<Series, 'SEL'>[] = ['EU', 'A', 'B'];
 
 const SCOPE_SERIES: Record<SeriesScope, readonly Series[]> = {
   ALL: ['A', 'B', 'EU'],
@@ -39,7 +59,22 @@ const SCOPE_SERIES: Record<SeriesScope, readonly Series[]> = {
   A: ['A'],
   B: ['B'],
   EU: ['EU'],
+  AEU: ['A', 'EU'],
+  BEU: ['B', 'EU'],
 };
+
+/** Grupos que a escolha da sala inclui. */
+export function scopeSeries(scope: SeriesScope): readonly Series[] {
+  return SCOPE_SERIES[scope] ?? SCOPE_SERIES.ALL;
+}
+
+/** A escolha da sala que corresponde a um conjunto de grupos marcados (`null` se nenhum estiver marcado). */
+export function scopeOfSeries(groups: readonly Series[]): SeriesScope | null {
+  const has = (g: Series) => groups.includes(g);
+  const key = `${has('A') ? 'A' : ''}${has('B') ? 'B' : ''}${has('EU') ? 'EU' : ''}`;
+  if (key === '') return null;
+  return key === 'ABEU' ? 'ALL' : (key as SeriesScope);
+}
 
 /**
  * Cartas que a sala usa conforme o grupo escolhido. Baralhos sem grupo
@@ -164,6 +199,11 @@ export interface DisputeConfig {
   deckId: string;
   cupFormat: CupFormat;
   leagueSize: number;
+  /**
+   * Sem liga: todos os técnicos vão direto para a fase de grupos da copa (só nos formatos com
+   * grupos: Libertadores e Mundial).
+   */
+  skipLeague?: boolean;
   auction: AuctionConfig;
   /** Política de reaproveitamento: jogadores adquiridos no ciclo anterior voltam ao leilão. */
   carryOverPreviousCycle: boolean;

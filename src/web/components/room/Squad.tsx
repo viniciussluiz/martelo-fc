@@ -1,3 +1,4 @@
+import { FORMATIONS, type Formation } from '../../../engine/types';
 import type { DisputeView, RosterView } from '../../../shared/protocol';
 import { TIER_LABEL } from '../common';
 import { LegendFigure } from '../LegendFigure';
@@ -17,6 +18,40 @@ const DEFENSE: Slot[] = [
   { pos: 'ZAG', u: 0.66, v: 0.25 },
   { pos: 'LAT', u: 0.93, v: 0.33 },
 ];
+
+/** Três zagueiros com os laterais de alas, mais adiantados. */
+const BACK_THREE: Slot[] = [
+  { pos: 'LAT', u: 0.06, v: 0.42 },
+  { pos: 'ZAG', u: 0.24, v: 0.26 },
+  { pos: 'ZAG', u: 0.5, v: 0.23 },
+  { pos: 'ZAG', u: 0.76, v: 0.26 },
+  { pos: 'LAT', u: 0.94, v: 0.42 },
+];
+
+/** Uma linha de `n` jogadores espalhada pela largura; as pontas ficam um pouco à frente (meias) ou atrás (ataque). */
+function line(pos: Slot['pos'], n: number, v: number, lo: number, bend: number): Slot[] {
+  if (n === 1) return [{ pos, u: 0.5, v }];
+  return Array.from({ length: n }, (_, i) => {
+    const t = i / (n - 1);
+    return { pos, u: lo + (1 - 2 * lo) * t, v: v + bend * Math.abs(t - 0.5) * 2 };
+  });
+}
+
+/** Campinho de uma formação montado pelas contas de `FORMATIONS` (para as que não têm desenho próprio). */
+function buildLayout(formation: string): Slot[] | null {
+  const need = FORMATIONS[formation as Formation];
+  if (!need) return null;
+  const three = need.ZAG >= 3;
+  // Com alas, os meias fecham mais por dentro para não ficar em cima deles.
+  const midLo = three ? 0.26 : need.MEI >= 5 ? 0.07 : need.MEI === 4 ? 0.07 : need.MEI === 2 ? 0.34 : 0.2;
+  const attLo = need.ATA >= 4 ? 0.1 : need.ATA === 3 ? 0.13 : 0.32;
+  return [
+    { pos: 'GOL', u: 0.5, v: 0.06 },
+    ...(three ? BACK_THREE : DEFENSE),
+    ...line('MEI', need.MEI, 0.51, midLo, three ? 0.03 : 0.07),
+    ...line('ATA', need.ATA, 0.84, attLo, -0.04),
+  ];
+}
 
 const LAYOUTS: Record<string, Slot[]> = {
   '4-3-3': [
@@ -117,7 +152,7 @@ export function SquadPitch({
 }) {
   const p = d.participants.find((x) => x.id === participantId);
   if (!p) return null;
-  const layout = LAYOUTS[p.formation] ?? LAYOUTS['4-3-3']!;
+  const layout = LAYOUTS[p.formation] ?? buildLayout(p.formation) ?? LAYOUTS['4-3-3']!;
   const roster = (override ?? p.roster).filter((r) => !hidden?.has(r.cardId));
   const used = new Map<string, number>();
   return (
@@ -137,7 +172,7 @@ export function SquadPitch({
             </div>
           );
         }
-        const legend = card.tier === 'lenda';
+        const legend = card.tier === 'lenda' || !!card.legend;
         const band = card.levelMin !== undefined ? `${card.levelMin}–${card.levelMax}` : null;
         const [goals, assists] = stats?.[entry.cardId] ?? [0, 0];
         return (

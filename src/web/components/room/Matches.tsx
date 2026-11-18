@@ -97,6 +97,15 @@ export function LiveMatch({
               {pens ? pens.away : away}
             </span>
           </span>
+          {match.firstLeg && (
+            <span className="live-agg" aria-label={`Agregado: ${match.firstLeg.home + home} a ${match.firstLeg.away + away}`}>
+              Agregado {match.firstLeg.home + home} : {match.firstLeg.away + away}
+              <span className="live-agg-first">
+                {' '}
+                · ida {match.firstLeg.home} : {match.firstLeg.away}
+              </span>
+            </span>
+          )}
           <span className="live-state" data-state={finished ? 'fim' : 'live'}>
             {so
               ? so.over
@@ -327,6 +336,7 @@ export function StandingsTable({ rows, you, zones = true, compact }: { rows: Sta
             <tr
               key={r.teamId}
               data-me={r.teamId === you}
+              data-friend={isFriend(r.teamId, you) || undefined}
               data-zone={zones ? (r.position <= 8 ? 'g8' : r.position > rows.length - 4 ? 'z4' : undefined) : undefined}
             >
               <td className="pos">
@@ -337,6 +347,7 @@ export function StandingsTable({ rows, you, zones = true, compact }: { rows: Sta
                   <TeamCrest id={r.teamId} name={r.name} size={compact ? 20 : 24} />
                   <span className="team-cell-name">{r.name}</span>
                   {r.teamId === you && <span className="badge badge-me">você</span>}
+                  {isFriend(r.teamId, you) && <span className="badge badge-friend">{you ? 'amigo' : 'técnico'}</span>}
                 </span>
               </td>
               <td className="r">
@@ -542,8 +553,9 @@ function LiveRound({
   }, [key]);
   const exact = matchMinute(now, tickStartedAt, playMs);
   const over = exact >= 90;
-  // Mesmo jogo da tela primeiro, depois a ordem da rodada.
-  const ordered = [...matches].sort((a, b) => Number(isMine(b, you)) - Number(isMine(a, you)));
+  // O seu jogo primeiro, depois os dos amigos, depois a ordem da rodada.
+  const weight = (m: MatchView) => (isMine(m, you) ? 2 : hasFriend(m, you) ? 1 : 0);
+  const ordered = [...matches].sort((a, b) => weight(b) - weight(a));
   return (
     <section className="round-live" aria-label="Jogos da rodada">
       <div className="round-live-head">
@@ -574,12 +586,17 @@ function LiveRound({
             const settled = !so || so.over;
             const lead = pens ? (settled && pens.home !== pens.away ? (pens.home > pens.away ? 'home' : 'away') : null) : h > a ? 'home' : a > h ? 'away' : null;
             return (
-              <li key={m.id} data-me={isMine(m, you) || undefined}>
+              <li key={m.id} data-me={isMine(m, you) || undefined} data-friend={(!isMine(m, you) && hasFriend(m, you)) || undefined}>
                 <span className="sc-time" data-state={over ? 'fim' : 'live'}>
                   {over ? 'Fim' : `${Math.floor(exact)}'`}
                 </span>
-                <ScoreLine id={m.homeId} name={m.homeName} goals={h} lead={lead === 'home'} flash={flash === 'home'} me={m.homeId === you} />
-                <ScoreLine id={m.awayId} name={m.awayName} goals={a} lead={lead === 'away'} flash={flash === 'away'} me={m.awayId === you} />
+                <ScoreLine id={m.homeId} name={m.homeName} goals={h} lead={lead === 'home'} flash={flash === 'home'} me={m.homeId === you} friend={isFriend(m.homeId, you)} />
+                <ScoreLine id={m.awayId} name={m.awayName} goals={a} lead={lead === 'away'} flash={flash === 'away'} me={m.awayId === you} friend={isFriend(m.awayId, you)} />
+                {m.firstLeg && (
+                  <span className="sc-note">
+                    Agregado {m.firstLeg.home + h}×{m.firstLeg.away + a}
+                  </span>
+                )}
                 {pens && (
                   <span className="sc-note" data-live={!settled || undefined}>
                     Pênaltis {pens.home}×{pens.away}
@@ -604,12 +621,26 @@ function isMine(m: MatchView, you: string | null): boolean {
   return !!you && (m.homeId === you || m.awayId === you);
 }
 
-function ScoreLine({ id, name, goals, lead, flash, me }: { id: string; name: string; goals: number; lead: boolean; flash: boolean; me: boolean }) {
+/**
+ * Time de outro técnico de verdade da sala (um amigo): ganha destaque na tabela, nos jogos da rodada
+ * e nas chaves, para dar para acompanhar. CPUs e clubes do jogo não contam. Os times dos técnicos
+ * humanos têm id `u:<usuário>`.
+ */
+export function isFriend(teamId: string | null | undefined, you: string | null): boolean {
+  return !!teamId && teamId.startsWith('u:') && teamId !== you;
+}
+
+function hasFriend(m: MatchView, you: string | null): boolean {
+  return isFriend(m.homeId, you) || isFriend(m.awayId, you);
+}
+
+function ScoreLine({ id, name, goals, lead, flash, me, friend }: { id: string; name: string; goals: number; lead: boolean; flash: boolean; me: boolean; friend?: boolean }) {
   return (
     <>
-      <span className="sc-team" data-lead={lead || undefined} data-me={me || undefined}>
+      <span className="sc-team" data-lead={lead || undefined} data-me={me || undefined} data-friend={friend || undefined}>
         <TeamCrest id={id} name={name} size={20} />
         <span className="sc-name">{name}</span>
+        {friend && <span className="sc-friend" aria-label="amigo" title="Time de um amigo" />}
         {flash && <span className="sc-flash">Gol</span>}
       </span>
       <span className="sc-goals" data-flash={flash || undefined} data-lead={lead || undefined}>
@@ -726,7 +757,7 @@ const STAGE_NAME: Record<string, string> = { oitavas: 'Oitavas', quartas: 'Quart
 function TieCard({ t, names, you }: { t: CupTie; names: Record<string, string>; you: string | null }) {
   const agg = t.aggregate;
   return (
-    <div className="tie" data-me={t.aId === you || t.bId === you}>
+    <div className="tie" data-me={t.aId === you || t.bId === you} data-friend={(t.aId !== you && t.bId !== you && (isFriend(t.aId, you) || isFriend(t.bId, you))) || undefined}>
       <span className={t.winnerId === t.aId ? 'tie-team w' : 'tie-team'}>
         <TeamCrest id={t.aId} name={names[t.aId] ?? t.aId} size={22} />
         <span className="tie-name">{names[t.aId]}</span>
@@ -749,9 +780,9 @@ function TieCard({ t, names, you }: { t: CupTie; names: Record<string, string>; 
 const BRACKET_STAGES = ['oitavas', 'quartas', 'semi', 'final'] as const;
 
 /** Uma linha do confronto no chaveamento: quem passou fica em destaque, quem saiu fica apagado. */
-function BracketTeam({ id, names, score, state, me }: { id: string | null; names: Record<string, string>; score: number | null; state: 'win' | 'out' | 'open'; me: boolean }) {
+function BracketTeam({ id, names, score, state, me, friend }: { id: string | null; names: Record<string, string>; score: number | null; state: 'win' | 'out' | 'open'; me: boolean; friend?: boolean }) {
   return (
-    <div className="bk-team" data-state={state} data-me={me || undefined}>
+    <div className="bk-team" data-state={state} data-me={me || undefined} data-friend={friend || undefined}>
       {id ? <TeamCrest id={id} name={names[id] ?? id} size={20} /> : <span className="bk-tbd" aria-hidden="true" />}
       <span className="bk-name">{id ? (names[id] ?? id) : 'A definir'}</span>
       <span className="bk-score">{score ?? '–'}</span>
@@ -762,9 +793,14 @@ function BracketTeam({ id, names, score, state, me }: { id: string | null; names
 function BracketMatch({ t, names, you }: { t: CupTie | null; names: Record<string, string>; you: string | null }) {
   const state = (id: string) => (!t?.winnerId ? 'open' : t.winnerId === id ? 'win' : 'out');
   return (
-    <div className="bk-match" data-me={(!!t && !!you && (t.aId === you || t.bId === you)) || undefined} data-done={!!t?.winnerId || undefined}>
-      <BracketTeam id={t?.aId ?? null} names={names} score={t?.aggregate?.a ?? null} state={t ? state(t.aId) : 'open'} me={!!t && t.aId === you} />
-      <BracketTeam id={t?.bId ?? null} names={names} score={t?.aggregate?.b ?? null} state={t ? state(t.bId) : 'open'} me={!!t && t.bId === you} />
+    <div
+      className="bk-match"
+      data-me={(!!t && !!you && (t.aId === you || t.bId === you)) || undefined}
+      data-friend={(!!t && t.aId !== you && t.bId !== you && (isFriend(t.aId, you) || isFriend(t.bId, you))) || undefined}
+      data-done={!!t?.winnerId || undefined}
+    >
+      <BracketTeam id={t?.aId ?? null} names={names} score={t?.aggregate?.a ?? null} state={t ? state(t.aId) : 'open'} me={!!t && t.aId === you} friend={isFriend(t?.aId, you)} />
+      <BracketTeam id={t?.bId ?? null} names={names} score={t?.aggregate?.b ?? null} state={t ? state(t.bId) : 'open'} me={!!t && t.bId === you} friend={isFriend(t?.bId, you)} />
       {t?.penalties && (
         <span className="bk-note">
           Pênaltis {t.penalties.a}×{t.penalties.b}

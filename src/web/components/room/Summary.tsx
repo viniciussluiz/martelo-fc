@@ -14,9 +14,11 @@ import { StandingsTable } from './Matches';
 function championsOf(room: RoomView): Champion[] {
   const r = room.lastResult!;
   const userOf = (teamId: string) => r.outcomes.find((o) => o.participantId === teamId)?.userId ?? null;
-  const list: Champion[] = [
-    { art: CHAMPION_ART.liga!, title: 'Campeão da liga', teamId: r.leagueChampionTeamId, name: r.leagueChampionName, userId: userOf(r.leagueChampionTeamId) },
-  ];
+  const list: Champion[] = [];
+  // Sala sem liga (“Só Libertadores”): só o campeão da copa.
+  if (r.leagueChampionTeamId && r.leagueChampionName) {
+    list.push({ art: CHAMPION_ART.liga!, title: 'Campeão da liga', teamId: r.leagueChampionTeamId, name: r.leagueChampionName, userId: userOf(r.leagueChampionTeamId) });
+  }
   if (r.cupChampionTeamId && r.cupChampionName) {
     list.push({
       art: CHAMPION_ART[r.cupFormat] ?? CHAMPION_ART.liga!,
@@ -62,6 +64,7 @@ export function LastResultCard({ room, full }: { room: RoomView; full?: boolean 
   if (!r) return null;
   const mine = r.outcomes.find((o) => o.userId === room.you);
   const podium = [r.outcomes[1], r.outcomes[0], r.outcomes[2]].filter((o): o is NonNullable<typeof o> => !!o);
+  const hadLeague = !!r.leagueChampionTeamId;
   return (
     <section className="result">
       <div className="result-head">
@@ -93,7 +96,7 @@ export function LastResultCard({ room, full }: { room: RoomView; full?: boolean 
           </div>
           <div className="stat">
             <div className="num">{mine.leaguePosition}º</div>
-            <div className="lbl">na liga, {mine.leaguePoints} pontos</div>
+            <div className="lbl">{hadLeague ? `na liga, ${mine.leaguePoints} pontos` : `no geral da copa, ${mine.leaguePoints} pontos`}</div>
           </div>
           <div className="stat">
             <div className="num num-word">{mine.cupReach ? REACH_LABEL[mine.cupReach] : '—'}</div>
@@ -115,7 +118,7 @@ export function LastResultCard({ room, full }: { room: RoomView; full?: boolean 
                 {o.name} {o.isCpu && <span className="badge badge-cpu">CPU</span>}
               </strong>
               <span className="small">
-                {o.leaguePosition}º na liga
+                {hadLeague ? `${o.leaguePosition}º na liga` : `${o.leaguePosition}º no geral`}
                 {o.cupReach ? `, ${(REACH_LABEL[o.cupReach] ?? o.cupReach).toLowerCase()} na copa` : ''}, gastou {o.spent} moedas, elenco {o.squadAverage}
               </span>
             </span>
@@ -129,7 +132,7 @@ export function LastResultCard({ room, full }: { room: RoomView; full?: boolean 
           </li>
         ))}
       </ol>
-      {full && (
+      {full && hadLeague && (
         <details className="fold">
           <summary>Tabela final da liga</summary>
           <StandingsTable rows={r.leagueTable} you={mine?.participantId ?? null} />

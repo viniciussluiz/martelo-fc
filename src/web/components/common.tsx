@@ -37,6 +37,8 @@ export const CUP_FORMAT_LABEL: Record<string, string> = {
   mundial: 'Torneio Mundial',
   nenhuma: 'Só liga',
 };
+/** Sala sem liga: todos direto para a Libertadores. */
+export const ONLY_CUP_LABEL = 'Só Libertadores';
 
 /** Re-renderiza a cada `ms` e devolve a hora do servidor estimada. */
 export function useNow(ms = 250): number {

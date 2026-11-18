@@ -3,14 +3,13 @@ import { randomCrest, teamInitials, type CrestConfig } from '../../shared/crest'
 import type { PublicUserView } from '../../shared/protocol';
 import { signIn, signOut } from '../App';
 import { EnvelopeArt } from '../components/common';
-import { CrestEditor, CrestEditorDialog } from '../components/crest/CrestEditor';
+import { CrestEditor, ClubEditorDialog } from '../components/crest/CrestEditor';
 import { TeamCrest } from '../components/crest/TeamCrest';
 import { Icon, Logo } from '../components/Icon';
 import { PixelCoin, PosChip } from '../components/ui';
 import { api } from '../lib/api';
 import { navigate } from '../lib/router';
 import { toast, useStore } from '../lib/store';
-import { RenameTeamForm } from '../components/RenameTeam';
 
 interface ActiveRoom {
   code: string;
@@ -148,32 +147,17 @@ function GuestForm({ joinCode }: { joinCode?: string }) {
 /** Cartão do seu clube no menu: escudo, nome e atalhos. */
 function MyClubCard({ user }: { user: PublicUserView }) {
   const [editing, setEditing] = useState(false);
-  // Troca do nome do time, ali mesmo no cartão.
-  const [renaming, setRenaming] = useState(false);
   return (
     <aside className="club-card">
       <div className="club-card-crest">
         <TeamCrest userId={user.id} name={user.displayName} crest={user.crest} size={128} />
       </div>
-      {renaming ? (
-        <RenameTeamForm user={user} onDone={() => setRenaming(false)} />
-      ) : (
-        <div className="club-card-name">{user.displayName}</div>
-      )}
+      <div className="club-card-name">{user.displayName}</div>
       <div className="club-card-sub">{user.isGuest ? 'Técnico convidado' : user.username ? `@${user.username}` : 'Conta registrada'}</div>
       <div className="club-card-actions">
         <button type="button" className="btn btn-sm" onClick={() => setEditing(true)}>
-          <Icon name="pincel" /> Editar escudo
+          <Icon name="pincel" /> Editar clube
         </button>
-        {!renaming && (
-          <button
-            type="button"
-            className="btn btn-sm"
-            onClick={() => setRenaming(true)}
-          >
-            <Icon name="pincel" /> Trocar nome
-          </button>
-        )}
         <button type="button" className="btn btn-sm btn-ghost" onClick={() => navigate(`/perfil/${user.id}`)}>
           <Icon name="perfil" /> Perfil
         </button>
@@ -196,7 +180,7 @@ function MyClubCard({ user }: { user: PublicUserView }) {
           Sair
         </button>
       </p>
-      <CrestEditorDialog open={editing} onClose={() => setEditing(false)} initial={user.crest} teamName={user.displayName} />
+      <ClubEditorDialog open={editing} onClose={() => setEditing(false)} initial={user.crest} teamName={user.displayName} />
     </aside>
   );
 }

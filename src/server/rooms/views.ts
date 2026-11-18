@@ -87,6 +87,8 @@ function disputeView(room: RoomActor, userId: string): DisputeView {
     }
   }
   let hiddenMystery = new Set<string>();
+  /** Jogadores dos pacotes de quem está vendo, durante a convocação. */
+  const convocaIds = new Set<string>();
   const clubs = d.auction.isClubs;
   if (d.phase === 'auction' && step) {
     if (step.kind === 'bid') {
@@ -97,9 +99,14 @@ function disputeView(room: RoomActor, userId: string): DisputeView {
     } else if (step.kind === 'monte') {
       step.pool.forEach((id) => cardIds.add(id));
     } else if (me) {
-      // Convocação: só o dono vê os nomes dos próprios pacotes (sem faixa nem nível).
+      // Convocação: só o dono vê os nomes dos próprios pacotes — sem faixa nem nível, mas sabendo quem é Lenda.
       const options = d.auction.convocaOptions(me.id);
-      for (const pos of POSITIONS) options[pos].forEach((id) => cardIds.add(id));
+      for (const pos of POSITIONS) {
+        for (const id of options[pos]) {
+          cardIds.add(id);
+          convocaIds.add(id);
+        }
+      }
     }
   }
   if (room.reveal) {
@@ -117,6 +124,7 @@ function disputeView(room: RoomActor, userId: string): DisputeView {
       hideName: hiddenMystery.has(id),
       showTier: afterAuction || soldIds.has(id),
       showLevel: afterAuction,
+      showLegend: convocaIds.has(id),
     });
   }
 
@@ -188,7 +196,7 @@ function disputeView(room: RoomActor, userId: string): DisputeView {
   };
 }
 
-function cardView(card: Card, opts: { hideName: boolean; showTier: boolean; showLevel: boolean }): CardView {
+function cardView(card: Card, opts: { hideName: boolean; showTier: boolean; showLevel: boolean; showLegend?: boolean }): CardView {
   const v: CardView = {
     id: card.id,
     name: opts.hideName ? '? ? ? ?' : card.name,
@@ -199,6 +207,7 @@ function cardView(card: Card, opts: { hideName: boolean; showTier: boolean; show
   if (opts.hideName) v.mystery = true;
   if (card.kit) v.kit = card.kit;
   if (opts.showTier) v.tier = card.tier;
+  if (opts.showLegend && card.tier === 'lenda') v.legend = true;
   if (opts.showLevel) {
     v.levelMin = card.levelMin;
     v.levelMax = card.levelMax;
@@ -370,6 +379,21 @@ function cupView(room: RoomActor, myPid: string, names: Record<string, string>):
   const last = lastIds.map((id) => s.results[id]).filter((m): m is MatchResult => !!m);
   const stageOf = (id: string) => (id.startsWith('C-G') ? 'grupos' : (id.split('-')[1] ?? ''));
   const mine = last.find((m) => m.homeId === myPid || m.awayId === myPid) ?? null;
+  // Mata-mata em ida e volta: a fase diz qual é o jogo e a volta leva o placar da ida (para o agregado).
+  const tieOf = (id: string) => s.ties.find((t) => t.legs.includes(id));
+  const stageLabelOf = (id: string) => {
+    const tie = tieOf(id);
+    const base = STAGE_LABEL[stageOf(id)];
+    return tie?.twoLegs ? `${base} · ${tie.legs[0] === id ? 'ida' : 'volta'}` : base;
+  };
+  const withFirstLeg = (v: MatchView, m: MatchResult): MatchView => {
+    const tie = tieOf(m.id);
+    if (!tie?.twoLegs || tie.legs[1] !== m.id) return v;
+    const first = s.results[tie.legs[0]!];
+    if (!first) return v;
+    // Na volta os mandos se invertem: quem é mandante agora foi visitante na ida.
+    return { ...v, firstLeg: { home: first.homeId === m.homeId ? first.homeGoals : first.awayGoals, away: first.homeId === m.homeId ? first.awayGoals : first.homeGoals } };
+  };
   const nextDay = cup.peekMatchday();
   const squadOf: SquadOf = (id) => cup.team(id).squad;
   const captainOf = captainFinder(d, (id) => cup.team(id).squad);
@@ -382,8 +406,8 @@ function cupView(room: RoomActor, myPid: string, names: Record<string, string>):
     ties: s.ties,
     groupTables: s.groups.length ? cup.groupStandings() : null,
     groups: s.groups,
-    lastResults: last.map((m, i) => matchView(m, names, false, STAGE_LABEL[stageOf(m.id)], !mine && i === 0 ? squadOf : undefined, captainOf)),
-    myLastMatch: mine ? matchView(mine, names, true, STAGE_LABEL[stageOf(mine.id)], squadOf, captainOf) : null,
+    lastResults: last.map((m, i) => withFirstLeg(matchView(m, names, false, stageLabelOf(m.id), !mine && i === 0 ? squadOf : undefined, captainOf), m)),
+    myLastMatch: mine ? withFirstLeg(matchView(mine, names, true, stageLabelOf(mine.id), squadOf, captainOf), mine) : null,
     myNextFixture: next
       ? {
           homeId: next.homeId,
@@ -399,7 +423,7 @@ function cupView(room: RoomActor, myPid: string, names: Record<string, string>):
     topAssists: aggregateAssists(Object.values(s.results), 10),
     playerStats: playerStats(Object.values(s.results), new Set(d.participants.map((p) => p.id))),
     tickStartedAt: room.tickStartedAt,
-    tickMs: d.phase === 'cup' ? room.timing.cupMatchdayMs : room.timing.leagueRoundMs,
+    tickMs: room.timing.cupMatchdayMs,
     shootoutMs: room.shootoutExtraMs(),
   };
 }

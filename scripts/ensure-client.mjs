@@ -1,6 +1,6 @@
 /**
  * Roda antes do `npm start`: garante que o site compilado (dist/) corresponde ao código.
- * - dist/ ausente ou mais antigo que src/web e src/shared → compila com o Vite;
+ * - dist/ ausente ou mais antigo que src/web, src/shared e src/engine → compila com o Vite;
  * - sem o Vite instalado (instalação enxuta, `npm install --omit=dev`) usa o dist/ que já vem no zip.
  */
 import { existsSync, readdirSync, statSync } from 'node:fs';
@@ -20,7 +20,13 @@ function newest(dir) {
   return t;
 }
 
-const sources = Math.max(newest(join(root, 'src', 'web')), newest(join(root, 'src', 'shared')), statSync(join(root, 'vite.config.ts')).mtimeMs);
+// O site também importa do motor (src/engine: formações, grupos de clubes, linha do tempo dos jogos).
+const sources = Math.max(
+  newest(join(root, 'src', 'web')),
+  newest(join(root, 'src', 'shared')),
+  newest(join(root, 'src', 'engine')),
+  statSync(join(root, 'vite.config.ts')).mtimeMs,
+);
 const upToDate = existsSync(built) && statSync(built).mtimeMs >= sources;
 const hasVite = existsSync(join(root, 'node_modules', 'vite'));
 

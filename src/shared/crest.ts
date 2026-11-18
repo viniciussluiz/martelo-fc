@@ -64,6 +64,70 @@ export interface CrestConfig {
   /** Medalhão atrás do símbolo (deixa o símbolo legível em cima de padrões fortes). */
   medallion: boolean;
   border: CrestBorder;
+  /**
+   * Uniformes 1 e 2 escolhidos pelo técnico. Ausente = os que saem das cores do escudo
+   * (`defaultKits`), acompanhando o escudo se ele mudar.
+   */
+  kits?: TeamKits;
+}
+
+/** Desenho da camisa (o padrão sai na cor dos detalhes, sobre a cor da camisa). */
+export const KIT_PATTERNS = [
+  'liso',
+  'listras',
+  'listras-finas',
+  'aros',
+  'faixa-central',
+  'faixa-peito',
+  'faixa-diagonal',
+  'divisa',
+  'xadrez',
+  'metade',
+  'cruz',
+  'mangas',
+] as const;
+export type KitPattern = (typeof KIT_PATTERNS)[number];
+
+/** Um uniforme: cor da camisa, cor dos detalhes (gola, punhos e o padrão) e o desenho. */
+export interface KitColors {
+  shirt: string;
+  trim: string;
+  /** Ausente = liso. */
+  pattern?: KitPattern;
+}
+
+/**
+ * Patrocínio master (peito): as marcas da casa — Pagartu, Reservai.ai e Basehit — com a logo de cada uma.
+ * As marcas de material esportivo são inventadas (nenhuma existe).
+ * `nenhum` deixa o espaço vazio.
+ */
+export const KIT_MASTERS = ['nenhum', 'pagartu', 'reservai', 'basehit'] as const;
+export type KitMaster = (typeof KIT_MASTERS)[number];
+export const KIT_MASTER_LABEL: Record<KitMaster, string> = {
+  nenhum: 'Sem patrocínio',
+  pagartu: 'Pagartu',
+  reservai: 'Reservai.ai',
+  basehit: 'Basehit',
+};
+
+export const KIT_BRANDS = ['nenhum', 'capivara', 'raio', 'chama'] as const;
+export type KitBrand = (typeof KIT_BRANDS)[number];
+export const KIT_BRAND_LABEL: Record<KitBrand, string> = {
+  nenhum: 'Sem marca',
+  capivara: 'Capivara',
+  raio: 'Raio',
+  chama: 'Chama',
+};
+
+/**
+ * Os dois uniformes do time — o 1 (titular) e o 2 (reserva, para quando as cores batem com as do
+ * adversário) — e o que vai estampado nos dois: o patrocínio master (peito) e a marca do material.
+ */
+export interface TeamKits {
+  home: KitColors;
+  away: KitColors;
+  master?: KitMaster;
+  brand?: KitBrand;
 }
 
 export interface CrestColor {
@@ -341,6 +405,35 @@ export function parseCrest(raw: unknown): CrestConfig {
     laurel: r.laurel === true,
     medallion: r.medallion === true,
     border: oneOf(CREST_BORDERS, r.border ?? 'simples', 'Borda'),
+    ...(r.kits !== undefined && r.kits !== null ? { kits: parseKits(r.kits, color) } : {}),
+  };
+}
+
+function parseKits(raw: unknown, color: (v: unknown, label: string) => string): TeamKits {
+  if (!raw || typeof raw !== 'object') throw new CrestError('Uniforme inválido.');
+  const k = raw as Record<string, unknown>;
+  const pick = <T extends string>(list: readonly T[], v: unknown, label: string): T | undefined => {
+    if (v === undefined || v === null) return undefined;
+    if (typeof v !== 'string' || !list.includes(v as T)) throw new CrestError(`${label} inválido.`);
+    return v as T;
+  };
+  const one = (v: unknown, n: number): KitColors => {
+    if (!v || typeof v !== 'object') throw new CrestError(`Uniforme ${n} inválido.`);
+    const o = v as Record<string, unknown>;
+    const pattern = pick(KIT_PATTERNS, o.pattern, `Desenho do uniforme ${n}`);
+    return {
+      shirt: color(o.shirt, `da camisa do uniforme ${n}`),
+      trim: color(o.trim, `dos detalhes do uniforme ${n}`),
+      ...(pattern && pattern !== 'liso' ? { pattern } : {}),
+    };
+  };
+  const master = pick(KIT_MASTERS, k.master, 'Patrocínio master');
+  const brand = pick(KIT_BRANDS, k.brand, 'Material esportivo');
+  return {
+    home: one(k.home, 1),
+    away: one(k.away, 2),
+    ...(master && master !== 'nenhum' ? { master } : {}),
+    ...(brand && brand !== 'nenhum' ? { brand } : {}),
   };
 }
 
@@ -348,7 +441,14 @@ export function parseCrest(raw: unknown): CrestConfig {
 export function readCrest(raw: string | null | undefined, fallback: () => CrestConfig): CrestConfig {
   if (!raw) return fallback();
   try {
-    return parseCrest(JSON.parse(raw));
+    const data = JSON.parse(raw) as Record<string, unknown>;
+    try {
+      return parseCrest(data);
+    } catch {
+      // Uniforme guardado com algo que saiu da lista (um patrocinador antigo): o escudo continua valendo.
+      const { kits: _dropped, ...crestOnly } = data;
+      return parseCrest(crestOnly);
+    }
   } catch {
     return fallback();
   }
@@ -358,4 +458,56 @@ export function readCrest(raw: string | null | undefined, fallback: () => CrestC
 export function crestLuminance(hex: string): number {
   const n = parseInt(hex.slice(1), 16);
   return (0.299 * ((n >> 16) & 255) + 0.587 * ((n >> 8) & 255) + 0.114 * (n & 255)) / 255;
+}
+
+// ---------------------------------------------------------------------------
+// Uniformes
+// ---------------------------------------------------------------------------
+
+const KIT_DARK = '#1A1A1A';
+const KIT_LIGHT = '#FFFFFF';
+
+/** Distância entre duas cores (0 = iguais, ~441 = preto × branco). */
+export function colorDistance(a: string, b: string): number {
+  const x = parseInt(a.slice(1), 16);
+  const y = parseInt(b.slice(1), 16);
+  return Math.hypot(((x >> 16) & 255) - ((y >> 16) & 255), ((x >> 8) & 255) - ((y >> 8) & 255), (x & 255) - (y & 255));
+}
+
+/** Abaixo disso, duas camisas se confundem no gramado. */
+export const KIT_CLASH = 110;
+
+/**
+ * Uniformes que saem do escudo: o 1 é a cor principal do escudo; o 2 é “o contrário” — camisa clara
+ * se a principal for escura, escura se for clara (usando uma cor do próprio escudo quando ela serve).
+ */
+export function defaultKits(crest: Pick<CrestConfig, 'primary' | 'secondary' | 'detail'>): TeamKits {
+  const { primary, secondary, detail } = crest;
+  const others = [secondary, detail];
+  const dark = crestLuminance(primary) < 0.5;
+  // Detalhe do uniforme 1: a cor do escudo que mais se destaca da camisa.
+  const trim = [...others].sort((a, b) => colorDistance(b, primary) - colorDistance(a, primary))[0]!;
+  const homeTrim = colorDistance(trim, primary) >= 60 ? trim : dark ? KIT_LIGHT : KIT_DARK;
+  const opposite = dark
+    ? (others.filter((c) => crestLuminance(c) >= 0.7).sort((a, b) => crestLuminance(b) - crestLuminance(a))[0] ?? KIT_LIGHT)
+    : (others.filter((c) => crestLuminance(c) <= 0.3).sort((a, b) => crestLuminance(a) - crestLuminance(b))[0] ?? KIT_DARK);
+  return {
+    home: { shirt: primary, trim: homeTrim },
+    away: { shirt: opposite, trim: colorDistance(primary, opposite) >= 60 ? primary : dark ? KIT_DARK : KIT_LIGHT },
+  };
+}
+
+/** Uniformes do time: os que o técnico escolheu ou, sem escolha, os que saem do escudo. */
+export function kitsOf(crest: CrestConfig): TeamKits {
+  return crest.kits ?? defaultKits(crest);
+}
+
+/**
+ * Uniformes de uma partida: o mandante joga com o 1; o visitante também, a não ser que a camisa se
+ * confunda com a do mandante — aí usa o 2 (ou, se o 2 também bater, o que for mais diferente).
+ */
+export function matchKits(home: TeamKits, away: TeamKits): { home: KitColors; away: KitColors } {
+  const gap = (k: KitColors) => colorDistance(k.shirt, home.home.shirt);
+  if (gap(away.home) >= KIT_CLASH) return { home: home.home, away: away.home };
+  return { home: home.home, away: gap(away.away) >= gap(away.home) ? away.away : away.home };
 }

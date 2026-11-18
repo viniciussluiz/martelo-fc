@@ -42,6 +42,53 @@ describe('disputa completa', () => {
     expect(d.state.awards!.length).toBeGreaterThan(2);
   });
 
+  it.each([1, 4, 9, 20])('só Libertadores com %i técnico(s): sem liga, todos na fase de grupos', (n) => {
+    const seats = Array.from({ length: n }, (_, i) => seat(i === 0 ? 'u:ana' : `cpu:${i}`, { isCpu: i > 0, formation: i % 2 ? '4-4-2' : '4-3-3' }));
+    const d = Dispute.create({
+      id: `so-liberta-${n}`,
+      seed: `so-liberta-${n}`,
+      config: { ...DEFAULT_DISPUTE_CONFIG, cupFormat: 'libertadores', skipLeague: true },
+      seats,
+      deck: DECK,
+    });
+    while (d.phase === 'auction') d.tick();
+    expect(d.phase).toBe('ceremony');
+    d.tick();
+    expect(d.phase).toBe('cup');
+    expect(d.league).toBeNull();
+    const groups = d.cup!.state.groups;
+    expect(groups).toHaveLength(8);
+    expect(groups.every((g) => g.teamIds.length === 4)).toBe(true);
+    const inGroups = groups.flatMap((g) => g.teamIds);
+    expect(new Set(inGroups).size).toBe(32);
+    for (const s of seats) expect(inGroups).toContain(s.id);
+    // Técnicos espalhados: nenhum grupo com mais técnicos que o necessário.
+    const perGroup = groups.map((g) => g.teamIds.filter((id) => seats.some((s) => s.id === id)).length);
+    expect(Math.max(...perGroup) - Math.min(...perGroup)).toBeLessThanOrEqual(1);
+
+    const result = d.runToEnd();
+    expect(result.leagueChampionTeamId).toBeNull();
+    expect(result.leagueTable).toEqual([]);
+    expect(result.cupName).toBe('Taça Libertadores');
+    expect(result.cupChampionTeamId).toBeTruthy();
+    expect(result.headline).toContain('Taça Libertadores');
+    expect(result.outcomes).toHaveLength(n);
+    expect(result.outcomes.map((o) => o.rank)).toEqual(Array.from({ length: n }, (_, i) => i + 1));
+    expect(result.outcomes.every((o) => o.cupReach !== null && !o.titles.includes('liga'))).toBe(true);
+    expect(result.directMatches.every((m) => m.competition === 'copa')).toBe(true);
+    // A posição é a colocação geral na copa: quem foi mais longe fica na frente, sem empate.
+    const positions = result.outcomes.map((o) => o.leaguePosition);
+    expect(new Set(positions).size).toBe(n);
+    expect(positions.every((p) => p >= 1 && p <= 32)).toBe(true);
+    const champion = result.outcomes.find((o) => o.titles.includes('copa'));
+    if (champion) expect(champion.leaguePosition).toBe(1);
+  });
+
+  it('“sem liga” não vale na Copa dos 8: a liga acontece normalmente', () => {
+    const d = Dispute.create({ id: 'c8', seed: 'c8', config: { ...DEFAULT_DISPUTE_CONFIG, cupFormat: 'copa8', skipLeague: true }, seats: [seat('u:ana'), seat('cpu:1', { isCpu: true })], deck: DECK });
+    expect(d.runToEnd().leagueTable).toHaveLength(20);
+  });
+
   it('a disputa é restaurável a partir do snapshot em qualquer fase', () => {
     const a = makeDispute('snap');
     const b = makeDispute('snap');

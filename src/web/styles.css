@@ -38,6 +38,9 @@
   --me: #ffc81e;
   --me-edge: #b97800;
   --sky: #2f6fd0;
+  /* Destaque dos times dos amigos (outros técnicos da sala): azul, para não confundir com o seu. */
+  --friend: #cfe1fb;
+  --friend-edge: #2f6fd0;
 
   --board: #2b1c0f;
   --board-2: #3d2914;
@@ -768,6 +771,11 @@ select.input {
   display: flex;
   flex-direction: column;
   gap: 8px;
+}
+.checks-row {
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 12px 26px;
 }
 .check {
   position: relative;
@@ -1652,6 +1660,15 @@ img.club-badge {
     inset 5px 0 0 var(--me-edge),
     var(--lift-s);
 }
+.bk-match[data-friend] {
+  box-shadow:
+    inset 5px 0 0 var(--friend-edge),
+    var(--lift-s);
+}
+.bk-team[data-friend] .bk-name {
+  color: var(--friend-edge);
+  font-weight: 800;
+}
 .bk-team {
   display: flex;
   align-items: center;
@@ -2442,6 +2459,144 @@ button.mode:disabled {
   display: flex;
   flex-direction: column;
   gap: 6px;
+}
+/* Editar clube: nome, escudo e uniforme na mesma janela */
+.club-editor {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.club-sections {
+  align-self: center;
+}
+.club-name-edit {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 20px;
+  padding: 18px;
+  background: var(--white);
+  border: 3px solid var(--ink);
+  border-radius: var(--r-m, 14px);
+}
+.club-name-edit .ce-field {
+  flex: 1 1 260px;
+}
+
+/* Criador de uniformes */
+.kit-editor {
+  display: grid;
+  grid-template-columns: 330px minmax(0, 1fr);
+  gap: 18px;
+  align-items: start;
+}
+.kit-stage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 18px 8px 16px;
+  background-color: var(--grass-deep);
+  background-image:
+    radial-gradient(ellipse 60% 55% at 50% 38%, rgba(255, 240, 170, 0.55), transparent 70%),
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.06) 0 22px, transparent 22px 44px);
+  border: 3px solid var(--ink);
+  border-radius: var(--r-m, 14px);
+}
+.kit-show {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+.kit-preview {
+  filter: drop-shadow(0 6px 0 rgba(20, 12, 4, 0.45));
+  animation: crest-pop 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.kit-preview .jersey {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+.kit-arrow {
+  flex: none;
+  width: 34px;
+  height: 54px;
+  border: 3px solid var(--ink);
+  border-radius: 10px;
+  background: var(--white);
+  font-family: var(--f-display);
+  font-size: 1.7rem;
+  line-height: 1;
+  cursor: pointer;
+}
+.kit-arrow:hover {
+  background: var(--sun-hi);
+}
+.jersey-reservai {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.2px;
+}
+.kit-patterns {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(96px, 1fr));
+  gap: 8px;
+}
+.kit-pattern,
+.kit-brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 4px 6px;
+  background: var(--paper);
+  border: 2px solid var(--ink);
+  border-radius: 12px;
+  font-family: var(--f-sport);
+  font-weight: 700;
+  font-size: 0.86rem;
+  line-height: 1.1;
+  text-align: center;
+  cursor: pointer;
+}
+.kit-pattern:hover,
+.kit-brand:hover {
+  background: var(--sun-hi);
+}
+.kit-pattern[aria-pressed='true'],
+.kit-brand[aria-pressed='true'] {
+  background: var(--sun);
+  box-shadow: inset 0 0 0 2px var(--ink);
+}
+.kit-brands {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(112px, 1fr));
+  gap: 8px;
+}
+.kit-brand svg {
+  border: 2px solid var(--ink);
+  border-radius: 6px;
+  padding: 3px;
+}
+.kit-brand {
+  justify-content: center;
+  min-height: 78px;
+}
+.kit-brand-none {
+  color: var(--ink-2);
+}
+.kit-note {
+  margin: 0;
+}
+.kit-reset {
+  align-self: flex-start;
+}
+@media (max-width: 860px) {
+  .kit-editor {
+    grid-template-columns: minmax(0, 1fr);
+  }
 }
 .ce-swatches {
   display: flex;
@@ -4513,6 +4668,17 @@ li[data-state='lacrado'] .rt-state {
 }
 
 /* Convocação */
+.convoca-formation {
+  display: grid;
+  gap: 8px;
+  padding: 10px 14px 12px;
+  background: var(--paper);
+  border: 3px solid var(--ink);
+  border-radius: 12px;
+}
+.convoca-formation .seg-grid {
+  grid-template-columns: repeat(auto-fit, minmax(74px, 1fr));
+}
 .convoca-head {
   display: flex;
   flex-wrap: wrap;
@@ -4569,6 +4735,16 @@ li[data-state='lacrado'] .rt-state {
 .convoca-row[data-on] {
   background: #dff0c8;
   box-shadow: inset 0 0 0 2px var(--grass);
+}
+.convoca-row[data-legend] {
+  background: var(--sun-hi);
+  box-shadow: inset 0 0 0 2px var(--gold);
+}
+.convoca-row[data-legend][data-on] {
+  background: #e6ee9c;
+  box-shadow:
+    inset 0 0 0 2px var(--grass),
+    inset 6px 0 0 var(--gold);
 }
 .convoca-row[data-off] {
   opacity: 0.55;
@@ -5208,6 +5384,17 @@ li[data-award='mao-furada'] .award-icon {
   font-size: 0.9rem;
   color: #c9b48c;
 }
+/* Jogo de volta do mata-mata: o agregado, logo abaixo do placar. */
+.live-agg {
+  font-family: var(--f-sport);
+  font-weight: 800;
+  font-size: 0.95rem;
+  color: var(--led);
+}
+.live-agg-first {
+  font-weight: 600;
+  color: #c9b48c;
+}
 .live-goals {
   display: flex;
   align-items: center;
@@ -5665,21 +5852,22 @@ li[data-award='mao-furada'] .award-icon {
   fill: #ff8f8f;
 }
 /* Jogadores no gramado: mandante amarelo, visitante vermelho, goleiros com outra camisa. */
+/* Bolinha do jogador: a camisa do uniforme do time, com o detalhe no contorno. */
 .mp-player circle {
-  stroke: var(--ink);
-  stroke-width: 0.32;
+  fill: var(--kit, #ffd23f);
+  stroke: var(--kit-trim, var(--ink));
+  stroke-width: 0.42;
+  paint-order: stroke;
+  filter: drop-shadow(0 0 0.25px rgba(11, 18, 34, 0.9));
 }
-.mp-player[data-side='home'] circle {
-  fill: #ffd23f;
+/* Goleiro: as cores do time invertidas (detalhe na camisa, camisa no contorno). */
+.mp-player[data-keeper] circle {
+  fill: var(--kit-trim, #2fbf71);
+  stroke: var(--kit, var(--ink));
+  stroke-width: 0.6;
 }
-.mp-player[data-side='away'] circle {
-  fill: #e5484d;
-}
-.mp-player[data-side='home'][data-keeper] circle {
-  fill: #2fbf71;
-}
-.mp-player[data-side='away'][data-keeper] circle {
-  fill: #6e56cf;
+.mp-team-kit {
+  stroke-width: 0.4;
 }
 .mp-player[data-ball] circle {
   stroke: var(--white);
@@ -5692,11 +5880,14 @@ li[data-award='mao-furada'] .award-icon {
   font-weight: 800;
   padding: 0 5px;
 }
+.mp-player[data-keeper] .mp-cap {
+  fill: var(--kit-trim-ink, var(--ink));
+}
 .mp-cap {
   font-family: var(--f-sport);
   font-weight: 800;
   font-size: 2.1px;
-  fill: var(--ink);
+  fill: var(--kit-ink, var(--ink));
   pointer-events: none;
 }
 .mp-player-shadow {
@@ -5831,6 +6022,22 @@ li[data-award='mao-furada'] .award-icon {
   background: var(--me);
   box-shadow: inset 6px 0 0 var(--me-edge);
 }
+.scores li[data-friend] {
+  background: var(--friend);
+  box-shadow: inset 6px 0 0 var(--friend-edge);
+}
+.sc-team[data-friend] .sc-name {
+  font-weight: 800;
+}
+/* Bolinha azul ao lado do time do amigo (também no jogo contra você, que fica dourado). */
+.sc-friend {
+  flex: none;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--friend-edge);
+  border: 2px solid var(--ink);
+}
 .sc-time {
   grid-row: 1 / 3;
   display: grid;
@@ -5955,6 +6162,25 @@ li[data-award='mao-furada'] .award-icon {
 .table tbody tr[data-me='true'] .pos-num {
   background: var(--ink);
   color: var(--sun);
+}
+.table tbody tr[data-friend] {
+  background: var(--friend);
+}
+.table tbody tr[data-friend] td {
+  font-weight: 700;
+}
+.table tbody tr[data-friend] td:first-child {
+  box-shadow: inset 7px 0 0 var(--friend-edge);
+}
+.table tbody tr[data-friend] .pos-num {
+  background: var(--friend-edge);
+  color: var(--white);
+}
+.badge-friend {
+  background: var(--friend-edge);
+  color: var(--white);
+  border-color: var(--ink);
+  flex: none;
 }
 .badge-me {
   background: var(--ink);
@@ -6234,6 +6460,10 @@ tr[data-zone='z4'] .pos-num {
 .tie[data-me='true'] {
   background: var(--me);
   box-shadow: inset 6px 0 0 var(--me-edge);
+}
+.tie[data-friend] {
+  background: var(--friend);
+  box-shadow: inset 6px 0 0 var(--friend-edge);
 }
 .tie-team {
   display: flex;

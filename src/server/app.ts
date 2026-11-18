@@ -452,6 +452,9 @@ export async function createApp(overrides: Partial<ServerConfig> = {}, logger?: 
             case 'convoca:set':
               room.convoca(u, String(msg.stepId), Array.isArray(msg.cardIds) ? msg.cardIds : [], !!msg.seal);
               break;
+            case 'convoca:formation':
+              room.convocaFormation(u, String(msg.stepId), msg.formation);
+              break;
             case 'ceremony:ready':
               room.ceremonyReady(u);
               break;

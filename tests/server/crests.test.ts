@@ -1,5 +1,18 @@
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
-import { crestForTeamName, defaultUserCrest, generateCrest, parseCrest, teamInitials, type CrestConfig } from '../../src/shared/crest.js';
+import {
+  colorDistance,
+  crestForTeamName,
+  crestLuminance,
+  defaultKits,
+  defaultUserCrest,
+  generateCrest,
+  KIT_CLASH,
+  kitsOf,
+  matchKits,
+  parseCrest,
+  teamInitials,
+  type CrestConfig,
+} from '../../src/shared/crest.js';
 import { api, cleanupDir, startTestApp, TestClient, type TestEnv } from './harness.js';
 
 const RECIPE: CrestConfig = {
@@ -28,6 +41,61 @@ describe('receita de escudo', () => {
     const { initials: _a, motto: _b, ...before } = defaultUserCrest('abc', 'Ana FC');
     const { initials: _c, motto: _d, ...after } = defaultUserCrest('abc', 'Outro Nome FC');
     expect(after).toEqual(before);
+  });
+
+  it('uniformes saem do escudo: o 1 na cor principal, o 2 ao contrário (claro × escuro)', () => {
+    // Principal escura: o 2 é claro (aqui, o branco do próprio escudo).
+    const navy = defaultKits(RECIPE);
+    expect(navy.home.shirt).toBe('#1C2E6B');
+    expect(navy.away.shirt).toBe('#FFFFFF');
+    expect(navy.away.trim).toBe('#1C2E6B');
+    // Principal clara: o 2 é escuro; sem cor escura no escudo, vai de preto.
+    expect(defaultKits({ primary: '#FFFFFF', secondary: '#1A1A1A', detail: '#D2392B' }).away.shirt).toBe('#1A1A1A');
+    expect(defaultKits({ primary: '#FFC81E', secondary: '#FFFFFF', detail: '#F3E3B5' }).away.shirt).toBe('#1A1A1A');
+    expect(defaultKits({ primary: '#1A1A1A', secondary: '#7D1C2C', detail: '#1C2E6B' }).away.shirt).toBe('#FFFFFF');
+    // Em qualquer escudo gerado: 1 e 2 em lados opostos de claro/escuro, e o detalhe se destaca da camisa.
+    for (let i = 0; i < 200; i++) {
+      const crest = generateCrest(`kit${i}`, 'Time');
+      const k = defaultKits(crest);
+      expect(k.home.shirt).toBe(crest.primary);
+      expect(crestLuminance(k.home.shirt) < 0.5).not.toBe(crestLuminance(k.away.shirt) < 0.5);
+      expect(colorDistance(k.home.shirt, k.home.trim)).toBeGreaterThanOrEqual(60);
+      expect(colorDistance(k.away.shirt, k.away.trim)).toBeGreaterThanOrEqual(60);
+    }
+    // Sem uniforme escolhido, vale o do escudo; escolhido, vale o do técnico.
+    expect(kitsOf(RECIPE)).toEqual(navy);
+    const mine = { home: { shirt: '#D2392B', trim: '#FFFFFF' }, away: { shirt: '#FFFFFF', trim: '#D2392B' } };
+    expect(kitsOf({ ...RECIPE, kits: mine })).toEqual(mine);
+  });
+
+  it('na partida, o visitante troca para o uniforme 2 quando as camisas se confundem', () => {
+    const red = { home: { shirt: '#D2392B', trim: '#FFFFFF' }, away: { shirt: '#FFFFFF', trim: '#D2392B' } };
+    const blue = { home: { shirt: '#1C2E6B', trim: '#FFFFFF' }, away: { shirt: '#FFFFFF', trim: '#1C2E6B' } };
+    const maroon = { home: { shirt: '#C8302A', trim: '#FFC81E' }, away: { shirt: '#F3E3B5', trim: '#7D1C2C' } };
+    expect(matchKits(red, blue)).toEqual({ home: red.home, away: blue.home });
+    expect(matchKits(red, maroon)).toEqual({ home: red.home, away: maroon.away });
+    // Mesmo time dos dois lados: o visitante vai de 2.
+    const same = matchKits(red, red);
+    expect(colorDistance(same.home.shirt, same.away.shirt)).toBeGreaterThanOrEqual(KIT_CLASH);
+  });
+
+  it('uniformes escolhidos são validados junto com o escudo', () => {
+    const kits = { home: { shirt: '#d2392b', trim: '#FFFFFF' }, away: { shirt: '#FFFFFF', trim: '#D2392B' } };
+    expect(parseCrest({ ...RECIPE, kits }).kits).toEqual({ home: { shirt: '#D2392B', trim: '#FFFFFF' }, away: kits.away });
+    expect(parseCrest(RECIPE).kits).toBeUndefined();
+    expect(() => parseCrest({ ...RECIPE, kits: { home: kits.home } })).toThrow(/Uniforme 2/);
+    // Desenho da camisa, patrocínios e marca: só os da lista; “liso” e “nenhum” nem são guardados.
+    const full = { home: { ...kits.home, pattern: 'xadrez' }, away: { ...kits.away, pattern: 'liso' }, master: 'pagartu', brand: 'capivara' };
+    expect(parseCrest({ ...RECIPE, kits: full }).kits).toEqual({
+      home: { shirt: '#D2392B', trim: '#FFFFFF', pattern: 'xadrez' },
+      away: kits.away,
+      master: 'pagartu',
+      brand: 'capivara',
+    });
+    expect(() => parseCrest({ ...RECIPE, kits: { ...full, home: { ...kits.home, pattern: 'bolinhas' } } })).toThrow(/Desenho do uniforme 1/);
+    expect(() => parseCrest({ ...RECIPE, kits: { ...full, master: 'banco-de-verdade' } })).toThrow(/Patrocínio master/);
+    expect(() => parseCrest({ ...RECIPE, kits: { ...full, brand: 'outra' } })).toThrow(/Material esportivo/);
+    expect(() => parseCrest({ ...RECIPE, kits: { ...kits, away: { shirt: 'azul', trim: '#FFFFFF' } } })).toThrow(/camisa do uniforme 2/);
   });
 
   it('sigla do time', () => {
@@ -74,6 +142,14 @@ describe('escudo do técnico', () => {
     expect(saved.data.user.crest).toEqual(next);
     const profile = await api(env.app, 'GET', `/api/users/${created.data.user.id}/profile`, undefined, token);
     expect(profile.data.user.crest).toEqual(next);
+    // Uniformes: salvos com o escudo e entregues junto com ele.
+    const kits = { home: { shirt: '#2E8B3A', trim: '#FFFFFF' }, away: { shirt: '#FFFFFF', trim: '#2E8B3A' } };
+    const withKits = await api(env.app, 'PUT', '/api/me/crest', { crest: { ...next, kits } }, token);
+    expect(withKits.status).toBe(200);
+    expect(withKits.data.user.crest.kits).toEqual(kits);
+    expect((await api(env.app, 'GET', '/api/me', undefined, token)).data.user.crest.kits).toEqual(kits);
+    const badKit = await api(env.app, 'PUT', '/api/me/crest', { crest: { ...next, kits: { home: kits.home } } }, token);
+    expect(badKit.status).toBe(400);
   });
 
   it('sem escudo montado, ganha um gerado que não muda', async () => {

@@ -23,12 +23,12 @@ test('criador de escudos: monta ao fundar o clube, troca depois e o escudo apare
   expect(me).toMatchObject({ shape: 'redondo', symbol: 'leao', stars: 3 });
 
   // Troca a cor pela janela do criador e salva.
-  await page.getByRole('button', { name: /Editar escudo/ }).click();
+  await page.getByRole('button', { name: /Editar clube/ }).click();
   const dialog = page.getByRole('dialog');
   await dialog.getByRole('tab', { name: 'Cores' }).click();
   await dialog.getByRole('button', { name: 'Alviverde' }).click();
-  await dialog.getByRole('button', { name: 'Salvar escudo' }).click();
-  await expect(page.getByText('Escudo salvo')).toBeVisible();
+  await dialog.getByRole('button', { name: 'Salvar clube' }).click();
+  await expect(page.getByText('Clube salvo')).toBeVisible();
   await expect(dialog).toBeHidden();
 
   // Na sala, o seu time aparece com o escudo (e as CPUs com os delas).

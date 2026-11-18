@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
-import { FORMATIONS, type Position } from '../../../engine/types';
+import { FORMATION_LIST, FORMATIONS, type Formation, type Position } from '../../../engine/types';
 import type {
   BidStepView,
   ConvocacaoStepView,
@@ -755,9 +755,17 @@ function MonteBoard({ step, d }: { step: MonteStepView; d: DisputeView }) {
 // Convocação (leilão de clubes)
 // ---------------------------------------------------------------------------
 
+/** “3 zagueiros, 2 alas, 3 meias e 2 atacantes” (com 3 zagueiros, os laterais jogam de alas). */
+function formationText(f: Formation): string {
+  const n = FORMATIONS[f];
+  const plural = (k: number, one: string, many: string) => `${k} ${k === 1 ? one : many}`;
+  return `${plural(n.ZAG, 'zagueiro', 'zagueiros')}, ${n.LAT} ${n.ZAG >= 3 ? 'alas' : 'laterais'}, ${plural(n.MEI, 'meia', 'meias')} e ${plural(n.ATA, 'atacante', 'atacantes')}`;
+}
+
 function ConvocacaoBoard({ step, d }: { step: ConvocacaoStepView; d: DisputeView }) {
   const [picks, setPicks] = useState<string[]>(() => step.myPicks);
   const [sealing, setSealing] = useState(false);
+  const [changing, setChanging] = useState(false);
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const sectors = POSITIONS.filter((pos) => step.myPackages[pos]);
   const optionsOf = (pos: Position) => d.packages[step.myPackages[pos] ?? '']?.cardIds ?? [];
@@ -805,6 +813,29 @@ function ConvocacaoBoard({ step, d }: { step: ConvocacaoStepView; d: DisputeView
     await act({ t: 'convoca:set', stepId: step.stepId, cardIds: picks, seal: true });
     setSealing(false);
   };
+  // Troca de formação: os pacotes são os mesmos, muda quantos de cada setor entram.
+  // No setor que encolhe saem os últimos escolhidos (a mesma regra do servidor).
+  const changeFormation = async (formation: Formation) => {
+    if (step.mySealed || changing || formation === me.formation) return;
+    if (timer.current) clearTimeout(timer.current);
+    const need = FORMATIONS[formation];
+    const count: Partial<Record<Position, number>> = {};
+    const next = picks.filter((id) => {
+      const pos = sectors.find((x) => optionsOf(x).includes(id));
+      if (!pos) return false;
+      count[pos] = (count[pos] ?? 0) + 1;
+      return count[pos]! <= need[pos];
+    });
+    setChanging(true);
+    // Grava antes o rascunho (pode haver escolha ainda não enviada) e depois troca a formação.
+    const ok = (await act({ t: 'convoca:set', stepId: step.stepId, cardIds: picks })) && (await act({ t: 'convoca:formation', stepId: step.stepId, formation }));
+    if (ok) {
+      setPicks(next);
+      const open = sectors.find((pos) => next.filter((id) => optionsOf(pos).includes(id)).length < need[pos]);
+      if (open) setTab(open);
+    }
+    setChanging(false);
+  };
 
   const draftRoster: RosterView[] = picks
     .map((id) => d.cards[id])
@@ -824,7 +855,7 @@ function ConvocacaoBoard({ step, d }: { step: ConvocacaoStepView; d: DisputeView
       <div className="convoca-head">
         <div>
           <span className="small">
-            Escolha quem joga em cada pacote ({me.formation}). Quem fica de fora vai para os times da liga.
+            Escolha a formação e quem joga em cada pacote. Quem fica de fora vai para os times da liga.
             {!step.mySealed && (
               <>
                 {' '}
@@ -839,6 +870,29 @@ function ConvocacaoBoard({ step, d }: { step: ConvocacaoStepView; d: DisputeView
           </span>
           <span>convocados</span>
         </span>
+      </div>
+      <div className="convoca-formation">
+        <span className="small">
+          <strong>Formação</strong>: {formationText(me.formation)}
+        </span>
+        <div className="seg seg-grid" role="group" aria-label="Formação">
+          {FORMATION_LIST.map((f) => {
+            // Só dá para escolher a formação que os seus pacotes conseguem preencher.
+            const short = sectors.find((pos) => optionsOf(pos).length < FORMATIONS[f][pos]);
+            return (
+              <button
+                key={f}
+                type="button"
+                aria-pressed={me.formation === f}
+                disabled={step.mySealed || changing || !!short}
+                title={short ? `Seu pacote de ${short} não tem jogadores para o ${f}` : formationText(f)}
+                onClick={() => void changeFormation(f)}
+              >
+                {f}
+              </button>
+            );
+          })}
+        </div>
       </div>
       <div className="convoca-body">
         <div className="tabbed">
@@ -879,9 +933,11 @@ function ConvocacaoBoard({ step, d }: { step: ConvocacaoStepView; d: DisputeView
                     const full = !on && countOf(tab) >= step.need[tab];
                     return (
                       <li key={id}>
-                        <label className="convoca-row" data-on={on || undefined} data-off={full || undefined}>
+                        <label className="convoca-row" data-on={on || undefined} data-off={full || undefined} data-legend={c.legend || undefined}>
                           <input type="checkbox" checked={on} disabled={step.mySealed || full} onChange={() => toggle(tab, id)} />
+                          {c.legend && <LegendFigure club={c.club} kit={c.kit} cardId={c.id} size={34} />}
                           <span className="convoca-name">{c.name}</span>
+                          {c.legend && <span className="badge badge-gold">Lenda</span>}
                           <span className="convoca-year">{c.year}</span>
                         </label>
                       </li>

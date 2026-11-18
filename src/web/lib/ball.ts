@@ -209,6 +209,11 @@ interface Play {
   /** Minutos de jogo antes e depois do instante do lance. */
   pre: number;
   post: number;
+  /**
+   * Bola parada: tempo, antes de `pre`, para a jogada que leva a ela (o ataque chega, a zaga desvia
+   * para escanteio, o atacante sofre a falta) — a cobrança nunca aparece “do nada” do outro lado.
+   */
+  lead: number;
   /** Instante do lance na tela. */
   m: number;
 }
@@ -242,11 +247,12 @@ export function buildTimeline(match: MatchView, minutesPerSecond = DEFAULT_MINUT
     .map(({ e, i }) => {
       const pre = e.type === 'impedimento' || e.type === 'expulsao' ? 1 : e.setPiece === 'penalti' ? 2.1 : e.setPiece === 'falta' ? 1.9 : e.setPiece === 'escanteio' ? 1.8 : 1.4;
       const post = e.type === 'gol' ? 1.7 : e.type === 'expulsao' ? 1.5 : e.type === 'impedimento' ? 0.9 : e.type === 'trave' || e.type === 'bloqueio' ? 0.7 : 1;
-      return { i, e, pre: base(pre), post: base(post), m: e.minute };
+      const lead = e.type !== 'impedimento' && e.type !== 'expulsao' && e.setPiece ? 1.5 : 0;
+      return { i, e, pre: base(pre), post: base(post), lead: base(lead), m: e.minute };
     });
   const GAP = base(0.3);
   const END = 89.4;
-  const needed = plays.reduce((n, p) => n + p.pre + p.post + GAP, 0);
+  const needed = plays.reduce((n, p) => n + p.lead + p.pre + p.post + GAP, 0);
   // Muitos lances para pouco tempo de tela (turbo): tudo encolhe por igual.
   const scale = needed > END - 0.6 ? (END - 0.6) / needed : 1;
   const sec = (n: number) => base(n) * scale;
@@ -254,7 +260,8 @@ export function buildTimeline(match: MatchView, minutesPerSecond = DEFAULT_MINUT
   for (const p of plays) {
     p.pre *= scale;
     p.post *= scale;
-    p.m = Math.max(p.e.minute, end + GAP * scale + p.pre);
+    p.lead *= scale;
+    p.m = Math.max(p.e.minute, end + GAP * scale + p.lead + p.pre);
     end = p.m + p.post;
   }
   // Lances amontoados no fim do jogo: recuam para caber antes do apito.
@@ -262,7 +269,7 @@ export function buildTimeline(match: MatchView, minutesPerSecond = DEFAULT_MINUT
   for (let k = plays.length - 1; k >= 0; k--) {
     const p = plays[k]!;
     if (p.m + p.post > limit) p.m = limit - p.post;
-    limit = p.m - p.pre - GAP * scale;
+    limit = p.m - p.pre - p.lead - GAP * scale;
   }
 
   // ---- Estado da montagem ----
@@ -319,30 +326,87 @@ export function buildTimeline(match: MatchView, minutesPerSecond = DEFAULT_MINUT
   const keeperOf = (side: Side) => team(side).find((p) => p.position === 'GOL') ?? team(side)[0]!;
   const isKeeper = (p: PitchPlayer) => p.position === 'GOL';
 
-  /** Troca de passes até `until`: a bola anda de pé em pé, com desarmes e viradas de jogo. */
-  const wander = (until: number) => {
+  /** Finalizações “soltas” (fora da narração) que a troca de passes pode render por jogo. */
+  const MAX_LOOSE_SHOTS = 4;
+  let looseShots = 0;
+  /**
+   * Troca de passes até `until`: a bola anda de pé em pé, com desarmes e viradas de jogo.
+   * Com `toward`, o fim do trecho prepara o próximo lance: esse time recupera a bola e sobe ao ataque
+   * (sem perder a posse), para o lance nascer de onde o jogo está, e não do outro lado do campo.
+   */
+  const wander = (until: number, toward?: Side) => {
     let t = cursor;
     let holder = holderAt(keys, t);
     for (;;) {
       t += r(sec(0.45), sec(0.8));
       if (t >= until - sec(0.1)) break;
       const f = tl.focus[tl.focus.length - 1]!;
+      const closing = !!toward && t >= until - sec(2.6);
+      if (closing) poss = toward!;
       const dir = poss === 'home' ? 1 : -1;
-      const long = rng.next() < 0.18;
-      let fx = clamp(f.x + dir * (long ? r(0.12, 0.26) : r(-0.05, 0.12)), 0.2, 0.8);
+      const long = !closing && rng.next() < 0.18;
+      let fx = clamp(f.x + dir * (closing ? r(0.07, 0.17) : long ? r(0.12, 0.26) : r(-0.05, 0.12)), 0.2, closing ? 0.74 : 0.8);
+      if (closing) fx = dir > 0 ? Math.max(fx, 0.26) : Math.min(fx, 0.74);
       const fy = clamp(long ? r(0.15, 0.85) : f.y + r(-0.22, 0.22), 0.14, 0.86);
       // Desarme: mais provável quando o ataque já está no campo do adversário.
       const deep = dir * (fx - 0.5) > 0.18;
-      if (rng.next() < (deep ? 0.5 : 0.16)) {
+      if (!closing && rng.next() < (deep ? 0.5 : 0.16)) {
         poss = other(poss);
         fx = clamp(fx - dir * 0.05, 0.2, 0.8);
       }
       focusTo(t, fx, fy);
       const prev = holder;
       const carry = rng.next() < 0.2;
-      const next = nearest(poss, t, fx, fy, (p) => isKeeper(p) || (!carry && !!prev && prev.side === p.side && prev.idx === p.idx));
+      // Na cara do gol ninguém toca para trás: ou há tempo para finalizar (chute para fora ou travado
+      // pela zaga — lances sem importância, fora da narração), ou a bola nem chega lá.
+      const attack = poss;
+      // (a posse pode ter acabado de trocar: o sentido é o de quem está com a bola agora)
+      const fwd = attack === 'home' ? 1 : -1;
+      const facingGoal = (p: PitchPlayer) => {
+        const pos = playerAt(tl, p, t);
+        return fwd * (pos.x - 0.5) > 0.3 && Math.abs(pos.y - 0.5) < 0.27;
+      };
+      const canShoot = !closing && looseShots < MAX_LOOSE_SHOTS && until - t > sec(2.4);
+      const next = nearest(
+        attack,
+        t,
+        fx,
+        fy,
+        (p) => isKeeper(p) || (!carry && !!prev && prev.side === p.side && prev.idx === p.idx) || (!canShoot && facingGoal(p)),
+      );
       toPlayer(t, next);
       holder = { side: next.side, idx: next.idx };
+      if (canShoot && facingGoal(next)) {
+        looseShots++;
+        const defending = other(attack);
+        const goalX = attack === 'home' ? 1 : 0;
+        const toGoal = (f: number) => (attack === 'home' ? f : 1 - f);
+        const from = playerAt(tl, next, t);
+        const shotAt = t + sec(0.5);
+        const keeper = keeperOf(defending);
+        if (rng.next() < 0.62) {
+          // Para fora: tiro de meta.
+          const wide = from.y < 0.5 ? r(0.6, 0.78) : r(0.22, 0.4);
+          const gone = point(shotAt, goalX + fwd * 0.03, rng.next() < 0.7 ? wide : 1 - wide, { shot: true });
+          point(gone + sec(0.55), toGoal(0.95), 0.5, { jump: true, holder: { side: defending, idx: keeper.idx } });
+        } else {
+          // Travado: um zagueiro se joga na frente e fica com a bola.
+          const bx = from.x + (goalX - from.x) * 0.3;
+          const by = from.y + (0.5 - from.y) * 0.3;
+          const blocker = nearest(defending, t, bx, by, isKeeper);
+          move(blocker, shotAt - sec(0.1), shotAt + sec(0.3), bx, by, sec(0.4), sec(0.8));
+          point(shotAt, bx, by, { shot: true, holder: { side: defending, idx: blocker.idx } });
+        }
+        // A defesa sai jogando.
+        const outY = r(0.2, 0.8);
+        const restart = lastT() + sec(0.75);
+        focusTo(restart, toGoal(0.62), outY);
+        toPlayer(restart, nearest(defending, restart, toGoal(0.68), outY, isKeeper));
+        poss = defending;
+        const got = keys[keys.length - 1]!.holder;
+        holder = got ?? null;
+        t = lastT();
+      }
     }
     cursor = lastT();
   };
@@ -358,9 +422,34 @@ export function buildTimeline(match: MatchView, minutesPerSecond = DEFAULT_MINUT
     const start = m - pre;
     const keeper = keeperOf(def);
     const shooter = byCard(side, e.cardId) ?? team(side).filter((p) => p.position === 'ATA')[0] ?? team(side)[team(side).length - 1]!;
-    wander(start);
+    const lead = play.lead;
+    wander(start - lead, side);
     poss = side;
     moments[play.i] = m;
+
+    /**
+     * Jogada que leva à bola parada, entre `start - lead` e `start`: um passe de quem ataca rumo ao
+     * ponto (tx, ty) e a bola chega a `target` ali. Devolve o instante em que ele domina.
+     */
+    const arrive = (target: PitchPlayer, tx: number, ty: number): number => {
+      const f = tl.focus[tl.focus.length - 1]!;
+      const s0 = start - lead;
+      const mid = s0 + lead * 0.28;
+      const mx = f.x + (tx - f.x) * 0.55;
+      const my = f.y + (ty - f.y) * 0.5;
+      focusTo(mid, mx, my);
+      // O passe do meio não vai para quem já está na cara do gol (ele não tocaria para trás).
+      const inFront = (p: PitchPlayer) => {
+        const pos = playerAt(tl, p, mid);
+        return out * (pos.x - 0.5) > 0.3 && Math.abs(pos.y - 0.5) < 0.27;
+      };
+      toPlayer(mid, nearest(side, mid, mx, my, (p) => isKeeper(p) || p === target || inFront(p)));
+      const recv = start - lead * 0.42;
+      focusTo(recv, clamp(tx - out * 0.08, 0.2, 0.8), ty);
+      move(target, recv, start, tx, ty, lead * 0.3, sec(0.9));
+      return toPlayer(recv, target);
+    };
+    const hasLead = lead > sec(0.45);
 
     /** Desfecho de uma finalização que chega ao gol no instante `m`. */
     const finish = (kind: MatchEvent['type']) => {
@@ -442,6 +531,16 @@ export function buildTimeline(match: MatchView, minutesPerSecond = DEFAULT_MINUT
 
     if (e.setPiece === 'penalti') {
       const spot = at(PENALTY_SPOT);
+      if (hasLead) {
+        // O atacante recebe dentro da área e é derrubado pelo marcador.
+        const bx = at(r(0.88, 0.93));
+        const by = r(0.36, 0.64);
+        const victim = nearest(side, start - lead, bx, by, isKeeper);
+        const got = arrive(victim, bx, by);
+        const fouler = nearest(def, got, bx, by, isKeeper);
+        move(fouler, start - lead * 0.12, start + pre * 0.2, bx + out * 0.012, by + 0.014, lead * 0.28, sec(0.8));
+        point(start - lead * 0.04, bx + out * 0.006, by, { holder: { side, idx: victim.idx } });
+      }
       tl.banners.push({ from: start, to: m - pre * 0.12, text: 'Pênalti!' });
       // Times fora da área, goleiro na linha, batedor na bola.
       focusTo(start + pre * 0.3, at(0.68), 0.5);
@@ -463,27 +562,46 @@ export function buildTimeline(match: MatchView, minutesPerSecond = DEFAULT_MINUT
     }
 
     if (e.setPiece === 'falta') {
-      const x = at(r(0.765, 0.8));
-      const y = r(0.36, 0.64);
+      // Onde foi a falta: varia de jogo para jogo — pela esquerda, pela direita ou de frente, mais
+      // perto ou mais longe, sempre fora da área (pelos lados dá para chegar mais perto da linha de fundo).
+      const zone = rng.next();
+      const y = zone < 0.36 ? r(0.13, 0.3) : zone < 0.72 ? r(0.7, 0.87) : r(0.34, 0.66);
+      const wide = Math.abs(y - 0.5) > 0.31;
+      const x = at(wide ? r(0.72, 0.86) : r(0.7, 0.815));
+      if (hasLead) {
+        // O atacante leva a bola até ali e é parado com falta.
+        const victim = nearest(side, start - lead, x, y, (p) => isKeeper(p) || p === shooter);
+        const got = arrive(victim, x, y);
+        const fouler = nearest(def, got, x, y, isKeeper);
+        move(fouler, start - lead * 0.12, start + pre * 0.15, x + out * 0.012, y + 0.014, lead * 0.28, sec(0.8));
+        point(start - lead * 0.04, x, y, { holder: { side, idx: victim.idx } });
+      }
       tl.banners.push({ from: start, to: m - pre * 0.12, text: 'Falta!' });
-      focusTo(start + pre * 0.3, at(0.72), y);
-      focusTo(m, at(0.72), y);
+      focusTo(start + pre * 0.3, at(0.72), 0.5 + (y - 0.5) * 0.7);
+      focusTo(m, at(0.72), 0.5 + (y - 0.5) * 0.7);
       const placed = point(start + pre * 0.22, x, y, { jump: true });
-      // Barreira de três a 9,15 m, entre a bola e o gol.
-      const wallX = x + out * 0.087;
-      const wallY = y + (0.5 - y) * 0.45;
+      // Barreira de três a 9,15 m, na linha entre a bola e o meio do gol.
+      const gx = (lineX - x) * 105;
+      const gy = (0.5 - y) * 68;
+      const gd = Math.hypot(gx, gy) || 1;
+      const wallX = x + ((gx / gd) * 9.15) / 105;
+      const wallY = y + ((gy / gd) * 9.15) / 68;
+      // Os três lado a lado, atravessados à linha do chute.
+      const sideX = ((-gy / gd) * 2.2) / 105;
+      const sideY = ((gx / gd) * 2.2) / 68;
       const wall = team(def)
         .filter((p) => p.position !== 'GOL')
         .map((p) => ({ p, d: Math.hypot(playerAt(tl, p, placed).x - wallX, playerAt(tl, p, placed).y - wallY) }))
         .sort((a, b) => a.d - b.d)
         .slice(0, 3)
         .map((w) => w.p);
-      wall.forEach((p, k) => move(p, placed + pre * 0.15, m + sec(0.3), wallX, wallY + (k - 1) * 0.034, pre * 0.3, sec(1)));
-      move(shooter, placed + pre * 0.2, m + sec(0.2), x - out * 0.028, y, pre * 0.3, sec(1));
+      wall.forEach((p, k) => move(p, placed + pre * 0.15, m + sec(0.3), wallX + (k - 1) * sideX, wallY + (k - 1) * sideY, pre * 0.3, sec(1)));
+      // O batedor toma distância atrás da bola, na linha do chute.
+      move(shooter, placed + pre * 0.2, m + sec(0.2), x - ((gx / gd) * 2.9) / 105, y - ((gy / gd) * 2.9) / 68, pre * 0.3, sec(1));
       point(m - sec(0.42), x, y, { holder: { side, idx: shooter.idx } });
       if (e.type === 'bloqueio') {
         // Na barreira: a bola sobra para a defesa.
-        const t = point(m, wallX - out * 0.008, wallY, { shot: true, ...(wall[1] ? { holder: { side: def, idx: wall[1].idx } } : {}) });
+        const t = point(m, wallX - ((gx / gd) * 0.8) / 105, wallY - ((gy / gd) * 0.8) / 68, { shot: true, ...(wall[1] ? { holder: { side: def, idx: wall[1].idx } } : {}) });
         const fy = r(0.25, 0.75);
         focusTo(t + post, at(0.6), fy);
         cursor = toPlayer(t + post, nearest(def, t + post, at(0.62), fy, (p) => isKeeper(p) || wall.includes(p)));
@@ -496,6 +614,19 @@ export function buildTimeline(match: MatchView, minutesPerSecond = DEFAULT_MINUT
       const top = rng.next() < 0.5;
       const cx = at(0.992);
       const cy = top ? 0.012 : 0.988;
+      if (hasLead) {
+        // O ataque chega por aquele lado, cruza, e a zaga corta para a linha de fundo.
+        const wx = at(r(0.8, 0.87));
+        const wy = top ? r(0.12, 0.26) : r(0.74, 0.88);
+        const winger = nearest(side, start - lead, wx, wy, (p) => isKeeper(p) || p === shooter);
+        const got = arrive(winger, wx, wy);
+        const bx = at(0.935);
+        const by = top ? r(0.24, 0.32) : r(0.68, 0.76);
+        const blocker = nearest(def, got, bx, by, isKeeper);
+        move(blocker, start - lead * 0.2, start + pre * 0.1, bx + out * 0.008, by, lead * 0.2, sec(0.8));
+        point(start - lead * 0.18, bx, by, { shot: true, holder: { side: def, idx: blocker.idx } });
+        point(start - lead * 0.03, lineX + out * 0.02, top ? r(0.1, 0.22) : r(0.78, 0.9));
+      }
       const taker = byCard(side, e.takerId) ?? nearest(side, start, cx, cy, (p) => isKeeper(p) || p === shooter);
       tl.banners.push({ from: start, to: m - pre * 0.3, text: 'Escanteio!' });
       focusTo(start + pre * 0.3, at(0.84), 0.5);

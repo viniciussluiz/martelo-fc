@@ -22,6 +22,7 @@ export const CONTINENTAL_BOT_NAMES = [
   'Volcán del Norte', 'Marea del Pacífico', 'Azules del Valle', 'Tiburón Caribeño',
   'Alianza Costera', 'Cristal de los Andes', 'Altura Paceña', 'Cóndor do Sul',
   'Carbonero Antiguo', 'Obreros Serranos', 'Granate Ferroviario', 'Tigres del Desierto',
+  'Guaraní del Este', 'Minero Andino', 'Estudiantes del Sur', 'Bolívar del Llano',
 ];
 
 const BOT_FIRST = ['Beto', 'Cadu', 'Dênis', 'Éder', 'Fábio', 'Gil', 'Hugo', 'Igor', 'Jorge', 'Kleber', 'Léo', 'Mauro', 'Nando', 'Otávio', 'Paulo', 'Rui', 'Sandro', 'Téo', 'Vado', 'Wilson'];

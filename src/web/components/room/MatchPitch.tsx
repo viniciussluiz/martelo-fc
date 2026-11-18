@@ -1,7 +1,9 @@
-import { useEffect, useId, useMemo, useRef } from 'react';
+import { useEffect, useId, useMemo, useRef, type CSSProperties } from 'react';
 import type { MatchView } from '../../../shared/protocol';
 import { ballState, ballTrail, bannerAt, buildTimeline, holderAt, matchMinute, playersAt, type MatchTimeline } from '../../lib/ball';
+import { crestLuminance, kitsOf, matchKits, type KitColors } from '../../../shared/crest';
 import { serverNow } from '../../lib/store';
+import { useTeamCrest } from '../crest/TeamCrest';
 
 export { matchMinute };
 
@@ -48,6 +50,17 @@ export function MatchPitch({
   tickStartedAt: number;
   playMs: number;
 }) {
+  // Bolinhas na cor do uniforme de cada time (o visitante troca para o 2 se as camisas se confundirem).
+  const homeCrest = useTeamCrest(match.homeId, match.homeName);
+  const awayCrest = useTeamCrest(match.awayId, match.awayName);
+  const kits = useMemo(() => matchKits(kitsOf(homeCrest), kitsOf(awayCrest)), [homeCrest, awayCrest]);
+  const kitStyle = (kit: KitColors) =>
+    ({
+      '--kit': kit.shirt,
+      '--kit-trim': kit.trim,
+      '--kit-ink': crestLuminance(kit.shirt) < 0.45 ? '#FFFFFF' : '#24160C',
+      '--kit-trim-ink': crestLuminance(kit.trim) < 0.45 ? '#FFFFFF' : '#24160C',
+    }) as CSSProperties;
   const box = useRef<HTMLDivElement | null>(null);
   const goalText = useRef<HTMLSpanElement | null>(null);
   const ball = useRef<SVGGElement | null>(null);
@@ -213,10 +226,13 @@ export function MatchPitch({
         {/* Redes: a da esquerda é do mandante, a da direita do visitante. */}
         <rect className="mp-net" data-side="home" x={FX - 3} y={py(0.5 - goalH / 2)} width={3} height={goalH * FH} />
         <rect className="mp-net" data-side="away" x={FX + FW} y={py(0.5 - goalH / 2)} width={3} height={goalH * FH} />
-        <text className="mp-team" data-side="home" x={FX + 1.5} y={FY + FH - 1.6}>
+        {/* Nome de cada time com a bolinha do uniforme, para saber quem é quem. */}
+        <circle className="mp-team-kit" cx={FX + 2.4} cy={FY + FH - 2.5} r={1.1} style={{ fill: kits.home.shirt, stroke: kits.home.trim }} />
+        <text className="mp-team" data-side="home" x={FX + 4.4} y={FY + FH - 1.6}>
           {match.homeName}
         </text>
-        <text className="mp-team" data-side="away" x={FX + FW - 1.5} y={FY + FH - 1.6} textAnchor="end">
+        <circle className="mp-team-kit" cx={FX + FW - 2.4} cy={FY + FH - 2.5} r={1.1} style={{ fill: kits.away.shirt, stroke: kits.away.trim }} />
+        <text className="mp-team" data-side="away" x={FX + FW - 4.4} y={FY + FH - 1.6} textAnchor="end">
           {match.awayName}
         </text>
         <defs>
@@ -239,6 +255,7 @@ export function MatchPitch({
                 men.current[i] = el;
               }}
               className="mp-player"
+              style={kitStyle(kits[p.side])}
               data-side={p.side}
               data-keeper={p.position === 'GOL' || undefined}
             >
