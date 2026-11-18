@@ -358,7 +358,8 @@ function leagueView(room: RoomActor, myPid: string, names: Record<string, string
     totalRounds: league.totalRounds,
     table: league.standings(),
     // Quem só assiste vê o 1º jogo da rodada no campinho: ele também leva as escalações.
-    lastResults: last.map((m, i) => matchView(m, names, false, undefined, !mine && i === 0 ? squadOf : undefined, captainOf)),
+    // Todo jogo da rodada vai com escalação e lances (quando narrado): dá para escolher qual ver no campinho.
+    lastResults: last.map((m) => matchView(m, names, true, undefined, squadOf, captainOf)),
     myLastMatch: mine ? matchView(mine, names, true, undefined, squadOf, captainOf) : null,
     myNextFixture: d.phase === 'league' ? fixture : null,
     topScorers: league.topScorers(10),
@@ -406,7 +407,7 @@ function cupView(room: RoomActor, myPid: string, names: Record<string, string>):
     ties: s.ties,
     groupTables: s.groups.length ? cup.groupStandings() : null,
     groups: s.groups,
-    lastResults: last.map((m, i) => withFirstLeg(matchView(m, names, false, stageLabelOf(m.id), !mine && i === 0 ? squadOf : undefined, captainOf), m)),
+    lastResults: last.map((m) => withFirstLeg(matchView(m, names, true, stageLabelOf(m.id), squadOf, captainOf), m)),
     myLastMatch: mine ? withFirstLeg(matchView(mine, names, true, stageLabelOf(mine.id), squadOf, captainOf), mine) : null,
     myNextFixture: next
       ? {

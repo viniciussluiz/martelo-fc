@@ -6018,6 +6018,47 @@ li[data-award='mao-furada'] .award-icon {
   border: 2px solid var(--ink);
   border-radius: 10px;
 }
+/* Jogo da lista que dá para escolher para ver no campinho. */
+.scores li[role='button'] {
+  position: relative;
+  cursor: pointer;
+}
+.scores li[role='button']:hover {
+  filter: brightness(0.97);
+  transform: translateY(-1px);
+}
+.scores li[role='button']:focus-visible {
+  outline: 3px solid var(--sky);
+  outline-offset: 2px;
+}
+.scores li[data-watching] {
+  outline: 3px solid var(--ink);
+  outline-offset: 1px;
+}
+.sc-watching {
+  position: absolute;
+  top: -9px;
+  right: 8px;
+  padding: 0 7px;
+  background: var(--ink);
+  color: var(--sun);
+  border-radius: 6px;
+  font-family: var(--f-sport);
+  font-weight: 700;
+  font-size: 0.72rem;
+  line-height: 1.5;
+}
+.watching-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 12px;
+  padding: 8px 12px;
+  background: var(--paper);
+  border: 3px solid var(--ink);
+  border-radius: var(--r-m);
+}
 .scores li[data-me] {
   background: var(--me);
   box-shadow: inset 6px 0 0 var(--me-edge);

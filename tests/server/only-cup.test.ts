@@ -53,6 +53,12 @@ describe('só Libertadores', () => {
     // Mata-mata em ida e volta: o jogo de volta leva o placar da ida, para o placar mostrar o agregado.
     const volta = await bia.waitFor((r) => !!r?.dispute?.cup?.lastResults.some((m) => m.firstLeg), 60_000, 'jogo de volta');
     const cupNow = volta!.dispute!.cup!;
+    // Todo jogo da rodada vai com as duas escalações: qualquer um pode ser escolhido para passar no campinho.
+    expect(cupNow.lastResults.length).toBeGreaterThan(1);
+    for (const m of cupNow.lastResults) {
+      expect(m.lineups?.home, `${m.homeName} × ${m.awayName}`).toHaveLength(11);
+      expect(m.lineups?.away).toHaveLength(11);
+    }
     for (const m of cupNow.lastResults.filter((x) => x.firstLeg)) {
       expect(m.stage).toMatch(/ · volta$/);
       const tie = cupNow.ties.find((t) => (t.aId === m.homeId && t.bId === m.awayId) || (t.aId === m.awayId && t.bId === m.homeId))!;

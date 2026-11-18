@@ -59,8 +59,14 @@ export function LiveMatch({
   const sheetCards = (match.redCards ?? [])
     .map((c) => ({ side: c.side, cardId: c.cardId, name: c.name, at: timeline.cards.find((k) => k.side === c.side && k.cardId === c.cardId)?.t ?? c.minute }))
     .filter((c) => over || c.at <= exact);
-  const events = (match.events ?? [])
-    .map((e, i) => ({ e, at: timeline.moments[i] ?? e.minute }))
+  // Jogo sem narração (dois clubes do jogo): o lance a lance mostra pelo menos os gols.
+  const goalsOnly = [...match.goals]
+    .sort((x, y) => x.minute - y.minute)
+    .map((g, i) => ({
+      e: { minute: g.minute, type: 'gol' as const, side: g.side, text: `Gol de ${g.name}, do ${g.side === 'home' ? match.homeName : match.awayName}.` },
+      at: timeline.goals[i]?.t ?? g.minute,
+    }));
+  const events = (match.events ? match.events.map((e, i) => ({ e, at: timeline.moments[i] ?? e.minute })) : goalsOnly)
     .filter(({ e, at }) => (over ? true : at <= exact && e.type !== 'fim' && e.type !== 'penaltis'))
     // O minuto narrado é o do relógio na hora em que o lance passa no campo.
     .map(({ e, at }) => ({ ...e, minute: Math.min(90, Math.floor(at)) }))
@@ -535,6 +541,8 @@ function LiveRound({
   tickStartedAt,
   tickMs,
   subtitle,
+  watchingId,
+  onPick,
 }: {
   matches: MatchView[];
   myMatch: MatchView | null;
@@ -542,6 +550,10 @@ function LiveRound({
   tickStartedAt: number;
   tickMs: number;
   subtitle?: string;
+  /** Jogo que está passando no campinho. */
+  watchingId?: string | null;
+  /** Escolher um jogo da lista para ver no campinho. */
+  onPick?: (m: MatchView) => void;
 }) {
   const now = useNow(120);
   const playMs = playTime(tickMs);
@@ -562,6 +574,7 @@ function LiveRound({
         <div>
           <h3 className="side-title">Jogos da rodada</h3>
           {subtitle && <div className="side-sub">{subtitle}</div>}
+          {onPick && matches.length > 1 && <div className="side-sub">Toque num jogo para ver no campinho.</div>}
         </div>
         {matches.length > 0 && (
           <span className="live-chip" data-state={over ? 'fim' : 'live'}>
@@ -586,7 +599,28 @@ function LiveRound({
             const settled = !so || so.over;
             const lead = pens ? (settled && pens.home !== pens.away ? (pens.home > pens.away ? 'home' : 'away') : null) : h > a ? 'home' : a > h ? 'away' : null;
             return (
-              <li key={m.id} data-me={isMine(m, you) || undefined} data-friend={(!isMine(m, you) && hasFriend(m, you)) || undefined}>
+              <li
+                key={m.id}
+                data-me={isMine(m, you) || undefined}
+                data-friend={(!isMine(m, you) && hasFriend(m, you)) || undefined}
+                data-watching={(!!onPick && watchingId === m.id) || undefined}
+                {...(onPick
+                  ? {
+                      role: 'button',
+                      tabIndex: 0,
+                      'aria-pressed': watchingId === m.id,
+                      'aria-label': `Ver ${m.homeName} × ${m.awayName} no campinho`,
+                      onClick: () => onPick(m),
+                      onKeyDown: (e: KeyboardEvent) => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                          e.preventDefault();
+                          onPick(m);
+                        }
+                      },
+                    }
+                  : {})}
+              >
+                {onPick && watchingId === m.id && <span className="sc-watching">no campinho</span>}
                 <span className="sc-time" data-state={over ? 'fim' : 'live'}>
                   {over ? 'Fim' : `${Math.floor(exact)}'`}
                 </span>
@@ -655,14 +689,49 @@ function opponentOf(m: MatchView | null, you: string | null): string | null {
   return m.homeId === you ? m.awayId : m.awayId === you ? m.homeId : null;
 }
 
+/**
+ * Qual jogo passa no campinho. O padrão é o seu (ou o primeiro da rodada, para quem só assiste);
+ * tocando num jogo da lista, a tela passa a acompanhar um time dele — nas rodadas seguintes também —
+ * até você voltar para o seu jogo.
+ */
+function useWatchedMatch(matches: MatchView[], mine: MatchView | null, you: string | null) {
+  const [followed, setFollowed] = useState<string | null>(null);
+  const fallback = mine ?? matches[0] ?? null;
+  const chosen = followed ? (matches.find((m) => m.homeId === followed || m.awayId === followed) ?? null) : null;
+  const featured = chosen ?? fallback;
+  const pick = (m: MatchView) => {
+    // Voltar ao jogo padrão é “parar de acompanhar”.
+    if (fallback && m.id === fallback.id) return setFollowed(null);
+    // Acompanha o time do amigo, se houver um no jogo; senão, o mandante.
+    setFollowed(isFriend(m.awayId, you) && !isFriend(m.homeId, you) ? m.awayId : m.homeId);
+  };
+  const followedName = chosen && followed ? (chosen.homeId === followed ? chosen.homeName : chosen.awayName) : null;
+  return { featured, pick, reset: () => setFollowed(null), followedName, watching: !!chosen && chosen.id !== fallback?.id };
+}
+
+/** Aviso de que o campinho mostra outro jogo, com o caminho de volta. */
+function WatchingBar({ name, mine, onReset }: { name: string | null; mine: boolean; onReset: () => void }) {
+  return (
+    <div className="watching-bar" role="status">
+      <span>
+        No campinho: <strong>{name}</strong>. Segue com ele nas próximas rodadas.
+      </span>
+      <button type="button" className="btn btn-sm" onClick={onReset}>
+        {mine ? 'Voltar para o seu jogo' : 'Voltar para o primeiro jogo'}
+      </button>
+    </div>
+  );
+}
+
 export function LeagueScreen({ room }: { room: RoomView }) {
   const d = room.dispute!;
   const live = d.league!;
   // Tabela, artilharia e resultados só mudam no apito final do jogo que está passando.
   const l = useAfterWhistle(live, live.tickStartedAt, live.tickMs);
   const myRow = l.table.find((r) => r.teamId === d.you);
-  // Quem só assiste vê o primeiro jogo da rodada no campo.
-  const featured = live.myLastMatch ?? live.lastResults[0] ?? null;
+  // Quem só assiste vê o primeiro jogo da rodada no campo; qualquer um pode escolher outro na lista.
+  const watch = useWatchedMatch(live.lastResults, live.myLastMatch, d.you);
+  const featured = watch.featured;
   const tabs: Tab[] = [
     {
       id: 'tabela',
@@ -735,6 +804,7 @@ export function LeagueScreen({ room }: { room: RoomView }) {
             tickMs={live.tickMs}
             footer={<TacticBar d={d} next={live.myNextFixture} />}
           />
+          {watch.watching && <WatchingBar name={watch.followedName} mine={!!live.myLastMatch} onReset={watch.reset} />}
           <TabbedPanel label="Liga" tabs={tabs} initial="tabela" />
         </div>
         <aside className="live-side">
@@ -744,6 +814,8 @@ export function LeagueScreen({ room }: { room: RoomView }) {
             you={d.you}
             tickStartedAt={live.tickStartedAt}
             tickMs={live.tickMs}
+            watchingId={featured?.id ?? null}
+            onPick={watch.pick}
           />
         </aside>
       </div>
@@ -919,10 +991,11 @@ export function CupScreen({ room }: { room: RoomView }) {
   // Chaves, grupos e resultados só mudam no apito final do jogo que está passando.
   const c = useAfterWhistle(live, live?.tickStartedAt ?? 0, live?.tickMs ?? 0, live?.shootoutMs ?? 0);
   const phase = useAfterWhistle(d.phase, live?.tickStartedAt ?? 0, live?.tickMs ?? 0, live?.shootoutMs ?? 0);
+  const watch = useWatchedMatch(live?.lastResults ?? [], live?.myLastMatch ?? null, d.you);
   if (!live || !c) return d.league ? <LeagueScreen room={room} /> : null;
   const myReach = d.you ? c.reached[d.you] : undefined;
   const stages = STAGE_ORDER.filter((s) => s !== 'grupos' && c.ties.some((t) => t.stage === s));
-  const featured = live.myLastMatch ?? live.lastResults[0] ?? null;
+  const featured = watch.featured;
   const tabs: Tab[] = [];
   if (c.groupTables) {
     tabs.push({
@@ -984,6 +1057,7 @@ export function CupScreen({ room }: { room: RoomView }) {
             tickMs={live.tickMs}
             footer={<TacticBar d={d} next={live.myNextFixture} masked={c !== live} />}
           />
+          {watch.watching && <WatchingBar name={watch.followedName} mine={!!live.myLastMatch} onReset={watch.reset} />}
           <TabbedPanel label="Copa" tabs={tabs} initial={c.stage === 'grupos' || !stages.length ? 'grupos' : 'chaves'} />
         </div>
         <aside className="live-side">
@@ -994,6 +1068,8 @@ export function CupScreen({ room }: { room: RoomView }) {
             tickStartedAt={live.tickStartedAt}
             tickMs={live.tickMs}
             subtitle={live.lastResults[0]?.stage}
+            watchingId={featured?.id ?? null}
+            onPick={watch.pick}
           />
         </aside>
       </div>
