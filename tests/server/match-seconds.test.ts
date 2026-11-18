@@ -9,18 +9,20 @@ import { DEFAULT_SETTINGS, sanitizeSettings } from '../../src/server/rooms/room-
 import { TIMINGS } from '../../src/server/rooms/timing.js';
 import { api, cleanupDir, startTestApp, TestClient, type TestEnv } from './harness.js';
 
-/** O anfitrião escolhe se cada partida dura 20 ou 40 segundos. */
+/** O anfitrião escolhe a duração das partidas: jogo rápido (padrão), melhores momentos ou jogo completo. */
 describe('tempo de cada partida', () => {
-  it('padrão 40 s; aceita 20 ou 40; trocar o ritmo leva a duração junto, a não ser que ela venha no pedido', () => {
+  it('padrão jogo rápido (10 s) em toda sala; aceita 10, 20 ou 40; trocar o ritmo não mexe na duração', () => {
     const base = DEFAULT_SETTINGS.online;
-    expect(base.matchSeconds).toBe(40);
+    expect(base.matchSeconds).toBe(10);
+    expect(DEFAULT_SETTINGS.solo.matchSeconds).toBe(10);
     expect(sanitizeSettings('online', base, { matchSeconds: 20 }).matchSeconds).toBe(20);
     expect(() => sanitizeSettings('online', base, { matchSeconds: 30 as never })).toThrow(/Duração da partida inválida/);
-    expect(sanitizeSettings('online', base, { matchSeconds: 10 })).toMatchObject({ speed: 'normal', matchSeconds: 10 });
-    expect(sanitizeSettings('online', base, { speed: 'turbo' })).toMatchObject({ speed: 'turbo', matchSeconds: 20 });
+    expect(sanitizeSettings('online', base, { matchSeconds: 40 })).toMatchObject({ speed: 'normal', matchSeconds: 40 });
+    // O ritmo é só do leilão: turbo ou normal, a duração escolhida continua.
+    expect(sanitizeSettings('online', base, { speed: 'turbo' })).toMatchObject({ speed: 'turbo', matchSeconds: 10 });
     expect(sanitizeSettings('online', base, { speed: 'turbo', matchSeconds: 40 })).toMatchObject({ speed: 'turbo', matchSeconds: 40 });
-    const turbo = sanitizeSettings('online', base, { speed: 'turbo' });
-    expect(sanitizeSettings('online', turbo, { speed: 'normal' }).matchSeconds).toBe(40);
+    const full = sanitizeSettings('online', base, { matchSeconds: 40 });
+    expect(sanitizeSettings('online', full, { speed: 'turbo' }).matchSeconds).toBe(40);
     // Normal com partidas de 20 s: só a partida muda; o leilão segue no ritmo normal.
     expect(sanitizeSettings('online', base, { matchSeconds: 20 })).toMatchObject({ speed: 'normal', matchSeconds: 20 });
   });
@@ -42,8 +44,8 @@ describe('tempo de cada partida', () => {
       await ana.send({ t: 'room:join', code: data.code });
       await ana.waitFor((r) => r?.code === data.code, 5000, 'entrar na sala');
       const room = env.app.rooms.get(data.code)!;
-      expect(ana.room!.settings.matchSeconds).toBe(40);
-      expect(room.timing.leagueRoundMs).toBe(40_000);
+      expect(ana.room!.settings.matchSeconds).toBe(10);
+      expect(room.timing.leagueRoundMs).toBe(10_000);
       await ana.send({ t: 'room:settings', settings: { matchSeconds: 20 } });
       await ana.waitFor((r) => r?.settings.matchSeconds === 20, 5000, 'configurar');
       expect(room.timing).toMatchObject({ leagueRoundMs: 20_000, cupMatchdayMs: 20_000, bidMs: TIMINGS.normal.bidMs, ceremonyMs: TIMINGS.normal.ceremonyMs });

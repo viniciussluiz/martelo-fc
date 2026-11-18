@@ -17,8 +17,8 @@ export type RoomMode = 'online' | 'solo';
 export type RoomStatus = 'lobby' | 'in_dispute' | 'post_dispute' | 'closed';
 export type SpeedSetting = 'normal' | 'turbo';
 /**
- * Duração das partidas na tela. 40 = jogo completo, 20 = melhores momentos e 10 = jogo rápido,
- * que dá um pouco mais de tempo aos jogos decisivos (ver `FAST_MATCH`).
+ * Duração das partidas na tela. 10 = jogo rápido (o padrão de toda sala), 20 = melhores momentos e
+ * 40 = jogo completo. O jogo rápido dá um pouco mais de tempo aos jogos decisivos (ver `FAST_MATCH`).
  */
 export type MatchSeconds = 10 | 20 | 40;
 export const MATCH_SECONDS: readonly MatchSeconds[] = [10, 20, 40];

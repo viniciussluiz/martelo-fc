@@ -215,12 +215,12 @@ export function SettingsPanel({ room, editable }: { room: RoomView; editable: bo
           <label>Partidas</label>
           <div className="seg seg-grid" role="group" aria-label="Partidas">
             {MATCH_PACES.map((o) => (
-              <button key={o.seconds} type="button" aria-pressed={(s.matchSeconds ?? 40) === o.seconds} disabled={!editable} onClick={() => set({ matchSeconds: o.seconds })}>
+              <button key={o.seconds} type="button" aria-pressed={(s.matchSeconds ?? 10) === o.seconds} disabled={!editable} onClick={() => set({ matchSeconds: o.seconds })}>
                 {o.label}
               </button>
             ))}
           </div>
-          <p className="hint">{(MATCH_PACES.find((o) => o.seconds === (s.matchSeconds ?? 40)) ?? MATCH_PACES[2]!)[onlyCup ? 'cup' : 'league']}</p>
+          <p className="hint">{(MATCH_PACES.find((o) => o.seconds === (s.matchSeconds ?? 10)) ?? MATCH_PACES[0]!)[onlyCup ? 'cup' : 'league']}</p>
         </div>
         <div className="checks">
           <Toggle label="Repescagem das sobras de cada posição" checked={s.repescagem} disabled={!editable} onChange={(v) => set({ repescagem: v })} />

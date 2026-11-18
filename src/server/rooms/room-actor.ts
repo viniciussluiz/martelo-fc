@@ -81,7 +81,7 @@ export const DEFAULT_SETTINGS: Record<RoomMode, RoomSettings> = {
     series: 'ALL',
     cpuCount: 0,
     speed: 'normal',
-    matchSeconds: 40,
+    matchSeconds: 10,
     maxHumans: 20,
     carryOver: true,
     repescagem: true,
@@ -96,7 +96,7 @@ export const DEFAULT_SETTINGS: Record<RoomMode, RoomSettings> = {
     series: 'ALL',
     cpuCount: 3,
     speed: 'normal',
-    matchSeconds: 40,
+    matchSeconds: 10,
     maxHumans: 1,
     carryOver: true,
     repescagem: true,
@@ -136,9 +136,8 @@ export function sanitizeSettings(mode: RoomMode, base: RoomSettings, patch: Part
   }
   if (patch.speed !== undefined) {
     if (!['normal', 'turbo'].includes(patch.speed)) throw new GameRuleError('config_invalida', 'Velocidade inválida.');
+    // O ritmo é só o do leilão e da cerimônia; a duração das partidas tem a sua própria escolha ("Partidas").
     s.speed = patch.speed;
-    // Trocar o ritmo leva junto a duração da partida (turbo = 20 s), a não ser que ela venha no mesmo pedido.
-    if (patch.matchSeconds === undefined) s.matchSeconds = patch.speed === 'turbo' ? 20 : 40;
   }
   if (patch.matchSeconds !== undefined) {
     if (!MATCH_SECONDS.includes(patch.matchSeconds)) throw new GameRuleError('config_invalida', 'Duração da partida inválida.');
@@ -218,7 +217,8 @@ export class RoomActor {
     const base = TIMINGS[forced ?? this.settings.speed];
     // Testes automatizados usam o ritmo deles; nas salas, a partida dura o que o anfitrião escolheu.
     if (forced) return base;
-    const seconds = this.settings.matchSeconds ?? (this.settings.speed === 'turbo' ? 20 : 40);
+    // Sala antiga sem a escolha gravada: jogo rápido, o padrão.
+    const seconds = this.settings.matchSeconds ?? 10;
     if (seconds === 10) return { ...base, leagueRoundMs: this.fastLeagueRoundMs(), cupMatchdayMs: this.fastCupMatchdayMs() };
     const matchMs = seconds * 1000;
     return base.leagueRoundMs === matchMs && base.cupMatchdayMs === matchMs ? base : { ...base, leagueRoundMs: matchMs, cupMatchdayMs: matchMs };
