@@ -14,7 +14,7 @@ export async function enterAsGuest(page: Page, team: string) {
   await page.goto('/');
   await page.getByLabel('Nome do time').fill(team);
   await page.getByRole('button', { name: 'Entrar no pregão' }).click();
-  await expect(page.getByRole('button', { name: /Partida rápida/ })).toBeVisible();
+  await expect(page.getByRole('button', { name: /Single player/ })).toBeVisible();
 }
 
 /**

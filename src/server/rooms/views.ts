@@ -53,6 +53,7 @@ export function buildRoomView(room: RoomActor, userId: string): RoomView {
     id: room.id,
     code: room.code,
     mode: room.mode,
+    locked: room.locked,
     status: room.status,
     settings: room.settings,
     deck: room.deckInfo,

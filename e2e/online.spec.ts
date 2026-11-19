@@ -11,6 +11,8 @@ test('sala com amigos: convite, ciclo completo, continuidade e histórico de con
 
   await enterAsGuest(host, 'Anfitrião FC');
   await host.getByRole('button', { name: /Sala com amigos/ }).click();
+  // Sala aberta e visível (o padrão): é só criar.
+  await host.getByRole('button', { name: 'Criar sala' }).click();
   const plate = host.locator('.code-plate');
   await expect(plate).toBeVisible();
   const code = (await plate.textContent())!.trim();

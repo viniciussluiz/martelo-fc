@@ -48,6 +48,32 @@ export interface RoomSettings {
   continuationTimeoutSec: number;
   /** Mínimo de humanos que aceitaram para iniciar o próximo ciclo automaticamente. */
   minHumansToContinue: number;
+  /** Sala oculta: não aparece na lista de salas em andamento (só entra quem tem o código). */
+  hidden?: boolean;
+}
+
+/** Tamanho da senha de uma sala fechada. */
+export const ROOM_PASSWORD_MIN = 3;
+export const ROOM_PASSWORD_MAX = 32;
+
+/** Uma sala na lista pública de salas em andamento. */
+export interface PublicRoomView {
+  code: string;
+  hostUserId: string;
+  hostName: string;
+  hostCrest: CrestConfig | null;
+  status: RoomStatus;
+  /** Fase da disputa em andamento (`null` no lobby e entre disputas). */
+  phase: string | null;
+  cycle: number;
+  humans: number;
+  maxHumans: number;
+  cpuCount: number;
+  /** Sala fechada: pede senha para entrar. */
+  locked: boolean;
+  auctionMode: AuctionMode;
+  cupFormat: CupFormat;
+  skipLeague: boolean;
 }
 
 export interface PublicUserView {
@@ -350,6 +376,8 @@ export interface RoomView {
   id: string;
   code: string;
   mode: RoomMode;
+  /** Sala fechada: quem ainda não é da sala precisa da senha para entrar. */
+  locked: boolean;
   status: RoomStatus;
   settings: RoomSettings;
   deck: DeckInfo;
@@ -383,9 +411,11 @@ export interface AchievementUnlock {
 
 export type ClientMessage =
   | { t: 'hello'; token: string; reqId?: string }
-  | { t: 'room:join'; code: string; reqId?: string }
+  | { t: 'room:join'; code: string; password?: string; reqId?: string }
   | { t: 'room:leave'; reqId?: string }
   | { t: 'room:settings'; settings: Partial<RoomSettings>; reqId?: string }
+  /** O anfitrião põe, troca ou tira (`null`) a senha da sala. */
+  | { t: 'room:password'; password: string | null; reqId?: string }
   | { t: 'room:member'; formation?: Formation; teamName?: string; reqId?: string }
   | { t: 'room:start'; reqId?: string }
   | { t: 'bid:set'; stepId: string; bids: Record<string, number>; seal?: boolean; reqId?: string }

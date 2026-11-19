@@ -41,7 +41,7 @@ export function HowToPlayPage() {
         <SectionTitle>Começando</SectionTitle>
         <ul className="info-list">
           <li>
-            <strong>Partida rápida (CPU):</strong> você contra times do computador. É o melhor jeito de aprender, sem ninguém esperando.
+            <strong>Single player:</strong> você contra times do computador. É o melhor jeito de aprender, sem ninguém esperando.
           </li>
           <li>
             <strong>Sala com amigos:</strong> crie uma sala, mande o link ou o código e esperem todo mundo entrar. Quem criou a sala escolhe o modo

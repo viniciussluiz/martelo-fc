@@ -229,8 +229,20 @@ export async function createApp(overrides: Partial<ServerConfig> = {}, logger?: 
       if (current && current.status === 'in_dispute' && current.isParticipant(user.id)) {
         throw new HttpError(409, 'em_disputa', `Você está no meio de uma disputa na sala ${current.code}.`);
       }
-      const room = rooms.create(user, mode, (b.settings as Record<string, unknown>) ?? undefined);
+      let room;
+      try {
+        room = rooms.create(user, mode, (b.settings as Record<string, unknown>) ?? undefined, b.password);
+      } catch (err) {
+        // Senha fora do tamanho: erro de quem pediu, não do servidor.
+        if (err instanceof GameRuleError) throw new HttpError(400, err.code, err.message);
+        throw err;
+      }
       return { code: room.code, id: room.id };
+    })
+    // Salas em andamento (as com amigos, não ocultas): quem está no site pode ver e pedir para entrar.
+    .on('GET', '/api/public-rooms', (ctx) => {
+      requireUser(ctx);
+      return { rooms: rooms.publicRooms() };
     })
     .on('GET', '/api/rooms/:code', (ctx) => {
       requireUser(ctx);
@@ -243,6 +255,7 @@ export async function createApp(overrides: Partial<ServerConfig> = {}, logger?: 
         cycle: room.cycle,
         members: room.activeMembers().map((m) => m.teamName),
         maxHumans: room.settings.maxHumans,
+        locked: room.locked,
       };
     })
     .on('GET', '/api/achievements', () =>
@@ -420,7 +433,7 @@ export async function createApp(overrides: Partial<ServerConfig> = {}, logger?: 
           const target = rooms.get(String(msg.code ?? ''));
           if (!target) throw new GameRuleError('sala_inexistente', 'Não achamos uma sala com esse código.');
           if (room && room !== target) leaveRoomConn();
-          target.join(user);
+          target.join(user, msg.password);
           room = target;
           target.connect(user.id, conn);
         } else {
@@ -433,6 +446,9 @@ export async function createApp(overrides: Partial<ServerConfig> = {}, logger?: 
               break;
             case 'room:settings':
               room.updateSettings(u, msg.settings ?? {});
+              break;
+            case 'room:password':
+              room.setPassword(u, msg.password);
               break;
             case 'room:member':
               room.updateMember(u, { ...(msg.formation ? { formation: msg.formation } : {}), ...(msg.teamName ? { teamName: msg.teamName } : {}) });

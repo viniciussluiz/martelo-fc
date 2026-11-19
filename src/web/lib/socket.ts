@@ -123,10 +123,10 @@ class Socket {
     });
   }
 
-  joinRoom(code: string) {
+  joinRoom(code: string, password?: string) {
     store.set({ roomCode: code.toUpperCase(), leftReason: null });
     this.start();
-    return this.request({ t: 'room:join', code });
+    return this.request({ t: 'room:join', code, ...(password ? { password } : {}) });
   }
 }
 

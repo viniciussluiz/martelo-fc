@@ -5,8 +5,8 @@ import { continuationVisible, enterAsGuest, playUntil, watchConsole } from './he
 test('partida rápida completa, continuidade na mesma sala e Sala de Troféus', async ({ page }) => {
   const errors = watchConsole(page);
   await enterAsGuest(page, 'Solo E2E');
-  await page.getByRole('button', { name: /Partida rápida/ }).click();
-  await expect(page.getByRole('heading', { name: 'Partida rápida' })).toBeVisible();
+  await page.getByRole('button', { name: /Single player/ }).click();
+  await expect(page.getByRole('heading', { name: 'Single player' })).toBeVisible();
   // Escolhe a formação e a copa antes do pregão.
   await page.getByRole('button', { name: '4-4-2' }).click();
   await expect(page.getByText('4 meias e 2 atacantes')).toBeVisible();
