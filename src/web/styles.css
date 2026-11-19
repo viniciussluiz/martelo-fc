@@ -7771,3 +7771,9 @@ button.trophy:hover {
   background: var(--red);
   color: var(--white);
 }
+.admin-actions {
+  white-space: nowrap;
+}
+.admin-actions .link-btn {
+  display: block;
+}

@@ -10,9 +10,9 @@ import { tierForLevel } from '../../engine/types';
 
 /**
  * Página de admin (só o dono do site): todos os jogadores do baralho, com filtro por clube e por
- * posição. Dá para marcar quem é Lenda e mudar o nível (faixa mínima–máxima). Mostra quem tem face
- * (retrato ilustrado) — a face só aparece no jogo quando a carta é Lenda.
- * Também cria jogadores (e exclui os criados aqui). Os ajustes valem para as disputas que começarem
+ * posição. Dá para marcar quem é Lenda, mudar o nível (faixa mínima–máxima) e editar as informações
+ * (nome, posição, clube, ano). Mostra quem tem face (retrato ilustrado) — a face só aparece no jogo
+ * quando a carta é Lenda. Também cria jogadores (e exclui os criados aqui). Os ajustes valem para as disputas que começarem
  * depois; as que já estão rolando não mudam.
  */
 
@@ -49,7 +49,8 @@ export function AdminPage() {
   const [pos, setPos] = useState('');
   const [show, setShow] = useState<Show>('todos');
   const [limit, setLimit] = useState(PAGE);
-  const [creating, setCreating] = useState(false);
+  /** Formulário aberto: card null = criar jogador; card = editar esse jogador. */
+  const [dialog, setDialog] = useState<{ card: AdminCardView | null } | null>(null);
 
   useEffect(() => {
     api<{ cards: AdminCardView[]; faces: AdminFaces }>('GET', '/api/admin/cards')
@@ -105,7 +106,11 @@ export function AdminPage() {
     setPos('');
     setShow('todos');
     setQuery(card.name);
-    setCreating(false);
+    setDialog(null);
+  };
+  const edited = (card: AdminCardView, f: AdminFaces) => {
+    replace(card, f);
+    setDialog(null);
   };
 
   if (error) return <Empty icon="cadeado">{error}</Empty>;
@@ -113,7 +118,7 @@ export function AdminPage() {
 
   const legends = cards.filter((c) => c.tier === 'lenda');
   const legendsNoFace = legends.filter((c) => !legendArtUrl(c.id)).length;
-  const edited = cards.filter((c) => c.original).length;
+  const adjusted = cards.filter((c) => c.original).length;
   const own = cards.filter((c) => c.custom).length;
 
   return (
@@ -122,16 +127,22 @@ export function AdminPage() {
         <div>
           <h1>Jogadores · admin</h1>
           <p>
-            {cards.length} cartas · {legends.length} Lendas ({legendsNoFace} sem face) · {edited} ajustadas e {own} criadas por você. Tudo vale para as disputas que
+            {cards.length} cartas · {legends.length} Lendas ({legendsNoFace} sem face) · {adjusted} ajustadas e {own} criadas por você. Tudo vale para as disputas que
             começarem a partir de agora.
           </p>
         </div>
-        <button className="btn btn-primary" onClick={() => setCreating(true)}>
+        <button className="btn btn-primary" onClick={() => setDialog({ card: null })}>
           <Icon name="mais" size={18} /> Criar jogador
         </button>
       </header>
       {faces && <FacesPanel faces={faces} onChange={setFaces} />}
-      <CreatePlayerDialog open={creating} clubsByGroup={clubsByGroup} onClose={() => setCreating(false)} onCreated={created} />
+      <PlayerDialog
+        open={!!dialog}
+        card={dialog?.card ?? null}
+        clubsByGroup={clubsByGroup}
+        onClose={() => setDialog(null)}
+        onSaved={(c, f) => (dialog?.card ? edited(c, f) : created(c, f))}
+      />
 
       <div className="admin-filters">
         <input className="input" value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Buscar jogador" aria-label="Buscar jogador" />
@@ -186,11 +197,14 @@ export function AdminPage() {
                 <th>Faixa</th>
                 <th>Overall (mín.–máx.)</th>
                 <th>Lenda</th>
+                <th>
+                  <span className="sr-only">Ações</span>
+                </th>
               </tr>
             </thead>
             <tbody>
               {filtered.slice(0, limit).map((c) => (
-                <AdminRow key={c.id} card={c} onSaved={replace} onRemoved={removed} />
+                <AdminRow key={c.id} card={c} onSaved={replace} onRemoved={removed} onEdit={() => setDialog({ card: c })} />
               ))}
             </tbody>
           </table>
@@ -209,10 +223,12 @@ function AdminRow({
   card,
   onSaved,
   onRemoved,
+  onEdit,
 }: {
   card: AdminCardView;
   onSaved: (c: AdminCardView, f: AdminFaces) => void;
   onRemoved: (id: string, f: AdminFaces) => void;
+  onEdit: () => void;
 }) {
   const [min, setMin] = useState(String(card.levelMin));
   const [max, setMax] = useState(String(card.levelMax));
@@ -244,6 +260,9 @@ function AdminRow({
   const nMax = Number(max);
   const valid = Number.isInteger(nMin) && Number.isInteger(nMax) && nMin >= 1 && nMax <= 100 && nMin <= nMax;
   const dirty = nMin !== card.levelMin || nMax !== card.levelMax;
+  const o = card.original;
+  const infoChanged = !!o && (o.name !== card.name || o.club !== card.club || o.year !== card.year || o.position !== card.position);
+  const levelEdited = !!o && (o.levelMin !== card.levelMin || o.levelMax !== card.levelMax || o.tier !== card.tier);
 
   const send = async (method: 'PATCH' | 'DELETE', body?: Record<string, unknown>, done?: string) => {
     setBusy(true);
@@ -288,6 +307,11 @@ function AdminRow({
           {card.year}
           {card.custom && <span className="badge badge-custom">criado por você</span>}
         </div>
+        {o && infoChanged && (
+          <div className="small muted" title="Como está no arquivo do baralho">
+            era {o.name} · {o.club} ({o.year}) · {o.position}
+          </div>
+        )}
       </td>
       <td>{card.club}</td>
       <td>
@@ -297,9 +321,9 @@ function AdminRow({
         <span className="admin-tier" data-tier={card.tier}>
           {TIER_LABEL[card.tier]}
         </span>
-        {card.original && (
+        {o && levelEdited && (
           <div className="small muted" title="Como está no arquivo do baralho">
-            era {TIER_LABEL[card.original.tier]}, {card.original.levelMin}–{card.original.levelMax}
+            era {TIER_LABEL[o.tier]}, {o.levelMin}–{o.levelMax}
           </div>
         )}
       </td>
@@ -328,6 +352,11 @@ function AdminRow({
           <span className="check-box" aria-hidden="true" />
           <span className="sr-only">Lenda</span>
         </label>
+      </td>
+      <td className="admin-actions">
+        <button type="button" className="link-btn small" disabled={busy} onClick={onEdit} aria-label={`Editar ${card.name}`}>
+          Editar
+        </button>
         {card.original && (
           <button type="button" className="link-btn small" disabled={busy} onClick={() => void send('DELETE', undefined, 'Ajuste desfeito')}>
             Desfazer
@@ -418,23 +447,36 @@ const GROUP_NAME: Record<string, string> = { A: 'Série A', B: 'Série B', EU: '
 const NEW_CLUB = '__novo__';
 
 /**
- * Criar jogador: nome, posição, clube (um do baralho ou um novo, com o grupo e as cores), ano, overall
- * e Lenda. Clube do baralho empresta o grupo e as cores dele.
+ * Criar ou editar jogador: nome, posição, clube (um do baralho ou um novo, com o grupo e as cores), ano,
+ * overall e Lenda. Clube do baralho empresta o grupo e as cores dele. Com `card`, edita esse jogador.
  */
-function CreatePlayerDialog({
+function PlayerDialog({
   open,
+  card,
   clubsByGroup,
   onClose,
-  onCreated,
+  onSaved,
 }: {
   open: boolean;
+  card: AdminCardView | null;
   clubsByGroup: Map<string, Set<string>>;
   onClose: () => void;
-  onCreated: (c: AdminCardView, f: AdminFaces) => void;
+  onSaved: (c: AdminCardView, f: AdminFaces) => void;
 }) {
   const ref = useRef<HTMLDialogElement | null>(null);
   const year = new Date().getFullYear();
   const blank = { name: '', position: 'ATA', club: '', newClub: '', series: 'A', kit1: '#1D3FC2', kit2: '#FFFFFF', year: String(year), min: '70', max: '76', legend: false };
+  const fromCard = (c: AdminCardView): typeof blank => ({
+    ...blank,
+    name: c.name,
+    position: c.position,
+    club: c.club,
+    series: c.series ?? 'A',
+    year: String(c.year),
+    min: String(c.levelMin),
+    max: String(c.levelMax),
+    legend: c.tier === 'lenda',
+  });
   const [f, setF] = useState(blank);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -443,12 +485,12 @@ function CreatePlayerDialog({
     const d = ref.current;
     if (!d) return;
     if (open && !d.open) {
-      setF(blank);
+      setF(card ? fromCard(card) : blank);
       setError(null);
       d.showModal();
     } else if (!open && d.open) d.close();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [open]);
+  }, [open, card?.id]);
   const isNew = f.club === NEW_CLUB;
   const min = Number(f.min);
   const max = Number(f.max);
@@ -466,14 +508,17 @@ function CreatePlayerDialog({
       legend: f.legend,
     };
     try {
-      const r = await api<{ card: AdminCardView; faces: AdminFaces }>('POST', '/api/admin/cards', body);
-      const toFace = r.card.tier === 'lenda';
+      const r = card
+        ? await api<{ card: AdminCardView; faces: AdminFaces }>('PATCH', `/api/admin/cards/${encodeURIComponent(card.id)}`, body)
+        : await api<{ card: AdminCardView; faces: AdminFaces }>('POST', '/api/admin/cards', body);
+      // Entrou na lista de faces: virou Lenda agora e não tem retrato.
+      const toFace = r.card.tier === 'lenda' && card?.tier !== 'lenda' && !legendArtUrl(r.card.id);
       toast({
         kind: 'sucesso',
-        title: 'Jogador criado',
+        title: card ? 'Jogador salvo' : 'Jogador criado',
         body: `${r.card.name} (${r.card.club}, ${r.card.year}): ${TIER_LABEL[r.card.tier]}, ${r.card.levelMin}–${r.card.levelMax}${toFace ? '. Entrou na lista de faces para gerar.' : ''}`,
       });
-      onCreated(r.card, r.faces);
+      onSaved(r.card, r.faces);
     } catch (e) {
       setError((e as Error).message);
     } finally {
@@ -484,7 +529,7 @@ function CreatePlayerDialog({
   return (
     <dialog ref={ref} className="dialog dialog-narrow" onClose={onClose} aria-labelledby="create-player-title">
       <div className="dialog-head">
-        <h2 id="create-player-title">Criar jogador</h2>
+        <h2 id="create-player-title">{card ? 'Editar jogador' : 'Criar jogador'}</h2>
         <button type="button" className="dialog-x" onClick={onClose} aria-label="Fechar">
           ×
         </button>
@@ -535,7 +580,7 @@ function CreatePlayerDialog({
                 );
               })}
             </select>
-            {!isNew && f.club && <p className="hint">O jogador pega o grupo e as cores do {f.club}.</p>}
+            {!isNew && f.club && f.club !== card?.club && <p className="hint">O jogador pega o grupo e as cores do {f.club}.</p>}
           </div>
           {isNew && (
             <div className="admin-new-club stack">
@@ -582,6 +627,13 @@ function CreatePlayerDialog({
             <span className="check-box" aria-hidden="true" />
             <span>Lenda</span>
           </label>
+          {card?.original && (
+            <p className="hint">
+              No arquivo do baralho: {card.original.name} · {card.original.club} ({card.original.year}) · {card.original.position} · {TIER_LABEL[card.original.tier]}, {card.original.levelMin}–
+              {card.original.levelMax}. "Desfazer" na lista volta tudo para isso.
+            </p>
+          )}
+          {card && <p className="hint">Vale para as disputas que começarem a partir de agora; as que já estão rolando não mudam.</p>}
           {error && <p className="error-text">{error}</p>}
         </div>
         <div className="dialog-foot">
@@ -589,7 +641,7 @@ function CreatePlayerDialog({
             Cancelar
           </button>
           <button className="btn btn-primary" disabled={busy || !ready}>
-            Criar jogador
+            {card ? 'Salvar' : 'Criar jogador'}
           </button>
         </div>
       </form>

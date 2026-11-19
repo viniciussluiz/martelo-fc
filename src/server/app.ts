@@ -237,7 +237,7 @@ export async function createApp(overrides: Partial<ServerConfig> = {}, logger?: 
       const room = rooms.activeRoomFor(user.id);
       return { user: { ...user, admin: isAdmin(user) }, activeRoom: room ? { code: room.code, mode: room.mode, status: room.status } : null };
     })
-    // Página de admin (só o dono): o baralho inteiro, com Lenda e nível editáveis.
+    // Página de admin (só o dono): o baralho inteiro, com Lenda, nível e informações editáveis.
     .on('GET', '/api/admin/cards', (ctx) => {
       requireAdmin(ctx);
       return { cards: deckAdmin.list(), faces: deckAdmin.faces() };
@@ -245,7 +245,7 @@ export async function createApp(overrides: Partial<ServerConfig> = {}, logger?: 
     .on('PATCH', '/api/admin/cards/:id', (ctx) => {
       const user = requireAdmin(ctx);
       const b = body(ctx);
-      const card = adminCall(() => deckAdmin.update(ctx.params.id!, { levelMin: b.levelMin, levelMax: b.levelMax, legend: b.legend }, user.id));
+      const card = adminCall(() => deckAdmin.update(ctx.params.id!, b, user.id));
       return { card, faces: deckAdmin.faces() };
     })
     .on('DELETE', '/api/admin/cards/:id', (ctx) => {

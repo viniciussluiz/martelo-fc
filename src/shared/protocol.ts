@@ -100,7 +100,7 @@ export interface AdminCardView {
   levelMax: number;
   tier: Tier;
   /** Como a carta está no arquivo do baralho, quando o dono ajustou (null = sem ajuste). */
-  original: { levelMin: number; levelMax: number; tier: Tier } | null;
+  original: { levelMin: number; levelMax: number; tier: Tier; name: string; position: Position; club: string; year: number } | null;
   /** Jogador criado pelo dono na página de admin (dá para excluir). */
   custom?: boolean;
 }
@@ -135,6 +135,9 @@ export interface AdminNewCard {
   levelMax: number;
   legend: boolean;
 }
+
+/** Edição de um jogador na página de admin: só os campos que mudam (os mesmos do criar). */
+export type AdminCardPatch = Partial<AdminNewCard>;
 
 export interface MemberView {
   userId: string;

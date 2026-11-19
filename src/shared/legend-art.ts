@@ -3,6 +3,7 @@
  * A chave é a pessoa (QID do Wikidata), tirada do id da carta: "wd-<QID>-…" ou "sel-<QID>-…".
  * Vale para todas as versões da mesma pessoa (clubes e seleção). Jogador criado na página de admin
  * (id "adm-…") não tem QID: a chave é o próprio id da carta.
+ * Uma carta específica pode fugir do retrato da pessoa em CARD_ART (sem face, ou com um retrato só dela).
  * Fica em shared porque o servidor também precisa saber quem tem face (lista de faces para gerar).
  */
 export const LEGEND_ART: Record<string, string> = {
@@ -48,12 +49,23 @@ export const LEGEND_ART: Record<string, string> = {
   Q483629: 'van-basten', Q46347: 'vieira',
 };
 
-/** Chave do retrato de uma carta: o QID da pessoa ou, sem ele, o id da carta. */
+/**
+ * Exceções por carta (id da carta → arquivo, ou null para ficar sem face). Vale antes do retrato da pessoa:
+ * a carta listada aqui não usa o retrato das outras versões, e a chave dela na lista de faces é o id da carta.
+ */
+export const CARD_ART: Record<string, string | null> = {
+  'wd-Q58441-Q8682-2008': null, // Robinho no Real Madrid: sem face (as do Santos e do Atlético-MG continuam)
+};
+
+/** Chave do retrato de uma carta: o QID da pessoa ou, sem ele (ou com exceção da carta), o id da carta. */
 export function legendArtKey(cardId: string): string {
+  if (cardId in CARD_ART) return cardId;
   return /^(?:wd|sel)-(Q\d+)-/.exec(cardId)?.[1] ?? cardId;
 }
 
-/** Arquivo do retrato (sem extensão), ou null quando a pessoa ainda não tem face. */
+/** Arquivo do retrato (sem extensão), ou null quando a carta ainda não tem face. */
 export function legendArtFile(cardId: string | undefined): string | null {
-  return cardId ? (LEGEND_ART[legendArtKey(cardId)] ?? null) : null;
+  if (!cardId) return null;
+  if (cardId in CARD_ART) return CARD_ART[cardId] ?? null;
+  return LEGEND_ART[legendArtKey(cardId)] ?? null;
 }

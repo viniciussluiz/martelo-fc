@@ -53,7 +53,7 @@ describe('página de admin', () => {
     const up = await api<{ card: AdminCardView }>(env.app, 'PATCH', `/api/admin/cards/${titular.id}`, { legend: true }, ownerToken);
     expect(up.status).toBe(200);
     expect(up.data.card).toMatchObject({ tier: 'lenda', levelMin: titular.levelMin, levelMax: titular.levelMax });
-    expect(up.data.card.original).toEqual({ levelMin: titular.levelMin, levelMax: titular.levelMax, tier: 'titular' });
+    expect(up.data.card.original).toEqual({ levelMin: titular.levelMin, levelMax: titular.levelMax, tier: 'titular', name: titular.name, position: titular.position, club: titular.club, year: titular.year });
     expect(deckCard(titular.id).tier).toBe('lenda');
     // Troca o objeto, nunca altera o antigo: disputa já em andamento segue com a carta com que começou.
     expect(before.tier).toBe('titular');
@@ -207,6 +207,105 @@ describe('página de admin', () => {
     expect((await api(env.app, 'POST', '/api/admin/faces/fill', undefined, guestToken)).status).toBe(403);
     expect((await api(env.app, 'DELETE', `/api/admin/faces/${plain.id}`, undefined, guestToken)).status).toBe(403);
   });
+
+  it('edita nome, posição, ano e clube (leva o grupo e as cores do clube); sobrevive a reiniciar; desfazer volta tudo', async () => {
+    const deck = () => env.app.rooms.deps.deck;
+    const count = (id: string) => env.app.db.prepare('SELECT COUNT(*) FROM card_overrides WHERE card_id = ?').pluck().get(id);
+    // Um clube com grupo e cores (o baralho de teste não tem): um jogador criado num clube novo.
+    const owner = await api<{ card: AdminCardView }>(
+      env.app,
+      'POST',
+      '/api/admin/cards',
+      { name: 'Dono das Cores', position: 'MEI', club: 'Clube das Cores', newClub: { series: 'B', kit: ['#000000', '#ffcc00'] }, year: 2010, levelMin: 70, levelMax: 76, legend: false },
+      ownerToken,
+    );
+    expect(owner.status).toBe(200);
+
+    const target = { ...deck().find((c) => !c.id.startsWith('adm-') && c.tier !== 'lenda' && c.position !== 'GOL')! };
+    const before = deckCard(target.id);
+    const r = await api<{ card: AdminCardView }>(
+      env.app,
+      'PATCH',
+      `/api/admin/cards/${target.id}`,
+      { name: 'Nome Novo', position: 'GOL', year: 1999, club: 'clube das cores' },
+      ownerToken,
+    );
+    expect(r.status).toBe(200);
+    expect(r.data.card).toMatchObject({ name: 'Nome Novo', position: 'GOL', year: 1999, club: 'Clube das Cores', series: 'B', levelMin: target.levelMin, tier: target.tier });
+    expect(r.data.card.original).toMatchObject({ name: target.name, club: target.club, year: target.year, position: target.position });
+    expect(deckCard(target.id)).toMatchObject({ kit: ['#000000', '#FFCC00'], series: 'B', hint: 'Clube das Cores (1999).' });
+    // Objeto novo: disputa em andamento segue com a carta antiga.
+    expect(before.name).toBe(target.name);
+    expect(env.app.deckInfo.clubs.B).toContain('Clube das Cores');
+
+    // Clube novo sem grupo, repetido e posição/ano/nome inválidos: recusa e nada muda.
+    expect((await api(env.app, 'PATCH', `/api/admin/cards/${target.id}`, { club: 'Clube Que Não Existe' }, ownerToken)).status).toBe(400);
+    expect((await api(env.app, 'PATCH', `/api/admin/cards/${owner.data.card.id}`, { name: 'nome novo', year: 1999 }, ownerToken)).status).toBe(400);
+    expect((await api(env.app, 'PATCH', `/api/admin/cards/${target.id}`, { position: 'PIV' }, ownerToken)).status).toBe(400);
+    expect((await api(env.app, 'PATCH', `/api/admin/cards/${target.id}`, { year: 1800 }, ownerToken)).status).toBe(400);
+    expect((await api(env.app, 'PATCH', `/api/admin/cards/${target.id}`, { name: 'X' }, ownerToken)).status).toBe(400);
+    expect(deckCard(target.id)).toMatchObject({ name: 'Nome Novo', club: 'Clube das Cores' });
+
+    // Clube novo com o grupo e as cores.
+    const nc = await api<{ card: AdminCardView }>(
+      env.app,
+      'PATCH',
+      `/api/admin/cards/${target.id}`,
+      { club: 'Clube Que Não Existe', newClub: { series: 'EU', kit: ['#123456', '#abcdef'] } },
+      ownerToken,
+    );
+    expect(nc.data.card).toMatchObject({ club: 'Clube Que Não Existe', series: 'EU' });
+    expect(deckCard(target.id).kit).toEqual(['#123456', '#ABCDEF']);
+
+    // Reiniciar: a edição continua.
+    await env.stop();
+    env = await startTestApp(dir, undefined, { adminUsers: [OWNER] });
+    ownerToken = (await api(env.app, 'POST', '/api/auth/login', { email: OWNER, password: 'senha-forte-1' })).data.token;
+    expect(deckCard(target.id)).toMatchObject({ name: 'Nome Novo', position: 'GOL', year: 1999, club: 'Clube Que Não Existe', series: 'EU', kit: ['#123456', '#ABCDEF'] });
+
+    // Desfazer volta tudo ao arquivo (inclusive a dica, o grupo e as cores).
+    const reset = await api<{ card: AdminCardView }>(env.app, 'DELETE', `/api/admin/cards/${target.id}`, undefined, ownerToken);
+    expect(reset.data.card.original).toBeNull();
+    expect(deckCard(target.id)).toEqual(target);
+    expect(count(target.id)).toBe(0);
+
+    // Voltar à mão também apaga o ajuste.
+    await api(env.app, 'PATCH', `/api/admin/cards/${target.id}`, { name: 'Outro Nome', club: 'Clube das Cores', year: 2001 }, ownerToken);
+    expect(count(target.id)).toBe(1);
+    await api(env.app, 'PATCH', `/api/admin/cards/${target.id}`, { name: target.name, club: target.club, year: target.year }, ownerToken);
+    expect(deckCard(target.id)).toEqual(target);
+    expect(count(target.id)).toBe(0);
+  });
+
+  it('editar jogador criado muda o próprio jogador (sem ajuste à parte); virar Lenda pela edição entra na lista de faces', async () => {
+    const custom = env.app.rooms.deps.deck.find((c) => c.name === 'Dono das Cores')!;
+    const r = await api<{ card: AdminCardView; faces: { items: Array<{ key: string; name: string }> } }>(
+      env.app,
+      'PATCH',
+      `/api/admin/cards/${custom.id}`,
+      { name: 'Dono Renomeado', position: 'ATA', club: 'Clube das Cores', year: 2012, levelMin: 90, levelMax: 95, legend: true },
+      ownerToken,
+    );
+    expect(r.status).toBe(200);
+    expect(r.data.card).toMatchObject({ name: 'Dono Renomeado', position: 'ATA', year: 2012, tier: 'lenda', custom: true, original: null });
+    expect(r.data.faces.items.find((i) => i.key === custom.id)?.name).toBe('Dono Renomeado');
+    const json = JSON.parse(env.app.db.prepare('SELECT card_json FROM custom_cards WHERE id = ?').pluck().get(custom.id) as string);
+    expect(json).toMatchObject({ name: 'Dono Renomeado', year: 2012, tier: 'lenda', series: 'B', kit: ['#000000', '#FFCC00'], hint: 'Clube das Cores (2012).' });
+    expect(env.app.db.prepare('SELECT COUNT(*) FROM card_overrides WHERE card_id = ?').pluck().get(custom.id)).toBe(0);
+    // Salvar de novo sem mudar nada (o formulário manda tudo): não repete na lista.
+    const again = await api<{ faces: { items: Array<{ key: string }> } }>(
+      env.app,
+      'PATCH',
+      `/api/admin/cards/${custom.id}`,
+      { name: 'Dono Renomeado', position: 'ATA', club: 'Clube das Cores', year: 2012, levelMin: 90, levelMax: 95, legend: true },
+      ownerToken,
+    );
+    expect(again.data.faces.items.filter((i) => i.key === custom.id)).toHaveLength(1);
+
+    await env.stop();
+    env = await startTestApp(dir, undefined, { adminUsers: [OWNER] });
+    expect(env.app.rooms.deps.deck.find((c) => c.id === custom.id)).toMatchObject({ name: 'Dono Renomeado', tier: 'lenda', levelMin: 90 });
+  });
 });
 
 describe('chave do retrato', () => {
@@ -217,5 +316,13 @@ describe('chave do retrato', () => {
     expect(legendArtFile('wd-Q12897-Q131465-1967')).toBe('pele');
     expect(legendArtKey('adm-1a2b3c4d')).toBe('adm-1a2b3c4d');
     expect(legendArtFile('adm-1a2b3c4d')).toBeNull();
+  });
+
+  it('exceção por carta: Robinho no Real Madrid fica sem face; as outras versões dele continuam com o retrato', async () => {
+    const { legendArtFile, legendArtKey } = await import('../../src/shared/legend-art.js');
+    expect(legendArtFile('wd-Q58441-Q8682-2008')).toBeNull();
+    expect(legendArtKey('wd-Q58441-Q8682-2008')).toBe('wd-Q58441-Q8682-2008');
+    expect(legendArtFile('wd-Q58441-Q80955-2004')).toBe('robinho');
+    expect(legendArtFile('wd-Q58441-Q270995-2016')).toBe('robinho');
   });
 });
