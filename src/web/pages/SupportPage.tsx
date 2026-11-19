@@ -63,9 +63,10 @@ export function SupportPage() {
             </p>
             <p>No celular, é mais fácil copiar o código e colar em <strong>Pix copia e cola</strong>:</p>
             <CopyButton text={SUPPORT_PIX.payload} label="Copiar código Pix" done="Código Pix copiado" />
+            <CopyButton text={SUPPORT_PIX.key} label="Copiar a chave" done="Chave Pix copiada" />
             <dl className="pix-key">
-              <dt>Chave (celular)</dt>
-              <dd>{SUPPORT_PIX.keyLabel}</dd>
+              <dt>Chave ({SUPPORT_PIX.keyKind})</dt>
+              <dd className="pix-key-value">{SUPPORT_PIX.keyLabel}</dd>
               <dt>Nome que aparece no banco</dt>
               <dd>{SUPPORT_PIX.holder}</dd>
             </dl>

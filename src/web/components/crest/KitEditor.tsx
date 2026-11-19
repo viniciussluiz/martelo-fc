@@ -47,7 +47,18 @@ const TABS: Array<{ id: Tab; label: string }> = [
 
 const pickOne = <T,>(list: readonly T[]): T => list[Math.floor(Math.random() * list.length)]!;
 
-export function KitEditor({ value, onChange, teamName }: { value: CrestConfig; onChange: (c: CrestConfig) => void; teamName: string }) {
+export function KitEditor({
+  value,
+  onChange,
+  teamName,
+  compact,
+}: {
+  value: CrestConfig;
+  onChange: (c: CrestConfig) => void;
+  teamName: string;
+  /** Camisa menor (formulário de fundar o clube). */
+  compact?: boolean;
+}) {
   const [which, setWhich] = useState<'home' | 'away'>('home');
   const [tab, setTab] = useState<Tab>('padroes');
   const [pop, setPop] = useState(0);
@@ -72,14 +83,14 @@ export function KitEditor({ value, onChange, teamName }: { value: CrestConfig; o
   };
 
   return (
-    <div className="kit-editor">
+    <div className="kit-editor" data-compact={compact || undefined}>
       <div className="kit-stage">
         <button type="button" className="kit-arrow" onClick={flip} aria-label="Uniforme anterior">
           ‹
         </button>
         <div className="kit-show">
           <div className="kit-preview" key={`${which}-${pop}`}>
-            <Jersey kit={kit} kits={kits} crest={value} size={250} title={`Uniforme ${n} de ${teamName || 'seu time'}`} />
+            <Jersey kit={kit} kits={kits} crest={value} size={compact ? 210 : 250} title={`Uniforme ${n} de ${teamName || 'seu time'}`} />
           </div>
           <div className="seg kit-which" role="group" aria-label="Uniforme">
             <button type="button" aria-pressed={which === 'home'} onClick={() => setWhich('home')}>

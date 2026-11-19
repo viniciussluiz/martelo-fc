@@ -22,7 +22,7 @@ describe('Pix copia e cola', () => {
     const code = SUPPORT_PIX.payload;
     const f = parse(code);
     expect(f['00']).toBe('01');
-    expect(parse(f['26']!)).toEqual({ '00': 'br.gov.bcb.pix', '01': '+5531981134265' });
+    expect(parse(f['26']!)).toEqual({ '00': 'br.gov.bcb.pix', '01': 'aa4feb78-42ab-414f-b11d-e2a9d33d94e9' });
     expect(f['53']).toBe('986');
     expect(f['58']).toBe('BR');
     expect(f['59']).toBe('VINICIUS L A DE OLIVEIRA');

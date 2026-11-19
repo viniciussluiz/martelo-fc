@@ -125,6 +125,11 @@ describe('escudo do técnico', () => {
   });
 
   it('nasce com o time, aparece no /api/me e no perfil e pode ser trocado', async () => {
+    // Fundar o clube já com o uniforme escolhido: vai junto com o escudo.
+    const foundingKits = { home: { shirt: '#2E8B3A', trim: '#FFFFFF', pattern: 'listras' }, away: { shirt: '#FFFFFF', trim: '#2E8B3A' }, master: 'basehit', brand: 'capivara' };
+    const founded = await api(env.app, 'POST', '/api/auth/guest', { displayName: 'Verdão do Pregão', crest: { ...RECIPE, kits: foundingKits } });
+    expect(founded.status).toBe(200);
+    expect(founded.data.user.crest.kits).toEqual(foundingKits);
     const created = await api(env.app, 'POST', '/api/auth/guest', { displayName: 'Unidos do Pregão', crest: RECIPE });
     expect(created.status).toBe(200);
     expect(created.data.user.crest).toEqual(RECIPE);

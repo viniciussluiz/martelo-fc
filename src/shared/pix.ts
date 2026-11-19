@@ -41,12 +41,14 @@ export function pixPayload(params: { key: string; name: string; city: string; tx
   return body + crc16(body);
 }
 
-/** Apoio ao Leilão FC: chave Pix (celular) e o nome que aparece no banco na hora de confirmar. */
+/** Apoio ao Leilão FC: chave Pix (aleatória) e o nome que aparece no banco na hora de confirmar. */
 export const SUPPORT_PIX = {
-  /** Como a pessoa digita a chave no aplicativo do banco. */
-  keyLabel: '(31) 98113-4265',
-  /** Chave no formato do Pix (celular com +55 e DDD). */
-  key: '+5531981134265',
+  /** Que tipo de chave é (aparece na página de apoio). */
+  keyKind: 'aleatória',
+  /** Como a pessoa digita (ou cola) a chave no aplicativo do banco. */
+  keyLabel: 'aa4feb78-42ab-414f-b11d-e2a9d33d94e9',
+  /** Chave no formato do Pix (a aleatória vai como está, em minúsculas). */
+  key: 'aa4feb78-42ab-414f-b11d-e2a9d33d94e9',
   holder: 'Vinicius Luiz Alves de Oliveira',
   payload: '',
 };

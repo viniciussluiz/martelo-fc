@@ -3,7 +3,7 @@ import { randomCrest, teamInitials, type CrestConfig } from '../../shared/crest'
 import { ROOM_PASSWORD_MAX, ROOM_PASSWORD_MIN, type PublicUserView } from '../../shared/protocol';
 import { signIn, signOut } from '../App';
 import { EnvelopeArt } from '../components/common';
-import { CrestEditor, ClubEditorDialog } from '../components/crest/CrestEditor';
+import { ClubEditorDialog, ClubLookEditor } from '../components/crest/CrestEditor';
 import { TeamCrest } from '../components/crest/TeamCrest';
 import { Icon, Logo } from '../components/Icon';
 import { PixelCoin, PosChip } from '../components/ui';
@@ -129,7 +129,7 @@ function GuestForm({ joinCode }: { joinCode?: string }) {
             required
           />
         </div>
-        <CrestEditor value={crest} onChange={onCrest} teamName={name || 'Seu Time'} compact />
+        <ClubLookEditor value={crest} onChange={onCrest} teamName={name || 'Seu Time'} compact />
         {error && <p className="error-text">{error}</p>}
         <div className="found-foot">
           <p className="small muted">
