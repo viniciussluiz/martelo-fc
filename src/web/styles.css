@@ -483,6 +483,11 @@ p {
   font-family: var(--f-sport);
   font-weight: 800;
 }
+.pix-key .pix-key-value {
+  font-family: ui-monospace, 'SFMono-Regular', Menlo, monospace;
+  font-size: 0.92rem;
+  word-break: break-all;
+}
 
 /* Espaço de anúncio (fora da área de jogo) */
 .ad-slot {
@@ -2492,6 +2497,12 @@ button.mode:disabled {
   grid-template-columns: 330px minmax(0, 1fr);
   gap: 18px;
   align-items: start;
+}
+.kit-editor[data-compact] {
+  grid-template-columns: 280px minmax(0, 1fr);
+}
+.club-look .club-sections {
+  align-self: flex-start;
 }
 .kit-stage {
   display: flex;

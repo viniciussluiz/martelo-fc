@@ -308,6 +308,41 @@ export function CrestEditor({
   );
 }
 
+/**
+ * Escudo e uniforme lado a lado em abas, para quem está fundando o clube (o nome fica no campo de
+ * cima do formulário). Sem mexer no uniforme, ele segue as cores do escudo.
+ */
+export function ClubLookEditor({
+  value,
+  onChange,
+  teamName,
+  compact,
+}: {
+  value: CrestConfig;
+  onChange: (c: CrestConfig) => void;
+  teamName: string;
+  compact?: boolean;
+}) {
+  const [part, setPart] = useState<'escudo' | 'uniforme'>('escudo');
+  return (
+    <div className="club-look stack">
+      <div className="seg club-sections" role="group" aria-label="O que montar">
+        <button type="button" aria-pressed={part === 'escudo'} onClick={() => setPart('escudo')}>
+          Escudo
+        </button>
+        <button type="button" aria-pressed={part === 'uniforme'} onClick={() => setPart('uniforme')}>
+          Uniforme
+        </button>
+      </div>
+      {part === 'escudo' ? (
+        <CrestEditor value={value} onChange={onChange} teamName={teamName} {...(compact ? { compact } : {})} />
+      ) : (
+        <KitEditor value={value} onChange={onChange} teamName={teamName} {...(compact ? { compact } : {})} />
+      )}
+    </div>
+  );
+}
+
 type Section = 'nome' | 'escudo' | 'uniforme';
 const SECTIONS: Array<{ id: Section; label: string }> = [
   { id: 'nome', label: 'Nome' },

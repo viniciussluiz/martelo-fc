@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { randomCrest, teamInitials, type CrestConfig } from '../../shared/crest';
 import type { PublicUserView } from '../../shared/protocol';
-import { CrestEditor } from '../components/crest/CrestEditor';
+import { ClubLookEditor } from '../components/crest/CrestEditor';
 import { Icon } from '../components/Icon';
 import { signIn } from '../App';
 import { api } from '../lib/api';
@@ -125,7 +125,7 @@ export function AuthPage() {
             />
           </div>
         )}
-        {mode === 'criar' && <CrestEditor value={crest} onChange={setCrest} teamName={displayName || 'Seu Time'} compact />}
+        {mode === 'criar' && <ClubLookEditor value={crest} onChange={setCrest} teamName={displayName || 'Seu Time'} compact />}
         {mode === 'esqueci' &&
           (sent ? (
             <p className="notice-ok">
