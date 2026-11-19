@@ -101,6 +101,39 @@ export interface AdminCardView {
   tier: Tier;
   /** Como a carta está no arquivo do baralho, quando o dono ajustou (null = sem ajuste). */
   original: { levelMin: number; levelMax: number; tier: Tier } | null;
+  /** Jogador criado pelo dono na página de admin (dá para excluir). */
+  custom?: boolean;
+}
+
+/** Uma pessoa na lista de faces para gerar (Lenda sem retrato ilustrado). */
+export interface AdminFaceItem {
+  /** QID do Wikidata ou, para jogador criado no admin, o id da carta: é a chave do retrato. */
+  key: string;
+  cardId: string;
+  name: string;
+  club: string;
+  year: number;
+  position: Position;
+  createdAt: string;
+}
+
+/** A lista de faces para gerar e quantas Lendas do baralho estão sem face e fora dela. */
+export interface AdminFaces {
+  items: AdminFaceItem[];
+  missing: number;
+}
+
+/** Pedido para criar um jogador na página de admin. */
+export interface AdminNewCard {
+  name: string;
+  position: Position;
+  /** Clube que já está no baralho, ou um novo (aí vão também o grupo e as cores). */
+  club: string;
+  newClub?: { series: Series; kit?: [string, string] };
+  year: number;
+  levelMin: number;
+  levelMax: number;
+  legend: boolean;
 }
 
 export interface MemberView {

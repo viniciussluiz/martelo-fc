@@ -100,7 +100,10 @@ export async function createApp(overrides: Partial<ServerConfig> = {}, logger?: 
   if (deckAdmin.applied) log.info('ajustes do baralho', { cartas: deckAdmin.applied });
   if (national.length) log.info('cartas de seleção', { path: config.nationalDeckPath, cartas: national.length, selecoes: new Set(national.map((c) => c.club)).size });
   const crestFiles = loadCrests(config.crestsDir);
-  const deckInfo = describeDeck(deckFile.name, deck, crestFiles, loadCrestSources(config.crestsDir));
+  const crestSources = loadCrestSources(config.crestsDir);
+  const deckInfo = describeDeck(deckFile.name, deck, crestFiles, crestSources);
+  // Jogador criado ou excluído pelo dono: o resumo do baralho (grupos e clubes) que as salas mostram acompanha.
+  deckAdmin.onDeckChanged = () => Object.assign(deckInfo, describeDeck(deckFile.name, deck, crestFiles, crestSources));
   {
     const clubs = new Set(deck.map((c) => c.club));
     const local = [...clubs].filter((c) => deckInfo.crests[c]?.startsWith('/escudos/')).length;
@@ -237,16 +240,37 @@ export async function createApp(overrides: Partial<ServerConfig> = {}, logger?: 
     // Página de admin (só o dono): o baralho inteiro, com Lenda e nível editáveis.
     .on('GET', '/api/admin/cards', (ctx) => {
       requireAdmin(ctx);
-      return { cards: deckAdmin.list() };
+      return { cards: deckAdmin.list(), faces: deckAdmin.faces() };
     })
     .on('PATCH', '/api/admin/cards/:id', (ctx) => {
       const user = requireAdmin(ctx);
       const b = body(ctx);
-      return { card: adminCall(() => deckAdmin.update(ctx.params.id!, { levelMin: b.levelMin, levelMax: b.levelMax, legend: b.legend }, user.id)) };
+      const card = adminCall(() => deckAdmin.update(ctx.params.id!, { levelMin: b.levelMin, levelMax: b.levelMax, legend: b.legend }, user.id));
+      return { card, faces: deckAdmin.faces() };
     })
     .on('DELETE', '/api/admin/cards/:id', (ctx) => {
       requireAdmin(ctx);
-      return { card: adminCall(() => deckAdmin.reset(ctx.params.id!)) };
+      const card = adminCall(() => deckAdmin.reset(ctx.params.id!));
+      return { card, faces: deckAdmin.faces() };
+    })
+    .on('POST', '/api/admin/cards', (ctx) => {
+      const user = requireAdmin(ctx);
+      const card = adminCall(() => deckAdmin.create(body(ctx), user.id));
+      return { card, faces: deckAdmin.faces() };
+    })
+    .on('DELETE', '/api/admin/custom-cards/:id', (ctx) => {
+      requireAdmin(ctx);
+      adminCall(() => deckAdmin.remove(ctx.params.id!));
+      return { ok: true, faces: deckAdmin.faces() };
+    })
+    // Faces para gerar: tirar alguém da lista, ou pôr todas as Lendas do baralho que estão sem face.
+    .on('DELETE', '/api/admin/faces/:key', (ctx) => {
+      requireAdmin(ctx);
+      return { faces: deckAdmin.dismissFace(ctx.params.key!) };
+    })
+    .on('POST', '/api/admin/faces/fill', (ctx) => {
+      requireAdmin(ctx);
+      return { faces: deckAdmin.queueAllMissingFaces() };
     })
     .on('PATCH', '/api/me', (ctx) => {
       const user = requireUser(ctx);

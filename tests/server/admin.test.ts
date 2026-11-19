@@ -106,4 +106,116 @@ describe('página de admin', () => {
     expect(deckCard(id)).toMatchObject({ levelMin: card.levelMin, levelMax: card.levelMax, tier: 'titular' });
     expect(env.app.db.prepare('SELECT COUNT(*) FROM card_overrides').pluck().get()).toBe(0);
   });
+
+  it('cria jogador em clube do baralho e em clube novo; entra no baralho na hora e sobrevive a reiniciar; só o criado se exclui', async () => {
+    const deck = () => env.app.rooms.deps.deck;
+    const sample = deck()[0]!;
+    const totalBefore = env.app.deckInfo.total;
+
+    // Clube do baralho: pega o grupo e as cores do clube.
+    const a = await api<{ card: AdminCardView }>(
+      env.app,
+      'POST',
+      '/api/admin/cards',
+      { name: 'Craque Inventado', position: 'ATA', club: sample.club.toUpperCase(), year: 2024, levelMin: 88, levelMax: 94, legend: true },
+      ownerToken,
+    );
+    expect(a.status).toBe(200);
+    expect(a.data.card).toMatchObject({ name: 'Craque Inventado', club: sample.club, tier: 'lenda', custom: true, original: null });
+    expect(a.data.card.series).toBe(sample.series);
+    expect(a.data.card.id).toMatch(/^adm-/);
+    expect(deck().find((c) => c.id === a.data.card.id)).toMatchObject({ club: sample.club, levelMin: 88, levelMax: 94, tier: 'lenda' });
+    // O resumo do baralho (o que o lobby mostra) já conta a carta nova.
+    expect(env.app.deckInfo.total).toBe(totalBefore + 1);
+
+    // Clube novo: precisa do grupo; sem Lenda, a faixa sai do nível.
+    expect((await api(env.app, 'POST', '/api/admin/cards', { name: 'Zé Novo', position: 'MEI', club: 'Clube Inexistente FC', year: 2020, levelMin: 70, levelMax: 76, legend: false }, ownerToken)).status).toBe(400);
+    const b = await api<{ card: AdminCardView }>(
+      env.app,
+      'POST',
+      '/api/admin/cards',
+      { name: 'Zé Novo', position: 'MEI', club: 'Clube Inexistente FC', newClub: { series: 'EU', kit: ['#112233', '#ffffff'] }, year: 2020, levelMin: 70, levelMax: 76, legend: false },
+      ownerToken,
+    );
+    expect(b.status).toBe(200);
+    expect(b.data.card).toMatchObject({ club: 'Clube Inexistente FC', series: 'EU', tier: 'operario' });
+    expect(deck().find((c) => c.id === b.data.card.id)!.kit).toEqual(['#112233', '#FFFFFF']);
+    expect(env.app.deckInfo.groups.EU).toBe(1);
+    expect(env.app.deckInfo.clubs.EU).toEqual(['Clube Inexistente FC']);
+
+    // Recusas: repetido, posição, ano, nível e quem não é dono.
+    const base = { name: 'Zé Novo', position: 'MEI', club: 'Clube Inexistente FC', year: 2020, levelMin: 70, levelMax: 76, legend: false };
+    expect((await api(env.app, 'POST', '/api/admin/cards', base, ownerToken)).status).toBe(400);
+    expect((await api(env.app, 'POST', '/api/admin/cards', { ...base, name: 'Outro', position: 'PIV' }, ownerToken)).status).toBe(400);
+    expect((await api(env.app, 'POST', '/api/admin/cards', { ...base, name: 'Outro', year: 1800 }, ownerToken)).status).toBe(400);
+    expect((await api(env.app, 'POST', '/api/admin/cards', { ...base, name: 'Outro', levelMin: 80, levelMax: 70 }, ownerToken)).status).toBe(400);
+    expect((await api(env.app, 'POST', '/api/admin/cards', { ...base, name: 'Outro' }, guestToken)).status).toBe(403);
+
+    // Ajuste de nível no criado funciona como em qualquer carta.
+    const adj = await api<{ card: AdminCardView }>(env.app, 'PATCH', `/api/admin/cards/${b.data.card.id}`, { levelMin: 84, levelMax: 90 }, ownerToken);
+    expect(adj.data.card).toMatchObject({ tier: 'craque', custom: true });
+
+    // Reiniciar: os criados voltam (com o ajuste).
+    await env.stop();
+    env = await startTestApp(dir, undefined, { adminUsers: [OWNER] });
+    ownerToken = (await api(env.app, 'POST', '/api/auth/login', { email: OWNER, password: 'senha-forte-1' })).data.token;
+    expect(deck().find((c) => c.id === a.data.card.id)).toMatchObject({ tier: 'lenda', club: sample.club });
+    expect(deck().find((c) => c.id === b.data.card.id)).toMatchObject({ levelMin: 84, levelMax: 90, tier: 'craque' });
+    const list = (await api<{ cards: AdminCardView[] }>(env.app, 'GET', '/api/admin/cards', undefined, ownerToken)).data.cards;
+    expect(list.filter((c) => c.custom).map((c) => c.name).sort()).toEqual(['Craque Inventado', 'Zé Novo']);
+
+    // Excluir: só o criado; a carta do arquivo não se exclui.
+    expect((await api(env.app, 'DELETE', `/api/admin/custom-cards/${sample.id}`, undefined, ownerToken)).status).toBe(400);
+    expect((await api(env.app, 'DELETE', `/api/admin/custom-cards/${b.data.card.id}`, undefined, ownerToken)).status).toBe(200);
+    expect(deck().some((c) => c.id === b.data.card.id)).toBe(false);
+    expect(env.app.db.prepare('SELECT COUNT(*) FROM card_overrides WHERE card_id = ?').pluck().get(b.data.card.id)).toBe(0);
+    // Depois de excluir, as outras cartas continuam editáveis (o índice foi refeito).
+    const last = deck()[deck().length - 1]!;
+    expect((await api(env.app, 'PATCH', `/api/admin/cards/${last.id}`, { legend: true }, ownerToken)).data.card.id).toBe(last.id);
+  });
+
+  it('faces para gerar: quem vira Lenda sem face entra na lista; deixa de ser Lenda, sai; dá para tirar e pôr todas', async () => {
+    type Faces = { items: Array<{ key: string; name: string; club: string; year: number; position: string }>; missing: number };
+    const get = async () => (await api<{ faces: Faces }>(env.app, 'GET', '/api/admin/cards', undefined, ownerToken)).data.faces;
+    // O jogador criado como Lenda no teste anterior já entrou.
+    expect((await get()).items.map((i) => i.name)).toContain('Craque Inventado');
+
+    const plain = env.app.rooms.deps.deck.find((c) => c.tier === 'titular')!;
+    const up = await api<{ faces: Faces }>(env.app, 'PATCH', `/api/admin/cards/${plain.id}`, { legend: true }, ownerToken);
+    const item = up.data.faces.items.find((i) => i.key === plain.id)!;
+    expect(item).toMatchObject({ name: plain.name, club: plain.club, year: plain.year, position: plain.position });
+    // Marcar de novo não repete.
+    await api(env.app, 'PATCH', `/api/admin/cards/${plain.id}`, { levelMin: 92, levelMax: 98 }, ownerToken);
+    expect((await get()).items.filter((i) => i.key === plain.id)).toHaveLength(1);
+    // Deixou de ser Lenda: sai.
+    const down = await api<{ faces: Faces }>(env.app, 'PATCH', `/api/admin/cards/${plain.id}`, { legend: false }, ownerToken);
+    expect(down.data.faces.items.some((i) => i.key === plain.id)).toBe(false);
+    // Tirar da lista à mão.
+    await api(env.app, 'PATCH', `/api/admin/cards/${plain.id}`, { legend: true }, ownerToken);
+    const dismissed = await api<{ faces: Faces }>(env.app, 'DELETE', `/api/admin/faces/${plain.id}`, undefined, ownerToken);
+    expect(dismissed.data.faces.items.some((i) => i.key === plain.id)).toBe(false);
+    // Pôr todas as Lendas sem face do baralho (o baralho de teste não tem retratos).
+    const before = await get();
+    expect(before.missing).toBeGreaterThan(0);
+    const filled = await api<{ faces: Faces }>(env.app, 'POST', '/api/admin/faces/fill', undefined, ownerToken);
+    expect(filled.data.faces.missing).toBe(0);
+    expect(filled.data.faces.items.length).toBe(before.items.length + before.missing);
+    // Excluir o jogador criado tira ele da lista. Só o dono mexe na lista.
+    const custom = env.app.rooms.deps.deck.find((c) => c.name === 'Craque Inventado')!;
+    const gone = await api<{ faces: Faces }>(env.app, 'DELETE', `/api/admin/custom-cards/${custom.id}`, undefined, ownerToken);
+    expect(gone.data.faces.items.some((i) => i.key === custom.id)).toBe(false);
+    expect((await api(env.app, 'POST', '/api/admin/faces/fill', undefined, guestToken)).status).toBe(403);
+    expect((await api(env.app, 'DELETE', `/api/admin/faces/${plain.id}`, undefined, guestToken)).status).toBe(403);
+  });
+});
+
+describe('chave do retrato', () => {
+  it('cartas do Wikidata usam o QID da pessoa (clube e seleção); jogador criado, o id da carta', async () => {
+    const { legendArtFile, legendArtKey } = await import('../../src/shared/legend-art.js');
+    expect(legendArtKey('wd-Q12897-Q131465-1967')).toBe('Q12897');
+    expect(legendArtKey('sel-Q12897-BRA')).toBe('Q12897');
+    expect(legendArtFile('wd-Q12897-Q131465-1967')).toBe('pele');
+    expect(legendArtKey('adm-1a2b3c4d')).toBe('adm-1a2b3c4d');
+    expect(legendArtFile('adm-1a2b3c4d')).toBeNull();
+  });
 });

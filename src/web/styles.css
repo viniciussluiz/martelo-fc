@@ -7685,3 +7685,89 @@ button.trophy:hover {
     grid-template-columns: 1fr 1fr;
   }
 }
+.badge-custom {
+  margin-left: 6px;
+  background: var(--sky);
+  color: var(--white);
+}
+.admin-delete {
+  display: block;
+  color: var(--red-deep);
+}
+.admin-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.admin-new-club {
+  padding: 12px;
+  background: var(--paper-2);
+  border: 2px dashed var(--ink-3);
+  border-radius: var(--r-m);
+}
+.admin-colors {
+  display: flex;
+  gap: 8px;
+}
+.admin-colors input[type='color'] {
+  width: 48px;
+  height: 40px;
+  padding: 2px;
+  border: 3px solid var(--ink);
+  border-radius: 10px;
+  background: var(--white);
+}
+.faces-panel {
+  padding: 10px 14px;
+  background: var(--paper);
+  border: 3px solid var(--ink);
+  border-radius: var(--r-m);
+}
+.faces-panel > summary {
+  cursor: pointer;
+  font-family: var(--f-sport);
+  font-size: 1.05rem;
+}
+.faces-body {
+  margin-top: 10px;
+}
+.faces-text {
+  width: 100%;
+  font-family: ui-monospace, 'SFMono-Regular', Menlo, monospace;
+  font-size: 0.85rem;
+  resize: vertical;
+}
+.faces-chips {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.faces-chips li {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 1px 4px 1px 9px;
+  background: var(--paper-2);
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  font-family: var(--f-sport);
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+.faces-x {
+  width: 22px;
+  height: 22px;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  font-size: 1rem;
+  line-height: 1;
+  cursor: pointer;
+}
+.faces-x:hover {
+  background: var(--red);
+  color: var(--white);
+}
