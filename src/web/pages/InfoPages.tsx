@@ -38,7 +38,7 @@ export function AboutPage() {
           partidas passando na tela lance a lance.
         </p>
         <p>
-          Dá para jogar sozinho contra a CPU, em partida rápida, ou abrir uma sala e chamar os amigos pelo link. O jogo guarda o histórico de confrontos
+          Dá para jogar sozinho contra a CPU, no single player, ou abrir uma sala e chamar os amigos pelo link. O jogo guarda o histórico de confrontos
           entre os técnicos, os troféus e as conquistas de cada um. As regras completas estão em <Go to="/regras">Como funciona</Go>.
         </p>
       </section>

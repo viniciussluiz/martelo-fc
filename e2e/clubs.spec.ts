@@ -4,8 +4,8 @@ import { enterAsGuest, playUntil, watchConsole } from './helpers';
 test('leilão de clubes: pacotes às cegas, convocação, liga e saída da partida', async ({ page }) => {
   const errors = watchConsole(page);
   await enterAsGuest(page, 'Clubes E2E');
-  await page.getByRole('button', { name: /Partida rápida/ }).click();
-  await expect(page.getByRole('heading', { name: 'Partida rápida' })).toBeVisible();
+  await page.getByRole('button', { name: /Single player/ }).click();
+  await expect(page.getByRole('heading', { name: 'Single player' })).toBeVisible();
   // Campos do formulário não viram campo de futebol.
   await expect(page.locator('.squad-field')).toHaveCount(0);
   const tipo = page.getByRole('group', { name: 'Tipo de leilão' });
@@ -56,7 +56,7 @@ test('leilão de clubes: pacotes às cegas, convocação, liga e saída da parti
   await expect(page.getByText(/a disputa termina aqui/)).toHaveCount(0);
   await page.getByRole('button', { name: 'Sair da partida' }).click();
   await page.getByRole('button', { name: 'Sair', exact: true }).click();
-  await expect(page.getByRole('button', { name: /Partida rápida/ })).toBeVisible();
+  await expect(page.getByRole('button', { name: /Single player/ })).toBeVisible();
   expect(new URL(page.url()).pathname).toBe('/');
 
   expect(errors.filter((e) => !/favicon|escudo|ERR_/i.test(e))).toEqual([]);

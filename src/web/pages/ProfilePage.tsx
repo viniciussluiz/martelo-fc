@@ -185,7 +185,7 @@ export function ProfilePage({ userId }: { userId: string }) {
       <section className="stack">
         <SectionTitle>Últimas disputas</SectionTitle>
         {p.recent.length === 0 ? (
-          <Empty icon="apito">Nenhuma disputa concluída ainda. Abra uma partida rápida e o resultado aparece aqui.</Empty>
+          <Empty icon="apito">Nenhuma disputa concluída ainda. Jogue no single player e o resultado aparece aqui.</Empty>
         ) : (
           <div className="table-wrap">
             <table className="table">

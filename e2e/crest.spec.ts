@@ -32,8 +32,8 @@ test('criador de escudos: monta ao fundar o clube, troca depois e o escudo apare
   await expect(dialog).toBeHidden();
 
   // Na sala, o seu time aparece com o escudo (e as CPUs com os delas).
-  await page.getByRole('button', { name: /Partida rápida/ }).click();
-  await expect(page.getByRole('heading', { name: 'Partida rápida' })).toBeVisible();
+  await page.getByRole('button', { name: /Single player/ }).click();
+  await expect(page.getByRole('heading', { name: 'Single player' })).toBeVisible();
   await expect(page.locator('.locker li .crest')).toHaveCount(4);
   const saved = await page.evaluate(async () => {
     const token = localStorage.getItem('martelo.token');

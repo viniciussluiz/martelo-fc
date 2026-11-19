@@ -21,6 +21,7 @@ import { HomePage } from './pages/HomePage';
 import { ProfilePage } from './pages/ProfilePage';
 import { RivalPage } from './pages/RivalPage';
 import { RoomPage } from './pages/RoomPage';
+import { RoomsPage } from './pages/RoomsPage';
 import { RulesPage } from './pages/RulesPage';
 import { TrophyPage } from './pages/TrophyPage';
 
@@ -166,6 +167,7 @@ function Routes() {
   if ((m = matchPath('/perfil/:id/rival/:opp', path))) return user ? <RivalPage userId={m.id!} opponentId={m.opp!} /> : <HomePage />;
   if ((m = matchPath('/perfil/:id', path))) return user ? <ProfilePage userId={m.id!} /> : <HomePage />;
   if ((m = matchPath('/trofeus/:id', path))) return user ? <TrophyPage userId={m.id!} /> : <HomePage />;
+  if (matchPath('/salas', path)) return user ? <RoomsPage /> : <HomePage />;
   if (matchPath('/entrar', path)) return <AuthPage />;
   if (matchPath('/redefinir', path)) return <ResetPage />;
   if (matchPath('/conta', path)) return <AccountPage />;

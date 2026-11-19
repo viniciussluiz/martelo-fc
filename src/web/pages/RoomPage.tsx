@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import type { RoomView } from '../../shared/protocol';
+import { ROOM_PASSWORD_MAX, type RoomView } from '../../shared/protocol';
 import { Spinner } from '../components/common';
 import { Icon } from '../components/Icon';
 import { StageBanner } from '../components/ui';
@@ -17,15 +17,79 @@ export function RoomPage({ code }: { code: string }) {
   const room = useStore((s) => s.room);
   const leftReason = useStore((s) => s.leftReason);
   const [error, setError] = useState<string | null>(null);
+  // Sala fechada: o servidor pede a senha a quem ainda não é da sala.
+  const [gate, setGate] = useState<{ message: string; wrong: boolean } | null>(null);
+  const [password, setPassword] = useState('');
+  const [entering, setEntering] = useState(false);
+
+  const enter = (pass?: string) => {
+    setEntering(true);
+    return socket
+      .joinRoom(code, pass)
+      .then(() => setGate(null))
+      .catch((err: Error & { code?: string }) => {
+        store.set({ roomCode: null });
+        if (err.code === 'senha_necessaria' || err.code === 'senha_incorreta') {
+          setGate({ message: err.message, wrong: err.code === 'senha_incorreta' });
+        } else {
+          setGate(null);
+          setError(err.message);
+        }
+      })
+      .finally(() => setEntering(false));
+  };
 
   useEffect(() => {
     setError(null);
+    setGate(null);
+    setPassword('');
     if (store.get().room?.code === code) return;
-    socket.joinRoom(code).catch((err: Error) => {
-      setError(err.message);
-      store.set({ roomCode: null });
-    });
+    void enter();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [code]);
+
+  if (gate && !error && (!room || room.code !== code)) {
+    return (
+      <div className="panel narrow">
+        <div className="panel-head">
+          <h2>Sala fechada</h2>
+        </div>
+        <form
+          className="panel-body stack"
+          onSubmit={(e) => {
+            e.preventDefault();
+            if (password.trim()) void enter(password.trim());
+          }}
+        >
+          <p>
+            A sala <strong>{code}</strong> tem senha. Peça a quem criou a sala.
+          </p>
+          <div className="field">
+            <label htmlFor="room-password">Senha da sala</label>
+            <input
+              id="room-password"
+              className="input"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              maxLength={ROOM_PASSWORD_MAX}
+              autoFocus
+              autoComplete="off"
+            />
+            {gate.wrong && <p className="error-text small">{gate.message}</p>}
+          </div>
+          <div className="row">
+            <button className="btn btn-primary" disabled={entering || !password.trim()}>
+              <Icon name="cadeado" size={18} /> Entrar na sala
+            </button>
+            <button type="button" className="btn" onClick={() => navigate('/')}>
+              Voltar ao início
+            </button>
+          </div>
+        </form>
+      </div>
+    );
+  }
 
   if (error || (leftReason && (!room || room.code !== code))) {
     return (
@@ -44,7 +108,7 @@ export function RoomPage({ code }: { code: string }) {
               className="btn"
               onClick={() => {
                 store.set({ leftReason: null });
-                socket.joinRoom(code).catch((e: Error) => setError(e.message));
+                void enter();
               }}
             >
               Entrar de novo
@@ -161,7 +225,7 @@ function RoomBar({ room }: { room: RoomView }) {
     <div className="room-bar">
       <span className="room-bar-where">
         <Icon name={room.mode === 'solo' ? 'martelo' : 'turma'} size={18} />
-        {room.mode === 'solo' ? 'Partida rápida' : `Sala ${room.code}`}
+        {room.mode === 'solo' ? 'Single player' : `Sala ${room.code}`}
         <span className="room-bar-cycle">Ciclo {d.seq}</span>
       </span>
       {confirming ? (

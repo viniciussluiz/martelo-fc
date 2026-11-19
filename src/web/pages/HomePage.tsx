@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { randomCrest, teamInitials, type CrestConfig } from '../../shared/crest';
-import type { PublicUserView } from '../../shared/protocol';
+import { ROOM_PASSWORD_MAX, ROOM_PASSWORD_MIN, type PublicUserView } from '../../shared/protocol';
 import { signIn, signOut } from '../App';
 import { EnvelopeArt } from '../components/common';
 import { CrestEditor, ClubEditorDialog } from '../components/crest/CrestEditor';
@@ -190,6 +190,7 @@ export function HomePage({ joinCode }: { joinCode?: string }) {
   const [active, setActive] = useState<ActiveRoom | null>(null);
   const [code, setCode] = useState('');
   const [busy, setBusy] = useState<string | null>(null);
+  const [creating, setCreating] = useState(false);
 
   useEffect(() => {
     if (!user) return;
@@ -198,10 +199,15 @@ export function HomePage({ joinCode }: { joinCode?: string }) {
       .catch(() => undefined);
   }, [user]);
 
-  const create = async (mode: 'solo' | 'online') => {
+  const create = async (mode: 'solo' | 'online', access?: { password: string; hidden: boolean }) => {
     setBusy(mode);
     try {
-      const r = await api<{ code: string }>('POST', '/api/rooms', { mode, settings: mode === 'solo' ? { cpuCount: 3 } : {} });
+      const r = await api<{ code: string }>('POST', '/api/rooms', {
+        mode,
+        settings: mode === 'solo' ? { cpuCount: 3 } : { hidden: !!access?.hidden },
+        ...(access?.password ? { password: access.password } : {}),
+      });
+      setCreating(false);
       navigate(`/sala/${r.code}`);
     } catch (err) {
       toast({ kind: 'erro', title: 'Não foi possível criar a sala', body: (err as Error).message });
@@ -243,20 +249,32 @@ export function HomePage({ joinCode }: { joinCode?: string }) {
               <Icon name="martelo" size={34} />
             </span>
             <span className="mode-text">
-              <span className="mode-title">Partida rápida (CPU)</span>
+              <span className="mode-title">Single player</span>
               <span className="mode-desc">Só você contra a CPU, sem outros jogadores: leilão, liga e copa. No fim, dá para jogar de novo na mesma sala.</span>
             </span>
             <span className="mode-go" aria-hidden="true">
               <Icon name="play" size={22} />
             </span>
           </button>
-          <button className="mode mode-online" onClick={() => create('online')} disabled={!!busy}>
+          <button className="mode mode-online" onClick={() => setCreating(true)} disabled={!!busy}>
             <span className="mode-icon">
               <Icon name="turma" size={34} />
             </span>
             <span className="mode-text">
               <span className="mode-title">Sala com amigos</span>
-              <span className="mode-desc">Crie a sala, mande o código e disputem o mesmo pregão. Até 20 técnicos.</span>
+              <span className="mode-desc">Crie a sala, mande o código e disputem o mesmo pregão. Aberta ou com senha. Até 20 técnicos.</span>
+            </span>
+            <span className="mode-go" aria-hidden="true">
+              <Icon name="play" size={22} />
+            </span>
+          </button>
+          <button className="mode mode-rooms" onClick={() => navigate('/salas')}>
+            <span className="mode-icon">
+              <Icon name="campo" size={34} />
+            </span>
+            <span className="mode-text">
+              <span className="mode-title">Salas em andamento</span>
+              <span className="mode-desc">Veja as salas abertas agora e entre numa delas. As fechadas pedem senha.</span>
             </span>
             <span className="mode-go" aria-hidden="true">
               <Icon name="play" size={22} />
@@ -291,6 +309,101 @@ export function HomePage({ joinCode }: { joinCode?: string }) {
         </section>
         <MyClubCard user={user} />
       </div>
+      <CreateRoomDialog open={creating} busy={busy === 'online'} onClose={() => setCreating(false)} onCreate={(access) => void create('online', access)} />
     </div>
+  );
+}
+
+/**
+ * Criar sala com amigos: escolhe-se antes quem pode entrar — aberta (qualquer um), fechada (com senha)
+ * — e se ela aparece na lista de salas em andamento. Dá para mudar depois, no lobby.
+ */
+function CreateRoomDialog({
+  open,
+  busy,
+  onClose,
+  onCreate,
+}: {
+  open: boolean;
+  busy: boolean;
+  onClose: () => void;
+  onCreate: (access: { password: string; hidden: boolean }) => void;
+}) {
+  const ref = useRef<HTMLDialogElement | null>(null);
+  const [locked, setLocked] = useState(false);
+  const [password, setPassword] = useState('');
+  const [hidden, setHidden] = useState(false);
+  useEffect(() => {
+    const d = ref.current;
+    if (!d) return;
+    if (open && !d.open) {
+      setLocked(false);
+      setPassword('');
+      setHidden(false);
+      d.showModal();
+    } else if (!open && d.open) d.close();
+  }, [open]);
+  const pass = password.trim();
+  const invalid = locked && (pass.length < ROOM_PASSWORD_MIN || pass.length > ROOM_PASSWORD_MAX);
+  return (
+    <dialog ref={ref} className="dialog dialog-narrow" onClose={onClose} aria-labelledby="create-room-title">
+      <div className="dialog-head">
+        <h2 id="create-room-title">Sala com amigos</h2>
+        <button type="button" className="dialog-x" onClick={onClose} aria-label="Fechar">
+          ×
+        </button>
+      </div>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          if (!invalid) onCreate({ password: locked ? pass : '', hidden });
+        }}
+      >
+        <div className="dialog-body stack">
+          <div className="field">
+            <label>Quem pode entrar</label>
+            <div className="seg seg-grid" role="group" aria-label="Quem pode entrar">
+              <button type="button" aria-pressed={!locked} onClick={() => setLocked(false)}>
+                Sala aberta
+              </button>
+              <button type="button" aria-pressed={locked} onClick={() => setLocked(true)}>
+                Sala fechada (com senha)
+              </button>
+            </div>
+            <p className="hint">{locked ? 'Só entra quem tiver a senha.' : 'Entra quem tiver o código ou achar a sala na lista.'}</p>
+          </div>
+          {locked && (
+            <div className="field">
+              <label htmlFor="new-room-password">Senha da sala</label>
+              <input
+                id="new-room-password"
+                className="input"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                maxLength={ROOM_PASSWORD_MAX}
+                autoComplete="off"
+                autoFocus
+              />
+              <p className="hint">
+                De {ROOM_PASSWORD_MIN} a {ROOM_PASSWORD_MAX} caracteres. Você passa a senha para os amigos junto com o código.
+              </p>
+            </div>
+          )}
+          <label className="check">
+            <input type="checkbox" checked={hidden} onChange={(e) => setHidden(e.target.checked)} />
+            <span className="check-box" aria-hidden="true" />
+            <span>Ocultar a sala (não aparece em “Salas em andamento”)</span>
+          </label>
+        </div>
+        <div className="dialog-foot">
+          <button type="button" className="btn btn-ghost" onClick={onClose} disabled={busy}>
+            Cancelar
+          </button>
+          <button className="btn btn-primary" disabled={busy || invalid}>
+            Criar sala
+          </button>
+        </div>
+      </form>
+    </dialog>
   );
 }

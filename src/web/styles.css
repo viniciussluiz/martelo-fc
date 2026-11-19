@@ -2174,6 +2174,9 @@ button.mode:disabled {
 .mode-online {
   --mode: var(--sky);
 }
+.mode-rooms {
+  --mode: var(--gold);
+}
 .mode-code {
   --mode: var(--red);
   cursor: default;
@@ -7513,5 +7516,97 @@ button.trophy:hover {
   }
   .confetti {
     display: none;
+  }
+}
+
+/* Salas em andamento */
+.rooms-page {
+  max-width: 880px;
+  margin: 0 auto;
+  width: 100%;
+}
+.rooms-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px;
+}
+.rooms-head p {
+  margin: 4px 0 0;
+  color: var(--ink-2);
+}
+.rooms-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.room-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 14px;
+  background: var(--paper);
+  border: 3px solid var(--ink);
+  border-radius: var(--r-m);
+  box-shadow: var(--lift-s);
+}
+.room-row-crest {
+  flex: none;
+}
+.room-row-text {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.room-row-name {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--f-sport);
+  font-size: 1.2rem;
+}
+.room-row-status[data-tone='open'] {
+  color: var(--grass-deep);
+  font-weight: 700;
+}
+.room-row-status[data-tone='live'] {
+  color: var(--red-deep);
+  font-weight: 700;
+}
+.room-row-go {
+  flex: none;
+}
+.badge-lock {
+  background: var(--ink);
+  color: var(--sun);
+  border-color: var(--ink);
+}
+.badge-open {
+  background: var(--grass-hi);
+  color: var(--ink);
+}
+.room-access-state {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+}
+.dialog-narrow {
+  width: min(520px, calc(100vw - 24px));
+}
+@media (max-width: 560px) {
+  .room-row {
+    flex-wrap: wrap;
+  }
+  .room-row-go {
+    width: 100%;
   }
 }

@@ -6,7 +6,7 @@ test('no celular, o pregão cabe na tela sem rolagem horizontal', async ({ page 
   await enterAsGuest(page, 'Celular FC');
   const noOverflow = async () => page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth + 1);
   expect(await noOverflow()).toBe(true);
-  await page.getByRole('button', { name: /Partida rápida/ }).click();
+  await page.getByRole('button', { name: /Single player/ }).click();
   await expect(page.getByRole('button', { name: /Abrir o pregão/ })).toBeVisible();
   expect(await noOverflow()).toBe(true);
   await page.getByRole('button', { name: /Abrir o pregão/ }).click();

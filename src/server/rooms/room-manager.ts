@@ -1,4 +1,4 @@
-import type { RoomMode, RoomSettings, ServerMessage } from '../../shared/protocol.js';
+import type { PublicRoomView, RoomMode, RoomSettings, ServerMessage } from '../../shared/protocol.js';
 import type { PublicUser } from '../auth.js';
 import { RoomActor, type RoomDeps } from './room-actor.js';
 
@@ -32,8 +32,13 @@ export class RoomManager {
     return this.byId.size;
   }
 
-  create(host: PublicUser, mode: RoomMode, settings?: Partial<RoomSettings>): RoomActor {
-    const actor = RoomActor.create(this.deps, { mode, host: { id: host.id, displayName: host.displayName }, ...(settings ? { settings } : {}) });
+  create(host: PublicUser, mode: RoomMode, settings?: Partial<RoomSettings>, password?: unknown): RoomActor {
+    const actor = RoomActor.create(this.deps, {
+      mode,
+      host: { id: host.id, displayName: host.displayName },
+      ...(settings ? { settings } : {}),
+      ...(password !== undefined ? { password } : {}),
+    });
     this.register(actor);
     return actor;
   }
@@ -84,6 +89,18 @@ export class RoomManager {
     for (const r of this.byId.values()) {
       if (r.forgetUserCrest(userId)) r.broadcast();
     }
+  }
+
+  /**
+   * Salas em andamento que qualquer um pode ver: as com amigos, não ocultas, com alguém conectado.
+   * As que ainda estão no lobby vêm primeiro (dá para entrar e jogar), depois as mais cheias.
+   */
+  publicRooms(): PublicRoomView[] {
+    const order = { lobby: 0, post_dispute: 1, in_dispute: 2, closed: 3 } as const;
+    return [...this.byId.values()]
+      .filter((r) => r.mode === 'online' && r.status !== 'closed' && !r.settings.hidden && r.activeMembers().some((m) => r.isConnected(m.userId)))
+      .map((r) => r.publicView())
+      .sort((a, b) => order[a.status] - order[b.status] || b.humans - a.humans || a.code.localeCompare(b.code));
   }
 
   all(): RoomActor[] {

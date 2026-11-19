@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { CLUB_SERIES, scopeOfSeries, scopeSeries, type Formation, type Series, type SeriesScope } from '../../../engine/types';
-import type { MatchSeconds } from '../../../shared/protocol';
+import { ROOM_PASSWORD_MAX, ROOM_PASSWORD_MIN, type MatchSeconds } from '../../../shared/protocol';
 import type { DeckInfo, RoomSettings, RoomView } from '../../../shared/protocol';
 import { CPU_TEAM_NAMES } from '../../../shared/teams';
 import { act } from '../../lib/socket';
@@ -25,7 +25,7 @@ export function RoomHeader({ room, subtitle }: { room: RoomView; subtitle: strin
   return (
     <div className="room-header">
       <div className="room-header-text">
-        <h1>{room.mode === 'solo' ? 'Partida rápida' : 'Sala com amigos'}</h1>
+        <h1>{room.mode === 'solo' ? 'Single player' : 'Sala com amigos'}</h1>
         <p>{subtitle}</p>
       </div>
       {room.mode === 'online' && (
@@ -118,6 +118,75 @@ function ClubsField({ deck, value, editable, onChange }: { deck: DeckInfo; value
         </button>
       </p>
       {showClubs && <p className="small clubs-list">{clubs.join(' · ')}</p>}
+    </div>
+  );
+}
+
+/**
+ * Quem entra na sala: aberta (sem senha) ou fechada (com senha), e se ela aparece em “Salas em andamento”.
+ * Só o anfitrião muda; vale a qualquer hora, e quem já está na sala continua.
+ */
+function AccessField({ room, editable }: { room: RoomView; editable: boolean }) {
+  const [password, setPassword] = useState('');
+  const [busy, setBusy] = useState(false);
+  const pass = password.trim();
+  const valid = pass.length >= ROOM_PASSWORD_MIN && pass.length <= ROOM_PASSWORD_MAX;
+  const save = async (next: string | null) => {
+    setBusy(true);
+    const ok = await act({ t: 'room:password', password: next });
+    if (ok) {
+      setPassword('');
+      toast({ kind: 'sucesso', title: next ? 'Sala fechada' : 'Sala aberta', body: next ? 'Agora só entra quem tiver a senha.' : 'A senha foi tirada: entra quem tiver o código.' });
+    }
+    setBusy(false);
+  };
+  return (
+    <div className="field room-access">
+      <label>Acesso à sala</label>
+      <p className="room-access-state">
+        <span className={room.locked ? 'badge badge-lock' : 'badge badge-open'}>
+          {room.locked && <Icon name="cadeado" size={13} />} {room.locked ? 'fechada (com senha)' : 'aberta'}
+        </span>
+        <span className="small">
+          {room.settings.hidden ? 'Oculta: não aparece em “Salas em andamento”.' : 'Aparece em “Salas em andamento”.'}
+        </span>
+      </p>
+      {editable && (
+        <>
+          <form
+            className="row"
+            onSubmit={(e) => {
+              e.preventDefault();
+              if (valid) void save(pass);
+            }}
+          >
+            <input
+              className="input"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              maxLength={ROOM_PASSWORD_MAX}
+              placeholder={room.locked ? 'Nova senha' : 'Senha para fechar a sala'}
+              aria-label="Senha da sala"
+              autoComplete="off"
+              style={{ flex: 1 }}
+            />
+            <button className="btn btn-sm" disabled={busy || !valid}>
+              {room.locked ? 'Trocar senha' : 'Fechar com senha'}
+            </button>
+            {room.locked && (
+              <button type="button" className="btn btn-sm btn-ghost" disabled={busy} onClick={() => void save(null)}>
+                Tirar a senha
+              </button>
+            )}
+          </form>
+          <Toggle
+            label="Ocultar a sala (não aparece em “Salas em andamento”)"
+            checked={!!room.settings.hidden}
+            disabled={false}
+            onChange={(v) => void act({ t: 'room:settings', settings: { hidden: v } })}
+          />
+        </>
+      )}
     </div>
   );
 }
@@ -222,6 +291,7 @@ export function SettingsPanel({ room, editable }: { room: RoomView; editable: bo
           </div>
           <p className="hint">{(MATCH_PACES.find((o) => o.seconds === (s.matchSeconds ?? 10)) ?? MATCH_PACES[0]!)[onlyCup ? 'cup' : 'league']}</p>
         </div>
+        {room.mode === 'online' && <AccessField room={room} editable={editable} />}
         <div className="checks">
           <Toggle label="Repescagem das sobras de cada posição" checked={s.repescagem} disabled={!editable} onChange={(v) => set({ repescagem: v })} />
           <Toggle label="Desempate às cegas antes do sorteio" checked={s.tiebreakRound} disabled={!editable} onChange={(v) => set({ tiebreakRound: v })} />

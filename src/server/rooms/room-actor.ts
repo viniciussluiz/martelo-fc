@@ -24,6 +24,7 @@ import type {
   ContinuationView,
   DeckInfo,
   MemberStatus,
+  PublicRoomView,
   RevealView,
   RoomMode,
   RoomSettings,
@@ -36,7 +37,8 @@ import { nowIso, type DB } from '../db.js';
 import type { Logger } from '../log.js';
 import type { ResultsService } from '../services/results.js';
 import { TIMINGS, type Timing } from './timing.js';
-import { FAST_MATCH, MATCH_SECONDS } from '../../shared/protocol.js';
+import { FAST_MATCH, MATCH_SECONDS, ROOM_PASSWORD_MAX, ROOM_PASSWORD_MIN } from '../../shared/protocol.js';
+import { hashPassword, verifyPassword } from '../auth.js';
 import { shootoutMs } from '../../shared/shootout.js';
 import { buildRoomView } from './views.js';
 import { CPU_TEAM_NAMES } from '../../shared/teams.js';
@@ -154,8 +156,25 @@ export function sanitizeSettings(mode: RoomMode, base: RoomSettings, patch: Part
   for (const k of ['carryOver', 'repescagem', 'tiebreakRound', 'mysteryCards'] as const) {
     if (patch[k] !== undefined) s[k] = !!patch[k];
   }
+  // Sala oculta só faz sentido na sala com amigos (a de um jogador nunca aparece na lista).
+  if (patch.hidden !== undefined) s.hidden = mode === 'online' && !!patch.hidden;
   // O limite total (humanos + CPUs ≤ 20) é aplicado ao iniciar cada disputa.
   return s;
+}
+
+const PASSWORD_MAX_TRIES = 8;
+const PASSWORD_WINDOW_MS = 10 * 60_000;
+
+/** Senha de sala vinda do cliente: `null` (ou vazia) = sem senha; fora do tamanho, erro. */
+export function cleanRoomPassword(raw: unknown): string | null {
+  if (raw === null || raw === undefined) return null;
+  if (typeof raw !== 'string') throw new GameRuleError('senha_invalida', 'Senha inválida.');
+  const password = raw.trim();
+  if (password.length === 0) return null;
+  if (password.length < ROOM_PASSWORD_MIN || password.length > ROOM_PASSWORD_MAX) {
+    throw new GameRuleError('senha_invalida', `A senha da sala tem de ${ROOM_PASSWORD_MIN} a ${ROOM_PASSWORD_MAX} caracteres.`);
+  }
+  return password;
 }
 
 export class RoomActor {
@@ -168,6 +187,10 @@ export class RoomActor {
   cycle: number;
   members = new Map<string, MemberState>();
   private conns = new Map<string, Set<Conn>>();
+  /** Sala fechada: hash da senha (nunca a senha). `null` = sala aberta. */
+  private passwordHash: string | null = null;
+  /** Senhas erradas por usuário, para frear quem tenta adivinhar. */
+  private wrongPasswords = new Map<string, { count: number; since: number }>();
 
   dispute: Dispute | null = null;
   disputeId: string | null = null;
@@ -201,7 +224,7 @@ export class RoomActor {
 
   constructor(
     private deps: RoomDeps,
-    init: { id: string; code: string; mode: RoomMode; hostUserId: string; status: RoomStatus; settings: RoomSettings; cycle: number },
+    init: { id: string; code: string; mode: RoomMode; hostUserId: string; status: RoomStatus; settings: RoomSettings; cycle: number; passwordHash?: string | null },
   ) {
     this.id = init.id;
     this.code = init.code;
@@ -210,6 +233,12 @@ export class RoomActor {
     this.status = init.status;
     this.settings = init.settings;
     this.cycle = init.cycle;
+    this.passwordHash = init.passwordHash ?? null;
+  }
+
+  /** Sala fechada (com senha). */
+  get locked(): boolean {
+    return !!this.passwordHash;
   }
 
   get timing(): Timing {
@@ -249,8 +278,13 @@ export class RoomActor {
   // Criação, restauração e persistência
   // ---------------------------------------------------------------------------
 
-  static create(deps: RoomDeps, params: { mode: RoomMode; host: { id: string; displayName: string }; settings?: Partial<RoomSettings> }): RoomActor {
+  static create(
+    deps: RoomDeps,
+    params: { mode: RoomMode; host: { id: string; displayName: string }; settings?: Partial<RoomSettings>; password?: unknown },
+  ): RoomActor {
     const settings = sanitizeSettings(params.mode, DEFAULT_SETTINGS[params.mode], params.settings ?? {});
+    const password = params.mode === 'online' ? cleanRoomPassword(params.password) : null;
+    const passwordHash = password ? hashPassword(password) : null;
     const now = nowIso();
     let code = makeRoomCode();
     for (let i = 0; i < 10 && deps.db.prepare('SELECT 1 FROM rooms WHERE code = ?').get(code); i++) code = makeRoomCode();
@@ -262,13 +296,14 @@ export class RoomActor {
       status: 'lobby',
       settings,
       cycle: 0,
+      passwordHash,
     });
     deps.db
       .prepare(
-        `INSERT INTO rooms (id, code, mode, host_user_id, status, settings_json, cycle, created_at, updated_at)
-         VALUES (?, ?, ?, ?, 'lobby', ?, 0, ?, ?)`,
+        `INSERT INTO rooms (id, code, mode, host_user_id, status, settings_json, cycle, created_at, updated_at, password_hash)
+         VALUES (?, ?, ?, ?, 'lobby', ?, 0, ?, ?, ?)`,
       )
-      .run(actor.id, actor.code, actor.mode, actor.hostUserId, JSON.stringify(settings), now, now);
+      .run(actor.id, actor.code, actor.mode, actor.hostUserId, JSON.stringify(settings), now, now, passwordHash);
     actor.addMember(params.host.id, params.host.displayName);
     return actor;
   }
@@ -282,6 +317,7 @@ export class RoomActor {
       status: row.status as RoomStatus,
       settings: { ...DEFAULT_SETTINGS[row.mode as RoomMode], ...JSON.parse(row.settings_json as string) },
       cycle: row.cycle as number,
+      passwordHash: (row.password_hash as string | null) ?? null,
     });
     const members = deps.db.prepare('SELECT * FROM room_members WHERE room_id = ? ORDER BY seat').all(actor.id) as Array<Record<string, unknown>>;
     for (const m of members) {
@@ -402,12 +438,14 @@ export class RoomActor {
     return m;
   }
 
-  join(user: { id: string; displayName: string }): void {
+  join(user: { id: string; displayName: string }, password?: unknown): void {
     if (this.status === 'closed') throw new GameRuleError('sala_fechada', 'Esta sala foi encerrada.');
     const existing = this.members.get(user.id);
     if (existing && existing.status === 'active') return; // idempotente
     const humansActive = this.activeMembers().length;
-    if (this.mode === 'solo' && user.id !== this.hostUserId) throw new GameRuleError('sala_solo', 'Esta é uma partida rápida individual.');
+    if (this.mode === 'solo' && user.id !== this.hostUserId) throw new GameRuleError('sala_solo', 'Esta é uma sala single player, de um jogador só.');
+    // Sala fechada: quem já foi da sala (ou é o anfitrião) volta sem senha; os outros precisam dela.
+    if (this.passwordHash && !existing && user.id !== this.hostUserId) this.checkPassword(user.id, password);
     if (humansActive >= this.settings.maxHumans) throw new GameRuleError('sala_lotada', 'A sala está lotada.');
     if (humansActive + this.settings.cpuCount >= MAX_PARTICIPANTS && this.status === 'lobby') {
       throw new GameRuleError('sala_lotada', `A sala já tem ${MAX_PARTICIPANTS} técnicos contando as CPUs.`);
@@ -512,7 +550,9 @@ export class RoomActor {
 
   updateSettings(userId: string, patch: Partial<RoomSettings>) {
     this.requireHost(userId);
-    if (this.status !== 'lobby' && this.status !== 'post_dispute') {
+    // Ocultar ou mostrar a sala na lista vale a qualquer hora; as regras do jogo, só entre disputas.
+    const onlyVisibility = Object.keys(patch).every((k) => k === 'hidden');
+    if (!onlyVisibility && this.status !== 'lobby' && this.status !== 'post_dispute') {
       throw new GameRuleError('fora_de_hora', 'As regras só mudam entre disputas.');
     }
     this.settings = sanitizeSettings(this.mode, this.settings, patch);
@@ -522,6 +562,55 @@ export class RoomActor {
 
   get deckInfo(): DeckInfo {
     return this.deps.deckInfo;
+  }
+
+  /** Confere a senha de quem quer entrar; depois de muitas erradas, faz esperar. */
+  private checkPassword(userId: string, password: unknown) {
+    const now = Date.now();
+    const tries = this.wrongPasswords.get(userId);
+    if (tries && now - tries.since > PASSWORD_WINDOW_MS) this.wrongPasswords.delete(userId);
+    if ((this.wrongPasswords.get(userId)?.count ?? 0) >= PASSWORD_MAX_TRIES) {
+      throw new GameRuleError('senha_bloqueada', 'Muitas senhas erradas. Espere alguns minutos e tente de novo.');
+    }
+    if (typeof password !== 'string' || password.length === 0) throw new GameRuleError('senha_necessaria', 'Esta sala é fechada: peça a senha a quem criou.');
+    if (!verifyPassword(password.trim().slice(0, ROOM_PASSWORD_MAX), this.passwordHash!)) {
+      const cur = this.wrongPasswords.get(userId) ?? { count: 0, since: now };
+      this.wrongPasswords.set(userId, { count: cur.count + 1, since: cur.since });
+      throw new GameRuleError('senha_incorreta', 'Senha incorreta.');
+    }
+    this.wrongPasswords.delete(userId);
+  }
+
+  /** Como a sala aparece na lista de salas em andamento. */
+  publicView(): PublicRoomView {
+    const host = this.members.get(this.hostUserId);
+    return {
+      code: this.code,
+      hostUserId: this.hostUserId,
+      hostName: host?.teamName ?? 'Sala',
+      hostCrest: this.crestsFor([this.hostUserId])[this.hostUserId] ?? null,
+      status: this.status,
+      phase: this.status === 'in_dispute' ? (this.dispute?.phase ?? null) : null,
+      cycle: this.cycle,
+      humans: this.activeMembers().length,
+      maxHumans: Math.min(this.settings.maxHumans, MAX_PARTICIPANTS - this.settings.cpuCount),
+      cpuCount: this.settings.cpuCount,
+      locked: this.locked,
+      auctionMode: this.settings.auctionMode,
+      cupFormat: this.settings.cupFormat,
+      skipLeague: this.settings.cupFormat === 'libertadores' && !!this.settings.skipLeague,
+    };
+  }
+
+  /** O anfitrião põe, troca ou tira a senha (sem senha, a sala é aberta). Quem já está na sala continua. */
+  setPassword(userId: string, raw: unknown) {
+    this.requireHost(userId);
+    if (this.mode !== 'online') throw new GameRuleError('config_invalida', 'Só a sala com amigos tem senha.');
+    const password = cleanRoomPassword(raw);
+    this.passwordHash = password ? hashPassword(password) : null;
+    this.wrongPasswords.clear();
+    this.deps.db.prepare('UPDATE rooms SET password_hash = ?, updated_at = ? WHERE id = ?').run(this.passwordHash, nowIso(), this.id);
+    this.broadcast();
   }
 
   private requireHost(userId: string) {
