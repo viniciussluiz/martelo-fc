@@ -32,6 +32,11 @@ export interface ServerConfig {
   smtp: SmtpConfig | null;
   /** Substitui o envio de e-mail (testes). */
   mailer?: Mailer;
+  /**
+   * Donos do site (página de admin): e-mails, nomes de usuário ou ids de conta registrada.
+   * `ADMIN_USERS=a@b.com,vinicius`. Convidado nunca é dono.
+   */
+  adminUsers: string[];
 }
 
 const root = resolve(import.meta.dirname, '../..');
@@ -95,6 +100,11 @@ export function loadConfig(env: NodeJS.ProcessEnv = process.env): ServerConfig {
       .filter(Boolean),
     adsense: adsenseFromEnv(env),
     smtp: smtpFromEnv(env),
+    // Padrão: a conta antiga “vinicius” (nome de usuário não se cria mais, então ninguém toma esse).
+    adminUsers: (env.ADMIN_USERS ?? 'vinicius')
+      .split(',')
+      .map((s) => s.trim().toLowerCase())
+      .filter(Boolean),
   };
 }
 

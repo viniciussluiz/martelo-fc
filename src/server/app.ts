@@ -12,6 +12,7 @@ import { AuthError, AuthService, RESET_TTL_MIN, type PublicUser } from './auth.j
 import { noMailer, passwordResetMail, smtpMailer, type Mailer } from './mail.js';
 import { APP_VERSION, configNotes, loadConfig, type ServerConfig } from './config.js';
 import { loadCrests, loadCrestSources, resolveCrests, type CrestSources } from './crests.js';
+import { DeckAdmin } from './services/deck-admin.js';
 import { migrate, openDatabase, type DB } from './db.js';
 import { adsenseHead, clientBuildId, HttpError, RateLimiter, readJson, Router, securityHeaders, sendJson, serveStatic, type Ctx } from './http.js';
 import { createLogger, type Logger } from './log.js';
@@ -94,6 +95,9 @@ export async function createApp(overrides: Partial<ServerConfig> = {}, logger?: 
       : [];
   const deck = national.length ? [...deckFile.cards, ...national] : deckFile.cards;
   validateDeck(deck);
+  // Ajustes do dono (página de admin), por cima do arquivo do baralho.
+  const deckAdmin = new DeckAdmin(db, deck);
+  if (deckAdmin.applied) log.info('ajustes do baralho', { cartas: deckAdmin.applied });
   if (national.length) log.info('cartas de seleção', { path: config.nationalDeckPath, cartas: national.length, selecoes: new Set(national.map((c) => c.club)).size });
   const crestFiles = loadCrests(config.crestsDir);
   const deckInfo = describeDeck(deckFile.name, deck, crestFiles, loadCrestSources(config.crestsDir));
@@ -125,6 +129,28 @@ export async function createApp(overrides: Partial<ServerConfig> = {}, logger?: 
     const user = auth.authenticate(token);
     if (!user) throw new HttpError(401, 'nao_autenticado', 'Entre para continuar.');
     return user;
+  };
+  /** Dono do site: conta registrada cujo e-mail, nome de usuário ou id está em ADMIN_USERS. */
+  const admins = new Set(config.adminUsers.map((s) => s.toLowerCase()));
+  const isAdmin = (user: PublicUser): boolean => {
+    if (user.isGuest || admins.size === 0) return false;
+    if (admins.has(user.id.toLowerCase())) return true;
+    const acc = auth.account(user.id);
+    return (!!acc.username && admins.has(acc.username.toLowerCase())) || (!!acc.email && admins.has(acc.email.toLowerCase()));
+  };
+  const requireAdmin = (ctx: Ctx): PublicUser => {
+    const user = requireUser(ctx);
+    if (!isAdmin(user)) throw new HttpError(403, 'so_dono', 'Esta página é só do dono do site.');
+    return user;
+  };
+  /** Erro de regra (nível inválido, carta que não existe) vira resposta para quem pediu, não erro do servidor. */
+  const adminCall = <T,>(fn: () => T): T => {
+    try {
+      return fn();
+    } catch (err) {
+      if (err instanceof GameRuleError) throw new HttpError(err.code === 'carta_inexistente' ? 404 : 400, err.code, err.message);
+      throw err;
+    }
   };
   const limitAuth = (ctx: Ctx) => {
     if (!authLimiter.check(ctx.ip)) throw new HttpError(429, 'muitas_tentativas', 'Muitas tentativas. Aguarde um minuto.');
@@ -206,7 +232,21 @@ export async function createApp(overrides: Partial<ServerConfig> = {}, logger?: 
     .on('GET', '/api/me', (ctx) => {
       const user = requireUser(ctx);
       const room = rooms.activeRoomFor(user.id);
-      return { user, activeRoom: room ? { code: room.code, mode: room.mode, status: room.status } : null };
+      return { user: { ...user, admin: isAdmin(user) }, activeRoom: room ? { code: room.code, mode: room.mode, status: room.status } : null };
+    })
+    // Página de admin (só o dono): o baralho inteiro, com Lenda e nível editáveis.
+    .on('GET', '/api/admin/cards', (ctx) => {
+      requireAdmin(ctx);
+      return { cards: deckAdmin.list() };
+    })
+    .on('PATCH', '/api/admin/cards/:id', (ctx) => {
+      const user = requireAdmin(ctx);
+      const b = body(ctx);
+      return { card: adminCall(() => deckAdmin.update(ctx.params.id!, { levelMin: b.levelMin, levelMax: b.levelMax, legend: b.legend }, user.id)) };
+    })
+    .on('DELETE', '/api/admin/cards/:id', (ctx) => {
+      requireAdmin(ctx);
+      return { card: adminCall(() => deckAdmin.reset(ctx.params.id!)) };
     })
     .on('PATCH', '/api/me', (ctx) => {
       const user = requireUser(ctx);
@@ -420,7 +460,11 @@ export async function createApp(overrides: Partial<ServerConfig> = {}, logger?: 
           removeSink?.();
           removeSink = rooms.addUserSink(u.id, send);
           const build = clientBuildId(config.staticDir);
-          send({ t: 'hello:ok', user: { id: u.id, displayName: u.displayName, username: u.username, isGuest: u.isGuest, crest: u.crest }, ...(build ? { build } : {}) });
+          send({
+            t: 'hello:ok',
+            user: { id: u.id, displayName: u.displayName, username: u.username, isGuest: u.isGuest, crest: u.crest, ...(isAdmin(u) ? { admin: true } : {}) },
+            ...(build ? { build } : {}),
+          });
           if (reqId) send({ t: 'ack', reqId });
           return;
         }

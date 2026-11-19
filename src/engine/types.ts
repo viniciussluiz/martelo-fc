@@ -98,6 +98,15 @@ export function qualityBand(tier: Tier): QualityBand {
   return 'ruim';
 }
 
+/** Faixa que um nível (meio da faixa mínima–máxima) dá. Os mesmos cortes do gerador do baralho. */
+export function tierForLevel(mid: number): Tier {
+  if (mid >= 90) return 'lenda';
+  if (mid >= 84) return 'craque';
+  if (mid >= 76) return 'titular';
+  if (mid >= 68) return 'operario';
+  return 'perna';
+}
+
 export const TIER_LABEL: Record<Tier, string> = {
   lenda: 'Lenda',
   craque: 'Craque',

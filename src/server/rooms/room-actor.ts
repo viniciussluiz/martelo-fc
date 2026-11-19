@@ -667,7 +667,11 @@ export class RoomActor {
     const prev = this.deps.db
       .prepare(`SELECT id FROM disputes WHERE room_id = ? AND status = 'finished' ORDER BY seq DESC LIMIT 1`)
       .get(this.id) as { id: string } | undefined;
-    const carried: Card[] = this.settings.carryOver && !this.clubsMode && prev ? this.deps.results.acquiredCards(prev.id) : [];
+    // As herdadas voltam como estão hoje no baralho (o dono pode ter ajustado o nível ou a Lenda).
+    const current = new Map(this.deps.deck.map((c) => [c.id, c]));
+    const carried: Card[] = (this.settings.carryOver && !this.clubsMode && prev ? this.deps.results.acquiredCards(prev.id) : []).map(
+      (c) => current.get(c.id) ?? c,
+    );
     const humans = humanIds
       .map((id) => this.members.get(id)!)
       .filter(Boolean)

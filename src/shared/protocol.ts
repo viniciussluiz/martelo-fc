@@ -83,6 +83,24 @@ export interface PublicUserView {
   isGuest: boolean;
   /** Escudo do time do técnico. */
   crest: CrestConfig;
+  /** Dono do site: vê a página de admin. */
+  admin?: boolean;
+}
+
+/** Uma carta do baralho na página de admin. */
+export interface AdminCardView {
+  id: string;
+  personId?: string;
+  name: string;
+  position: Position;
+  club: string;
+  year: number;
+  series?: Series;
+  levelMin: number;
+  levelMax: number;
+  tier: Tier;
+  /** Como a carta está no arquivo do baralho, quando o dono ajustou (null = sem ajuste). */
+  original: { levelMin: number; levelMax: number; tier: Tier } | null;
 }
 
 export interface MemberView {

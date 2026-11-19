@@ -1,5 +1,5 @@
 import { Rng } from '../../engine/rng.js';
-import type { Card, Position, Series, Tier } from '../../engine/types.js';
+import { tierForLevel, type Card, type Position, type Series, type Tier } from '../../engine/types.js';
 import { SERIES_CLUBS, SERIES_SEASON, type SeriesClub } from './series.js';
 import type { RawClub, RawDump, RawPerson, RawStint } from './types.js';
 
@@ -272,11 +272,7 @@ export function shortClubName(c: Pick<RawClub, 'label' | 'short'>): string {
 // ---------------------------------------------------------------------------
 
 export function tierOf(mid: number): Tier {
-  if (mid >= 90) return 'lenda';
-  if (mid >= 84) return 'craque';
-  if (mid >= 76) return 'titular';
-  if (mid >= 68) return 'operario';
-  return 'perna';
+  return tierForLevel(mid);
 }
 
 /**
