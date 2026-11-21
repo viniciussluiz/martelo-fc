@@ -4,6 +4,7 @@ import { ROOM_PASSWORD_MAX, ROOM_PASSWORD_MIN, type PublicUserView } from '../..
 import { signIn, signOut } from '../App';
 import { EnvelopeArt } from '../components/common';
 import { ClubEditorDialog, ClubLookEditor } from '../components/crest/CrestEditor';
+import { TopRankingCard } from '../components/ranking';
 import { TeamCrest } from '../components/crest/TeamCrest';
 import { Icon, Logo } from '../components/Icon';
 import { PixelCoin, PosChip } from '../components/ui';
@@ -17,10 +18,14 @@ interface ActiveRoom {
   status: string;
 }
 
-/** Tela de abertura: o nome do jogo e a cena do pregão (figurinha, envelope lacrado e moedas). */
-function TitleScreen({ compact }: { compact?: boolean }) {
+/**
+ * Tela de abertura: o nome do jogo e a cena do pregão (figurinha, envelope lacrado e moedas).
+ * `invite`: quem chegou pelo link de uma sala. No celular, a abertura some para o formulário de
+ * entrar na sala (com Entrar e Criar conta) ficar logo no topo.
+ */
+function TitleScreen({ compact, invite }: { compact?: boolean; invite?: boolean }) {
   return (
-    <section className="title-screen" data-compact={compact || undefined}>
+    <section className="title-screen" data-compact={compact || undefined} data-invite={invite || undefined}>
       <div className="ts-copy">
         <h1 className="ts-logo">
           <span className="ts-logo-crest" aria-hidden="true">
@@ -219,7 +224,7 @@ export function HomePage({ joinCode }: { joinCode?: string }) {
   if (!user) {
     return (
       <div className="home">
-        <TitleScreen />
+        <TitleScreen invite={!!joinCode} />
         <GuestForm {...(joinCode ? { joinCode } : {})} />
       </div>
     );
@@ -307,7 +312,10 @@ export function HomePage({ joinCode }: { joinCode?: string }) {
             </span>
           </form>
         </section>
-        <MyClubCard user={user} />
+        <div className="stack menu-side">
+          <MyClubCard user={user} />
+          <TopRankingCard you={user.id} />
+        </div>
       </div>
       <CreateRoomDialog open={creating} busy={busy === 'online'} onClose={() => setCreating(false)} onCreate={(access) => void create('online', access)} />
     </div>

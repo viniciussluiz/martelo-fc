@@ -8,14 +8,23 @@ import { api } from '../lib/api';
 import { navigate, usePath } from '../lib/router';
 import { useStore } from '../lib/store';
 
-/** Endereço de um período: '/ranking' (temporada atual), '/ranking?temporada=geral' ou '?temporada=2026-10'. */
-const hrefFor = (q: string | null) => (q ? `/ranking?temporada=${q}` : '/ranking');
+/**
+ * Endereço de um período: '/ranking' (temporada atual), '?temporada=geral' ou '?temporada=2026-10',
+ * e '&online=1' para contar só as disputas com 2 ou mais técnicos humanos.
+ */
+const hrefFor = (q: string | null, online: boolean) => {
+  const p = new URLSearchParams();
+  if (q) p.set('temporada', q);
+  if (online) p.set('online', '1');
+  const qs = p.toString();
+  return qs ? `/ranking?${qs}` : '/ranking';
+};
 
 function perDispute(r: RankingRow) {
   return (r.points / Math.max(1, r.disputes)).toLocaleString('pt-BR', { minimumFractionDigits: 1, maximumFractionDigits: 1 });
 }
 
-function Row({ r, me }: { r: RankingRow; me: boolean }) {
+function Row({ r, me, champion }: { r: RankingRow; me: boolean; champion?: boolean }) {
   const open = (e: React.MouseEvent) => {
     e.preventDefault();
     navigate(`/perfil/${r.userId}`);
@@ -31,6 +40,11 @@ function Row({ r, me }: { r: RankingRow; me: boolean }) {
         <a className="team-cell" href={`/perfil/${r.userId}`} onClick={open}>
           <TeamCrest userId={r.userId} name={r.name} crest={r.crest} size={28} />
           <span className="team-cell-name">{r.name}</span>
+          {champion && (
+            <span className="badge badge-gold">
+              <Icon name="coroa" size={13} /> campeão
+            </span>
+          )}
           {me && <span className="badge badge-me">você</span>}
         </a>
       </td>
@@ -55,7 +69,9 @@ function Row({ r, me }: { r: RankingRow; me: boolean }) {
 export function RankingPage() {
   const user = useStore((s) => s.user);
   const path = usePath();
-  const q = new URLSearchParams(path.split('?')[1] ?? '').get('temporada');
+  const params = new URLSearchParams(path.split('?')[1] ?? '');
+  const q = params.get('temporada');
+  const online = params.get('online') === '1';
   const overall = q === 'geral';
   const asked = isSeasonKey(q) ? q : null;
   const [view, setView] = useState<RankingView | null>(null);
@@ -64,16 +80,16 @@ export function RankingPage() {
   useEffect(() => {
     let alive = true;
     setError(null);
-    api<RankingView>('GET', `/api/ranking${overall ? '?temporada=geral' : asked ? `?temporada=${asked}` : ''}`)
+    api<RankingView>('GET', `/api/ranking?temporada=${overall ? 'geral' : (asked ?? '')}${online ? '&online=1' : ''}`)
       .then((v) => alive && setView(v))
       .catch((e: Error) => alive && setError(e.message));
     return () => {
       alive = false;
     };
-  }, [overall, asked, user?.id, user?.isGuest]);
+  }, [overall, asked, online, user?.id, user?.isGuest]);
 
-  const go = (target: string | null) => navigate(hrefFor(target), true);
-  const loading = !view || (overall ? view.season !== null : view.season !== (asked ?? view.current));
+  const go = (target: string | null, onlyOnline = online) => navigate(hrefFor(target, onlyOnline), true);
+  const loading = !view || view.online !== online || (overall ? view.season !== null : view.season !== (asked ?? view.current));
   const season = view?.season ?? null;
   const idx = view && season ? view.seasons.indexOf(season) : -1;
   const older = view && idx >= 0 ? view.seasons[idx + 1] : undefined;
@@ -104,7 +120,7 @@ export function RankingPage() {
               <Icon name="voltar" size={16} />
             </button>
             <strong className="season-name">{seasonLabel(season)}</strong>
-            {season === view.current && <span className="badge badge-gold">em andamento</span>}
+            {season === view.current ? <span className="badge badge-gold">em andamento</span> : view.closed && <span className="badge">encerrada</span>}
             <button
               type="button"
               className="btn btn-sm btn-icon season-next"
@@ -117,7 +133,16 @@ export function RankingPage() {
           </div>
         )}
         {overall && <span className="season-name">Todos os tempos</span>}
+        <div className="seg ranking-filter" role="group" aria-label="Quais disputas contam">
+          <button type="button" aria-pressed={!online} onClick={() => go(overall ? 'geral' : (asked ?? null), false)}>
+            Todas
+          </button>
+          <button type="button" aria-pressed={online} onClick={() => go(overall ? 'geral' : (asked ?? null), true)} title="Só disputas com 2 ou mais técnicos humanos">
+            <Icon name="turma" size={16} /> Só online
+          </button>
+        </div>
       </div>
+      {online && <p className="hint ranking-filter-note">Contam só as disputas com pelo menos 2 técnicos humanos na sala.</p>}
 
       {error ? (
         <Empty icon="info">{error}</Empty>
@@ -185,7 +210,7 @@ export function RankingPage() {
                 </thead>
                 <tbody>
                   {view.rows.map((r) => (
-                    <Row key={r.userId} r={r} me={r.userId === me?.userId} />
+                    <Row key={r.userId} r={r} me={r.userId === me?.userId} champion={view.closed && r.position === 1} />
                   ))}
                   {me && me.position > 0 && !meInTop && (
                     <>
@@ -249,6 +274,11 @@ export function RankingPage() {
           </div>
           <ul className="rules-list ranking-notes">
             <li>A temporada é o mês, no horário de Brasília. O geral soma todos os tempos.</li>
+            <li>
+              Quando o mês acaba, a temporada fecha: o 1º ganha a conquista Campeão da Temporada e os 10 primeiros ganham Top 10 do Mês (se a
+              temporada teve mais de 10 técnicos).
+            </li>
+            <li>“Só online” conta apenas as disputas com pelo menos 2 técnicos humanos na sala.</li>
             <li>Quem sai da sala no meio da disputa não pontua nela.</li>
             <li>Visitante pontua, mas só aparece no ranking depois de criar a conta.</li>
             <li>Empate em pontos: vence quem tem mais títulos de Mundial e Libertadores, depois mais títulos, mais vitórias e melhor saldo.</li>

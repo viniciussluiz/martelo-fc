@@ -10,6 +10,7 @@ import { ClubEditorDialog } from '../crest/CrestEditor';
 import { TeamCrest } from '../crest/TeamCrest';
 import { Icon } from '../Icon';
 import { StatusLight } from '../ui';
+import { RoomRankingPanel } from '../ranking';
 import { LastResultCard } from './Summary';
 
 export function RoomHeader({ room, subtitle }: { room: RoomView; subtitle: string }) {
@@ -501,6 +502,7 @@ export function Lobby({ room }: { room: RoomView }) {
         </div>
         <div className="stack">
           <SettingsPanel room={room} editable={isHost} />
+          <RoomRankingPanel code={room.code} finished={room.history.filter((h) => h.status === 'finished').length} you={room.you} />
           <HistoryPanel room={room} />
         </div>
       </div>

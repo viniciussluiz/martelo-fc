@@ -211,9 +211,128 @@ describe('ranking ao vivo', () => {
     expect(prof.data.ranking.seasonStanding).toMatchObject({ position: 1, total: 1 });
     expect(prof.data.byCompetition[0]).toMatchObject({ competition: 'liga', editions: 1, played: 38 });
 
-    // Temporada inválida cai na atual; um mês sem ninguém vem vazio.
+    // Ranking da sala (pelo código) e sala que não existe.
+    const room = await api(env.app, 'GET', `/api/rooms/${data.code}/ranking`, undefined, ana.token);
+    expect(room.data.cycles).toBe(1);
+    expect(room.data.rows).toEqual([expect.objectContaining({ userId: ana.userId, position: 1, guest: false })]);
+    expect((await api(env.app, 'GET', '/api/rooms/ZZZZZZ/ranking', undefined, ana.token)).status).toBe(404);
+
+        // Temporada inválida cai na atual; um mês sem ninguém vem vazio.
     expect((await api(env.app, 'GET', '/api/ranking?temporada=xyz')).data.season).toBe(after.data.current);
     expect((await api(env.app, 'GET', '/api/ranking?temporada=2020-01')).data.rows).toEqual([]);
     ana.close();
+  });
+});
+
+describe('temporadas, sala e filtro só online', () => {
+  /** Banco com técnicos e uma linha de ranking por disputa, sem passar pelo jogo. */
+  function seeded() {
+    const db = openDatabase(':memory:');
+    migrate(db);
+    const at = '2026-11-01T12:00:00.000Z';
+    db.prepare(`INSERT INTO users (id, display_name, is_guest, created_at) VALUES ('host', 'Host', 0, ?)`).run(at);
+    for (const r of ['sala-a', 'sala-b'])
+      db.prepare(`INSERT INTO rooms (id, code, mode, host_user_id, status, settings_json, cycle, created_at, updated_at) VALUES (?, ?, 'online', 'host', 'lobby', '{}', 1, ?, ?)`).run(
+        r,
+        r.toUpperCase().replace('-', ''),
+        at,
+        at,
+      );
+    const user = db.prepare(`INSERT OR IGNORE INTO users (id, display_name, is_guest, created_at) VALUES (?, ?, ?, ?)`);
+    const disp = db.prepare(`INSERT INTO disputes (id, room_id, seq, status, phase, seed, config_json, started_at, finished_at) VALUES (?, ?, ?, 'finished', 'finished', 's', '{}', ?, ?)`);
+    const e = db.prepare(
+      `INSERT INTO ranking_entries (${ENTRY_COLS}) VALUES (?, ?, ?, ?, ?, 'nenhuma', 0, ?, 4, ?, 0, 0, 0, 0, 0, 0, 0, 0, 0)`,
+    );
+    let n = 0;
+    /** Uma disputa: `wins` vitórias (3 pontos cada) para o técnico, na temporada e sala dadas. */
+    const play = (id: string, wins: number, opts: { season?: string; room?: string; humans?: number; guest?: boolean } = {}) => {
+      const season = opts.season ?? '2026-11';
+      const when = `${season}-10T12:00:00.000Z`;
+      user.run(id, id.toUpperCase(), opts.guest ? 1 : 0, at);
+      const d = `d${++n}`;
+      disp.run(d, opts.room ?? 'sala-a', n, when, when);
+      e.run(d, id, opts.room ?? 'sala-a', when, season, opts.humans ?? 2, wins);
+    };
+    return { db, play };
+  }
+
+  it('fecha a temporada que acabou uma vez só: grava o top 10 e dá as conquistas', async () => {
+    const { AchievementService } = await import('../../src/server/services/achievements.js');
+    const { db, play } = seeded();
+    for (let i = 1; i <= 12; i++) play(`t${String(i).padStart(2, '0')}`, 30 - i); // t01 lidera
+    play('vis', 99, { guest: true }); // visitante não entra
+    play('t01', 1, { season: '2026-10' }); // antes da primeira temporada com prêmio
+    play('t02', 1, { season: '2026-12' }); // temporada em andamento
+    const achievements = new AchievementService(db);
+    const r = new RankingService(db, achievements);
+
+    // Ainda em novembro: nada fecha.
+    expect(r.closeSeasons(Date.parse('2026-11-30T20:00:00.000Z'))).toEqual([]);
+    const dec = Date.parse('2026-12-02T12:00:00.000Z');
+    const closed = r.closeSeasons(dec);
+    expect(closed.map((c) => [c.season, c.technicians, c.top.length])).toEqual([['2026-11', 12, 10]]);
+    expect(closed[0]!.top[0]).toMatchObject({ userId: 't01', position: 1, points: 87 });
+    expect(r.closeSeasons(dec)).toEqual([]);
+
+    const unlocked = (u: string) => (db.prepare('SELECT achievement_id FROM user_achievements WHERE user_id = ?').pluck().all(u) as string[]).sort();
+    expect(unlocked('t01')).toEqual(expect.arrayContaining(['campeao-temporada', 'top10-temporada']));
+    expect(unlocked('t10')).toContain('top10-temporada');
+    expect(unlocked('t10')).not.toContain('campeao-temporada');
+    expect(unlocked('t11')).not.toContain('top10-temporada');
+    expect(unlocked('vis')).toEqual([]);
+
+    // Página de uma temporada encerrada.
+    const v = r.view('2026-11', null, {}, dec);
+    expect(v.closed).toBe(true);
+    expect(r.view('2026-12', null, {}, dec).closed).toBe(false);
+  });
+
+  it('temporada com poucos técnicos: campeão só com alguém para vencer, top 10 só com mais de 10', async () => {
+    const { AchievementService } = await import('../../src/server/services/achievements.js');
+    const { db, play } = seeded();
+    play('sozinho', 10);
+    const r = new RankingService(db, new AchievementService(db));
+    r.closeSeasons(Date.parse('2026-12-02T12:00:00.000Z'));
+    expect(db.prepare('SELECT position FROM season_awards WHERE user_id = ?').pluck().get('sozinho')).toBe(1);
+    expect(db.prepare('SELECT COUNT(*) FROM user_achievements WHERE user_id = ?').pluck().get('sozinho')).toBe(0);
+  });
+
+  it('só online conta as disputas com 2 ou mais humanos; limite corta a lista', () => {
+    const { db, play } = seeded();
+    play('ana', 10, { humans: 1 });
+    play('ana', 2, { humans: 3 });
+    play('bia', 5, { humans: 2 });
+    const r = new RankingService(db);
+    expect(r.view('2026-11', null).rows.map((x) => [x.userId, x.points])).toEqual([
+      ['ana', 36],
+      ['bia', 15],
+    ]);
+    const online = r.view('2026-11', 'ana', { online: true });
+    expect(online.online).toBe(true);
+    expect(online.rows.map((x) => [x.userId, x.points])).toEqual([
+      ['bia', 15],
+      ['ana', 6],
+    ]);
+    expect(online.me).toMatchObject({ userId: 'ana', position: 2, disputes: 1 });
+    const top1 = r.view('2026-11', 'bia', { limit: 1 });
+    expect(top1.rows.map((x) => x.userId)).toEqual(['ana']);
+    expect(top1.me).toMatchObject({ userId: 'bia', position: 2 });
+  });
+
+  it('ranking da sala: só os ciclos dela, com visitantes', () => {
+    const { db, play } = seeded();
+    play('ana', 10, { room: 'sala-a' });
+    play('vis', 12, { room: 'sala-a', guest: true });
+    play('ana', 50, { room: 'sala-b' });
+    play('bia', 1, { room: 'sala-b' });
+    const r = new RankingService(db);
+    const a = r.room('sala-a');
+    expect(a.cycles).toBe(2);
+    expect(a.rows.map((x) => [x.userId, x.points, x.guest, x.position])).toEqual([
+      ['vis', 36, true, 1],
+      ['ana', 30, false, 2],
+    ]);
+    expect(r.room('sala-b').rows.map((x) => x.userId)).toEqual(['ana', 'bia']);
+    expect(r.room('nenhuma')).toEqual({ cycles: 0, rows: [] });
   });
 });

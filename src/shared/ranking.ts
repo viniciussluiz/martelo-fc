@@ -89,6 +89,18 @@ export function seasonLabel(season: string, short = false): string {
   return `${name.charAt(0).toUpperCase()}${name.slice(1)} de ${y}`;
 }
 
+/** Primeira temporada com prêmio: as anteriores aparecem no ranking, mas não dão conquista. */
+export const RANKING_FIRST_SEASON = '2026-11';
+
+/**
+ * Prêmios do fechamento da temporada. O de campeão exige alguém para vencer; o de top 10 só vale
+ * quando a temporada teve mais de 10 técnicos (senão todo mundo seria top 10).
+ */
+export const SEASON_AWARD_RULES = { championMinTechnicians: 2, top: 10 } as const;
+
+/** Disputa “online”: com pelo menos 2 técnicos humanos (o filtro “Só online” do ranking). */
+export const ONLINE_MIN_HUMANS = 2;
+
 export function isSeasonKey(s: string | null | undefined): s is string {
   return !!s && /^\d{4}-(0[1-9]|1[0-2])$/.test(s);
 }
@@ -114,6 +126,10 @@ export interface RankingRow {
 export interface RankingView {
   /** `null` = geral (todos os tempos). */
   season: string | null;
+  /** A temporada já acabou (o mês passou). */
+  closed: boolean;
+  /** Só disputas com 2 ou mais técnicos humanos. */
+  online: boolean;
   /** Temporada em andamento agora. */
   current: string;
   /** Temporadas com pontos, da mais recente para a mais antiga (inclui a atual). */
@@ -128,6 +144,17 @@ export interface RankingView {
 }
 
 export const RANKING_PAGE_SIZE = 100;
+
+/** Uma linha do ranking de uma sala: só os ciclos dela, com visitantes (lá todo mundo se conhece). */
+export interface RoomRankingRow extends RankingRow {
+  guest: boolean;
+}
+
+export interface RoomRankingView {
+  /** Ciclos concluídos que contaram pontos nesta sala. */
+  cycles: number;
+  rows: RoomRankingRow[];
+}
 
 /** Posição e pontos de um técnico num período. `position` nulo = visitante (fora da lista). */
 export interface RankingStanding {

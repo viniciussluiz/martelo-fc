@@ -33,6 +33,20 @@ const SECTOR_NOUN: Record<Position, [string, string]> = {
   ATA: ['atacante', 'atacantes'],
 };
 
+/**
+ * Traz o topo do pregão para a vista, logo abaixo do cabeçalho fixo, se ele não estiver à vista.
+ * No celular a lista de lances fica em cima e “Seu time” embaixo: quem lacra o envelope está lá no
+ * fim da página, e a revelação aparece lá em cima.
+ */
+function bringIntoView(el: HTMLElement | null) {
+  if (!el) return;
+  const header = document.querySelector('.topbar')?.getBoundingClientRect().bottom ?? 0;
+  const top = el.getBoundingClientRect().top;
+  if (top >= header && top <= window.innerHeight * 0.5) return;
+  const reduce = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+  window.scrollTo({ top: Math.max(0, window.scrollY + top - header - 12), behavior: reduce ? 'auto' : 'smooth' });
+}
+
 export function AuctionScreen({ room }: { room: RoomView }) {
   const d = room.dispute!;
   const a = d.auction!;
@@ -42,11 +56,24 @@ export function AuctionScreen({ room }: { room: RoomView }) {
   const now = useNow(a.reveal ? 100 : 30_000);
   const revealIdx = a.reveal ? revealIndex(a.reveal, now) : -1;
   const pending = useMemo(() => unrevealed(a.reveal, revealIdx), [a.reveal, revealIdx]);
+  // Depois de lacrar o envelope (ou o desempate) e quando começa a revelação, a tela volta para o
+  // topo do pregão. Na chegada à tela não mexe na rolagem.
+  const mainRef = useRef<HTMLDivElement | null>(null);
+  const sealed = !!step && 'mySealed' in step && step.mySealed;
+  const revealId = a.reveal ? `${a.reveal.stepId}:${a.reveal.startedAt}` : null;
+  const arrived = useRef(false);
+  useEffect(() => {
+    if (!arrived.current) {
+      arrived.current = true;
+      return;
+    }
+    if (sealed || revealId) bringIntoView(mainRef.current);
+  }, [sealed, revealId]);
   return (
     <div className="auction">
       <AuctionHead d={d} pending={pending} />
       <div className="auction-grid">
-        <div className="auction-main">
+        <div className="auction-main" ref={mainRef}>
           {a.reveal ? (
             <RevealStage reveal={a.reveal} idx={revealIdx} d={d} />
           ) : step?.kind === 'bid' ? (

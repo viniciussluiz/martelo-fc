@@ -122,8 +122,19 @@ export async function createApp(overrides: Partial<ServerConfig> = {}, logger?: 
   const achievements = new AchievementService(db);
   const results = new ResultsService(db, achievements);
   const h2h = new H2HService(db);
-  const ranking = new RankingService(db);
+  const ranking = new RankingService(db, achievements);
   results.onFinalized = () => ranking.invalidate();
+  // Fecha as temporadas que acabaram (o mês virou): grava o top 10 e dá as conquistas de temporada.
+  const closeSeasons = () => {
+    try {
+      for (const c of ranking.closeSeasons()) log.info('temporada do ranking fechada', { temporada: c.season, tecnicos: c.technicians, top: c.top.length });
+    } catch (err) {
+      log.error('falha ao fechar temporada do ranking', { err: String(err) });
+    }
+  };
+  closeSeasons();
+  const seasonTimer = setInterval(closeSeasons, 10 * 60_000);
+  seasonTimer.unref?.();
   const rooms = new RoomManager({ db, deck, deckInfo, results, config, log });
   const restored = rooms.restoreAll();
   if (restored) log.info('salas restauradas', { restored });
@@ -336,6 +347,13 @@ export async function createApp(overrides: Partial<ServerConfig> = {}, logger?: 
         locked: room.locked,
       };
     })
+    // Ranking da sala: só os ciclos dela.
+    .on('GET', '/api/rooms/:code/ranking', (ctx) => {
+      requireUser(ctx);
+      const id = db.prepare('SELECT id FROM rooms WHERE code = ?').pluck().get(ctx.params.code!.toUpperCase()) as string | undefined;
+      if (!id) throw new HttpError(404, 'sala_inexistente', 'Não achamos uma sala com esse código.');
+      return ranking.room(id);
+    })
     .on('GET', '/api/achievements', () =>
       ACHIEVEMENTS.map((a) => ({
         id: a.id,
@@ -357,7 +375,11 @@ export async function createApp(overrides: Partial<ServerConfig> = {}, logger?: 
     .on('GET', '/api/ranking', (ctx) => {
       const q = ctx.query.get('temporada');
       const season = q === 'geral' ? null : isSeasonKey(q) ? q : ranking.currentSeason();
-      return ranking.view(season, optionalUser(ctx)?.id ?? null);
+      const limit = Number(ctx.query.get('limite'));
+      return ranking.view(season, optionalUser(ctx)?.id ?? null, {
+        online: ctx.query.get('online') === '1',
+        ...(Number.isFinite(limit) && limit > 0 ? { limit } : {}),
+      });
     })
     // O que a disputa rendeu no ranking para quem pediu (resumo do fim da disputa).
     .on('GET', '/api/ranking/disputa/:id', (ctx) => {
@@ -625,6 +647,7 @@ export async function createApp(overrides: Partial<ServerConfig> = {}, logger?: 
     url,
     async close() {
       clearInterval(heartbeat);
+      clearInterval(seasonTimer);
       rooms.shutdown();
       for (const ws of wss.clients) ws.terminate();
       await new Promise<void>((r) => wss.close(() => r()));

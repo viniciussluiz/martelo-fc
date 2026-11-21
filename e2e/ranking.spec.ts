@@ -20,5 +20,12 @@ test('ranking aberto a quem não entrou: menu, temporada, geral e como funciona'
   await expect(page).toHaveURL(/\/ranking\?temporada=geral$/);
   await expect(page.getByText('Todos os tempos', { exact: true })).toBeVisible();
   await expect(page.getByText(/Ninguém pontuou ainda/)).toBeVisible();
+
+  // Só online: o período escolhido continua, e o filtro vai para o endereço.
+  await page.getByRole('button', { name: 'Só online' }).click();
+  await expect(page).toHaveURL(/\/ranking\?temporada=geral&online=1$/);
+  await expect(page.getByText('Contam só as disputas com pelo menos 2 técnicos humanos na sala.')).toBeVisible();
+  await page.getByRole('button', { name: 'Temporada', exact: true }).click();
+  await expect(page).toHaveURL(/\/ranking\?online=1$/);
   expect(errors).toEqual([]);
 });

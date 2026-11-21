@@ -1,9 +1,12 @@
 import type { CupFormat } from '../../engine/types.js';
 import {
   COMPETITION_LABEL,
+  ONLINE_MIN_HUMANS,
   RANKING_COMPETITIONS,
+  RANKING_FIRST_SEASON,
   RANKING_PAGE_SIZE,
   RANKING_POINTS,
+  SEASON_AWARD_RULES,
   disputePoints,
   pointsFromTotals,
   seasonOf,
@@ -14,9 +17,10 @@ import {
   type RankingRow,
   type RankingStanding,
   type RankingView,
+  type RoomRankingView,
   type TitleCounts,
 } from '../../shared/ranking.js';
-import type { DB } from '../db.js';
+import { nowIso, type DB } from '../db.js';
 import { userCrests } from './team-crests.js';
 
 /**
@@ -71,7 +75,11 @@ const CACHE_MS = 5 * 60_000;
 export class RankingService {
   private cache = new Map<string, Standings & { at: number }>();
 
-  constructor(private db: DB) {}
+  constructor(
+    private db: DB,
+    /** Conquistas a reavaliar para quem entrou no top 10 de uma temporada que fechou. */
+    private achievements?: { evaluate(userId: string, disputeId: string | null): unknown },
+  ) {}
 
   /** Uma disputa terminou, alguém criou a conta ou trocou o nome: os números mudaram. */
   invalidate() {
@@ -82,10 +90,8 @@ export class RankingService {
     return seasonOf(now);
   }
 
-  private standings(season: string | null): Standings {
-    const key = season ?? 'geral';
-    const hit = this.cache.get(key);
-    if (hit && Date.now() - hit.at < CACHE_MS) return hit;
+  /** Soma os fatos de `ranking_entries` por técnico, com o filtro dado (um trecho de WHERE sobre `e`). */
+  private aggregate(where: string, params: unknown[]): Totals[] {
     const rows = this.db
       .prepare(
         `SELECT e.user_id, u.display_name, u.is_guest,
@@ -98,10 +104,10 @@ export class RankingService {
                 MAX(e.finished_at) AS last_at
            FROM ranking_entries e
            JOIN users u ON u.id = e.user_id
-          WHERE (? IS NULL OR e.season = ?)
+          WHERE ${where}
           GROUP BY e.user_id`,
       )
-      .all(season, season) as Array<{
+      .all(...params) as Array<{
       user_id: string;
       display_name: string;
       is_guest: number;
@@ -117,7 +123,7 @@ export class RankingService {
       copa8: number;
       last_at: string;
     }>;
-    const all: Totals[] = rows.map((r) => {
+    return rows.map((r) => {
       const titles: TitleCounts = { mundial: r.mundial, libertadores: r.libertadores, liga: r.liga, copa8: r.copa8 };
       const pts = pointsFromTotals({ won: r.won, drawn: r.drawn, titles });
       return {
@@ -137,6 +143,14 @@ export class RankingService {
         pointsTitles: pts.titulos,
       };
     });
+  }
+
+  /** Ranking de um período (temporada ou geral; todas as disputas ou só as online), em cache. */
+  private standings(season: string | null, online = false): Standings {
+    const key = `${season ?? 'geral'}:${online ? 'online' : 'todas'}`;
+    const hit = this.cache.get(key);
+    if (hit && Date.now() - hit.at < CACHE_MS) return hit;
+    const all = this.aggregate('(? IS NULL OR e.season = ?) AND (? = 0 OR e.humans >= ?)', [season, season, online ? 1 : 0, ONLINE_MIN_HUMANS]);
     const ranked = all.filter((t) => !t.isGuest).sort(compareTotals);
     const st = {
       at: Date.now(),
@@ -148,26 +162,12 @@ export class RankingService {
     return st;
   }
 
-  /** Temporadas com pontos (contas registradas), da mais recente; sempre inclui a atual. */
-  seasons(now = Date.now()): string[] {
-    const list = this.db
-      .prepare(
-        `SELECT DISTINCT e.season FROM ranking_entries e JOIN users u ON u.id = e.user_id WHERE u.is_guest = 0 ORDER BY e.season DESC`,
-      )
-      .pluck()
-      .all() as string[];
-    const current = this.currentSeason(now);
-    return [...new Set([current, ...list])].sort().reverse();
-  }
-
-  /** A página do ranking: top 100 do período e a linha de quem pediu. */
-  view(season: string | null, viewerId: string | null, now = Date.now()): RankingView {
-    const st = this.standings(season);
-    const top = st.ranked.slice(0, RANKING_PAGE_SIZE);
-    const mine = viewerId ? st.byUser.get(viewerId) : undefined;
-    const ids = [...top.map((t) => t.userId), ...(mine ? [mine.userId] : [])];
-    const crests = userCrests(this.db, ids);
-    const row = (t: Totals, position: number): RankingRow => ({
+  private rowsWithCrests(list: Array<{ t: Totals; position: number }>): RankingRow[] {
+    const crests = userCrests(
+      this.db,
+      list.map((x) => x.t.userId),
+    );
+    return list.map(({ t, position }) => ({
       position,
       userId: t.userId,
       name: t.name,
@@ -182,16 +182,57 @@ export class RankingService {
       goalsFor: t.goalsFor,
       goalsAgainst: t.goalsAgainst,
       disputes: t.disputes,
-    });
+    }));
+  }
+
+  /** Temporadas com pontos (contas registradas), da mais recente; sempre inclui a atual. */
+  seasons(now = Date.now()): string[] {
+    const list = this.db
+      .prepare(
+        `SELECT DISTINCT e.season FROM ranking_entries e JOIN users u ON u.id = e.user_id WHERE u.is_guest = 0 ORDER BY e.season DESC`,
+      )
+      .pluck()
+      .all() as string[];
+    const current = this.currentSeason(now);
+    return [...new Set([current, ...list])].sort().reverse();
+  }
+
+  /** A página do ranking: os primeiros do período (até 100) e a linha de quem pediu. */
+  view(
+    season: string | null,
+    viewerId: string | null,
+    opts: { online?: boolean; limit?: number } = {},
+    now = Date.now(),
+  ): RankingView {
+    const online = !!opts.online;
+    const st = this.standings(season, online);
+    const limit = Math.max(1, Math.min(RANKING_PAGE_SIZE, Math.floor(opts.limit ?? RANKING_PAGE_SIZE)));
+    const top = st.ranked.slice(0, limit);
+    const mine = viewerId ? st.byUser.get(viewerId) : undefined;
+    const rows = this.rowsWithCrests([
+      ...top.map((t, i) => ({ t, position: i + 1 })),
+      ...(mine ? [{ t: mine, position: st.position.get(mine.userId) ?? 0 }] : []),
+    ]);
+    const current = this.currentSeason(now);
     return {
       season,
-      current: this.currentSeason(now),
+      closed: season !== null && season < current,
+      online,
+      current,
       seasons: this.seasons(now),
       weights: RANKING_POINTS,
       total: st.ranked.length,
-      rows: top.map((t, i) => row(t, i + 1)),
-      me: mine ? row(mine, st.position.get(mine.userId) ?? 0) : null,
+      rows: rows.slice(0, top.length),
+      me: mine ? rows.at(-1)! : null,
     };
+  }
+
+  /** Ranking de uma sala: só os ciclos dela, com visitantes, porque ali todo mundo se conhece. */
+  room(roomId: string): RoomRankingView {
+    const all = this.aggregate('e.room_id = ?', [roomId]).sort(compareTotals);
+    const cycles = (this.db.prepare('SELECT COUNT(DISTINCT dispute_id) FROM ranking_entries WHERE room_id = ?').pluck().get(roomId) as number) ?? 0;
+    const rows = this.rowsWithCrests(all.map((t, i) => ({ t, position: i + 1 })));
+    return { cycles, rows: rows.map((r, i) => ({ ...r, guest: all[i]!.isGuest })) };
   }
 
   /** Posição e pontos de um técnico num período (`null` = sem pontos nele). */
@@ -205,6 +246,42 @@ export class RankingService {
   profile(userId: string, now = Date.now()): ProfileRanking {
     const season = this.currentSeason(now);
     return { season, seasonStanding: this.standing(userId, season), overall: this.standing(userId, null) };
+  }
+
+  /**
+   * Fecha as temporadas que já acabaram (uma vez só cada): grava quem terminou entre os 10 primeiros
+   * e reavalia as conquistas dessas pessoas. Temporadas antes da primeira com prêmio ficam de fora.
+   * Devolve o que fechou agora.
+   */
+  closeSeasons(now = Date.now()): Array<{ season: string; technicians: number; top: Array<{ userId: string; position: number; points: number }> }> {
+    const current = this.currentSeason(now);
+    const pending = this.db
+      .prepare(
+        `SELECT DISTINCT season FROM ranking_entries
+          WHERE season < ? AND season >= ? AND season NOT IN (SELECT season FROM season_closures)
+          ORDER BY season`,
+      )
+      .pluck()
+      .all(current, RANKING_FIRST_SEASON) as string[];
+    const closed: ReturnType<RankingService['closeSeasons']> = [];
+    for (const season of pending) {
+      const run = this.db.transaction(() => {
+        this.cache.clear();
+        const st = this.standings(season);
+        const ins = this.db
+          .prepare('INSERT OR IGNORE INTO season_closures (season, technicians, closed_at) VALUES (?, ?, ?)')
+          .run(season, st.ranked.length, nowIso());
+        if (ins.changes === 0) return null;
+        const top = st.ranked.slice(0, SEASON_AWARD_RULES.top).map((t, i) => ({ userId: t.userId, position: i + 1, points: t.points }));
+        const award = this.db.prepare('INSERT INTO season_awards (season, user_id, position, points) VALUES (?, ?, ?, ?)');
+        for (const a of top) award.run(season, a.userId, a.position, a.points);
+        for (const a of top) this.achievements?.evaluate(a.userId, null);
+        return { season, technicians: st.ranked.length, top };
+      });
+      const done = run();
+      if (done) closed.push(done);
+    }
+    return closed;
   }
 
   /** Títulos e V/E/D de cada competição que o técnico já jogou (Só Libertadores entra na Libertadores). */

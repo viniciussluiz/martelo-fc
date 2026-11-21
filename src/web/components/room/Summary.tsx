@@ -5,7 +5,7 @@ import { act } from '../../lib/socket';
 import { REACH_LABEL, useNow } from '../common';
 import { Icon } from '../Icon';
 import { TeamCrest } from '../crest/TeamCrest';
-import { RankingGainBar } from '../ranking';
+import { RankingGainBar, RoomRankingPanel } from '../ranking';
 import { Confetti, StatusLight } from '../ui';
 import { CHAMPION_ART, ChampionModal, ChampionPoster, type Champion } from './Champion';
 import { HistoryPanel, RoomHeader, SettingsPanel } from './Lobby';
@@ -238,6 +238,7 @@ export function PostDispute({ room }: { room: RoomView }) {
         </div>
         <aside className="stack">
           {room.continuation && <ContinuationPanel room={room} />}
+          <RoomRankingPanel code={room.code} finished={room.history.filter((h) => h.status === 'finished').length} you={room.you} />
           {room.hostUserId === room.you && <SettingsPanel room={room} editable />}
           <HistoryPanel room={room} />
         </aside>

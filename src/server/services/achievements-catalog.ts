@@ -5,7 +5,7 @@
  * Os ids são estáveis: nunca reutilize um id para outro significado.
  */
 
-export type AchievementCategory = 'titulos' | 'leilao' | 'sequencias' | 'confrontos' | 'salas' | 'carreira' | 'especiais';
+export type AchievementCategory = 'titulos' | 'ranking' | 'leilao' | 'sequencias' | 'confrontos' | 'salas' | 'carreira' | 'especiais';
 export type Rarity = 'comum' | 'rara' | 'epica' | 'lendaria';
 
 export interface UserStats {
@@ -33,6 +33,10 @@ export interface UserStats {
   monteChampions: number;
   matchesPlayed: number;
   matchesWon: number;
+  /** Temporadas do ranking terminadas em 1º (com alguém para vencer). */
+  seasonTitles: number;
+  /** Temporadas do ranking terminadas entre os 10 primeiros (com mais de 10 técnicos). */
+  seasonTop10: number;
 }
 
 export interface AchievementDef {
@@ -52,6 +56,7 @@ export interface AchievementDef {
 
 export const CATEGORY_LABEL: Record<AchievementCategory, string> = {
   titulos: 'Títulos',
+  ranking: 'Ranking',
   leilao: 'Leilão',
   sequencias: 'Sequências',
   confrontos: 'Confrontos',
@@ -81,6 +86,9 @@ export const ACHIEVEMENTS: AchievementDef[] = [
   { id: 'dinastia-15', name: 'Dinastia', description: 'Ninguém aguenta mais te ver levantando taça.', criteria: 'Conquiste 15 títulos no total.', icon: 'coroa', category: 'titulos', rarity: 'lendaria', metric: 'titles', target: 15 },
   { id: 'finalista-3', name: 'Figurinha de Final', description: 'Sempre lá na decisão.', criteria: 'Chegue a 3 finais de copa.', icon: 'apito', category: 'titulos', rarity: 'rara', metric: 'cupFinals', target: 3 },
   { id: 'podio-5', name: 'Freguês do Pódio', description: 'Constância é tudo.', criteria: 'Termine 5 ligas entre os 3 primeiros.', icon: 'podio', category: 'titulos', rarity: 'comum', metric: 'podiums', target: 5 },
+  // Ranking (dadas no fechamento de cada temporada, o mês)
+  { id: 'top10-temporada', name: 'Top 10 do Mês', description: 'Entre os dez melhores técnicos de uma temporada.', criteria: 'Termine uma temporada do ranking entre os 10 primeiros (com mais de 10 técnicos na disputa).', icon: 'podio', category: 'ranking', rarity: 'rara', metric: 'seasonTop10', target: 1 },
+  { id: 'campeao-temporada', name: 'Campeão da Temporada', description: 'O melhor técnico do mês no ranking.', criteria: 'Termine uma temporada do ranking em 1º lugar.', icon: 'coroa', category: 'ranking', rarity: 'lendaria', metric: 'seasonTitles', target: 1 },
 
   // Leilão
   { id: 'primeiro-arremate', name: 'Bateu o Martelo', description: 'Seu primeiro jogador arrematado.', criteria: 'Arremate 1 jogador no leilão.', icon: 'martelo', category: 'leilao', rarity: 'comum', metric: 'cardsWon', target: 1 },

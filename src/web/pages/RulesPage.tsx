@@ -158,6 +158,11 @@ export function RulesPage() {
             A temporada é o mês, no horário de Brasília, e o ranking geral soma todos os tempos. Empate em pontos vai para quem tem mais títulos
             de Mundial e Libertadores, depois mais títulos, mais vitórias e melhor saldo de gols.
           </p>
+          <p>
+            Quando o mês acaba, a temporada fecha: o 1º colocado ganha a conquista <strong>Campeão da Temporada</strong> e os 10 primeiros ganham{' '}
+            <strong>Top 10 do Mês</strong> (vale quando a temporada teve mais de 10 técnicos). Cada sala também mostra o ranking só dos seus
+            ciclos, e o filtro “Só online” conta apenas as disputas com pelo menos 2 técnicos humanos.
+          </p>
           <p className="hint">
             Quem sai da sala no meio da disputa não pontua nela. Visitante pontua, mas só aparece no ranking depois de criar a conta.
           </p>

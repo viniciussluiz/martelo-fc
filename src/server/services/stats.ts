@@ -1,3 +1,4 @@
+import { SEASON_AWARD_RULES } from '../../shared/ranking.js';
 import type { DB } from '../db.js';
 import { careerLevelFor, type UserStats } from './achievements-catalog.js';
 
@@ -69,6 +70,8 @@ export function computeUserStats(db: DB, userId: string): UserStats {
     monteChampions: 0,
     matchesPlayed: 0,
     matchesWon: 0,
+    seasonTitles: 0,
+    seasonTop10: 0,
   };
 
   for (const r of rows) {
@@ -146,6 +149,19 @@ export function computeUserStats(db: DB, userId: string): UserStats {
       )
       .get(userId, userId) as { n: number }
   ).n;
+
+  // Temporadas do ranking já fechadas (gravadas no fechamento do mês).
+  const seasons = db
+    .prepare(
+      `SELECT COALESCE(SUM(CASE WHEN a.position = 1 AND c.technicians >= ? THEN 1 ELSE 0 END), 0) AS titles,
+              COALESCE(SUM(CASE WHEN a.position <= ? AND c.technicians > ? THEN 1 ELSE 0 END), 0) AS top
+         FROM season_awards a
+         JOIN season_closures c ON c.season = a.season
+        WHERE a.user_id = ?`,
+    )
+    .get(SEASON_AWARD_RULES.championMinTechnicians, SEASON_AWARD_RULES.top, SEASON_AWARD_RULES.top, userId) as { titles: number; top: number };
+  stats.seasonTitles = seasons.titles;
+  stats.seasonTop10 = seasons.top;
 
   return stats;
 }

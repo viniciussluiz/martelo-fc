@@ -8,7 +8,7 @@ sem ver o nível, monta o time e disputa liga e copa. Implementação independen
   com todos os jogadores do ciclo anterior de volta ao pregão. Histórico preservado, sem início duplicado, desconexões tratadas.
 - **Histórico de confrontos** — por adversário: ciclos, ligas, copas, partidas, mata-matas e disputas de lance, com aproveitamento,
   sequências, títulos e finais em comum, elencos e leilões de cada disputa, filtros por período e competição.
-- **Sala de Troféus** — 30 conquistas orientadas a dados (raridades, categorias, secretas, progresso), validadas no servidor.
+- **Sala de Troféus** — 32 conquistas orientadas a dados (raridades, categorias, secretas, progresso), validadas no servidor.
 - **Escudos dos times** — ao fundar o clube, o técnico monta o escudo num criador visual (formato, padrão, três cores, símbolo,
   sigla, estrelas, faixa e louros), salvo na conta e mostrado no placar, na tabela, nos confrontos, no histórico e no perfil.
   Os times da CPU e os clubes da liga e das copas ganham um escudo gerado a partir do nome: o mesmo time tem sempre o mesmo escudo.
