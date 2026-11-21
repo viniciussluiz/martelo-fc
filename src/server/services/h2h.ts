@@ -17,6 +17,18 @@ import { userCrests } from './team-crests.js';
 export type ConfrontKind = 'ciclo' | 'liga' | 'copa' | 'partida' | 'eliminatoria' | 'lance';
 export const KINDS: ConfrontKind[] = ['ciclo', 'liga', 'copa', 'partida', 'eliminatoria', 'lance'];
 
+/** Texto para busca: minúsculo e sem acento (“Caçarato” acha “cacarato”). */
+export function searchKey(s: string): string {
+  return s
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase()
+    .trim();
+}
+
+export const OPPONENTS_PAGE_SIZE = 12;
+const OPPONENTS_PAGE_MAX = 60;
+
 export interface Record3 {
   total: number;
   wins: number;
@@ -97,7 +109,11 @@ export class H2HService {
   }
 
   /** Lista de adversários com o resumo por modalidade. */
-  opponents(me: string) {
+  /**
+   * Adversários do técnico, do confronto mais recente para o mais antigo, em páginas.
+   * `query` filtra pelo nome do time (sem diferenciar maiúsculas nem acentos).
+   */
+  opponents(me: string, opts: { query?: string; page?: number; pageSize?: number } = {}) {
     const rows = this.rows(me, null);
     const map = new Map<string, { userId: string; lastAt: string; records: Record<ConfrontKind, Record3> }>();
     for (const row of rows) {
@@ -116,16 +132,35 @@ export class H2HService {
       map.set(p.opponent, entry);
     }
     const names = this.names([...map.keys()]);
-    const crests = userCrests(this.db, map.keys());
-    return [...map.values()]
-      .map((e) => ({
+    const all = [...map.values()].sort((a, b) => b.lastAt.localeCompare(a.lastAt));
+    const q = searchKey(opts.query ?? '');
+    const found = q ? all.filter((e) => searchKey(names.get(e.userId) ?? '').includes(q)) : all;
+    const pageSize = Math.max(1, Math.min(OPPONENTS_PAGE_MAX, Math.floor(opts.pageSize ?? OPPONENTS_PAGE_SIZE)));
+    const pages = Math.max(1, Math.ceil(found.length / pageSize));
+    const page = Math.max(1, Math.min(pages, Math.floor(opts.page ?? 1) || 1));
+    const slice = found.slice((page - 1) * pageSize, page * pageSize);
+    // Escudos só da página mostrada.
+    const crests = userCrests(
+      this.db,
+      slice.map((e) => e.userId),
+    );
+    return {
+      items: slice.map((e) => ({
         userId: e.userId,
         displayName: names.get(e.userId) ?? 'Técnico',
         crest: crests.get(e.userId) ?? null,
         lastAt: e.lastAt,
         records: Object.fromEntries(KINDS.map((k) => [k, finishRecord(e.records[k], k)])) as Record<ConfrontKind, Record3>,
-      }))
-      .sort((a, b) => b.lastAt.localeCompare(a.lastAt));
+      })),
+      /** Adversários que batem com a busca. */
+      total: found.length,
+      /** Todos os adversários, sem busca. */
+      overall: all.length,
+      page,
+      pages,
+      pageSize,
+      query: opts.query?.trim() ?? '',
+    };
   }
 
   /** Visão detalhada de um adversário. */

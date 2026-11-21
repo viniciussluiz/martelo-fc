@@ -62,7 +62,8 @@ describe('histórico de confrontos', () => {
 
     // Partida com 3 humanos: cada par tem seus próprios registros.
     const opps = await api(env.app, 'GET', `/api/users/${a.userId}/opponents`, undefined, a.token);
-    expect(opps.data.map((o: any) => o.userId).sort()).toEqual([b.userId, c.userId].sort());
+    expect(opps.data.items.map((o: any) => o.userId).sort()).toEqual([b.userId, c.userId].sort());
+    expect(opps.data).toMatchObject({ total: 2, overall: 2, page: 1, pages: 1 });
     // Nenhum par duplicado no banco.
     const dup = env.app.db
       .prepare('SELECT COUNT(*) AS n FROM (SELECT dispute_id, kind, ref, user_a, user_b, COUNT(*) c FROM confrontations GROUP BY 1,2,3,4,5 HAVING c > 1)')

@@ -41,6 +41,7 @@ const PATHS: Record<string, string> = {
   voltar: 'M15 5l-7 7 7 7',
   mais: 'M12 5v14M5 12h14',
   menos: 'M5 12h14',
+  lupa: 'M10.5 4a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM15.5 15.5L20.5 20.5',
 };
 
 /** Ícones cheios (desenho sólido, sem traço). */

@@ -388,7 +388,14 @@ export async function createApp(overrides: Partial<ServerConfig> = {}, logger?: 
     })
     .on('GET', '/api/users/:id/opponents', (ctx) => {
       requireUser(ctx);
-      return h2h.opponents(ctx.params.id!);
+      // ?busca=nome&pagina=2 (12 por página; `porPagina` muda isso, até 60).
+      const page = Number(ctx.query.get('pagina') ?? 1);
+      const size = Number(ctx.query.get('porPagina') ?? 0);
+      return h2h.opponents(ctx.params.id!, {
+        query: (ctx.query.get('busca') ?? '').slice(0, 60),
+        page: Number.isFinite(page) ? page : 1,
+        ...(Number.isFinite(size) && size > 0 ? { pageSize: size } : {}),
+      });
     })
     .on('GET', '/api/users/:id/h2h/:opponent', (ctx) => {
       requireUser(ctx);

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import type { CrestConfig } from '../../shared/crest';
 import { seasonLabel, type CompetitionRecord, type ProfileRanking } from '../../shared/ranking';
 import { Empty, Spinner, fmtDate, REACH_LABEL } from '../components/common';
@@ -53,6 +53,146 @@ interface Opponent {
   records: Record<string, Rec>;
 }
 
+/** Uma página de adversários (a API pagina e busca pelo nome do time). */
+interface OpponentsPage {
+  items: Opponent[];
+  total: number;
+  overall: number;
+  page: number;
+  pages: number;
+  pageSize: number;
+  query: string;
+}
+
+/** Com até este número de adversários, a busca não aparece (cabe tudo numa olhada). */
+const SEARCH_FROM = 7;
+
+/**
+ * Confrontos do perfil: adversários do mais recente para o mais antigo, 12 por página, com busca
+ * pelo nome do time (sem diferenciar maiúsculas nem acentos).
+ */
+function OpponentsSection({ userId, name, crest, isMe }: { userId: string; name: string; crest: CrestConfig; isMe: boolean }) {
+  const [query, setQuery] = useState('');
+  const [search, setSearch] = useState('');
+  const [page, setPage] = useState(1);
+  const [data, setData] = useState<OpponentsPage | null>(null);
+  const [loading, setLoading] = useState(true);
+  const top = useRef<HTMLElement | null>(null);
+
+  // Espera a pessoa parar de digitar e volta para a primeira página.
+  useEffect(() => {
+    const t = setTimeout(() => {
+      setSearch(query.trim());
+      setPage(1);
+    }, 250);
+    return () => clearTimeout(t);
+  }, [query]);
+
+  useEffect(() => {
+    let alive = true;
+    setLoading(true);
+    const qs = new URLSearchParams({ pagina: String(page) });
+    if (search) qs.set('busca', search);
+    api<OpponentsPage>('GET', `/api/users/${userId}/opponents?${qs}`)
+      .then((d) => {
+        if (!alive) return;
+        setData(d);
+        setLoading(false);
+      })
+      .catch(() => alive && setLoading(false));
+    return () => {
+      alive = false;
+    };
+  }, [userId, page, search]);
+
+  const go = (n: number) => {
+    setPage(n);
+    top.current?.scrollIntoView({ block: 'start', behavior: 'smooth' });
+  };
+
+  const count = data ? `${data.overall} ${data.overall === 1 ? 'adversário' : 'adversários'}` : null;
+  return (
+    <section className="stack opponents" ref={top}>
+      <SectionTitle aside={data && data.overall > 0 ? count : null}>Confrontos</SectionTitle>
+      {!data ? (
+        <Spinner />
+      ) : data.overall === 0 ? (
+        <Empty icon="turma">
+          {isMe ? 'Jogue uma sala com amigos para começar o seu histórico de confrontos.' : 'Ainda sem confrontos contra outros técnicos.'}
+        </Empty>
+      ) : (
+        <>
+          {(data.overall >= SEARCH_FROM || query) && (
+            <div className="opp-search">
+              <span className="opp-search-field">
+                <Icon name="lupa" size={18} />
+                <input
+                  className="input"
+                  type="search"
+                  value={query}
+                  onChange={(e) => setQuery(e.target.value)}
+                  placeholder="Buscar adversário pelo nome do time"
+                  aria-label="Buscar adversário"
+                  maxLength={60}
+                />
+              </span>
+              {search && (
+                <span className="small muted">
+                  {data.total} de {count}
+                </span>
+              )}
+            </div>
+          )}
+          {data.items.length === 0 ? (
+            <Empty icon="info">Nenhum adversário com “{search}” no nome.</Empty>
+          ) : (
+            <ul className="opp-list" data-loading={loading || undefined}>
+              {data.items.map((o) => (
+                <li key={o.userId}>
+                  <a
+                    href={`/perfil/${userId}/rival/${o.userId}`}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      navigate(`/perfil/${userId}/rival/${o.userId}`);
+                    }}
+                  >
+                    <span className="opp-vs" aria-hidden="true">
+                      <TeamCrest userId={userId} name={name} crest={crest} size={36} />
+                      <span className="opp-x">×</span>
+                      <TeamCrest userId={o.userId} name={o.displayName} crest={o.crest} size={36} />
+                    </span>
+                    <strong className="opp-name">{o.displayName}</strong>
+                    <span className="small muted">último em {fmtDate(o.lastAt)}</span>
+                    <span className="opp-line">
+                      Ciclos <Record3 r={o.records.ciclo!} />
+                    </span>
+                    <span className="opp-line">
+                      Partidas <Record3 r={o.records.partida!} />
+                    </span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          )}
+          {data.pages > 1 && (
+            <nav className="pager" aria-label="Páginas de confrontos">
+              <button type="button" className="btn btn-sm" disabled={data.page <= 1 || loading} onClick={() => go(data.page - 1)}>
+                <Icon name="voltar" size={16} /> Anterior
+              </button>
+              <span className="pager-info">
+                Página <strong>{data.page}</strong> de {data.pages}
+              </span>
+              <button type="button" className="btn btn-sm pager-next" disabled={data.page >= data.pages || loading} onClick={() => go(data.page + 1)}>
+                Próxima <Icon name="voltar" size={16} />
+              </button>
+            </nav>
+          )}
+        </>
+      )}
+    </section>
+  );
+}
+
 export function Record3({ r }: { r: Rec }) {
   return (
     <span className="record3">
@@ -105,21 +245,16 @@ function ProfileRankingLine({ ranking, isMe }: { ranking: ProfileRanking; isMe: 
 export function ProfilePage({ userId }: { userId: string }) {
   const me = useStore((s) => s.user);
   const [p, setP] = useState<Profile | null>(null);
-  const [opps, setOpps] = useState<Opponent[] | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [editing, setEditing] = useState(false);
   useEffect(() => {
     setP(null);
-    setOpps(null);
-    Promise.all([api<Profile>('GET', `/api/users/${userId}/profile`), api<Opponent[]>('GET', `/api/users/${userId}/opponents`)])
-      .then(([a, b]) => {
-        setP(a);
-        setOpps(b);
-      })
+    api<Profile>('GET', `/api/users/${userId}/profile`)
+      .then(setP)
       .catch((e: Error) => setError(e.message));
   }, [userId]);
   if (error) return <Empty icon="info">{error}</Empty>;
-  if (!p || !opps) return <Spinner />;
+  if (!p) return <Spinner />;
   const s = p.stats;
   const isMe = me?.id === userId;
   // O seu escudo pode ter mudado agora há pouco no criador.
@@ -227,42 +362,7 @@ export function ProfilePage({ userId }: { userId: string }) {
         )}
       </section>
 
-      <section className="stack">
-        <SectionTitle>Confrontos</SectionTitle>
-        {opps.length === 0 ? (
-          <Empty icon="turma">
-            {isMe ? 'Jogue uma sala com amigos para começar o seu histórico de confrontos.' : 'Ainda sem confrontos contra outros técnicos.'}
-          </Empty>
-        ) : (
-          <ul className="opp-list">
-            {opps.map((o) => (
-              <li key={o.userId}>
-                <a
-                  href={`/perfil/${userId}/rival/${o.userId}`}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    navigate(`/perfil/${userId}/rival/${o.userId}`);
-                  }}
-                >
-                  <span className="opp-vs" aria-hidden="true">
-                    <TeamCrest userId={p.user.id} name={p.user.displayName} crest={crest} size={36} />
-                    <span className="opp-x">×</span>
-                    <TeamCrest userId={o.userId} name={o.displayName} crest={o.crest} size={36} />
-                  </span>
-                  <strong className="opp-name">{o.displayName}</strong>
-                  <span className="small muted">último em {fmtDate(o.lastAt)}</span>
-                  <span className="opp-line">
-                    Ciclos <Record3 r={o.records.ciclo!} />
-                  </span>
-                  <span className="opp-line">
-                    Partidas <Record3 r={o.records.partida!} />
-                  </span>
-                </a>
-              </li>
-            ))}
-          </ul>
-        )}
-      </section>
+      <OpponentsSection key={userId} userId={userId} name={name} crest={crest} isMe={isMe} />
 
       <section className="stack">
         <SectionTitle>Últimas disputas</SectionTitle>

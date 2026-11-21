@@ -6816,6 +6816,51 @@ tr[data-zone='z4'] .pos-num {
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
   gap: 12px;
 }
+.opp-list[data-loading] {
+  opacity: 0.55;
+  transition: opacity 0.15s ease;
+}
+/* Ao trocar de página, o topo dos confrontos fica abaixo do cabeçalho fixo. */
+.opponents {
+  scroll-margin-top: 150px;
+}
+.opp-search {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 14px;
+}
+.opp-search-field {
+  position: relative;
+  flex: 1 1 280px;
+  max-width: 460px;
+}
+.opp-search-field svg {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--ink-3);
+  pointer-events: none;
+}
+.opp-search-field .input {
+  width: 100%;
+  padding-left: 38px;
+}
+.pager {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+}
+.pager-info {
+  font-family: var(--f-sport);
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+.pager-next svg {
+  transform: rotate(180deg);
+}
 .opp-list a {
   display: flex;
   flex-direction: column;
