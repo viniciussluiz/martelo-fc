@@ -2608,8 +2608,44 @@ button.mode:disabled {
   align-self: flex-start;
 }
 @media (max-width: 860px) {
-  .kit-editor {
+  .kit-editor,
+  .kit-editor[data-compact] {
     grid-template-columns: minmax(0, 1fr);
+  }
+}
+/*
+ * O criador de escudo e o de uniforme ficam em lugares de larguras diferentes (formulário de fundar o
+ * clube, janela de editar). Quem decide se a pré-visualização vai ao lado ou em cima das opções é a
+ * largura de onde eles estão, não a da tela: num espaço estreito, as abas e as opções não cabem ao lado.
+ */
+.club-look,
+.club-editor {
+  container-type: inline-size;
+}
+@container (max-width: 680px) {
+  .crest-editor,
+  .crest-editor[data-compact],
+  .kit-editor,
+  .kit-editor[data-compact] {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .ce-stage {
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+}
+@container (max-width: 420px) {
+  .ce-tabs {
+    gap: 3px;
+    padding-left: 4px;
+  }
+  .ce-tabs button {
+    padding: 7px 9px 5px;
+    font-size: 0.95rem;
+  }
+  .ce-tabs button[aria-selected='true'] {
+    padding-top: 10px;
   }
 }
 .ce-swatches {
@@ -4895,16 +4931,18 @@ li[data-state='lacrado'] .rt-state {
 }
 .reveal-item {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 16px;
   min-width: 0;
 }
+/* Sem espaço ao lado da figura da Lenda, o nome desce para baixo dela (em vez de virar uma letra por linha). */
 .reveal-body {
   display: flex;
   flex-direction: column;
   gap: 8px;
   min-width: 0;
-  flex: 1;
+  flex: 1 1 230px;
 }
 .reveal-tags {
   display: flex;
@@ -6571,7 +6609,8 @@ tr[data-zone='z4'] .pos-num {
 .profile,
 .rival,
 .trophy-room,
-.rules {
+.rules,
+.ranking {
   display: flex;
   flex-direction: column;
   gap: 24px;
@@ -7278,6 +7317,257 @@ button.trophy:hover {
 }
 
 /* ------------------------------------------------------------------------- */
+/* Fileiras que rolam de lado (abas, menu do topo): veja lib/hscroll.ts        */
+/* ------------------------------------------------------------------------- */
+
+[data-more='end'] {
+  -webkit-mask-image: linear-gradient(90deg, #000 calc(100% - 40px), transparent);
+  mask-image: linear-gradient(90deg, #000 calc(100% - 40px), transparent);
+}
+[data-more='start'] {
+  -webkit-mask-image: linear-gradient(270deg, #000 calc(100% - 40px), transparent);
+  mask-image: linear-gradient(270deg, #000 calc(100% - 40px), transparent);
+}
+[data-more='both'] {
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 40px, #000 calc(100% - 40px), transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 40px, #000 calc(100% - 40px), transparent);
+}
+@media (hover: hover) and (pointer: fine) {
+  [data-more] {
+    cursor: grab;
+  }
+  [data-dragging],
+  [data-dragging] * {
+    cursor: grabbing !important;
+    user-select: none;
+  }
+}
+
+/* ------------------------------------------------------------------------- */
+/* Ranking                                                                    */
+/* ------------------------------------------------------------------------- */
+
+.ranking-head {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.ranking-head p {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--ink-2);
+  max-width: 60ch;
+}
+.ranking-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 18px;
+}
+.season-nav {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.season-name {
+  font-family: var(--f-display);
+  font-size: 1.35rem;
+  white-space: nowrap;
+}
+.btn-icon {
+  width: 38px;
+  padding: 0;
+}
+.season-next svg {
+  transform: rotate(180deg);
+}
+.ranking-me .lbl {
+  overflow-wrap: anywhere;
+}
+.ranking-table td.team {
+  max-width: 320px;
+}
+.ranking-table .team-cell {
+  color: inherit;
+  text-decoration: none;
+}
+.ranking-table .team-cell:hover .team-cell-name {
+  text-decoration: underline;
+}
+.pos-num[data-top='1'] {
+  background: var(--sun);
+}
+.pos-num[data-top='2'] {
+  background: #dcdcd4;
+}
+.pos-num[data-top='3'] {
+  background: #e2a86b;
+}
+.ranking-gap td {
+  padding: 2px 10px;
+  text-align: center;
+  font-weight: 800;
+  letter-spacing: 0.3em;
+  color: var(--ink-3);
+}
+.title-chips {
+  display: inline-flex;
+  gap: 4px;
+}
+.title-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 1px 6px 0 5px;
+  border: 2px solid var(--ink);
+  border-radius: 6px;
+  font-family: var(--f-sport);
+  font-weight: 800;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+.title-chip,
+.comp-icon {
+  background: var(--paper-3);
+}
+.title-chip[data-c='mundial'],
+.comp-name[data-c='mundial'] .comp-icon {
+  background: var(--sun);
+  box-shadow: inset 0 -2px 0 rgba(150, 90, 0, 0.35);
+}
+.title-chip[data-c='libertadores'],
+.comp-name[data-c='libertadores'] .comp-icon {
+  background: var(--gold);
+  box-shadow: inset 0 -2px 0 rgba(90, 50, 0, 0.35);
+}
+.title-chip[data-c='liga'],
+.comp-name[data-c='liga'] .comp-icon {
+  background: var(--grass-hi);
+}
+.comp-name {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--f-sport);
+  font-weight: 700;
+  font-size: 1.02rem;
+}
+.comp-icon {
+  display: inline-grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border: 2px solid var(--ink);
+  border-radius: 6px;
+}
+.comp-titles {
+  font-family: var(--f-display);
+  font-weight: 400;
+  font-size: 1.1rem;
+}
+.ranking-how-body {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px 32px;
+}
+.ranking-how-body h3 {
+  margin-bottom: 6px;
+}
+.points-list {
+  list-style: none;
+  margin: 0 0 6px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+.points-list li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 5px 0;
+  border-bottom: 2px dashed var(--ink-soft);
+  font-weight: 600;
+}
+.points-list strong {
+  font-family: var(--f-display);
+  font-weight: 400;
+  font-size: 1.2rem;
+}
+.ranking-notes {
+  grid-column: 1 / -1;
+}
+.ranking-gain {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 16px;
+  padding: 10px 14px;
+  background: var(--paper);
+  border: 3px solid var(--ink);
+  border-radius: var(--r-m);
+  box-shadow: var(--lift);
+}
+.ranking-gain-pts {
+  font-family: var(--f-display);
+  font-size: 2.1rem;
+  line-height: 1;
+  color: var(--grass-deep);
+}
+.ranking-gain-text {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 220px;
+  min-width: 0;
+}
+.ranking-gain-text strong {
+  font-family: var(--f-sport);
+  font-size: 1.15rem;
+}
+.ranking-gain-side {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+  margin-left: auto;
+}
+.ranking-gain-pos {
+  font-weight: 600;
+  text-align: right;
+}
+.ranking-gain-pos strong {
+  font-family: var(--f-display);
+  font-weight: 400;
+  font-size: 1.1rem;
+}
+.profile-ranking {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  align-self: flex-start;
+  max-width: 100%;
+  margin-top: 4px;
+  padding: 5px 12px 4px 10px;
+  background: var(--white);
+  border: 2px solid var(--ink);
+  border-radius: 8px;
+  box-shadow: var(--lift-s);
+  font-family: var(--f-sport);
+  font-weight: 600;
+  font-size: 1.05rem;
+  color: var(--ink);
+  text-decoration: none;
+}
+.profile-ranking:hover {
+  background: var(--sun-hi);
+  color: var(--ink);
+}
+.profile-ranking strong {
+  font-family: var(--f-display);
+  font-weight: 400;
+}
+
+/* ------------------------------------------------------------------------- */
 /* Telas menores                                                              */
 /* ------------------------------------------------------------------------- */
 
@@ -7327,6 +7617,12 @@ button.trophy:hover {
 }
 
 @media (max-width: 760px) {
+  .season-name {
+    font-size: 1.15rem;
+  }
+  .season-nav .badge {
+    display: none;
+  }
   .topbar-in {
     flex-wrap: wrap;
     gap: 8px 12px;

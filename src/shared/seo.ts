@@ -22,6 +22,10 @@ const PAGES: Record<string, { title: string; description: string }> = {
     title: 'Regras do Leilão FC: pregão, cerimônia, liga, copa e confrontos',
     description: 'As regras do Leilão FC: 100 moedas, lances em envelope lacrado, desempate, Monte Final, faixas de nível, liga de 20 times, copas e histórico de confrontos.',
   },
+  '/ranking': {
+    title: 'Ranking do Leilão FC: os melhores técnicos do mês e de todos os tempos',
+    description: 'Quem mais pontua no Leilão FC: vitórias, empates e títulos de liga, Libertadores, Torneio Mundial e Copa dos 8, por temporada e no geral.',
+  },
   '/sobre': {
     title: 'Sobre o Leilão FC',
     description: 'O que é o Leilão FC, de onde vêm os dados das cartas e quem faz o jogo.',

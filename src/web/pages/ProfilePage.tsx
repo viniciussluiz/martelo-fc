@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
 import type { CrestConfig } from '../../shared/crest';
+import { seasonLabel, type CompetitionRecord, type ProfileRanking } from '../../shared/ranking';
 import { Empty, Spinner, fmtDate, REACH_LABEL } from '../components/common';
 import { ClubEditorDialog } from '../components/crest/CrestEditor';
 import { TeamCrest } from '../components/crest/TeamCrest';
 import { Icon } from '../components/Icon';
+import { CompetitionName, fmtInt } from '../components/ranking';
 import { SectionTitle } from '../components/ui';
 import { api } from '../lib/api';
 import { navigate } from '../lib/router';
@@ -23,6 +25,8 @@ interface Profile {
   career: { level: number; name: string; xp: number; nextXp: number | null };
   winRate: number;
   trophiesUnlocked: number;
+  ranking: ProfileRanking;
+  byCompetition: CompetitionRecord[];
   recent: Array<{
     dispute_id: string;
     seq: number;
@@ -54,6 +58,47 @@ export function Record3({ r }: { r: Rec }) {
     <span className="record3">
       <span data-r="V">{r.wins}V</span> <span data-r="E">{r.draws}E</span> <span data-r="D">{r.losses}D</span>
     </span>
+  );
+}
+
+/** Posição no ranking da temporada (e no geral), com link para a página do ranking. */
+function ProfileRankingLine({ ranking, isMe }: { ranking: ProfileRanking; isMe: boolean }) {
+  const s = ranking.seasonStanding;
+  const o = ranking.overall;
+  const month = seasonLabel(ranking.season, true);
+  // Visitante pontua, mas fica fora da lista (posição nula) até criar a conta.
+  const guest = s?.position === null || o?.position === null;
+  let text: React.ReactNode;
+  if (guest) {
+    text = isMe ? <>{fmtInt(o?.points ?? 0)} pontos no ranking · crie sua conta para aparecer na lista</> : <>Visitante: fora do ranking</>;
+  } else if (s?.position) {
+    text = (
+      <>
+        <strong>{s.position}º</strong> no ranking de {month} · {fmtInt(s.points)} pontos
+        {o?.position ? ` · ${o.position}º no geral` : ''}
+      </>
+    );
+  } else if (o?.position) {
+    text = (
+      <>
+        Sem pontos em {month} · <strong>{o.position}º</strong> no geral, {fmtInt(o.points)} pontos
+      </>
+    );
+  } else {
+    text = <>Sem pontos no ranking ainda</>;
+  }
+  return (
+    <a
+      className="profile-ranking"
+      href="/ranking"
+      onClick={(e) => {
+        e.preventDefault();
+        navigate('/ranking');
+      }}
+    >
+      <Icon name="podio" size={18} />
+      <span>{text}</span>
+    </a>
   );
 }
 
@@ -102,7 +147,7 @@ export function ProfilePage({ userId }: { userId: string }) {
             <div className="career-top">
               <span className="career-name">{p.career.name}</span>
               <span className="career-xp">
-                {p.career.xp} pontos{p.career.nextXp ? `, próximo nível em ${p.career.nextXp}` : ', topo da pirâmide'}
+                {p.career.xp} XP{p.career.nextXp ? `, próximo nível em ${p.career.nextXp}` : ', topo da pirâmide'}
               </span>
             </div>
             <div className="ladder" aria-label={`Nível ${p.career.level} de 5`}>
@@ -111,6 +156,7 @@ export function ProfilePage({ userId }: { userId: string }) {
               ))}
             </div>
           </div>
+          <ProfileRankingLine ranking={p.ranking} isMe={isMe} />
         </div>
         <button className="btn btn-primary profile-trophies" onClick={() => navigate(`/trofeus/${userId}`)}>
           <Icon name="trofeu" /> Sala de Troféus ({p.trophiesUnlocked})
@@ -143,6 +189,42 @@ export function ProfilePage({ userId }: { userId: string }) {
           <div className="num">{s.cardsWon}</div>
           <div className="lbl">jogadores arrematados</div>
         </div>
+      </section>
+
+      <section className="stack">
+        <SectionTitle>Por competição</SectionTitle>
+        {p.byCompetition.length === 0 ? (
+          <Empty icon="taca">{isMe ? 'Termine uma disputa e os seus números de cada competição aparecem aqui.' : 'Nenhuma disputa concluída ainda.'}</Empty>
+        ) : (
+          <div className="table-wrap">
+            <table className="table comp-table">
+              <thead>
+                <tr>
+                  <th>Competição</th>
+                  <th className="r">Títulos</th>
+                  <th className="r">Jogos</th>
+                  <th className="r">Vitórias</th>
+                  <th className="r">Empates</th>
+                  <th className="r">Derrotas</th>
+                </tr>
+              </thead>
+              <tbody>
+                {p.byCompetition.map((c) => (
+                  <tr key={c.competition}>
+                    <td>
+                      <CompetitionName c={c.competition} />
+                    </td>
+                    <td className="r">{c.titles > 0 ? <strong className="comp-titles">{c.titles}</strong> : <span className="muted">0</span>}</td>
+                    <td className="r">{c.played}</td>
+                    <td className="r">{c.won}</td>
+                    <td className="r">{c.drawn}</td>
+                    <td className="r">{c.lost}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
       </section>
 
       <section className="stack">
@@ -194,7 +276,7 @@ export function ProfilePage({ userId }: { userId: string }) {
                   <th>Data</th>
                   <th>Sala</th>
                   <th>Time</th>
-                  <th className="r">Ranking</th>
+                  <th className="r">No ciclo</th>
                   <th className="r">Liga</th>
                   <th>Copa</th>
                   <th>Títulos</th>

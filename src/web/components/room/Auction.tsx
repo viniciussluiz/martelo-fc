@@ -22,6 +22,7 @@ import { Icon } from '../Icon';
 import { SquadPitch } from './Squad';
 import { LegendFigure } from '../LegendFigure';
 import { AnimatedNumber, Coins, Confetti, PixelCoin, PosChip, StatusLight } from '../ui';
+import { useHScroll } from '../../lib/hscroll';
 
 const POSITIONS: Position[] = ['GOL', 'LAT', 'ZAG', 'MEI', 'ATA'];
 const SECTOR_NOUN: Record<Position, [string, string]> = {
@@ -767,6 +768,7 @@ function ConvocacaoBoard({ step, d }: { step: ConvocacaoStepView; d: DisputeView
   const [sealing, setSealing] = useState(false);
   const [changing, setChanging] = useState(false);
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const sectorTabs = useHScroll<HTMLDivElement>();
   const sectors = POSITIONS.filter((pos) => step.myPackages[pos]);
   const optionsOf = (pos: Position) => d.packages[step.myPackages[pos] ?? '']?.cardIds ?? [];
   const countOf = (pos: Position, list = picks) => list.filter((id) => optionsOf(pos).includes(id)).length;
@@ -896,7 +898,7 @@ function ConvocacaoBoard({ step, d }: { step: ConvocacaoStepView; d: DisputeView
       </div>
       <div className="convoca-body">
         <div className="tabbed">
-          <div className="tabs" role="tablist" aria-label="Setores">
+          <div className="tabs" role="tablist" aria-label="Setores" ref={sectorTabs}>
             {sectors.map((pos) => {
               const n = countOf(pos);
               const done = n === step.need[pos];

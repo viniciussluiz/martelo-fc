@@ -23,7 +23,9 @@ import { AchievementService } from './services/achievements.js';
 import { ACHIEVEMENTS, CATEGORY_LABEL, RARITY_LABEL } from './services/achievements-catalog.js';
 import { H2HService } from './services/h2h.js';
 import { profileSummary } from './services/profile.js';
+import { RankingService } from './services/ranking.js';
 import { ResultsService } from './services/results.js';
+import { isSeasonKey } from '../shared/ranking.js';
 
 export interface App {
   server: Server;
@@ -33,6 +35,7 @@ export interface App {
   results: ResultsService;
   achievements: AchievementService;
   h2h: H2HService;
+  ranking: RankingService;
   config: ServerConfig;
   deckInfo: DeckInfo;
   url: string;
@@ -119,6 +122,8 @@ export async function createApp(overrides: Partial<ServerConfig> = {}, logger?: 
   const achievements = new AchievementService(db);
   const results = new ResultsService(db, achievements);
   const h2h = new H2HService(db);
+  const ranking = new RankingService(db);
+  results.onFinalized = () => ranking.invalidate();
   const rooms = new RoomManager({ db, deck, deckInfo, results, config, log });
   const restored = rooms.restoreAll();
   if (restored) log.info('salas restauradas', { restored });
@@ -132,6 +137,11 @@ export async function createApp(overrides: Partial<ServerConfig> = {}, logger?: 
     const user = auth.authenticate(token);
     if (!user) throw new HttpError(401, 'nao_autenticado', 'Entre para continuar.');
     return user;
+  };
+  /** Quem pediu, se estiver logado (páginas abertas a todos, como o ranking). */
+  const optionalUser = (ctx: Ctx): PublicUser | null => {
+    const header = ctx.req.headers.authorization ?? '';
+    return header.startsWith('Bearer ') ? auth.authenticate(header.slice(7)) : null;
   };
   /** Dono do site: conta registrada cujo e-mail, nome de usuário ou id está em ADMIN_USERS. */
   const admins = new Set(config.adminUsers.map((s) => s.toLowerCase()));
@@ -194,7 +204,10 @@ export async function createApp(overrides: Partial<ServerConfig> = {}, logger?: 
       limitAuth(ctx);
       const user = requireUser(ctx);
       const b = body(ctx);
-      return { user: auth.upgradeGuest(user.id, { email: b.email, password: b.password }) };
+      const upgraded = auth.upgradeGuest(user.id, { email: b.email, password: b.password });
+      // Visitante que cria a conta passa a aparecer no ranking com os pontos que já tinha.
+      ranking.invalidate();
+      return { user: upgraded };
     })
     // O site só oferece “Esqueci a senha” quando há envio de e-mail configurado.
     .on('GET', '/api/auth/options', () => ({ recovery: mailer.configured }))
@@ -276,6 +289,7 @@ export async function createApp(overrides: Partial<ServerConfig> = {}, logger?: 
       const user = requireUser(ctx);
       const updated = auth.rename(user.id, body(ctx).displayName);
       rooms.userChanged(user.id);
+      ranking.invalidate();
       return { user: updated };
     })
     .on('PUT', '/api/me/crest', (ctx) => {
@@ -337,7 +351,18 @@ export async function createApp(overrides: Partial<ServerConfig> = {}, logger?: 
       requireUser(ctx);
       const p = profileSummary(db, ctx.params.id!);
       if (!p) throw new HttpError(404, 'usuario_inexistente', 'Técnico não encontrado.');
-      return p;
+      return { ...p, ranking: ranking.profile(ctx.params.id!), byCompetition: ranking.byCompetition(ctx.params.id!) };
+    })
+    // Ranking aberto a todos; `temporada` = '2026-11' ou 'geral' (sem nada: a temporada atual).
+    .on('GET', '/api/ranking', (ctx) => {
+      const q = ctx.query.get('temporada');
+      const season = q === 'geral' ? null : isSeasonKey(q) ? q : ranking.currentSeason();
+      return ranking.view(season, optionalUser(ctx)?.id ?? null);
+    })
+    // O que a disputa rendeu no ranking para quem pediu (resumo do fim da disputa).
+    .on('GET', '/api/ranking/disputa/:id', (ctx) => {
+      const user = requireUser(ctx);
+      return { gain: ranking.gain(ctx.params.id!, user.id) };
     })
     .on('GET', '/api/users/:id/opponents', (ctx) => {
       requireUser(ctx);
@@ -594,6 +619,7 @@ export async function createApp(overrides: Partial<ServerConfig> = {}, logger?: 
     results,
     achievements,
     h2h,
+    ranking,
     config,
     deckInfo,
     url,

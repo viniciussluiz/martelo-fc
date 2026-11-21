@@ -5,6 +5,7 @@ import { act } from '../../lib/socket';
 import { REACH_LABEL, useNow } from '../common';
 import { Icon } from '../Icon';
 import { TeamCrest } from '../crest/TeamCrest';
+import { RankingGainBar } from '../ranking';
 import { Confetti, StatusLight } from '../ui';
 import { CHAMPION_ART, ChampionModal, ChampionPoster, type Champion } from './Champion';
 import { HistoryPanel, RoomHeader, SettingsPanel } from './Lobby';
@@ -108,6 +109,7 @@ export function LastResultCard({ room, full }: { room: RoomView; full?: boolean 
           </div>
         </div>
       )}
+      {mine && <RankingGainBar disputeId={r.disputeId} />}
       <ol className="outcomes" aria-label="Ranking do ciclo">
         {r.outcomes.map((o) => (
           <li key={o.participantId} data-me={o.userId === room.you} data-rank={o.rank}>

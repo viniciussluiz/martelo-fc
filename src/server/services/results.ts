@@ -1,6 +1,7 @@
 import type { Dispute } from '../../engine/dispute.js';
 import { REACH_ORDER } from '../../engine/cup.js';
 import type { MatchResult } from '../../engine/match.js';
+import { seasonOf } from '../../shared/ranking.js';
 import { nowIso, type DB } from '../db.js';
 import type { AchievementDef } from './achievements-catalog.js';
 import type { AchievementService } from './achievements.js';
@@ -13,7 +14,8 @@ import type { AchievementService } from './achievements.js';
  *  2. fecha a disputa (CAS: só se ainda estiver ativa) e descarta o snapshot operacional;
  *  3. grava participantes, elencos e partidas;
  *  4. grava confrontos entre usuários (um registro por disputa/modalidade/referência/par);
- *  5. avalia e registra conquistas.
+ *  5. grava os fatos do ranking (um registro por humano que terminou a disputa);
+ *  6. avalia e registra conquistas.
  */
 
 export interface FinalizeInput {
@@ -27,7 +29,26 @@ export interface FinalizeOutput {
   unlocked: Map<string, AchievementDef[]>;
 }
 
+/** Vitórias, empates, derrotas e gols de um time numa lista de partidas (pênaltis não mudam o placar). */
+export function tallyMatches(results: Iterable<MatchResult>, teamId: string) {
+  const t = { won: 0, drawn: 0, lost: 0, goalsFor: 0, goalsAgainst: 0 };
+  for (const m of results) {
+    if (m.homeId !== teamId && m.awayId !== teamId) continue;
+    const mine = m.homeId === teamId ? m.homeGoals : m.awayGoals;
+    const theirs = m.homeId === teamId ? m.awayGoals : m.homeGoals;
+    t.goalsFor += mine;
+    t.goalsAgainst += theirs;
+    if (mine > theirs) t.won++;
+    else if (mine < theirs) t.lost++;
+    else t.drawn++;
+  }
+  return t;
+}
+
 export class ResultsService {
+  /** Chamado depois de cada disputa gravada (o ranking limpa o cache). */
+  onFinalized: (() => void) | null = null;
+
   constructor(
     private db: DB,
     private achievements: AchievementService,
@@ -136,6 +157,7 @@ export class ResultsService {
       }
 
       this.storeConfrontations(disputeId, dispute, humanTeams, at);
+      this.storeRankingEntries(disputeId, dispute, humanTeams, at);
 
       const unlocked = new Map<string, AchievementDef[]>();
       for (const pid of humanTeams) {
@@ -145,7 +167,54 @@ export class ResultsService {
       }
       return { alreadyProcessed: false, unlocked };
     });
-    return run();
+    const out = run();
+    if (!out.alreadyProcessed) this.onFinalized?.();
+    return out;
+  }
+
+  /**
+   * Fatos do ranking: uma linha por humano que terminou a disputa, com liga e copa separadas.
+   * A migração 009 faz a mesma conta para o histórico antigo, a partir da tabela `matches`.
+   */
+  private storeRankingEntries(disputeId: string, dispute: Dispute, humanTeams: Set<string>, at: string) {
+    const result = dispute.state.result!;
+    const config = dispute.state.config;
+    const room = this.db.prepare('SELECT room_id FROM disputes WHERE id = ?').pluck().get(disputeId) as string;
+    const ins = this.db.prepare(
+      `INSERT OR IGNORE INTO ranking_entries (dispute_id, user_id, room_id, finished_at, season, cup_format, skip_league, humans, technicians,
+         league_won, league_drawn, league_lost, cup_won, cup_drawn, cup_lost, goals_for, goals_against, league_title, cup_title)
+       VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`,
+    );
+    const league = Object.values(dispute.league?.state.results ?? {});
+    const cup = Object.values(dispute.cup?.state.results ?? {});
+    for (const pid of humanTeams) {
+      const p = dispute.participants.find((x) => x.id === pid);
+      const o = result.outcomes.find((x) => x.participantId === pid);
+      if (!p?.userId || !o) continue;
+      const l = tallyMatches(league, pid);
+      const c = tallyMatches(cup, pid);
+      ins.run(
+        disputeId,
+        p.userId,
+        room,
+        at,
+        seasonOf(at),
+        config.cupFormat,
+        config.skipLeague ? 1 : 0,
+        humanTeams.size,
+        dispute.participants.length,
+        l.won,
+        l.drawn,
+        l.lost,
+        c.won,
+        c.drawn,
+        c.lost,
+        l.goalsFor + c.goalsFor,
+        l.goalsAgainst + c.goalsAgainst,
+        o.titles.includes('liga') ? 1 : 0,
+        o.titles.includes('copa') ? 1 : 0,
+      );
+    }
   }
 
   private storeConfrontations(disputeId: string, dispute: Dispute, humanTeams: Set<string>, at: string) {

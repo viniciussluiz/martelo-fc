@@ -1,6 +1,8 @@
 import { EnvelopeArt } from '../components/common';
 import { Icon } from '../components/Icon';
 import { PixelCoin, PosChip, SectionTitle } from '../components/ui';
+import { COMPETITION_LABEL, RANKING_COMPETITIONS, RANKING_POINTS } from '../../shared/ranking';
+import { navigate } from '../lib/router';
 
 /** Manual do jogo: o pregão em passos, depois cerimônia, campeonatos, continuidade e confrontos. */
 export function RulesPage() {
@@ -123,6 +125,42 @@ export function RulesPage() {
             </li>
           </ul>
           <p className="hint">Só contam disputas concluídas. Quem sai da sala no meio da disputa fica fora dos confrontos e conquistas daquele ciclo.</p>
+        </div>
+      </section>
+
+      <section className="panel" id="ranking">
+        <div className="panel-head">
+          <h2>Ranking</h2>
+        </div>
+        <div className="panel-body stack">
+          <p>
+            Cada disputa concluída soma pontos no{' '}
+            <a
+              href="/ranking"
+              onClick={(e) => {
+                e.preventDefault();
+                navigate('/ranking');
+              }}
+            >
+              ranking
+            </a>
+            : vitória vale {RANKING_POINTS.vitoria}, empate vale {RANKING_POINTS.empate} (jogo decidido nos pênaltis conta como empate) e derrota não
+            vale nada, na liga e na copa. Cada título soma mais:
+          </p>
+          <ul className="rules-list">
+            {RANKING_COMPETITIONS.map((c) => (
+              <li key={c}>
+                <strong>{COMPETITION_LABEL[c]}:</strong> {RANKING_POINTS[c]} pontos{c === 'libertadores' ? ' (vale também na Só Libertadores)' : ''}.
+              </li>
+            ))}
+          </ul>
+          <p>
+            A temporada é o mês, no horário de Brasília, e o ranking geral soma todos os tempos. Empate em pontos vai para quem tem mais títulos
+            de Mundial e Libertadores, depois mais títulos, mais vitórias e melhor saldo de gols.
+          </p>
+          <p className="hint">
+            Quem sai da sala no meio da disputa não pontua nela. Visitante pontua, mas só aparece no ranking depois de criar a conta.
+          </p>
         </div>
       </section>
     </article>

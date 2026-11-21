@@ -57,6 +57,9 @@ test('partida rápida completa, continuidade na mesma sala e Sala de Troféus', 
   await expect(page.getByText('Ciclo 1 encerrado')).toBeVisible();
   await expect(page.getByRole('list', { name: 'Ranking do ciclo' }).getByRole('listitem')).toHaveCount(4);
   await expect(page.getByText('Histórico da sala')).toBeVisible();
+  // O resumo mostra o que a disputa rendeu no ranking; visitante ainda fica fora da lista.
+  await expect(page.getByText('pontos no ranking')).toBeVisible();
+  await expect(page.getByRole('link', { name: 'Crie sua conta para aparecer no ranking' })).toBeVisible();
 
   // Continua na mesma sala: novo ciclo com os jogadores de volta ao pregão.
   const url = page.url();

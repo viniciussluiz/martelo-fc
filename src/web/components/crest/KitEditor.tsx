@@ -17,6 +17,7 @@ import { Icon } from '../Icon';
 import { inkOn } from './Crest';
 import { ColorRow } from './CrestEditor';
 import { BrandMark, Jersey } from './Jersey';
+import { useHScroll } from '../../lib/hscroll';
 
 /**
  * Criador de uniformes: a camisa grande em cima (setas trocam entre o uniforme 1 e o 2), e embaixo
@@ -62,6 +63,7 @@ export function KitEditor({
   const [which, setWhich] = useState<'home' | 'away'>('home');
   const [tab, setTab] = useState<Tab>('padroes');
   const [pop, setPop] = useState(0);
+  const tabsRow = useHScroll<HTMLDivElement>();
   const kits = kitsOf(value);
   const kit = kits[which];
   const n = which === 'home' ? 1 : 2;
@@ -110,7 +112,7 @@ export function KitEditor({
       </div>
 
       <div className="ce-tools">
-        <div className="ce-tabs" role="tablist" aria-label="Peças do uniforme">
+        <div className="ce-tabs" role="tablist" aria-label="Peças do uniforme" ref={tabsRow}>
           {TABS.map((t) => (
             <button key={t.id} type="button" role="tab" aria-selected={tab === t.id} onClick={() => setTab(t.id)}>
               {t.label}

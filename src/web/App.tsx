@@ -5,6 +5,7 @@ import { TeamCrest } from './components/crest/TeamCrest';
 import { Icon, Logo } from './components/Icon';
 import { StatusLight } from './components/ui';
 import { api, ApiError } from './lib/api';
+import { useHScroll } from './lib/hscroll';
 import { matchPath, navigate, usePath } from './lib/router';
 import { socket } from './lib/socket';
 import { persistToken, store, useStore } from './lib/store';
@@ -19,6 +20,7 @@ import { AuthPage } from './pages/AuthPage';
 import { ResetPage } from './pages/ResetPage';
 import { HomePage } from './pages/HomePage';
 import { ProfilePage } from './pages/ProfilePage';
+import { RankingPage } from './pages/RankingPage';
 import { RivalPage } from './pages/RivalPage';
 import { RoomPage } from './pages/RoomPage';
 import { RoomsPage } from './pages/RoomsPage';
@@ -68,6 +70,7 @@ function TopBar() {
   const user = useStore((s) => s.user);
   const conn = useStore((s) => s.connection);
   const path = usePath();
+  const navRef = useHScroll<HTMLElement>();
   const link = (href: string, label: string, icon: string, current: boolean) => (
     <a
       href={href}
@@ -97,10 +100,11 @@ function TopBar() {
           </span>
           <span className="brand-name">Leilão FC</span>
         </a>
-        <nav className="nav" aria-label="Principal">
+        <nav className="nav" aria-label="Principal" ref={navRef}>
           {link('/', 'Jogar', 'bola', path === '/' || path.startsWith('/sala'))}
           {user && link(`/perfil/${user.id}`, 'Perfil', 'perfil', path.startsWith('/perfil'))}
           {user && link(`/trofeus/${user.id}`, 'Troféus', 'trofeu', path.startsWith('/trofeus'))}
+          {link('/ranking', 'Ranking', 'podio', path.startsWith('/ranking'))}
           {link('/regras', 'Regras', 'apito', path.startsWith('/regras'))}
           {user?.admin && link('/admin', 'Admin', 'cadeado', path.startsWith('/admin'))}
         </nav>
@@ -175,6 +179,7 @@ function Routes() {
   if (matchPath('/redefinir', path)) return <ResetPage />;
   if (matchPath('/conta', path)) return <AccountPage />;
   if (matchPath('/regras', path)) return <RulesPage />;
+  if (matchPath('/ranking', path)) return <RankingPage />;
   if (matchPath('/como-jogar', path)) return <HowToPlayPage />;
   if (matchPath('/apoiar', path)) return <SupportPage />;
   if (matchPath('/sobre', path)) return <AboutPage />;

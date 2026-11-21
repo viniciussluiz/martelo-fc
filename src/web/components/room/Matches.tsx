@@ -12,6 +12,7 @@ import { PenaltyDots, ShootoutFeed, ShootoutGoal, shootoutScore, shootoutState }
 import { SquadPitch } from './Squad';
 import { TeamCrest } from '../crest/TeamCrest';
 import { Confetti, PosChip } from '../ui';
+import { useHScroll } from '../../lib/hscroll';
 
 export function LiveMatch({
   match,
@@ -281,6 +282,7 @@ export function TabbedPanel({ label, tabs, initial }: { label: string; tabs: Tab
   const [picked, setPicked] = useState<string | null>(null);
   const uid = useId();
   const buttons = useRef<Record<string, HTMLButtonElement | null>>({});
+  const tabsRef = useHScroll<HTMLDivElement>();
   const active = tabs.find((t) => t.id === picked) ?? tabs.find((t) => t.id === initial) ?? tabs[0];
   if (!active) return null;
   const onKey = (e: KeyboardEvent, i: number) => {
@@ -294,7 +296,7 @@ export function TabbedPanel({ label, tabs, initial }: { label: string; tabs: Tab
   };
   return (
     <section className="tabbed">
-      <div className="tabs" role="tablist" aria-label={label}>
+      <div className="tabs" role="tablist" aria-label={label} ref={tabsRef}>
         {tabs.map((t, i) => (
           <button
             key={t.id}

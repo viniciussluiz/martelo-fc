@@ -16,6 +16,7 @@ import { Icon } from '../Icon';
 import { Crest } from './Crest';
 import { KitEditor } from './KitEditor';
 import { SYMBOL_LABEL } from './symbols';
+import { useHScroll } from '../../lib/hscroll';
 
 /**
  * Criador de escudos: escudo grande à esquerda, que muda na hora, e as peças à direita
@@ -122,6 +123,7 @@ export function CrestEditor({
   const [pop, setPop] = useState(0);
   const uid = useId();
   const tabRefs = useRef<Record<string, HTMLButtonElement | null>>({});
+  const tabsRow = useHScroll<HTMLDivElement>();
   const set = (patch: Partial<CrestConfig>) => {
     onChange({ ...value, ...patch });
     setPop((n) => n + 1);
@@ -156,7 +158,7 @@ export function CrestEditor({
       </div>
 
       <div className="ce-tools">
-        <div className="ce-tabs" role="tablist" aria-label="Peças do escudo">
+        <div className="ce-tabs" role="tablist" aria-label="Peças do escudo" ref={tabsRow}>
           {TABS.map((t, i) => (
             <button
               key={t.id}
