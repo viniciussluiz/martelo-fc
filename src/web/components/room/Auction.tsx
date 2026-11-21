@@ -898,7 +898,7 @@ function ConvocacaoBoard({ step, d }: { step: ConvocacaoStepView; d: DisputeView
       </div>
       <div className="convoca-body">
         <div className="tabbed">
-          <div className="tabs" role="tablist" aria-label="Setores" ref={sectorTabs}>
+          <div className="tabs tabs-fit" role="tablist" aria-label="Setores" ref={sectorTabs}>
             {sectors.map((pos) => {
               const n = countOf(pos);
               const done = n === step.need[pos];

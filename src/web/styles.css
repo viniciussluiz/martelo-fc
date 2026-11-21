@@ -4832,6 +4832,43 @@ li[data-state='lacrado'] .rt-state {
   font-family: var(--f-led);
   font-size: 0.72rem;
 }
+/*
+ * Setores da convocação: são no máximo cinco (GOL, LAT, ZAG, MEI, ATA), então dividem a largura e
+ * cabem todos, sem aba escondida. Se o espaço apertar, a contagem desce para baixo da sigla.
+ */
+.convoca-body > .tabbed {
+  container-type: inline-size;
+}
+.tabs-fit [role='tab'] {
+  flex: 1 1 0;
+  min-width: 0;
+  padding-left: 6px;
+  padding-right: 6px;
+  text-align: center;
+}
+.tabs-fit .tab-count {
+  margin-left: 5px;
+}
+@container (max-width: 400px) {
+  .tabs-fit {
+    gap: 3px;
+    padding-left: 4px;
+  }
+  .tabs-fit [role='tab'] {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    padding: 7px 4px 5px;
+    line-height: 1;
+  }
+  .tabs-fit [role='tab'][aria-selected='true'] {
+    padding-top: 10px;
+  }
+  .tabs-fit .tab-count {
+    margin-left: 0;
+  }
+}
 .tabs [role='tab'][data-done] {
   background: #cfe8b5;
 }
