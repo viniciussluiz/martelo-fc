@@ -10,6 +10,391 @@
   ],
   "nivel": [
     {
+      "id": "wd-Q62786-Q270995-2021",
+      "jogador": "Hulk",
+      "clube": "Atlético-MG",
+      "faixa": [
+        86,
+        92
+      ],
+      "tier": "lenda",
+      "motivo": "Lenda do clube (lista de ídolos por clube, nov/2026)."
+    },
+    {
+      "id": "wd-Q197729-Q270995-2000",
+      "jogador": "Marques",
+      "clube": "Atlético-MG",
+      "faixa": [
+        86,
+        92
+      ],
+      "tier": "lenda",
+      "motivo": "Lenda do clube (lista de ídolos por clube, nov/2026)."
+    },
+    {
+      "id": "wd-Q553025-Q270995-1982",
+      "jogador": "João Leite",
+      "clube": "Atlético-MG",
+      "faixa": [
+        86,
+        92
+      ],
+      "tier": "lenda",
+      "motivo": "Lenda do clube (lista de ídolos por clube, nov/2026)."
+    },
+    {
+      "id": "wd-Q507815-Q188277-2004",
+      "jogador": "Alex de Souza",
+      "clube": "Cruzeiro",
+      "faixa": [
+        86,
+        92
+      ],
+      "tier": "lenda",
+      "motivo": "Lenda do clube (lista de ídolos por clube, nov/2026)."
+    },
+    {
+      "id": "wd-Q535520-Q188277-1970",
+      "jogador": "Wilson Piazza",
+      "clube": "Cruzeiro",
+      "faixa": [
+        86,
+        92
+      ],
+      "tier": "lenda",
+      "motivo": "Lenda do clube (lista de ídolos por clube, nov/2026)."
+    },
+    {
+      "id": "wd-Q2570605-Q188277-1976",
+      "jogador": "Palhinha",
+      "clube": "Cruzeiro",
+      "faixa": [
+        86,
+        92
+      ],
+      "tier": "lenda",
+      "motivo": "Lenda do clube (lista de ídolos por clube, nov/2026)."
+    },
+    {
+      "id": "wd-Q311424-Q17479-1981",
+      "jogador": "Júnior",
+      "clube": "Flamengo",
+      "faixa": [
+        86,
+        92
+      ],
+      "tier": "lenda",
+      "motivo": "Lenda do clube (lista de ídolos por clube, nov/2026)."
+    },
+    {
+      "id": "wd-Q170452-Q17479-2009",
+      "jogador": "Adriano",
+      "clube": "Flamengo",
+      "faixa": [
+        86,
+        92
+      ],
+      "tier": "lenda",
+      "motivo": "Lenda do clube (lista de ídolos por clube, nov/2026)."
+    },
+    {
+      "id": "wd-Q2015351-Q17479-2000",
+      "jogador": "Dejan Petković",
+      "clube": "Flamengo",
+      "faixa": [
+        86,
+        92
+      ],
+      "tier": "lenda",
+      "motivo": "Lenda do clube (lista de ídolos por clube, nov/2026)."
+    },
+    {
+      "id": "wd-Q13578003-Q17479-2021",
+      "jogador": "Giorgian de Arrascaeta",
+      "clube": "Flamengo",
+      "faixa": [
+        86,
+        92
+      ],
+      "tier": "lenda",
+      "motivo": "Lenda do clube (lista de ídolos por clube, nov/2026)."
+    },
+    {
+      "id": "wd-Q203451-Q5014111-2001",
+      "jogador": "Juninho Pernambucano",
+      "clube": "Vasco",
+      "faixa": [
+        86,
+        92
+      ],
+      "tier": "lenda",
+      "motivo": "Lenda do clube (lista de ídolos por clube, nov/2026)."
+    },
+    {
+      "id": "wd-Q1164053-Q5014111-1947",
+      "jogador": "Danilo Alvim",
+      "clube": "Vasco",
+      "faixa": [
+        86,
+        92
+      ],
+      "tier": "lenda",
+      "motivo": "Lenda do clube (lista de ídolos por clube, nov/2026)."
+    },
+    {
+      "id": "wd-Q178774-Q5014111-1993",
+      "jogador": "Bismarck",
+      "clube": "Vasco",
+      "faixa": [
+        86,
+        92
+      ],
+      "tier": "lenda",
+      "motivo": "Lenda do clube (lista de ídolos por clube, nov/2026)."
+    },
+    {
+      "id": "wd-Q318184-Q5014111-2000",
+      "jogador": "Juninho Paulista",
+      "clube": "Vasco",
+      "faixa": [
+        86,
+        92
+      ],
+      "tier": "lenda",
+      "motivo": "Lenda do clube (lista de ídolos por clube, nov/2026)."
+    },
+    {
+      "id": "wd-Q1378184-Q35933-1953",
+      "jogador": "Baltazar Silva",
+      "clube": "Corinthians",
+      "faixa": [
+        86,
+        92
+      ],
+      "tier": "lenda",
+      "motivo": "Lenda do clube (lista de ídolos por clube, nov/2026)."
+    },
+    {
+      "id": "wd-Q62182-Q80964-1958",
+      "jogador": "Mazzola",
+      "clube": "Palmeiras",
+      "faixa": [
+        86,
+        92
+      ],
+      "tier": "lenda",
+      "motivo": "Lenda do clube (lista de ídolos por clube, nov/2026)."
+    },
+    {
+      "id": "wd-Q312895-Q38568-1992",
+      "jogador": "Raí",
+      "clube": "São Paulo",
+      "faixa": [
+        86,
+        92
+      ],
+      "tier": "lenda",
+      "motivo": "Lenda do clube (lista de ídolos por clube, nov/2026)."
+    },
+    {
+      "id": "wd-Q342489-Q38568-1987",
+      "jogador": "Careca",
+      "clube": "São Paulo",
+      "faixa": [
+        86,
+        92
+      ],
+      "tier": "lenda",
+      "motivo": "Lenda do clube (lista de ídolos por clube, nov/2026)."
+    },
+    {
+      "id": "wd-Q313570-Q38568-2010",
+      "jogador": "Hernanes",
+      "clube": "São Paulo",
+      "faixa": [
+        86,
+        92
+      ],
+      "tier": "lenda",
+      "motivo": "Lenda do clube (lista de ídolos por clube, nov/2026)."
+    },
+    {
+      "id": "wd-Q295891-Q270995-1995",
+      "jogador": "Taffarel",
+      "clube": "Atlético-MG",
+      "faixa": [
+        86,
+        92
+      ],
+      "tier": "lenda",
+      "motivo": "Ajuste feito na página de admin em produção (trazido para o repositório em 21/11/2026)."
+    },
+    {
+      "id": "wd-Q312486-Q8682-1959",
+      "jogador": "Didi",
+      "clube": "Real Madrid",
+      "faixa": [
+        81,
+        87
+      ],
+      "tier": "lenda",
+      "motivo": "Ajuste feito na página de admin em produção (trazido para o repositório em 21/11/2026)."
+    },
+    {
+      "id": "wd-Q123118-Q8682-1958",
+      "jogador": "Raymond Kopa",
+      "clube": "Real Madrid",
+      "faixa": [
+        86,
+        92
+      ],
+      "tier": "lenda",
+      "motivo": "Ajuste feito na página de admin em produção (trazido para o repositório em 21/11/2026)."
+    },
+    {
+      "id": "wd-Q194461-Q8682-2003",
+      "jogador": "Guti",
+      "clube": "Real Madrid",
+      "faixa": [
+        85,
+        91
+      ],
+      "tier": "lenda",
+      "motivo": "Ajuste feito na página de admin em produção (trazido para o repositório em 21/11/2026)."
+    },
+    {
+      "id": "wd-Q204825-Q17479-1989",
+      "jogador": "Bebeto",
+      "clube": "Flamengo",
+      "faixa": [
+        86,
+        92
+      ],
+      "tier": "lenda",
+      "motivo": "Ajuste feito na página de admin em produção (trazido para o repositório em 21/11/2026)."
+    },
+    {
+      "id": "wd-Q188544-Q1543-2000",
+      "jogador": "Dida",
+      "clube": "Milan",
+      "faixa": [
+        86,
+        92
+      ],
+      "tier": "lenda",
+      "motivo": "Ajuste feito na página de admin em produção (trazido para o repositório em 21/11/2026)."
+    },
+    {
+      "id": "wd-Q126503-Q1543-2001",
+      "jogador": "Filippo Inzaghi",
+      "clube": "Milan",
+      "faixa": [
+        86,
+        92
+      ],
+      "tier": "lenda",
+      "motivo": "Ajuste feito na página de admin em produção (trazido para o repositório em 21/11/2026)."
+    },
+    {
+      "id": "wd-Q83456-Q9616-2007",
+      "jogador": "John Terry",
+      "clube": "Chelsea",
+      "faixa": [
+        86,
+        92
+      ],
+      "tier": "lenda",
+      "motivo": "Ajuste feito na página de admin em produção (trazido para o repositório em 21/11/2026)."
+    },
+    {
+      "id": "wd-Q483629-Q1543-1991",
+      "jogador": "Marco van Basten",
+      "clube": "Milan",
+      "faixa": [
+        88,
+        94
+      ],
+      "tier": "lenda",
+      "motivo": "Ajuste feito na página de admin em produção (trazido para o repositório em 21/11/2026)."
+    },
+    {
+      "id": "wd-Q227892-Q1543-2003",
+      "jogador": "Alessandro Nesta",
+      "clube": "Milan",
+      "faixa": [
+        85,
+        91
+      ],
+      "tier": "lenda",
+      "motivo": "Ajuste feito na página de admin em produção (trazido para o repositório em 21/11/2026)."
+    },
+    {
+      "id": "wd-Q178649-Q7156-1993",
+      "jogador": "Romário",
+      "clube": "Barcelona",
+      "faixa": [
+        86,
+        92
+      ],
+      "tier": "lenda",
+      "motivo": "Ajuste feito na página de admin em produção (trazido para o repositório em 21/11/2026)."
+    },
+    {
+      "id": "wd-Q16553648-Q270995-2023",
+      "jogador": "Cristian Pavón",
+      "clube": "Atlético-MG",
+      "faixa": [
+        70,
+        78
+      ],
+      "tier": "operario",
+      "motivo": "Ajuste feito na página de admin em produção (trazido para o repositório em 21/11/2026)."
+    },
+    {
+      "id": "wd-Q552917-Q270995-1982",
+      "jogador": "Toninho Cerezo",
+      "clube": "Atlético-MG",
+      "faixa": [
+        83,
+        89
+      ],
+      "tier": "lenda",
+      "motivo": "Ajuste feito na página de admin em produção (trazido para o repositório em 21/11/2026)."
+    },
+    {
+      "id": "wd-Q273766-Q270995-1984",
+      "jogador": "Éder Aleixo",
+      "clube": "Atlético-MG",
+      "faixa": [
+        85,
+        91
+      ],
+      "tier": "lenda",
+      "motivo": "Ajuste feito na página de admin em produção (trazido para o repositório em 21/11/2026)."
+    },
+    {
+      "id": "wd-Q378101-Q35933-1998",
+      "jogador": "Marcelinho Carioca",
+      "clube": "Corinthians",
+      "faixa": [
+        86,
+        93
+      ],
+      "tier": "lenda",
+      "motivo": "Ajuste feito na página de admin em produção (trazido para o repositório em 21/11/2026)."
+    },
+    {
+      "id": "wd-Q1894-Q35933-2024",
+      "jogador": "Memphis Depay",
+      "clube": "Corinthians",
+      "faixa": [
+        78,
+        84
+      ],
+      "tier": "titular",
+      "motivo": "Ajuste feito na página de admin em produção (trazido para o repositório em 21/11/2026)."
+    },
+    {
       "id": "wd-Q12897",
       "jogador": "Pelé",
       "faixa": [
@@ -40,16 +425,6 @@
     {
       "id": "wd-Q133903-Q1130849-2018",
       "jogador": "Virgil van Dijk",
-      "faixa": [
-        83,
-        89
-      ],
-      "tier": "craque",
-      "motivo": "Rebaixado de Lenda para Craque (prata) a pedido: fica só o grupo principal de Lendas."
-    },
-    {
-      "id": "wd-Q535520-Q188277-1970",
-      "jogador": "Wilson Piazza",
       "faixa": [
         83,
         89
@@ -208,16 +583,6 @@
       "motivo": "Rebaixado de Lenda para Craque (prata) a pedido: fica só o grupo principal de Lendas."
     },
     {
-      "id": "wd-Q13578003-Q17479-2021",
-      "jogador": "Giorgian de Arrascaeta",
-      "faixa": [
-        84,
-        90
-      ],
-      "tier": "craque",
-      "motivo": "Rebaixado de Lenda para Craque (prata) a pedido: fica só o grupo principal de Lendas."
-    },
-    {
       "id": "wd-Q115453-Q7156-2015",
       "jogador": "Ivan Rakitić",
       "faixa": [
@@ -283,16 +648,6 @@
       "faixa": [
         84,
         90
-      ],
-      "tier": "craque",
-      "motivo": "Rebaixado de Lenda para Craque (prata) a pedido: fica só o grupo principal de Lendas."
-    },
-    {
-      "id": "wd-Q378101-Q35933-1998",
-      "jogador": "Marcelinho Carioca",
-      "faixa": [
-        83,
-        89
       ],
       "tier": "craque",
       "motivo": "Rebaixado de Lenda para Craque (prata) a pedido: fica só o grupo principal de Lendas."
@@ -388,16 +743,6 @@
       "motivo": "Rebaixado de Lenda para Craque (prata) a pedido: fica só o grupo principal de Lendas."
     },
     {
-      "id": "wd-Q552917-Q270995-1982",
-      "jogador": "Toninho Cerezo",
-      "faixa": [
-        83,
-        89
-      ],
-      "tier": "craque",
-      "motivo": "Rebaixado de Lenda para Craque (prata) a pedido: fica só o grupo principal de Lendas."
-    },
-    {
       "id": "wd-Q124086-Q81888-2007",
       "jogador": "Wesley Sneijder",
       "faixa": [
@@ -430,16 +775,6 @@
     {
       "id": "wd-Q455462-Q8701-2018",
       "jogador": "Antoine Griezmann",
-      "faixa": [
-        84,
-        90
-      ],
-      "tier": "craque",
-      "motivo": "Rebaixado de Lenda para Craque (prata) a pedido: fica só o grupo principal de Lendas."
-    },
-    {
-      "id": "wd-Q1378184-Q35933-1953",
-      "jogador": "Baltazar Silva",
       "faixa": [
         84,
         90
@@ -633,26 +968,6 @@
       "faixa": [
         84,
         90
-      ],
-      "tier": "craque",
-      "motivo": "Rebaixado de Lenda para Craque (prata) a pedido: fica só o grupo principal de Lendas."
-    },
-    {
-      "id": "wd-Q197729-Q270995-2000",
-      "jogador": "Marques",
-      "faixa": [
-        83,
-        89
-      ],
-      "tier": "craque",
-      "motivo": "Rebaixado de Lenda para Craque (prata) a pedido: fica só o grupo principal de Lendas."
-    },
-    {
-      "id": "wd-Q1894-Q35933-2024",
-      "jogador": "Memphis Depay",
-      "faixa": [
-        85,
-        91
       ],
       "tier": "craque",
       "motivo": "Rebaixado de Lenda para Craque (prata) a pedido: fica só o grupo principal de Lendas."
@@ -1842,9 +2157,9 @@
       "position": "ATA",
       "club": "Atlético-MG",
       "year": 2013,
-      "levelMin": 84,
-      "levelMax": 90,
-      "tier": "craque",
+      "levelMin": 86,
+      "levelMax": 92,
+      "tier": "lenda",
       "hint": "No Atlético-MG em 2013. 28 anos em 2013. 2 jogos pela seleção.",
       "kit": [
         "#111111",
@@ -1896,9 +2211,9 @@
       "position": "ATA",
       "club": "Flamengo",
       "year": 1981,
-      "levelMin": 83,
-      "levelMax": 89,
-      "tier": "craque",
+      "levelMin": 86,
+      "levelMax": 92,
+      "tier": "lenda",
       "hint": "No Flamengo em 1981. 27 anos em 1981. 6 jogos pela seleção.",
       "kit": [
         "#C8102E",
@@ -2022,9 +2337,9 @@
       "position": "MEI",
       "club": "Corinthians",
       "year": 1990,
-      "levelMin": 84,
-      "levelMax": 90,
-      "tier": "craque",
+      "levelMin": 86,
+      "levelMax": 92,
+      "tier": "lenda",
       "hint": "No Corinthians em 1990. 24 anos em 1990. 26 jogos pela seleção.",
       "kit": [
         "#FFFFFF",
@@ -2256,9 +2571,9 @@
       "position": "ATA",
       "club": "Corinthians",
       "year": 1982,
-      "levelMin": 83,
-      "levelMax": 89,
-      "tier": "craque",
+      "levelMin": 86,
+      "levelMax": 92,
+      "tier": "lenda",
       "hint": "46 jogos e 11 gols pelo Corinthians de 1982 a 1984. 19 anos em 1982. 19 jogos pela seleção.",
       "kit": [
         "#FFFFFF",
@@ -2366,7 +2681,7 @@
       "year": 1996,
       "levelMin": 86,
       "levelMax": 92,
-      "tier": "craque",
+      "tier": "lenda",
       "hint": "44 jogos e 21 gols pelo Grêmio de 1995 a 1997. 25 anos em 1996. 6 jogos pela seleção.",
       "kit": [
         "#0D80BF",
@@ -2418,9 +2733,9 @@
       "position": "ATA",
       "club": "Internacional",
       "year": 2006,
-      "levelMin": 84,
-      "levelMax": 90,
-      "tier": "craque",
+      "levelMin": 86,
+      "levelMax": 92,
+      "tier": "lenda",
       "hint": "100 jogos e 42 gols pelo Internacional de 2004 a 2008. 28 anos em 2006. 1 jogo pela seleção.",
       "kit": [
         "#D50000",
@@ -2436,9 +2751,9 @@
       "position": "MEI",
       "club": "Internacional",
       "year": 2010,
-      "levelMin": 84,
-      "levelMax": 90,
-      "tier": "craque",
+      "levelMin": 86,
+      "levelMax": 92,
+      "tier": "lenda",
       "hint": "Argentina. 181 jogos e 45 gols pelo Internacional de 2008 a 2016. 29 anos em 2010. 28 jogos pela seleção.",
       "kit": [
         "#D50000",
@@ -2634,9 +2949,9 @@
       "position": "MEI",
       "club": "Flamengo",
       "year": 1981,
-      "levelMin": 83,
-      "levelMax": 89,
-      "tier": "craque",
+      "levelMin": 86,
+      "levelMax": 92,
+      "tier": "lenda",
       "hint": "615 jogos e 128 gols pelo Flamengo de 1975 a 1987. 25 anos em 1981. 2 jogos pela seleção.",
       "kit": [
         "#C8102E",
@@ -2654,7 +2969,7 @@
       "year": 1995,
       "levelMin": 86,
       "levelMax": 92,
-      "tier": "craque",
+      "tier": "lenda",
       "hint": "75 jogos e 20 gols pelo Flamengo de 1992 a 1997. 21 anos em 1995. 21 jogos pela seleção.",
       "kit": [
         "#C8102E",
@@ -3196,24 +3511,6 @@
       "levelMax": 89,
       "tier": "craque",
       "hint": "França. 94 jogos pelo Real Madrid de 2000 a 2003. 29 anos em 2002. 71 jogos pela seleção.",
-      "kit": [
-        "#FFFFFF",
-        "#FEBE10"
-      ],
-      "series": "EU",
-      "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
-    },
-    {
-      "id": "wd-Q194461-Q8682-2003",
-      "personId": "Q194461",
-      "name": "Guti",
-      "position": "MEI",
-      "club": "Real Madrid",
-      "year": 2003,
-      "levelMin": 85,
-      "levelMax": 91,
-      "tier": "craque",
-      "hint": "Espanha. 387 jogos e 46 gols pelo Real Madrid de 1995 a 2010. 27 anos em 2003. 13 jogos pela seleção.",
       "kit": [
         "#FFFFFF",
         "#FEBE10"
@@ -5524,6 +5821,1709 @@
       ],
       "series": "A",
       "motivo": "Pente-fino: jogador muito conhecido que estava fora do baralho."
+    },
+    {
+      "id": "adm-2986871f",
+      "name": "Éverson",
+      "position": "GOL",
+      "club": "Atlético-MG",
+      "year": 2021,
+      "levelMin": 78,
+      "levelMax": 86,
+      "tier": "titular",
+      "hint": "Atlético-MG (2021).",
+      "series": "A",
+      "kit": [
+        "#111111",
+        "#FFFFFF"
+      ],
+      "motivo": "Ajuste feito na página de admin em produção (trazido para o repositório em 21/11/2026)."
+    },
+    {
+      "id": "adm-5d68b72c",
+      "name": "Leonardo Silva",
+      "position": "ZAG",
+      "club": "Atlético-MG",
+      "year": 2013,
+      "levelMin": 85,
+      "levelMax": 92,
+      "tier": "lenda",
+      "hint": "Atlético-MG (2013).",
+      "series": "A",
+      "kit": [
+        "#111111",
+        "#FFFFFF"
+      ],
+      "motivo": "Ajuste feito na página de admin em produção (trazido para o repositório em 21/11/2026)."
+    },
+    {
+      "id": "adm-1f4d1c2a",
+      "name": "Réver",
+      "position": "ZAG",
+      "club": "Atlético-MG",
+      "year": 2013,
+      "levelMin": 80,
+      "levelMax": 86,
+      "tier": "titular",
+      "hint": "Atlético-MG (2013).",
+      "series": "A",
+      "kit": [
+        "#111111",
+        "#FFFFFF"
+      ],
+      "motivo": "Ajuste feito na página de admin em produção (trazido para o repositório em 21/11/2026)."
+    },
+    {
+      "id": "adm-448a3901",
+      "name": "Marcos Rocha",
+      "position": "LAT",
+      "club": "Atlético-MG",
+      "year": 2012,
+      "levelMin": 74,
+      "levelMax": 82,
+      "tier": "titular",
+      "hint": "Atlético-MG (2012).",
+      "kit": [
+        "#111111",
+        "#FFFFFF"
+      ],
+      "series": "A",
+      "motivo": "Ajuste feito na página de admin em produção (trazido para o repositório em 21/11/2026)."
+    },
+    {
+      "id": "wd-Q182063-Q270995-2014",
+      "personId": "Q182063",
+      "name": "Nicolás Otamendi",
+      "position": "ZAG",
+      "club": "Atlético-MG",
+      "year": 2014,
+      "levelMin": 81,
+      "levelMax": 87,
+      "tier": "craque",
+      "hint": "Argentina. 12 jogos e 1 gol pelo Atlético-MG em 2014. 26 anos em 2014. 139 jogos pela seleção.",
+      "series": "A",
+      "kit": [
+        "#111111",
+        "#FFFFFF"
+      ],
+      "motivo": "Ajuste feito na página de admin em produção (trazido para o repositório em 21/11/2026)."
+    },
+    {
+      "id": "wd-Q3940027-Q270995-2023",
+      "personId": "Q3940027",
+      "name": "Rodrigo Battaglia",
+      "position": "ZAG",
+      "club": "Atlético-MG",
+      "year": 2023,
+      "levelMin": 71,
+      "levelMax": 79,
+      "tier": "operario",
+      "hint": "Argentina. No Atlético-MG desde 2023. 32 anos em 2023.",
+      "series": "A",
+      "kit": [
+        "#111111",
+        "#FFFFFF"
+      ],
+      "motivo": "Ajuste feito na página de admin em produção (trazido para o repositório em 21/11/2026)."
+    },
+    {
+      "id": "wd-Q19559974-Q35933-2024",
+      "personId": "Q19559974",
+      "name": "Guilherme Arana",
+      "position": "LAT",
+      "club": "Atlético-MG",
+      "year": 2021,
+      "levelMin": 77,
+      "levelMax": 85,
+      "tier": "titular",
+      "hint": "Atlético-MG (2021).",
+      "series": "A",
+      "kit": [
+        "#111111",
+        "#FFFFFF"
+      ],
+      "motivo": "Ajuste feito na página de admin em produção (trazido para o repositório em 21/11/2026)."
+    },
+    {
+      "id": "wd-Q58441-Q270995-2016",
+      "personId": "Q58441",
+      "name": "Robinho",
+      "position": "ATA",
+      "club": "Atlético-MG",
+      "year": 2016,
+      "levelMin": 80,
+      "levelMax": 86,
+      "tier": "titular",
+      "hint": "60 jogos e 19 gols pelo Atlético-MG de 2016 a 2017. 32 anos em 2016. 100 jogos pela seleção.",
+      "series": "A",
+      "kit": [
+        "#111111",
+        "#FFFFFF"
+      ],
+      "motivo": "Ajuste feito na página de admin em produção (trazido para o repositório em 21/11/2026)."
+    },
+    {
+      "id": "wd-Q64606160-Q270995-2026",
+      "personId": "Q64606160",
+      "name": "Reinier",
+      "position": "ATA",
+      "club": "Atlético-MG",
+      "year": 2026,
+      "levelMin": 70,
+      "levelMax": 82,
+      "tier": "titular",
+      "hint": "No Atlético-MG desde 2025. 24 anos em 2026.",
+      "series": "A",
+      "kit": [
+        "#111111",
+        "#FFFFFF"
+      ],
+      "motivo": "Ajuste feito na página de admin em produção (trazido para o repositório em 21/11/2026)."
+    },
+    {
+      "id": "wd-Q102331-Q35933-1981",
+      "personId": "Q102331",
+      "name": "Sócrates",
+      "position": "MEI",
+      "club": "Corinthians",
+      "year": 1981,
+      "levelMin": 93,
+      "levelMax": 98,
+      "tier": "lenda",
+      "hint": "297 jogos e 172 gols pelo Corinthians de 1978 a 1984. 27 anos em 1981. 60 jogos pela seleção.",
+      "series": "A",
+      "kit": [
+        "#FFFFFF",
+        "#111111"
+      ],
+      "motivo": "Ajuste feito na página de admin em produção (trazido para o repositório em 21/11/2026)."
+    },
+    {
+      "id": "wd-Q1694253-Q270995-1979",
+      "personId": "Q1694253",
+      "name": "Paulo Isidoro",
+      "position": "MEI",
+      "club": "Atlético-MG",
+      "levelMin": 86,
+      "levelMax": 92,
+      "tier": "lenda",
+      "kit": [
+        "#111111",
+        "#FFFFFF"
+      ],
+      "series": "A",
+      "year": 1979,
+      "hint": "136 jogos e 23 gols pelo Atlético-MG de 1975 a 1980. 26 anos em 1979. 36 jogos pela seleção.",
+      "motivo": "Lenda do clube (lista de ídolos por clube, nov/2026)."
+    },
+    {
+      "id": "man-mario-de-castro-atletico-mg-1929",
+      "name": "Mário de Castro",
+      "position": "ATA",
+      "club": "Atlético-MG",
+      "levelMin": 86,
+      "levelMax": 92,
+      "tier": "lenda",
+      "kit": [
+        "#111111",
+        "#FFFFFF"
+      ],
+      "series": "A",
+      "year": 1929,
+      "hint": "Do Trio Maldito do Atlético-MG, com Said e Jairo, no fim dos anos 1920.",
+      "motivo": "Lenda do clube (lista de ídolos por clube, nov/2026)."
+    },
+    {
+      "id": "man-guara-atletico-mg-1938",
+      "name": "Guará",
+      "position": "ATA",
+      "club": "Atlético-MG",
+      "levelMin": 86,
+      "levelMax": 92,
+      "tier": "lenda",
+      "kit": [
+        "#111111",
+        "#FFFFFF"
+      ],
+      "series": "A",
+      "year": 1938,
+      "hint": "Atacante do Atlético-MG nos anos 1930 e 1940.",
+      "motivo": "Lenda do clube (lista de ídolos por clube, nov/2026)."
+    },
+    {
+      "id": "wd-Q2718851-Q270995-2001",
+      "personId": "Q2718851",
+      "name": "Guilherme Alves",
+      "position": "ATA",
+      "club": "Atlético-MG",
+      "levelMin": 86,
+      "levelMax": 92,
+      "tier": "lenda",
+      "kit": [
+        "#111111",
+        "#FFFFFF"
+      ],
+      "series": "A",
+      "year": 2001,
+      "hint": "78 jogos e 41 gols pelo Atlético-MG de 1999 a 2003. 27 anos em 2001.",
+      "motivo": "Lenda do clube (lista de ídolos por clube, nov/2026)."
+    },
+    {
+      "id": "man-said-atletico-mg-1929",
+      "name": "Said",
+      "position": "ATA",
+      "club": "Atlético-MG",
+      "levelMin": 82,
+      "levelMax": 88,
+      "tier": "craque",
+      "kit": [
+        "#111111",
+        "#FFFFFF"
+      ],
+      "series": "A",
+      "year": 1929,
+      "hint": "Do Trio Maldito do Atlético-MG, com Jairo e Mário de Castro, no fim dos anos 1920.",
+      "motivo": "Ídolo do clube que faltava no baralho (lista de ídolos por clube, nov/2026), sem ser Lenda."
+    },
+    {
+      "id": "man-jairo-atletico-mg-1929",
+      "name": "Jairo",
+      "position": "ATA",
+      "club": "Atlético-MG",
+      "levelMin": 82,
+      "levelMax": 88,
+      "tier": "craque",
+      "kit": [
+        "#111111",
+        "#FFFFFF"
+      ],
+      "series": "A",
+      "year": 1929,
+      "hint": "Do Trio Maldito do Atlético-MG, com Said e Mário de Castro, no fim dos anos 1920.",
+      "motivo": "Ídolo do clube que faltava no baralho (lista de ídolos por clube, nov/2026), sem ser Lenda."
+    },
+    {
+      "id": "man-buiao-atletico-mg-1968",
+      "name": "Buião",
+      "position": "ATA",
+      "club": "Atlético-MG",
+      "levelMin": 82,
+      "levelMax": 88,
+      "tier": "craque",
+      "kit": [
+        "#111111",
+        "#FFFFFF"
+      ],
+      "series": "A",
+      "year": 1968,
+      "hint": "Ídolo do Atlético-MG.",
+      "motivo": "Ídolo do clube que faltava no baralho (lista de ídolos por clube, nov/2026), sem ser Lenda."
+    },
+    {
+      "id": "man-lola-atletico-mg-1972",
+      "name": "Lola",
+      "position": "ATA",
+      "club": "Atlético-MG",
+      "levelMin": 82,
+      "levelMax": 88,
+      "tier": "craque",
+      "kit": [
+        "#111111",
+        "#FFFFFF"
+      ],
+      "series": "A",
+      "year": 1972,
+      "hint": "Ídolo do Atlético-MG.",
+      "motivo": "Ídolo do clube que faltava no baralho (lista de ídolos por clube, nov/2026), sem ser Lenda."
+    },
+    {
+      "id": "wd-Q3695155-Q270995-1976",
+      "personId": "Q3695155",
+      "name": "Campos",
+      "position": "ATA",
+      "club": "Atlético-MG",
+      "levelMin": 82,
+      "levelMax": 88,
+      "tier": "craque",
+      "kit": [
+        "#111111",
+        "#FFFFFF"
+      ],
+      "series": "A",
+      "year": 1976,
+      "hint": "50 jogos e 13 gols pelo Atlético-MG de 1970 a 1976. 24 anos em 1976.",
+      "motivo": "Ídolo do clube que faltava no baralho (lista de ídolos por clube, nov/2026), sem ser Lenda."
+    },
+    {
+      "id": "wd-Q2420612-Q188277-2011",
+      "personId": "Q2420612",
+      "name": "Montillo",
+      "position": "MEI",
+      "club": "Cruzeiro",
+      "levelMin": 86,
+      "levelMax": 92,
+      "tier": "lenda",
+      "kit": [
+        "#0033A0",
+        "#FFFFFF"
+      ],
+      "series": "A",
+      "year": 2011,
+      "hint": "89 jogos e 23 gols pelo Cruzeiro de 2010 a 2012. 27 anos em 2011.",
+      "motivo": "Lenda do clube (lista de ídolos por clube, nov/2026)."
+    },
+    {
+      "id": "man-joaozinho-cruzeiro-1976",
+      "name": "Joãozinho",
+      "position": "ATA",
+      "club": "Cruzeiro",
+      "levelMin": 82,
+      "levelMax": 88,
+      "tier": "craque",
+      "kit": [
+        "#0033A0",
+        "#FFFFFF"
+      ],
+      "series": "A",
+      "year": 1976,
+      "hint": "Ponta do Cruzeiro campeão da Libertadores de 1976.",
+      "motivo": "Ídolo do clube que faltava no baralho (lista de ídolos por clube, nov/2026), sem ser Lenda."
+    },
+    {
+      "id": "wd-Q10335634-Q188277-1966",
+      "personId": "Q10335634",
+      "name": "Natal",
+      "position": "ATA",
+      "club": "Cruzeiro",
+      "levelMin": 82,
+      "levelMax": 88,
+      "tier": "craque",
+      "kit": [
+        "#0033A0",
+        "#FFFFFF"
+      ],
+      "series": "A",
+      "year": 1966,
+      "hint": "Ponta do Cruzeiro campeão da Taça Brasil de 1966. 21 anos em 1966. 13 jogos pela seleção.",
+      "motivo": "Ídolo do clube que faltava no baralho (lista de ídolos por clube, nov/2026), sem ser Lenda."
+    },
+    {
+      "id": "wd-Q1365945-Q188277-1939",
+      "personId": "Q1365945",
+      "name": "Niginho",
+      "position": "ATA",
+      "club": "Cruzeiro",
+      "levelMin": 82,
+      "levelMax": 88,
+      "tier": "craque",
+      "kit": [
+        "#0033A0",
+        "#FFFFFF"
+      ],
+      "series": "A",
+      "year": 1939,
+      "hint": "257 jogos e 207 gols pelo Cruzeiro de 1939 a 1947. 27 anos em 1939.",
+      "motivo": "Ídolo do clube que faltava no baralho (lista de ídolos por clube, nov/2026), sem ser Lenda."
+    },
+    {
+      "id": "man-ninao-cruzeiro-1930",
+      "name": "Ninão",
+      "position": "ATA",
+      "club": "Cruzeiro",
+      "levelMin": 82,
+      "levelMax": 88,
+      "tier": "craque",
+      "kit": [
+        "#0033A0",
+        "#FFFFFF"
+      ],
+      "series": "A",
+      "year": 1930,
+      "hint": "Atacante do Palestra Itália, hoje Cruzeiro, nos anos 1920 e 1930.",
+      "motivo": "Ídolo do clube que faltava no baralho (lista de ídolos por clube, nov/2026), sem ser Lenda."
+    },
+    {
+      "id": "man-ze-carlos-cruzeiro-1971",
+      "name": "Zé Carlos",
+      "position": "MEI",
+      "club": "Cruzeiro",
+      "levelMin": 82,
+      "levelMax": 88,
+      "tier": "craque",
+      "kit": [
+        "#0033A0",
+        "#FFFFFF"
+      ],
+      "series": "A",
+      "year": 1971,
+      "hint": "Volante do Cruzeiro nos anos 1960 e 1970.",
+      "motivo": "Ídolo do clube que faltava no baralho (lista de ídolos por clube, nov/2026), sem ser Lenda."
+    },
+    {
+      "id": "wd-Q311739-Q17479-1940",
+      "personId": "Q311739",
+      "name": "Leônidas",
+      "position": "ATA",
+      "club": "Flamengo",
+      "levelMin": 86,
+      "levelMax": 92,
+      "tier": "lenda",
+      "kit": [
+        "#C8102E",
+        "#111111"
+      ],
+      "series": "A",
+      "year": 1940,
+      "hint": "149 jogos e 153 gols pelo Flamengo de 1936 a 1942. 27 anos em 1940. 19 jogos pela seleção.",
+      "motivo": "Lenda do clube (lista de ídolos por clube, nov/2026)."
+    },
+    {
+      "id": "man-bruno-henrique-flamengo-2019",
+      "name": "Bruno Henrique",
+      "position": "ATA",
+      "club": "Flamengo",
+      "levelMin": 86,
+      "levelMax": 92,
+      "tier": "lenda",
+      "kit": [
+        "#C8102E",
+        "#111111"
+      ],
+      "series": "A",
+      "year": 2019,
+      "hint": "Campeão da Libertadores pelo Flamengo em 2019 e 2022. 29 anos em 2019.",
+      "motivo": "Lenda do clube (lista de ídolos por clube, nov/2026)."
+    },
+    {
+      "id": "wd-Q2294362-Q17479-1961",
+      "personId": "Q2294362",
+      "name": "Dida",
+      "position": "ATA",
+      "club": "Flamengo",
+      "levelMin": 82,
+      "levelMax": 88,
+      "tier": "craque",
+      "kit": [
+        "#C8102E",
+        "#111111"
+      ],
+      "series": "A",
+      "year": 1961,
+      "hint": "244 jogos e 263 gols pelo Flamengo de 1954 a 1964. 27 anos em 1961.",
+      "motivo": "Ídolo do clube que faltava no baralho (lista de ídolos por clube, nov/2026), sem ser Lenda."
+    },
+    {
+      "id": "wd-Q553061-Q17479-1957",
+      "personId": "Q553061",
+      "name": "Evaristo de Macedo",
+      "position": "ATA",
+      "club": "Flamengo",
+      "levelMin": 82,
+      "levelMax": 88,
+      "tier": "craque",
+      "kit": [
+        "#C8102E",
+        "#111111"
+      ],
+      "series": "A",
+      "year": 1957,
+      "hint": "191 jogos e 103 gols pelo Flamengo de 1953 a 1957. 24 anos em 1957. 14 jogos pela seleção.",
+      "motivo": "Ídolo do clube que faltava no baralho (lista de ídolos por clube, nov/2026), sem ser Lenda."
+    },
+    {
+      "id": "wd-Q542551-Q17479-1970",
+      "personId": "Q542551",
+      "name": "Doval",
+      "position": "ATA",
+      "club": "Flamengo",
+      "levelMin": 82,
+      "levelMax": 88,
+      "tier": "craque",
+      "kit": [
+        "#C8102E",
+        "#111111"
+      ],
+      "series": "A",
+      "year": 1970,
+      "hint": "84 jogos e 18 gols pelo Flamengo de 1969 a 1970. 26 anos em 1970.",
+      "motivo": "Ídolo do clube que faltava no baralho (lista de ídolos por clube, nov/2026), sem ser Lenda."
+    },
+    {
+      "id": "wd-Q2709912-Q17479-1966",
+      "personId": "Q2709912",
+      "name": "Silva Batuta",
+      "position": "ATA",
+      "club": "Flamengo",
+      "levelMin": 82,
+      "levelMax": 88,
+      "tier": "craque",
+      "kit": [
+        "#C8102E",
+        "#111111"
+      ],
+      "series": "A",
+      "year": 1966,
+      "hint": "79 jogos e 48 gols pelo Flamengo de 1965 a 1966. 26 anos em 1966.",
+      "motivo": "Ídolo do clube que faltava no baralho (lista de ídolos por clube, nov/2026), sem ser Lenda."
+    },
+    {
+      "id": "wd-Q178649-Q5014111-2000",
+      "personId": "Q178649",
+      "name": "Romário",
+      "position": "ATA",
+      "club": "Vasco",
+      "levelMin": 86,
+      "levelMax": 92,
+      "tier": "lenda",
+      "kit": [
+        "#111111",
+        "#FFFFFF"
+      ],
+      "series": "A",
+      "year": 2000,
+      "hint": "46 jogos e 41 gols pelo Vasco de 2000 a 2002. 34 anos em 2000. 70 jogos pela seleção.",
+      "motivo": "Lenda do clube (lista de ídolos por clube, nov/2026)."
+    },
+    {
+      "id": "wd-Q445541-Q5014111-1997",
+      "personId": "Q445541",
+      "name": "Edmundo",
+      "position": "ATA",
+      "club": "Vasco",
+      "levelMin": 86,
+      "levelMax": 92,
+      "tier": "lenda",
+      "kit": [
+        "#111111",
+        "#FFFFFF"
+      ],
+      "series": "A",
+      "year": 1997,
+      "hint": "44 jogos e 38 gols pelo Vasco de 1996 a 1997. 26 anos em 1997. 39 jogos pela seleção.",
+      "motivo": "Lenda do clube (lista de ídolos por clube, nov/2026)."
+    },
+    {
+      "id": "wd-Q311445-Q5014111-1958",
+      "personId": "Q311445",
+      "name": "Vavá",
+      "position": "ATA",
+      "club": "Vasco",
+      "levelMin": 86,
+      "levelMax": 92,
+      "tier": "lenda",
+      "kit": [
+        "#111111",
+        "#FFFFFF"
+      ],
+      "series": "A",
+      "year": 1958,
+      "hint": "No Vasco de 1951 a 1958. 24 anos em 1958. 20 jogos pela seleção.",
+      "motivo": "Lenda do clube (lista de ídolos por clube, nov/2026)."
+    },
+    {
+      "id": "wd-Q2579383-Q5014111-2000",
+      "personId": "Q2579383",
+      "name": "Felipe",
+      "position": "LAT",
+      "club": "Vasco",
+      "levelMin": 86,
+      "levelMax": 92,
+      "tier": "lenda",
+      "kit": [
+        "#111111",
+        "#FFFFFF"
+      ],
+      "series": "A",
+      "year": 2000,
+      "hint": "268 jogos e 22 gols pelo Vasco de 1996 a 2002. 23 anos em 2000.",
+      "motivo": "Lenda do clube (lista de ídolos por clube, nov/2026)."
+    },
+    {
+      "id": "man-ipojucan-vasco-1950",
+      "name": "Ipojucan",
+      "position": "MEI",
+      "club": "Vasco",
+      "levelMin": 82,
+      "levelMax": 88,
+      "tier": "craque",
+      "kit": [
+        "#111111",
+        "#FFFFFF"
+      ],
+      "series": "A",
+      "year": 1950,
+      "hint": "Meia do Vasco do Expresso da Vitória.",
+      "motivo": "Ídolo do clube que faltava no baralho (lista de ídolos por clube, nov/2026), sem ser Lenda."
+    },
+    {
+      "id": "wd-Q254747-Q5014111-1953",
+      "personId": "Q254747",
+      "name": "Pinga",
+      "position": "MEI",
+      "club": "Vasco",
+      "levelMin": 82,
+      "levelMax": 88,
+      "tier": "craque",
+      "kit": [
+        "#111111",
+        "#FFFFFF"
+      ],
+      "series": "A",
+      "year": 1953,
+      "hint": "241 jogos e 123 gols pelo Vasco de 1953 a 1961. 29 anos em 1953.",
+      "motivo": "Ídolo do clube que faltava no baralho (lista de ídolos por clube, nov/2026), sem ser Lenda."
+    },
+    {
+      "id": "wd-Q1354227-Q5014111-1953",
+      "personId": "Q1354227",
+      "name": "Maneca",
+      "position": "ATA",
+      "club": "Vasco",
+      "levelMin": 82,
+      "levelMax": 88,
+      "tier": "craque",
+      "kit": [
+        "#111111",
+        "#FFFFFF"
+      ],
+      "series": "A",
+      "year": 1953,
+      "hint": "No Vasco de 1946 a 1955. 27 anos em 1953.",
+      "motivo": "Ídolo do clube que faltava no baralho (lista de ídolos por clube, nov/2026), sem ser Lenda."
+    },
+    {
+      "id": "man-sabara-vasco-1958",
+      "name": "Sabará",
+      "position": "ATA",
+      "club": "Vasco",
+      "levelMin": 82,
+      "levelMax": 88,
+      "tier": "craque",
+      "kit": [
+        "#111111",
+        "#FFFFFF"
+      ],
+      "series": "A",
+      "year": 1958,
+      "hint": "Ponta-direita do Vasco nos anos 1950 e 1960.",
+      "motivo": "Ídolo do clube que faltava no baralho (lista de ídolos por clube, nov/2026), sem ser Lenda."
+    },
+    {
+      "id": "wd-Q1987355-Q5014111-1960",
+      "personId": "Q1987355",
+      "name": "Almir Pernambuquinho",
+      "position": "ATA",
+      "club": "Vasco",
+      "levelMin": 82,
+      "levelMax": 88,
+      "tier": "craque",
+      "kit": [
+        "#111111",
+        "#FFFFFF"
+      ],
+      "series": "A",
+      "year": 1960,
+      "hint": "No Vasco de 1957 a 1960. 23 anos em 1960.",
+      "motivo": "Ídolo do clube que faltava no baralho (lista de ídolos por clube, nov/2026), sem ser Lenda."
+    },
+    {
+      "id": "wd-Q1509622-Q5014111-1989",
+      "personId": "Q1509622",
+      "name": "Geovani",
+      "position": "MEI",
+      "club": "Vasco",
+      "levelMin": 82,
+      "levelMax": 88,
+      "tier": "craque",
+      "kit": [
+        "#111111",
+        "#FFFFFF"
+      ],
+      "series": "A",
+      "year": 1989,
+      "hint": "94 jogos e 12 gols pelo Vasco de 1983 a 1989. 25 anos em 1989. 23 jogos pela seleção.",
+      "motivo": "Ídolo do clube que faltava no baralho (lista de ídolos por clube, nov/2026), sem ser Lenda."
+    },
+    {
+      "id": "wd-Q361252-Q80987-1958",
+      "personId": "Q361252",
+      "name": "Telê Santana",
+      "position": "ATA",
+      "club": "Fluminense",
+      "levelMin": 82,
+      "levelMax": 88,
+      "tier": "craque",
+      "kit": [
+        "#7A1E32",
+        "#00613A"
+      ],
+      "series": "A",
+      "year": 1958,
+      "hint": "557 jogos e 162 gols pelo Fluminense de 1951 a 1960. 27 anos em 1958.",
+      "motivo": "Ídolo do clube que faltava no baralho (lista de ídolos por clube, nov/2026), sem ser Lenda."
+    },
+    {
+      "id": "wd-Q1333472-Q80987-1961",
+      "personId": "Q1333472",
+      "name": "Waldo",
+      "position": "ATA",
+      "club": "Fluminense",
+      "levelMin": 82,
+      "levelMax": 88,
+      "tier": "craque",
+      "kit": [
+        "#7A1E32",
+        "#00613A"
+      ],
+      "series": "A",
+      "year": 1961,
+      "hint": "403 jogos e 314 gols pelo Fluminense de 1954 a 1961. 27 anos em 1961.",
+      "motivo": "Ídolo do clube que faltava no baralho (lista de ídolos por clube, nov/2026), sem ser Lenda."
+    },
+    {
+      "id": "wd-Q2714449-Q80987-1939",
+      "personId": "Q2714449",
+      "name": "Hércules",
+      "position": "ATA",
+      "club": "Fluminense",
+      "levelMin": 82,
+      "levelMax": 88,
+      "tier": "craque",
+      "kit": [
+        "#7A1E32",
+        "#00613A"
+      ],
+      "series": "A",
+      "year": 1939,
+      "hint": "175 jogos e 163 gols pelo Fluminense de 1933 a 1941. 27 anos em 1939.",
+      "motivo": "Ídolo do clube que faltava no baralho (lista de ídolos por clube, nov/2026), sem ser Lenda."
+    },
+    {
+      "id": "man-orlando-pingo-de-ouro-fluminense-1951",
+      "name": "Orlando Pingo de Ouro",
+      "position": "ATA",
+      "club": "Fluminense",
+      "levelMin": 82,
+      "levelMax": 88,
+      "tier": "craque",
+      "kit": [
+        "#7A1E32",
+        "#00613A"
+      ],
+      "series": "A",
+      "year": 1951,
+      "hint": "Atacante do Fluminense nos anos 1940 e 1950.",
+      "motivo": "Ídolo do clube que faltava no baralho (lista de ídolos por clube, nov/2026), sem ser Lenda."
+    },
+    {
+      "id": "man-samarone-fluminense-1969",
+      "name": "Samarone",
+      "position": "MEI",
+      "club": "Fluminense",
+      "levelMin": 82,
+      "levelMax": 88,
+      "tier": "craque",
+      "kit": [
+        "#7A1E32",
+        "#00613A"
+      ],
+      "series": "A",
+      "year": 1969,
+      "hint": "Meia do Fluminense nos anos 1960.",
+      "motivo": "Ídolo do clube que faltava no baralho (lista de ídolos por clube, nov/2026), sem ser Lenda."
+    },
+    {
+      "id": "wd-Q2340528-Q80987-1971",
+      "personId": "Q2340528",
+      "name": "Flávio Minuano",
+      "position": "ATA",
+      "club": "Fluminense",
+      "levelMin": 82,
+      "levelMax": 88,
+      "tier": "craque",
+      "kit": [
+        "#7A1E32",
+        "#00613A"
+      ],
+      "series": "A",
+      "year": 1971,
+      "hint": "No Fluminense de 1969 a 1971. 27 anos em 1971. 17 jogos pela seleção.",
+      "motivo": "Ídolo do clube que faltava no baralho (lista de ídolos por clube, nov/2026), sem ser Lenda."
+    },
+    {
+      "id": "man-romerito-fluminense-1984",
+      "name": "Romerito",
+      "position": "MEI",
+      "club": "Fluminense",
+      "levelMin": 82,
+      "levelMax": 88,
+      "tier": "craque",
+      "kit": [
+        "#7A1E32",
+        "#00613A"
+      ],
+      "series": "A",
+      "year": 1984,
+      "hint": "Paraguai. Craque do Fluminense campeão brasileiro de 1984.",
+      "motivo": "Ídolo do clube que faltava no baralho (lista de ídolos por clube, nov/2026), sem ser Lenda."
+    },
+    {
+      "id": "wd-Q1648368-Q80987-1983",
+      "personId": "Q1648368",
+      "name": "Assis",
+      "position": "MEI",
+      "club": "Fluminense",
+      "levelMin": 82,
+      "levelMax": 88,
+      "tier": "craque",
+      "kit": [
+        "#7A1E32",
+        "#00613A"
+      ],
+      "series": "A",
+      "year": 1983,
+      "hint": "65 jogos e 19 gols pelo Fluminense de 1983 a 1987. 31 anos em 1983.",
+      "motivo": "Ídolo do clube que faltava no baralho (lista de ídolos por clube, nov/2026), sem ser Lenda."
+    },
+    {
+      "id": "wd-Q1172712-Q80987-1987",
+      "personId": "Q1172712",
+      "name": "Washington",
+      "position": "ATA",
+      "club": "Fluminense",
+      "levelMin": 82,
+      "levelMax": 88,
+      "tier": "craque",
+      "kit": [
+        "#7A1E32",
+        "#00613A"
+      ],
+      "series": "A",
+      "year": 1987,
+      "hint": "104 jogos e 33 gols pelo Fluminense de 1983 a 1989. 27 anos em 1987.",
+      "motivo": "Ídolo do clube que faltava no baralho (lista de ídolos por clube, nov/2026), sem ser Lenda."
+    },
+    {
+      "id": "wd-Q311511-Q80958-1958",
+      "personId": "Q311511",
+      "name": "Zagallo",
+      "position": "ATA",
+      "club": "Botafogo",
+      "levelMin": 86,
+      "levelMax": 92,
+      "tier": "lenda",
+      "kit": [
+        "#111111",
+        "#FFFFFF"
+      ],
+      "series": "A",
+      "year": 1958,
+      "hint": "115 jogos e 46 gols pelo Botafogo de 1958 a 1965. 27 anos em 1958. 33 jogos pela seleção.",
+      "motivo": "Lenda do clube (lista de ídolos por clube, nov/2026)."
+    },
+    {
+      "id": "wd-Q261000-Q80958-1939",
+      "personId": "Q261000",
+      "name": "Carvalho Leite",
+      "position": "ATA",
+      "club": "Botafogo",
+      "levelMin": 82,
+      "levelMax": 88,
+      "tier": "craque",
+      "kit": [
+        "#111111",
+        "#FFFFFF"
+      ],
+      "series": "A",
+      "year": 1939,
+      "hint": "326 jogos e 274 gols pelo Botafogo de 1929 a 1942. 27 anos em 1939. 10 jogos pela seleção.",
+      "motivo": "Ídolo do clube que faltava no baralho (lista de ídolos por clube, nov/2026), sem ser Lenda."
+    },
+    {
+      "id": "wd-Q2538934-Q80958-1930",
+      "personId": "Q2538934",
+      "name": "Nilo",
+      "position": "ATA",
+      "club": "Botafogo",
+      "levelMin": 82,
+      "levelMax": 88,
+      "tier": "craque",
+      "kit": [
+        "#111111",
+        "#FFFFFF"
+      ],
+      "series": "A",
+      "year": 1930,
+      "hint": "201 jogos e 184 gols pelo Botafogo de 1927 a 1938. 27 anos em 1930. 14 jogos pela seleção.",
+      "motivo": "Ídolo do clube que faltava no baralho (lista de ídolos por clube, nov/2026), sem ser Lenda."
+    },
+    {
+      "id": "wd-Q3858102-Q80958-1981",
+      "personId": "Q3858102",
+      "name": "Mendonça",
+      "position": "MEI",
+      "club": "Botafogo",
+      "levelMin": 82,
+      "levelMax": 88,
+      "tier": "craque",
+      "kit": [
+        "#111111",
+        "#FFFFFF"
+      ],
+      "series": "A",
+      "year": 1981,
+      "hint": "No Botafogo de 1975 a 1982. 25 anos em 1981.",
+      "motivo": "Ídolo do clube que faltava no baralho (lista de ídolos por clube, nov/2026), sem ser Lenda."
+    },
+    {
+      "id": "wd-Q514252-Q80958-2013",
+      "personId": "Q514252",
+      "name": "Jefferson",
+      "position": "GOL",
+      "club": "Botafogo",
+      "levelMin": 82,
+      "levelMax": 88,
+      "tier": "craque",
+      "kit": [
+        "#111111",
+        "#FFFFFF"
+      ],
+      "series": "A",
+      "year": 2013,
+      "hint": "No Botafogo de 2003 a 2005 e de 2009 a 2018. 30 anos em 2013.",
+      "motivo": "Ídolo do clube que faltava no baralho (lista de ídolos por clube, nov/2026), sem ser Lenda."
+    },
+    {
+      "id": "wd-Q2736176-Q35933-1957",
+      "personId": "Q2736176",
+      "name": "Luizinho",
+      "position": "MEI",
+      "club": "Corinthians",
+      "levelMin": 86,
+      "levelMax": 92,
+      "tier": "lenda",
+      "kit": [
+        "#FFFFFF",
+        "#111111"
+      ],
+      "series": "A",
+      "year": 1957,
+      "hint": "605 jogos e 172 gols pelo Corinthians de 1948 a 1962. 27 anos em 1957. 11 jogos pela seleção.",
+      "motivo": "Lenda do clube (lista de ídolos por clube, nov/2026)."
+    },
+    {
+      "id": "wd-Q2415404-Q35933-1949",
+      "personId": "Q2415404",
+      "name": "Cláudio",
+      "position": "ATA",
+      "club": "Corinthians",
+      "levelMin": 82,
+      "levelMax": 88,
+      "tier": "craque",
+      "kit": [
+        "#FFFFFF",
+        "#111111"
+      ],
+      "series": "A",
+      "year": 1949,
+      "hint": "554 jogos e 306 gols pelo Corinthians de 1944 a 1957. 27 anos em 1949.",
+      "motivo": "Ídolo do clube que faltava no baralho (lista de ídolos por clube, nov/2026), sem ser Lenda."
+    },
+    {
+      "id": "man-teleco-corinthians-1938",
+      "name": "Teleco",
+      "position": "ATA",
+      "club": "Corinthians",
+      "levelMin": 82,
+      "levelMax": 88,
+      "tier": "craque",
+      "kit": [
+        "#FFFFFF",
+        "#111111"
+      ],
+      "series": "A",
+      "year": 1938,
+      "hint": "Artilheiro do Corinthians nos anos 1930 e 1940.",
+      "motivo": "Ídolo do clube que faltava no baralho (lista de ídolos por clube, nov/2026), sem ser Lenda."
+    },
+    {
+      "id": "wd-Q585425-Q35933-1922",
+      "personId": "Q585425",
+      "name": "Neco",
+      "position": "ATA",
+      "club": "Corinthians",
+      "levelMin": 82,
+      "levelMax": 88,
+      "tier": "craque",
+      "kit": [
+        "#FFFFFF",
+        "#111111"
+      ],
+      "series": "A",
+      "year": 1922,
+      "hint": "313 jogos e 239 gols pelo Corinthians de 1913 a 1930. 27 anos em 1922. 15 jogos pela seleção.",
+      "motivo": "Ídolo do clube que faltava no baralho (lista de ídolos por clube, nov/2026), sem ser Lenda."
+    },
+    {
+      "id": "wd-Q1747611-Q35933-1981",
+      "personId": "Q1747611",
+      "name": "Zenon",
+      "position": "MEI",
+      "club": "Corinthians",
+      "levelMin": 82,
+      "levelMax": 88,
+      "tier": "craque",
+      "kit": [
+        "#FFFFFF",
+        "#111111"
+      ],
+      "series": "A",
+      "year": 1981,
+      "hint": "77 jogos e 16 gols pelo Corinthians de 1981 a 1985. 27 anos em 1981.",
+      "motivo": "Ídolo do clube que faltava no baralho (lista de ídolos por clube, nov/2026), sem ser Lenda."
+    },
+    {
+      "id": "wd-Q555391-Q35933-2012",
+      "personId": "Q555391",
+      "name": "Danilo",
+      "position": "MEI",
+      "club": "Corinthians",
+      "levelMin": 82,
+      "levelMax": 88,
+      "tier": "craque",
+      "kit": [
+        "#FFFFFF",
+        "#111111"
+      ],
+      "series": "A",
+      "year": 2012,
+      "hint": "Campeão da Libertadores e do Mundial de 2012 pelo Corinthians. 33 anos em 2012.",
+      "motivo": "Ídolo do clube que faltava no baralho (lista de ídolos por clube, nov/2026), sem ser Lenda."
+    },
+    {
+      "id": "wd-Q10293011-Q80964-1966",
+      "personId": "Q10293011",
+      "name": "Dudu",
+      "position": "MEI",
+      "club": "Palmeiras",
+      "levelMin": 86,
+      "levelMax": 92,
+      "tier": "lenda",
+      "kit": [
+        "#006437",
+        "#FFFFFF"
+      ],
+      "series": "A",
+      "year": 1966,
+      "hint": "609 jogos e 25 gols pelo Palmeiras de 1964 a 1976. 27 anos em 1966. 13 jogos pela seleção.",
+      "motivo": "Lenda do clube (lista de ídolos por clube, nov/2026)."
+    },
+    {
+      "id": "wd-Q2448249-Q80964-1925",
+      "personId": "Q2448249",
+      "name": "Heitor",
+      "position": "ATA",
+      "club": "Palmeiras",
+      "levelMin": 86,
+      "levelMax": 92,
+      "tier": "lenda",
+      "kit": [
+        "#006437",
+        "#FFFFFF"
+      ],
+      "series": "A",
+      "year": 1925,
+      "hint": "358 jogos e 327 gols pelo Palmeiras de 1916 a 1931. 27 anos em 1925.",
+      "motivo": "Lenda do clube (lista de ídolos por clube, nov/2026)."
+    },
+    {
+      "id": "wd-Q523520-Q80964-1958",
+      "personId": "Q523520",
+      "name": "Julinho Botelho",
+      "position": "ATA",
+      "club": "Palmeiras",
+      "levelMin": 86,
+      "levelMax": 92,
+      "tier": "lenda",
+      "kit": [
+        "#006437",
+        "#FFFFFF"
+      ],
+      "series": "A",
+      "year": 1958,
+      "hint": "266 jogos e 77 gols pelo Palmeiras de 1958 a 1967. 29 anos em 1958. 17 jogos pela seleção.",
+      "motivo": "Lenda do clube (lista de ídolos por clube, nov/2026)."
+    },
+    {
+      "id": "wd-Q2625446-Q80964-1972",
+      "personId": "Q2625446",
+      "name": "César Maluco",
+      "position": "ATA",
+      "club": "Palmeiras",
+      "levelMin": 86,
+      "levelMax": 92,
+      "tier": "lenda",
+      "kit": [
+        "#006437",
+        "#FFFFFF"
+      ],
+      "series": "A",
+      "year": 1972,
+      "hint": "45 jogos e 20 gols pelo Palmeiras de 1967 a 1975. 27 anos em 1972.",
+      "motivo": "Lenda do clube (lista de ídolos por clube, nov/2026)."
+    },
+    {
+      "id": "wd-Q507815-Q80964-1999",
+      "personId": "Q507815",
+      "name": "Alex de Souza",
+      "position": "MEI",
+      "club": "Palmeiras",
+      "levelMin": 86,
+      "levelMax": 92,
+      "tier": "lenda",
+      "kit": [
+        "#006437",
+        "#FFFFFF"
+      ],
+      "series": "A",
+      "year": 1999,
+      "hint": "65 jogos e 11 gols pelo Palmeiras de 1997 a 2002. 22 anos em 1999. 49 jogos pela seleção.",
+      "motivo": "Lenda do clube (lista de ídolos por clube, nov/2026)."
+    },
+    {
+      "id": "wd-Q47489-Q80964-1997",
+      "personId": "Q47489",
+      "name": "Djalminha",
+      "position": "MEI",
+      "club": "Palmeiras",
+      "levelMin": 86,
+      "levelMax": 92,
+      "tier": "lenda",
+      "kit": [
+        "#006437",
+        "#FFFFFF"
+      ],
+      "series": "A",
+      "year": 1997,
+      "hint": "22 jogos e 12 gols pelo Palmeiras de 1996 a 1997. 27 anos em 1997. 14 jogos pela seleção.",
+      "motivo": "Lenda do clube (lista de ídolos por clube, nov/2026)."
+    },
+    {
+      "id": "wd-Q204555-Q80964-1994",
+      "personId": "Q204555",
+      "name": "Zinho",
+      "position": "MEI",
+      "club": "Palmeiras",
+      "levelMin": 86,
+      "levelMax": 92,
+      "tier": "lenda",
+      "kit": [
+        "#006437",
+        "#FFFFFF"
+      ],
+      "series": "A",
+      "year": 1994,
+      "hint": "44 jogos e 11 gols pelo Palmeiras de 1992 a 1994. 27 anos em 1994. 57 jogos pela seleção.",
+      "motivo": "Lenda do clube (lista de ídolos por clube, nov/2026)."
+    },
+    {
+      "id": "wd-Q1345151-Q80964-1980",
+      "personId": "Q1345151",
+      "name": "Jorge Mendonça",
+      "position": "MEI",
+      "club": "Palmeiras",
+      "levelMin": 86,
+      "levelMax": 92,
+      "tier": "lenda",
+      "kit": [
+        "#006437",
+        "#FFFFFF"
+      ],
+      "series": "A",
+      "year": 1980,
+      "hint": "56 jogos e 30 gols pelo Palmeiras de 1976 a 1980. 26 anos em 1980.",
+      "motivo": "Lenda do clube (lista de ídolos por clube, nov/2026)."
+    },
+    {
+      "id": "wd-Q1341709-Q80964-2018",
+      "personId": "Q1341709",
+      "name": "Dudu",
+      "position": "ATA",
+      "club": "Palmeiras",
+      "levelMin": 86,
+      "levelMax": 92,
+      "tier": "lenda",
+      "kit": [
+        "#006437",
+        "#FFFFFF"
+      ],
+      "series": "A",
+      "year": 2018,
+      "hint": "No Palmeiras de 2015 a 2024. 26 anos em 2018.",
+      "motivo": "Lenda do clube (lista de ídolos por clube, nov/2026)."
+    },
+    {
+      "id": "wd-Q2316590-Q80964-1974",
+      "personId": "Q2316590",
+      "name": "Luís Pereira",
+      "position": "ZAG",
+      "club": "Palmeiras",
+      "levelMin": 86,
+      "levelMax": 92,
+      "tier": "lenda",
+      "kit": [
+        "#006437",
+        "#FFFFFF"
+      ],
+      "series": "A",
+      "year": 1974,
+      "hint": "93 jogos e 6 gols pelo Palmeiras de 1968 a 1974. 25 anos em 1974. 32 jogos pela seleção.",
+      "motivo": "Lenda do clube (lista de ídolos por clube, nov/2026)."
+    },
+    {
+      "id": "wd-Q2708662-Q38568-1942",
+      "personId": "Q2708662",
+      "name": "Antonio Sastre",
+      "position": "MEI",
+      "club": "São Paulo",
+      "levelMin": 82,
+      "levelMax": 88,
+      "tier": "craque",
+      "kit": [
+        "#FFFFFF",
+        "#D0021B"
+      ],
+      "series": "A",
+      "year": 1942,
+      "hint": "Argentina. 129 jogos e 58 gols pelo São Paulo de 1942 a 1946. 31 anos em 1942. 34 jogos pela seleção.",
+      "motivo": "Ídolo do clube que faltava no baralho (lista de ídolos por clube, nov/2026), sem ser Lenda."
+    },
+    {
+      "id": "wd-Q2015813-Q38568-1956",
+      "personId": "Q2015813",
+      "name": "Gino Orlando",
+      "position": "ATA",
+      "club": "São Paulo",
+      "levelMin": 82,
+      "levelMax": 88,
+      "tier": "craque",
+      "kit": [
+        "#FFFFFF",
+        "#D0021B"
+      ],
+      "series": "A",
+      "year": 1956,
+      "hint": "450 jogos e 232 gols pelo São Paulo de 1952 a 1963. 27 anos em 1956.",
+      "motivo": "Ídolo do clube que faltava no baralho (lista de ídolos por clube, nov/2026), sem ser Lenda."
+    },
+    {
+      "id": "wd-Q1989261-Q38568-1971",
+      "personId": "Q1989261",
+      "name": "Toninho Guerreiro",
+      "position": "ATA",
+      "club": "São Paulo",
+      "levelMin": 82,
+      "levelMax": 88,
+      "tier": "craque",
+      "kit": [
+        "#FFFFFF",
+        "#D0021B"
+      ],
+      "series": "A",
+      "year": 1971,
+      "hint": "34 jogos e 13 gols pelo São Paulo de 1969 a 1974. 29 anos em 1971.",
+      "motivo": "Ídolo do clube que faltava no baralho (lista de ídolos por clube, nov/2026), sem ser Lenda."
+    },
+    {
+      "id": "wd-Q979528-Q38568-1994",
+      "personId": "Q979528",
+      "name": "Palhinha",
+      "position": "MEI",
+      "club": "São Paulo",
+      "levelMin": 82,
+      "levelMax": 88,
+      "tier": "craque",
+      "kit": [
+        "#FFFFFF",
+        "#D0021B"
+      ],
+      "series": "A",
+      "year": 1994,
+      "hint": "56 jogos e 14 gols pelo São Paulo de 1992 a 1995. 27 anos em 1994. 16 jogos pela seleção.",
+      "motivo": "Ídolo do clube que faltava no baralho (lista de ídolos por clube, nov/2026), sem ser Lenda."
+    },
+    {
+      "id": "wd-Q2445366-Q80955-1962",
+      "personId": "Q2445366",
+      "name": "Dorval",
+      "position": "ATA",
+      "club": "Santos",
+      "levelMin": 82,
+      "levelMax": 88,
+      "tier": "craque",
+      "kit": [
+        "#FFFFFF",
+        "#111111"
+      ],
+      "series": "A",
+      "year": 1962,
+      "hint": "612 jogos e 198 gols pelo Santos. 27 anos em 1962.",
+      "motivo": "Ídolo do clube que faltava no baralho (lista de ídolos por clube, nov/2026), sem ser Lenda."
+    },
+    {
+      "id": "wd-Q2565981-Q80955-1962",
+      "personId": "Q2565981",
+      "name": "Mengálvio",
+      "position": "MEI",
+      "club": "Santos",
+      "levelMin": 82,
+      "levelMax": 88,
+      "tier": "craque",
+      "kit": [
+        "#FFFFFF",
+        "#111111"
+      ],
+      "series": "A",
+      "year": 1962,
+      "hint": "371 jogos e 28 gols pelo Santos. 23 anos em 1962.",
+      "motivo": "Ídolo do clube que faltava no baralho (lista de ídolos por clube, nov/2026), sem ser Lenda."
+    },
+    {
+      "id": "wd-Q10346518-Q80955-1958",
+      "personId": "Q10346518",
+      "name": "Pagão",
+      "position": "ATA",
+      "club": "Santos",
+      "levelMin": 82,
+      "levelMax": 88,
+      "tier": "craque",
+      "kit": [
+        "#FFFFFF",
+        "#111111"
+      ],
+      "series": "A",
+      "year": 1958,
+      "hint": "Centroavante do Santos de 1955 a 1963. 24 anos em 1958.",
+      "motivo": "Ídolo do clube que faltava no baralho (lista de ídolos por clube, nov/2026), sem ser Lenda."
+    },
+    {
+      "id": "wd-Q1989261-Q80955-1966",
+      "personId": "Q1989261",
+      "name": "Toninho Guerreiro",
+      "position": "ATA",
+      "club": "Santos",
+      "levelMin": 82,
+      "levelMax": 88,
+      "tier": "craque",
+      "kit": [
+        "#FFFFFF",
+        "#111111"
+      ],
+      "series": "A",
+      "year": 1966,
+      "hint": "373 jogos e 283 gols pelo Santos de 1963 a 1969. 24 anos em 1966.",
+      "motivo": "Ídolo do clube que faltava no baralho (lista de ídolos por clube, nov/2026), sem ser Lenda."
+    },
+    {
+      "id": "wd-Q1988696-Q221695-1978",
+      "personId": "Q1988696",
+      "name": "Tarciso",
+      "position": "ATA",
+      "club": "Grêmio",
+      "levelMin": 82,
+      "levelMax": 88,
+      "tier": "craque",
+      "kit": [
+        "#0D80BF",
+        "#111111"
+      ],
+      "series": "A",
+      "year": 1978,
+      "hint": "258 jogos e 78 gols pelo Grêmio de 1973 a 1986. 27 anos em 1978.",
+      "motivo": "Ídolo do clube que faltava no baralho (lista de ídolos por clube, nov/2026), sem ser Lenda."
+    },
+    {
+      "id": "man-gessy-gremio-1950",
+      "name": "Gessy",
+      "position": "MEI",
+      "club": "Grêmio",
+      "levelMin": 82,
+      "levelMax": 88,
+      "tier": "craque",
+      "kit": [
+        "#0D80BF",
+        "#111111"
+      ],
+      "series": "A",
+      "year": 1950,
+      "hint": "Ídolo do Grêmio.",
+      "motivo": "Ídolo do clube que faltava no baralho (lista de ídolos por clube, nov/2026), sem ser Lenda."
+    },
+    {
+      "id": "man-loivo-gremio-1968",
+      "name": "Loivo",
+      "position": "ATA",
+      "club": "Grêmio",
+      "levelMin": 82,
+      "levelMax": 88,
+      "tier": "craque",
+      "kit": [
+        "#0D80BF",
+        "#111111"
+      ],
+      "series": "A",
+      "year": 1968,
+      "hint": "Ídolo do Grêmio.",
+      "motivo": "Ídolo do clube que faltava no baralho (lista de ídolos por clube, nov/2026), sem ser Lenda."
+    },
+    {
+      "id": "wd-Q1694253-Q221695-1981",
+      "personId": "Q1694253",
+      "name": "Paulo Isidoro",
+      "position": "MEI",
+      "club": "Grêmio",
+      "levelMin": 82,
+      "levelMax": 88,
+      "tier": "craque",
+      "kit": [
+        "#0D80BF",
+        "#111111"
+      ],
+      "series": "A",
+      "year": 1981,
+      "hint": "54 jogos e 18 gols pelo Grêmio de 1980 a 1983. 28 anos em 1981. 36 jogos pela seleção.",
+      "motivo": "Ídolo do clube que faltava no baralho (lista de ídolos por clube, nov/2026), sem ser Lenda."
+    },
+    {
+      "id": "wd-Q647438-Q221695-1983",
+      "personId": "Q647438",
+      "name": "Mário Sérgio",
+      "position": "MEI",
+      "club": "Grêmio",
+      "levelMin": 82,
+      "levelMax": 88,
+      "tier": "craque",
+      "kit": [
+        "#0D80BF",
+        "#111111"
+      ],
+      "series": "A",
+      "year": 1983,
+      "hint": "Campeão da Libertadores e do Mundial de 1983 pelo Grêmio. 33 anos em 1983.",
+      "motivo": "Ídolo do clube que faltava no baralho (lista de ídolos por clube, nov/2026), sem ser Lenda."
+    },
+    {
+      "id": "wd-Q2429057-Q221695-1995",
+      "personId": "Q2429057",
+      "name": "Dinho",
+      "position": "MEI",
+      "club": "Grêmio",
+      "levelMin": 82,
+      "levelMax": 88,
+      "tier": "craque",
+      "kit": [
+        "#0D80BF",
+        "#111111"
+      ],
+      "series": "A",
+      "year": 1995,
+      "hint": "46 jogos e 8 gols pelo Grêmio de 1995 a 1997. 29 anos em 1995.",
+      "motivo": "Ídolo do clube que faltava no baralho (lista de ídolos por clube, nov/2026), sem ser Lenda."
+    },
+    {
+      "id": "man-luan-gremio-2017",
+      "name": "Luan",
+      "position": "ATA",
+      "club": "Grêmio",
+      "levelMin": 82,
+      "levelMax": 88,
+      "tier": "craque",
+      "kit": [
+        "#0D80BF",
+        "#111111"
+      ],
+      "series": "A",
+      "year": 2017,
+      "hint": "Rei da América no Grêmio campeão da Libertadores de 2017. 24 anos em 2017.",
+      "motivo": "Ídolo do clube que faltava no baralho (lista de ídolos por clube, nov/2026), sem ser Lenda."
+    },
+    {
+      "id": "man-everton-cebolinha-gremio-2019",
+      "name": "Everton Cebolinha",
+      "position": "ATA",
+      "club": "Grêmio",
+      "levelMin": 82,
+      "levelMax": 88,
+      "tier": "craque",
+      "kit": [
+        "#0D80BF",
+        "#111111"
+      ],
+      "series": "A",
+      "year": 2019,
+      "hint": "No Grêmio de 2014 a 2020. 23 anos em 2019.",
+      "motivo": "Ídolo do clube que faltava no baralho (lista de ídolos por clube, nov/2026), sem ser Lenda."
+    },
+    {
+      "id": "wd-Q755895-Q221695-1975",
+      "personId": "Q755895",
+      "name": "Ancheta",
+      "position": "ZAG",
+      "club": "Grêmio",
+      "levelMin": 82,
+      "levelMax": 88,
+      "tier": "craque",
+      "kit": [
+        "#0D80BF",
+        "#111111"
+      ],
+      "series": "A",
+      "year": 1975,
+      "hint": "Uruguai. 164 jogos e 7 gols pelo Grêmio de 1971 a 1979. 27 anos em 1975. 20 jogos pela seleção.",
+      "motivo": "Ídolo do clube que faltava no baralho (lista de ídolos por clube, nov/2026), sem ser Lenda."
+    },
+    {
+      "id": "wd-Q2414922-Q80845-1948",
+      "personId": "Q2414922",
+      "name": "Tesourinha",
+      "position": "ATA",
+      "club": "Internacional",
+      "levelMin": 82,
+      "levelMax": 88,
+      "tier": "craque",
+      "kit": [
+        "#D50000",
+        "#FFFFFF"
+      ],
+      "series": "A",
+      "year": 1948,
+      "hint": "149 jogos e 176 gols pelo Internacional de 1939 a 1949. 27 anos em 1948. 23 jogos pela seleção.",
+      "motivo": "Ídolo do clube que faltava no baralho (lista de ídolos por clube, nov/2026), sem ser Lenda."
+    },
+    {
+      "id": "wd-Q1979618-Q80845-1948",
+      "personId": "Q1979618",
+      "name": "Carlitos",
+      "position": "ATA",
+      "club": "Internacional",
+      "levelMin": 82,
+      "levelMax": 88,
+      "tier": "craque",
+      "kit": [
+        "#D50000",
+        "#FFFFFF"
+      ],
+      "series": "A",
+      "year": 1948,
+      "hint": "384 jogos e 325 gols pelo Internacional de 1939 a 1951. 27 anos em 1948.",
+      "motivo": "Ídolo do clube que faltava no baralho (lista de ídolos por clube, nov/2026), sem ser Lenda."
+    },
+    {
+      "id": "wd-Q380322-Q80845-1950",
+      "personId": "Q380322",
+      "name": "Adãozinho",
+      "position": "ATA",
+      "club": "Internacional",
+      "levelMin": 82,
+      "levelMax": 88,
+      "tier": "craque",
+      "kit": [
+        "#D50000",
+        "#FFFFFF"
+      ],
+      "series": "A",
+      "year": 1950,
+      "hint": "No Internacional de 1943 a 1951. 27 anos em 1950.",
+      "motivo": "Ídolo do clube que faltava no baralho (lista de ídolos por clube, nov/2026), sem ser Lenda."
+    },
+    {
+      "id": "wd-Q1991979-Q80845-1959",
+      "personId": "Q1991979",
+      "name": "Larry",
+      "position": "ATA",
+      "club": "Internacional",
+      "levelMin": 82,
+      "levelMax": 88,
+      "tier": "craque",
+      "kit": [
+        "#D50000",
+        "#FFFFFF"
+      ],
+      "series": "A",
+      "year": 1959,
+      "hint": "261 jogos e 176 gols pelo Internacional de 1954 a 1962. 27 anos em 1959.",
+      "motivo": "Ídolo do clube que faltava no baralho (lista de ídolos por clube, nov/2026), sem ser Lenda."
+    },
+    {
+      "id": "wd-Q2454669-Q80845-1955",
+      "personId": "Q2454669",
+      "name": "Bodinho",
+      "position": "ATA",
+      "club": "Internacional",
+      "levelMin": 82,
+      "levelMax": 88,
+      "tier": "craque",
+      "kit": [
+        "#D50000",
+        "#FFFFFF"
+      ],
+      "series": "A",
+      "year": 1955,
+      "hint": "No Internacional de 1951 a 1958. 27 anos em 1955.",
+      "motivo": "Ídolo do clube que faltava no baralho (lista de ídolos por clube, nov/2026), sem ser Lenda."
+    },
+    {
+      "id": "wd-Q2072841-Q80845-1974",
+      "personId": "Q2072841",
+      "name": "Claudiomiro",
+      "position": "ATA",
+      "club": "Internacional",
+      "levelMin": 82,
+      "levelMax": 88,
+      "tier": "craque",
+      "kit": [
+        "#D50000",
+        "#FFFFFF"
+      ],
+      "series": "A",
+      "year": 1974,
+      "hint": "424 jogos e 210 gols pelo Internacional de 1967 a 1974. 24 anos em 1974.",
+      "motivo": "Ídolo do clube que faltava no baralho (lista de ídolos por clube, nov/2026), sem ser Lenda."
+    },
+    {
+      "id": "man-escurinho-internacional-1975",
+      "name": "Escurinho",
+      "position": "ATA",
+      "club": "Internacional",
+      "levelMin": 82,
+      "levelMax": 88,
+      "tier": "craque",
+      "kit": [
+        "#D50000",
+        "#FFFFFF"
+      ],
+      "series": "A",
+      "year": 1975,
+      "hint": "Atacante do Internacional bicampeão brasileiro em 1975 e 1976.",
+      "motivo": "Ídolo do clube que faltava no baralho (lista de ídolos por clube, nov/2026), sem ser Lenda."
+    },
+    {
+      "id": "wd-Q555593-Q80845-1986",
+      "personId": "Q555593",
+      "name": "Rubén Paz",
+      "position": "MEI",
+      "club": "Internacional",
+      "levelMin": 82,
+      "levelMax": 88,
+      "tier": "craque",
+      "kit": [
+        "#D50000",
+        "#FFFFFF"
+      ],
+      "series": "A",
+      "year": 1986,
+      "hint": "Uruguai. 245 jogos e 69 gols pelo Internacional de 1982 a 1986. 27 anos em 1986. 45 jogos pela seleção.",
+      "motivo": "Ídolo do clube que faltava no baralho (lista de ídolos por clube, nov/2026), sem ser Lenda."
     }
   ]
 }

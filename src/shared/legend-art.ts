@@ -47,6 +47,21 @@ export const LEGEND_ART: Record<string, string> = {
   Q41533: 'lampard', Q459830: 'gerrard', Q45613: 'scholes', Q10524: 'giggs', Q45626: 'van-nistelrooy',
   Q41244: 'shevchenko', Q1918: 'ribery', Q113156: 'pires', Q219248: 'overmars', Q210083: 'francescoli',
   Q483629: 'van-basten', Q46347: 'vieira',
+  // Lendas dos clubes (lista de ídolos, nov/2026) e as que faltavam face em prod.
+  Q905206: 'diego-tardelli', 'man-guara-atletico-mg-1938': 'guara', Q2718851: 'guilherme-alves', Q62786: 'hulk', Q553025: 'joao-leite',
+  'adm-5d68b72c': 'leonardo-silva', Q197729: 'marques', 'man-mario-de-castro-atletico-mg-1929': 'mario-de-castro', Q1694253: 'paulo-isidoro', Q295891: 'taffarel',
+  Q552917: 'toninho-cerezo', Q273766: 'eder-aleixo', Q507815: 'alex-de-souza', Q2420612: 'montillo', Q2570605: 'palhinha',
+  Q535520: 'piazza', Q380405: 'adilio', Q204825: 'bebeto', 'man-bruno-henrique-flamengo-2019': 'bruno-henrique', Q2015351: 'petkovic',
+  Q13578003: 'arrascaeta', Q311424: 'junior', Q2448647: 'nunes', Q372451: 'savio', Q178774: 'bismarck',
+  Q1164053: 'danilo-alvim', Q2579383: 'felipe', Q318184: 'juninho-paulista', Q203451: 'juninho-pernambucano', Q372058: 'felix',
+  Q1378184: 'baltazar', Q1378124: 'casagrande', Q2736176: 'luizinho-corinthians', Q378101: 'marcelinho-carioca', Q2308830: 'neto',
+  Q2625446: 'cesar-maluco', Q47489: 'djalminha', Q10293011: 'dudu-olegario', Q1341709: 'dudu', Q195426: 'evair',
+  Q2448249: 'heitor', Q1345151: 'jorge-mendonca', Q523520: 'julinho-botelho', Q2316590: 'luis-pereira', Q62182: 'mazzola',
+  Q311445: 'vava', Q204555: 'zinho', Q342489: 'careca', Q313570: 'hernanes', Q312895: 'rai',
+  Q2734022: 'paulo-nunes', Q313741: 'dalessandro', Q664053: 'fernandao', Q213828: 'costacurta', Q227892: 'nesta',
+  Q126503: 'inzaghi', Q189892: 'hagi', Q194461: 'guti', Q83456: 'john-terry', Q123118: 'kopa',
+  Q455462: 'griezmann', Q134976: 'podolski', Q17499: 'fabregas', Q83006: 'david-villa', Q124086: 'sneijder',
+  Q128829: 'michael-owen',
 };
 
 /**

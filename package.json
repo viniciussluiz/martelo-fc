@@ -23,6 +23,7 @@
     "test:all": "npm run typecheck && npm test && npm run build && npm run test:e2e",
     "deck:wikidata": "tsx scripts/deck-wikidata.ts",
     "deck:selecoes": "tsx scripts/deck-selecoes.ts",
+    "ajustes:prod": "tsx scripts/ajustes-prod.ts",
     "escudos": "tsx scripts/escudos.ts"
   },
   "dependencies": {

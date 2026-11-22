@@ -645,7 +645,7 @@
    "year": 2000,
    "levelMin": 86,
    "levelMax": 92,
-   "tier": "craque",
+   "tier": "lenda",
    "hint": "206 jogos pelo Milan de 2000 a 2010. 27 anos em 2000. 91 jogos pela seleção.",
    "kit": [
     "#FB090B",
@@ -1595,9 +1595,9 @@
    "position": "GOL",
    "club": "Atlético-MG",
    "year": 1982,
-   "levelMin": 78,
-   "levelMax": 84,
-   "tier": "titular",
+   "levelMin": 86,
+   "levelMax": 92,
+   "tier": "lenda",
    "hint": "101 jogos pelo Atlético-MG de 1976 a 1988. 27 anos em 1982.",
    "kit": [
     "#111111",
@@ -3059,7 +3059,7 @@
    "year": 1995,
    "levelMin": 86,
    "levelMax": 92,
-   "tier": "craque",
+   "tier": "lenda",
    "hint": "73 jogos pelo Atlético-MG de 1995 a 1998. 29 anos em 1995. 104 jogos pela seleção.",
    "kit": [
     "#111111",
@@ -5469,17 +5469,17 @@
    "personId": "Q19559974",
    "name": "Guilherme Arana",
    "position": "LAT",
-   "club": "Corinthians",
-   "year": 2024,
-   "levelMin": 75,
-   "levelMax": 83,
+   "club": "Atlético-MG",
+   "year": 2021,
+   "levelMin": 77,
+   "levelMax": 85,
    "tier": "titular",
-   "hint": "No Corinthians desde 2014. 27 anos em 2024.",
+   "hint": "Atlético-MG (2021).",
+   "series": "A",
    "kit": [
-    "#FFFFFF",
-    "#111111"
-   ],
-   "series": "A"
+    "#111111",
+    "#FFFFFF"
+   ]
   },
   {
    "id": "wd-Q19559974-Q506832-2015",
@@ -6136,7 +6136,7 @@
    "year": 1981,
    "levelMin": 86,
    "levelMax": 92,
-   "tier": "craque",
+   "tier": "lenda",
    "hint": "192 jogos e 7 gols pelo Flamengo de 1974 a 1984. 27 anos em 1981.",
    "kit": [
     "#C8102E",
@@ -7185,18 +7185,18 @@
    "id": "wd-Q182063-Q270995-2014",
    "personId": "Q182063",
    "name": "Nicolás Otamendi",
-   "position": "LAT",
+   "position": "ZAG",
    "club": "Atlético-MG",
    "year": 2014,
    "levelMin": 81,
    "levelMax": 87,
    "tier": "craque",
    "hint": "Argentina. 12 jogos e 1 gol pelo Atlético-MG em 2014. 26 anos em 2014. 139 jogos pela seleção.",
+   "series": "A",
    "kit": [
     "#111111",
     "#FFFFFF"
-   ],
-   "series": "A"
+   ]
   },
   {
    "id": "wd-Q182063-Q50602-2015",
@@ -7814,18 +7814,18 @@
    "id": "wd-Q3940027-Q270995-2023",
    "personId": "Q3940027",
    "name": "Rodrigo Battaglia",
-   "position": "LAT",
+   "position": "ZAG",
    "club": "Atlético-MG",
    "year": 2023,
    "levelMin": 71,
    "levelMax": 79,
    "tier": "operario",
    "hint": "Argentina. No Atlético-MG desde 2023. 32 anos em 2023.",
+   "series": "A",
    "kit": [
     "#111111",
     "#FFFFFF"
-   ],
-   "series": "A"
+   ]
   },
   {
    "id": "wd-Q7357337-Q374069-2008",
@@ -8788,7 +8788,7 @@
    "year": 2003,
    "levelMin": 85,
    "levelMax": 91,
-   "tier": "craque",
+   "tier": "lenda",
    "hint": "Itália. 224 jogos e 7 gols pelo Milan de 2002 a 2012. 27 anos em 2003. 78 jogos pela seleção.",
    "kit": [
     "#FB090B",
@@ -11542,7 +11542,7 @@
    "year": 2007,
    "levelMin": 86,
    "levelMax": 92,
-   "tier": "craque",
+   "tier": "lenda",
    "hint": "Inglaterra. 492 jogos e 41 gols pelo Chelsea de 1998 a 2017. 27 anos em 2007. 78 jogos pela seleção.",
    "kit": [
     "#034694",
@@ -14209,9 +14209,9 @@
    "position": "ZAG",
    "club": "Cruzeiro",
    "year": 1970,
-   "levelMin": 83,
-   "levelMax": 89,
-   "tier": "craque",
+   "levelMin": 86,
+   "levelMax": 92,
+   "tier": "lenda",
    "hint": "121 jogos e 1 gol pelo Cruzeiro de 1964 a 1979. 27 anos em 1970. 51 jogos pela seleção.",
    "kit": [
     "#0033A0",
@@ -14668,9 +14668,9 @@
    "position": "MEI",
    "club": "Cruzeiro",
    "year": 2004,
-   "levelMin": 83,
-   "levelMax": 89,
-   "tier": "craque",
+   "levelMin": 86,
+   "levelMax": 92,
+   "tier": "lenda",
    "hint": "71 jogos e 12 gols pelo Cruzeiro de 2001 a 2004. 27 anos em 2004. 49 jogos pela seleção.",
    "kit": [
     "#0033A0",
@@ -15603,9 +15603,9 @@
    "position": "MEI",
    "club": "Vasco",
    "year": 1993,
-   "levelMin": 85,
-   "levelMax": 91,
-   "tier": "craque",
+   "levelMin": 86,
+   "levelMax": 92,
+   "tier": "lenda",
    "hint": "85 jogos e 28 gols pelo Vasco de 1987 a 1993. 24 anos em 1993. 13 jogos pela seleção.",
    "kit": [
     "#111111",
@@ -16317,9 +16317,9 @@
    "position": "MEI",
    "club": "Atlético-MG",
    "year": 2023,
-   "levelMin": 83,
-   "levelMax": 89,
-   "tier": "craque",
+   "levelMin": 70,
+   "levelMax": 78,
+   "tier": "operario",
    "hint": "Argentina. 62 jogos e 5 gols pelo Atlético-MG de 2022 a 2024. 27 anos em 2023. 11 jogos pela seleção.",
    "kit": [
     "#111111",
@@ -16555,9 +16555,9 @@
    "position": "MEI",
    "club": "Vasco",
    "year": 1947,
-   "levelMin": 85,
-   "levelMax": 93,
-   "tier": "craque",
+   "levelMin": 86,
+   "levelMax": 92,
+   "tier": "lenda",
    "hint": "No Vasco de 1946 a 1954. 27 anos em 1947. 24 jogos pela seleção.",
    "kit": [
     "#111111",
@@ -16793,9 +16793,9 @@
    "position": "MEI",
    "club": "Flamengo",
    "year": 2000,
-   "levelMin": 80,
-   "levelMax": 86,
-   "tier": "titular",
+   "levelMin": 86,
+   "levelMax": 92,
+   "tier": "lenda",
    "hint": "Sérvia. 44 jogos e 18 gols pelo Flamengo de 2000 a 2001. 28 anos em 2000.",
    "kit": [
     "#C8102E",
@@ -16982,7 +16982,7 @@
    "year": 1959,
    "levelMin": 81,
    "levelMax": 87,
-   "tier": "craque",
+   "tier": "lenda",
    "hint": "19 jogos e 6 gols pelo Real Madrid de 1959 a 1960. 31 anos em 1959. 68 jogos pela seleção.",
    "kit": [
     "#FFFFFF",
@@ -18969,9 +18969,9 @@
    "position": "MEI",
    "club": "Flamengo",
    "year": 2021,
-   "levelMin": 84,
-   "levelMax": 90,
-   "tier": "craque",
+   "levelMin": 86,
+   "levelMax": 92,
+   "tier": "lenda",
    "hint": "Uruguai. 236 jogos e 73 gols pelo Flamengo desde 2019. 27 anos em 2021. 58 jogos pela seleção.",
    "kit": [
     "#C8102E",
@@ -19345,7 +19345,7 @@
    "year": 2010,
    "levelMin": 86,
    "levelMax": 92,
-   "tier": "craque",
+   "tier": "lenda",
    "hint": "117 jogos e 18 gols pelo São Paulo de 2005 a 2010. 25 anos em 2010. 28 jogos pela seleção.",
    "kit": [
     "#FFFFFF",
@@ -20278,9 +20278,9 @@
    "position": "MEI",
    "club": "Vasco",
    "year": 2000,
-   "levelMin": 85,
-   "levelMax": 91,
-   "tier": "craque",
+   "levelMin": 86,
+   "levelMax": 92,
+   "tier": "lenda",
    "hint": "47 jogos e 13 gols pelo Vasco de 2000 a 2001. 27 anos em 2000. 49 jogos pela seleção.",
    "kit": [
     "#111111",
@@ -20297,7 +20297,7 @@
    "year": 2001,
    "levelMin": 86,
    "levelMax": 92,
-   "tier": "craque",
+   "tier": "lenda",
    "hint": "111 jogos e 26 gols pelo Vasco de 1995 a 2001. 26 anos em 2001. 40 jogos pela seleção.",
    "kit": [
     "#111111",
@@ -21298,9 +21298,9 @@
    "position": "MEI",
    "club": "Corinthians",
    "year": 1998,
-   "levelMin": 83,
-   "levelMax": 89,
-   "tier": "craque",
+   "levelMin": 86,
+   "levelMax": 93,
+   "tier": "lenda",
    "hint": "120 jogos e 50 gols pelo Corinthians de 1994 a 2001. 27 anos em 1998.",
    "kit": [
     "#FFFFFF",
@@ -23323,7 +23323,7 @@
    "year": 1992,
    "levelMin": 86,
    "levelMax": 92,
-   "tier": "craque",
+   "tier": "lenda",
    "hint": "110 jogos e 25 gols pelo São Paulo de 1987 a 1993. 27 anos em 1992. 49 jogos pela seleção.",
    "kit": [
     "#FFFFFF",
@@ -23527,7 +23527,7 @@
    "year": 1958,
    "levelMin": 86,
    "levelMax": 92,
-   "tier": "craque",
+   "tier": "lenda",
    "hint": "França. 79 jogos e 24 gols pelo Real Madrid de 1956 a 1959. 27 anos em 1958. 45 jogos pela seleção.",
    "kit": [
     "#FFFFFF",
@@ -23556,18 +23556,18 @@
    "id": "wd-Q64606160-Q270995-2026",
    "personId": "Q64606160",
    "name": "Reinier",
-   "position": "MEI",
+   "position": "ATA",
    "club": "Atlético-MG",
    "year": 2026,
-   "levelMin": 78,
-   "levelMax": 86,
+   "levelMin": 70,
+   "levelMax": 82,
    "tier": "titular",
    "hint": "No Atlético-MG desde 2025. 24 anos em 2026.",
+   "series": "A",
    "kit": [
     "#111111",
     "#FFFFFF"
-   ],
-   "series": "A"
+   ]
   },
   {
    "id": "wd-Q64606160-Q17479-2020",
@@ -23913,18 +23913,18 @@
    "id": "wd-Q58441-Q270995-2016",
    "personId": "Q58441",
    "name": "Robinho",
-   "position": "MEI",
+   "position": "ATA",
    "club": "Atlético-MG",
    "year": 2016,
-   "levelMin": 89,
-   "levelMax": 94,
-   "tier": "lenda",
+   "levelMin": 80,
+   "levelMax": 86,
+   "tier": "titular",
    "hint": "60 jogos e 19 gols pelo Atlético-MG de 2016 a 2017. 32 anos em 2016. 100 jogos pela seleção.",
+   "series": "A",
    "kit": [
     "#111111",
     "#FFFFFF"
-   ],
-   "series": "A"
+   ]
   },
   {
    "id": "wd-Q58441-Q8682-2008",
@@ -25142,7 +25142,7 @@
    "year": 1982,
    "levelMin": 83,
    "levelMax": 89,
-   "tier": "craque",
+   "tier": "lenda",
    "hint": "111 jogos e 12 gols pelo Atlético-MG de 1972 a 1983. 27 anos em 1982. 57 jogos pela seleção.",
    "kit": [
     "#111111",
@@ -26009,7 +26009,7 @@
    "year": 2009,
    "levelMin": 86,
    "levelMax": 92,
-   "tier": "craque",
+   "tier": "lenda",
    "hint": "32 jogos e 19 gols pelo Flamengo de 2009 a 2010. 27 anos em 2009. 48 jogos pela seleção.",
    "kit": [
     "#C8102E",
@@ -26942,9 +26942,9 @@
    "position": "ATA",
    "club": "Corinthians",
    "year": 1953,
-   "levelMin": 84,
-   "levelMax": 90,
-   "tier": "craque",
+   "levelMin": 86,
+   "levelMax": 92,
+   "tier": "lenda",
    "hint": "401 jogos e 267 gols pelo Corinthians de 1945 a 1957. 27 anos em 1953. 31 jogos pela seleção.",
    "kit": [
     "#FFFFFF",
@@ -26995,7 +26995,7 @@
    "year": 1989,
    "levelMin": 86,
    "levelMax": 92,
-   "tier": "craque",
+   "tier": "lenda",
    "hint": "80 jogos e 34 gols pelo Flamengo de 1983 a 1989. 25 anos em 1989. 75 jogos pela seleção.",
    "kit": [
     "#C8102E",
@@ -27352,7 +27352,7 @@
    "year": 1987,
    "levelMin": 86,
    "levelMax": 92,
-   "tier": "craque",
+   "tier": "lenda",
    "hint": "67 jogos e 54 gols pelo São Paulo de 1983 a 1987. 27 anos em 1987. 64 jogos pela seleção.",
    "kit": [
     "#FFFFFF",
@@ -28336,9 +28336,9 @@
    "position": "ATA",
    "club": "Atlético-MG",
    "year": 1984,
-   "levelMin": 83,
-   "levelMax": 89,
-   "tier": "craque",
+   "levelMin": 85,
+   "levelMax": 91,
+   "tier": "lenda",
    "hint": "79 jogos e 27 gols pelo Atlético-MG de 1980 a 1985. 27 anos em 1984. 52 jogos pela seleção.",
    "kit": [
     "#111111",
@@ -29188,7 +29188,7 @@
    "year": 2001,
    "levelMin": 86,
    "levelMax": 92,
-   "tier": "craque",
+   "tier": "lenda",
    "hint": "Itália. 202 jogos e 73 gols pelo Milan de 2001 a 2012. 28 anos em 2001. 57 jogos pela seleção.",
    "kit": [
     "#FB090B",
@@ -30070,9 +30070,9 @@
    "position": "ATA",
    "club": "Atlético-MG",
    "year": 2021,
-   "levelMin": 81,
-   "levelMax": 89,
-   "tier": "craque",
+   "levelMin": 86,
+   "levelMax": 92,
+   "tier": "lenda",
    "hint": "219 jogos e 106 gols pelo Atlético-MG de 2021 a 2026. 35 anos em 2021. 49 jogos pela seleção.",
    "kit": [
     "#111111",
@@ -32161,9 +32161,9 @@
    "position": "ATA",
    "club": "Milan",
    "year": 1991,
-   "levelMin": 86,
-   "levelMax": 92,
-   "tier": "craque",
+   "levelMin": 88,
+   "levelMax": 94,
+   "tier": "lenda",
    "hint": "Países Baixos. 147 jogos e 90 gols pelo Milan de 1987 a 1995. 27 anos em 1991. 58 jogos pela seleção.",
    "kit": [
     "#FB090B",
@@ -32297,9 +32297,9 @@
    "position": "ATA",
    "club": "Atlético-MG",
    "year": 2000,
-   "levelMin": 83,
-   "levelMax": 89,
-   "tier": "craque",
+   "levelMin": 86,
+   "levelMax": 92,
+   "tier": "lenda",
    "hint": "139 jogos e 49 gols pelo Atlético-MG de 1997 a 2002. 27 anos em 2000. 13 jogos pela seleção.",
    "kit": [
     "#111111",
@@ -32501,9 +32501,9 @@
    "position": "ATA",
    "club": "Palmeiras",
    "year": 1958,
-   "levelMin": 83,
-   "levelMax": 91,
-   "tier": "craque",
+   "levelMin": 86,
+   "levelMax": 92,
+   "tier": "lenda",
    "hint": "114 jogos e 89 gols pelo Palmeiras de 1956 a 1958. 20 anos em 1958.",
    "kit": [
     "#006437",
@@ -32552,9 +32552,9 @@
    "position": "ATA",
    "club": "Corinthians",
    "year": 2024,
-   "levelMin": 85,
-   "levelMax": 91,
-   "tier": "craque",
+   "levelMin": 78,
+   "levelMax": 84,
+   "tier": "titular",
    "hint": "Países Baixos. 58 jogos e 16 gols pelo Corinthians de 2024 a 2026. 30 anos em 2024. 108 jogos pela seleção.",
    "kit": [
     "#FFFFFF",
@@ -33164,9 +33164,9 @@
    "position": "ATA",
    "club": "Cruzeiro",
    "year": 1976,
-   "levelMin": 79,
-   "levelMax": 85,
-   "tier": "titular",
+   "levelMin": 86,
+   "levelMax": 92,
+   "tier": "lenda",
    "hint": "117 jogos e 37 gols pelo Cruzeiro de 1969 a 1976. 26 anos em 1976. 16 jogos pela seleção.",
    "kit": [
     "#0033A0",
@@ -34373,7 +34373,7 @@
    "year": 1993,
    "levelMin": 86,
    "levelMax": 92,
-   "tier": "craque",
+   "tier": "lenda",
    "hint": "46 jogos e 34 gols pelo Barcelona de 1993 a 1995. 27 anos em 1993. 70 jogos pela seleção.",
    "kit": [
     "#A50044",
@@ -34827,18 +34827,18 @@
    "id": "wd-Q102331-Q35933-1981",
    "personId": "Q102331",
    "name": "Sócrates",
-   "position": "ATA",
+   "position": "MEI",
    "club": "Corinthians",
    "year": 1981,
    "levelMin": 93,
    "levelMax": 98,
    "tier": "lenda",
    "hint": "297 jogos e 172 gols pelo Corinthians de 1978 a 1984. 27 anos em 1981. 60 jogos pela seleção.",
+   "series": "A",
    "kit": [
     "#FFFFFF",
     "#111111"
-   ],
-   "series": "A"
+   ]
   },
   {
    "id": "wd-Q102331-Q2332493-1978",
@@ -36887,9 +36887,9 @@
    "position": "ATA",
    "club": "Atlético-MG",
    "year": 2013,
-   "levelMin": 84,
-   "levelMax": 90,
-   "tier": "craque",
+   "levelMin": 86,
+   "levelMax": 92,
+   "tier": "lenda",
    "hint": "No Atlético-MG em 2013. 28 anos em 2013. 2 jogos pela seleção.",
    "kit": [
     "#111111",
@@ -36938,9 +36938,9 @@
    "position": "ATA",
    "club": "Flamengo",
    "year": 1981,
-   "levelMin": 83,
-   "levelMax": 89,
-   "tier": "craque",
+   "levelMin": 86,
+   "levelMax": 92,
+   "tier": "lenda",
    "hint": "No Flamengo em 1981. 27 anos em 1981. 6 jogos pela seleção.",
    "kit": [
     "#C8102E",
@@ -37057,9 +37057,9 @@
    "position": "MEI",
    "club": "Corinthians",
    "year": 1990,
-   "levelMin": 84,
-   "levelMax": 90,
-   "tier": "craque",
+   "levelMin": 86,
+   "levelMax": 92,
+   "tier": "lenda",
    "hint": "No Corinthians em 1990. 24 anos em 1990. 26 jogos pela seleção.",
    "kit": [
     "#FFFFFF",
@@ -37278,9 +37278,9 @@
    "position": "ATA",
    "club": "Corinthians",
    "year": 1982,
-   "levelMin": 83,
-   "levelMax": 89,
-   "tier": "craque",
+   "levelMin": 86,
+   "levelMax": 92,
+   "tier": "lenda",
    "hint": "46 jogos e 11 gols pelo Corinthians de 1982 a 1984. 19 anos em 1982. 19 jogos pela seleção.",
    "kit": [
     "#FFFFFF",
@@ -37382,7 +37382,7 @@
    "year": 1996,
    "levelMin": 86,
    "levelMax": 92,
-   "tier": "craque",
+   "tier": "lenda",
    "hint": "44 jogos e 21 gols pelo Grêmio de 1995 a 1997. 25 anos em 1996. 6 jogos pela seleção.",
    "kit": [
     "#0D80BF",
@@ -37431,9 +37431,9 @@
    "position": "ATA",
    "club": "Internacional",
    "year": 2006,
-   "levelMin": 84,
-   "levelMax": 90,
-   "tier": "craque",
+   "levelMin": 86,
+   "levelMax": 92,
+   "tier": "lenda",
    "hint": "100 jogos e 42 gols pelo Internacional de 2004 a 2008. 28 anos em 2006. 1 jogo pela seleção.",
    "kit": [
     "#D50000",
@@ -37448,9 +37448,9 @@
    "position": "MEI",
    "club": "Internacional",
    "year": 2010,
-   "levelMin": 84,
-   "levelMax": 90,
-   "tier": "craque",
+   "levelMin": 86,
+   "levelMax": 92,
+   "tier": "lenda",
    "hint": "Argentina. 181 jogos e 45 gols pelo Internacional de 2008 a 2016. 29 anos em 2010. 28 jogos pela seleção.",
    "kit": [
     "#D50000",
@@ -37635,9 +37635,9 @@
    "position": "MEI",
    "club": "Flamengo",
    "year": 1981,
-   "levelMin": 83,
-   "levelMax": 89,
-   "tier": "craque",
+   "levelMin": 86,
+   "levelMax": 92,
+   "tier": "lenda",
    "hint": "615 jogos e 128 gols pelo Flamengo de 1975 a 1987. 25 anos em 1981. 2 jogos pela seleção.",
    "kit": [
     "#C8102E",
@@ -37654,7 +37654,7 @@
    "year": 1995,
    "levelMin": 86,
    "levelMax": 92,
-   "tier": "craque",
+   "tier": "lenda",
    "hint": "75 jogos e 20 gols pelo Flamengo de 1992 a 1997. 21 anos em 1995. 21 jogos pela seleção.",
    "kit": [
     "#C8102E",
@@ -38181,7 +38181,7 @@
    "year": 2003,
    "levelMin": 85,
    "levelMax": 91,
-   "tier": "craque",
+   "tier": "lenda",
    "hint": "Espanha. 387 jogos e 46 gols pelo Real Madrid de 1995 a 2010. 27 anos em 2003. 13 jogos pela seleção.",
    "kit": [
     "#FFFFFF",
@@ -40364,6 +40364,1511 @@
     "#FFFFFF"
    ],
    "series": "A"
+  },
+  {
+   "id": "adm-2986871f",
+   "name": "Éverson",
+   "position": "GOL",
+   "club": "Atlético-MG",
+   "year": 2021,
+   "levelMin": 78,
+   "levelMax": 86,
+   "tier": "titular",
+   "hint": "Atlético-MG (2021).",
+   "series": "A",
+   "kit": [
+    "#111111",
+    "#FFFFFF"
+   ]
+  },
+  {
+   "id": "adm-5d68b72c",
+   "name": "Leonardo Silva",
+   "position": "ZAG",
+   "club": "Atlético-MG",
+   "year": 2013,
+   "levelMin": 85,
+   "levelMax": 92,
+   "tier": "lenda",
+   "hint": "Atlético-MG (2013).",
+   "series": "A",
+   "kit": [
+    "#111111",
+    "#FFFFFF"
+   ]
+  },
+  {
+   "id": "adm-1f4d1c2a",
+   "name": "Réver",
+   "position": "ZAG",
+   "club": "Atlético-MG",
+   "year": 2013,
+   "levelMin": 80,
+   "levelMax": 86,
+   "tier": "titular",
+   "hint": "Atlético-MG (2013).",
+   "series": "A",
+   "kit": [
+    "#111111",
+    "#FFFFFF"
+   ]
+  },
+  {
+   "id": "adm-448a3901",
+   "name": "Marcos Rocha",
+   "position": "LAT",
+   "club": "Atlético-MG",
+   "year": 2012,
+   "levelMin": 74,
+   "levelMax": 82,
+   "tier": "titular",
+   "hint": "Atlético-MG (2012).",
+   "kit": [
+    "#111111",
+    "#FFFFFF"
+   ],
+   "series": "A"
+  },
+  {
+   "id": "wd-Q1694253-Q270995-1979",
+   "personId": "Q1694253",
+   "name": "Paulo Isidoro",
+   "position": "MEI",
+   "club": "Atlético-MG",
+   "levelMin": 86,
+   "levelMax": 92,
+   "tier": "lenda",
+   "kit": [
+    "#111111",
+    "#FFFFFF"
+   ],
+   "series": "A",
+   "year": 1979,
+   "hint": "136 jogos e 23 gols pelo Atlético-MG de 1975 a 1980. 26 anos em 1979. 36 jogos pela seleção."
+  },
+  {
+   "id": "man-mario-de-castro-atletico-mg-1929",
+   "name": "Mário de Castro",
+   "position": "ATA",
+   "club": "Atlético-MG",
+   "levelMin": 86,
+   "levelMax": 92,
+   "tier": "lenda",
+   "kit": [
+    "#111111",
+    "#FFFFFF"
+   ],
+   "series": "A",
+   "year": 1929,
+   "hint": "Do Trio Maldito do Atlético-MG, com Said e Jairo, no fim dos anos 1920."
+  },
+  {
+   "id": "man-guara-atletico-mg-1938",
+   "name": "Guará",
+   "position": "ATA",
+   "club": "Atlético-MG",
+   "levelMin": 86,
+   "levelMax": 92,
+   "tier": "lenda",
+   "kit": [
+    "#111111",
+    "#FFFFFF"
+   ],
+   "series": "A",
+   "year": 1938,
+   "hint": "Atacante do Atlético-MG nos anos 1930 e 1940."
+  },
+  {
+   "id": "wd-Q2718851-Q270995-2001",
+   "personId": "Q2718851",
+   "name": "Guilherme Alves",
+   "position": "ATA",
+   "club": "Atlético-MG",
+   "levelMin": 86,
+   "levelMax": 92,
+   "tier": "lenda",
+   "kit": [
+    "#111111",
+    "#FFFFFF"
+   ],
+   "series": "A",
+   "year": 2001,
+   "hint": "78 jogos e 41 gols pelo Atlético-MG de 1999 a 2003. 27 anos em 2001."
+  },
+  {
+   "id": "man-said-atletico-mg-1929",
+   "name": "Said",
+   "position": "ATA",
+   "club": "Atlético-MG",
+   "levelMin": 82,
+   "levelMax": 88,
+   "tier": "craque",
+   "kit": [
+    "#111111",
+    "#FFFFFF"
+   ],
+   "series": "A",
+   "year": 1929,
+   "hint": "Do Trio Maldito do Atlético-MG, com Jairo e Mário de Castro, no fim dos anos 1920."
+  },
+  {
+   "id": "man-jairo-atletico-mg-1929",
+   "name": "Jairo",
+   "position": "ATA",
+   "club": "Atlético-MG",
+   "levelMin": 82,
+   "levelMax": 88,
+   "tier": "craque",
+   "kit": [
+    "#111111",
+    "#FFFFFF"
+   ],
+   "series": "A",
+   "year": 1929,
+   "hint": "Do Trio Maldito do Atlético-MG, com Said e Mário de Castro, no fim dos anos 1920."
+  },
+  {
+   "id": "man-buiao-atletico-mg-1968",
+   "name": "Buião",
+   "position": "ATA",
+   "club": "Atlético-MG",
+   "levelMin": 82,
+   "levelMax": 88,
+   "tier": "craque",
+   "kit": [
+    "#111111",
+    "#FFFFFF"
+   ],
+   "series": "A",
+   "year": 1968,
+   "hint": "Ídolo do Atlético-MG."
+  },
+  {
+   "id": "man-lola-atletico-mg-1972",
+   "name": "Lola",
+   "position": "ATA",
+   "club": "Atlético-MG",
+   "levelMin": 82,
+   "levelMax": 88,
+   "tier": "craque",
+   "kit": [
+    "#111111",
+    "#FFFFFF"
+   ],
+   "series": "A",
+   "year": 1972,
+   "hint": "Ídolo do Atlético-MG."
+  },
+  {
+   "id": "wd-Q3695155-Q270995-1976",
+   "personId": "Q3695155",
+   "name": "Campos",
+   "position": "ATA",
+   "club": "Atlético-MG",
+   "levelMin": 82,
+   "levelMax": 88,
+   "tier": "craque",
+   "kit": [
+    "#111111",
+    "#FFFFFF"
+   ],
+   "series": "A",
+   "year": 1976,
+   "hint": "50 jogos e 13 gols pelo Atlético-MG de 1970 a 1976. 24 anos em 1976."
+  },
+  {
+   "id": "wd-Q2420612-Q188277-2011",
+   "personId": "Q2420612",
+   "name": "Montillo",
+   "position": "MEI",
+   "club": "Cruzeiro",
+   "levelMin": 86,
+   "levelMax": 92,
+   "tier": "lenda",
+   "kit": [
+    "#0033A0",
+    "#FFFFFF"
+   ],
+   "series": "A",
+   "year": 2011,
+   "hint": "89 jogos e 23 gols pelo Cruzeiro de 2010 a 2012. 27 anos em 2011."
+  },
+  {
+   "id": "man-joaozinho-cruzeiro-1976",
+   "name": "Joãozinho",
+   "position": "ATA",
+   "club": "Cruzeiro",
+   "levelMin": 82,
+   "levelMax": 88,
+   "tier": "craque",
+   "kit": [
+    "#0033A0",
+    "#FFFFFF"
+   ],
+   "series": "A",
+   "year": 1976,
+   "hint": "Ponta do Cruzeiro campeão da Libertadores de 1976."
+  },
+  {
+   "id": "wd-Q10335634-Q188277-1966",
+   "personId": "Q10335634",
+   "name": "Natal",
+   "position": "ATA",
+   "club": "Cruzeiro",
+   "levelMin": 82,
+   "levelMax": 88,
+   "tier": "craque",
+   "kit": [
+    "#0033A0",
+    "#FFFFFF"
+   ],
+   "series": "A",
+   "year": 1966,
+   "hint": "Ponta do Cruzeiro campeão da Taça Brasil de 1966. 21 anos em 1966. 13 jogos pela seleção."
+  },
+  {
+   "id": "wd-Q1365945-Q188277-1939",
+   "personId": "Q1365945",
+   "name": "Niginho",
+   "position": "ATA",
+   "club": "Cruzeiro",
+   "levelMin": 82,
+   "levelMax": 88,
+   "tier": "craque",
+   "kit": [
+    "#0033A0",
+    "#FFFFFF"
+   ],
+   "series": "A",
+   "year": 1939,
+   "hint": "257 jogos e 207 gols pelo Cruzeiro de 1939 a 1947. 27 anos em 1939."
+  },
+  {
+   "id": "man-ninao-cruzeiro-1930",
+   "name": "Ninão",
+   "position": "ATA",
+   "club": "Cruzeiro",
+   "levelMin": 82,
+   "levelMax": 88,
+   "tier": "craque",
+   "kit": [
+    "#0033A0",
+    "#FFFFFF"
+   ],
+   "series": "A",
+   "year": 1930,
+   "hint": "Atacante do Palestra Itália, hoje Cruzeiro, nos anos 1920 e 1930."
+  },
+  {
+   "id": "man-ze-carlos-cruzeiro-1971",
+   "name": "Zé Carlos",
+   "position": "MEI",
+   "club": "Cruzeiro",
+   "levelMin": 82,
+   "levelMax": 88,
+   "tier": "craque",
+   "kit": [
+    "#0033A0",
+    "#FFFFFF"
+   ],
+   "series": "A",
+   "year": 1971,
+   "hint": "Volante do Cruzeiro nos anos 1960 e 1970."
+  },
+  {
+   "id": "wd-Q311739-Q17479-1940",
+   "personId": "Q311739",
+   "name": "Leônidas",
+   "position": "ATA",
+   "club": "Flamengo",
+   "levelMin": 86,
+   "levelMax": 92,
+   "tier": "lenda",
+   "kit": [
+    "#C8102E",
+    "#111111"
+   ],
+   "series": "A",
+   "year": 1940,
+   "hint": "149 jogos e 153 gols pelo Flamengo de 1936 a 1942. 27 anos em 1940. 19 jogos pela seleção."
+  },
+  {
+   "id": "man-bruno-henrique-flamengo-2019",
+   "name": "Bruno Henrique",
+   "position": "ATA",
+   "club": "Flamengo",
+   "levelMin": 86,
+   "levelMax": 92,
+   "tier": "lenda",
+   "kit": [
+    "#C8102E",
+    "#111111"
+   ],
+   "series": "A",
+   "year": 2019,
+   "hint": "Campeão da Libertadores pelo Flamengo em 2019 e 2022. 29 anos em 2019."
+  },
+  {
+   "id": "wd-Q2294362-Q17479-1961",
+   "personId": "Q2294362",
+   "name": "Dida",
+   "position": "ATA",
+   "club": "Flamengo",
+   "levelMin": 82,
+   "levelMax": 88,
+   "tier": "craque",
+   "kit": [
+    "#C8102E",
+    "#111111"
+   ],
+   "series": "A",
+   "year": 1961,
+   "hint": "244 jogos e 263 gols pelo Flamengo de 1954 a 1964. 27 anos em 1961."
+  },
+  {
+   "id": "wd-Q553061-Q17479-1957",
+   "personId": "Q553061",
+   "name": "Evaristo de Macedo",
+   "position": "ATA",
+   "club": "Flamengo",
+   "levelMin": 82,
+   "levelMax": 88,
+   "tier": "craque",
+   "kit": [
+    "#C8102E",
+    "#111111"
+   ],
+   "series": "A",
+   "year": 1957,
+   "hint": "191 jogos e 103 gols pelo Flamengo de 1953 a 1957. 24 anos em 1957. 14 jogos pela seleção."
+  },
+  {
+   "id": "wd-Q542551-Q17479-1970",
+   "personId": "Q542551",
+   "name": "Doval",
+   "position": "ATA",
+   "club": "Flamengo",
+   "levelMin": 82,
+   "levelMax": 88,
+   "tier": "craque",
+   "kit": [
+    "#C8102E",
+    "#111111"
+   ],
+   "series": "A",
+   "year": 1970,
+   "hint": "84 jogos e 18 gols pelo Flamengo de 1969 a 1970. 26 anos em 1970."
+  },
+  {
+   "id": "wd-Q2709912-Q17479-1966",
+   "personId": "Q2709912",
+   "name": "Silva Batuta",
+   "position": "ATA",
+   "club": "Flamengo",
+   "levelMin": 82,
+   "levelMax": 88,
+   "tier": "craque",
+   "kit": [
+    "#C8102E",
+    "#111111"
+   ],
+   "series": "A",
+   "year": 1966,
+   "hint": "79 jogos e 48 gols pelo Flamengo de 1965 a 1966. 26 anos em 1966."
+  },
+  {
+   "id": "wd-Q178649-Q5014111-2000",
+   "personId": "Q178649",
+   "name": "Romário",
+   "position": "ATA",
+   "club": "Vasco",
+   "levelMin": 86,
+   "levelMax": 92,
+   "tier": "lenda",
+   "kit": [
+    "#111111",
+    "#FFFFFF"
+   ],
+   "series": "A",
+   "year": 2000,
+   "hint": "46 jogos e 41 gols pelo Vasco de 2000 a 2002. 34 anos em 2000. 70 jogos pela seleção."
+  },
+  {
+   "id": "wd-Q445541-Q5014111-1997",
+   "personId": "Q445541",
+   "name": "Edmundo",
+   "position": "ATA",
+   "club": "Vasco",
+   "levelMin": 86,
+   "levelMax": 92,
+   "tier": "lenda",
+   "kit": [
+    "#111111",
+    "#FFFFFF"
+   ],
+   "series": "A",
+   "year": 1997,
+   "hint": "44 jogos e 38 gols pelo Vasco de 1996 a 1997. 26 anos em 1997. 39 jogos pela seleção."
+  },
+  {
+   "id": "wd-Q311445-Q5014111-1958",
+   "personId": "Q311445",
+   "name": "Vavá",
+   "position": "ATA",
+   "club": "Vasco",
+   "levelMin": 86,
+   "levelMax": 92,
+   "tier": "lenda",
+   "kit": [
+    "#111111",
+    "#FFFFFF"
+   ],
+   "series": "A",
+   "year": 1958,
+   "hint": "No Vasco de 1951 a 1958. 24 anos em 1958. 20 jogos pela seleção."
+  },
+  {
+   "id": "wd-Q2579383-Q5014111-2000",
+   "personId": "Q2579383",
+   "name": "Felipe",
+   "position": "LAT",
+   "club": "Vasco",
+   "levelMin": 86,
+   "levelMax": 92,
+   "tier": "lenda",
+   "kit": [
+    "#111111",
+    "#FFFFFF"
+   ],
+   "series": "A",
+   "year": 2000,
+   "hint": "268 jogos e 22 gols pelo Vasco de 1996 a 2002. 23 anos em 2000."
+  },
+  {
+   "id": "man-ipojucan-vasco-1950",
+   "name": "Ipojucan",
+   "position": "MEI",
+   "club": "Vasco",
+   "levelMin": 82,
+   "levelMax": 88,
+   "tier": "craque",
+   "kit": [
+    "#111111",
+    "#FFFFFF"
+   ],
+   "series": "A",
+   "year": 1950,
+   "hint": "Meia do Vasco do Expresso da Vitória."
+  },
+  {
+   "id": "wd-Q254747-Q5014111-1953",
+   "personId": "Q254747",
+   "name": "Pinga",
+   "position": "MEI",
+   "club": "Vasco",
+   "levelMin": 82,
+   "levelMax": 88,
+   "tier": "craque",
+   "kit": [
+    "#111111",
+    "#FFFFFF"
+   ],
+   "series": "A",
+   "year": 1953,
+   "hint": "241 jogos e 123 gols pelo Vasco de 1953 a 1961. 29 anos em 1953."
+  },
+  {
+   "id": "wd-Q1354227-Q5014111-1953",
+   "personId": "Q1354227",
+   "name": "Maneca",
+   "position": "ATA",
+   "club": "Vasco",
+   "levelMin": 82,
+   "levelMax": 88,
+   "tier": "craque",
+   "kit": [
+    "#111111",
+    "#FFFFFF"
+   ],
+   "series": "A",
+   "year": 1953,
+   "hint": "No Vasco de 1946 a 1955. 27 anos em 1953."
+  },
+  {
+   "id": "man-sabara-vasco-1958",
+   "name": "Sabará",
+   "position": "ATA",
+   "club": "Vasco",
+   "levelMin": 82,
+   "levelMax": 88,
+   "tier": "craque",
+   "kit": [
+    "#111111",
+    "#FFFFFF"
+   ],
+   "series": "A",
+   "year": 1958,
+   "hint": "Ponta-direita do Vasco nos anos 1950 e 1960."
+  },
+  {
+   "id": "wd-Q1987355-Q5014111-1960",
+   "personId": "Q1987355",
+   "name": "Almir Pernambuquinho",
+   "position": "ATA",
+   "club": "Vasco",
+   "levelMin": 82,
+   "levelMax": 88,
+   "tier": "craque",
+   "kit": [
+    "#111111",
+    "#FFFFFF"
+   ],
+   "series": "A",
+   "year": 1960,
+   "hint": "No Vasco de 1957 a 1960. 23 anos em 1960."
+  },
+  {
+   "id": "wd-Q1509622-Q5014111-1989",
+   "personId": "Q1509622",
+   "name": "Geovani",
+   "position": "MEI",
+   "club": "Vasco",
+   "levelMin": 82,
+   "levelMax": 88,
+   "tier": "craque",
+   "kit": [
+    "#111111",
+    "#FFFFFF"
+   ],
+   "series": "A",
+   "year": 1989,
+   "hint": "94 jogos e 12 gols pelo Vasco de 1983 a 1989. 25 anos em 1989. 23 jogos pela seleção."
+  },
+  {
+   "id": "wd-Q361252-Q80987-1958",
+   "personId": "Q361252",
+   "name": "Telê Santana",
+   "position": "ATA",
+   "club": "Fluminense",
+   "levelMin": 82,
+   "levelMax": 88,
+   "tier": "craque",
+   "kit": [
+    "#7A1E32",
+    "#00613A"
+   ],
+   "series": "A",
+   "year": 1958,
+   "hint": "557 jogos e 162 gols pelo Fluminense de 1951 a 1960. 27 anos em 1958."
+  },
+  {
+   "id": "wd-Q1333472-Q80987-1961",
+   "personId": "Q1333472",
+   "name": "Waldo",
+   "position": "ATA",
+   "club": "Fluminense",
+   "levelMin": 82,
+   "levelMax": 88,
+   "tier": "craque",
+   "kit": [
+    "#7A1E32",
+    "#00613A"
+   ],
+   "series": "A",
+   "year": 1961,
+   "hint": "403 jogos e 314 gols pelo Fluminense de 1954 a 1961. 27 anos em 1961."
+  },
+  {
+   "id": "wd-Q2714449-Q80987-1939",
+   "personId": "Q2714449",
+   "name": "Hércules",
+   "position": "ATA",
+   "club": "Fluminense",
+   "levelMin": 82,
+   "levelMax": 88,
+   "tier": "craque",
+   "kit": [
+    "#7A1E32",
+    "#00613A"
+   ],
+   "series": "A",
+   "year": 1939,
+   "hint": "175 jogos e 163 gols pelo Fluminense de 1933 a 1941. 27 anos em 1939."
+  },
+  {
+   "id": "man-orlando-pingo-de-ouro-fluminense-1951",
+   "name": "Orlando Pingo de Ouro",
+   "position": "ATA",
+   "club": "Fluminense",
+   "levelMin": 82,
+   "levelMax": 88,
+   "tier": "craque",
+   "kit": [
+    "#7A1E32",
+    "#00613A"
+   ],
+   "series": "A",
+   "year": 1951,
+   "hint": "Atacante do Fluminense nos anos 1940 e 1950."
+  },
+  {
+   "id": "man-samarone-fluminense-1969",
+   "name": "Samarone",
+   "position": "MEI",
+   "club": "Fluminense",
+   "levelMin": 82,
+   "levelMax": 88,
+   "tier": "craque",
+   "kit": [
+    "#7A1E32",
+    "#00613A"
+   ],
+   "series": "A",
+   "year": 1969,
+   "hint": "Meia do Fluminense nos anos 1960."
+  },
+  {
+   "id": "wd-Q2340528-Q80987-1971",
+   "personId": "Q2340528",
+   "name": "Flávio Minuano",
+   "position": "ATA",
+   "club": "Fluminense",
+   "levelMin": 82,
+   "levelMax": 88,
+   "tier": "craque",
+   "kit": [
+    "#7A1E32",
+    "#00613A"
+   ],
+   "series": "A",
+   "year": 1971,
+   "hint": "No Fluminense de 1969 a 1971. 27 anos em 1971. 17 jogos pela seleção."
+  },
+  {
+   "id": "man-romerito-fluminense-1984",
+   "name": "Romerito",
+   "position": "MEI",
+   "club": "Fluminense",
+   "levelMin": 82,
+   "levelMax": 88,
+   "tier": "craque",
+   "kit": [
+    "#7A1E32",
+    "#00613A"
+   ],
+   "series": "A",
+   "year": 1984,
+   "hint": "Paraguai. Craque do Fluminense campeão brasileiro de 1984."
+  },
+  {
+   "id": "wd-Q1648368-Q80987-1983",
+   "personId": "Q1648368",
+   "name": "Assis",
+   "position": "MEI",
+   "club": "Fluminense",
+   "levelMin": 82,
+   "levelMax": 88,
+   "tier": "craque",
+   "kit": [
+    "#7A1E32",
+    "#00613A"
+   ],
+   "series": "A",
+   "year": 1983,
+   "hint": "65 jogos e 19 gols pelo Fluminense de 1983 a 1987. 31 anos em 1983."
+  },
+  {
+   "id": "wd-Q1172712-Q80987-1987",
+   "personId": "Q1172712",
+   "name": "Washington",
+   "position": "ATA",
+   "club": "Fluminense",
+   "levelMin": 82,
+   "levelMax": 88,
+   "tier": "craque",
+   "kit": [
+    "#7A1E32",
+    "#00613A"
+   ],
+   "series": "A",
+   "year": 1987,
+   "hint": "104 jogos e 33 gols pelo Fluminense de 1983 a 1989. 27 anos em 1987."
+  },
+  {
+   "id": "wd-Q311511-Q80958-1958",
+   "personId": "Q311511",
+   "name": "Zagallo",
+   "position": "ATA",
+   "club": "Botafogo",
+   "levelMin": 86,
+   "levelMax": 92,
+   "tier": "lenda",
+   "kit": [
+    "#111111",
+    "#FFFFFF"
+   ],
+   "series": "A",
+   "year": 1958,
+   "hint": "115 jogos e 46 gols pelo Botafogo de 1958 a 1965. 27 anos em 1958. 33 jogos pela seleção."
+  },
+  {
+   "id": "wd-Q261000-Q80958-1939",
+   "personId": "Q261000",
+   "name": "Carvalho Leite",
+   "position": "ATA",
+   "club": "Botafogo",
+   "levelMin": 82,
+   "levelMax": 88,
+   "tier": "craque",
+   "kit": [
+    "#111111",
+    "#FFFFFF"
+   ],
+   "series": "A",
+   "year": 1939,
+   "hint": "326 jogos e 274 gols pelo Botafogo de 1929 a 1942. 27 anos em 1939. 10 jogos pela seleção."
+  },
+  {
+   "id": "wd-Q2538934-Q80958-1930",
+   "personId": "Q2538934",
+   "name": "Nilo",
+   "position": "ATA",
+   "club": "Botafogo",
+   "levelMin": 82,
+   "levelMax": 88,
+   "tier": "craque",
+   "kit": [
+    "#111111",
+    "#FFFFFF"
+   ],
+   "series": "A",
+   "year": 1930,
+   "hint": "201 jogos e 184 gols pelo Botafogo de 1927 a 1938. 27 anos em 1930. 14 jogos pela seleção."
+  },
+  {
+   "id": "wd-Q3858102-Q80958-1981",
+   "personId": "Q3858102",
+   "name": "Mendonça",
+   "position": "MEI",
+   "club": "Botafogo",
+   "levelMin": 82,
+   "levelMax": 88,
+   "tier": "craque",
+   "kit": [
+    "#111111",
+    "#FFFFFF"
+   ],
+   "series": "A",
+   "year": 1981,
+   "hint": "No Botafogo de 1975 a 1982. 25 anos em 1981."
+  },
+  {
+   "id": "wd-Q514252-Q80958-2013",
+   "personId": "Q514252",
+   "name": "Jefferson",
+   "position": "GOL",
+   "club": "Botafogo",
+   "levelMin": 82,
+   "levelMax": 88,
+   "tier": "craque",
+   "kit": [
+    "#111111",
+    "#FFFFFF"
+   ],
+   "series": "A",
+   "year": 2013,
+   "hint": "No Botafogo de 2003 a 2005 e de 2009 a 2018. 30 anos em 2013."
+  },
+  {
+   "id": "wd-Q2736176-Q35933-1957",
+   "personId": "Q2736176",
+   "name": "Luizinho",
+   "position": "MEI",
+   "club": "Corinthians",
+   "levelMin": 86,
+   "levelMax": 92,
+   "tier": "lenda",
+   "kit": [
+    "#FFFFFF",
+    "#111111"
+   ],
+   "series": "A",
+   "year": 1957,
+   "hint": "605 jogos e 172 gols pelo Corinthians de 1948 a 1962. 27 anos em 1957. 11 jogos pela seleção."
+  },
+  {
+   "id": "wd-Q2415404-Q35933-1949",
+   "personId": "Q2415404",
+   "name": "Cláudio",
+   "position": "ATA",
+   "club": "Corinthians",
+   "levelMin": 82,
+   "levelMax": 88,
+   "tier": "craque",
+   "kit": [
+    "#FFFFFF",
+    "#111111"
+   ],
+   "series": "A",
+   "year": 1949,
+   "hint": "554 jogos e 306 gols pelo Corinthians de 1944 a 1957. 27 anos em 1949."
+  },
+  {
+   "id": "man-teleco-corinthians-1938",
+   "name": "Teleco",
+   "position": "ATA",
+   "club": "Corinthians",
+   "levelMin": 82,
+   "levelMax": 88,
+   "tier": "craque",
+   "kit": [
+    "#FFFFFF",
+    "#111111"
+   ],
+   "series": "A",
+   "year": 1938,
+   "hint": "Artilheiro do Corinthians nos anos 1930 e 1940."
+  },
+  {
+   "id": "wd-Q585425-Q35933-1922",
+   "personId": "Q585425",
+   "name": "Neco",
+   "position": "ATA",
+   "club": "Corinthians",
+   "levelMin": 82,
+   "levelMax": 88,
+   "tier": "craque",
+   "kit": [
+    "#FFFFFF",
+    "#111111"
+   ],
+   "series": "A",
+   "year": 1922,
+   "hint": "313 jogos e 239 gols pelo Corinthians de 1913 a 1930. 27 anos em 1922. 15 jogos pela seleção."
+  },
+  {
+   "id": "wd-Q1747611-Q35933-1981",
+   "personId": "Q1747611",
+   "name": "Zenon",
+   "position": "MEI",
+   "club": "Corinthians",
+   "levelMin": 82,
+   "levelMax": 88,
+   "tier": "craque",
+   "kit": [
+    "#FFFFFF",
+    "#111111"
+   ],
+   "series": "A",
+   "year": 1981,
+   "hint": "77 jogos e 16 gols pelo Corinthians de 1981 a 1985. 27 anos em 1981."
+  },
+  {
+   "id": "wd-Q555391-Q35933-2012",
+   "personId": "Q555391",
+   "name": "Danilo",
+   "position": "MEI",
+   "club": "Corinthians",
+   "levelMin": 82,
+   "levelMax": 88,
+   "tier": "craque",
+   "kit": [
+    "#FFFFFF",
+    "#111111"
+   ],
+   "series": "A",
+   "year": 2012,
+   "hint": "Campeão da Libertadores e do Mundial de 2012 pelo Corinthians. 33 anos em 2012."
+  },
+  {
+   "id": "wd-Q10293011-Q80964-1966",
+   "personId": "Q10293011",
+   "name": "Dudu",
+   "position": "MEI",
+   "club": "Palmeiras",
+   "levelMin": 86,
+   "levelMax": 92,
+   "tier": "lenda",
+   "kit": [
+    "#006437",
+    "#FFFFFF"
+   ],
+   "series": "A",
+   "year": 1966,
+   "hint": "609 jogos e 25 gols pelo Palmeiras de 1964 a 1976. 27 anos em 1966. 13 jogos pela seleção."
+  },
+  {
+   "id": "wd-Q2448249-Q80964-1925",
+   "personId": "Q2448249",
+   "name": "Heitor",
+   "position": "ATA",
+   "club": "Palmeiras",
+   "levelMin": 86,
+   "levelMax": 92,
+   "tier": "lenda",
+   "kit": [
+    "#006437",
+    "#FFFFFF"
+   ],
+   "series": "A",
+   "year": 1925,
+   "hint": "358 jogos e 327 gols pelo Palmeiras de 1916 a 1931. 27 anos em 1925."
+  },
+  {
+   "id": "wd-Q523520-Q80964-1958",
+   "personId": "Q523520",
+   "name": "Julinho Botelho",
+   "position": "ATA",
+   "club": "Palmeiras",
+   "levelMin": 86,
+   "levelMax": 92,
+   "tier": "lenda",
+   "kit": [
+    "#006437",
+    "#FFFFFF"
+   ],
+   "series": "A",
+   "year": 1958,
+   "hint": "266 jogos e 77 gols pelo Palmeiras de 1958 a 1967. 29 anos em 1958. 17 jogos pela seleção."
+  },
+  {
+   "id": "wd-Q2625446-Q80964-1972",
+   "personId": "Q2625446",
+   "name": "César Maluco",
+   "position": "ATA",
+   "club": "Palmeiras",
+   "levelMin": 86,
+   "levelMax": 92,
+   "tier": "lenda",
+   "kit": [
+    "#006437",
+    "#FFFFFF"
+   ],
+   "series": "A",
+   "year": 1972,
+   "hint": "45 jogos e 20 gols pelo Palmeiras de 1967 a 1975. 27 anos em 1972."
+  },
+  {
+   "id": "wd-Q507815-Q80964-1999",
+   "personId": "Q507815",
+   "name": "Alex de Souza",
+   "position": "MEI",
+   "club": "Palmeiras",
+   "levelMin": 86,
+   "levelMax": 92,
+   "tier": "lenda",
+   "kit": [
+    "#006437",
+    "#FFFFFF"
+   ],
+   "series": "A",
+   "year": 1999,
+   "hint": "65 jogos e 11 gols pelo Palmeiras de 1997 a 2002. 22 anos em 1999. 49 jogos pela seleção."
+  },
+  {
+   "id": "wd-Q47489-Q80964-1997",
+   "personId": "Q47489",
+   "name": "Djalminha",
+   "position": "MEI",
+   "club": "Palmeiras",
+   "levelMin": 86,
+   "levelMax": 92,
+   "tier": "lenda",
+   "kit": [
+    "#006437",
+    "#FFFFFF"
+   ],
+   "series": "A",
+   "year": 1997,
+   "hint": "22 jogos e 12 gols pelo Palmeiras de 1996 a 1997. 27 anos em 1997. 14 jogos pela seleção."
+  },
+  {
+   "id": "wd-Q204555-Q80964-1994",
+   "personId": "Q204555",
+   "name": "Zinho",
+   "position": "MEI",
+   "club": "Palmeiras",
+   "levelMin": 86,
+   "levelMax": 92,
+   "tier": "lenda",
+   "kit": [
+    "#006437",
+    "#FFFFFF"
+   ],
+   "series": "A",
+   "year": 1994,
+   "hint": "44 jogos e 11 gols pelo Palmeiras de 1992 a 1994. 27 anos em 1994. 57 jogos pela seleção."
+  },
+  {
+   "id": "wd-Q1345151-Q80964-1980",
+   "personId": "Q1345151",
+   "name": "Jorge Mendonça",
+   "position": "MEI",
+   "club": "Palmeiras",
+   "levelMin": 86,
+   "levelMax": 92,
+   "tier": "lenda",
+   "kit": [
+    "#006437",
+    "#FFFFFF"
+   ],
+   "series": "A",
+   "year": 1980,
+   "hint": "56 jogos e 30 gols pelo Palmeiras de 1976 a 1980. 26 anos em 1980."
+  },
+  {
+   "id": "wd-Q1341709-Q80964-2018",
+   "personId": "Q1341709",
+   "name": "Dudu",
+   "position": "ATA",
+   "club": "Palmeiras",
+   "levelMin": 86,
+   "levelMax": 92,
+   "tier": "lenda",
+   "kit": [
+    "#006437",
+    "#FFFFFF"
+   ],
+   "series": "A",
+   "year": 2018,
+   "hint": "No Palmeiras de 2015 a 2024. 26 anos em 2018."
+  },
+  {
+   "id": "wd-Q2316590-Q80964-1974",
+   "personId": "Q2316590",
+   "name": "Luís Pereira",
+   "position": "ZAG",
+   "club": "Palmeiras",
+   "levelMin": 86,
+   "levelMax": 92,
+   "tier": "lenda",
+   "kit": [
+    "#006437",
+    "#FFFFFF"
+   ],
+   "series": "A",
+   "year": 1974,
+   "hint": "93 jogos e 6 gols pelo Palmeiras de 1968 a 1974. 25 anos em 1974. 32 jogos pela seleção."
+  },
+  {
+   "id": "wd-Q2708662-Q38568-1942",
+   "personId": "Q2708662",
+   "name": "Antonio Sastre",
+   "position": "MEI",
+   "club": "São Paulo",
+   "levelMin": 82,
+   "levelMax": 88,
+   "tier": "craque",
+   "kit": [
+    "#FFFFFF",
+    "#D0021B"
+   ],
+   "series": "A",
+   "year": 1942,
+   "hint": "Argentina. 129 jogos e 58 gols pelo São Paulo de 1942 a 1946. 31 anos em 1942. 34 jogos pela seleção."
+  },
+  {
+   "id": "wd-Q2015813-Q38568-1956",
+   "personId": "Q2015813",
+   "name": "Gino Orlando",
+   "position": "ATA",
+   "club": "São Paulo",
+   "levelMin": 82,
+   "levelMax": 88,
+   "tier": "craque",
+   "kit": [
+    "#FFFFFF",
+    "#D0021B"
+   ],
+   "series": "A",
+   "year": 1956,
+   "hint": "450 jogos e 232 gols pelo São Paulo de 1952 a 1963. 27 anos em 1956."
+  },
+  {
+   "id": "wd-Q1989261-Q38568-1971",
+   "personId": "Q1989261",
+   "name": "Toninho Guerreiro",
+   "position": "ATA",
+   "club": "São Paulo",
+   "levelMin": 82,
+   "levelMax": 88,
+   "tier": "craque",
+   "kit": [
+    "#FFFFFF",
+    "#D0021B"
+   ],
+   "series": "A",
+   "year": 1971,
+   "hint": "34 jogos e 13 gols pelo São Paulo de 1969 a 1974. 29 anos em 1971."
+  },
+  {
+   "id": "wd-Q979528-Q38568-1994",
+   "personId": "Q979528",
+   "name": "Palhinha",
+   "position": "MEI",
+   "club": "São Paulo",
+   "levelMin": 82,
+   "levelMax": 88,
+   "tier": "craque",
+   "kit": [
+    "#FFFFFF",
+    "#D0021B"
+   ],
+   "series": "A",
+   "year": 1994,
+   "hint": "56 jogos e 14 gols pelo São Paulo de 1992 a 1995. 27 anos em 1994. 16 jogos pela seleção."
+  },
+  {
+   "id": "wd-Q2445366-Q80955-1962",
+   "personId": "Q2445366",
+   "name": "Dorval",
+   "position": "ATA",
+   "club": "Santos",
+   "levelMin": 82,
+   "levelMax": 88,
+   "tier": "craque",
+   "kit": [
+    "#FFFFFF",
+    "#111111"
+   ],
+   "series": "A",
+   "year": 1962,
+   "hint": "612 jogos e 198 gols pelo Santos. 27 anos em 1962."
+  },
+  {
+   "id": "wd-Q2565981-Q80955-1962",
+   "personId": "Q2565981",
+   "name": "Mengálvio",
+   "position": "MEI",
+   "club": "Santos",
+   "levelMin": 82,
+   "levelMax": 88,
+   "tier": "craque",
+   "kit": [
+    "#FFFFFF",
+    "#111111"
+   ],
+   "series": "A",
+   "year": 1962,
+   "hint": "371 jogos e 28 gols pelo Santos. 23 anos em 1962."
+  },
+  {
+   "id": "wd-Q10346518-Q80955-1958",
+   "personId": "Q10346518",
+   "name": "Pagão",
+   "position": "ATA",
+   "club": "Santos",
+   "levelMin": 82,
+   "levelMax": 88,
+   "tier": "craque",
+   "kit": [
+    "#FFFFFF",
+    "#111111"
+   ],
+   "series": "A",
+   "year": 1958,
+   "hint": "Centroavante do Santos de 1955 a 1963. 24 anos em 1958."
+  },
+  {
+   "id": "wd-Q1989261-Q80955-1966",
+   "personId": "Q1989261",
+   "name": "Toninho Guerreiro",
+   "position": "ATA",
+   "club": "Santos",
+   "levelMin": 82,
+   "levelMax": 88,
+   "tier": "craque",
+   "kit": [
+    "#FFFFFF",
+    "#111111"
+   ],
+   "series": "A",
+   "year": 1966,
+   "hint": "373 jogos e 283 gols pelo Santos de 1963 a 1969. 24 anos em 1966."
+  },
+  {
+   "id": "wd-Q1988696-Q221695-1978",
+   "personId": "Q1988696",
+   "name": "Tarciso",
+   "position": "ATA",
+   "club": "Grêmio",
+   "levelMin": 82,
+   "levelMax": 88,
+   "tier": "craque",
+   "kit": [
+    "#0D80BF",
+    "#111111"
+   ],
+   "series": "A",
+   "year": 1978,
+   "hint": "258 jogos e 78 gols pelo Grêmio de 1973 a 1986. 27 anos em 1978."
+  },
+  {
+   "id": "man-gessy-gremio-1950",
+   "name": "Gessy",
+   "position": "MEI",
+   "club": "Grêmio",
+   "levelMin": 82,
+   "levelMax": 88,
+   "tier": "craque",
+   "kit": [
+    "#0D80BF",
+    "#111111"
+   ],
+   "series": "A",
+   "year": 1950,
+   "hint": "Ídolo do Grêmio."
+  },
+  {
+   "id": "man-loivo-gremio-1968",
+   "name": "Loivo",
+   "position": "ATA",
+   "club": "Grêmio",
+   "levelMin": 82,
+   "levelMax": 88,
+   "tier": "craque",
+   "kit": [
+    "#0D80BF",
+    "#111111"
+   ],
+   "series": "A",
+   "year": 1968,
+   "hint": "Ídolo do Grêmio."
+  },
+  {
+   "id": "wd-Q1694253-Q221695-1981",
+   "personId": "Q1694253",
+   "name": "Paulo Isidoro",
+   "position": "MEI",
+   "club": "Grêmio",
+   "levelMin": 82,
+   "levelMax": 88,
+   "tier": "craque",
+   "kit": [
+    "#0D80BF",
+    "#111111"
+   ],
+   "series": "A",
+   "year": 1981,
+   "hint": "54 jogos e 18 gols pelo Grêmio de 1980 a 1983. 28 anos em 1981. 36 jogos pela seleção."
+  },
+  {
+   "id": "wd-Q647438-Q221695-1983",
+   "personId": "Q647438",
+   "name": "Mário Sérgio",
+   "position": "MEI",
+   "club": "Grêmio",
+   "levelMin": 82,
+   "levelMax": 88,
+   "tier": "craque",
+   "kit": [
+    "#0D80BF",
+    "#111111"
+   ],
+   "series": "A",
+   "year": 1983,
+   "hint": "Campeão da Libertadores e do Mundial de 1983 pelo Grêmio. 33 anos em 1983."
+  },
+  {
+   "id": "wd-Q2429057-Q221695-1995",
+   "personId": "Q2429057",
+   "name": "Dinho",
+   "position": "MEI",
+   "club": "Grêmio",
+   "levelMin": 82,
+   "levelMax": 88,
+   "tier": "craque",
+   "kit": [
+    "#0D80BF",
+    "#111111"
+   ],
+   "series": "A",
+   "year": 1995,
+   "hint": "46 jogos e 8 gols pelo Grêmio de 1995 a 1997. 29 anos em 1995."
+  },
+  {
+   "id": "man-luan-gremio-2017",
+   "name": "Luan",
+   "position": "ATA",
+   "club": "Grêmio",
+   "levelMin": 82,
+   "levelMax": 88,
+   "tier": "craque",
+   "kit": [
+    "#0D80BF",
+    "#111111"
+   ],
+   "series": "A",
+   "year": 2017,
+   "hint": "Rei da América no Grêmio campeão da Libertadores de 2017. 24 anos em 2017."
+  },
+  {
+   "id": "man-everton-cebolinha-gremio-2019",
+   "name": "Everton Cebolinha",
+   "position": "ATA",
+   "club": "Grêmio",
+   "levelMin": 82,
+   "levelMax": 88,
+   "tier": "craque",
+   "kit": [
+    "#0D80BF",
+    "#111111"
+   ],
+   "series": "A",
+   "year": 2019,
+   "hint": "No Grêmio de 2014 a 2020. 23 anos em 2019."
+  },
+  {
+   "id": "wd-Q755895-Q221695-1975",
+   "personId": "Q755895",
+   "name": "Ancheta",
+   "position": "ZAG",
+   "club": "Grêmio",
+   "levelMin": 82,
+   "levelMax": 88,
+   "tier": "craque",
+   "kit": [
+    "#0D80BF",
+    "#111111"
+   ],
+   "series": "A",
+   "year": 1975,
+   "hint": "Uruguai. 164 jogos e 7 gols pelo Grêmio de 1971 a 1979. 27 anos em 1975. 20 jogos pela seleção."
+  },
+  {
+   "id": "wd-Q2414922-Q80845-1948",
+   "personId": "Q2414922",
+   "name": "Tesourinha",
+   "position": "ATA",
+   "club": "Internacional",
+   "levelMin": 82,
+   "levelMax": 88,
+   "tier": "craque",
+   "kit": [
+    "#D50000",
+    "#FFFFFF"
+   ],
+   "series": "A",
+   "year": 1948,
+   "hint": "149 jogos e 176 gols pelo Internacional de 1939 a 1949. 27 anos em 1948. 23 jogos pela seleção."
+  },
+  {
+   "id": "wd-Q1979618-Q80845-1948",
+   "personId": "Q1979618",
+   "name": "Carlitos",
+   "position": "ATA",
+   "club": "Internacional",
+   "levelMin": 82,
+   "levelMax": 88,
+   "tier": "craque",
+   "kit": [
+    "#D50000",
+    "#FFFFFF"
+   ],
+   "series": "A",
+   "year": 1948,
+   "hint": "384 jogos e 325 gols pelo Internacional de 1939 a 1951. 27 anos em 1948."
+  },
+  {
+   "id": "wd-Q380322-Q80845-1950",
+   "personId": "Q380322",
+   "name": "Adãozinho",
+   "position": "ATA",
+   "club": "Internacional",
+   "levelMin": 82,
+   "levelMax": 88,
+   "tier": "craque",
+   "kit": [
+    "#D50000",
+    "#FFFFFF"
+   ],
+   "series": "A",
+   "year": 1950,
+   "hint": "No Internacional de 1943 a 1951. 27 anos em 1950."
+  },
+  {
+   "id": "wd-Q1991979-Q80845-1959",
+   "personId": "Q1991979",
+   "name": "Larry",
+   "position": "ATA",
+   "club": "Internacional",
+   "levelMin": 82,
+   "levelMax": 88,
+   "tier": "craque",
+   "kit": [
+    "#D50000",
+    "#FFFFFF"
+   ],
+   "series": "A",
+   "year": 1959,
+   "hint": "261 jogos e 176 gols pelo Internacional de 1954 a 1962. 27 anos em 1959."
+  },
+  {
+   "id": "wd-Q2454669-Q80845-1955",
+   "personId": "Q2454669",
+   "name": "Bodinho",
+   "position": "ATA",
+   "club": "Internacional",
+   "levelMin": 82,
+   "levelMax": 88,
+   "tier": "craque",
+   "kit": [
+    "#D50000",
+    "#FFFFFF"
+   ],
+   "series": "A",
+   "year": 1955,
+   "hint": "No Internacional de 1951 a 1958. 27 anos em 1955."
+  },
+  {
+   "id": "wd-Q2072841-Q80845-1974",
+   "personId": "Q2072841",
+   "name": "Claudiomiro",
+   "position": "ATA",
+   "club": "Internacional",
+   "levelMin": 82,
+   "levelMax": 88,
+   "tier": "craque",
+   "kit": [
+    "#D50000",
+    "#FFFFFF"
+   ],
+   "series": "A",
+   "year": 1974,
+   "hint": "424 jogos e 210 gols pelo Internacional de 1967 a 1974. 24 anos em 1974."
+  },
+  {
+   "id": "man-escurinho-internacional-1975",
+   "name": "Escurinho",
+   "position": "ATA",
+   "club": "Internacional",
+   "levelMin": 82,
+   "levelMax": 88,
+   "tier": "craque",
+   "kit": [
+    "#D50000",
+    "#FFFFFF"
+   ],
+   "series": "A",
+   "year": 1975,
+   "hint": "Atacante do Internacional bicampeão brasileiro em 1975 e 1976."
+  },
+  {
+   "id": "wd-Q555593-Q80845-1986",
+   "personId": "Q555593",
+   "name": "Rubén Paz",
+   "position": "MEI",
+   "club": "Internacional",
+   "levelMin": 82,
+   "levelMax": 88,
+   "tier": "craque",
+   "kit": [
+    "#D50000",
+    "#FFFFFF"
+   ],
+   "series": "A",
+   "year": 1986,
+   "hint": "Uruguai. 245 jogos e 69 gols pelo Internacional de 1982 a 1986. 27 anos em 1986. 45 jogos pela seleção."
   }
  ]
 }
