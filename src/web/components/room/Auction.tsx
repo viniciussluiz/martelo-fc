@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
-import { FORMATION_LIST, FORMATIONS, type Formation, type Position } from '../../../engine/types';
+import { FORMATION_LIST, FORMATIONS, isPackageMode, type Formation, type Position } from '../../../engine/types';
 import type {
   BidStepView,
   ConvocacaoStepView,
@@ -16,7 +16,7 @@ import type {
 import { act, socket } from '../../lib/socket';
 import { toast } from '../../lib/store';
 import { ClubBadge } from '../ClubBadge';
-import { CardFace, CardIdentity, Countdown, EnvelopeArt, POSITION_NAME, TierBadge, plural, useNow } from '../common';
+import { auctionLabel, CardFace, CardIdentity, Countdown, EnvelopeArt, POSITION_NAME, TierBadge, plural, useNow } from '../common';
 import { TeamCrest } from '../crest/TeamCrest';
 import { Icon } from '../Icon';
 import { SquadPitch } from './Squad';
@@ -52,7 +52,7 @@ export function AuctionScreen({ room }: { room: RoomView }) {
   const a = d.auction!;
   const me = d.participants.find((p) => p.id === d.you);
   const step = a.step;
-  const clubs = d.auctionMode !== 'jogador';
+  const clubs = isPackageMode(d.auctionMode);
   const now = useNow(a.reveal ? 100 : 30_000);
   const revealIdx = a.reveal ? revealIndex(a.reveal, now) : -1;
   const pending = useMemo(() => unrevealed(a.reveal, revealIdx), [a.reveal, revealIdx]);
@@ -100,7 +100,7 @@ export function AuctionScreen({ room }: { room: RoomView }) {
 
 /** Quanto o técnico já pagou no pregão (sem contar o que a revelação ainda não mostrou). */
 function spentBy(d: DisputeView, p: ParticipantView, pending: Unrevealed): number {
-  if (d.auctionMode !== 'jogador') return (p.packs ?? []).filter((x) => !pending.cards.has(x.packageId)).reduce((n, x) => n + x.price, 0);
+  if (isPackageMode(d.auctionMode)) return (p.packs ?? []).filter((x) => !pending.cards.has(x.packageId)).reduce((n, x) => n + x.price, 0);
   return p.roster.filter((r) => !pending.cards.has(r.cardId)).reduce((n, r) => n + r.price, 0);
 }
 
@@ -108,9 +108,12 @@ function spentBy(d: DisputeView, p: ParticipantView, pending: Unrevealed): numbe
 function AuctionHead({ d, pending }: { d: DisputeView; pending: Unrevealed }) {
   const a = d.auction!;
   const step = a.step;
-  const clubs = d.auctionMode !== 'jogador';
+  const clubs = isPackageMode(d.auctionMode);
   const me = d.participants.find((p) => p.id === d.you);
-  const sub = a.reveal ? 'Do menor para o maior pote' : step?.kind === 'bid' && step.batchCount > 1 ? `Leva ${step.batchIndex + 1} de ${step.batchCount}` : null;
+  const stage = a.reveal ? 'Do menor para o maior pote' : step?.kind === 'bid' && step.batchCount > 1 ? `Leva ${step.batchIndex + 1} de ${step.batchCount}` : null;
+  // Leilões temáticos: o tipo fica à vista no placar (“Leilão de lendas”, “Leilão de clássicos”).
+  const theme = d.auctionMode === 'lendas' || d.auctionMode === 'classicos' ? auctionLabel(d.auctionMode) : null;
+  const sub = [theme, stage].filter(Boolean).join(' · ') || null;
   const coins = me ? me.coins + (pending.coins.get(me.id) ?? 0) : 0;
   const filled = me ? (clubs ? (me.packs ?? []).filter((x) => !pending.cards.has(x.packageId)).length : me.roster.length - (pending.count.get(me.id) ?? 0)) : 0;
   return (
@@ -203,6 +206,20 @@ function itemName(d: DisputeView, id: string): string {
   return d.packages[id]?.label ?? d.cards[id]?.name ?? id;
 }
 
+/** Escudo do pacote: o do clube ou, no leilão de clássicos, os dos dois clubes lado a lado. */
+function PackCrest({ pack, size }: { pack: PackageView; size: number }) {
+  if (pack.clubs?.length) {
+    return (
+      <span className="pack-crests" aria-hidden="true">
+        {pack.clubs.map((club) => (
+          <ClubBadge key={club} club={club} size={Math.round(size * 0.82)} />
+        ))}
+      </span>
+    );
+  }
+  return <ClubBadge club={pack.club} size={size} />;
+}
+
 /** Pacote: escudo, clube e quantos jogadores vêm nele (os nomes só aparecem na convocação). */
 function PackIdentity({ pack, children, sector }: { pack: PackageView; children?: ReactNode; sector?: boolean }) {
   return (
@@ -212,10 +229,11 @@ function PackIdentity({ pack, children, sector }: { pack: PackageView; children?
           {pack.position}
         </span>
       ) : (
-        <ClubBadge club={pack.club} size={28} />
+        <PackCrest pack={pack} size={28} />
       )}
       <div className="pack-text">
         <div className="pack-club">{pack.mixed ? 'Pacote combinado' : pack.club}</div>
+        {pack.clubs && <div className="pack-clubs">{pack.clubs.join(' x ')}</div>}
         <div className="pack-meta">
           {sector ? `${POSITION_NAME[pack.position]}, ` : ''}
           {plural(pack.size, 'jogador', 'jogadores')} no pacote
@@ -246,7 +264,7 @@ function ItemFace({ d, id, compact, children }: { d: DisputeView; id: string; co
 
 function RoomTable({ d, pending }: { d: DisputeView; pending: Unrevealed }) {
   const step = d.auction?.step;
-  const clubs = d.auctionMode !== 'jogador';
+  const clubs = isPackageMode(d.auctionMode);
   const sealed = new Set(step && step.kind !== 'monte' ? step.sealed : []);
   const eligible = new Set(step && step.kind !== 'monte' ? step.eligible : []);
   const convocando = step?.kind === 'convocacao';
@@ -369,7 +387,7 @@ function MyPackages({ d, participantId, pending }: { d: DisputeView; participant
               <PosChip pos={pos} />
               {pack ? (
                 <>
-                  {pack.mixed ? <span className="pack-mixed small-mixed">{pos}</span> : <ClubBadge club={pack.club} size={20} />}
+                  {pack.mixed ? <span className="pack-mixed small-mixed">{pos}</span> : <PackCrest pack={pack} size={20} />}
                   <span className="my-packs-club">{pack.mixed ? 'Combinado' : pack.club}</span>
                   <span className="my-packs-price">{win!.source === 'monte' ? 'Monte' : <Coins value={win!.price} size={13} animate={false} />}</span>
                 </>
@@ -403,7 +421,7 @@ interface Hammer {
 /** Martelos já batidos neste pregão (o que a revelação ainda não mostrou fica de fora). */
 function HammerLog({ d, pending }: { d: DisputeView; pending: Unrevealed }) {
   const [all, setAll] = useState(false);
-  const clubs = d.auctionMode !== 'jogador';
+  const clubs = isPackageMode(d.auctionMode);
   const rows: Hammer[] = [];
   for (const p of d.participants) {
     if (clubs) {
@@ -462,7 +480,7 @@ function BidBoard({ step, d }: { step: BidStepView; d: DisputeView }) {
   const [sealing, setSealing] = useState(false);
   const [bumps, setBumps] = useState<Record<string, { k: number; delta: number }>>({});
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const clubs = d.auctionMode !== 'jogador';
+  const clubs = isPackageMode(d.auctionMode);
   const total = Object.values(draft).reduce((s, v) => s + (v || 0), 0);
   const count = Object.values(draft).filter((v) => v > 0).length;
   const overSlots = count > step.myOpenSlots;
@@ -547,7 +565,7 @@ function BidBoard({ step, d }: { step: BidStepView; d: DisputeView }) {
     <div className="stack">
       {clubs ? (
         <p className="lot-intro">
-          Dê lance em <strong>um pacote</strong>: quem pagar mais leva o setor inteiro {d.auctionMode === 'selecoes' ? 'da seleção' : 'do clube'} e escolhe quem joga na convocação. Os nomes só
+          Dê lance em <strong>um pacote</strong>: quem pagar mais leva o setor inteiro {d.auctionMode === 'selecoes' ? 'da seleção' : d.auctionMode === 'classicos' ? 'do clássico' : 'do clube'} e escolhe quem joga na convocação. Os nomes só
           aparecem lá.
         </p>
       ) : (
@@ -725,7 +743,7 @@ function TiebreakBoard({ step, d }: { step: TiebreakStepView; d: DisputeView }) 
 
 function MonteBoard({ step, d }: { step: MonteStepView; d: DisputeView }) {
   const mine = step.current === d.you;
-  const clubs = d.auctionMode !== 'jogador';
+  const clubs = isPackageMode(d.auctionMode);
   const currentName = d.participants.find((p) => p.id === step.current)?.name ?? '—';
   const options = new Set(step.myOptions);
   return (
@@ -964,6 +982,8 @@ function ConvocacaoBoard({ step, d }: { step: ConvocacaoStepView; d: DisputeView
                       <li key={id}>
                         <label className="convoca-row" data-on={on || undefined} data-off={full || undefined} data-legend={c.legend || undefined}>
                           <input type="checkbox" checked={on} disabled={step.mySealed || full} onChange={() => toggle(tab, id)} />
+                          {/* Pacote de clássico: o escudo diz de qual dos dois clubes é o jogador. */}
+                          {pack.clubs && <ClubBadge club={c.club} kit={c.kit} size={22} />}
                           {c.legend && <LegendFigure club={c.club} kit={c.kit} cardId={c.id} size={34} />}
                           <span className="convoca-name">{c.name}</span>
                           {c.legend && <span className="badge badge-gold">Lenda</span>}

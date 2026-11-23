@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react';
+import type { AuctionMode } from '../../engine/types';
 import type { CardView } from '../../shared/protocol';
 import { serverNow } from '../lib/store';
 import { ClubLine } from './ClubBadge';
@@ -39,6 +40,19 @@ export const CUP_FORMAT_LABEL: Record<string, string> = {
 };
 /** Sala sem liga: todos direto para a Libertadores. */
 export const ONLY_CUP_LABEL = 'Só Libertadores';
+
+const AUCTION_LABEL: Record<AuctionMode, string> = {
+  jogador: 'Leilão de jogador',
+  clubes: 'Leilão de clubes',
+  selecoes: 'Leilão de seleções',
+  lendas: 'Leilão de lendas',
+  classicos: 'Leilão de clássicos',
+};
+
+/** Nome do tipo de leilão (“Leilão de lendas”). */
+export function auctionLabel(mode: AuctionMode | undefined): string {
+  return AUCTION_LABEL[mode ?? 'jogador'] ?? 'Leilão';
+}
 
 /** Re-renderiza a cada `ms` e devolve a hora do servidor estimada. */
 export function useNow(ms = 250): number {

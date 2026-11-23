@@ -72,7 +72,7 @@ export function HowToPlayPage() {
       </section>
 
       <section className="rules-block">
-        <SectionTitle>Três modos de leilão</SectionTitle>
+        <SectionTitle>Cinco modos de leilão</SectionTitle>
         <ul className="info-list">
           <li>
             <strong>Jogadores:</strong> o clássico, um jogador por lance.
@@ -83,6 +83,14 @@ export function HowToPlayPage() {
           </li>
           <li>
             <strong>Seleções:</strong> igual ao de clubes, mas com os maiores nomes que vestiram a camisa de cada seleção.
+          </li>
+          <li>
+            <strong>Lendas:</strong> um jogador por lance, com as Lendas de todos os clubes (se faltar Lenda numa posição, entram Craques). Todo
+            mundo vai às compras no andar de cima.
+          </li>
+          <li>
+            <strong>Clássicos:</strong> igual ao de clubes, mas cada pacote é o setor de um clássico, como os goleiros do Fla-Flu ou o ataque do
+            Gre-Nal, com os jogadores dos dois clubes.
           </li>
         </ul>
         <p>O baralho mistura épocas: craques de hoje dividem o pregão com lendas de décadas passadas, de clubes do Brasil e da Europa.</p>

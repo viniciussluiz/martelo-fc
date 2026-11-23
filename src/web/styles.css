@@ -3031,6 +3031,11 @@ button.mode:disabled {
   color: var(--ink-2);
 }
 
+.hint-warn {
+  color: var(--red-deep);
+  font-weight: 700;
+}
+
 .history-list {
   list-style: none;
   margin: 0;
@@ -4108,6 +4113,21 @@ li[data-state='lacrado'] .rt-state {
   font-size: 0.88rem;
   font-weight: 600;
   color: var(--ink-2);
+}
+/* Pacote de clássico: os dois escudos colados e, embaixo do nome, os dois clubes. */
+.pack-crests {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+}
+.pack-crests > * + * {
+  margin-left: -6px;
+}
+.pack-clubs {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--ink-3);
+  line-height: 1.2;
 }
 .pack-mixed {
   flex: none;
@@ -7128,6 +7148,19 @@ tr[data-zone='z4'] .pos-num {
   font-family: var(--f-display);
   font-weight: 400;
   font-size: 1.6rem;
+}
+/* Raridade e categoria ao lado do nome: mesma altura e no meio da linha do título. */
+.trophy-detail .rarity,
+.trophy-detail .badge {
+  align-self: center;
+  display: inline-flex;
+  align-items: center;
+  height: 26px;
+  padding: 0 9px;
+  font-family: var(--f-sport);
+  font-weight: 800;
+  font-size: 0.86rem;
+  line-height: 1;
 }
 .trophy-when {
   display: flex;

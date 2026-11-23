@@ -8,8 +8,10 @@ import {
   DEFAULT_DISPUTE_CONFIG,
   MAX_PARTICIPANTS,
   SERIES_SCOPES,
+  deckCapacity,
   deckForScope,
   isPackageMode,
+  legendsDeck,
   nationalDeck,
   type Card,
   type CpuStyle,
@@ -42,6 +44,7 @@ import { hashPassword, verifyPassword } from '../auth.js';
 import { shootoutMs } from '../../shared/shootout.js';
 import { buildRoomView } from './views.js';
 import { CPU_TEAM_NAMES } from '../../shared/teams.js';
+import { classicoGroups, classicosForAuction } from '../../shared/classicos.js';
 import { userCrests } from '../services/team-crests.js';
 import type { CrestConfig } from '../../shared/crest.js';
 
@@ -628,10 +631,47 @@ export class RoomActor {
     if (this.settings.auctionMode === 'selecoes' && nationalDeck(this.deps.deck).length === 0) {
       throw new GameRuleError('config_invalida', 'Este baralho não tem cartas de seleção. Escolha outro tipo de leilão.');
     }
+    if (this.settings.auctionMode === 'classicos' && classicosForAuction(this.deps.deck, 'inicio').length === 0) {
+      throw new GameRuleError('config_invalida', 'Este baralho não tem os clubes dos clássicos. Escolha outro tipo de leilão.');
+    }
     if (humans.length + this.settings.cpuCount < 2) {
       throw new GameRuleError('poucos_tecnicos', 'Chame mais alguém ou adicione CPUs: são pelo menos 2 técnicos.');
     }
+    const tooMany = this.deckCapacityError(humans.length);
+    if (tooMany) throw new GameRuleError('config_invalida', tooMany);
     this.startDispute(humans);
+  }
+
+  /**
+   * Leilão de lendas: a sala não começa com mais técnicos do que o baralho de Lendas e Craques aguenta
+   * (senão os times fecham com reservas genéricas). Conta humanos e CPUs. `null` = cabe.
+   */
+  private deckCapacityError(humans: number): string | null {
+    if (this.settings.auctionMode !== 'lendas') return null;
+    const technicians = humans + Math.min(this.settings.cpuCount, MAX_PARTICIPANTS - humans);
+    const limit = deckCapacity(this.auctionDeck());
+    return technicians > limit ? `O leilão de lendas aguenta até ${limit} técnicos.` : null;
+  }
+
+  /**
+   * Cartas que entram no leilão, conforme o tipo: as de seleção; só Lendas e Craques de todos os clubes;
+   * nos leilões de clubes e de clássicos, o baralho inteiro (é o que dá pacote para cada setor; no de
+   * clássicos, os clubes de fora dos clássicos só entram nos pacotes combinados); no de jogador, o grupo
+   * de clubes da sala.
+   */
+  private auctionDeck(): Card[] {
+    const deck = this.deps.deck;
+    switch (this.settings.auctionMode) {
+      case 'selecoes':
+        return nationalDeck(deck);
+      case 'lendas':
+        return legendsDeck(deck);
+      case 'clubes':
+      case 'classicos':
+        return deckForScope(deck, 'ALL');
+      default:
+        return deckForScope(deck, this.settings.series ?? 'ALL');
+    }
   }
 
   private get clubsMode(): boolean {
@@ -667,11 +707,14 @@ export class RoomActor {
     const prev = this.deps.db
       .prepare(`SELECT id FROM disputes WHERE room_id = ? AND status = 'finished' ORDER BY seq DESC LIMIT 1`)
       .get(this.id) as { id: string } | undefined;
+    const deck = this.auctionDeck();
     // As herdadas voltam como estão hoje no baralho (o dono pode ter ajustado o nível ou a Lenda).
+    // No leilão de lendas só voltam as que ainda são Lenda ou Craque.
     const current = new Map(this.deps.deck.map((c) => [c.id, c]));
-    const carried: Card[] = (this.settings.carryOver && !this.clubsMode && prev ? this.deps.results.acquiredCards(prev.id) : []).map(
-      (c) => current.get(c.id) ?? c,
-    );
+    const themed = this.settings.auctionMode === 'lendas' ? new Set(deck.map((c) => c.id)) : null;
+    const carried: Card[] = (this.settings.carryOver && !this.clubsMode && prev ? this.deps.results.acquiredCards(prev.id) : [])
+      .map((c) => current.get(c.id) ?? c)
+      .filter((c) => !themed || themed.has(c.id));
     const humans = humanIds
       .map((id) => this.members.get(id)!)
       .filter(Boolean)
@@ -691,14 +734,9 @@ export class RoomActor {
     const id = randomUUID();
     const seed = randomBytes(8).toString('hex');
     const config = this.disputeConfig();
-    // Só as cartas dos clubes escolhidos para a sala (as herdadas do ciclo anterior voltam todas).
-    // O leilão de clubes usa o baralho inteiro: é o que dá clube suficiente para cada setor.
-    // O de seleções usa só as cartas de seleção (os melhores de cada país).
-    const deck =
-      this.settings.auctionMode === 'selecoes'
-        ? nationalDeck(this.deps.deck)
-        : deckForScope(this.deps.deck, this.clubsMode ? 'ALL' : (this.settings.series ?? 'ALL'));
-    const dispute = Dispute.create({ id, seed, config, seats, deck, carried });
+    // Leilão de clássicos: os clássicos deste leilão, sorteados (cada clube em um só).
+    const packageGroups = this.settings.auctionMode === 'classicos' ? classicoGroups(classicosForAuction(deck, seed)) : undefined;
+    const dispute = Dispute.create({ id, seed, config, seats, deck, carried, ...(packageGroups ? { packageGroups } : {}) });
     const now = nowIso();
     const tx = this.deps.db.transaction(() => {
       const upd = this.deps.db
@@ -1183,7 +1221,9 @@ export class RoomActor {
       return;
     }
     if (!yes.includes(this.hostUserId)) this.hostUserId = yes[0]!;
-    if (yes.length < c.minHumans) {
+    // Poucos técnicos para continuar, ou mais do que o baralho do leilão aguenta (o anfitrião trocou para um
+    // clássico menor entre as disputas): a sala volta para a espera, onde dá para ajustar.
+    if (yes.length < c.minHumans || this.deckCapacityError(yes.length)) {
       this.status = 'lobby';
       this.continuation = null;
       this.persistRoom();

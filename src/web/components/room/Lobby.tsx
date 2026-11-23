@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { CLUB_SERIES, scopeOfSeries, scopeSeries, type Formation, type Series, type SeriesScope } from '../../../engine/types';
+import { CLUB_SERIES, isPackageMode, MAX_PARTICIPANTS, scopeOfSeries, scopeSeries, type Formation, type Series, type SeriesScope } from '../../../engine/types';
 import { ROOM_PASSWORD_MAX, ROOM_PASSWORD_MIN, type MatchSeconds } from '../../../shared/protocol';
 import type { DeckInfo, RoomSettings, RoomView } from '../../../shared/protocol';
 import { CPU_TEAM_NAMES } from '../../../shared/teams';
@@ -124,6 +124,16 @@ function ClubsField({ deck, value, editable, onChange }: { deck: DeckInfo; value
 }
 
 /**
+ * Leilão de lendas: quantos técnicos o baralho de Lendas e Craques aguenta e o aviso quando a sala passa
+ * disso (`null` nos outros tipos, que vão até o limite da sala).
+ */
+function deckLimit(room: RoomView): { limit: number; warning: string } | null {
+  if (room.settings.auctionMode !== 'lendas') return null;
+  const limit = room.deck.themes?.lendas ?? MAX_PARTICIPANTS;
+  return { limit, warning: `O leilão de lendas aguenta até ${limit} técnicos.` };
+}
+
+/**
  * Quem entra na sala: aberta (sem senha) ou fechada (com senha), e se ela aparece em “Salas em andamento”.
  * Só o anfitrião muda; vale a qualquer hora, e quem já está na sala continua.
  */
@@ -194,9 +204,12 @@ function AccessField({ room, editable }: { room: RoomView; editable: boolean }) 
 
 export function SettingsPanel({ room, editable }: { room: RoomView; editable: boolean }) {
   const s = room.settings;
-  const clubs = s.auctionMode !== 'jogador';
+  const clubs = isPackageMode(s.auctionMode);
   const national = s.auctionMode === 'selecoes';
   const hasNational = (room.deck.groups.SEL ?? 0) > 0;
+  const hasLegends = (room.deck.themes?.lendas ?? 0) >= 2;
+  const classicos = room.deck.themes?.classicos ?? 0;
+  const hasClassicos = classicos >= 2;
   const onlyCup = s.cupFormat === 'libertadores' && !!s.skipLeague;
   const set = (patch: Partial<RoomSettings>) => void act({ t: 'room:settings', settings: patch });
   return (
@@ -209,7 +222,7 @@ export function SettingsPanel({ room, editable }: { room: RoomView; editable: bo
         <div className="field">
           <label>Tipo de leilão</label>
           <div className="seg seg-grid" role="group" aria-label="Tipo de leilão">
-            <button type="button" aria-pressed={!clubs} disabled={!editable} onClick={() => set({ auctionMode: 'jogador' })}>
+            <button type="button" aria-pressed={s.auctionMode === 'jogador'} disabled={!editable} onClick={() => set({ auctionMode: 'jogador' })}>
               Jogador
             </button>
             <button type="button" aria-pressed={s.auctionMode === 'clubes'} disabled={!editable} onClick={() => set({ auctionMode: 'clubes' })}>
@@ -220,16 +233,37 @@ export function SettingsPanel({ room, editable }: { room: RoomView; editable: bo
                 Seleções
               </button>
             )}
+            {hasLegends && (
+              <button type="button" aria-pressed={s.auctionMode === 'lendas'} disabled={!editable} onClick={() => set({ auctionMode: 'lendas' })}>
+                Lendas
+              </button>
+            )}
+            {hasClassicos && (
+              <button type="button" aria-pressed={s.auctionMode === 'classicos'} disabled={!editable} onClick={() => set({ auctionMode: 'classicos' })}>
+                Clássicos
+              </button>
+            )}
           </div>
           <p className="hint">
             {national
               ? 'Cada lote é o setor de uma seleção (os atacantes do Brasil, por exemplo), só com os melhores que jogaram por ela. Quem leva o pacote escolhe no fim quem joga; sem escolha a tempo, entra o pior. As sobras vão para os times da liga.'
-              : clubs
+              : s.auctionMode === 'classicos'
+                ? 'Cada lote é o setor de um clássico (os goleiros do Fla-Flu, por exemplo), com os jogadores dos dois clubes. Quem leva o pacote escolhe no fim quem joga; sem escolha a tempo, entra o pior. As sobras vão para os times da liga.'
+                : clubs
                 ? 'Cada lote é o setor de um clube (os goleiros do Corinthians, por exemplo). Quem leva o pacote escolhe no fim quem joga; sem escolha a tempo, entra o pior. As sobras vão para os times da liga.'
-                : 'O leilão de sempre: um jogador por lance.'}
+                : s.auctionMode === 'lendas'
+                  ? 'Um jogador por lance, com as Lendas de todos os clubes do Brasil e da Europa. Se faltar Lenda numa posição, completa com Craques.'
+                  : 'O leilão de sempre: um jogador por lance.'}
           </p>
         </div>
-        {clubs ? (
+        {s.auctionMode === 'classicos' ? (
+          <p className="hint">
+            A cada leilão o jogo sorteia {classicos} clássicos do Brasil e da Europa, com cada clube em um só (o Flamengo vem no Fla-Flu ou no
+            Flamengo x Vasco, por exemplo). Com mais de {classicos - 1} técnicos, os pacotes que faltarem saem combinados.
+          </p>
+        ) : s.auctionMode === 'lendas' ? (
+          <p className="hint">No leilão de lendas entram todos os clubes (Brasil e Europa).</p>
+        ) : clubs ? (
           <p className="hint">
             {national
               ? `Entram ${(room.deck.clubs.SEL ?? []).length} seleções: ${(room.deck.clubs.SEL ?? []).join(' · ')}.`
@@ -308,7 +342,9 @@ export function SettingsPanel({ room, editable }: { room: RoomView; editable: bo
             </>
           )}
         </div>
-        {clubs && <p className="hint">No leilão de {national ? 'seleções' : 'clubes'} os pacotes são sorteados de novo a cada ciclo.</p>}
+        {clubs && (
+          <p className="hint">No leilão de {national ? 'seleções' : s.auctionMode === 'classicos' ? 'clássicos' : 'clubes'} os pacotes são sorteados de novo a cada ciclo.</p>
+        )}
         <div className="row settings-row">
           <div className="field">
             <label htmlFor="cont">Tempo para decidir se continua (s)</label>
@@ -462,7 +498,9 @@ export function Lobby({ room }: { room: RoomView }) {
   const me = room.members.find((m) => m.userId === room.you);
   const isHost = room.hostUserId === room.you;
   const total = room.members.length + room.settings.cpuCount;
-  const canStart = isHost && total >= 2 && total <= 20;
+  const limit = deckLimit(room);
+  const overLimit = !!limit && total > limit.limit;
+  const canStart = isHost && total >= 2 && total <= MAX_PARTICIPANTS && !overLimit;
   return (
     <div className="lobby">
       <RoomHeader
@@ -499,6 +537,7 @@ export function Lobby({ room }: { room: RoomView }) {
             </button>
           </div>
           {isHost && total < 2 && <p className="hint">São pelo menos 2 técnicos: chame alguém ou adicione CPUs.</p>}
+          {overLimit && <p className="hint hint-warn">{limit.warning}</p>}
         </div>
         <div className="stack">
           <SettingsPanel room={room} editable={isHost} />

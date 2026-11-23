@@ -169,18 +169,40 @@ export type CupFormat = 'copa8' | 'libertadores' | 'mundial' | 'nenhuma';
  * Tipo de leilão: “jogador” é o de sempre (um jogador por lance); em “clubes” cada lote é um setor
  * de um clube (ex.: os goleiros do Corinthians), quem leva o pacote convoca no fim quem joga;
  * “selecoes” é o mesmo com seleções (os goleiros do Brasil), só com quem jogou pela seleção.
+ * “lendas” é o leilão de jogador só com Lendas e Craques de todos os clubes; “classicos” é o de clubes
+ * com cada pacote sendo o setor de um clássico (os goleiros do Fla-Flu), ver `src/shared/classicos.ts`.
  */
-export type AuctionMode = 'jogador' | 'clubes' | 'selecoes';
-export const AUCTION_MODES: readonly AuctionMode[] = ['jogador', 'clubes', 'selecoes'];
+export type AuctionMode = 'jogador' | 'clubes' | 'selecoes' | 'lendas' | 'classicos';
+export const AUCTION_MODES: readonly AuctionMode[] = ['jogador', 'clubes', 'selecoes', 'lendas', 'classicos'];
 
-/** Leilão por pacotes (setor de um clube ou de uma seleção), com convocação no fim. */
+/** Leilão por pacotes (setor de um clube, de uma seleção ou de um clássico), com convocação no fim. */
 export function isPackageMode(mode: AuctionMode | undefined): boolean {
-  return mode === 'clubes' || mode === 'selecoes';
+  return mode === 'clubes' || mode === 'selecoes' || mode === 'classicos';
 }
 
 /** Cartas de seleção do baralho (modo “Seleções”). */
 export function nationalDeck(deck: Card[]): Card[] {
   return deck.filter((c) => c.series === 'SEL');
+}
+
+/** Cartas do leilão “Lendas”: as Lendas e os Craques de todos os clubes (sem as cartas de seleção). */
+export function legendsDeck(deck: Card[]): Card[] {
+  return deckForScope(deck, 'ALL').filter((c) => c.tier === 'lenda' || c.tier === 'craque');
+}
+
+/**
+ * Quantos técnicos um baralho aguenta sem completar time com reservas genéricas: pessoas diferentes
+ * em cada posição, divididas pelo que a formação mais exigente do leilão pede (1 goleiro, 2 laterais,
+ * 2 zagueiros, 4 meias e 3 atacantes). No máximo `MAX_PARTICIPANTS`.
+ */
+export function deckCapacity(deck: Card[]): number {
+  let cap = MAX_PARTICIPANTS;
+  for (const pos of POSITIONS) {
+    const need = Math.max(...AUCTION_FORMATIONS.map((f) => FORMATIONS[f][pos]));
+    const people = new Set(deck.filter((c) => c.position === pos).map((c) => c.personId ?? c.id)).size;
+    cap = Math.min(cap, Math.floor(people / need));
+  }
+  return cap;
 }
 
 export interface AuctionConfig {

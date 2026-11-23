@@ -17,7 +17,19 @@ import { AUCTION_FORMATIONS, FORMATIONS, POSITIONS, QUALITY_BANDS, type Card, ty
  *  - o lote tem 1/3 de clubes fortes, 1/3 de médios e 1/3 de fracos (terços, pela força do pacote;
  *    a sobra da divisão vai para os fortes) e pelo menos um pacote com Lenda quando o baralho permite;
  *  - com Europa e Brasil no baralho da sala, metade dos pacotes do lote é de cada origem.
+ *
+ * Leilão de clássicos: o mesmo, mas cada pacote é o setor de um CLÁSSICO (`groups`): junta o pacote de
+ * cada um dos dois clubes, como ele sairia no leilão de clubes (cada um com o seu corte), e por isso
+ * chega a 2 × PACK_MAX jogadores. Cada clube vem em um grupo só (quem escolhe os grupos garante isso).
  */
+
+/** Clubes que viram um pacote só (leilão de clássicos: os dois clubes de um clássico). */
+export interface PackageGroup {
+  id: string;
+  /** Nome do pacote no lugar do clube (“Fla-Flu”). */
+  name: string;
+  clubs: readonly string[];
+}
 
 export interface ClubPackage {
   id: string;
@@ -26,6 +38,8 @@ export interface ClubPackage {
   cardIds: string[];
   /** Pacote montado com jogadores de vários clubes (baralho sem clubes suficientes no setor). */
   mixed?: boolean;
+  /** Leilão de clássicos: os clubes do pacote (`club` é o nome do clássico). */
+  clubs?: string[];
 }
 
 /** Quantos jogadores o setor pede na formação de leilão mais exigente (4-3-3 ou 4-4-2). */
@@ -78,7 +92,11 @@ function slug(s: string): string {
 }
 
 interface Candidate {
+  /** Identifica o pacote no setor (o clube ou o id do clássico). */
+  key: string;
   club: string;
+  /** Leilão de clássicos: os clubes que formam o pacote. */
+  clubs?: string[];
   /** Todos os jogadores do clube no setor (uma versão por pessoa). */
   all: Card[];
   /** O pacote (corte de até PACK_MAX). */
@@ -96,7 +114,10 @@ function regionOf(cards: Card[]): Region | null {
   return series === 'A' || series === 'B' ? 'br' : null;
 }
 
-export function buildClubPackages(params: { participants: number; deck: Card[]; seed: string }): { packages: ClubPackage[]; cards: Card[] } {
+export function buildClubPackages(params: { participants: number; deck: Card[]; seed: string; groups?: readonly PackageGroup[] }): {
+  packages: ClubPackage[];
+  cards: Card[];
+} {
   const rng = new Rng(`pacotes:${params.seed}`);
   const person = (c: Card) => c.personId ?? c.id;
   const usedPeople = new Set<string>();
@@ -115,20 +136,28 @@ export function buildClubPackages(params: { participants: number; deck: Card[]; 
       list.push(c);
       byClub.set(c.club, list);
     }
-    const toCandidate = (club: string, all: Card[]): Candidate => {
-      let cut = all.slice();
-      if (all.length > PACK_MAX) {
-        const ranked = all.slice().sort((x, y) => mid(y) - mid(x) || x.id.localeCompare(y.id));
-        cut = [...ranked.slice(0, PACK_KEEP), ...rng.shuffle(ranked.slice(PACK_KEEP)).slice(0, PACK_MAX - PACK_KEEP)];
-      }
-      return { club, all, cards: cut, strength: packageStrength(cut, pos), region: regionOf(all) };
+    // Corte de um clube grande: os melhores ficam, o resto das vagas é sorteado.
+    const cutOf = (all: Card[]): Card[] => {
+      if (all.length <= PACK_MAX) return all.slice();
+      const ranked = all.slice().sort((x, y) => mid(y) - mid(x) || x.id.localeCompare(y.id));
+      return [...ranked.slice(0, PACK_KEEP), ...rng.shuffle(ranked.slice(PACK_KEEP)).slice(0, PACK_MAX - PACK_KEEP)];
     };
-    let candidates = [...byClub.entries()].filter(([, l]) => l.length >= PACK_MIN[pos]).map(([club, l]) => toCandidate(club, l));
+    // Um candidato por clube ou, no leilão de clássicos, um por clássico (o pacote de cada clube, juntos).
+    const all: Candidate[] = params.groups
+      ? params.groups.map((g) => {
+          const parts = g.clubs.map((club) => byClub.get(club) ?? []);
+          const cut = parts.flatMap(cutOf);
+          const every = parts.flat();
+          return { key: g.id, club: g.name, clubs: [...g.clubs], all: every, cards: cut, strength: packageStrength(cut, pos), region: regionOf(every) };
+        })
+      : [...byClub.entries()].map(([club, l]) => {
+          const cut = cutOf(l);
+          return { key: club, club, all: l, cards: cut, strength: packageStrength(cut, pos), region: regionOf(l) };
+        });
+    let candidates = all.filter((c) => c.cards.length >= PACK_MIN[pos]);
     // Poucos clubes com elenco completo: aceita os que têm o mínimo da formação (sem sobra).
     if (candidates.length < want) {
-      const extra = [...byClub.entries()]
-        .filter(([, l]) => l.length >= SECTOR_NEED[pos] && l.length < PACK_MIN[pos])
-        .map(([club, l]) => toCandidate(club, l));
+      const extra = all.filter((c) => c.cards.length >= SECTOR_NEED[pos] && c.cards.length < PACK_MIN[pos]);
       candidates = [...candidates, ...rng.shuffle(extra).slice(0, want - candidates.length)];
     }
 
@@ -136,10 +165,11 @@ export function buildClubPackages(params: { participants: number; deck: Card[]; 
     ensureLegend(chosen, candidates, rng);
 
     const sector: ClubPackage[] = chosen.map((c) => ({
-      id: `pk:${pos}:${slug(c.club)}`,
+      id: `pk:${pos}:${slug(c.key)}`,
       club: c.club,
       position: pos,
       cardIds: c.cards.map((x) => x.id),
+      ...(c.clubs ? { clubs: c.clubs } : {}),
     }));
     for (const c of chosen) {
       cards.push(...c.cards);
@@ -148,7 +178,7 @@ export function buildClubPackages(params: { participants: number; deck: Card[]; 
 
     // Ainda faltando pacote (baralho pequeno): pacotes combinados com quem sobrou no setor.
     if (sector.length < want) {
-      const taken = new Set(chosen.map((c) => c.club));
+      const taken = new Set(chosen.flatMap((c) => c.clubs ?? [c.club]));
       const loose = rng.shuffle([...byClub.entries()].filter(([club]) => !taken.has(club)).flatMap(([, l]) => l));
       let n = 0;
       while (sector.length < want && loose.length >= SECTOR_NEED[pos]) {

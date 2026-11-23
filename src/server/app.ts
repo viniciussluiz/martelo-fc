@@ -6,7 +6,8 @@ import { randomUUID } from 'node:crypto';
 import { WebSocketServer, type WebSocket } from 'ws';
 import { validateDeck } from '../engine/deck-generator.js';
 import { GameRuleError } from '../engine/errors.js';
-import type { Card } from '../engine/types.js';
+import { deckCapacity, legendsDeck, type Card } from '../engine/types.js';
+import { classicosForAuction } from '../shared/classicos.js';
 import type { ClientMessage, DeckInfo, ServerMessage } from '../shared/protocol.js';
 import { AuthError, AuthService, RESET_TTL_MIN, type PublicUser } from './auth.js';
 import { noMailer, passwordResetMail, smtpMailer, type Mailer } from './mail.js';
@@ -79,6 +80,11 @@ export function describeDeck(
     groups,
     clubs: Object.fromEntries(Object.entries(clubs).map(([k, v]) => [k, [...v].sort((a, b) => a.localeCompare(b, 'pt'))])),
     crests,
+    themes: {
+      lendas: deckCapacity(legendsDeck(cards)),
+      // Quantos clássicos entram num leilão (o sorteio muda quais; cada clube entra em um só).
+      classicos: classicosForAuction(cards, 'resumo').length,
+    },
   };
 }
 

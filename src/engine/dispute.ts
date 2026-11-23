@@ -5,7 +5,7 @@ import { Cup, REACH_ORDER, type CupReach, type CupState } from './cup.js';
 import { GameRuleError } from './errors.js';
 import { aggregateScorers, computeStandings, League, type LeagueState, type LeagueTeam, type StandingRow } from './league.js';
 import { resolveTakers, TEAM_ROLES, type MatchResult, type SetPieceTakers, type SquadPlayer } from './match.js';
-import { buildClubPackages } from './packages.js';
+import { buildClubPackages, type PackageGroup } from './packages.js';
 import { Rng } from './rng.js';
 import {
   FORMATIONS,
@@ -125,6 +125,8 @@ export interface CreateDisputeParams {
   deck: Card[];
   /** Cartas adquiridas no ciclo anterior (voltam todas ao leilão). */
   carried?: Card[];
+  /** Leilão de clássicos: os clássicos deste leilão (cada um vira um pacote por setor). */
+  packageGroups?: readonly PackageGroup[];
 }
 
 /**
@@ -157,6 +159,11 @@ export function buildAuctionPool(params: {
   /** Extras proporcionais às vagas (ver `AuctionConfig.lotExtraRatio`). */
   extraRatio?: number;
   seed: string;
+  /**
+   * Leilão de lendas: em vez dos terços de força, o lote leva todas as Lendas que couberem (sorteadas)
+   * e só completa com Craques quando faltam Lendas na posição.
+   */
+  legendsFirst?: boolean;
 }): { pool: Card[]; reserve: Card[] } {
   const rng = new Rng(`pool:${params.seed}`);
   const carriedIds = new Set(params.carried.map((c) => c.id));
@@ -183,6 +190,13 @@ export function buildAuctionPool(params: {
     const legend = carriedHere.some((c) => c.tier === 'lenda') ? undefined : candidates.find((c) => c.tier === 'lenda');
     const room = Math.max(0, sizes[pos] - carriedHere.length);
     const missing = Math.min(candidates.length, legend && room === 0 ? 1 : room);
+    if (params.legendsFirst) {
+      // Os candidatos já vêm sorteados: Lendas na frente, Craques (e o que mais houver) atrás.
+      const ordered = [...candidates.filter((c) => c.tier === 'lenda'), ...candidates.filter((c) => c.tier !== 'lenda')];
+      const picked = new Set(ordered.slice(0, missing));
+      for (const c of candidates) (picked.has(c) ? pool : reserve).push(c);
+      continue;
+    }
     const quota = bandQuota(carriedHere, missing, rng);
     const picked = new Set<Card>();
     if (legend && missing > 0) {
@@ -241,7 +255,14 @@ export class Dispute {
     const clubs = isPackageMode(params.config.auction.mode);
     // No leilão de clubes os pacotes são sorteados de novo a cada ciclo (não há herdadas).
     const carried = params.config.carryOverPreviousCycle && !clubs ? (params.carried ?? []) : [];
-    const packed = clubs ? buildClubPackages({ participants: seats.length, deck: params.deck, seed: params.seed }) : null;
+    const packed = clubs
+      ? buildClubPackages({
+          participants: seats.length,
+          deck: params.deck,
+          seed: params.seed,
+          ...(params.packageGroups ? { groups: params.packageGroups } : {}),
+        })
+      : null;
     const { pool, reserve } = packed
       ? { pool: packed.cards, reserve: [] }
       : buildAuctionPool({
@@ -251,6 +272,7 @@ export class Dispute {
           extra: params.config.auction.lotExtra,
           extraRatio: params.config.auction.lotExtraRatio ?? 0,
           seed: params.seed,
+          ...(params.config.auction.mode === 'lendas' ? { legendsFirst: true } : {}),
         });
     const participants: Participant[] = seats.map((s) => ({
       id: s.id,

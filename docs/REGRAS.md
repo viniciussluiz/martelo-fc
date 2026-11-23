@@ -56,6 +56,26 @@ Igual ao leilão de clubes, mas cada lote é um **setor de uma seleção** (os a
 - Lances, Monte, convocação, sobras e novo ciclo: como no leilão de clubes. As cartas de seleção não aparecem nos outros modos.
 - Detalhes do baralho e dos escudos: `docs/BARALHO.md`.
 
+### Leilão de lendas (sala: “Tipo de leilão” → Lendas)
+O leilão de jogador (um jogador por lance) só com **Lendas e Craques** de todos os clubes do Brasil e da Europa. A sala não escolhe
+grupo de clubes, e as cartas de seleção ficam de fora.
+- Lendas primeiro: em vez dos terços de força, o lote de cada posição leva todas as Lendas que couberem (sorteadas) e só completa
+  com Craques quando faltam Lendas. Hoje há 34 goleiros, 19 laterais, 46 zagueiros, 62 meias e 87 atacantes Lenda: com até 5
+  técnicos o lote é só de Lendas; os laterais são os primeiros a precisar de Craque (a partir de 6 técnicos).
+- Aguenta os 20 técnicos da sala. Moedas, desempate, repescagem, Monte, cartas-surpresa e herdadas: como no leilão de jogador; no
+  novo ciclo só voltam as herdadas que ainda são Lenda ou Craque.
+
+### Leilão de clássicos (sala: “Tipo de leilão” → Clássicos)
+Igual ao leilão de clubes, mas cada lote é o **setor de um clássico** (os goleiros do Fla-Flu, o ataque do Gre-Nal…), com os
+jogadores dos dois clubes, de todas as épocas. A lista de clássicos fica em `src/shared/classicos.ts`.
+- O pacote junta o pacote de cada clube como ele sairia no leilão de clubes (cada um com o seu corte de até 10), então chega a 20.
+- Cada clube entra em um clássico só por leilão (uma pessoa nunca aparece em dois pacotes): a cada leilão o jogo sorteia a
+  combinação (Fla-Flu e Vasco x Botafogo, ou Flamengo x Vasco e Fluminense x Botafogo…). Com o baralho de hoje são 18 clássicos
+  por leilão, 9 do Brasil e 9 da Europa: pacote de clássico para até 17 técnicos. Acima disso, os pacotes que faltarem saem
+  “combinados”, com jogadores dos clubes que não estão nos clássicos. A sala nunca trava.
+- Mistura do lote (fortes, médios e fracos; metade Brasil e metade Europa; pelo menos um pacote com Lenda), lances, Monte,
+  convocação, sobras e novo ciclo: como no leilão de clubes.
+
 ## Liga e copas
 - Liga: 20 times (técnicos + clubes do jogo), turno e returno, 3/1/0, critérios: pontos, vitórias, saldo, gols pró, sorteio prévio.
 - Partida: cada jogador rende um valor sorteado dentro da sua faixa; ataque/meio/defesa geram médias de gols (Poisson):

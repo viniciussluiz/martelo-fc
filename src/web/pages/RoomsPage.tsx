@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import type { PublicRoomView } from '../../shared/protocol';
-import { CUP_FORMAT_LABEL, Empty, ONLY_CUP_LABEL, Spinner } from '../components/common';
+import { auctionLabel, CUP_FORMAT_LABEL, Empty, ONLY_CUP_LABEL, Spinner } from '../components/common';
 import { TeamCrest } from '../components/crest/TeamCrest';
 import { Icon } from '../components/Icon';
 import { api } from '../lib/api';
@@ -13,7 +13,6 @@ import { navigate } from '../lib/router';
 
 const REFRESH_MS = 5000;
 
-const AUCTION_LABEL: Record<string, string> = { jogador: 'Leilão de jogador', clubes: 'Leilão de clubes', selecoes: 'Leilão de seleções' };
 const PHASE_LABEL: Record<string, string> = { auction: 'no leilão', ceremony: 'na cerimônia', league: 'na liga', cup: 'na copa', finished: 'terminando' };
 
 function statusOf(r: PublicRoomView): { text: string; tone: 'open' | 'live' } {
@@ -91,7 +90,7 @@ export function RoomsPage() {
                     <span className="room-row-status" data-tone={st.tone}>
                       {st.text}
                     </span>{' '}
-                    · {r.humans} de {r.maxHumans} técnicos{r.cpuCount ? ` + ${r.cpuCount} CPU${r.cpuCount > 1 ? 's' : ''}` : ''} · {AUCTION_LABEL[r.auctionMode] ?? 'Leilão'} · {competitionOf(r)}
+                    · {r.humans} de {r.maxHumans} técnicos{r.cpuCount ? ` + ${r.cpuCount} CPU${r.cpuCount > 1 ? 's' : ''}` : ''} · {auctionLabel(r.auctionMode)} · {competitionOf(r)}
                   </span>
                 </span>
                 <button className="btn btn-primary room-row-go" disabled={full} onClick={() => navigate(`/sala/${r.code}`)}>

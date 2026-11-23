@@ -166,6 +166,7 @@ function disputeView(room: RoomActor, userId: string): DisputeView {
         size: pk.cardIds.length,
         label: packageLabel(pk),
         ...(pk.mixed ? { mixed: true } : {}),
+        ...(pk.clubs ? { clubs: pk.clubs } : {}),
         ...(showNames && mine.has(pk.id) ? { cardIds: pk.cardIds } : {}),
       };
     }
@@ -181,7 +182,7 @@ function disputeView(room: RoomActor, userId: string): DisputeView {
     cards,
     teamNames,
     carriedCount: d.state.carriedCardIds.length,
-    auctionMode: clubs ? (d.auction.state.mode ?? 'clubes') : 'jogador',
+    auctionMode: clubs ? (d.auction.state.mode ?? 'clubes') : (d.state.config.auction.mode ?? 'jogador'),
     packages,
     auction: d.phase === 'auction' || room.reveal ? auctionView(room, myPid) : null,
     ceremony:

@@ -28,7 +28,10 @@ export type MemberStatus = 'active' | 'inactive' | 'left';
 export type ContinueChoice = 'continue' | 'leave';
 
 export interface RoomSettings {
-  /** Tipo de leilão: um jogador por lance (padrão) ou setores de clubes (pacotes + convocação). */
+  /**
+   * Tipo de leilão: um jogador por lance (padrão) ou só com Lendas e Craques; ou por pacotes (setores de
+   * clubes, de seleções ou de clássicos), com convocação no fim.
+   */
   auctionMode: AuctionMode;
   cupFormat: CupFormat;
   /** Sem liga: todos os técnicos vão direto para a Libertadores (só vale com `cupFormat: 'libertadores'`). */
@@ -224,6 +227,8 @@ export interface PackageView {
   size: number;
   label: string;
   mixed?: boolean;
+  /** Leilão de clássicos: os dois clubes do pacote (`club` é o nome do clássico). */
+  clubs?: string[];
   /** Jogadores do pacote: só nos seus, a partir da convocação. */
   cardIds?: string[];
 }
@@ -424,6 +429,11 @@ export interface DeckInfo {
    * Clube ausente = selo genérico do jogo.
    */
   crests: Record<string, string>;
+  /**
+   * Leilão de lendas: quantos técnicos o baralho de Lendas e Craques aguenta. Leilão de clássicos: quantos
+   * clássicos entram em cada leilão (cada clube em um só; 0 = baralho sem os clubes dos clássicos).
+   */
+  themes: { lendas: number; classicos: number };
 }
 
 export interface RoomView {
