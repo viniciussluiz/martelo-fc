@@ -54,6 +54,8 @@ if (doBuild) {
   if (adjusted.removed.length) console.log(`Excluídas: ${adjusted.removed.map((c) => `${c.name} (${c.club} ${c.year})`).join(', ')}`);
   if (adjusted.leveled.length) console.log(`Faixa ajustada: ${adjusted.leveled.map((c) => `${c.name} (${c.club} ${c.year}) ${c.levelMin}–${c.levelMax}`).join(', ')}`);
   if (adjusted.added.length) console.log(`Incluídas à mão: ${adjusted.added.map((c) => `${c.name} (${c.club} ${c.year}) ${c.levelMin}–${c.levelMax}`).join(', ')}`);
+  if (adjusted.moved.length) console.log(`Posição corrigida: ${adjusted.moved.map((c) => `${c.name} (${c.club} ${c.year}) ${c.position}`).join(', ')}`);
+  if (adjusted.hidden.length) console.log(`Fora do leilão de jogadores (só nos pacotes): ${adjusted.hidden.length} cartas de ${new Set(adjusted.hidden.map((c) => c.personId ?? c.id)).size} jogadores`);
   validateDeck(deck.cards);
   writeFileSync(values.out!, JSON.stringify(deck, null, 1) + '\n');
   console.log(`Baralho salvo em ${values.out}: ${deck.cards.length} cartas.`);

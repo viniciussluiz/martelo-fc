@@ -1,11 +1,317 @@
 {
-  "_leia": "Correções manuais do baralho, aplicadas ao montar com npm run deck:wikidata (data/deck-wikidata.json já sai com elas). \"id\" é o id da carta: wd-<jogador> pega todas as cartas do jogador, wd-<jogador>-<clube> todas as daquela passagem, e com o ano no fim só aquela carta. \"incluir\" traz cartas completas feitas à mão (jogadores ou passagens que o Wikidata não tem ou que a nota calculada deixou de fora); entram no fim do baralho.",
+  "_leia": "Correções manuais do baralho, aplicadas ao montar com npm run deck:wikidata (data/deck-wikidata.json já sai com elas). \"id\" é o id da carta: wd-<jogador> pega todas as cartas do jogador, wd-<jogador>-<clube> todas as daquela passagem, e com o ano no fim só aquela carta. \"incluir\" traz cartas completas feitas à mão (jogadores ou passagens que o Wikidata não tem ou que a nota calculada deixou de fora); entram no fim do baralho. \"posicao\" corrige a posição (vale por último, inclusive para as cartas de \"incluir\"); o Wikidata marca muito lateral só como \"defensor\", que o gerador transforma em zagueiro. \"ocultar\" tira jogadores pouco conhecidos do leilão de jogadores, para sobrar vez aos conhecidos; a carta continua no baralho e nos pacotes dos leilões de clubes e de clássicos.",
   "excluir": [
     {
       "id": "wd-Q56248407-Q270995",
       "jogador": "Marquinhos",
       "clube": "Atlético-MG",
       "motivo": "Não está no Atlético-MG em 2026: a passagem (desde 2017) não tem data de saída no Wikidata."
+    },
+    {
+      "id": "wd-Q16853387-Q374069-2013",
+      "jogador": "Júlio",
+      "clube": "Avaí",
+      "motivo": "Pouco conhecido; o Wikidata só dizia “defensor” e não deu para confirmar a posição (revisão de posições, nov/2026)."
+    },
+    {
+      "id": "wd-Q1970536-Q80845-2011",
+      "jogador": "Leonardo",
+      "clube": "Internacional",
+      "motivo": "Pouco conhecido; o Wikidata só dizia “defensor” e não deu para confirmar a posição (revisão de posições, nov/2026)."
+    },
+    {
+      "id": "wd-Q721804-Q80955-2008",
+      "jogador": "Marcelo",
+      "clube": "Santos",
+      "motivo": "Pouco conhecido; o Wikidata só dizia “defensor” e não deu para confirmar a posição (revisão de posições, nov/2026)."
+    },
+    {
+      "id": "wd-Q16940565-Q80845-2011",
+      "jogador": "Rafael Forster",
+      "clube": "Internacional",
+      "motivo": "Pouco conhecido; o Wikidata só dizia “defensor” e não deu para confirmar a posição (revisão de posições, nov/2026)."
+    },
+    {
+      "id": "wd-Q16940565-Q816779-2015",
+      "jogador": "Rafael Forster",
+      "clube": "Goiás",
+      "motivo": "Pouco conhecido; o Wikidata só dizia “defensor” e não deu para confirmar a posição (revisão de posições, nov/2026)."
+    },
+    {
+      "id": "wd-Q3960176-Q73971-2007",
+      "jogador": "Sidny",
+      "clube": "Náutico",
+      "motivo": "Pouco conhecido; o Wikidata só dizia “defensor” e não deu para confirmar a posição (revisão de posições, nov/2026)."
+    },
+    {
+      "id": "wd-Q9581044-Q374069-2011",
+      "jogador": "Acleisson Scaion",
+      "clube": "Avaí",
+      "motivo": "Pouco conhecido; o Wikidata só dizia “defensor” e não deu para confirmar a posição (revisão de posições, nov/2026)."
+    },
+    {
+      "id": "wd-Q14943735-Q2332493-2005",
+      "jogador": "Alex Henrique da Silva",
+      "clube": "Botafogo-SP",
+      "motivo": "Pouco conhecido; o Wikidata só dizia “defensor” e não deu para confirmar a posição (revisão de posições, nov/2026)."
+    },
+    {
+      "id": "wd-Q3311570-Q219120-2002",
+      "jogador": "Alex Oliveira",
+      "clube": "Ponte Preta",
+      "motivo": "Pouco conhecido; o Wikidata só dizia “defensor” e não deu para confirmar a posição (revisão de posições, nov/2026)."
+    },
+    {
+      "id": "wd-Q3243889-Q910453-2003",
+      "jogador": "Anderson Santos Silva",
+      "clube": "Juventude",
+      "motivo": "Pouco conhecido; o Wikidata só dizia “defensor” e não deu para confirmar a posição (revisão de posições, nov/2026)."
+    },
+    {
+      "id": "wd-Q16939570-Q506832-2022",
+      "jogador": "Anderson Silva",
+      "clube": "Athletico-PR",
+      "motivo": "Pouco conhecido; o Wikidata só dizia “defensor” e não deu para confirmar a posição (revisão de posições, nov/2026)."
+    },
+    {
+      "id": "wd-Q2254057-Q598834-2004",
+      "jogador": "Ângelo Almeida",
+      "clube": "Criciúma",
+      "motivo": "Pouco conhecido; o Wikidata só dizia “defensor” e não deu para confirmar a posição (revisão de posições, nov/2026)."
+    },
+    {
+      "id": "wd-Q2255621-Q35933-1998",
+      "jogador": "Antônio Bezerra Brandão",
+      "clube": "Corinthians",
+      "motivo": "Pouco conhecido; o Wikidata só dizia “defensor” e não deu para confirmar a posição (revisão de posições, nov/2026)."
+    },
+    {
+      "id": "wd-Q2538967-Q80958-1934",
+      "jogador": "Ariel Nogueira",
+      "clube": "Botafogo",
+      "motivo": "Pouco conhecido; o Wikidata só dizia “defensor” e não deu para confirmar a posição (revisão de posições, nov/2026)."
+    },
+    {
+      "id": "wd-Q1988313-Q35933-2011",
+      "jogador": "Bruno Bertucci",
+      "clube": "Corinthians",
+      "motivo": "Pouco conhecido; o Wikidata só dizia “defensor” e não deu para confirmar a posição (revisão de posições, nov/2026)."
+    },
+    {
+      "id": "wd-Q31988-Q80987-2014",
+      "jogador": "Carlos Henrique",
+      "clube": "Fluminense",
+      "motivo": "Pouco conhecido; o Wikidata só dizia “defensor” e não deu para confirmar a posição (revisão de posições, nov/2026)."
+    },
+    {
+      "id": "wd-Q5202483-Q374069-2016",
+      "jogador": "Célio",
+      "clube": "Avaí",
+      "motivo": "Pouco conhecido; o Wikidata só dizia “defensor” e não deu para confirmar a posição (revisão de posições, nov/2026)."
+    },
+    {
+      "id": "wd-Q3667757-Q73971-1978",
+      "jogador": "Chico Fraga",
+      "clube": "Náutico",
+      "motivo": "Pouco conhecido; o Wikidata só dizia “defensor” e não deu para confirmar a posição (revisão de posições, nov/2026)."
+    },
+    {
+      "id": "wd-Q5186295-Q2536715-2003",
+      "jogador": "Cristiano Alves Pereira",
+      "clube": "Chapecoense",
+      "motivo": "Pouco conhecido; o Wikidata só dizia “defensor” e não deu para confirmar a posição (revisão de posições, nov/2026)."
+    },
+    {
+      "id": "wd-Q10263686-Q73971-2000",
+      "jogador": "Dado Cavalcanti",
+      "clube": "Náutico",
+      "motivo": "Pouco conhecido; o Wikidata só dizia “defensor” e não deu para confirmar a posição (revisão de posições, nov/2026)."
+    },
+    {
+      "id": "wd-Q935220-Q80955-1989",
+      "jogador": "Davi",
+      "clube": "Santos",
+      "motivo": "Pouco conhecido; o Wikidata só dizia “defensor” e não deu para confirmar a posição (revisão de posições, nov/2026)."
+    },
+    {
+      "id": "wd-Q3047641-Q2552872-1975",
+      "jogador": "Dutra Santos",
+      "clube": "Remo",
+      "motivo": "Pouco conhecido; o Wikidata só dizia “defensor” e não deu para confirmar a posição (revisão de posições, nov/2026)."
+    },
+    {
+      "id": "wd-Q3717852-Q274465-1997",
+      "jogador": "Eber Moas",
+      "clube": "Vitória",
+      "motivo": "Pouco conhecido; o Wikidata só dizia “defensor” e não deu para confirmar a posição (revisão de posições, nov/2026)."
+    },
+    {
+      "id": "wd-Q10270535-Q910453-1981",
+      "jogador": "Edson Gaúcho",
+      "clube": "Juventude",
+      "motivo": "Pouco conhecido; o Wikidata só dizia “defensor” e não deu para confirmar a posição (revisão de posições, nov/2026)."
+    },
+    {
+      "id": "wd-Q619109-Q374069-2015",
+      "jogador": "Eduardo Neto",
+      "clube": "Avaí",
+      "motivo": "Pouco conhecido; o Wikidata só dizia “defensor” e não deu para confirmar a posição (revisão de posições, nov/2026)."
+    },
+    {
+      "id": "wd-Q374488-Q188277-2000",
+      "jogador": "Ernani Pereira",
+      "clube": "Cruzeiro",
+      "motivo": "Pouco conhecido; o Wikidata só dizia “defensor” e não deu para confirmar a posição (revisão de posições, nov/2026)."
+    },
+    {
+      "id": "wd-Q374488-Q1513287-1999",
+      "jogador": "Ernani Pereira",
+      "clube": "Vila Nova",
+      "motivo": "Pouco conhecido; o Wikidata só dizia “defensor” e não deu para confirmar a posição (revisão de posições, nov/2026)."
+    },
+    {
+      "id": "wd-Q2715259-Q506832-2003",
+      "jogador": "Evaldo Fabiano",
+      "clube": "Athletico-PR",
+      "motivo": "Pouco conhecido; o Wikidata só dizia “defensor” e não deu para confirmar a posição (revisão de posições, nov/2026)."
+    },
+    {
+      "id": "wd-Q984395-Q219098-2011",
+      "jogador": "Gabriel Limeira",
+      "clube": "Sport",
+      "motivo": "Pouco conhecido; o Wikidata só dizia “defensor” e não deu para confirmar a posição (revisão de posições, nov/2026)."
+    },
+    {
+      "id": "wd-Q1515031-Q80958-2012",
+      "jogador": "Gerson Guimarães Junior",
+      "clube": "Botafogo",
+      "motivo": "Pouco conhecido; o Wikidata só dizia “defensor” e não deu para confirmar a posição (revisão de posições, nov/2026)."
+    },
+    {
+      "id": "wd-Q607752-Q910453-2003",
+      "jogador": "Gökçek Vederson",
+      "clube": "Juventude",
+      "motivo": "Pouco conhecido; o Wikidata só dizia “defensor” e não deu para confirmar a posição (revisão de posições, nov/2026)."
+    },
+    {
+      "id": "wd-Q17157958-Q374069-2014",
+      "jogador": "Guilherme Almeida",
+      "clube": "Avaí",
+      "motivo": "Pouco conhecido; o Wikidata só dizia “defensor” e não deu para confirmar a posição (revisão de posições, nov/2026)."
+    },
+    {
+      "id": "wd-Q2246023-Q221695-1997",
+      "jogador": "Hideki Sahara",
+      "clube": "Grêmio",
+      "motivo": "Pouco conhecido; o Wikidata só dizia “defensor” e não deu para confirmar a posição (revisão de posições, nov/2026)."
+    },
+    {
+      "id": "wd-Q1371926-Q5014111-1972",
+      "jogador": "Jorvan Vieira",
+      "clube": "Vasco",
+      "motivo": "Pouco conhecido; o Wikidata só dizia “defensor” e não deu para confirmar a posição (revisão de posições, nov/2026)."
+    },
+    {
+      "id": "wd-Q6509662-Q219098-2009",
+      "jogador": "Leandro Freire",
+      "clube": "Sport",
+      "motivo": "Pouco conhecido; o Wikidata só dizia “defensor” e não deu para confirmar a posição (revisão de posições, nov/2026)."
+    },
+    {
+      "id": "wd-Q887982-Q374069-2010",
+      "jogador": "Léo San",
+      "clube": "Avaí",
+      "motivo": "Pouco conhecido; o Wikidata só dizia “defensor” e não deu para confirmar a posição (revisão de posições, nov/2026)."
+    },
+    {
+      "id": "wd-Q730560-Q188277-2010",
+      "jogador": "Luiz Nascimento",
+      "clube": "Cruzeiro",
+      "motivo": "Pouco conhecido; o Wikidata só dizia “defensor” e não deu para confirmar a posição (revisão de posições, nov/2026)."
+    },
+    {
+      "id": "wd-Q1185635-Q374069-2002",
+      "jogador": "Marcelo Miguel",
+      "clube": "Avaí",
+      "motivo": "Pouco conhecido; o Wikidata só dizia “defensor” e não deu para confirmar a posição (revisão de posições, nov/2026)."
+    },
+    {
+      "id": "wd-Q1185635-Q816779-2000",
+      "jogador": "Marcelo Miguel",
+      "clube": "Goiás",
+      "motivo": "Pouco conhecido; o Wikidata só dizia “defensor” e não deu para confirmar a posição (revisão de posições, nov/2026)."
+    },
+    {
+      "id": "wd-Q180862-Q80964-2005",
+      "jogador": "Márcio Rodrigues",
+      "clube": "Palmeiras",
+      "motivo": "Pouco conhecido; o Wikidata só dizia “defensor” e não deu para confirmar a posição (revisão de posições, nov/2026)."
+    },
+    {
+      "id": "wd-Q1894022-Q1024264-2013",
+      "jogador": "Marcos Antônio",
+      "clube": "CRB",
+      "motivo": "Pouco conhecido; o Wikidata só dizia “defensor” e não deu para confirmar a posição (revisão de posições, nov/2026)."
+    },
+    {
+      "id": "wd-Q1982589-Q80958-1955",
+      "jogador": "Oscar Basso",
+      "clube": "Botafogo",
+      "motivo": "Pouco conhecido; o Wikidata só dizia “defensor” e não deu para confirmar a posição (revisão de posições, nov/2026)."
+    },
+    {
+      "id": "wd-Q973088-Q80964-1960",
+      "jogador": "Osvaldo Héctor Cruz",
+      "clube": "Palmeiras",
+      "motivo": "Pouco conhecido; o Wikidata só dizia “defensor” e não deu para confirmar a posição (revisão de posições, nov/2026)."
+    },
+    {
+      "id": "wd-Q7312941-Q221695-2012",
+      "jogador": "Renê Santos",
+      "clube": "Grêmio",
+      "motivo": "Pouco conhecido; o Wikidata só dizia “defensor” e não deu para confirmar a posição (revisão de posições, nov/2026)."
+    },
+    {
+      "id": "wd-Q2256166-Q910453-2007",
+      "jogador": "Ricardo Cavalcante Ribeiro",
+      "clube": "Juventude",
+      "motivo": "Pouco conhecido; o Wikidata só dizia “defensor” e não deu para confirmar a posição (revisão de posições, nov/2026)."
+    },
+    {
+      "id": "wd-Q7351831-Q2332493-2007",
+      "jogador": "Roberto Affonso",
+      "clube": "Botafogo-SP",
+      "motivo": "Pouco conhecido; o Wikidata só dizia “defensor” e não deu para confirmar a posição (revisão de posições, nov/2026)."
+    },
+    {
+      "id": "wd-Q965519-Q1513287-2006",
+      "jogador": "Sérgio",
+      "clube": "Vila Nova",
+      "motivo": "Pouco conhecido; o Wikidata só dizia “defensor” e não deu para confirmar a posição (revisão de posições, nov/2026)."
+    },
+    {
+      "id": "wd-Q1389981-Q910453-1997",
+      "jogador": "Takumi Morikawa",
+      "clube": "Juventude",
+      "motivo": "Pouco conhecido; o Wikidata só dizia “defensor” e não deu para confirmar a posição (revisão de posições, nov/2026)."
+    },
+    {
+      "id": "wd-Q965503-Q1513287-2009",
+      "jogador": "Tiago Prado",
+      "clube": "Vila Nova",
+      "motivo": "Pouco conhecido; o Wikidata só dizia “defensor” e não deu para confirmar a posição (revisão de posições, nov/2026)."
+    },
+    {
+      "id": "wd-Q2707729-Q910453-2010",
+      "jogador": "Tiago Silva",
+      "clube": "Juventude",
+      "motivo": "Pouco conhecido; o Wikidata só dizia “defensor” e não deu para confirmar a posição (revisão de posições, nov/2026)."
+    },
+    {
+      "id": "wd-Q659684-Q80964-1924",
+      "jogador": "Zé Luiz",
+      "clube": "Palmeiras",
+      "motivo": "Pouco conhecido; o Wikidata só dizia “defensor” e não deu para confirmar a posição (revisão de posições, nov/2026)."
     }
   ],
   "nivel": [
@@ -1884,7 +2190,7 @@
       "id": "wd-Q180326-parma-1999",
       "personId": "Q180326",
       "name": "Lilian Thuram",
-      "position": "LAT",
+      "position": "ZAG",
       "club": "Parma",
       "year": 1999,
       "levelMin": 89,
@@ -4170,7 +4476,7 @@
       "id": "wd-Q10524-Q18656-1999",
       "personId": "Q10524",
       "name": "Ryan Giggs",
-      "position": "MEI",
+      "position": "ATA",
       "club": "Manchester United",
       "year": 1999,
       "levelMin": 91,
@@ -5556,7 +5862,7 @@
       "id": "wd-Q313180-Q81888-1972",
       "personId": "Q313180",
       "name": "Ruud Krol",
-      "position": "ZAG",
+      "position": "LAT",
       "club": "Ajax",
       "year": 1972,
       "levelMin": 84,
@@ -7524,6 +7830,3925 @@
       "year": 1986,
       "hint": "Uruguai. 245 jogos e 69 gols pelo Internacional de 1982 a 1986. 27 anos em 1986. 45 jogos pela seleção.",
       "motivo": "Ídolo do clube que faltava no baralho (lista de ídolos por clube, nov/2026), sem ser Lenda."
+    },
+    {
+      "id": "wd-Q194461-Q8682-2003",
+      "personId": "Q194461",
+      "name": "Guti",
+      "position": "MEI",
+      "club": "Real Madrid",
+      "year": 2003,
+      "levelMin": 85,
+      "levelMax": 91,
+      "tier": "lenda",
+      "hint": "Espanha. 387 jogos e 46 gols pelo Real Madrid de 1995 a 2010. 27 anos em 2003. 13 jogos pela seleção.",
+      "kit": [
+        "#FFFFFF",
+        "#FEBE10"
+      ],
+      "series": "EU",
+      "motivo": "Carta que só existia no baralho montado: sem ela aqui, um novo build a perdia."
+    }
+  ],
+  "posicao": [
+    {
+      "id": "wd-Q15117644-Q506832-2015",
+      "jogador": "Lucas Olaza",
+      "clube": "Athletico-PR 2015",
+      "posicao": "LAT",
+      "motivo": "Lateral-esquerdo uruguaio (Boca, Celta)."
+    },
+    {
+      "id": "wd-Q2268949-Q270995-2020",
+      "jogador": "Eduardo Vargas",
+      "clube": "Atlético-MG 2020",
+      "posicao": "ATA",
+      "motivo": "Atacante chileno; no Galo jogou na frente."
+    },
+    {
+      "id": "wd-Q16553648-Q270995-2023",
+      "jogador": "Cristian Pavón",
+      "clube": "Atlético-MG 2023",
+      "posicao": "ATA",
+      "motivo": "Ponta-direita."
+    },
+    {
+      "id": "wd-Q137242-Q270995-2024",
+      "jogador": "Bernard",
+      "clube": "Atlético-MG 2024",
+      "posicao": "ATA",
+      "motivo": "Ponta/meia-atacante (pontas estão como ATA no baralho)."
+    },
+    {
+      "id": "wd-Q37231-Q374069-2015",
+      "jogador": "Néstor Camacho",
+      "clube": "Avaí 2015",
+      "posicao": "ATA",
+      "motivo": "Atacante paraguaio, jogava pelos lados."
+    },
+    {
+      "id": "wd-Q21207778-Q80958-2014",
+      "jogador": "Allano",
+      "clube": "Botafogo 2014",
+      "posicao": "ATA",
+      "motivo": "Meia-atacante/ponta, não lateral."
+    },
+    {
+      "id": "wd-Q83329-Q80958-1952",
+      "jogador": "Nílton Santos",
+      "clube": "Botafogo 1952",
+      "posicao": "LAT",
+      "motivo": "A Enciclopédia: lateral-esquerdo."
+    },
+    {
+      "id": "wd-Q210102-Q80958-1971",
+      "jogador": "Jairzinho",
+      "clube": "Botafogo 1971",
+      "posicao": "ATA",
+      "motivo": "Ponta-direita, o Furacão da Copa de 70."
+    },
+    {
+      "id": "wd-Q745422-Q80958-1995",
+      "jogador": "Donizete Pantera",
+      "clube": "Botafogo 1995",
+      "posicao": "ATA",
+      "motivo": "Atacante."
+    },
+    {
+      "id": "wd-Q180462-Q80958-2020",
+      "jogador": "Salomon Kalou",
+      "clube": "Botafogo 2020",
+      "posicao": "ATA",
+      "motivo": "Atacante/ponta."
+    },
+    {
+      "id": "wd-Q202054-Q80958-2020",
+      "jogador": "Keisuke Honda",
+      "clube": "Botafogo 2020",
+      "posicao": "MEI",
+      "motivo": "Meia; no Botafogo jogou de meia."
+    },
+    {
+      "id": "wd-Q102331-Q2332493-1978",
+      "jogador": "Sócrates",
+      "clube": "Botafogo-SP 1978",
+      "posicao": "MEI",
+      "motivo": "Meia (a carta do Corinthians já está MEI)."
+    },
+    {
+      "id": "wd-Q5852801-Q1024264-2013",
+      "jogador": "Éverton Luiz",
+      "clube": "CRB 2013",
+      "posicao": "MEI",
+      "motivo": "Volante."
+    },
+    {
+      "id": "wd-Q2455175-Q35933-1959",
+      "jogador": "Oreco",
+      "clube": "Corinthians 1959",
+      "posicao": "LAT",
+      "motivo": "Lateral-esquerdo (reserva de Nílton Santos em 58)."
+    },
+    {
+      "id": "wd-Q2321775-Q35933-1976",
+      "jogador": "Zé Maria",
+      "clube": "Corinthians 1976",
+      "posicao": "LAT",
+      "motivo": "Lateral-direito (Copa de 70)."
+    },
+    {
+      "id": "wd-Q562705-Q35933-2003",
+      "jogador": "Capone",
+      "clube": "Corinthians 2003",
+      "posicao": "LAT",
+      "motivo": "Lateral-direito do Galatasaray campeão da Uefa."
+    },
+    {
+      "id": "wd-Q161571-Q35933-2006",
+      "jogador": "Javier Mascherano",
+      "clube": "Corinthians 2006",
+      "posicao": "MEI",
+      "motivo": "Volante no Corinthians (zagueiro só depois, no Barcelona)."
+    },
+    {
+      "id": "wd-Q2316179-Q35933-2012",
+      "jogador": "Fábio Santos",
+      "clube": "Corinthians 2012",
+      "posicao": "LAT",
+      "motivo": "Lateral-esquerdo."
+    },
+    {
+      "id": "wd-Q56223006-Q35933-2020",
+      "jogador": "Carlos Augusto",
+      "clube": "Corinthians 2020",
+      "posicao": "LAT",
+      "motivo": "Lateral-esquerdo/ala (Inter de Milão)."
+    },
+    {
+      "id": "wd-Q16745198-Q35933-2016",
+      "jogador": "Malcom",
+      "clube": "Corinthians 2016",
+      "posicao": "ATA",
+      "motivo": "Ponta-direita."
+    },
+    {
+      "id": "wd-Q10552199-Q35933-2017",
+      "jogador": "Lucca",
+      "clube": "Corinthians 2017",
+      "posicao": "ATA",
+      "motivo": "Atacante."
+    },
+    {
+      "id": "wd-Q73480-Q35933-2021",
+      "jogador": "Willian",
+      "clube": "Corinthians 2021",
+      "posicao": "ATA",
+      "motivo": "Ponta (pontas estão como ATA no baralho)."
+    },
+    {
+      "id": "wd-Q17318558-Q478317-2014",
+      "jogador": "Abner",
+      "clube": "Coritiba 2014",
+      "posicao": "LAT",
+      "motivo": "Lateral-esquerdo (vendido ao Real Madrid)."
+    },
+    {
+      "id": "wd-Q24084221-Q478317-2017",
+      "jogador": "Domilson",
+      "clube": "Coritiba 2017",
+      "posicao": "LAT",
+      "motivo": "Dodô, lateral-direito (Shakhtar, Fiorentina)."
+    },
+    {
+      "id": "wd-Q313145-Q478317-2016",
+      "jogador": "Colin Kâzım-Richards",
+      "clube": "Coritiba 2016",
+      "posicao": "ATA",
+      "motivo": "Atacante."
+    },
+    {
+      "id": "wd-Q210950-Q188277-2003",
+      "jogador": "Luisão",
+      "clube": "Cruzeiro 2003",
+      "posicao": "ZAG",
+      "motivo": "Zagueiro (Benfica, Seleção)."
+    },
+    {
+      "id": "wd-Q535520-Q188277-1970",
+      "jogador": "Wilson Piazza",
+      "clube": "Cruzeiro 1970",
+      "posicao": "MEI",
+      "motivo": "Volante no Cruzeiro (zagueiro só na Seleção de 70)."
+    },
+    {
+      "id": "wd-Q919825-Q188277-1977",
+      "jogador": "Nelinho",
+      "clube": "Cruzeiro 1977",
+      "posicao": "LAT",
+      "motivo": "Lateral-direito."
+    },
+    {
+      "id": "wd-Q353013-Q188277-1995",
+      "jogador": "Ulises Cruz",
+      "clube": "Cruzeiro 1995",
+      "posicao": "LAT",
+      "motivo": "Se for Ulises de la Cruz (Equador), lateral-direito."
+    },
+    {
+      "id": "wd-Q311407-Q188277-1971",
+      "jogador": "Tostão",
+      "clube": "Cruzeiro 1971",
+      "posicao": "ATA",
+      "motivo": "Centroavante/ponta de lança."
+    },
+    {
+      "id": "wd-Q31760-Q188277-2005",
+      "jogador": "Jussiê",
+      "clube": "Cruzeiro 2005",
+      "posicao": "ATA",
+      "motivo": "Atacante (Bordeaux)."
+    },
+    {
+      "id": "wd-Q887406-Q188277-2009",
+      "jogador": "Fidel Martínez",
+      "clube": "Cruzeiro 2009",
+      "posicao": "ATA",
+      "motivo": "Ponta."
+    },
+    {
+      "id": "wd-Q4022527-Q188277-2025",
+      "jogador": "Yannick Bolasie",
+      "clube": "Cruzeiro 2025",
+      "posicao": "ATA",
+      "motivo": "Ponta."
+    },
+    {
+      "id": "wd-Q311424-Q17479-1989",
+      "jogador": "Júnior",
+      "clube": "Flamengo 1989",
+      "posicao": "MEI",
+      "motivo": "Na volta ao Flamengo (1989-93) jogava de meia; a carta de 1981 segue LAT."
+    },
+    {
+      "id": "wd-Q348925-Q17479-2012",
+      "jogador": "Víctor Cáceres",
+      "clube": "Flamengo 2012",
+      "posicao": "MEI",
+      "motivo": "Volante paraguaio."
+    },
+    {
+      "id": "wd-Q23638974-Q17479-2024",
+      "jogador": "Ayrton Lucas",
+      "clube": "Flamengo 2024",
+      "posicao": "LAT",
+      "motivo": "Lateral-esquerdo."
+    },
+    {
+      "id": "wd-Q265697-Q17479-1939",
+      "jogador": "Raimundo Orsi",
+      "clube": "Flamengo 1939",
+      "posicao": "ATA",
+      "motivo": "Ponta-esquerda (Itália 1934)."
+    },
+    {
+      "id": "wd-Q59870-Q17479-2009",
+      "jogador": "Emerson Sheik",
+      "clube": "Flamengo 2009",
+      "posicao": "ATA",
+      "motivo": "Atacante."
+    },
+    {
+      "id": "wd-Q439959-Q17479-2010",
+      "jogador": "Gonzalo Fierro",
+      "clube": "Flamengo 2010",
+      "posicao": "ATA",
+      "motivo": "Ponta chileno."
+    },
+    {
+      "id": "wd-Q67222776-Q17479-2026",
+      "jogador": "Samuel Lino",
+      "clube": "Flamengo 2026",
+      "posicao": "ATA",
+      "motivo": "Ponta-esquerda."
+    },
+    {
+      "id": "wd-Q859743-Q80987-1952",
+      "jogador": "Bigode",
+      "clube": "Fluminense 1952",
+      "posicao": "LAT",
+      "motivo": "Lateral-esquerdo da Copa de 50."
+    },
+    {
+      "id": "wd-Q2565969-Q80987-1963",
+      "jogador": "Jair Marinho",
+      "clube": "Fluminense 1963",
+      "posicao": "LAT",
+      "motivo": "Lateral-direito (Copa de 62)."
+    },
+    {
+      "id": "wd-Q2566025-Q80987-1965",
+      "jogador": "Altair",
+      "clube": "Fluminense 1965",
+      "posicao": "LAT",
+      "motivo": "Lateral-esquerdo (Copas de 62 e 66)."
+    },
+    {
+      "id": "wd-Q2720150-Q80987-1975",
+      "jogador": "Toninho Baiano",
+      "clube": "Fluminense 1975",
+      "posicao": "LAT",
+      "motivo": "Lateral-direito (Copa de 78)."
+    },
+    {
+      "id": "wd-Q4181600-Q80987-2015",
+      "jogador": "Igor Julião",
+      "clube": "Fluminense 2015",
+      "posicao": "LAT",
+      "motivo": "Lateral-direito."
+    },
+    {
+      "id": "wd-Q641425-Q80987-2012",
+      "jogador": "Fabinho",
+      "clube": "Fluminense 2012",
+      "posicao": "LAT",
+      "motivo": "No Fluminense e no início da carreira era lateral-direito."
+    },
+    {
+      "id": "wd-Q14755604-Q80987-2015",
+      "jogador": "Kenedy",
+      "clube": "Fluminense 2015",
+      "posicao": "ATA",
+      "motivo": "Ponta."
+    },
+    {
+      "id": "wd-Q15075773-Q188841-2020",
+      "jogador": "Jean Mota",
+      "clube": "Fortaleza 2020",
+      "posicao": "MEI",
+      "motivo": "Meia/volante (às vezes lateral-esquerdo), nunca zagueiro."
+    },
+    {
+      "id": "wd-Q197561-Q816779-2004",
+      "jogador": "Jadílson",
+      "clube": "Goiás 2004",
+      "posicao": "LAT",
+      "motivo": "Lateral-esquerdo."
+    },
+    {
+      "id": "wd-Q438442-Q221695-1971",
+      "jogador": "Everaldo",
+      "clube": "Grêmio 1971",
+      "posicao": "LAT",
+      "motivo": "Lateral-esquerdo (Copa de 70)."
+    },
+    {
+      "id": "wd-Q2444565-Q221695-2012",
+      "jogador": "Mário Fernandes",
+      "clube": "Grêmio 2012",
+      "posicao": "LAT",
+      "motivo": "Lateral-direito (CSKA, seleção russa)."
+    },
+    {
+      "id": "wd-Q311335-Q221695-2003",
+      "jogador": "Gilberto",
+      "clube": "Grêmio 2003",
+      "posicao": "LAT",
+      "motivo": "Gilberto (Hertha, Copa de 2006), lateral-esquerdo."
+    },
+    {
+      "id": "wd-Q1341709-Q221695-2015",
+      "jogador": "Dudu",
+      "clube": "Grêmio 2015",
+      "posicao": "ATA",
+      "motivo": "Ponta (a carta do Palmeiras já está ATA)."
+    },
+    {
+      "id": "wd-Q391680-Q221695-2021",
+      "jogador": "Douglas Costa",
+      "clube": "Grêmio 2021",
+      "posicao": "ATA",
+      "motivo": "Ponta."
+    },
+    {
+      "id": "wd-Q2477920-Q80845-2008",
+      "jogador": "Douglão",
+      "clube": "Internacional 2008",
+      "posicao": "ZAG",
+      "motivo": "lembro do Douglão como zagueiro."
+    },
+    {
+      "id": "wd-Q303108-Q80845-2010",
+      "jogador": "Taison",
+      "clube": "Internacional 2010",
+      "posicao": "ATA",
+      "motivo": "Ponta."
+    },
+    {
+      "id": "wd-Q313520-Q910453-2005",
+      "jogador": "Naldo",
+      "clube": "Juventude 2005",
+      "posicao": "ZAG",
+      "motivo": "Zagueiro (Werder Bremen, Wolfsburg)."
+    },
+    {
+      "id": "wd-Q438442-Q910453-1965",
+      "jogador": "Everaldo",
+      "clube": "Juventude 1965",
+      "posicao": "LAT",
+      "motivo": "Lateral-esquerdo (começou no Juventude)."
+    },
+    {
+      "id": "wd-Q299693-Q80964-1959",
+      "jogador": "Djalma Santos",
+      "clube": "Palmeiras 1959",
+      "posicao": "LAT",
+      "motivo": "Lateral-direito bicampeão do mundo."
+    },
+    {
+      "id": "wd-Q2574557-Q80964-1967",
+      "jogador": "Alberto Gallardo",
+      "clube": "Palmeiras 1967",
+      "posicao": "ATA",
+      "motivo": "Atacante peruano, jogava pela ponta."
+    },
+    {
+      "id": "wd-Q311641-Q80964-2008",
+      "jogador": "Denílson",
+      "clube": "Palmeiras 2008",
+      "posicao": "ATA",
+      "motivo": "Ponta/atacante."
+    },
+    {
+      "id": "wd-Q110160871-Q80964-2026",
+      "jogador": "Ramón Sosa",
+      "clube": "Palmeiras 2026",
+      "posicao": "ATA",
+      "motivo": "Ponta."
+    },
+    {
+      "id": "wd-Q19879773-Q219120-2022",
+      "jogador": "Clayson",
+      "clube": "Ponte Preta 2022",
+      "posicao": "ATA",
+      "motivo": "Ponta/atacante."
+    },
+    {
+      "id": "wd-Q216142-Q80955-2004",
+      "jogador": "Alex",
+      "clube": "Santos 2004",
+      "posicao": "ZAG",
+      "motivo": "Zagueiro (Chelsea, PSG)."
+    },
+    {
+      "id": "wd-Q295262-Q80955-1971",
+      "jogador": "Carlos Alberto Torres",
+      "clube": "Santos 1971",
+      "posicao": "LAT",
+      "motivo": "Lateral-direito, o Capita do Tri (virou zagueiro só no fim da carreira)."
+    },
+    {
+      "id": "wd-Q437329-Q80955-2012",
+      "jogador": "Danilo",
+      "clube": "Santos 2012",
+      "posicao": "LAT",
+      "motivo": "Lateral-direito no Santos (depois Porto, Real Madrid)."
+    },
+    {
+      "id": "wd-Q5370912-Q80955-2015",
+      "jogador": "Emerson Palmieri",
+      "clube": "Santos 2015",
+      "posicao": "LAT",
+      "motivo": "Lateral-esquerdo."
+    },
+    {
+      "id": "wd-Q142794-Q80955-2013",
+      "jogador": "Neymar",
+      "clube": "Santos 2013",
+      "posicao": "ATA",
+      "motivo": "Atacante/ponta-esquerda."
+    },
+    {
+      "id": "wd-Q886577-Q80955-2014",
+      "jogador": "Victor Andrade",
+      "clube": "Santos 2014",
+      "posicao": "ATA",
+      "motivo": "Atacante/ponta."
+    },
+    {
+      "id": "wd-Q318383-Q80955-2018",
+      "jogador": "Bryan Ruiz",
+      "clube": "Santos 2018",
+      "posicao": "MEI",
+      "motivo": "Meia (Costa Rica)."
+    },
+    {
+      "id": "wd-Q2566025-Q219098-1971",
+      "jogador": "Altair",
+      "clube": "Sport 1971",
+      "posicao": "LAT",
+      "motivo": "Mesmo Altair do Fluminense, lateral-esquerdo."
+    },
+    {
+      "id": "wd-Q514594-Q219098-2016",
+      "jogador": "Rodney Wallace",
+      "clube": "Sport 2016",
+      "posicao": "LAT",
+      "motivo": "ala/lateral-esquerdo ou meia-esquerda, não zagueiro."
+    },
+    {
+      "id": "wd-Q213124-Q219098-2016",
+      "jogador": "Mark González",
+      "clube": "Sport 2016",
+      "posicao": "ATA",
+      "motivo": "Ponta chileno."
+    },
+    {
+      "id": "wd-Q67222776-Q557103-2019",
+      "jogador": "Samuel Lino",
+      "clube": "São Bernardo 2019",
+      "posicao": "ATA",
+      "motivo": "Ponta-esquerda."
+    },
+    {
+      "id": "wd-Q172720-Q38568-2019",
+      "jogador": "Daniel Alves",
+      "clube": "São Paulo 2019",
+      "posicao": "MEI",
+      "motivo": "No São Paulo jogou a maior parte do tempo de meia."
+    },
+    {
+      "id": "wd-Q721984-Q38568-1958",
+      "jogador": "Nílton De Sordi",
+      "clube": "São Paulo 1958",
+      "posicao": "LAT",
+      "motivo": "Lateral-direito (Copa de 58)."
+    },
+    {
+      "id": "wd-Q310727-Q38568-2013",
+      "jogador": "Clemente Rodríguez",
+      "clube": "São Paulo 2013",
+      "posicao": "LAT",
+      "motivo": "Lateral-esquerdo argentino."
+    },
+    {
+      "id": "wd-Q17466192-Q38568-2015",
+      "jogador": "Hudson",
+      "clube": "São Paulo 2015",
+      "posicao": "MEI",
+      "motivo": "Volante (depois virou lateral-direito)."
+    },
+    {
+      "id": "wd-Q681938-Q38568-2011",
+      "jogador": "Marlos",
+      "clube": "São Paulo 2011",
+      "posicao": "ATA",
+      "motivo": "Ponta."
+    },
+    {
+      "id": "wd-Q27801691-Q38568-2016",
+      "jogador": "David Neres",
+      "clube": "São Paulo 2016",
+      "posicao": "ATA",
+      "motivo": "Ponta."
+    },
+    {
+      "id": "wd-Q312886-Q38568-2023",
+      "jogador": "Lucas Moura",
+      "clube": "São Paulo 2023",
+      "posicao": "ATA",
+      "motivo": "Ponta/atacante."
+    },
+    {
+      "id": "wd-Q516417-Q38568-1970",
+      "jogador": "Pedro Rocha",
+      "clube": "São Paulo 1970",
+      "posicao": "MEI",
+      "motivo": "Meia uruguaio."
+    },
+    {
+      "id": "wd-Q531814-Q38568-2003",
+      "jogador": "Kaká",
+      "clube": "São Paulo 2003",
+      "posicao": "MEI",
+      "motivo": "Meia (meia-atacante)."
+    },
+    {
+      "id": "wd-Q368441-Q38568-2023",
+      "jogador": "James Rodríguez",
+      "clube": "São Paulo 2023",
+      "posicao": "MEI",
+      "motivo": "Meia."
+    },
+    {
+      "id": "wd-Q2712962-Q5014111-1959",
+      "jogador": "Paulinho de Almeida",
+      "clube": "Vasco 1959",
+      "posicao": "LAT",
+      "motivo": "Lateral-direito do Vasco dos anos 50."
+    },
+    {
+      "id": "wd-Q132450-Q5014111-1985",
+      "jogador": "Edevaldo de Freitas",
+      "clube": "Vasco 1985",
+      "posicao": "LAT",
+      "motivo": "Lateral-direito (Copa de 82)."
+    },
+    {
+      "id": "wd-Q311872-Q5014111-2024",
+      "jogador": "Philippe Coutinho",
+      "clube": "Vasco 2024",
+      "posicao": "MEI",
+      "motivo": "Meia no Vasco."
+    },
+    {
+      "id": "wd-Q2316179-Q180305-2008",
+      "jogador": "Fábio Santos",
+      "clube": "Monaco 2008",
+      "posicao": "LAT",
+      "motivo": "Lateral-esquerdo (mesmo erro da carta do Corinthians)."
+    },
+    {
+      "id": "wd-Q210102-Q132885-1974",
+      "jogador": "Jairzinho",
+      "clube": "Olympique de Marseille 1974",
+      "posicao": "ATA",
+      "motivo": "Ponta-direita/atacante."
+    },
+    {
+      "id": "wd-Q745422-Q131499-1996",
+      "jogador": "Donizete Pantera",
+      "clube": "Benfica 1996",
+      "posicao": "ATA",
+      "motivo": "Atacante."
+    },
+    {
+      "id": "wd-Q180462-Q9616-2012",
+      "jogador": "Salomon Kalou",
+      "clube": "Chelsea 2012",
+      "posicao": "ATA",
+      "motivo": "Atacante/ponta."
+    },
+    {
+      "id": "wd-Q142794-Q7156-2017",
+      "jogador": "Neymar",
+      "clube": "Barcelona 2017",
+      "posicao": "ATA",
+      "motivo": "Atacante/ponta-esquerda."
+    },
+    {
+      "id": "wd-Q16745198-Q7156-2019",
+      "jogador": "Malcom",
+      "clube": "Barcelona 2019",
+      "posicao": "ATA",
+      "motivo": "Ponta-direita."
+    },
+    {
+      "id": "wd-Q27801691-Q81888-2022",
+      "jogador": "David Neres",
+      "clube": "Ajax 2022",
+      "posicao": "ATA",
+      "motivo": "Ponta."
+    },
+    {
+      "id": "wd-Q531814-Q1543-2009",
+      "jogador": "Kaká",
+      "clube": "Milan 2009",
+      "posicao": "MEI",
+      "motivo": "Meia (meia-atacante)."
+    },
+    {
+      "id": "wd-Q368441-Q8682-2018",
+      "jogador": "James Rodríguez",
+      "clube": "Real Madrid 2018",
+      "posicao": "MEI",
+      "motivo": "Meia."
+    },
+    {
+      "id": "wd-Q311872-Q1130849-2018",
+      "jogador": "Philippe Coutinho",
+      "clube": "Liverpool 2018",
+      "posicao": "MEI",
+      "motivo": "Meia."
+    },
+    {
+      "id": "wd-Q318383-Q75729-2015",
+      "jogador": "Bryan Ruiz",
+      "clube": "Sporting 2015",
+      "posicao": "MEI",
+      "motivo": "Meia."
+    },
+    {
+      "id": "wd-Q313180-Q81888-1972",
+      "jogador": "Ruud Krol",
+      "clube": "Ajax 1972",
+      "posicao": "LAT",
+      "motivo": "Em 1972 era lateral-esquerdo (líbero só depois)."
+    },
+    {
+      "id": "wd-Q265654-Q81888-2004",
+      "jogador": "Hatem Trabelsi",
+      "clube": "Ajax 2004",
+      "posicao": "LAT",
+      "motivo": "Lateral-direito tunisiano."
+    },
+    {
+      "id": "wd-Q313112-Q81888-2013",
+      "jogador": "Lasse Schöne",
+      "clube": "Ajax 2013",
+      "posicao": "MEI",
+      "motivo": "Meia."
+    },
+    {
+      "id": "wd-Q147589-Q9617-2008",
+      "jogador": "Kolo Touré",
+      "clube": "Arsenal 2008",
+      "posicao": "ZAG",
+      "motivo": "Zagueiro (os Invencíveis)."
+    },
+    {
+      "id": "wd-Q27063854-Q9617-2026",
+      "jogador": "Ezri Konsa",
+      "clube": "Arsenal 2026",
+      "posicao": "ZAG",
+      "motivo": "Zagueiro."
+    },
+    {
+      "id": "wd-Q432154-Q9617-1995",
+      "jogador": "Stefan Schwarz",
+      "clube": "Arsenal 1995",
+      "posicao": "MEI",
+      "motivo": "Volante/meia sueco."
+    },
+    {
+      "id": "wd-Q189012-Q9617-2012",
+      "jogador": "Alex Song",
+      "clube": "Arsenal 2012",
+      "posicao": "MEI",
+      "motivo": "Volante no Arsenal."
+    },
+    {
+      "id": "wd-Q208025-Q9617-2013",
+      "jogador": "Gervinho",
+      "clube": "Arsenal 2013",
+      "posicao": "ATA",
+      "motivo": "Ponta."
+    },
+    {
+      "id": "wd-Q180553-Q9617-2015",
+      "jogador": "Alexis Sánchez",
+      "clube": "Arsenal 2015",
+      "posicao": "ATA",
+      "motivo": "Atacante/ponta."
+    },
+    {
+      "id": "wd-Q363829-Q8701-1993",
+      "jogador": "Paulo Futre",
+      "clube": "Atlético de Madrid 1993",
+      "posicao": "ATA",
+      "motivo": "Ponta/atacante."
+    },
+    {
+      "id": "wd-Q4284482-Q8701-2020",
+      "jogador": "Yannick Carrasco",
+      "clube": "Atlético de Madrid 2020",
+      "posicao": "ATA",
+      "motivo": "Ponta."
+    },
+    {
+      "id": "wd-Q312892-Q7156-2014",
+      "jogador": "Jérémy Mathieu",
+      "clube": "Barcelona 2014",
+      "posicao": "ZAG",
+      "motivo": "No Barcelona jogou de zagueiro."
+    },
+    {
+      "id": "wd-Q218915-Q7156-1958",
+      "jogador": "Zoltán Czibor",
+      "clube": "Barcelona 1958",
+      "posicao": "ATA",
+      "motivo": "Ponta-esquerda húngaro."
+    },
+    {
+      "id": "wd-Q555204-Q7156-1964",
+      "jogador": "Luis Cubilla",
+      "clube": "Barcelona 1964",
+      "posicao": "ATA",
+      "motivo": "Ponta-direita uruguaio."
+    },
+    {
+      "id": "wd-Q483145-Q7156-1999",
+      "jogador": "Luís Figo",
+      "clube": "Barcelona 1999",
+      "posicao": "ATA",
+      "motivo": "Ponta-direita."
+    },
+    {
+      "id": "wd-Q294990-Q104761-2011",
+      "jogador": "Michal Kadlec",
+      "clube": "Bayer Leverkusen 2011",
+      "posicao": "LAT",
+      "motivo": "Lateral-esquerdo no Leverkusen."
+    },
+    {
+      "id": "wd-Q694852-Q104761-2021",
+      "jogador": "Mitchell Weiser",
+      "clube": "Bayer Leverkusen 2021",
+      "posicao": "LAT",
+      "motivo": "Lateral-direito/ala."
+    },
+    {
+      "id": "wd-Q1356772-Q104761-2015",
+      "jogador": "Robbie Kruse",
+      "clube": "Bayer Leverkusen 2015",
+      "posicao": "ATA",
+      "motivo": "Atacante/ponta australiano."
+    },
+    {
+      "id": "wd-Q20992981-Q104761-2018",
+      "jogador": "Benjamin Henrichs",
+      "clube": "Bayer Leverkusen 2018",
+      "posicao": "LAT",
+      "motivo": "No Leverkusen jogava de lateral-direito."
+    },
+    {
+      "id": "wd-Q44458-Q15789-1978",
+      "jogador": "Paul Breitner",
+      "clube": "Bayern de Munique 1978",
+      "posicao": "MEI",
+      "motivo": "Na volta ao Bayern (1978) jogava de meia."
+    },
+    {
+      "id": "wd-Q60315-Q15789-2017",
+      "jogador": "Sebastian Rudy",
+      "clube": "Bayern de Munique 2017",
+      "posicao": "MEI",
+      "motivo": "Volante."
+    },
+    {
+      "id": "wd-Q13865408-Q15789-2022",
+      "jogador": "Joshua Kimmich",
+      "clube": "Bayern de Munique 2022",
+      "posicao": "MEI",
+      "motivo": "Volante/meia (às vezes lateral), nunca zagueiro."
+    },
+    {
+      "id": "wd-Q134976-Q15789-2009",
+      "jogador": "Lukas Podolski",
+      "clube": "Bayern de Munique 2009",
+      "posicao": "ATA",
+      "motivo": "Atacante (a carta da Alemanha já está ATA)."
+    },
+    {
+      "id": "wd-Q1918-Q15789-2010",
+      "jogador": "Franck Ribéry",
+      "clube": "Bayern de Munique 2010",
+      "posicao": "ATA",
+      "motivo": "Ponta (a carta da França já está ATA)."
+    },
+    {
+      "id": "wd-Q367474-Q15789-2012",
+      "jogador": "Takashi Usami",
+      "clube": "Bayern de Munique 2012",
+      "posicao": "ATA",
+      "motivo": "Ponta/atacante."
+    },
+    {
+      "id": "wd-Q12808967-Q131499-2020",
+      "jogador": "Andrija Živković",
+      "clube": "Benfica 2020",
+      "posicao": "ATA",
+      "motivo": "Ponta."
+    },
+    {
+      "id": "wd-Q151838-Q41420-2018",
+      "jogador": "Axel Witsel",
+      "clube": "Borussia Dortmund 2018",
+      "posicao": "MEI",
+      "motivo": "Volante."
+    },
+    {
+      "id": "wd-Q4241680-Q41420-2020",
+      "jogador": "Raphaël Guerreiro",
+      "clube": "Borussia Dortmund 2020",
+      "posicao": "LAT",
+      "motivo": "Lateral-esquerdo (a carta de Portugal já está LAT)."
+    },
+    {
+      "id": "wd-Q245295-Q41420-2007",
+      "jogador": "Ebi Smolarek",
+      "clube": "Borussia Dortmund 2007",
+      "posicao": "ATA",
+      "motivo": "Atacante/ponta."
+    },
+    {
+      "id": "wd-Q151025-Q41420-2012",
+      "jogador": "Jakub Błaszczykowski",
+      "clube": "Borussia Dortmund 2012",
+      "posicao": "ATA",
+      "motivo": "Ponta-direita."
+    },
+    {
+      "id": "wd-Q155461-Q9616-2006",
+      "jogador": "Robert Huth",
+      "clube": "Chelsea 2006",
+      "posicao": "ZAG",
+      "motivo": "Zagueiro."
+    },
+    {
+      "id": "wd-Q192971-Q9616-2006",
+      "jogador": "Damien Duff",
+      "clube": "Chelsea 2006",
+      "posicao": "ATA",
+      "motivo": "Ponta."
+    },
+    {
+      "id": "wd-Q919182-Q9616-2013",
+      "jogador": "Christian Atsu",
+      "clube": "Chelsea 2013",
+      "posicao": "ATA",
+      "motivo": "Ponta."
+    },
+    {
+      "id": "wd-Q295637-Q9616-2017",
+      "jogador": "Victor Moses",
+      "clube": "Chelsea 2017",
+      "posicao": "ATA",
+      "motivo": "Ponta (no Chelsea de 2017, ala)."
+    },
+    {
+      "id": "wd-Q111366053-Q9616-2026",
+      "jogador": "Alejandro Garnacho",
+      "clube": "Chelsea 2026",
+      "posicao": "ATA",
+      "motivo": "Ponta."
+    },
+    {
+      "id": "wd-Q313575-Q631-2023",
+      "jogador": "Marko Arnautović",
+      "clube": "Inter de Milão 2023",
+      "posicao": "ATA",
+      "motivo": "Atacante."
+    },
+    {
+      "id": "wd-Q298491-Q631-2015",
+      "jogador": "Rene Krhin",
+      "clube": "Inter de Milão 2015",
+      "posicao": "MEI",
+      "motivo": "Volante esloveno."
+    },
+    {
+      "id": "wd-Q80306-Q1422-2011",
+      "jogador": "Giorgio Chiellini",
+      "clube": "Juventus 2011",
+      "posicao": "ZAG",
+      "motivo": "Zagueiro (lateral só no começo da carreira)."
+    },
+    {
+      "id": "wd-Q208050-Q1422-2014",
+      "jogador": "Leonardo Bonucci",
+      "clube": "Juventus 2014",
+      "posicao": "ZAG",
+      "motivo": "Zagueiro."
+    },
+    {
+      "id": "wd-Q509374-Q1422-2015",
+      "jogador": "Juan Cuadrado",
+      "clube": "Juventus 2015",
+      "posicao": "ATA",
+      "motivo": "Em 2015 era ponta-direita (lateral só depois)."
+    },
+    {
+      "id": "wd-Q18817134-Q1422-2022",
+      "jogador": "Rodrigo Betancur",
+      "clube": "Juventus 2022",
+      "posicao": "MEI",
+      "motivo": "Volante/meia (a carta do Uruguai já está MEI)."
+    },
+    {
+      "id": "wd-Q363766-Q1422-1957",
+      "jogador": "Kurt Hamrin",
+      "clube": "Juventus 1957",
+      "posicao": "ATA",
+      "motivo": "Ponta-direita sueco."
+    },
+    {
+      "id": "wd-Q249198-Q1422-2022",
+      "jogador": "Filip Kostić",
+      "clube": "Juventus 2022",
+      "posicao": "ATA",
+      "motivo": "Ponta/ala-esquerda."
+    },
+    {
+      "id": "wd-Q350279-Q2609-1996",
+      "jogador": "José Chamot",
+      "clube": "Lazio 1996",
+      "posicao": "ZAG",
+      "motivo": "Zagueiro argentino."
+    },
+    {
+      "id": "wd-Q311586-Q2609-2007",
+      "jogador": "Lionel Scaloni",
+      "clube": "Lazio 2007",
+      "posicao": "LAT",
+      "motivo": "Lateral-direito."
+    },
+    {
+      "id": "wd-Q32556-Q2609-2014",
+      "jogador": "Antonio Candreva",
+      "clube": "Lazio 2014",
+      "posicao": "ATA",
+      "motivo": "Ponta/ala-direita."
+    },
+    {
+      "id": "wd-Q28968068-Q2609-2022",
+      "jogador": "Mattia Zaccagni",
+      "clube": "Lazio 2022",
+      "posicao": "ATA",
+      "motivo": "Ponta-esquerda."
+    },
+    {
+      "id": "wd-Q191136-Q1130849-2015",
+      "jogador": "James Milner",
+      "clube": "Liverpool 2015",
+      "posicao": "MEI",
+      "motivo": "Em 2015 jogava no meio (lateral a partir de 2016)."
+    },
+    {
+      "id": "wd-Q311941-Q1130849-2015",
+      "jogador": "Sebastián Coates",
+      "clube": "Liverpool 2015",
+      "posicao": "ZAG",
+      "motivo": "Zagueiro."
+    },
+    {
+      "id": "wd-Q57567-Q1130849-2018",
+      "jogador": "Joël Matip",
+      "clube": "Liverpool 2018",
+      "posicao": "ZAG",
+      "motivo": "Zagueiro."
+    },
+    {
+      "id": "wd-Q215435-Q1130849-2009",
+      "jogador": "Albert Riera",
+      "clube": "Liverpool 2009",
+      "posicao": "ATA",
+      "motivo": "Ponta-esquerda."
+    },
+    {
+      "id": "wd-Q72921909-Q1130849-2022",
+      "jogador": "Neco Williams",
+      "clube": "Liverpool 2022",
+      "posicao": "LAT",
+      "motivo": "Lateral-direito."
+    },
+    {
+      "id": "wd-Q208433-Q1130849-2010",
+      "jogador": "Milan Jovanović",
+      "clube": "Liverpool 2010",
+      "posicao": "ATA",
+      "motivo": "Atacante/ponta sérvio."
+    },
+    {
+      "id": "wd-Q316695-Q50602-2004",
+      "jogador": "Sylvain Distin",
+      "clube": "Manchester City 2004",
+      "posicao": "ZAG",
+      "motivo": "Zagueiro."
+    },
+    {
+      "id": "wd-Q182063-Q50602-2015",
+      "jogador": "Nicolás Otamendi",
+      "clube": "Manchester City 2015",
+      "posicao": "ZAG",
+      "motivo": "Zagueiro (a carta do Atlético-MG já está ZAG)."
+    },
+    {
+      "id": "wd-Q184277-Q50602-2010",
+      "jogador": "Yaya Touré",
+      "clube": "Manchester City 2010",
+      "posicao": "MEI",
+      "motivo": "Meia."
+    },
+    {
+      "id": "wd-Q166285-Q50602-2016",
+      "jogador": "Fabian Delph",
+      "clube": "Manchester City 2016",
+      "posicao": "MEI",
+      "motivo": "Meia (lateral-esquerdo só em 2017-18)."
+    },
+    {
+      "id": "wd-Q313035-Q50602-2007",
+      "jogador": "DaMarcus Beasley",
+      "clube": "Manchester City 2007",
+      "posicao": "ATA",
+      "motivo": "Ponta."
+    },
+    {
+      "id": "wd-Q59786-Q50602-2010",
+      "jogador": "Róbert Mak",
+      "clube": "Manchester City 2010",
+      "posicao": "ATA",
+      "motivo": "Ponta."
+    },
+    {
+      "id": "wd-Q8338725-Q50602-2018",
+      "jogador": "Riyad Mahrez",
+      "clube": "Manchester City 2018",
+      "posicao": "ATA",
+      "motivo": "Ponta-direita."
+    },
+    {
+      "id": "wd-Q206237-Q50602-1936",
+      "jogador": "Matt Busby",
+      "clube": "Manchester City 1936",
+      "posicao": "MEI",
+      "motivo": "Médio (meia) no City dos anos 30."
+    },
+    {
+      "id": "wd-Q345702-Q50602-1978",
+      "jogador": "Kazimierz Deyna",
+      "clube": "Manchester City 1978",
+      "posicao": "MEI",
+      "motivo": "Meia armador polonês."
+    },
+    {
+      "id": "wd-Q483417-Q18656-2005",
+      "jogador": "Rio Ferdinand",
+      "clube": "Manchester United 2005",
+      "posicao": "ZAG",
+      "motivo": "Zagueiro (a carta da Inglaterra já está ZAG)."
+    },
+    {
+      "id": "wd-Q164521-Q18656-1973",
+      "jogador": "George Best",
+      "clube": "Manchester United 1973",
+      "posicao": "ATA",
+      "motivo": "Ponta."
+    },
+    {
+      "id": "wd-Q224033-Q18656-1998",
+      "jogador": "Karel Poborský",
+      "clube": "Manchester United 1998",
+      "posicao": "ATA",
+      "motivo": "Ponta-direita."
+    },
+    {
+      "id": "wd-Q10524-Q18656-1999",
+      "jogador": "Ryan Giggs",
+      "clube": "Manchester United 1999",
+      "posicao": "ATA",
+      "motivo": "Ponta-esquerda em 1999."
+    },
+    {
+      "id": "wd-Q50603-Q18656-2008",
+      "jogador": "Park Ji-sung",
+      "clube": "Manchester United 2008",
+      "posicao": "ATA",
+      "motivo": "Ponta/meia pelos lados."
+    },
+    {
+      "id": "wd-Q482947-Q18656-2013",
+      "jogador": "Nani",
+      "clube": "Manchester United 2013",
+      "posicao": "ATA",
+      "motivo": "Ponta (a carta de Portugal já está ATA)."
+    },
+    {
+      "id": "wd-Q168740-Q18656-2015",
+      "jogador": "Juan Mata",
+      "clube": "Manchester United 2015",
+      "posicao": "MEI",
+      "motivo": "Meia."
+    },
+    {
+      "id": "wd-Q215831-Q1543-2004",
+      "jogador": "Fabricio Coloccini",
+      "clube": "Milan 2004",
+      "posicao": "ZAG",
+      "motivo": "Zagueiro."
+    },
+    {
+      "id": "wd-Q363141-Q1543-1983",
+      "jogador": "Eric Gerets",
+      "clube": "Milan 1983",
+      "posicao": "LAT",
+      "motivo": "Lateral-direito belga."
+    },
+    {
+      "id": "wd-Q483027-Q1543-1995",
+      "jogador": "Paolo Maldini",
+      "clube": "Milan 1995",
+      "posicao": "LAT",
+      "motivo": "Em 1995 era lateral-esquerdo (a carta da Itália já está LAT)."
+    },
+    {
+      "id": "wd-Q57017297-Q1543-2026",
+      "jogador": "Samuel Chukwueze",
+      "clube": "Milan 2026",
+      "posicao": "ATA",
+      "motivo": "Ponta."
+    },
+    {
+      "id": "wd-Q275415-Q2641-2012",
+      "jogador": "Ezequiel Lavezzi",
+      "clube": "Napoli 2012",
+      "posicao": "ATA",
+      "motivo": "Atacante/ponta (a carta da Argentina já está ATA)."
+    },
+    {
+      "id": "wd-Q1756086-Q2641-2018",
+      "jogador": "Lorenzo Insigne",
+      "clube": "Napoli 2018",
+      "posicao": "ATA",
+      "motivo": "Ponta-esquerda."
+    },
+    {
+      "id": "wd-Q313155-Q132885-2016",
+      "jogador": "Nicolas Nkoulou",
+      "clube": "Olympique de Marseille 2016",
+      "posicao": "ZAG",
+      "motivo": "Zagueiro camaronês."
+    },
+    {
+      "id": "wd-Q27805413-Q132885-2023",
+      "jogador": "Michael Amir Murillo",
+      "clube": "Olympique de Marseille 2023",
+      "posicao": "LAT",
+      "motivo": "Lateral-direito panamenho."
+    },
+    {
+      "id": "wd-Q516921-Q132885-2015",
+      "jogador": "André Ayew",
+      "clube": "Olympique de Marseille 2015",
+      "posicao": "ATA",
+      "motivo": "Ponta/atacante."
+    },
+    {
+      "id": "wd-Q446107-Q11938-1990",
+      "jogador": "Jan Heintze",
+      "clube": "PSV 1990",
+      "posicao": "LAT",
+      "motivo": "Lateral-esquerdo dinamarquês."
+    },
+    {
+      "id": "wd-Q350306-Q11938-2005",
+      "jogador": "Timmy Simons",
+      "clube": "PSV 2005",
+      "posicao": "MEI",
+      "motivo": "No PSV de 2005 era volante."
+    },
+    {
+      "id": "wd-Q932827-Q11938-2008",
+      "jogador": "Fagner",
+      "clube": "PSV 2008",
+      "posicao": "LAT",
+      "motivo": "Lateral-direito (Corinthians)."
+    },
+    {
+      "id": "wd-Q207665-Q11938-2004",
+      "jogador": "Dennis Rommedahl",
+      "clube": "PSV 2004",
+      "posicao": "ATA",
+      "motivo": "Ponta-direita."
+    },
+    {
+      "id": "wd-Q318931-Q11938-2006",
+      "jogador": "Archie Thompson",
+      "clube": "PSV 2006",
+      "posicao": "ATA",
+      "motivo": "Atacante australiano."
+    },
+    {
+      "id": "wd-Q180326-parma-1999",
+      "jogador": "Lilian Thuram",
+      "clube": "Parma 1999",
+      "posicao": "ZAG",
+      "motivo": "No Parma jogava de zagueiro (lateral só na França de 98)."
+    },
+    {
+      "id": "wd-Q767469-Q128446-2017",
+      "jogador": "Yacine Brahimi",
+      "clube": "Porto 2017",
+      "posicao": "ATA",
+      "motivo": "Ponta."
+    },
+    {
+      "id": "wd-Q296684-Q8682-2011",
+      "jogador": "Ezequiel Garay",
+      "clube": "Real Madrid 2011",
+      "posicao": "ZAG",
+      "motivo": "Zagueiro."
+    },
+    {
+      "id": "wd-Q58441-Q8682-2008",
+      "jogador": "Robinho",
+      "clube": "Real Madrid 2008",
+      "posicao": "ATA",
+      "motivo": "Atacante/ponta (as cartas do Santos e do Galo já estão ATA)."
+    },
+    {
+      "id": "wd-Q27067753-Q8682-2022",
+      "jogador": "Takefusa Kubo",
+      "clube": "Real Madrid 2022",
+      "posicao": "ATA",
+      "motivo": "Ponta-direita."
+    },
+    {
+      "id": "wd-Q205188-Q2739-2009",
+      "jogador": "Nicolás Burdisso",
+      "clube": "Roma 2009",
+      "posicao": "ZAG",
+      "motivo": "Zagueiro (a carta da Argentina já está ZAG)."
+    },
+    {
+      "id": "wd-Q270890-Q2739-1994",
+      "jogador": "Claudio Caniggia",
+      "clube": "Roma 1994",
+      "posicao": "ATA",
+      "motivo": "Atacante."
+    },
+    {
+      "id": "wd-Q276284-Q2739-2007",
+      "jogador": "Christian Wilhelmsson",
+      "clube": "Roma 2007",
+      "posicao": "ATA",
+      "motivo": "Ponta."
+    },
+    {
+      "id": "wd-Q185093-Q10329-2012",
+      "jogador": "Jesús Navas",
+      "clube": "Sevilla 2012",
+      "posicao": "ATA",
+      "motivo": "Em 2012 era ponta-direita (lateral só a partir de 2017)."
+    },
+    {
+      "id": "wd-Q7944670-Q10329-2016",
+      "jogador": "Vitolo",
+      "clube": "Sevilla 2016",
+      "posicao": "ATA",
+      "motivo": "Ponta."
+    },
+    {
+      "id": "wd-Q14558450-Q10329-2022",
+      "jogador": "Adnan Januzaj",
+      "clube": "Sevilla 2022",
+      "posicao": "ATA",
+      "motivo": "Ponta."
+    },
+    {
+      "id": "wd-Q38053896-Q10329-2025",
+      "jogador": "Rubén Vargas",
+      "clube": "Sevilla 2025",
+      "posicao": "ATA",
+      "motivo": "Ponta."
+    },
+    {
+      "id": "wd-Q207401-Q18741-2007",
+      "jogador": "Ledley King",
+      "clube": "Tottenham 2007",
+      "posicao": "ZAG",
+      "motivo": "Zagueiro."
+    },
+    {
+      "id": "wd-Q470751-Q18741-2009",
+      "jogador": "Chris Gunter",
+      "clube": "Tottenham 2009",
+      "posicao": "LAT",
+      "motivo": "Lateral-direito galês."
+    },
+    {
+      "id": "wd-Q175303-Q18741-2014",
+      "jogador": "Aaron Lennon",
+      "clube": "Tottenham 2014",
+      "posicao": "ATA",
+      "motivo": "Ponta-direita."
+    },
+    {
+      "id": "wd-Q59064-Q18741-2016",
+      "jogador": "Andros Townsend",
+      "clube": "Tottenham 2016",
+      "posicao": "ATA",
+      "motivo": "Ponta."
+    },
+    {
+      "id": "wd-Q795451-Q18741-2016",
+      "jogador": "Nacer Chadli",
+      "clube": "Tottenham 2016",
+      "posicao": "ATA",
+      "motivo": "Ponta."
+    },
+    {
+      "id": "wd-Q60597-Q10333-2016",
+      "jogador": "Aymen Abdennour",
+      "clube": "Valencia 2016",
+      "posicao": "ZAG",
+      "motivo": "Zagueiro tunisiano."
+    },
+    {
+      "id": "wd-Q295315-Q10333-2007",
+      "jogador": "Miguel Monteiro",
+      "clube": "Valencia 2007",
+      "posicao": "LAT",
+      "motivo": "Miguel, lateral-direito português."
+    },
+    {
+      "id": "wd-Q295883-Q10333-2000",
+      "jogador": "Claudio López",
+      "clube": "Valencia 2000",
+      "posicao": "ATA",
+      "motivo": "Atacante (Piojo)."
+    },
+    {
+      "id": "wd-Q277533-Q10333-2012",
+      "jogador": "Pablo Hernández",
+      "clube": "Valencia 2012",
+      "posicao": "ATA",
+      "motivo": "Ponta."
+    },
+    {
+      "id": "wd-Q246417-Q10333-2018",
+      "jogador": "Denis Cheryshev",
+      "clube": "Valencia 2018",
+      "posicao": "ATA",
+      "motivo": "Ponta."
+    }
+  ],
+  "ocultar": [
+    {
+      "id": "wd-Q6696777",
+      "jogador": "Luciano Andrade Rissutt"
+    },
+    {
+      "id": "wd-Q6066722",
+      "jogador": "Iran"
+    },
+    {
+      "id": "wd-Q19663293",
+      "jogador": "Paulo Roberto Prestes"
+    },
+    {
+      "id": "wd-Q5483418",
+      "jogador": "Chiquinho Baiano"
+    },
+    {
+      "id": "wd-Q5389256",
+      "jogador": "Erinaldo Santos Rabelo"
+    },
+    {
+      "id": "wd-Q4831698",
+      "jogador": "Ayrton Ganino"
+    },
+    {
+      "id": "wd-Q3742879",
+      "jogador": "Fernando"
+    },
+    {
+      "id": "wd-Q5768435",
+      "jogador": "Élder Granja"
+    },
+    {
+      "id": "wd-Q10320199",
+      "jogador": "Lucas Farias"
+    },
+    {
+      "id": "wd-Q3046202",
+      "jogador": "Maranhão"
+    },
+    {
+      "id": "wd-Q4018903",
+      "jogador": "Wellington Vicente"
+    },
+    {
+      "id": "wd-Q4801594",
+      "jogador": "Artur"
+    },
+    {
+      "id": "wd-Q3846643",
+      "jogador": "Marcos Martins"
+    },
+    {
+      "id": "wd-Q5218061",
+      "jogador": "Daniel Martins"
+    },
+    {
+      "id": "wd-Q7107146",
+      "jogador": "Osmar Coelho Claudiano"
+    },
+    {
+      "id": "wd-Q20974185",
+      "jogador": "Patrick"
+    },
+    {
+      "id": "wd-Q7282096",
+      "jogador": "Rafael Cruz"
+    },
+    {
+      "id": "wd-Q5417414",
+      "jogador": "Éverton Silva"
+    },
+    {
+      "id": "wd-Q615490",
+      "jogador": "Jeff Silva"
+    },
+    {
+      "id": "wd-Q3645701",
+      "jogador": "Bruno Collaço"
+    },
+    {
+      "id": "wd-Q5042023",
+      "jogador": "Eduardo Oliveira"
+    },
+    {
+      "id": "wd-Q3610649",
+      "jogador": "Alex Cazumba"
+    },
+    {
+      "id": "wd-Q926822",
+      "jogador": "Gastón Filgueira"
+    },
+    {
+      "id": "wd-Q6701435",
+      "jogador": "Claudino dos Santos"
+    },
+    {
+      "id": "wd-Q1988145",
+      "jogador": "Harlei"
+    },
+    {
+      "id": "wd-Q23007695",
+      "jogador": "João Ricardo Riedi"
+    },
+    {
+      "id": "wd-Q7322559",
+      "jogador": "Ricardo Berna"
+    },
+    {
+      "id": "wd-Q5463717",
+      "jogador": "Pantera"
+    },
+    {
+      "id": "wd-Q14366994",
+      "jogador": "Cristovam"
+    },
+    {
+      "id": "wd-Q16234987",
+      "jogador": "Mádson"
+    },
+    {
+      "id": "wd-Q5340631",
+      "jogador": "Eduardo Gottardi"
+    },
+    {
+      "id": "wd-Q2307210",
+      "jogador": "André Rocha"
+    },
+    {
+      "id": "wd-Q1607691",
+      "jogador": "Ronaldo Giovanelli"
+    },
+    {
+      "id": "wd-Q2473949",
+      "jogador": "Udo Nwoko"
+    },
+    {
+      "id": "wd-Q444766",
+      "jogador": "Daniel Sobralense"
+    },
+    {
+      "id": "wd-Q7416856",
+      "jogador": "Sandro Ferreira André"
+    },
+    {
+      "id": "wd-Q5274627",
+      "jogador": "Diego Costa Silva"
+    },
+    {
+      "id": "wd-Q182368",
+      "jogador": "Césinha"
+    },
+    {
+      "id": "wd-Q2464236",
+      "jogador": "Daniel Bamberg"
+    },
+    {
+      "id": "wd-Q730917",
+      "jogador": "Douglas Packer"
+    },
+    {
+      "id": "wd-Q2761538",
+      "jogador": "Bechara"
+    },
+    {
+      "id": "wd-Q16941001",
+      "jogador": "Vaná"
+    },
+    {
+      "id": "wd-Q3291857",
+      "jogador": "Vladimir"
+    },
+    {
+      "id": "wd-Q17619227",
+      "jogador": "Patrick"
+    },
+    {
+      "id": "wd-Q10552199",
+      "jogador": "Lucca"
+    },
+    {
+      "id": "wd-Q5392604",
+      "jogador": "Ernandes"
+    },
+    {
+      "id": "wd-Q3645955",
+      "jogador": "Bruno Vieira"
+    },
+    {
+      "id": "wd-Q17466192",
+      "jogador": "Hudson"
+    },
+    {
+      "id": "wd-Q3702239",
+      "jogador": "Danival"
+    },
+    {
+      "id": "wd-Q781382",
+      "jogador": "Darley"
+    },
+    {
+      "id": "wd-Q2605913",
+      "jogador": "Alexandre"
+    },
+    {
+      "id": "wd-Q2626651",
+      "jogador": "Darcy Dolce Neto"
+    },
+    {
+      "id": "wd-Q23771987",
+      "jogador": "Diogo Mateus"
+    },
+    {
+      "id": "wd-Q3104371",
+      "jogador": "Gérson Caçapa"
+    },
+    {
+      "id": "wd-Q16727639",
+      "jogador": "Brayan Riascos"
+    },
+    {
+      "id": "wd-Q1136416",
+      "jogador": "Michael Javier Ortega"
+    },
+    {
+      "id": "wd-Q4181600",
+      "jogador": "Igor Julião"
+    },
+    {
+      "id": "wd-Q4501756",
+      "jogador": "William"
+    },
+    {
+      "id": "wd-Q3940036",
+      "jogador": "Rodrigo Dias Carneiro"
+    },
+    {
+      "id": "wd-Q3940050",
+      "jogador": "Rodrigo Souza Silva"
+    },
+    {
+      "id": "wd-Q549935",
+      "jogador": "Élton Arábia"
+    },
+    {
+      "id": "wd-Q4018098",
+      "jogador": "Derley"
+    },
+    {
+      "id": "wd-Q28777389",
+      "jogador": "José Artur"
+    },
+    {
+      "id": "wd-Q5110245",
+      "jogador": "Christian Vilches"
+    },
+    {
+      "id": "wd-Q3295559",
+      "jogador": "Bruno Renan"
+    },
+    {
+      "id": "wd-Q850284",
+      "jogador": "Bruno Moraes"
+    },
+    {
+      "id": "wd-Q37231",
+      "jogador": "Néstor Camacho"
+    },
+    {
+      "id": "wd-Q18127731",
+      "jogador": "Philipe Sampaio"
+    },
+    {
+      "id": "wd-Q5219616",
+      "jogador": "Danilo Moreno Asprilla"
+    },
+    {
+      "id": "wd-Q4682834",
+      "jogador": "Adílson"
+    },
+    {
+      "id": "wd-Q2040559",
+      "jogador": "Lauro"
+    },
+    {
+      "id": "wd-Q950069",
+      "jogador": "Schumacher"
+    },
+    {
+      "id": "wd-Q7944173",
+      "jogador": "Vagner Benazzi"
+    },
+    {
+      "id": "wd-Q2931622",
+      "jogador": "Marcelo Moretto"
+    },
+    {
+      "id": "wd-Q5222817",
+      "jogador": "Dario"
+    },
+    {
+      "id": "wd-Q3934313",
+      "jogador": "Ricardo Laborde"
+    },
+    {
+      "id": "wd-Q1263801",
+      "jogador": "Dudu Paraíba"
+    },
+    {
+      "id": "wd-Q83880808",
+      "jogador": "Camilo Reijers"
+    },
+    {
+      "id": "wd-Q1710133",
+      "jogador": "Bosco"
+    },
+    {
+      "id": "wd-Q34048775",
+      "jogador": "Silas Silva"
+    },
+    {
+      "id": "wd-Q2635032",
+      "jogador": "João Victor"
+    },
+    {
+      "id": "wd-Q15075773",
+      "jogador": "Jean Mota"
+    },
+    {
+      "id": "wd-Q1145499",
+      "jogador": "Rodrigo Archubi"
+    },
+    {
+      "id": "wd-Q486955",
+      "jogador": "Javier Reina"
+    },
+    {
+      "id": "wd-Q8078540",
+      "jogador": "Éverson"
+    },
+    {
+      "id": "wd-Q2735099",
+      "jogador": "Cacá"
+    },
+    {
+      "id": "wd-Q18978130",
+      "jogador": "Jailson"
+    },
+    {
+      "id": "wd-Q19968755",
+      "jogador": "Luan Polli"
+    },
+    {
+      "id": "wd-Q82461",
+      "jogador": "Landrinho"
+    },
+    {
+      "id": "wd-Q7454383",
+      "jogador": "Sergio"
+    },
+    {
+      "id": "wd-Q19958242",
+      "jogador": "Jean"
+    },
+    {
+      "id": "wd-Q3324839",
+      "jogador": "Mosquito"
+    },
+    {
+      "id": "wd-Q9016102",
+      "jogador": "Juan Pérez"
+    },
+    {
+      "id": "wd-Q516765",
+      "jogador": "Andre Alves"
+    },
+    {
+      "id": "wd-Q1100878",
+      "jogador": "Cleyton"
+    },
+    {
+      "id": "wd-Q251270",
+      "jogador": "Álvaro Santos"
+    },
+    {
+      "id": "wd-Q18128250",
+      "jogador": "Dyego Sousa"
+    },
+    {
+      "id": "wd-Q10554982",
+      "jogador": "Fábio Martins"
+    },
+    {
+      "id": "wd-Q398412",
+      "jogador": "Aguinaldo Braga"
+    },
+    {
+      "id": "wd-Q3302294",
+      "jogador": "Bruno Sarpa Costa"
+    },
+    {
+      "id": "wd-Q7036941",
+      "jogador": "Nenei"
+    },
+    {
+      "id": "wd-Q4732863",
+      "jogador": "Allisson Ricardo"
+    },
+    {
+      "id": "wd-Q18278581",
+      "jogador": "Natanael"
+    },
+    {
+      "id": "wd-Q66606314",
+      "jogador": "Diego Carioca"
+    },
+    {
+      "id": "wd-Q1132464",
+      "jogador": "Clemer"
+    },
+    {
+      "id": "wd-Q20312611",
+      "jogador": "Barreto"
+    },
+    {
+      "id": "wd-Q1881742",
+      "jogador": "José Eduardo"
+    },
+    {
+      "id": "wd-Q2477920",
+      "jogador": "Douglão"
+    },
+    {
+      "id": "wd-Q126447",
+      "jogador": "André Moritz"
+    },
+    {
+      "id": "wd-Q925802",
+      "jogador": "Leandro de Almeida"
+    },
+    {
+      "id": "wd-Q3101396",
+      "jogador": "Guilherme Finkler"
+    },
+    {
+      "id": "wd-Q2633618",
+      "jogador": "Luis Gutiérrez"
+    },
+    {
+      "id": "wd-Q1335658",
+      "jogador": "Reynaldo"
+    },
+    {
+      "id": "wd-Q4274903",
+      "jogador": "Andrés Romero"
+    },
+    {
+      "id": "wd-Q14628912",
+      "jogador": "Mateus Caramelo"
+    },
+    {
+      "id": "wd-Q2255347",
+      "jogador": "Arthur"
+    },
+    {
+      "id": "wd-Q553017",
+      "jogador": "Emerson Conceição"
+    },
+    {
+      "id": "wd-Q1234995",
+      "jogador": "Doka Madureira"
+    },
+    {
+      "id": "wd-Q553954",
+      "jogador": "Caiuby"
+    },
+    {
+      "id": "wd-Q495325",
+      "jogador": "Felipe Azevedo"
+    },
+    {
+      "id": "wd-Q9310531",
+      "jogador": "Rinaldo Amorim"
+    },
+    {
+      "id": "wd-Q7442842",
+      "jogador": "Sebá"
+    },
+    {
+      "id": "wd-Q3764210",
+      "jogador": "Gilbert Álvarez"
+    },
+    {
+      "id": "wd-Q539080",
+      "jogador": "Edmar Aparecido"
+    },
+    {
+      "id": "wd-Q2452590",
+      "jogador": "Robert Flores"
+    },
+    {
+      "id": "wd-Q2532504",
+      "jogador": "Rodrigo Galatto"
+    },
+    {
+      "id": "wd-Q21207778",
+      "jogador": "Allano"
+    },
+    {
+      "id": "wd-Q6168526",
+      "jogador": "Jaílton Paraíba"
+    },
+    {
+      "id": "wd-Q1775499",
+      "jogador": "Pablo Escobar"
+    },
+    {
+      "id": "wd-Q1647574",
+      "jogador": "Gil Baiano"
+    },
+    {
+      "id": "wd-Q19879773",
+      "jogador": "Clayson"
+    },
+    {
+      "id": "wd-Q5042026",
+      "jogador": "Carlos Eduardo"
+    },
+    {
+      "id": "wd-Q3368854",
+      "jogador": "Patric Cabral Lalau"
+    },
+    {
+      "id": "wd-Q10394490",
+      "jogador": "Yago Pikachu"
+    },
+    {
+      "id": "wd-Q21282542",
+      "jogador": "Holneiker Mendes"
+    },
+    {
+      "id": "wd-Q6757347",
+      "jogador": "Marcio"
+    },
+    {
+      "id": "wd-Q17501960",
+      "jogador": "Rodrigo Paraná"
+    },
+    {
+      "id": "wd-Q2526279",
+      "jogador": "Vilmar"
+    },
+    {
+      "id": "wd-Q15831039",
+      "jogador": "Jairo"
+    },
+    {
+      "id": "wd-Q18014853",
+      "jogador": "Auro"
+    },
+    {
+      "id": "wd-Q5252610",
+      "jogador": "Deives Thiago"
+    },
+    {
+      "id": "wd-Q372434",
+      "jogador": "Martín Ligüera"
+    },
+    {
+      "id": "wd-Q2077454",
+      "jogador": "Federico Mancuello"
+    },
+    {
+      "id": "wd-Q262607",
+      "jogador": "Geraldo"
+    },
+    {
+      "id": "wd-Q65718617",
+      "jogador": "Khellven"
+    },
+    {
+      "id": "wd-Q15830938",
+      "jogador": "Augusto César Moreira"
+    },
+    {
+      "id": "wd-Q20641621",
+      "jogador": "Guillermo Viscarra"
+    },
+    {
+      "id": "wd-Q488508",
+      "jogador": "Denilson Martins Nascimento"
+    },
+    {
+      "id": "wd-Q2269083",
+      "jogador": "Vágner Rogério Nunes"
+    },
+    {
+      "id": "wd-Q983331",
+      "jogador": "Etto"
+    },
+    {
+      "id": "wd-Q1768260",
+      "jogador": "Lino"
+    },
+    {
+      "id": "wd-Q8023194",
+      "jogador": "Wilson"
+    },
+    {
+      "id": "wd-Q18203761",
+      "jogador": "Dankler"
+    },
+    {
+      "id": "wd-Q110882015",
+      "jogador": "Matheus Cunha"
+    },
+    {
+      "id": "wd-Q1161529",
+      "jogador": "Daniel Lemos"
+    },
+    {
+      "id": "wd-Q3311735",
+      "jogador": "Ricardo Aparecido Tavares"
+    },
+    {
+      "id": "wd-Q2453243",
+      "jogador": "Marlon de Jesús"
+    },
+    {
+      "id": "wd-Q4759902",
+      "jogador": "André Silva"
+    },
+    {
+      "id": "wd-Q1000296",
+      "jogador": "Fred Carreiro"
+    },
+    {
+      "id": "wd-Q10336442",
+      "jogador": "Cicinho Gusmão"
+    },
+    {
+      "id": "wd-Q649420",
+      "jogador": "Maicosuel"
+    },
+    {
+      "id": "wd-Q17490040",
+      "jogador": "Dener Assunção Braz"
+    },
+    {
+      "id": "wd-Q7294031",
+      "jogador": "Raphael Macena"
+    },
+    {
+      "id": "wd-Q972942",
+      "jogador": "Wellington Aparecido Martins"
+    },
+    {
+      "id": "wd-Q4682353",
+      "jogador": "Santos"
+    },
+    {
+      "id": "wd-Q11688787",
+      "jogador": "Leonardo Valencia"
+    },
+    {
+      "id": "wd-Q3761170",
+      "jogador": "Germán Cano"
+    },
+    {
+      "id": "wd-Q2665671",
+      "jogador": "Leo Matos"
+    },
+    {
+      "id": "wd-Q936142",
+      "jogador": "Alanzinho"
+    },
+    {
+      "id": "wd-Q483813",
+      "jogador": "Leandro Lima"
+    },
+    {
+      "id": "wd-Q2007888",
+      "jogador": "Paulo Sérgio Betanin"
+    },
+    {
+      "id": "wd-Q15966749",
+      "jogador": "Luciano"
+    },
+    {
+      "id": "wd-Q599624",
+      "jogador": "Thiago Carleto"
+    },
+    {
+      "id": "wd-Q1617743",
+      "jogador": "Roberto Batata"
+    },
+    {
+      "id": "wd-Q3299667",
+      "jogador": "Mattheus Oliveira"
+    },
+    {
+      "id": "wd-Q3929914",
+      "jogador": "Ramon Motta"
+    },
+    {
+      "id": "wd-Q2560073",
+      "jogador": "Luis Aguiar"
+    },
+    {
+      "id": "wd-Q5553136",
+      "jogador": "Gerson Vieira"
+    },
+    {
+      "id": "wd-Q64762050",
+      "jogador": "Luis Phelipe"
+    },
+    {
+      "id": "wd-Q2714188",
+      "jogador": "Navarro Montoya"
+    },
+    {
+      "id": "wd-Q10526422",
+      "jogador": "Marcelo Soares"
+    },
+    {
+      "id": "wd-Q5340337",
+      "jogador": "Edson"
+    },
+    {
+      "id": "wd-Q1308449",
+      "jogador": "Jaguaré"
+    },
+    {
+      "id": "wd-Q1189859",
+      "jogador": "Jhonatan"
+    },
+    {
+      "id": "wd-Q2153344",
+      "jogador": "Daniel"
+    },
+    {
+      "id": "wd-Q3120564",
+      "jogador": "Guillermo De Amores"
+    },
+    {
+      "id": "wd-Q2992328",
+      "jogador": "Ricardo Jesus"
+    },
+    {
+      "id": "wd-Q19957249",
+      "jogador": "Marcos Danilo Padilha"
+    },
+    {
+      "id": "wd-Q5346996",
+      "jogador": "Edílson Guimarães"
+    },
+    {
+      "id": "wd-Q644235",
+      "jogador": "Wellington Silva"
+    },
+    {
+      "id": "wd-Q1955443",
+      "jogador": "Gustavo"
+    },
+    {
+      "id": "wd-Q2006498",
+      "jogador": "Alair"
+    },
+    {
+      "id": "wd-Q22809663",
+      "jogador": "Pablo Diogo"
+    },
+    {
+      "id": "wd-Q3120611",
+      "jogador": "Guina"
+    },
+    {
+      "id": "wd-Q15830977",
+      "jogador": "Diogo Acosta"
+    },
+    {
+      "id": "wd-Q279753",
+      "jogador": "Júlio Souza"
+    },
+    {
+      "id": "wd-Q593943",
+      "jogador": "Edgar Bruno Silva"
+    },
+    {
+      "id": "wd-Q2256012",
+      "jogador": "Jefferson"
+    },
+    {
+      "id": "wd-Q1440177",
+      "jogador": "Rafael Lopes Silva"
+    },
+    {
+      "id": "wd-Q4979318",
+      "jogador": "Bruno Meneghel"
+    },
+    {
+      "id": "wd-Q21282554",
+      "jogador": "Moisés Ribeiro"
+    },
+    {
+      "id": "wd-Q19841320",
+      "jogador": "Léo Bonatini"
+    },
+    {
+      "id": "wd-Q93834",
+      "jogador": "José Maria Marin"
+    },
+    {
+      "id": "wd-Q7322701",
+      "jogador": "Ricardo Lobo"
+    },
+    {
+      "id": "wd-Q3179256",
+      "jogador": "Maurito"
+    },
+    {
+      "id": "wd-Q14755607",
+      "jogador": "Lucas Evangelista"
+    },
+    {
+      "id": "wd-Q5945315",
+      "jogador": "Manoel Afonso Júnior"
+    },
+    {
+      "id": "wd-Q16234473",
+      "jogador": "Crislan"
+    },
+    {
+      "id": "wd-Q3806090",
+      "jogador": "Jadson Alves"
+    },
+    {
+      "id": "wd-Q947397",
+      "jogador": "José Carlos Bernardo"
+    },
+    {
+      "id": "wd-Q6087839",
+      "jogador": "Marcel Sacramento"
+    },
+    {
+      "id": "wd-Q911705",
+      "jogador": "Gláuber"
+    },
+    {
+      "id": "wd-Q1355593",
+      "jogador": "Rolando Schiavi"
+    },
+    {
+      "id": "wd-Q978679",
+      "jogador": "Filipe Machado"
+    },
+    {
+      "id": "wd-Q7982480",
+      "jogador": "Wendell Lira"
+    },
+    {
+      "id": "wd-Q1833979",
+      "jogador": "Jair"
+    },
+    {
+      "id": "wd-Q6123719",
+      "jogador": "Welliton"
+    },
+    {
+      "id": "wd-Q7155294",
+      "jogador": "Paulo Roberto Gonzaga"
+    },
+    {
+      "id": "wd-Q3246055",
+      "jogador": "Taro Sugahara"
+    },
+    {
+      "id": "wd-Q3263413",
+      "jogador": "Elison"
+    },
+    {
+      "id": "wd-Q952754",
+      "jogador": "Juan Cazares"
+    },
+    {
+      "id": "wd-Q927846",
+      "jogador": "Montezine"
+    },
+    {
+      "id": "wd-Q5610343",
+      "jogador": "Lenny"
+    },
+    {
+      "id": "wd-Q1335595",
+      "jogador": "Emerson Moisés Costa"
+    },
+    {
+      "id": "wd-Q16599852",
+      "jogador": "Samir"
+    },
+    {
+      "id": "wd-Q2626579",
+      "jogador": "Tavares"
+    },
+    {
+      "id": "wd-Q81587",
+      "jogador": "Anderson Bamba"
+    },
+    {
+      "id": "wd-Q22128966",
+      "jogador": "Douglas Vieira"
+    },
+    {
+      "id": "wd-Q17318558",
+      "jogador": "Abner"
+    },
+    {
+      "id": "wd-Q595653",
+      "jogador": "Rodrigo"
+    },
+    {
+      "id": "wd-Q247050",
+      "jogador": "Mariano Trípodi"
+    },
+    {
+      "id": "wd-Q132307478",
+      "jogador": "Allan"
+    },
+    {
+      "id": "wd-Q15690382",
+      "jogador": "Wallace Santos"
+    },
+    {
+      "id": "wd-Q654041",
+      "jogador": "Ari"
+    },
+    {
+      "id": "wd-Q15831215",
+      "jogador": "Yuri Mamute"
+    },
+    {
+      "id": "wd-Q2002195",
+      "jogador": "Eduardo Niño"
+    },
+    {
+      "id": "wd-Q3311820",
+      "jogador": "Cauê"
+    },
+    {
+      "id": "wd-Q15831013",
+      "jogador": "Filipe Augusto"
+    },
+    {
+      "id": "wd-Q969808",
+      "jogador": "Maicon Marques"
+    },
+    {
+      "id": "wd-Q59205578",
+      "jogador": "Cacá Menezes"
+    },
+    {
+      "id": "wd-Q15117644",
+      "jogador": "Lucas Olaza"
+    },
+    {
+      "id": "wd-Q165576",
+      "jogador": "Bruno Mendes"
+    },
+    {
+      "id": "wd-Q5279191",
+      "jogador": "Diogo Oliveira"
+    },
+    {
+      "id": "wd-Q993172",
+      "jogador": "Bruno Coutinho"
+    },
+    {
+      "id": "wd-Q3880774",
+      "jogador": "Otávio Fantoni"
+    },
+    {
+      "id": "wd-Q2319964",
+      "jogador": "Percy Olivares"
+    },
+    {
+      "id": "wd-Q1955597",
+      "jogador": "Neto Potiguar"
+    },
+    {
+      "id": "wd-Q20745204",
+      "jogador": "Rafael Ratão"
+    },
+    {
+      "id": "wd-Q1365706",
+      "jogador": "Sidnei"
+    },
+    {
+      "id": "wd-Q458481",
+      "jogador": "Aílton Modesto"
+    },
+    {
+      "id": "wd-Q210023",
+      "jogador": "Anderson Andrade Antunes"
+    },
+    {
+      "id": "wd-Q2255380",
+      "jogador": "Livonir Ruschel"
+    },
+    {
+      "id": "wd-Q485878",
+      "jogador": "Léo Paulista"
+    },
+    {
+      "id": "wd-Q5274756",
+      "jogador": "Diego Oliveira"
+    },
+    {
+      "id": "wd-Q10554853",
+      "jogador": "Anderson Oliveira"
+    },
+    {
+      "id": "wd-Q210119",
+      "jogador": "Alex Santos"
+    },
+    {
+      "id": "wd-Q18233590",
+      "jogador": "Rafael Silva"
+    },
+    {
+      "id": "wd-Q2271271",
+      "jogador": "Dayro Moreno"
+    },
+    {
+      "id": "wd-Q5483970",
+      "jogador": "Francisco Sousa"
+    },
+    {
+      "id": "wd-Q545249",
+      "jogador": "Walter"
+    },
+    {
+      "id": "wd-Q938963",
+      "jogador": "Ibson"
+    },
+    {
+      "id": "wd-Q3041366",
+      "jogador": "Josimar"
+    },
+    {
+      "id": "wd-Q886577",
+      "jogador": "Victor Andrade"
+    },
+    {
+      "id": "wd-Q517074",
+      "jogador": "José Sand"
+    },
+    {
+      "id": "wd-Q1092120",
+      "jogador": "Minoru Suganuma"
+    },
+    {
+      "id": "wd-Q768386",
+      "jogador": "Ricardo Ferretti"
+    },
+    {
+      "id": "wd-Q1332586",
+      "jogador": "Julio César Falcioni"
+    },
+    {
+      "id": "wd-Q1388335",
+      "jogador": "John Jairo Tréllez"
+    },
+    {
+      "id": "wd-Q1007872",
+      "jogador": "Anderson Luiz"
+    },
+    {
+      "id": "wd-Q6756642",
+      "jogador": "Marcelo Toscano"
+    },
+    {
+      "id": "wd-Q3898221",
+      "jogador": "Paulo Baier"
+    },
+    {
+      "id": "wd-Q2441504",
+      "jogador": "Catanha"
+    },
+    {
+      "id": "wd-Q514376",
+      "jogador": "Athirson"
+    },
+    {
+      "id": "wd-Q79634899",
+      "jogador": "José Andrés Martínez"
+    },
+    {
+      "id": "wd-Q463751",
+      "jogador": "Júlio Sérgio"
+    },
+    {
+      "id": "wd-Q10320201",
+      "jogador": "Lucas Gaúcho"
+    },
+    {
+      "id": "wd-Q5428255",
+      "jogador": "Fabrício"
+    },
+    {
+      "id": "wd-Q556850",
+      "jogador": "Ailton Almeida"
+    },
+    {
+      "id": "wd-Q1573458",
+      "jogador": "Rodrigo Vergilio"
+    },
+    {
+      "id": "wd-Q15878652",
+      "jogador": "Gabriel Boschilia"
+    },
+    {
+      "id": "wd-Q2927032",
+      "jogador": "Bruno Lopes"
+    },
+    {
+      "id": "wd-Q337639",
+      "jogador": "Felipe Mattioni"
+    },
+    {
+      "id": "wd-Q16679775",
+      "jogador": "Nathan"
+    },
+    {
+      "id": "wd-Q708163",
+      "jogador": "César Aparecido Rodrigues"
+    },
+    {
+      "id": "wd-Q720606",
+      "jogador": "Evanílson"
+    },
+    {
+      "id": "wd-Q14755400",
+      "jogador": "Matheus Biteco"
+    },
+    {
+      "id": "wd-Q16230077",
+      "jogador": "Zeca"
+    },
+    {
+      "id": "wd-Q16337517",
+      "jogador": "Gilberto Moraes Junior"
+    },
+    {
+      "id": "wd-Q7038862",
+      "jogador": "Nininho"
+    },
+    {
+      "id": "wd-Q2017085",
+      "jogador": "Gabriel Silva"
+    },
+    {
+      "id": "wd-Q706333",
+      "jogador": "Marcos Paquetá"
+    },
+    {
+      "id": "wd-Q554591",
+      "jogador": "Ronny"
+    },
+    {
+      "id": "wd-Q2626107",
+      "jogador": "João Pedro Galvão"
+    },
+    {
+      "id": "wd-Q1824673",
+      "jogador": "Luís Müller"
+    },
+    {
+      "id": "wd-Q210072",
+      "jogador": "Raphael Botti"
+    },
+    {
+      "id": "wd-Q210056",
+      "jogador": "Emerson Thome"
+    },
+    {
+      "id": "wd-Q381207",
+      "jogador": "Matuzalém"
+    },
+    {
+      "id": "wd-Q2093145",
+      "jogador": "Marcus"
+    },
+    {
+      "id": "wd-Q180977",
+      "jogador": "Leandro"
+    },
+    {
+      "id": "wd-Q1408157",
+      "jogador": "Marcelo Grohe"
+    },
+    {
+      "id": "wd-Q4291204",
+      "jogador": "Heberty"
+    },
+    {
+      "id": "wd-Q1191021",
+      "jogador": "Ramón"
+    },
+    {
+      "id": "wd-Q2255656",
+      "jogador": "Marcelo BARON Polanczyk"
+    },
+    {
+      "id": "wd-Q18124343",
+      "jogador": "Danilo Barbosa"
+    },
+    {
+      "id": "wd-Q24084221",
+      "jogador": "Domilson"
+    },
+    {
+      "id": "wd-Q217873",
+      "jogador": "Tartá"
+    },
+    {
+      "id": "wd-Q690663",
+      "jogador": "Julián Speroni"
+    },
+    {
+      "id": "wd-Q888032",
+      "jogador": "Renatinho"
+    },
+    {
+      "id": "wd-Q3081138",
+      "jogador": "Renato Ribeiro Calixto"
+    },
+    {
+      "id": "wd-Q3940027",
+      "jogador": "Rodrigo Battaglia"
+    },
+    {
+      "id": "wd-Q2607107",
+      "jogador": "Wellington Nem"
+    },
+    {
+      "id": "wd-Q736325",
+      "jogador": "Alan Kardec"
+    },
+    {
+      "id": "wd-Q3386174",
+      "jogador": "Dória"
+    },
+    {
+      "id": "wd-Q461505",
+      "jogador": "Ederson Honorato Campos"
+    },
+    {
+      "id": "wd-Q561087",
+      "jogador": "Mauro Boselli"
+    },
+    {
+      "id": "wd-Q999718",
+      "jogador": "Ricardo Tavarelli"
+    },
+    {
+      "id": "wd-Q703748",
+      "jogador": "Richard Morales"
+    },
+    {
+      "id": "wd-Q937218",
+      "jogador": "Guilherme Santos"
+    },
+    {
+      "id": "wd-Q27929648",
+      "jogador": "Caio Henrique"
+    },
+    {
+      "id": "wd-Q120681423",
+      "jogador": "Gabriel Moscardo"
+    },
+    {
+      "id": "wd-Q2092417",
+      "jogador": "Renato Cajá"
+    },
+    {
+      "id": "wd-Q210026",
+      "jogador": "Fumagalli"
+    },
+    {
+      "id": "wd-Q197875",
+      "jogador": "Edi Andradina"
+    },
+    {
+      "id": "wd-Q31766",
+      "jogador": "Mariano"
+    },
+    {
+      "id": "wd-Q2658893",
+      "jogador": "Mimi Sodré"
+    },
+    {
+      "id": "wd-Q533007",
+      "jogador": "Elzo Coelho"
+    },
+    {
+      "id": "wd-Q562347",
+      "jogador": "Gustavo Nery"
+    },
+    {
+      "id": "wd-Q433185",
+      "jogador": "Alexander Baumjohann"
+    },
+    {
+      "id": "wd-Q508075",
+      "jogador": "Bruno Uvini"
+    },
+    {
+      "id": "wd-Q112877211",
+      "jogador": "Alejo Véliz"
+    },
+    {
+      "id": "wd-Q617745",
+      "jogador": "Néicer Reasco"
+    },
+    {
+      "id": "wd-Q1185466",
+      "jogador": "Rodrigo Mendes"
+    },
+    {
+      "id": "wd-Q342237",
+      "jogador": "Afonso Alves"
+    },
+    {
+      "id": "wd-Q2277170",
+      "jogador": "Kléber Gladiador"
+    },
+    {
+      "id": "wd-Q2255874",
+      "jogador": "Edmílson Matias"
+    },
+    {
+      "id": "wd-Q969901",
+      "jogador": "Guilherme Marinato"
+    },
+    {
+      "id": "wd-Q718894",
+      "jogador": "Antônio Carlos Santos"
+    },
+    {
+      "id": "wd-Q7121685",
+      "jogador": "Pablo Marí"
+    },
+    {
+      "id": "wd-Q887406",
+      "jogador": "Fidel Martínez"
+    },
+    {
+      "id": "wd-Q31760",
+      "jogador": "Jussiê"
+    },
+    {
+      "id": "wd-Q438035",
+      "jogador": "Túlio de Melo"
+    },
+    {
+      "id": "wd-Q1185682",
+      "jogador": "Paulo Isidoro"
+    },
+    {
+      "id": "wd-Q3848970",
+      "jogador": "Mario Pineida"
+    },
+    {
+      "id": "wd-Q642934",
+      "jogador": "Rubinho"
+    },
+    {
+      "id": "wd-Q2443452",
+      "jogador": "Oswaldo Barros Velloso"
+    },
+    {
+      "id": "wd-Q217868",
+      "jogador": "Vítor Júnior"
+    },
+    {
+      "id": "wd-Q718946",
+      "jogador": "Marcos Aurélio"
+    },
+    {
+      "id": "wd-Q22703917",
+      "jogador": "Lucas Veríssimo"
+    },
+    {
+      "id": "wd-Q250962",
+      "jogador": "Geovanni"
+    },
+    {
+      "id": "wd-Q263411",
+      "jogador": "Thiago Quirino"
+    },
+    {
+      "id": "wd-Q2476543",
+      "jogador": "Walter Corbo"
+    },
+    {
+      "id": "wd-Q1947869",
+      "jogador": "Marquinhos Paraná"
+    },
+    {
+      "id": "wd-Q926917",
+      "jogador": "Doca"
+    },
+    {
+      "id": "wd-Q180986",
+      "jogador": "Edmilson"
+    },
+    {
+      "id": "wd-Q181271",
+      "jogador": "Fernando Rech"
+    },
+    {
+      "id": "wd-Q1028309",
+      "jogador": "José Alexandre"
+    },
+    {
+      "id": "wd-Q681938",
+      "jogador": "Marlos"
+    },
+    {
+      "id": "wd-Q1404865",
+      "jogador": "Cláudio"
+    },
+    {
+      "id": "wd-Q317223",
+      "jogador": "Fernando Cavenaghi"
+    },
+    {
+      "id": "wd-Q313145",
+      "jogador": "Colin Kâzım-Richards"
+    },
+    {
+      "id": "wd-Q519543",
+      "jogador": "Felipe Santana"
+    },
+    {
+      "id": "wd-Q218095",
+      "jogador": "Wolnei Caio"
+    },
+    {
+      "id": "wd-Q128294",
+      "jogador": "Will"
+    },
+    {
+      "id": "wd-Q2612089",
+      "jogador": "Johnny Herrera"
+    },
+    {
+      "id": "wd-Q2449294",
+      "jogador": "Diego Souza"
+    },
+    {
+      "id": "wd-Q197572",
+      "jogador": "Hugo"
+    },
+    {
+      "id": "wd-Q316695",
+      "jogador": "Sylvain Distin"
+    },
+    {
+      "id": "wd-Q310037",
+      "jogador": "Alan Hutton"
+    },
+    {
+      "id": "wd-Q1523030",
+      "jogador": "Etrit Berisha"
+    },
+    {
+      "id": "wd-Q4118260",
+      "jogador": "Yuri Berchiche"
+    },
+    {
+      "id": "wd-Q4755614",
+      "jogador": "Andreas Samaris"
+    },
+    {
+      "id": "wd-Q7944670",
+      "jogador": "Vitolo"
+    },
+    {
+      "id": "wd-Q318520",
+      "jogador": "Pedro Mendes"
+    },
+    {
+      "id": "wd-Q367368",
+      "jogador": "Cesare Bovo"
+    },
+    {
+      "id": "wd-Q13882431",
+      "jogador": "Youssouf Sabaly"
+    },
+    {
+      "id": "wd-Q6077213",
+      "jogador": "Isaac Thelin"
+    },
+    {
+      "id": "wd-Q16528455",
+      "jogador": "Alessandro Schöpf"
+    },
+    {
+      "id": "wd-Q380059",
+      "jogador": "Ivan Ergić"
+    },
+    {
+      "id": "wd-Q685385",
+      "jogador": "Abdelaziz Barrada"
+    },
+    {
+      "id": "wd-Q59064",
+      "jogador": "Andros Townsend"
+    },
+    {
+      "id": "wd-Q380830",
+      "jogador": "Mattia Destro"
+    },
+    {
+      "id": "wd-Q283824",
+      "jogador": "Borja Valero"
+    },
+    {
+      "id": "wd-Q276208",
+      "jogador": "Benik Afobe"
+    },
+    {
+      "id": "wd-Q276284",
+      "jogador": "Christian Wilhelmsson"
+    },
+    {
+      "id": "wd-Q298491",
+      "jogador": "Rene Krhin"
+    },
+    {
+      "id": "wd-Q704279",
+      "jogador": "Robert"
+    },
+    {
+      "id": "wd-Q299435",
+      "jogador": "Petter Hansson"
+    },
+    {
+      "id": "wd-Q15900645",
+      "jogador": "Moses Simon"
+    },
+    {
+      "id": "wd-Q318931",
+      "jogador": "Archie Thompson"
+    },
+    {
+      "id": "wd-Q312377",
+      "jogador": "Georgios Tzavelas"
+    },
+    {
+      "id": "wd-Q21622362",
+      "jogador": "Matteo Pessina"
+    },
+    {
+      "id": "wd-Q155816",
+      "jogador": "Sebastian Boenisch"
+    },
+    {
+      "id": "wd-Q258730",
+      "jogador": "Erik Pieters"
+    },
+    {
+      "id": "wd-Q310817",
+      "jogador": "Danny"
+    },
+    {
+      "id": "wd-Q223138",
+      "jogador": "Armand Traoré"
+    },
+    {
+      "id": "wd-Q314627",
+      "jogador": "Jonjo Shelvey"
+    },
+    {
+      "id": "wd-Q59786",
+      "jogador": "Róbert Mak"
+    },
+    {
+      "id": "wd-Q10856523",
+      "jogador": "Antonio Sanabria"
+    },
+    {
+      "id": "wd-Q362848",
+      "jogador": "Steve Gohouri"
+    },
+    {
+      "id": "wd-Q547455",
+      "jogador": "Gábor Király"
+    },
+    {
+      "id": "wd-Q312437",
+      "jogador": "Mikel San José"
+    },
+    {
+      "id": "wd-Q614334",
+      "jogador": "Ciprian Tătărușanu"
+    },
+    {
+      "id": "wd-Q313054",
+      "jogador": "Jan Kromkamp"
+    },
+    {
+      "id": "wd-Q4241246",
+      "jogador": "Bryan Cristante"
+    },
+    {
+      "id": "wd-Q348407",
+      "jogador": "Domenico Berardi"
+    },
+    {
+      "id": "wd-Q7398276",
+      "jogador": "Saeid Ezatolahi"
+    },
+    {
+      "id": "wd-Q161041",
+      "jogador": "Jonathan Spector"
+    },
+    {
+      "id": "wd-Q20688718",
+      "jogador": "Angeliño"
+    },
+    {
+      "id": "wd-Q221216",
+      "jogador": "Giuseppe Rossi"
+    },
+    {
+      "id": "wd-Q18635274",
+      "jogador": "Seko Fofana"
+    },
+    {
+      "id": "wd-Q310660",
+      "jogador": "Dickson Etuhu"
+    },
+    {
+      "id": "wd-Q62076",
+      "jogador": "Bernd Förster"
+    },
+    {
+      "id": "wd-Q4712133",
+      "jogador": "Alberto Moreno"
+    },
+    {
+      "id": "wd-Q299515",
+      "jogador": "Miroslav Stoch"
+    },
+    {
+      "id": "wd-Q694852",
+      "jogador": "Mitchell Weiser"
+    },
+    {
+      "id": "wd-Q436237",
+      "jogador": "Joshua King"
+    },
+    {
+      "id": "wd-Q47503",
+      "jogador": "Leo Franco"
+    },
+    {
+      "id": "wd-Q458316",
+      "jogador": "Craig Cathcart"
+    },
+    {
+      "id": "wd-Q56043276",
+      "jogador": "Robert Sánchez"
+    },
+    {
+      "id": "wd-Q211698",
+      "jogador": "Park Joo-ho"
+    },
+    {
+      "id": "wd-Q18921825",
+      "jogador": "Érick Gutiérrez"
+    },
+    {
+      "id": "wd-Q216260",
+      "jogador": "Hedwiges Maduro"
+    },
+    {
+      "id": "wd-Q3335491",
+      "jogador": "Nampalys Mendy"
+    },
+    {
+      "id": "wd-Q42725482",
+      "jogador": "Lyle Foster"
+    },
+    {
+      "id": "wd-Q313784",
+      "jogador": "Herbert Chapman"
+    },
+    {
+      "id": "wd-Q714067",
+      "jogador": "Nathaniel Clyne"
+    },
+    {
+      "id": "wd-Q161044",
+      "jogador": "José Holebas"
+    },
+    {
+      "id": "wd-Q313131",
+      "jogador": "Mauricio Pellegrino"
+    },
+    {
+      "id": "wd-Q28968068",
+      "jogador": "Mattia Zaccagni"
+    },
+    {
+      "id": "wd-Q470751",
+      "jogador": "Chris Gunter"
+    },
+    {
+      "id": "wd-Q60315",
+      "jogador": "Sebastian Rudy"
+    },
+    {
+      "id": "wd-Q363251",
+      "jogador": "Wesley Sonck"
+    },
+    {
+      "id": "wd-Q444318",
+      "jogador": "Okan Buruk"
+    },
+    {
+      "id": "wd-Q18142105",
+      "jogador": "Paddy McNair"
+    },
+    {
+      "id": "wd-Q27063854",
+      "jogador": "Ezri Konsa"
+    },
+    {
+      "id": "wd-Q310330",
+      "jogador": "Javi García"
+    },
+    {
+      "id": "wd-Q215435",
+      "jogador": "Albert Riera"
+    },
+    {
+      "id": "wd-Q822781",
+      "jogador": "Jonas Hofmann"
+    },
+    {
+      "id": "wd-Q711893",
+      "jogador": "Mikheil Kavelashvili"
+    },
+    {
+      "id": "wd-Q154963",
+      "jogador": "René Adler"
+    },
+    {
+      "id": "wd-Q932827",
+      "jogador": "Fagner"
+    },
+    {
+      "id": "wd-Q28692516",
+      "jogador": "Marco Friedl"
+    },
+    {
+      "id": "wd-Q18126412",
+      "jogador": "Krystian Bielik"
+    },
+    {
+      "id": "wd-Q311362",
+      "jogador": "Darko Pančev"
+    },
+    {
+      "id": "wd-Q456617",
+      "jogador": "Nolito"
+    },
+    {
+      "id": "wd-Q552597",
+      "jogador": "Dieumerci Mbokani"
+    },
+    {
+      "id": "wd-Q299383",
+      "jogador": "Dmitri Sychev"
+    },
+    {
+      "id": "wd-Q294293",
+      "jogador": "Federico Balzaretti"
+    },
+    {
+      "id": "wd-Q20992981",
+      "jogador": "Benjamin Henrichs"
+    },
+    {
+      "id": "wd-Q13422031",
+      "jogador": "Guillermo Varela"
+    },
+    {
+      "id": "wd-Q514329",
+      "jogador": "John Sivebæk"
+    },
+    {
+      "id": "wd-Q296341",
+      "jogador": "Demba Ba"
+    },
+    {
+      "id": "wd-Q201837",
+      "jogador": "Matthew Upson"
+    },
+    {
+      "id": "wd-Q489111",
+      "jogador": "Antonio Adán"
+    },
+    {
+      "id": "wd-Q309781",
+      "jogador": "Ritchie De Laet"
+    },
+    {
+      "id": "wd-Q650452",
+      "jogador": "Kostas Manolas"
+    },
+    {
+      "id": "wd-Q200770",
+      "jogador": "Robert Green"
+    },
+    {
+      "id": "wd-Q317810",
+      "jogador": "Jamie Redknapp"
+    },
+    {
+      "id": "wd-Q310657",
+      "jogador": "Matías Fernández"
+    },
+    {
+      "id": "wd-Q620792",
+      "jogador": "Aleix Vidal"
+    },
+    {
+      "id": "wd-Q442182",
+      "jogador": "Klas Ingesson"
+    },
+    {
+      "id": "wd-Q312892",
+      "jogador": "Jérémy Mathieu"
+    },
+    {
+      "id": "wd-Q44097",
+      "jogador": "Marco Borriello"
+    },
+    {
+      "id": "wd-Q17486599",
+      "jogador": "Rúben Neves"
+    },
+    {
+      "id": "wd-Q20078774",
+      "jogador": "Philipp Lienhart"
+    },
+    {
+      "id": "wd-Q215831",
+      "jogador": "Fabricio Coloccini"
+    },
+    {
+      "id": "wd-Q171534",
+      "jogador": "Ștefan Radu"
+    },
+    {
+      "id": "wd-Q346635",
+      "jogador": "Antar Yahia"
+    },
+    {
+      "id": "wd-Q314590",
+      "jogador": "Balázs Dzsudzsák"
+    },
+    {
+      "id": "wd-Q314028",
+      "jogador": "Kevin Gameiro"
+    },
+    {
+      "id": "wd-Q443750",
+      "jogador": "Miodrag Belodedici"
+    },
+    {
+      "id": "wd-Q70567",
+      "jogador": "David Pizarro"
+    },
+    {
+      "id": "wd-Q1639968",
+      "jogador": "Ander Herrera"
+    },
+    {
+      "id": "wd-Q27736107",
+      "jogador": "Édouard Mendy"
+    },
+    {
+      "id": "wd-Q296822",
+      "jogador": "Vinnie Jones"
+    },
+    {
+      "id": "wd-Q2165118",
+      "jogador": "Alberto Acosta"
+    },
+    {
+      "id": "wd-Q155461",
+      "jogador": "Robert Huth"
+    },
+    {
+      "id": "wd-Q767469",
+      "jogador": "Yacine Brahimi"
+    },
+    {
+      "id": "wd-Q444323",
+      "jogador": "Goran Vlaović"
+    },
+    {
+      "id": "wd-Q222211",
+      "jogador": "Jan Vennegoor of Hesselink"
+    },
+    {
+      "id": "wd-Q350288",
+      "jogador": "Germán Burgos"
+    },
+    {
+      "id": "wd-Q310625",
+      "jogador": "Marc Bartra"
+    },
+    {
+      "id": "wd-Q316854",
+      "jogador": "Daniel Wass"
+    },
+    {
+      "id": "wd-Q150207",
+      "jogador": "Stéphane Sessègnon"
+    },
+    {
+      "id": "wd-Q326240",
+      "jogador": "Ross Barkley"
+    },
+    {
+      "id": "wd-Q160795",
+      "jogador": "David Odonkor"
+    },
+    {
+      "id": "wd-Q17492",
+      "jogador": "Jonathan dos Santos"
+    },
+    {
+      "id": "wd-Q309890",
+      "jogador": "Manucho"
+    },
+    {
+      "id": "wd-Q363608",
+      "jogador": "Darren Anderton"
+    },
+    {
+      "id": "wd-Q59914100",
+      "jogador": "Raoul Bellanova"
+    },
+    {
+      "id": "wd-Q317322",
+      "jogador": "Alfonso Pérez"
+    },
+    {
+      "id": "wd-Q19367",
+      "jogador": "Juan Bernat"
+    },
+    {
+      "id": "wd-Q313725",
+      "jogador": "Matthew Amoah"
+    },
+    {
+      "id": "wd-Q3869208",
+      "jogador": "Mário Rui"
+    },
+    {
+      "id": "wd-Q1380874",
+      "jogador": "Álvaro González"
+    },
+    {
+      "id": "wd-Q309826",
+      "jogador": "Marat Izmaylov"
+    },
+    {
+      "id": "wd-Q179172",
+      "jogador": "Bojan Krkić"
+    },
+    {
+      "id": "wd-Q1085348",
+      "jogador": "Christoph Kramer"
+    },
+    {
+      "id": "wd-Q208433",
+      "jogador": "Milan Jovanović"
+    },
+    {
+      "id": "wd-Q1356772",
+      "jogador": "Robbie Kruse"
+    },
+    {
+      "id": "wd-Q367474",
+      "jogador": "Takashi Usami"
+    },
+    {
+      "id": "wd-Q158243",
+      "jogador": "Zvjezdan Misimović"
+    },
+    {
+      "id": "wd-Q166285",
+      "jogador": "Fabian Delph"
+    },
+    {
+      "id": "wd-Q349181",
+      "jogador": "Eyong Enoh"
+    },
+    {
+      "id": "wd-Q297845",
+      "jogador": "Manuel Fernandes"
+    },
+    {
+      "id": "wd-Q104762954",
+      "jogador": "Elliot Anderson"
+    },
+    {
+      "id": "wd-Q154478",
+      "jogador": "Cristian Zaccardo"
+    },
+    {
+      "id": "wd-Q110258306",
+      "jogador": "Joan García"
+    },
+    {
+      "id": "wd-Q1337178",
+      "jogador": "Hans Gillhaus"
+    },
+    {
+      "id": "wd-Q310328",
+      "jogador": "Andriy Yarmolenko"
+    },
+    {
+      "id": "wd-Q111336539",
+      "jogador": "Nico Paz"
+    },
+    {
+      "id": "wd-Q823064",
+      "jogador": "Erik Durm"
+    },
+    {
+      "id": "wd-Q211996",
+      "jogador": "José Bosingwa"
+    },
+    {
+      "id": "wd-Q23887767",
+      "jogador": "Axel Disasi"
+    },
+    {
+      "id": "wd-Q315336",
+      "jogador": "Patrick Müller"
+    },
+    {
+      "id": "wd-Q295452",
+      "jogador": "Mart Poom"
+    },
+    {
+      "id": "wd-Q60597",
+      "jogador": "Aymen Abdennour"
+    },
+    {
+      "id": "wd-Q353678",
+      "jogador": "Gary McAllister"
+    },
+    {
+      "id": "wd-Q294990",
+      "jogador": "Michal Kadlec"
+    },
+    {
+      "id": "wd-Q26380",
+      "jogador": "Iago Aspas"
+    },
+    {
+      "id": "wd-Q62016194",
+      "jogador": "Tajon Buchanan"
+    },
+    {
+      "id": "wd-Q15113616",
+      "jogador": "André Silva"
+    },
+    {
+      "id": "wd-Q57017297",
+      "jogador": "Samuel Chukwueze"
+    },
+    {
+      "id": "wd-Q366753",
+      "jogador": "Teemu Pukki"
+    },
+    {
+      "id": "wd-Q299727",
+      "jogador": "Rolando"
+    },
+    {
+      "id": "wd-Q6784737",
+      "jogador": "Massimo Luongo"
+    },
+    {
+      "id": "wd-Q342680",
+      "jogador": "Aleksandr Mostovoy"
+    },
+    {
+      "id": "wd-Q297397",
+      "jogador": "Julio Ricardo Cruz"
+    },
+    {
+      "id": "wd-Q223156",
+      "jogador": "Santiago Bernabéu"
+    },
+    {
+      "id": "wd-Q107742783",
+      "jogador": "Simon Adingra"
+    },
+    {
+      "id": "wd-Q321552",
+      "jogador": "Raïs M'Bolhi"
+    },
+    {
+      "id": "wd-Q96211488",
+      "jogador": "Matheus Nunes"
+    },
+    {
+      "id": "wd-Q294963",
+      "jogador": "Hugo Viana"
+    },
+    {
+      "id": "wd-Q312334",
+      "jogador": "Jared Borgetti"
+    },
+    {
+      "id": "wd-Q74681",
+      "jogador": "Carlos Bacca"
+    },
+    {
+      "id": "wd-Q154303",
+      "jogador": "Piotr Trochowski"
+    },
+    {
+      "id": "wd-Q12808967",
+      "jogador": "Andrija Živković"
+    },
+    {
+      "id": "wd-Q280543",
+      "jogador": "Adri van Tiggelen"
+    },
+    {
+      "id": "wd-Q155604",
+      "jogador": "Vedad Ibišević"
+    },
+    {
+      "id": "wd-Q7807765",
+      "jogador": "Tin Jedvaj"
+    },
+    {
+      "id": "wd-Q45819496",
+      "jogador": "Keito Nakamura"
+    },
+    {
+      "id": "wd-Q334684",
+      "jogador": "Giuseppe Signori"
+    },
+    {
+      "id": "wd-Q358862",
+      "jogador": "Admir Mehmedi"
+    },
+    {
+      "id": "wd-Q72921909",
+      "jogador": "Neco Williams"
+    },
+    {
+      "id": "wd-Q381460",
+      "jogador": "Ronny Johnsen"
+    },
+    {
+      "id": "wd-Q352313",
+      "jogador": "Quique Flores"
+    },
+    {
+      "id": "wd-Q207401",
+      "jogador": "Ledley King"
+    },
+    {
+      "id": "wd-Q356418",
+      "jogador": "Stuart Pearce"
+    },
+    {
+      "id": "wd-Q245295",
+      "jogador": "Ebi Smolarek"
+    },
+    {
+      "id": "wd-Q111366053",
+      "jogador": "Alejandro Garnacho"
+    },
+    {
+      "id": "wd-Q155049",
+      "jogador": "Ron-Robert Zieler"
+    },
+    {
+      "id": "wd-Q18670270",
+      "jogador": "Konrad Laimer"
+    },
+    {
+      "id": "wd-Q14495103",
+      "jogador": "Kenny Tete"
+    },
+    {
+      "id": "wd-Q375012",
+      "jogador": "Stefano Tacconi"
+    },
+    {
+      "id": "wd-Q191848",
+      "jogador": "Khalid Boulahrouz"
+    },
+    {
+      "id": "wd-Q296975",
+      "jogador": "Iván Helguera"
+    },
+    {
+      "id": "wd-Q311027",
+      "jogador": "Aimé Jacquet"
+    },
+    {
+      "id": "wd-Q310971",
+      "jogador": "Cha Du-ri"
+    },
+    {
+      "id": "wd-Q18637429",
+      "jogador": "Serhou Guirassy"
+    },
+    {
+      "id": "wd-Q277533",
+      "jogador": "Pablo Hernández"
+    },
+    {
+      "id": "wd-Q19773058",
+      "jogador": "Lorenzo Pellegrini"
+    },
+    {
+      "id": "wd-Q529087",
+      "jogador": "Jacinto Quincoces"
+    },
+    {
+      "id": "wd-Q168029",
+      "jogador": "Roman Pavlyuchenko"
+    },
+    {
+      "id": "wd-Q122346",
+      "jogador": "Hakan Yakın"
+    },
+    {
+      "id": "wd-Q1922",
+      "jogador": "Anthony Réveillère"
+    },
+    {
+      "id": "wd-Q342484",
+      "jogador": "Paolo Montero"
+    },
+    {
+      "id": "wd-Q107584170",
+      "jogador": "Marquinhos Alencar"
+    },
+    {
+      "id": "wd-Q603190",
+      "jogador": "Júlio César Silva"
+    },
+    {
+      "id": "wd-Q562705",
+      "jogador": "Capone"
+    },
+    {
+      "id": "wd-Q695858",
+      "jogador": "Paulo Rink"
+    },
+    {
+      "id": "wd-Q180906",
+      "jogador": "Leandro Lessa Azevedo"
+    },
+    {
+      "id": "wd-Q1825181",
+      "jogador": "Rinaldo Gonçalves"
+    },
+    {
+      "id": "wd-Q100879633",
+      "jogador": "Ângelo"
+    },
+    {
+      "id": "wd-Q769055",
+      "jogador": "Teóphilo Bettencourt Pereira"
+    },
+    {
+      "id": "wd-Q218105",
+      "jogador": "Túlio Guerreiro"
+    },
+    {
+      "id": "wd-Q2314727",
+      "jogador": "Fabão"
+    },
+    {
+      "id": "wd-Q1757383",
+      "jogador": "Edgardo Andrada"
+    },
+    {
+      "id": "wd-Q181259",
+      "jogador": "Guga"
+    },
+    {
+      "id": "wd-Q2629254",
+      "jogador": "Alcindo"
+    },
+    {
+      "id": "wd-Q656298",
+      "jogador": "Julio Manzur"
+    },
+    {
+      "id": "wd-Q1609495",
+      "jogador": "Jorge Manicera"
+    },
+    {
+      "id": "wd-Q180735",
+      "jogador": "Fabinho Soldado"
+    },
+    {
+      "id": "wd-Q112620020",
+      "jogador": "Wesley Gassova"
+    },
+    {
+      "id": "wd-Q1825157",
+      "jogador": "Hugo Mallo"
+    },
+    {
+      "id": "wd-Q56876908",
+      "jogador": "Kaio Jorge"
+    },
+    {
+      "id": "wd-Q718903",
+      "jogador": "Dutra"
+    },
+    {
+      "id": "wd-Q56223006",
+      "jogador": "Carlos Augusto"
+    },
+    {
+      "id": "wd-Q439959",
+      "jogador": "Gonzalo Fierro"
+    },
+    {
+      "id": "wd-Q961889",
+      "jogador": "Gabriel"
+    },
+    {
+      "id": "wd-Q1839524",
+      "jogador": "Felipe"
+    },
+    {
+      "id": "wd-Q1200065",
+      "jogador": "Lucas Severino"
+    },
+    {
+      "id": "wd-Q2538947",
+      "jogador": "Sylvio Hoffmann"
+    },
+    {
+      "id": "wd-Q1885698",
+      "jogador": "Rodolfo Fischer"
+    },
+    {
+      "id": "wd-Q2704110",
+      "jogador": "Arcadio López"
+    },
+    {
+      "id": "wd-Q2463272",
+      "jogador": "Nelson Tapia"
+    },
+    {
+      "id": "wd-Q18921427",
+      "jogador": "Fellipe Bertoldo"
+    },
+    {
+      "id": "wd-Q2714418",
+      "jogador": "Walter"
+    },
+    {
+      "id": "wd-Q244363",
+      "jogador": "Miguel Veloso"
+    },
+    {
+      "id": "wd-Q204059",
+      "jogador": "Mateja Kežman"
+    },
+    {
+      "id": "wd-Q18336397",
+      "jogador": "Dominic Solanke"
+    },
+    {
+      "id": "wd-Q215425",
+      "jogador": "Andriy Voronin"
+    },
+    {
+      "id": "wd-Q294881",
+      "jogador": "Petit"
+    },
+    {
+      "id": "wd-Q15506789",
+      "jogador": "Kelechi Iheanacho"
+    },
+    {
+      "id": "wd-Q363766",
+      "jogador": "Kurt Hamrin"
+    },
+    {
+      "id": "wd-Q15410320",
+      "jogador": "Nabil Bentaleb"
+    },
+    {
+      "id": "wd-Q361418",
+      "jogador": "Fernando Gomes"
+    },
+    {
+      "id": "wd-Q736391",
+      "jogador": "Eran Zahavi"
+    },
+    {
+      "id": "wd-Q60842120",
+      "jogador": "Gonzalo Plata"
+    },
+    {
+      "id": "wd-Q310263",
+      "jogador": "Martin O'Neill"
+    },
+    {
+      "id": "wd-Q113184832",
+      "jogador": "Kenan Yıldız"
+    },
+    {
+      "id": "wd-Q2896171",
+      "jogador": "Benjamin Mendy"
+    },
+    {
+      "id": "wd-Q463933",
+      "jogador": "Vahid Halilhodžić"
+    },
+    {
+      "id": "wd-Q313112",
+      "jogador": "Lasse Schöne"
+    },
+    {
+      "id": "wd-Q299768",
+      "jogador": "Eduardo Carvalho"
+    },
+    {
+      "id": "wd-Q216928",
+      "jogador": "Andy Cole"
+    },
+    {
+      "id": "wd-Q200868",
+      "jogador": "Marek Jankulovski"
+    },
+    {
+      "id": "wd-Q299244",
+      "jogador": "Seydou Doumbia"
+    },
+    {
+      "id": "wd-Q122294",
+      "jogador": "Angelo Di Livio"
+    },
+    {
+      "id": "wd-Q317885",
+      "jogador": "Arie Haan"
     }
   ]
 }

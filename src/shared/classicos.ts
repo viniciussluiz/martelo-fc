@@ -9,7 +9,8 @@ import type { Card } from '../engine/types.js';
  * Uma pessoa não aparece em dois pacotes do mesmo leilão, então cada clube entra em um clássico só por
  * leilão: a cada leilão o jogo sorteia uma combinação (Fla-Flu e Vasco x Botafogo, ou Flamengo x Vasco e
  * Fluminense x Botafogo…). Com o baralho de hoje são 18 clássicos por leilão, 9 do Brasil e 9 da Europa:
- * dá pacote de clássico para até 17 técnicos; acima disso, os que faltarem saem combinados.
+ * dá pacote de clássico para até 15 técnicos (Atletiba e Ba-Vi não fecham a zaga); acima disso, os que
+ * faltarem saem combinados.
  */
 export interface Classico {
   id: string;

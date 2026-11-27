@@ -4,7 +4,7 @@ import { validateDeck } from '../../src/engine/deck-generator.js';
 import { Rng } from '../../src/engine/rng.js';
 import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
-import { deckForScope, SERIES_SCOPES, type Card } from '../../src/engine/types.js';
+import { deckCapacity, deckForScope, playerAuctionDeck, SERIES_SCOPES, type Card } from '../../src/engine/types.js';
 import { SERIES_CLUBS, type SeriesClub } from '../../src/tools/wikidata/series.js';
 import {
   ageModifier,
@@ -349,6 +349,21 @@ describe('baralho por grupos de clubes (Série A, Série B, Europa)', () => {
 
 describe('baralho real gerado (data/deck-wikidata.json)', () => {
   const path = join(import.meta.dirname, '../../data/deck-wikidata.json');
+  it.skipIf(!existsSync(path))('os ocultos saem só do leilão de jogadores, sem diminuir a sala que cada grupo de clubes fecha', () => {
+    const cards = (JSON.parse(readFileSync(path, 'utf8')) as { cards: Card[] }).cards;
+    const hidden = cards.filter((c) => c.packagesOnly);
+    expect(new Set(hidden.map((c) => c.personId)).size).toBeGreaterThan(500);
+    // Ninguém com carta de Lenda ou Craque fica oculto.
+    const stars = new Set(cards.filter((c) => c.tier === 'lenda' || c.tier === 'craque').map((c) => c.personId));
+    expect(hidden.filter((c) => stars.has(c.personId)).map((c) => c.name)).toEqual([]);
+    for (const scope of SERIES_SCOPES) {
+      const visible = playerAuctionDeck(cards, scope);
+      expect(visible.some((c) => c.packagesOnly), scope).toBe(false);
+      expect(visible.length, scope).toBeLessThan(deckForScope(cards, scope).length);
+      expect(deckCapacity(visible), scope).toBe(deckCapacity(deckForScope(cards, scope)));
+    }
+  });
+
   it.skipIf(!existsSync(path))('cada escolha de clubes tem cartas para uma sala de 20 técnicos e nenhum clube fora da lista', () => {
     const cards = (JSON.parse(readFileSync(path, 'utf8')) as { cards: Card[] }).cards;
     validateDeck(cards);
@@ -356,7 +371,12 @@ describe('baralho real gerado (data/deck-wikidata.json)', () => {
     const need = { GOL: 21, LAT: 41, ZAG: 41, MEI: 81, ATA: 61 };
     for (const scope of SERIES_SCOPES) {
       const scoped = deckForScope(cards, scope);
-      for (const [pos, n] of Object.entries(need)) expect(scoped.filter((c) => c.position === pos).length, `${scope} ${pos}`).toBeGreaterThanOrEqual(n);
+      for (const [pos, n] of Object.entries(need)) {
+        // Exceção: a zaga da Série B sozinha. Os zagueiros desconhecidos saíram do baralho (revisão de posições,
+        // nov/2026) e sobraram 25, o que fecha a zaga de 12 técnicos; acima disso entram reservas genéricas.
+        const min = scope === 'B' && pos === 'ZAG' ? 25 : n;
+        expect(scoped.filter((c) => c.position === pos).length, `${scope} ${pos}`).toBeGreaterThanOrEqual(min);
+      }
     }
     // Fora da lista só entram clubes de cartas feitas à mão (data/deck-ajustes.json → incluir), sempre no grupo Europa.
     const manual = (JSON.parse(readFileSync(join(process.cwd(), 'data/deck-ajustes.json'), 'utf8')) as { incluir?: Card[] }).incluir ?? [];
@@ -367,10 +387,11 @@ describe('baralho real gerado (data/deck-wikidata.json)', () => {
       const listed = SERIES_CLUBS.find((x) => x.name === c.club);
       expect(listed ? listed.series : 'EU', c.id).toBe(c.series);
     }
-    // Toda carta feita à mão está no baralho, do jeito que foi escrita.
+    // Toda carta feita à mão está no baralho, do jeito que foi escrita (a marca de oculto pode vir por cima).
     for (const m of manual) {
       const { motivo: _motivo, ...card } = m as Card & { motivo?: string };
-      expect(cards.find((c) => c.id === m.id)).toEqual(card);
+      const { packagesOnly: _hidden, ...found } = cards.find((c) => c.id === m.id)!;
+      expect(found).toEqual(card);
     }
   });
 });
@@ -393,14 +414,60 @@ describe('ajustes manuais do baralho (data/deck-ajustes.json)', () => {
     // O baralho real continua válido com o 100.
     expect(() => validateDeck(real.cards)).not.toThrow();
     const sample = [
-      { id: 'wd-Q1-Q2-2020', levelMin: 70, levelMax: 75, tier: 'titular' as const },
-      { id: 'wd-Q1-Q2-2026', levelMin: 70, levelMax: 75, tier: 'titular' as const },
-      { id: 'wd-Q1-Q3-2026', levelMin: 70, levelMax: 75, tier: 'titular' as const },
-      { id: 'wd-Q10-Q2-2026', levelMin: 70, levelMax: 75, tier: 'titular' as const },
+      { id: 'wd-Q1-Q2-2020', levelMin: 70, levelMax: 75, tier: 'titular' as const, position: 'ZAG' as const },
+      { id: 'wd-Q1-Q2-2026', levelMin: 70, levelMax: 75, tier: 'titular' as const, position: 'ZAG' as const },
+      { id: 'wd-Q1-Q3-2026', levelMin: 70, levelMax: 75, tier: 'titular' as const, position: 'ZAG' as const },
+      { id: 'wd-Q10-Q2-2026', levelMin: 70, levelMax: 75, tier: 'titular' as const, position: 'ZAG' as const },
     ];
     const out = applyAdjustments(sample, { excluir: [{ id: 'wd-Q1-Q2' }], nivel: [{ id: 'wd-Q1', faixa: [95, 100] }] });
     expect(out.cards.map((c) => c.id)).toEqual(['wd-Q1-Q3-2026', 'wd-Q10-Q2-2026']);
     expect(out.cards[0]).toMatchObject({ levelMin: 95, levelMax: 100, tier: 'lenda' });
     expect(out.cards[1]).toMatchObject({ levelMin: 70, levelMax: 75 });
+  });
+
+  it('posição corrigida à mão vale por último, inclusive para carta incluída à mão', async () => {
+    const { applyAdjustments, loadAdjustments } = await import('../../src/tools/wikidata/adjustments.js');
+    const base = { levelMin: 70, levelMax: 75, tier: 'titular' as const, position: 'ZAG' as const };
+    const sample = [
+      { ...base, id: 'wd-Q1-Q2-2012' },
+      { ...base, id: 'wd-Q1-Q3-2008' },
+      { ...base, id: 'wd-Q5-Q2-2010' },
+    ];
+    const out = applyAdjustments(sample, {
+      excluir: [],
+      nivel: [],
+      incluir: [{ ...base, id: 'man-fulano-clube-1950', name: 'Fulano', club: 'Clube', year: 1950, hint: '', kit: ['#000000', '#FFFFFF'] }],
+      posicao: [
+        { id: 'wd-Q1', posicao: 'LAT' },
+        { id: 'man-fulano-clube-1950', posicao: 'MEI' },
+        { id: 'wd-Q5-Q2-2010', posicao: 'ZAG' },
+      ],
+    });
+    expect(out.cards.map((c) => c.position)).toEqual(['LAT', 'LAT', 'ZAG', 'MEI']);
+    // Só conta como corrigida a que mudou de fato.
+    expect(out.moved.map((c) => c.id)).toEqual(['wd-Q1-Q2-2012', 'wd-Q1-Q3-2008', 'man-fulano-clube-1950']);
+    // O arquivo real só traz posições válidas.
+    const real = loadAdjustments(join(process.cwd(), 'data/deck-ajustes.json'));
+    expect(real.posicao!.length).toBeGreaterThan(90);
+  });
+
+  it('jogador oculto continua no baralho, marcado para ficar só nos pacotes (todas as cartas dele)', async () => {
+    const { applyAdjustments, loadAdjustments } = await import('../../src/tools/wikidata/adjustments.js');
+    const base: { levelMin: number; levelMax: number; tier: 'perna'; position: 'ZAG'; packagesOnly?: boolean } = { levelMin: 60, levelMax: 66, tier: 'perna', position: 'ZAG' };
+    const sample = [
+      { ...base, id: 'wd-Q1-Q2-2012' },
+      { ...base, id: 'wd-Q1-Q3-2008' },
+      { ...base, id: 'wd-Q12-Q2-2010' },
+    ];
+    const out = applyAdjustments(sample, { excluir: [], nivel: [], ocultar: [{ id: 'wd-Q1', jogador: 'Fulano' }] });
+    expect(out.cards.map((c) => [c.id, c.packagesOnly ?? false])).toEqual([
+      ['wd-Q1-Q2-2012', true],
+      ['wd-Q1-Q3-2008', true],
+      // wd-Q1 não pega o Q12.
+      ['wd-Q12-Q2-2010', false],
+    ]);
+    expect(out.hidden).toHaveLength(2);
+    const real = loadAdjustments(join(process.cwd(), 'data/deck-ajustes.json'));
+    expect(real.ocultar!.length).toBeGreaterThan(500);
   });
 });

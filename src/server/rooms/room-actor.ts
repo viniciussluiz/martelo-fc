@@ -13,6 +13,7 @@ import {
   isPackageMode,
   legendsDeck,
   nationalDeck,
+  playerAuctionDeck,
   type Card,
   type CpuStyle,
   type DisputeConfig,
@@ -657,7 +658,7 @@ export class RoomActor {
    * Cartas que entram no leilão, conforme o tipo: as de seleção; só Lendas e Craques de todos os clubes;
    * nos leilões de clubes e de clássicos, o baralho inteiro (é o que dá pacote para cada setor; no de
    * clássicos, os clubes de fora dos clássicos só entram nos pacotes combinados); no de jogador, o grupo
-   * de clubes da sala.
+   * de clubes da sala, sem os jogadores pouco conhecidos (que ficam só nos pacotes).
    */
   private auctionDeck(): Card[] {
     const deck = this.deps.deck;
@@ -670,7 +671,7 @@ export class RoomActor {
       case 'classicos':
         return deckForScope(deck, 'ALL');
       default:
-        return deckForScope(deck, this.settings.series ?? 'ALL');
+        return playerAuctionDeck(deck, this.settings.series ?? 'ALL');
     }
   }
 

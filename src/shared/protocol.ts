@@ -417,7 +417,10 @@ export interface DisputeView {
   result: DisputeResult | null;
 }
 
-/** Baralho carregado no servidor: nome e quantas cartas há em cada grupo de clubes (vazio = baralho sem grupos). */
+/**
+ * Baralho carregado no servidor: nome e quantas cartas há em cada grupo de clubes no leilão de jogadores, sem os
+ * pouco conhecidos que só entram nos pacotes (vazio = baralho sem grupos). `clubs` também segue o leilão de jogadores.
+ */
 export interface DeckInfo {
   name: string;
   total: number;

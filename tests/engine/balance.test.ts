@@ -69,7 +69,9 @@ describe('lote equilibrado: 1/3 bons, 1/3 médios, 1/3 ruins em cada posição',
   });
 
   it('ciclo seguinte: as herdadas voltam todas e as novas puxam o lote para os terços', () => {
-    const goods = REAL.filter((c) => c.position === 'MEI' && qualityBand(c.tier) === 'bom').slice(0, 6);
+    // Seis bons herdados, um deles Lenda (a Lenda garantida da posição já vem entre as herdadas).
+    const meiGood = REAL.filter((c) => c.position === 'MEI' && qualityBand(c.tier) === 'bom');
+    const goods = [meiGood.find((c) => c.tier === 'lenda')!, ...meiGood.filter((c) => c.tier !== 'lenda').slice(0, 5)];
     const seats = seatsOf(4);
     const { pool } = buildAuctionPool({ seats, deck: REAL, carried: goods, extra: 1, seed: 'herdadas' });
     const mei = pool.filter((c) => c.position === 'MEI');
@@ -104,7 +106,9 @@ describe('lote equilibrado: 1/3 bons, 1/3 médios, 1/3 ruins em cada posição',
     const { pool } = buildAuctionPool({ seats: seatsOf(4), deck, carried: [], extra: 1, seed: 'b' });
     expect(pool.filter((c) => c.position === 'GOL')).toHaveLength(5);
     expect(pool.every((c) => c.series === 'B')).toBe(true);
-    expect(pool.filter((c) => c.position === 'ATA' && c.tier === 'lenda')).toHaveLength(1);
+    // A única Lenda da Série B é o Sócrates (Botafogo-SP), no meio: o ataque segue sem Lenda, sem inventar uma.
+    expect(pool.filter((c) => c.position === 'MEI' && c.tier === 'lenda')).toHaveLength(1);
+    expect(pool.filter((c) => c.position === 'ATA' && c.tier === 'lenda')).toHaveLength(0);
   });
 
   it('cada leva também sai equilibrada e do mesmo tamanho', () => {

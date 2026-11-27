@@ -64,8 +64,9 @@ export function describeDeck(
 ): DeckInfo {
   const groups: DeckInfo['groups'] = {};
   const clubs: Partial<Record<keyof DeckInfo['groups'], Set<string>>> = {};
+  // Contam as cartas do leilão de jogadores (é onde a sala escolhe os grupos): os ocultos ficam de fora.
   for (const c of cards) {
-    if (!c.series) continue;
+    if (!c.series || c.packagesOnly) continue;
     groups[c.series] = (groups[c.series] ?? 0) + 1;
     (clubs[c.series] ??= new Set()).add(c.club);
   }

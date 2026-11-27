@@ -22,7 +22,8 @@
     "#111111",
     "#FFFFFF"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q2447165-Q35933-1971",
@@ -277,7 +278,8 @@
     "#FFFFFF",
     "#FEBE10"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q703920-Q5014111-1948",
@@ -362,7 +364,8 @@
     "#D50000",
     "#111111"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q241378-Q1130849-1998",
@@ -481,7 +484,8 @@
     "#FB090B",
     "#111111"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q6701435-Q1633430-2008",
@@ -498,7 +502,8 @@
     "#5BC2E7",
     "#FFFFFF"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q1132464-Q17479-1997",
@@ -515,7 +520,8 @@
     "#C8102E",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q358075-Q180305-2012",
@@ -566,7 +572,8 @@
     "#FFD200",
     "#111111"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q150268-Q18656-2017",
@@ -702,7 +709,8 @@
     "#C8102E",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q180661-Q1422-1972",
@@ -770,7 +778,8 @@
     "#111111",
     "#FFFFFF"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q1757383-Q274465-1976",
@@ -787,7 +796,8 @@
     "#D50000",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q27736107-Q9616-2020",
@@ -804,7 +814,8 @@
     "#034694",
     "#FFFFFF"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q299768-Q131499-2011",
@@ -821,7 +832,8 @@
     "#E83030",
     "#FFFFFF"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q5340631-Q910453-2010",
@@ -838,7 +850,8 @@
     "#00843D",
     "#FFFFFF"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q2002195-Q80958-1993",
@@ -855,7 +868,8 @@
     "#111111",
     "#FFFFFF"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q482955-Q81888-1997",
@@ -923,7 +937,8 @@
     "#87D8F7",
     "#FFFFFF"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q8078540-Q1052219-2017",
@@ -940,7 +955,8 @@
     "#111111",
     "#FFFFFF"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q430729-Q270995-2009",
@@ -1093,7 +1109,8 @@
     "#E32221",
     "#111111"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q961889-Q188277-2012",
@@ -1110,7 +1127,8 @@
     "#0033A0",
     "#FFFFFF"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q781683-Q274465-2015",
@@ -1161,7 +1179,8 @@
     "#CB3524",
     "#FFFFFF"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q313480-Q631-1994",
@@ -1314,7 +1333,8 @@
     "#C8102E",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q3120564-Q80987-2019",
@@ -1331,7 +1351,8 @@
     "#7A1E32",
     "#00613A"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q20641621-Q274465-2014",
@@ -1348,7 +1369,8 @@
     "#D50000",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q152354-Q104761-2001",
@@ -1382,7 +1404,8 @@
     "#D50000",
     "#FFFFFF"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q2607445-Q338285-1979",
@@ -1467,7 +1490,8 @@
     "#FFFFFF",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q18978130-Q910453-2009",
@@ -1484,7 +1508,8 @@
     "#00843D",
     "#FFFFFF"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q2058682-Q8701-2020",
@@ -1535,7 +1560,8 @@
     "#0055A4",
     "#E30613"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q155065-Q15789-1982",
@@ -1586,7 +1612,8 @@
     "#A50044",
     "#004D98"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q553025-Q270995-1982",
@@ -1620,7 +1647,8 @@
     "#00843D",
     "#111111"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q724036-Q483020-1985",
@@ -1654,7 +1682,8 @@
     "#FFFFFF",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q313761-Q8682-1993",
@@ -1722,7 +1751,8 @@
     "#C8102E",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q182459-Q17479-2005",
@@ -1773,7 +1803,8 @@
     "#0D80BF",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q463751-Q80955-2004",
@@ -1790,7 +1821,8 @@
     "#FFFFFF",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q295797-Q50602-2009",
@@ -1841,7 +1873,8 @@
     "#111111",
     "#FFFFFF"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q47503-Q8701-2004",
@@ -1858,7 +1891,8 @@
     "#CB3524",
     "#FFFFFF"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q19968755-Q478317-2023",
@@ -1875,7 +1909,8 @@
     "#00613A",
     "#FFFFFF"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q1626880-Q219120-1984",
@@ -2045,7 +2080,8 @@
     "#0D80BF",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q2931622-Q219098-2001",
@@ -2062,7 +2098,8 @@
     "#D50000",
     "#111111"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q342474-Q80964-2000",
@@ -2096,7 +2133,8 @@
     "#00843D",
     "#FFFFFF"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q159057-Q9616-2013",
@@ -2130,7 +2168,8 @@
     "#EF0107",
     "#FFFFFF"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q510401-Q18656-2022",
@@ -2198,7 +2237,8 @@
     "#C8102E",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q16337914-Q338285-2014",
@@ -2266,7 +2306,8 @@
     "#C8102E",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q2463272-Q80955-2004",
@@ -2283,7 +2324,8 @@
     "#FFFFFF",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q62657-Q506832-2011",
@@ -2351,7 +2393,8 @@
     "#7A1E32",
     "#00613A"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q5463717-Q338285-2008",
@@ -2368,7 +2411,8 @@
     "#00843D",
     "#111111"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q311711-Q18741-1972",
@@ -2504,7 +2548,8 @@
     "#FFFFFF",
     "#2FAEE0"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q2625427-Q17479-1972",
@@ -2538,7 +2583,8 @@
     "#E32221",
     "#111111"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q492484-Q75729-2003",
@@ -2572,7 +2618,8 @@
     "#00843D",
     "#111111"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q999718-Q221695-2004",
@@ -2589,7 +2636,8 @@
     "#0D80BF",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q294444-Q10329-1988",
@@ -2623,7 +2671,8 @@
     "#034694",
     "#FFFFFF"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q56043276-Q9616-2024",
@@ -2640,7 +2689,8 @@
     "#034694",
     "#FFFFFF"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q296961-Q80845-2010",
@@ -2759,7 +2809,8 @@
     "#C8102E",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q765007-Q17479-1968",
@@ -2827,7 +2878,8 @@
     "#DA291C",
     "#111111"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q1607691-Q219120-2002",
@@ -2844,7 +2896,8 @@
     "#111111",
     "#FFFFFF"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q642934-Q35933-2005",
@@ -2861,7 +2914,8 @@
     "#FFFFFF",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q294980-Q75729-2015",
@@ -2929,7 +2983,8 @@
     "#C8102E",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q44194-Q15789-1971",
@@ -3014,7 +3069,8 @@
     "#0068A8",
     "#111111"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q1924-Q132885-2012",
@@ -3167,7 +3223,8 @@
     "#00613A",
     "#FFFFFF"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q563649-Q270995-2012",
@@ -3218,7 +3275,8 @@
     "#FFFFFF",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q954475-Q38568-1978",
@@ -3269,7 +3327,8 @@
     "#C8102E",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q2476543-Q221695-1977",
@@ -3286,7 +3345,8 @@
     "#0D80BF",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q8040741-Q2332493-2010",
@@ -3337,7 +3397,8 @@
     "#00613A",
     "#FFFFFF"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q667596-Q631-2023",
@@ -3490,7 +3551,8 @@
     "#111111",
     "#FFFFFF"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q310037-Q18741-2011",
@@ -3507,7 +3569,8 @@
     "#FFFFFF",
     "#132257"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q4712133-Q10329-2014",
@@ -3524,7 +3587,8 @@
     "#FFFFFF",
     "#D50000"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q620792-Q7156-2016",
@@ -3541,7 +3605,8 @@
     "#A50044",
     "#004D98"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q105681392-Q7156-2026",
@@ -3581,7 +3646,7 @@
    "id": "wd-Q216142-Q80955-2004",
    "personId": "Q216142",
    "name": "Alex",
-   "position": "LAT",
+   "position": "ZAG",
    "club": "Santos",
    "year": 2004,
    "levelMin": 82,
@@ -3609,7 +3674,8 @@
     "#111111",
     "#FFFFFF"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q921324-Q131499-2022",
@@ -3717,7 +3783,7 @@
    "id": "wd-Q21207778-Q80958-2014",
    "personId": "Q21207778",
    "name": "Allano",
-   "position": "LAT",
+   "position": "ATA",
    "club": "Botafogo",
    "year": 2014,
    "levelMin": 57,
@@ -3728,7 +3794,8 @@
     "#111111",
     "#FFFFFF"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q214898-Q38568-2014",
@@ -3762,7 +3829,8 @@
     "#C8102E",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q310458-Q35933-2009",
@@ -3813,7 +3881,8 @@
     "#8E1F2F",
     "#F0BC42"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q1922-Q704-2006",
@@ -3830,7 +3899,8 @@
     "#FFFFFF",
     "#1E3A8A"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q223138-Q9617-2011",
@@ -3847,7 +3917,8 @@
     "#EF0107",
     "#FFFFFF"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q4801594-Q219120-2013",
@@ -3864,7 +3935,8 @@
     "#111111",
     "#FFFFFF"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q133556-Q9616-2007",
@@ -3915,7 +3987,8 @@
     "#C8102E",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q18014853-Q38568-2016",
@@ -3932,13 +4005,14 @@
     "#FFFFFF",
     "#D0021B"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q60597-Q10333-2016",
    "personId": "Q60597",
    "name": "Aymen Abdennour",
-   "position": "LAT",
+   "position": "ZAG",
    "club": "Valencia",
    "year": 2016,
    "levelMin": 71,
@@ -3949,7 +4023,8 @@
     "#FFFFFF",
     "#111111"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q4831698-Q198034-2010",
@@ -3966,7 +4041,8 @@
     "#D50000",
     "#111111"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q1938-Q9617-2010",
@@ -4017,7 +4093,8 @@
     "#6CABDD",
     "#FFFFFF"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q19599124-Q15789-2023",
@@ -4119,7 +4196,8 @@
     "#D50000",
     "#FFFFFF"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q3645955-Q80987-2012",
@@ -4136,7 +4214,8 @@
     "#7A1E32",
     "#00613A"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q178683-Q38568-1994",
@@ -4255,7 +4334,8 @@
     "#E32221",
     "#111111"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q5483418-Q198034-2008",
@@ -4272,7 +4352,8 @@
     "#D50000",
     "#111111"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q442457-Q483020-2010",
@@ -4323,7 +4404,8 @@
     "#FFFFFF",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q14366994-Q35933-2011",
@@ -4340,7 +4422,8 @@
     "#FFFFFF",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q128912-Q81888-2018",
@@ -4380,7 +4463,7 @@
    "id": "wd-Q172720-Q38568-2019",
    "personId": "Q172720",
    "name": "Daniel Alves",
-   "position": "LAT",
+   "position": "MEI",
    "club": "São Paulo",
    "year": 2019,
    "levelMin": 84,
@@ -4425,7 +4508,8 @@
     "#111111",
     "#FFFFFF"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q83498-Q18741-2017",
@@ -4459,7 +4543,8 @@
     "#FFFFFF",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q31981-Q15789-2019",
@@ -4510,7 +4595,8 @@
     "#0D80BF",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q19882816-Q631-2023",
@@ -4550,7 +4636,7 @@
    "id": "wd-Q2477920-Q80845-2008",
    "personId": "Q2477920",
    "name": "Douglão",
-   "position": "LAT",
+   "position": "ZAG",
    "club": "Internacional",
    "year": 2008,
    "levelMin": 65,
@@ -4561,7 +4647,8 @@
     "#D50000",
     "#FFFFFF"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q1988686-Q816779-2011",
@@ -4629,7 +4716,8 @@
     "#D50000",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q718903-Q478317-1999",
@@ -4646,7 +4734,8 @@
     "#00613A",
     "#FFFFFF"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q5346996-Q80958-2013",
@@ -4663,7 +4752,8 @@
     "#111111",
     "#FFFFFF"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q5340648-Q1052219-2016",
@@ -4714,7 +4804,8 @@
     "#FFD200",
     "#111111"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q5768435-Q198034-2001",
@@ -4731,7 +4822,8 @@
     "#D50000",
     "#111111"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q5367655-Q338285-2014",
@@ -4765,7 +4857,8 @@
     "#00613A",
     "#FFFFFF"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q30123152-Q270995-2019",
@@ -4850,7 +4943,8 @@
     "#FDE100",
     "#111111"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q258730-Q11938-2013",
@@ -4867,7 +4961,8 @@
     "#ED1C24",
     "#FFFFFF"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q5389256-Q338285-2012",
@@ -4884,7 +4979,8 @@
     "#00843D",
     "#111111"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q983331-Q506832-2005",
@@ -4901,7 +4997,8 @@
     "#C8102E",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q2761481-Q80955-2015",
@@ -4935,7 +5032,8 @@
     "#111111",
     "#FFFFFF"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q5417414-Q198034-2012",
@@ -4952,13 +5050,14 @@
     "#D50000",
     "#111111"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q296684-Q8682-2011",
    "personId": "Q296684",
    "name": "Ezequiel Garay",
-   "position": "LAT",
+   "position": "ZAG",
    "club": "Real Madrid",
    "year": 2011,
    "levelMin": 77,
@@ -4975,7 +5074,7 @@
    "id": "wd-Q27063854-Q9617-2026",
    "personId": "Q27063854",
    "name": "Ezri Konsa",
-   "position": "LAT",
+   "position": "ZAG",
    "club": "Arsenal",
    "year": 2026,
    "levelMin": 63,
@@ -4986,7 +5085,8 @@
     "#EF0107",
     "#FFFFFF"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q213401-Q80987-2008",
@@ -5060,7 +5160,7 @@
    "id": "wd-Q215831-Q1543-2004",
    "personId": "Q215831",
    "name": "Fabricio Coloccini",
-   "position": "LAT",
+   "position": "ZAG",
    "club": "Milan",
    "year": 2004,
    "levelMin": 63,
@@ -5071,7 +5171,8 @@
     "#FB090B",
     "#111111"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q294293-Q1422-2007",
@@ -5088,7 +5189,8 @@
     "#FFFFFF",
     "#111111"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q337639-Q221695-2010",
@@ -5105,7 +5207,8 @@
     "#0D80BF",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q23884186-Q8682-2022",
@@ -5139,7 +5242,8 @@
     "#FFD200",
     "#111111"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q16941076-Q219098-2015",
@@ -5207,7 +5311,8 @@
     "#D50000",
     "#FFFFFF"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q264228-Q80964-1998",
@@ -5241,7 +5346,8 @@
     "#7A1E32",
     "#00613A"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q2017085-Q80964-2012",
@@ -5258,7 +5364,8 @@
     "#006437",
     "#FFFFFF"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q348857-Q18656-2002",
@@ -5292,7 +5399,8 @@
     "#D50000",
     "#FFFFFF"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q312377-Q180305-2013",
@@ -5309,7 +5417,8 @@
     "#E2001A",
     "#FFFFFF"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q219390-Q631-1969",
@@ -5360,7 +5469,8 @@
     "#006437",
     "#FFFFFF"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q16337517-Q80958-2015",
@@ -5377,7 +5487,8 @@
     "#111111",
     "#FFFFFF"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q16337517-Q80845-2014",
@@ -5394,7 +5505,8 @@
     "#D50000",
     "#FFFFFF"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q3764401-Q338285-2014",
@@ -5417,7 +5529,7 @@
    "id": "wd-Q80306-Q1422-2011",
    "personId": "Q80306",
    "name": "Giorgio Chiellini",
-   "position": "LAT",
+   "position": "ZAG",
    "club": "Juventus",
    "year": 2011,
    "levelMin": 89,
@@ -5513,7 +5625,8 @@
     "#FFFFFF",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q13422031-Q18656-2014",
@@ -5530,7 +5643,8 @@
     "#DA291C",
     "#111111"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q562347-Q35933-2005",
@@ -5547,7 +5661,8 @@
     "#FFFFFF",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q558887-Q132885-2017",
@@ -5581,7 +5696,8 @@
     "#D50000",
     "#FFFFFF"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q213007-Q1543-2004",
@@ -5615,7 +5731,8 @@
     "#111111",
     "#FFFFFF"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q184261-Q9616-2010",
@@ -5655,7 +5772,7 @@
    "id": "wd-Q191136-Q1130849-2015",
    "personId": "Q191136",
    "name": "James Milner",
-   "position": "LAT",
+   "position": "MEI",
    "club": "Liverpool",
    "year": 2015,
    "levelMin": 85,
@@ -5683,7 +5800,8 @@
     "#C8102E",
     "#FFFFFF"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q52876-Q631-2000",
@@ -5717,13 +5835,14 @@
     "#D50000",
     "#FFFFFF"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q312892-Q7156-2014",
    "personId": "Q312892",
    "name": "Jérémy Mathieu",
-   "position": "LAT",
+   "position": "ZAG",
    "club": "Barcelona",
    "year": 2014,
    "levelMin": 71,
@@ -5734,13 +5853,14 @@
     "#A50044",
     "#004D98"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q185093-Q10329-2012",
    "personId": "Q185093",
    "name": "Jesús Navas",
-   "position": "LAT",
+   "position": "ATA",
    "club": "Sevilla",
    "year": 2012,
    "levelMin": 84,
@@ -5774,7 +5894,7 @@
    "id": "wd-Q57567-Q1130849-2018",
    "personId": "Q57567",
    "name": "Joël Matip",
-   "position": "LAT",
+   "position": "ZAG",
    "club": "Liverpool",
    "year": 2018,
    "levelMin": 80,
@@ -5802,7 +5922,8 @@
     "#DA291C",
     "#111111"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q187159-Q7156-2016",
@@ -5921,13 +6042,14 @@
     "#034694",
     "#FFFFFF"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q350279-Q2609-1996",
    "personId": "Q350279",
    "name": "José Chamot",
-   "position": "LAT",
+   "position": "ZAG",
    "club": "Lazio",
    "year": 1996,
    "levelMin": 72,
@@ -5955,7 +6077,8 @@
     "#8E1F2F",
     "#F0BC42"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q1573490-Q35933-2012",
@@ -6006,13 +6129,14 @@
     "#DC052D",
     "#FFFFFF"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q509374-Q1422-2015",
    "personId": "Q509374",
    "name": "Juan Cuadrado",
-   "position": "LAT",
+   "position": "ATA",
    "club": "Juventus",
    "year": 2015,
    "levelMin": 83,
@@ -6111,23 +6235,6 @@
    "series": "EU"
   },
   {
-   "id": "wd-Q16853387-Q374069-2013",
-   "personId": "Q16853387",
-   "name": "Júlio",
-   "position": "LAT",
-   "club": "Avaí",
-   "year": 2013,
-   "levelMin": 76,
-   "levelMax": 82,
-   "tier": "titular",
-   "hint": "134 jogos e 15 gols pelo Avaí de 2010 a 2014. 27 anos em 2013.",
-   "kit": [
-    "#0055A4",
-    "#FFFFFF"
-   ],
-   "series": "B"
-  },
-  {
    "id": "wd-Q311424-Q17479-1981",
    "personId": "Q311424",
    "name": "Júnior",
@@ -6148,7 +6255,7 @@
    "id": "wd-Q311424-Q17479-1989",
    "personId": "Q311424",
    "name": "Júnior",
-   "position": "LAT",
+   "position": "MEI",
    "club": "Flamengo",
    "year": 1989,
    "levelMin": 74,
@@ -6193,7 +6300,8 @@
     "#FFFFFF",
     "#D2122E"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q191848-Q9616-2008",
@@ -6210,7 +6318,8 @@
     "#034694",
     "#FFFFFF"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q65718617-Q506832-2026",
@@ -6227,7 +6336,8 @@
     "#C8102E",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q1083432-Q18741-2017",
@@ -6250,7 +6360,7 @@
    "id": "wd-Q147589-Q9617-2008",
    "personId": "Q147589",
    "name": "Kolo Touré",
-   "position": "LAT",
+   "position": "ZAG",
    "club": "Arsenal",
    "year": 2008,
    "levelMin": 85,
@@ -6278,7 +6388,8 @@
     "#DC052D",
     "#FFFFFF"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q925802-Q506832-2005",
@@ -6295,7 +6406,8 @@
     "#C8102E",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q1324439-Q219120-2006",
@@ -6318,7 +6430,7 @@
    "id": "wd-Q207401-Q18741-2007",
    "personId": "Q207401",
    "name": "Ledley King",
-   "position": "LAT",
+   "position": "ZAG",
    "club": "Tottenham",
    "year": 2007,
    "levelMin": 70,
@@ -6329,7 +6441,8 @@
     "#FFFFFF",
     "#132257"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q312512-Q18741-2005",
@@ -6366,27 +6479,10 @@
    "series": "B"
   },
   {
-   "id": "wd-Q1970536-Q80845-2011",
-   "personId": "Q1970536",
-   "name": "Leonardo",
-   "position": "LAT",
-   "club": "Internacional",
-   "year": 2011,
-   "levelMin": 68,
-   "levelMax": 74,
-   "tier": "operario",
-   "hint": "3 jogos pelo Internacional de 2010 a 2011. 26 anos em 2011.",
-   "kit": [
-    "#D50000",
-    "#FFFFFF"
-   ],
-   "series": "A"
-  },
-  {
    "id": "wd-Q208050-Q1422-2014",
    "personId": "Q208050",
    "name": "Leonardo Bonucci",
-   "position": "LAT",
+   "position": "ZAG",
    "club": "Juventus",
    "year": 2014,
    "levelMin": 88,
@@ -6431,7 +6527,8 @@
     "#FFFFFF",
     "#D0021B"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q72648-Q7156-2018",
@@ -6465,7 +6562,8 @@
     "#D50000",
     "#FFFFFF"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q6696777-Q219120-2004",
@@ -6482,7 +6580,8 @@
     "#111111",
     "#FFFFFF"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q1371773-Q80958-1999",
@@ -6550,7 +6649,8 @@
     "#0055A4",
     "#E30613"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q6701050-Q219120-2008",
@@ -6573,7 +6673,7 @@
    "id": "wd-Q210950-Q188277-2003",
    "personId": "Q210950",
    "name": "Luisão",
-   "position": "LAT",
+   "position": "ZAG",
    "club": "Cruzeiro",
    "year": 2003,
    "levelMin": 84,
@@ -6635,7 +6735,8 @@
     "#111111",
     "#FFFFFF"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q177686-Q188277-2004",
@@ -6703,24 +6804,8 @@
     "#D50000",
     "#FFFFFF"
    ],
-   "series": "B"
-  },
-  {
-   "id": "wd-Q721804-Q80955-2008",
-   "personId": "Q721804",
-   "name": "Marcelo",
-   "position": "LAT",
-   "club": "Santos",
-   "year": 2008,
-   "levelMin": 73,
-   "levelMax": 81,
-   "tier": "titular",
-   "hint": "41 jogos e 2 gols pelo Santos de 2007 a 2008. 21 anos em 2008.",
-   "kit": [
-    "#FFFFFF",
-    "#111111"
-   ],
-   "series": "A"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q38136-Q80987-2023",
@@ -6788,7 +6873,8 @@
     "#D50000",
     "#111111"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q200868-Q1543-2005",
@@ -6805,7 +6891,8 @@
     "#FB090B",
     "#111111"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q31766-Q80987-2011",
@@ -6822,7 +6909,8 @@
     "#7A1E32",
     "#00613A"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q929290-Q80958-1976",
@@ -6873,7 +6961,8 @@
     "#7A1E32",
     "#00613A"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q3869208-Q2641-2018",
@@ -6890,7 +6979,8 @@
     "#12A0D7",
     "#FFFFFF"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q16337872-Q221695-2014",
@@ -6958,7 +7048,8 @@
     "#00843D",
     "#FFFFFF"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q96211488-Q50602-2025",
@@ -6975,7 +7066,8 @@
     "#6CABDD",
     "#FFFFFF"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q296222-Q17479-2020",
@@ -7083,7 +7175,7 @@
    "id": "wd-Q313520-Q910453-2005",
    "personId": "Q313520",
    "name": "Naldo",
-   "position": "LAT",
+   "position": "ZAG",
    "club": "Juventude",
    "year": 2005,
    "levelMin": 78,
@@ -7111,7 +7203,8 @@
     "#C8102E",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q714067-Q1130849-2018",
@@ -7128,7 +7221,8 @@
     "#C8102E",
     "#FFFFFF"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q617745-Q38568-2006",
@@ -7145,13 +7239,14 @@
     "#FFFFFF",
     "#D0021B"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q205188-Q2739-2009",
    "personId": "Q205188",
    "name": "Nicolás Burdisso",
-   "position": "LAT",
+   "position": "ZAG",
    "club": "Roma",
    "year": 2009,
    "levelMin": 78,
@@ -7168,7 +7263,7 @@
    "id": "wd-Q313155-Q132885-2016",
    "personId": "Q313155",
    "name": "Nicolas Nkoulou",
-   "position": "LAT",
+   "position": "ZAG",
    "club": "Olympique de Marseille",
    "year": 2016,
    "levelMin": 81,
@@ -7202,7 +7297,7 @@
    "id": "wd-Q182063-Q50602-2015",
    "personId": "Q182063",
    "name": "Nicolás Otamendi",
-   "position": "LAT",
+   "position": "ZAG",
    "club": "Manchester City",
    "year": 2015,
    "levelMin": 86,
@@ -7281,7 +7376,8 @@
     "#00843D",
     "#111111"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q371305-Q17479-2015",
@@ -7349,7 +7445,8 @@
     "#FDE100",
     "#111111"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q3368854-Q478317-2013",
@@ -7366,7 +7463,8 @@
     "#00613A",
     "#FFFFFF"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q1916-Q18656-2008",
@@ -7400,13 +7498,14 @@
     "#00843D",
     "#111111"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q44458-Q15789-1978",
    "personId": "Q44458",
    "name": "Paul Breitner",
-   "position": "LAT",
+   "position": "MEI",
    "club": "Bayern de Munique",
    "year": 1978,
    "levelMin": 86,
@@ -7434,7 +7533,8 @@
     "#00843D",
     "#111111"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q44080929-Q18741-2026",
@@ -7502,7 +7602,8 @@
     "#FFFFFF",
     "#111111"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q7282096-Q198034-2012",
@@ -7519,41 +7620,8 @@
     "#D50000",
     "#111111"
    ],
-   "series": "B"
-  },
-  {
-   "id": "wd-Q16940565-Q80845-2011",
-   "personId": "Q16940565",
-   "name": "Rafael Forster",
-   "position": "LAT",
-   "club": "Internacional",
-   "year": 2011,
-   "levelMin": 60,
-   "levelMax": 70,
-   "tier": "perna",
-   "hint": "No Internacional de 2010 a 2011. 21 anos em 2011.",
-   "kit": [
-    "#D50000",
-    "#FFFFFF"
-   ],
-   "series": "A"
-  },
-  {
-   "id": "wd-Q16940565-Q816779-2015",
-   "personId": "Q16940565",
-   "name": "Rafael Forster",
-   "position": "LAT",
-   "club": "Goiás",
-   "year": 2015,
-   "levelMin": 68,
-   "levelMax": 74,
-   "tier": "operario",
-   "hint": "18 jogos pelo Goiás em 2015. 25 anos em 2015.",
-   "kit": [
-    "#00613A",
-    "#FFFFFF"
-   ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q65030007-Q219120-2025",
@@ -7638,7 +7706,8 @@
     "#FFFFFF",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q59914100-Q631-2023",
@@ -7655,7 +7724,8 @@
     "#0068A8",
     "#111111"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q3930525-Q1633430-2013",
@@ -7695,7 +7765,7 @@
    "id": "wd-Q483417-Q18656-2005",
    "personId": "Q483417",
    "name": "Rio Ferdinand",
-   "position": "LAT",
+   "position": "ZAG",
    "club": "Manchester United",
    "year": 2005,
    "levelMin": 89,
@@ -7723,13 +7793,14 @@
     "#DA291C",
     "#111111"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q155461-Q9616-2006",
    "personId": "Q155461",
    "name": "Robert Huth",
-   "position": "LAT",
+   "position": "ZAG",
    "club": "Chelsea",
    "year": 2006,
    "levelMin": 64,
@@ -7740,7 +7811,8 @@
     "#034694",
     "#FFFFFF"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q429039-Q80964-1995",
@@ -7825,7 +7897,8 @@
    "kit": [
     "#111111",
     "#FFFFFF"
-   ]
+   ],
+   "packagesOnly": true
   },
   {
    "id": "wd-Q7357337-Q374069-2008",
@@ -7978,13 +8051,14 @@
     "#E32221",
     "#111111"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q311941-Q1130849-2015",
    "personId": "Q311941",
    "name": "Sebastián Coates",
-   "position": "LAT",
+   "position": "ZAG",
    "club": "Liverpool",
    "year": 2015,
    "levelMin": 78,
@@ -8001,7 +8075,7 @@
    "id": "wd-Q60315-Q15789-2017",
    "personId": "Q60315",
    "name": "Sebastian Rudy",
-   "position": "LAT",
+   "position": "MEI",
    "club": "Bayern de Munique",
    "year": 2017,
    "levelMin": 69,
@@ -8012,7 +8086,8 @@
     "#DC052D",
     "#FFFFFF"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q60605-Q483020-2017",
@@ -8032,23 +8107,6 @@
    "series": "EU"
   },
   {
-   "id": "wd-Q3960176-Q73971-2007",
-   "personId": "Q3960176",
-   "name": "Sidny",
-   "position": "LAT",
-   "club": "Náutico",
-   "year": 2007,
-   "levelMin": 51,
-   "levelMax": 59,
-   "tier": "perna",
-   "hint": "No Náutico de 2006 a 2007. 26 anos em 2007.",
-   "kit": [
-    "#D50000",
-    "#FFFFFF"
-   ],
-   "series": "B"
-  },
-  {
    "id": "wd-Q171534-Q2609-2013",
    "personId": "Q171534",
    "name": "Ștefan Radu",
@@ -8063,7 +8121,8 @@
     "#87D8F7",
     "#FFFFFF"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q327285-Q41420-1993",
@@ -8114,13 +8173,14 @@
     "#6CABDD",
     "#FFFFFF"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q316695-Q50602-2004",
    "personId": "Q316695",
    "name": "Sylvain Distin",
-   "position": "LAT",
+   "position": "ZAG",
    "club": "Manchester City",
    "year": 2004,
    "levelMin": 61,
@@ -8131,7 +8191,8 @@
     "#6CABDD",
     "#FFFFFF"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q208422-Q132885-2011",
@@ -8165,7 +8226,8 @@
     "#111111",
     "#FFFFFF"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q2036160-Q483020-2018",
@@ -8199,7 +8261,8 @@
     "#E32221",
     "#111111"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q27569376-Q1130849-2025",
@@ -8233,7 +8296,8 @@
     "#006437",
     "#FFFFFF"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q314281-Q80845-1978",
@@ -8386,7 +8450,8 @@
     "#111111",
     "#FFFFFF"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q15131398-Q221695-2014",
@@ -8454,7 +8519,8 @@
     "#111111",
     "#FFFFFF"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q2467066-Q5014111-2013",
@@ -8488,7 +8554,8 @@
     "#004170",
     "#DA291C"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q4118260-Q483020-2017",
@@ -8505,7 +8572,8 @@
     "#004170",
     "#DA291C"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q281734-Q631-2013",
@@ -8556,7 +8624,8 @@
     "#FFFFFF",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q182549-Q104761-1999",
@@ -8596,7 +8665,7 @@
    "id": "wd-Q17318558-Q478317-2014",
    "personId": "Q17318558",
    "name": "Abner",
-   "position": "ZAG",
+   "position": "LAT",
    "club": "Coritiba",
    "year": 2014,
    "levelMin": 63,
@@ -8607,24 +8676,8 @@
     "#00613A",
     "#FFFFFF"
    ],
-   "series": "A"
-  },
-  {
-   "id": "wd-Q9581044-Q374069-2011",
-   "personId": "Q9581044",
-   "name": "Acleisson Scaion",
-   "position": "ZAG",
-   "club": "Avaí",
-   "year": 2011,
-   "levelMin": 73,
-   "levelMax": 79,
-   "tier": "titular",
-   "hint": "12 jogos pelo Avaí em 2011. 29 anos em 2011.",
-   "kit": [
-    "#0055A4",
-    "#FFFFFF"
-   ],
-   "series": "B"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q1909-Q1543-2014",
@@ -8658,7 +8711,8 @@
     "#ED1C24",
     "#FFFFFF"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q270832-Q50602-1981",
@@ -8692,13 +8746,14 @@
     "#00843D",
     "#FFFFFF"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q215435-Q1130849-2009",
    "personId": "Q215435",
    "name": "Albert Riera",
-   "position": "ZAG",
+   "position": "ATA",
    "club": "Liverpool",
    "year": 2009,
    "levelMin": 64,
@@ -8709,7 +8764,8 @@
     "#C8102E",
     "#FFFFFF"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q1574455-Q73971-2008",
@@ -8797,44 +8853,10 @@
    "series": "EU"
   },
   {
-   "id": "wd-Q14943735-Q2332493-2005",
-   "personId": "Q14943735",
-   "name": "Alex Henrique da Silva",
-   "position": "ZAG",
-   "club": "Botafogo-SP",
-   "year": 2005,
-   "levelMin": 72,
-   "levelMax": 80,
-   "tier": "titular",
-   "hint": "Arménia. No Botafogo-SP de 2001 a 2005. 23 anos em 2005.",
-   "kit": [
-    "#D50000",
-    "#FFFFFF"
-   ],
-   "series": "B"
-  },
-  {
-   "id": "wd-Q3311570-Q219120-2002",
-   "personId": "Q3311570",
-   "name": "Alex Oliveira",
-   "position": "ZAG",
-   "club": "Ponte Preta",
-   "year": 2002,
-   "levelMin": 73,
-   "levelMax": 81,
-   "tier": "titular",
-   "hint": "No Ponte Preta de 2000 a 2002. 24 anos em 2002.",
-   "kit": [
-    "#111111",
-    "#FFFFFF"
-   ],
-   "series": "B"
-  },
-  {
    "id": "wd-Q189012-Q9617-2012",
    "personId": "Q189012",
    "name": "Alex Song",
-   "position": "ZAG",
+   "position": "MEI",
    "club": "Arsenal",
    "year": 2012,
    "levelMin": 80,
@@ -8851,7 +8873,7 @@
    "id": "wd-Q2566025-Q80987-1965",
    "personId": "Q2566025",
    "name": "Altair",
-   "position": "ZAG",
+   "position": "LAT",
    "club": "Fluminense",
    "year": 1965,
    "levelMin": 88,
@@ -8868,7 +8890,7 @@
    "id": "wd-Q2566025-Q219098-1971",
    "personId": "Q2566025",
    "name": "Altair",
-   "position": "ZAG",
+   "position": "LAT",
    "club": "Sport",
    "year": 1971,
    "levelMin": 74,
@@ -8896,7 +8918,8 @@
     "#C8102E",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q2255885-Q219120-2007",
@@ -8914,40 +8937,6 @@
     "#FFFFFF"
    ],
    "series": "B"
-  },
-  {
-   "id": "wd-Q3243889-Q910453-2003",
-   "personId": "Q3243889",
-   "name": "Anderson Santos Silva",
-   "position": "ZAG",
-   "club": "Juventude",
-   "year": 2003,
-   "levelMin": 69,
-   "levelMax": 75,
-   "tier": "operario",
-   "hint": "2 jogos pelo Juventude de 2002 a 2003. 22 anos em 2003.",
-   "kit": [
-    "#00843D",
-    "#FFFFFF"
-   ],
-   "series": "B"
-  },
-  {
-   "id": "wd-Q16939570-Q506832-2022",
-   "personId": "Q16939570",
-   "name": "Anderson Silva",
-   "position": "ZAG",
-   "club": "Athletico-PR",
-   "year": 2022,
-   "levelMin": 69,
-   "levelMax": 77,
-   "tier": "operario",
-   "hint": "No Athletico-PR desde 2016. 27 anos em 2022.",
-   "kit": [
-    "#C8102E",
-    "#111111"
-   ],
-   "series": "A"
   },
   {
    "id": "wd-Q218098-Q17479-1990",
@@ -9035,23 +9024,6 @@
    "series": "EU"
   },
   {
-   "id": "wd-Q2254057-Q598834-2004",
-   "personId": "Q2254057",
-   "name": "Ângelo Almeida",
-   "position": "ZAG",
-   "club": "Criciúma",
-   "year": 2004,
-   "levelMin": 65,
-   "levelMax": 71,
-   "tier": "operario",
-   "hint": "15 jogos e 1 gol pelo Criciúma em 2004. 23 anos em 2004.",
-   "kit": [
-    "#FFD200",
-    "#111111"
-   ],
-   "series": "B"
-  },
-  {
    "id": "wd-Q346635-Q631-2002",
    "personId": "Q346635",
    "name": "Antar Yahia",
@@ -9066,24 +9038,8 @@
     "#0068A8",
     "#111111"
    ],
-   "series": "EU"
-  },
-  {
-   "id": "wd-Q2255621-Q35933-1998",
-   "personId": "Q2255621",
-   "name": "Antônio Bezerra Brandão",
-   "position": "ZAG",
-   "club": "Corinthians",
-   "year": 1998,
-   "levelMin": 66,
-   "levelMax": 76,
-   "tier": "operario",
-   "hint": "No Corinthians de 1997 a 1998. 21 anos em 1998.",
-   "kit": [
-    "#FFFFFF",
-    "#111111"
-   ],
-   "series": "A"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q2070423-Q38568-1992",
@@ -9103,23 +9059,6 @@
    "series": "A"
   },
   {
-   "id": "wd-Q2538967-Q80958-1934",
-   "personId": "Q2538967",
-   "name": "Ariel Nogueira",
-   "position": "ZAG",
-   "club": "Botafogo",
-   "year": 1934,
-   "levelMin": 79,
-   "levelMax": 85,
-   "tier": "titular",
-   "hint": "27 jogos pelo Botafogo de 1929 a 1934. 24 anos em 1934.",
-   "kit": [
-    "#111111",
-    "#FFFFFF"
-   ],
-   "series": "A"
-  },
-  {
    "id": "wd-Q23887767-Q9616-2025",
    "personId": "Q23887767",
    "name": "Axel Disasi",
@@ -9134,13 +9073,14 @@
     "#034694",
     "#FFFFFF"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q151838-Q41420-2018",
    "personId": "Q151838",
    "name": "Axel Witsel",
-   "position": "ZAG",
+   "position": "MEI",
    "club": "Borussia Dortmund",
    "year": 2018,
    "levelMin": 85,
@@ -9157,7 +9097,7 @@
    "id": "wd-Q23638974-Q17479-2024",
    "personId": "Q23638974",
    "name": "Ayrton Lucas",
-   "position": "ZAG",
+   "position": "LAT",
    "club": "Flamengo",
    "year": 2024,
    "levelMin": 80,
@@ -9236,13 +9176,14 @@
     "#DC052D",
     "#FFFFFF"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q859743-Q80987-1952",
    "personId": "Q859743",
    "name": "Bigode",
-   "position": "ZAG",
+   "position": "LAT",
    "club": "Fluminense",
    "year": 1952,
    "levelMin": 89,
@@ -9307,23 +9248,6 @@
    "series": "EU"
   },
   {
-   "id": "wd-Q1988313-Q35933-2011",
-   "personId": "Q1988313",
-   "name": "Bruno Bertucci",
-   "position": "ZAG",
-   "club": "Corinthians",
-   "year": 2011,
-   "levelMin": 63,
-   "levelMax": 71,
-   "tier": "perna",
-   "hint": "4 jogos pelo Corinthians de 2009 a 2011. 21 anos em 2011.",
-   "kit": [
-    "#FFFFFF",
-    "#111111"
-   ],
-   "series": "A"
-  },
-  {
    "id": "wd-Q4979245-Q1633430-2013",
    "personId": "Q4979245",
    "name": "Bruno Henrique Corsini",
@@ -9355,7 +9279,8 @@
     "#FFFFFF",
     "#D0021B"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q59205578-Q188277-2021",
@@ -9372,7 +9297,8 @@
     "#0033A0",
     "#FFFFFF"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q19612578-Q8701-2023",
@@ -9395,7 +9321,7 @@
    "id": "wd-Q562705-Q35933-2003",
    "personId": "Q562705",
    "name": "Capone",
-   "position": "ZAG",
+   "position": "LAT",
    "club": "Corinthians",
    "year": 2003,
    "levelMin": 78,
@@ -9406,7 +9332,8 @@
     "#FFFFFF",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q17158-Q7156-2005",
@@ -9429,7 +9356,7 @@
    "id": "wd-Q295262-Q80955-1971",
    "personId": "Q295262",
    "name": "Carlos Alberto Torres",
-   "position": "ZAG",
+   "position": "LAT",
    "club": "Santos",
    "year": 1971,
    "levelMin": 91,
@@ -9446,7 +9373,7 @@
    "id": "wd-Q56223006-Q35933-2020",
    "personId": "Q56223006",
    "name": "Carlos Augusto",
-   "position": "ZAG",
+   "position": "LAT",
    "club": "Corinthians",
    "year": 2020,
    "levelMin": 72,
@@ -9457,7 +9384,8 @@
     "#FFFFFF",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q295512-Q80845-1997",
@@ -9494,23 +9422,6 @@
    "series": "EU"
   },
   {
-   "id": "wd-Q31988-Q80987-2014",
-   "personId": "Q31988",
-   "name": "Carlos Henrique",
-   "position": "ZAG",
-   "club": "Fluminense",
-   "year": 2014,
-   "levelMin": 72,
-   "levelMax": 78,
-   "tier": "operario",
-   "hint": "29 jogos pelo Fluminense de 2014 a 2015. 31 anos em 2014.",
-   "kit": [
-    "#7A1E32",
-    "#00613A"
-   ],
-   "series": "A"
-  },
-  {
    "id": "wd-Q2565211-Q80964-1999",
    "personId": "Q2565211",
    "name": "Catalino Rivarola",
@@ -9528,23 +9439,6 @@
    "series": "A"
   },
   {
-   "id": "wd-Q5202483-Q374069-2016",
-   "personId": "Q5202483",
-   "name": "Célio",
-   "position": "ZAG",
-   "club": "Avaí",
-   "year": 2016,
-   "levelMin": 67,
-   "levelMax": 75,
-   "tier": "operario",
-   "hint": "No Avaí desde 2016. 29 anos em 2016.",
-   "kit": [
-    "#0055A4",
-    "#FFFFFF"
-   ],
-   "series": "B"
-  },
-  {
    "id": "wd-Q367368-Q2739-2006",
    "personId": "Q367368",
    "name": "Cesare Bovo",
@@ -9559,7 +9453,8 @@
     "#8E1F2F",
     "#F0BC42"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q296350-Q1543-1959",
@@ -9579,27 +9474,10 @@
    "series": "EU"
   },
   {
-   "id": "wd-Q3667757-Q73971-1978",
-   "personId": "Q3667757",
-   "name": "Chico Fraga",
-   "position": "ZAG",
-   "club": "Náutico",
-   "year": 1978,
-   "levelMin": 65,
-   "levelMax": 71,
-   "tier": "operario",
-   "hint": "30 jogos e 5 gols pelo Náutico de 1977 a 1978. 24 anos em 1978.",
-   "kit": [
-    "#D50000",
-    "#FFFFFF"
-   ],
-   "series": "B"
-  },
-  {
    "id": "wd-Q470751-Q18741-2009",
    "personId": "Q470751",
    "name": "Chris Gunter",
-   "position": "ZAG",
+   "position": "LAT",
    "club": "Tottenham",
    "year": 2009,
    "levelMin": 60,
@@ -9610,7 +9488,8 @@
     "#FFFFFF",
     "#132257"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q5110245-Q506832-2015",
@@ -9627,7 +9506,8 @@
     "#C8102E",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q167241-Q41420-1999",
@@ -9667,7 +9547,7 @@
    "id": "wd-Q310727-Q38568-2013",
    "personId": "Q310727",
    "name": "Clemente Rodríguez",
-   "position": "ZAG",
+   "position": "LAT",
    "club": "São Paulo",
    "year": 2013,
    "levelMin": 75,
@@ -9695,7 +9575,8 @@
     "#DA291C",
     "#111111"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q154478-Q1543-2013",
@@ -9712,7 +9593,8 @@
     "#FB090B",
     "#111111"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q316762-Q274465-2024",
@@ -9730,40 +9612,6 @@
     "#111111"
    ],
    "series": "A"
-  },
-  {
-   "id": "wd-Q5186295-Q2536715-2003",
-   "personId": "Q5186295",
-   "name": "Cristiano Alves Pereira",
-   "position": "ZAG",
-   "club": "Chapecoense",
-   "year": 2003,
-   "levelMin": 62,
-   "levelMax": 70,
-   "tier": "perna",
-   "hint": "No Chapecoense de 2001 a 2003. 23 anos em 2003.",
-   "kit": [
-    "#00843D",
-    "#FFFFFF"
-   ],
-   "series": "A"
-  },
-  {
-   "id": "wd-Q10263686-Q73971-2000",
-   "personId": "Q10263686",
-   "name": "Dado Cavalcanti",
-   "position": "ZAG",
-   "club": "Náutico",
-   "year": 2000,
-   "levelMin": 56,
-   "levelMax": 66,
-   "tier": "perna",
-   "hint": "No Náutico em 2000. 19 anos em 2000.",
-   "kit": [
-    "#D50000",
-    "#FFFFFF"
-   ],
-   "series": "B"
   },
   {
    "id": "wd-Q15802-Q631-1986",
@@ -9786,7 +9634,7 @@
    "id": "wd-Q437329-Q80955-2012",
    "personId": "Q437329",
    "name": "Danilo",
-   "position": "ZAG",
+   "position": "LAT",
    "club": "Santos",
    "year": 2012,
    "levelMin": 82,
@@ -9814,7 +9662,8 @@
     "#111111",
     "#FFFFFF"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q80761-Q910453-2004",
@@ -9866,23 +9715,6 @@
     "#111111"
    ],
    "series": "EU"
-  },
-  {
-   "id": "wd-Q935220-Q80955-1989",
-   "personId": "Q935220",
-   "name": "Davi",
-   "position": "ZAG",
-   "club": "Santos",
-   "year": 1989,
-   "levelMin": 79,
-   "levelMax": 85,
-   "tier": "titular",
-   "hint": "58 jogos e 3 gols pelo Santos de 1983 a 1989. 26 anos em 1989.",
-   "kit": [
-    "#FFFFFF",
-    "#111111"
-   ],
-   "series": "A"
   },
   {
    "id": "wd-Q193706-Q17479-2021",
@@ -10024,7 +9856,7 @@
    "id": "wd-Q299693-Q80964-1959",
    "personId": "Q299693",
    "name": "Djalma Santos",
-   "position": "ZAG",
+   "position": "LAT",
    "club": "Palmeiras",
    "year": 1959,
    "levelMin": 93,
@@ -10058,7 +9890,7 @@
    "id": "wd-Q24084221-Q478317-2017",
    "personId": "Q24084221",
    "name": "Domilson",
-   "position": "ZAG",
+   "position": "LAT",
    "club": "Coritiba",
    "year": 2017,
    "levelMin": 64,
@@ -10069,7 +9901,8 @@
     "#00613A",
     "#FFFFFF"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q717927-Q17479-1939",
@@ -10103,7 +9936,8 @@
     "#FFFFFF",
     "#D0021B"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q17612806-Q132885-2022",
@@ -10121,40 +9955,6 @@
     "#2FAEE0"
    ],
    "series": "EU"
-  },
-  {
-   "id": "wd-Q3047641-Q2552872-1975",
-   "personId": "Q3047641",
-   "name": "Dutra Santos",
-   "position": "ZAG",
-   "club": "Remo",
-   "year": 1975,
-   "levelMin": 63,
-   "levelMax": 71,
-   "tier": "perna",
-   "hint": "No Remo de 1975 a 1980. 27 anos em 1975.",
-   "kit": [
-    "#0B1F4D",
-    "#FFFFFF"
-   ],
-   "series": "A"
-  },
-  {
-   "id": "wd-Q3717852-Q274465-1997",
-   "personId": "Q3717852",
-   "name": "Eber Moas",
-   "position": "ZAG",
-   "club": "Vitória",
-   "year": 1997,
-   "levelMin": 71,
-   "levelMax": 79,
-   "tier": "operario",
-   "hint": "No Vitória em 1997. 28 anos em 1997. 48 jogos pela seleção.",
-   "kit": [
-    "#D50000",
-    "#111111"
-   ],
-   "series": "A"
   },
   {
    "id": "wd-Q29950055-Q38568-2018",
@@ -10211,7 +10011,7 @@
    "id": "wd-Q132450-Q5014111-1985",
    "personId": "Q132450",
    "name": "Edevaldo de Freitas",
-   "position": "ZAG",
+   "position": "LAT",
    "club": "Vasco",
    "year": 1985,
    "levelMin": 78,
@@ -10259,40 +10059,6 @@
    "series": "A"
   },
   {
-   "id": "wd-Q10270535-Q910453-1981",
-   "personId": "Q10270535",
-   "name": "Edson Gaúcho",
-   "position": "ZAG",
-   "club": "Juventude",
-   "year": 1981,
-   "levelMin": 63,
-   "levelMax": 71,
-   "tier": "perna",
-   "hint": "No Juventude de 1977 a 1981. 26 anos em 1981.",
-   "kit": [
-    "#00843D",
-    "#FFFFFF"
-   ],
-   "series": "B"
-  },
-  {
-   "id": "wd-Q619109-Q374069-2015",
-   "personId": "Q619109",
-   "name": "Eduardo Neto",
-   "position": "ZAG",
-   "club": "Avaí",
-   "year": 2015,
-   "levelMin": 77,
-   "levelMax": 83,
-   "tier": "titular",
-   "hint": "61 jogos pelo Avaí de 2014 a 2015. 27 anos em 2015.",
-   "kit": [
-    "#0055A4",
-    "#FFFFFF"
-   ],
-   "series": "B"
-  },
-  {
    "id": "wd-Q310981-Q80845-1973",
    "personId": "Q310981",
    "name": "Elías Figueroa",
@@ -10330,7 +10096,7 @@
    "id": "wd-Q5370912-Q80955-2015",
    "personId": "Q5370912",
    "name": "Emerson Palmieri",
-   "position": "ZAG",
+   "position": "LAT",
    "club": "Santos",
    "year": 2015,
    "levelMin": 78,
@@ -10358,7 +10124,8 @@
     "#D50000",
     "#FFFFFF"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q453337-Q1130849-1974",
@@ -10398,7 +10165,7 @@
    "id": "wd-Q363141-Q1543-1983",
    "personId": "Q363141",
    "name": "Eric Gerets",
-   "position": "ZAG",
+   "position": "LAT",
    "club": "Milan",
    "year": 1983,
    "levelMin": 78,
@@ -10412,61 +10179,10 @@
    "series": "EU"
   },
   {
-   "id": "wd-Q374488-Q188277-2000",
-   "personId": "Q374488",
-   "name": "Ernani Pereira",
-   "position": "ZAG",
-   "club": "Cruzeiro",
-   "year": 2000,
-   "levelMin": 71,
-   "levelMax": 79,
-   "tier": "operario",
-   "hint": "No Cruzeiro em 2000. 22 anos em 2000. 12 jogos pela seleção.",
-   "kit": [
-    "#0033A0",
-    "#FFFFFF"
-   ],
-   "series": "A"
-  },
-  {
-   "id": "wd-Q374488-Q1513287-1999",
-   "personId": "Q374488",
-   "name": "Ernani Pereira",
-   "position": "ZAG",
-   "club": "Vila Nova",
-   "year": 1999,
-   "levelMin": 66,
-   "levelMax": 76,
-   "tier": "operario",
-   "hint": "No Vila Nova de 1998 a 1999. 21 anos em 1999. 12 jogos pela seleção.",
-   "kit": [
-    "#D50000",
-    "#FFFFFF"
-   ],
-   "series": "B"
-  },
-  {
-   "id": "wd-Q2715259-Q506832-2003",
-   "personId": "Q2715259",
-   "name": "Evaldo Fabiano",
-   "position": "ZAG",
-   "club": "Athletico-PR",
-   "year": 2003,
-   "levelMin": 61,
-   "levelMax": 71,
-   "tier": "perna",
-   "hint": "No Athletico-PR de 2001 a 2003. 21 anos em 2003.",
-   "kit": [
-    "#C8102E",
-    "#111111"
-   ],
-   "series": "A"
-  },
-  {
    "id": "wd-Q438442-Q221695-1971",
    "personId": "Q438442",
    "name": "Everaldo",
-   "position": "ZAG",
+   "position": "LAT",
    "club": "Grêmio",
    "year": 1971,
    "levelMin": 85,
@@ -10483,7 +10199,7 @@
    "id": "wd-Q438442-Q910453-1965",
    "personId": "Q438442",
    "name": "Everaldo",
-   "position": "ZAG",
+   "position": "LAT",
    "club": "Juventude",
    "year": 1965,
    "levelMin": 76,
@@ -10500,7 +10216,7 @@
    "id": "wd-Q5852801-Q1024264-2013",
    "personId": "Q5852801",
    "name": "Éverton Luiz",
-   "position": "ZAG",
+   "position": "MEI",
    "club": "CRB",
    "year": 2013,
    "levelMin": 75,
@@ -10545,13 +10261,14 @@
     "#FFFFFF",
     "#D0021B"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q166285-Q50602-2016",
    "personId": "Q166285",
    "name": "Fabian Delph",
-   "position": "ZAG",
+   "position": "MEI",
    "club": "Manchester City",
    "year": 2016,
    "levelMin": 72,
@@ -10562,7 +10279,8 @@
     "#6CABDD",
     "#FFFFFF"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q102027-Q1422-2004",
@@ -10585,7 +10303,7 @@
    "id": "wd-Q2316179-Q35933-2012",
    "personId": "Q2316179",
    "name": "Fábio Santos",
-   "position": "ZAG",
+   "position": "LAT",
    "club": "Corinthians",
    "year": 2012,
    "levelMin": 85,
@@ -10602,7 +10320,7 @@
    "id": "wd-Q2316179-Q180305-2008",
    "personId": "Q2316179",
    "name": "Fábio Santos",
-   "position": "ZAG",
+   "position": "LAT",
    "club": "Monaco",
    "year": 2008,
    "levelMin": 69,
@@ -10619,7 +10337,7 @@
    "id": "wd-Q932827-Q11938-2008",
    "personId": "Q932827",
    "name": "Fagner",
-   "position": "ZAG",
+   "position": "LAT",
    "club": "PSV",
    "year": 2008,
    "levelMin": 56,
@@ -10630,7 +10348,8 @@
     "#ED1C24",
     "#FFFFFF"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q191634-Q17479-1980",
@@ -10664,7 +10383,8 @@
     "#FFFFFF",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q2499879-Q221695-2004",
@@ -10698,7 +10418,8 @@
     "#111111",
     "#FFFFFF"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q189984-Q1543-1987",
@@ -10767,23 +10488,6 @@
     "#FFFFFF"
    ],
    "series": "EU"
-  },
-  {
-   "id": "wd-Q984395-Q219098-2011",
-   "personId": "Q984395",
-   "name": "Gabriel Limeira",
-   "position": "ZAG",
-   "club": "Sport",
-   "year": 2011,
-   "levelMin": 66,
-   "levelMax": 72,
-   "tier": "operario",
-   "hint": "25 jogos e 2 gols pelo Sport em 2011. 28 anos em 2011.",
-   "kit": [
-    "#D50000",
-    "#111111"
-   ],
-   "series": "B"
   },
   {
    "id": "wd-Q25175970-Q374069-2017",
@@ -10905,23 +10609,6 @@
    "series": "EU"
   },
   {
-   "id": "wd-Q1515031-Q80958-2012",
-   "personId": "Q1515031",
-   "name": "Gerson Guimarães Junior",
-   "position": "ZAG",
-   "club": "Botafogo",
-   "year": 2012,
-   "levelMin": 61,
-   "levelMax": 71,
-   "tier": "perna",
-   "hint": "No Botafogo de 2010 a 2012. 20 anos em 2012.",
-   "kit": [
-    "#111111",
-    "#FFFFFF"
-   ],
-   "series": "A"
-  },
-  {
    "id": "wd-Q5553136-Q221695-2014",
    "personId": "Q5553136",
    "name": "Gerson Vieira",
@@ -10936,7 +10623,8 @@
     "#0D80BF",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q255024-Q219098-2000",
@@ -11004,47 +10692,14 @@
     "#006437",
     "#FFFFFF"
    ],
-   "series": "A"
-  },
-  {
-   "id": "wd-Q607752-Q910453-2003",
-   "personId": "Q607752",
-   "name": "Gökçek Vederson",
-   "position": "ZAG",
-   "club": "Juventude",
-   "year": 2003,
-   "levelMin": 62,
-   "levelMax": 68,
-   "tier": "perna",
-   "hint": "2 jogos pelo Juventude em 2003. 22 anos em 2003.",
-   "kit": [
-    "#00843D",
-    "#FFFFFF"
-   ],
-   "series": "B"
-  },
-  {
-   "id": "wd-Q17157958-Q374069-2014",
-   "personId": "Q17157958",
-   "name": "Guilherme Almeida",
-   "position": "ZAG",
-   "club": "Avaí",
-   "year": 2014,
-   "levelMin": 60,
-   "levelMax": 70,
-   "tier": "perna",
-   "hint": "No Avaí de 2013 a 2014. 21 anos em 2014.",
-   "kit": [
-    "#0055A4",
-    "#FFFFFF"
-   ],
-   "series": "B"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q265654-Q81888-2004",
    "personId": "Q265654",
    "name": "Hatem Trabelsi",
-   "position": "ZAG",
+   "position": "LAT",
    "club": "Ajax",
    "year": 2004,
    "levelMin": 78,
@@ -11109,23 +10764,6 @@
    "series": "A"
   },
   {
-   "id": "wd-Q2246023-Q221695-1997",
-   "personId": "Q2246023",
-   "name": "Hideki Sahara",
-   "position": "ZAG",
-   "club": "Grêmio",
-   "year": 1997,
-   "levelMin": 63,
-   "levelMax": 73,
-   "tier": "operario",
-   "hint": "No Grêmio em 1997. 19 anos em 1997.",
-   "kit": [
-    "#0D80BF",
-    "#111111"
-   ],
-   "series": "A"
-  },
-  {
    "id": "wd-Q151278-Q15789-2016",
    "personId": "Q151278",
    "name": "Holger Badstuber",
@@ -11157,13 +10795,14 @@
     "#006437",
     "#FFFFFF"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q17466192-Q38568-2015",
    "personId": "Q17466192",
    "name": "Hudson",
-   "position": "ZAG",
+   "position": "MEI",
    "club": "São Paulo",
    "year": 2015,
    "levelMin": 63,
@@ -11174,7 +10813,8 @@
     "#FFFFFF",
     "#D0021B"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q2087275-Q221695-1984",
@@ -11214,7 +10854,7 @@
    "id": "wd-Q4181600-Q80987-2015",
    "personId": "Q4181600",
    "name": "Igor Julião",
-   "position": "ZAG",
+   "position": "LAT",
    "club": "Fluminense",
    "year": 2015,
    "levelMin": 58,
@@ -11225,7 +10865,8 @@
     "#7A1E32",
     "#00613A"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q296975-Q8682-2002",
@@ -11242,7 +10883,8 @@
     "#FFFFFF",
     "#FEBE10"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q529087-Q8682-1932",
@@ -11259,7 +10901,8 @@
     "#FFFFFF",
     "#FEBE10"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q60842110-Q80955-2020",
@@ -11282,7 +10925,7 @@
    "id": "wd-Q197561-Q816779-2004",
    "personId": "Q197561",
    "name": "Jadílson",
-   "position": "ZAG",
+   "position": "LAT",
    "club": "Goiás",
    "year": 2004,
    "levelMin": 79,
@@ -11299,7 +10942,7 @@
    "id": "wd-Q2565969-Q80987-1963",
    "personId": "Q2565969",
    "name": "Jair Marinho",
-   "position": "ZAG",
+   "position": "LAT",
    "club": "Fluminense",
    "year": 1963,
    "levelMin": 88,
@@ -11333,7 +10976,7 @@
    "id": "wd-Q446107-Q11938-1990",
    "personId": "Q446107",
    "name": "Jan Heintze",
-   "position": "ZAG",
+   "position": "LAT",
    "club": "PSV",
    "year": 1990,
    "levelMin": 78,
@@ -11401,7 +11044,7 @@
    "id": "wd-Q161571-Q35933-2006",
    "personId": "Q161571",
    "name": "Javier Mascherano",
-   "position": "ZAG",
+   "position": "MEI",
    "club": "Corinthians",
    "year": 2006,
    "levelMin": 86,
@@ -11452,7 +11095,7 @@
    "id": "wd-Q15075773-Q188841-2020",
    "personId": "Q15075773",
    "name": "Jean Mota",
-   "position": "ZAG",
+   "position": "MEI",
    "club": "Fortaleza",
    "year": 2020,
    "levelMin": 66,
@@ -11463,7 +11106,8 @@
     "#D50000",
     "#0033A0"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q151260-Q15789-2015",
@@ -11565,7 +11209,8 @@
     "#DA291C",
     "#111111"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q14640027-Q104761-2023",
@@ -11616,24 +11261,8 @@
     "#C8102E",
     "#111111"
    ],
-   "series": "A"
-  },
-  {
-   "id": "wd-Q1371926-Q5014111-1972",
-   "personId": "Q1371926",
-   "name": "Jorvan Vieira",
-   "position": "ZAG",
-   "club": "Vasco",
-   "year": 1972,
-   "levelMin": 62,
-   "levelMax": 72,
-   "tier": "perna",
-   "hint": "No Vasco de 1970 a 1972. 19 anos em 1972.",
-   "kit": [
-    "#111111",
-    "#FFFFFF"
-   ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q714500-Q38568-1981",
@@ -11690,7 +11319,7 @@
    "id": "wd-Q13865408-Q15789-2022",
    "personId": "Q13865408",
    "name": "Joshua Kimmich",
-   "position": "ZAG",
+   "position": "MEI",
    "club": "Bayern de Munique",
    "year": 2022,
    "levelMin": 86,
@@ -11837,7 +11466,8 @@
     "#111111",
     "#FFFFFF"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q656298-Q80955-2006",
@@ -11854,7 +11484,8 @@
     "#FFFFFF",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q440945-Q38568-1995",
@@ -11973,7 +11604,8 @@
     "#8E1F2F",
     "#F0BC42"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q18126412-Q9617-2019",
@@ -11990,7 +11622,8 @@
     "#EF0107",
     "#FFFFFF"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q1839-Q7156-1996",
@@ -12010,44 +11643,10 @@
    "series": "EU"
   },
   {
-   "id": "wd-Q6509662-Q219098-2009",
-   "personId": "Q6509662",
-   "name": "Leandro Freire",
-   "position": "ZAG",
-   "club": "Sport",
-   "year": 2009,
-   "levelMin": 62,
-   "levelMax": 70,
-   "tier": "perna",
-   "hint": "5 jogos pelo Sport em 2009. 20 anos em 2009.",
-   "kit": [
-    "#D50000",
-    "#111111"
-   ],
-   "series": "B"
-  },
-  {
-   "id": "wd-Q887982-Q374069-2010",
-   "personId": "Q887982",
-   "name": "Léo San",
-   "position": "ZAG",
-   "club": "Avaí",
-   "year": 2010,
-   "levelMin": 73,
-   "levelMax": 79,
-   "tier": "titular",
-   "hint": "5 jogos pelo Avaí em 2010. 28 anos em 2010.",
-   "kit": [
-    "#0055A4",
-    "#FFFFFF"
-   ],
-   "series": "B"
-  },
-  {
    "id": "wd-Q311586-Q2609-2007",
    "personId": "Q311586",
    "name": "Lionel Scaloni",
-   "position": "ZAG",
+   "position": "LAT",
    "club": "Lazio",
    "year": 2007,
    "levelMin": 70,
@@ -12115,7 +11714,7 @@
    "id": "wd-Q15117644-Q506832-2015",
    "personId": "Q15117644",
    "name": "Lucas Olaza",
-   "position": "ZAG",
+   "position": "LAT",
    "club": "Athletico-PR",
    "year": 2015,
    "levelMin": 67,
@@ -12126,7 +11725,8 @@
     "#C8102E",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q22703917-Q80955-2020",
@@ -12143,7 +11743,8 @@
     "#FFFFFF",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q156822-Q80845-2000",
@@ -12197,23 +11798,6 @@
    "series": "A"
   },
   {
-   "id": "wd-Q730560-Q188277-2010",
-   "personId": "Q730560",
-   "name": "Luiz Nascimento",
-   "position": "ZAG",
-   "club": "Cruzeiro",
-   "year": 2010,
-   "levelMin": 71,
-   "levelMax": 79,
-   "tier": "operario",
-   "hint": "No Cruzeiro de 2009 a 2010. 23 anos em 2010.",
-   "kit": [
-    "#0033A0",
-    "#FFFFFF"
-   ],
-   "series": "A"
-  },
-  {
    "id": "wd-Q19938984-Q41420-2022",
    "personId": "Q19938984",
    "name": "Manuel Akanji",
@@ -12245,7 +11829,8 @@
     "#A50044",
     "#004D98"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q44737396-Q50602-2026",
@@ -12282,57 +11867,6 @@
    "series": "B"
   },
   {
-   "id": "wd-Q1185635-Q374069-2002",
-   "personId": "Q1185635",
-   "name": "Marcelo Miguel",
-   "position": "ZAG",
-   "club": "Avaí",
-   "year": 2002,
-   "levelMin": 76,
-   "levelMax": 84,
-   "tier": "titular",
-   "hint": "No Avaí de 2002 a 2003. 27 anos em 2002.",
-   "kit": [
-    "#0055A4",
-    "#FFFFFF"
-   ],
-   "series": "B"
-  },
-  {
-   "id": "wd-Q1185635-Q816779-2000",
-   "personId": "Q1185635",
-   "name": "Marcelo Miguel",
-   "position": "ZAG",
-   "club": "Goiás",
-   "year": 2000,
-   "levelMin": 76,
-   "levelMax": 84,
-   "tier": "titular",
-   "hint": "No Goiás em 2000. 25 anos em 2000.",
-   "kit": [
-    "#00613A",
-    "#FFFFFF"
-   ],
-   "series": "B"
-  },
-  {
-   "id": "wd-Q180862-Q80964-2005",
-   "personId": "Q180862",
-   "name": "Márcio Rodrigues",
-   "position": "ZAG",
-   "club": "Palmeiras",
-   "year": 2005,
-   "levelMin": 85,
-   "levelMax": 91,
-   "tier": "craque",
-   "hint": "108 jogos e 9 gols pelo Palmeiras de 2000 a 2005. 27 anos em 2005.",
-   "kit": [
-    "#006437",
-    "#FFFFFF"
-   ],
-   "series": "A"
-  },
-  {
    "id": "wd-Q1526974-Q38568-1997",
    "personId": "Q1526974",
    "name": "Márcio Santos",
@@ -12364,24 +11898,8 @@
     "#DC052D",
     "#FFFFFF"
    ],
-   "series": "EU"
-  },
-  {
-   "id": "wd-Q1894022-Q1024264-2013",
-   "personId": "Q1894022",
-   "name": "Marcos Antônio",
-   "position": "ZAG",
-   "club": "CRB",
-   "year": 2013,
-   "levelMin": 70,
-   "levelMax": 76,
-   "tier": "operario",
-   "hint": "12 jogos pelo CRB em 2013. 25 anos em 2013.",
-   "kit": [
-    "#D50000",
-    "#FFFFFF"
-   ],
-   "series": "B"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q507890-Q18656-2017",
@@ -12421,7 +11939,7 @@
    "id": "wd-Q2444565-Q221695-2012",
    "personId": "Q2444565",
    "name": "Mário Fernandes",
-   "position": "ZAG",
+   "position": "LAT",
    "club": "Grêmio",
    "year": 2012,
    "levelMin": 82,
@@ -12517,7 +12035,8 @@
     "#EF0107",
     "#FFFFFF"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q57183-Q41420-1994",
@@ -12551,7 +12070,8 @@
     "#A50044",
     "#004D98"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q463460-Q38568-1957",
@@ -12608,7 +12128,7 @@
    "id": "wd-Q27805413-Q132885-2023",
    "personId": "Q27805413",
    "name": "Michael Amir Murillo",
-   "position": "ZAG",
+   "position": "LAT",
    "club": "Olympique de Marseille",
    "year": 2023,
    "levelMin": 72,
@@ -12625,7 +12145,7 @@
    "id": "wd-Q294990-Q104761-2011",
    "personId": "Q294990",
    "name": "Michal Kadlec",
-   "position": "ZAG",
+   "position": "LAT",
    "club": "Bayer Leverkusen",
    "year": 2011,
    "levelMin": 72,
@@ -12636,13 +12156,14 @@
     "#E32221",
     "#111111"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q295315-Q10333-2007",
    "personId": "Q295315",
    "name": "Miguel Monteiro",
-   "position": "ZAG",
+   "position": "LAT",
    "club": "Valencia",
    "year": 2007,
    "levelMin": 78,
@@ -12670,7 +12191,8 @@
     "#C8102E",
     "#FFFFFF"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q443750-Q10333-1992",
@@ -12687,7 +12209,8 @@
     "#FFFFFF",
     "#111111"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q318119-Q38568-2011",
@@ -12710,7 +12233,7 @@
    "id": "wd-Q694852-Q104761-2021",
    "personId": "Q694852",
    "name": "Mitchell Weiser",
-   "position": "ZAG",
+   "position": "LAT",
    "club": "Bayer Leverkusen",
    "year": 2021,
    "levelMin": 61,
@@ -12721,7 +12244,8 @@
     "#E32221",
     "#111111"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q927507-Q17479-1987",
@@ -12778,7 +12302,7 @@
    "id": "wd-Q72921909-Q1130849-2022",
    "personId": "Q72921909",
    "name": "Neco Williams",
-   "position": "ZAG",
+   "position": "LAT",
    "club": "Liverpool",
    "year": 2022,
    "levelMin": 59,
@@ -12789,13 +12313,14 @@
     "#C8102E",
     "#FFFFFF"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q919825-Q188277-1977",
    "personId": "Q919825",
    "name": "Nelinho",
-   "position": "ZAG",
+   "position": "LAT",
    "club": "Cruzeiro",
    "year": 1977,
    "levelMin": 87,
@@ -12829,7 +12354,7 @@
    "id": "wd-Q721984-Q38568-1958",
    "personId": "Q721984",
    "name": "Nílton De Sordi",
-   "position": "ZAG",
+   "position": "LAT",
    "club": "São Paulo",
    "year": 1958,
    "levelMin": 88,
@@ -12846,7 +12371,7 @@
    "id": "wd-Q83329-Q80958-1952",
    "personId": "Q83329",
    "name": "Nílton Santos",
-   "position": "ZAG",
+   "position": "LAT",
    "club": "Botafogo",
    "year": 1952,
    "levelMin": 93,
@@ -12880,7 +12405,7 @@
    "id": "wd-Q2455175-Q35933-1959",
    "personId": "Q2455175",
    "name": "Oreco",
-   "position": "ZAG",
+   "position": "LAT",
    "club": "Corinthians",
    "year": 1959,
    "levelMin": 84,
@@ -12907,40 +12432,6 @@
    "kit": [
     "#FFFFFF",
     "#111111"
-   ],
-   "series": "A"
-  },
-  {
-   "id": "wd-Q1982589-Q80958-1955",
-   "personId": "Q1982589",
-   "name": "Oscar Basso",
-   "position": "ZAG",
-   "club": "Botafogo",
-   "year": 1955,
-   "levelMin": 63,
-   "levelMax": 71,
-   "tier": "perna",
-   "hint": "17 jogos pelo Botafogo de 1955 a 1957. 33 anos em 1955.",
-   "kit": [
-    "#111111",
-    "#FFFFFF"
-   ],
-   "series": "A"
-  },
-  {
-   "id": "wd-Q973088-Q80964-1960",
-   "personId": "Q973088",
-   "name": "Osvaldo Héctor Cruz",
-   "position": "ZAG",
-   "club": "Palmeiras",
-   "year": 1960,
-   "levelMin": 86,
-   "levelMax": 92,
-   "tier": "craque",
-   "hint": "Argentina. 236 jogos e 44 gols pelo Palmeiras de 1960 a 1961. 29 anos em 1960. 21 jogos pela seleção.",
-   "kit": [
-    "#006437",
-    "#FFFFFF"
    ],
    "series": "A"
   },
@@ -12976,7 +12467,8 @@
     "#C8102E",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q18142105-Q18656-2022",
@@ -12993,13 +12485,14 @@
     "#DA291C",
     "#111111"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q483027-Q1543-1995",
    "personId": "Q483027",
    "name": "Paolo Maldini",
-   "position": "ZAG",
+   "position": "LAT",
    "club": "Milan",
    "year": 1995,
    "levelMin": 93,
@@ -13027,7 +12520,8 @@
     "#FFFFFF",
     "#111111"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q315336-Q704-2003",
@@ -13044,7 +12538,8 @@
     "#FFFFFF",
     "#1E3A8A"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q312089-Q7156-2001",
@@ -13084,7 +12579,7 @@
    "id": "wd-Q2712962-Q5014111-1959",
    "personId": "Q2712962",
    "name": "Paulinho de Almeida",
-   "position": "ZAG",
+   "position": "LAT",
    "club": "Vasco",
    "year": 1959,
    "levelMin": 79,
@@ -13163,7 +12658,8 @@
     "#E2001A",
     "#FFFFFF"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q18127731-Q80955-2013",
@@ -13180,7 +12676,8 @@
     "#FFFFFF",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q20078774-Q8682-2018",
@@ -13197,7 +12694,8 @@
     "#FFFFFF",
     "#FEBE10"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q101053044-Q9617-2026",
@@ -13339,7 +12837,7 @@
    "id": "wd-Q4241680-Q41420-2020",
    "personId": "Q4241680",
    "name": "Raphaël Guerreiro",
-   "position": "ZAG",
+   "position": "LAT",
    "club": "Borussia Dortmund",
    "year": 2020,
    "levelMin": 80,
@@ -13370,23 +12868,6 @@
    "series": "EU"
   },
   {
-   "id": "wd-Q7312941-Q221695-2012",
-   "personId": "Q7312941",
-   "name": "Renê Santos",
-   "position": "ZAG",
-   "club": "Grêmio",
-   "year": 2012,
-   "levelMin": 64,
-   "levelMax": 74,
-   "tier": "operario",
-   "hint": "No Grêmio de 2011 a 2012. 20 anos em 2012.",
-   "kit": [
-    "#0D80BF",
-    "#111111"
-   ],
-   "series": "A"
-  },
-  {
    "id": "wd-Q570811-Q9616-2005",
    "personId": "Q570811",
    "name": "Ricardo Carvalho",
@@ -13404,23 +12885,6 @@
    "series": "EU"
   },
   {
-   "id": "wd-Q2256166-Q910453-2007",
-   "personId": "Q2256166",
-   "name": "Ricardo Cavalcante Ribeiro",
-   "position": "ZAG",
-   "club": "Juventude",
-   "year": 2007,
-   "levelMin": 72,
-   "levelMax": 80,
-   "tier": "titular",
-   "hint": "No Juventude em 2007. 30 anos em 2007.",
-   "kit": [
-    "#00843D",
-    "#FFFFFF"
-   ],
-   "series": "B"
-  },
-  {
    "id": "wd-Q271882-Q1422-2005",
    "personId": "Q271882",
    "name": "Robert Kovač",
@@ -13436,23 +12900,6 @@
     "#111111"
    ],
    "series": "EU"
-  },
-  {
-   "id": "wd-Q7351831-Q2332493-2007",
-   "personId": "Q7351831",
-   "name": "Roberto Affonso",
-   "position": "ZAG",
-   "club": "Botafogo-SP",
-   "year": 2007,
-   "levelMin": 64,
-   "levelMax": 72,
-   "tier": "operario",
-   "hint": "No Botafogo-SP em 2007. 24 anos em 2007.",
-   "kit": [
-    "#D50000",
-    "#FFFFFF"
-   ],
-   "series": "B"
   },
   {
    "id": "wd-Q734558-Q188277-1971",
@@ -13475,7 +12922,7 @@
    "id": "wd-Q514594-Q219098-2016",
    "personId": "Q514594",
    "name": "Rodney Wallace",
-   "position": "ZAG",
+   "position": "LAT",
    "club": "Sport",
    "year": 2016,
    "levelMin": 79,
@@ -13492,7 +12939,7 @@
    "id": "wd-Q18817134-Q1422-2022",
    "personId": "Q18817134",
    "name": "Rodrigo Betancur",
-   "position": "ZAG",
+   "position": "MEI",
    "club": "Juventus",
    "year": 2022,
    "levelMin": 80,
@@ -13537,7 +12984,8 @@
     "#003893",
     "#FFFFFF"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q1355593-Q221695-2007",
@@ -13554,7 +13002,8 @@
     "#0D80BF",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q929023-Q38568-1992",
@@ -13588,7 +13037,8 @@
     "#DA291C",
     "#111111"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q2712945-Q38568-1949",
@@ -13656,7 +13106,8 @@
     "#C8102E",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q951342-Q15789-2003",
@@ -13674,23 +13125,6 @@
     "#FFFFFF"
    ],
    "series": "EU"
-  },
-  {
-   "id": "wd-Q965519-Q1513287-2006",
-   "personId": "Q965519",
-   "name": "Sérgio",
-   "position": "ZAG",
-   "club": "Vila Nova",
-   "year": 2006,
-   "levelMin": 71,
-   "levelMax": 79,
-   "tier": "operario",
-   "hint": "No Vila Nova em 2006. 31 anos em 2006.",
-   "kit": [
-    "#D50000",
-    "#FFFFFF"
-   ],
-   "series": "B"
   },
   {
    "id": "wd-Q483309-Q8682-2013",
@@ -13724,7 +13158,8 @@
     "#D50000",
     "#FFFFFF"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q208638-Q1543-2020",
@@ -13815,7 +13250,7 @@
    "id": "wd-Q432154-Q9617-1995",
    "personId": "Q432154",
    "name": "Stefan Schwarz",
-   "position": "ZAG",
+   "position": "MEI",
    "club": "Arsenal",
    "year": 1995,
    "levelMin": 76,
@@ -13860,7 +13295,8 @@
     "#004170",
     "#DA291C"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q2538947-Q38568-1934",
@@ -13877,24 +13313,8 @@
     "#FFFFFF",
     "#D0021B"
    ],
-   "series": "A"
-  },
-  {
-   "id": "wd-Q1389981-Q910453-1997",
-   "personId": "Q1389981",
-   "name": "Takumi Morikawa",
-   "position": "ZAG",
-   "club": "Juventude",
-   "year": 1997,
-   "levelMin": 65,
-   "levelMax": 75,
-   "tier": "operario",
-   "hint": "No Juventude em 1997. 20 anos em 1997.",
-   "kit": [
-    "#00843D",
-    "#FFFFFF"
-   ],
-   "series": "B"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q1493831-Q1024264-2008",
@@ -14016,44 +13436,10 @@
    "series": "EU"
   },
   {
-   "id": "wd-Q965503-Q1513287-2009",
-   "personId": "Q965503",
-   "name": "Tiago Prado",
-   "position": "ZAG",
-   "club": "Vila Nova",
-   "year": 2009,
-   "levelMin": 73,
-   "levelMax": 81,
-   "tier": "titular",
-   "hint": "No Vila Nova em 2009. 25 anos em 2009.",
-   "kit": [
-    "#D50000",
-    "#FFFFFF"
-   ],
-   "series": "B"
-  },
-  {
-   "id": "wd-Q2707729-Q910453-2010",
-   "personId": "Q2707729",
-   "name": "Tiago Silva",
-   "position": "ZAG",
-   "club": "Juventude",
-   "year": 2010,
-   "levelMin": 66,
-   "levelMax": 72,
-   "tier": "operario",
-   "hint": "6 jogos pelo Juventude de 2010 a 2011. 31 anos em 2010.",
-   "kit": [
-    "#00843D",
-    "#FFFFFF"
-   ],
-   "series": "B"
-  },
-  {
    "id": "wd-Q350306-Q11938-2005",
    "personId": "Q350306",
    "name": "Timmy Simons",
-   "position": "ZAG",
+   "position": "MEI",
    "club": "PSV",
    "year": 2005,
    "levelMin": 71,
@@ -14087,7 +13473,7 @@
    "id": "wd-Q2720150-Q80987-1975",
    "personId": "Q2720150",
    "name": "Toninho Baiano",
-   "position": "ZAG",
+   "position": "LAT",
    "club": "Fluminense",
    "year": 1975,
    "levelMin": 80,
@@ -14104,7 +13490,7 @@
    "id": "wd-Q353013-Q188277-1995",
    "personId": "Q353013",
    "name": "Ulises Cruz",
-   "position": "ZAG",
+   "position": "LAT",
    "club": "Cruzeiro",
    "year": 1995,
    "levelMin": 76,
@@ -14138,7 +13524,7 @@
    "id": "wd-Q348925-Q17479-2012",
    "personId": "Q348925",
    "name": "Víctor Cáceres",
-   "position": "ZAG",
+   "position": "MEI",
    "club": "Flamengo",
    "year": 2012,
    "levelMin": 80,
@@ -14183,7 +13569,8 @@
     "#0033A0",
     "#FFFFFF"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q15884045-Q18741-2013",
@@ -14206,7 +13593,7 @@
    "id": "wd-Q535520-Q188277-1970",
    "personId": "Q535520",
    "name": "Wilson Piazza",
-   "position": "ZAG",
+   "position": "MEI",
    "club": "Cruzeiro",
    "year": 1970,
    "levelMin": 86,
@@ -14223,7 +13610,7 @@
    "id": "wd-Q184277-Q50602-2010",
    "personId": "Q184277",
    "name": "Yaya Touré",
-   "position": "ZAG",
+   "position": "MEI",
    "club": "Manchester City",
    "year": 2010,
    "levelMin": 86,
@@ -14288,27 +13675,10 @@
    "series": "B"
   },
   {
-   "id": "wd-Q659684-Q80964-1924",
-   "personId": "Q659684",
-   "name": "Zé Luiz",
-   "position": "ZAG",
-   "club": "Palmeiras",
-   "year": 1924,
-   "levelMin": 70,
-   "levelMax": 80,
-   "tier": "operario",
-   "hint": "No Palmeiras de 1922 a 1924. 20 anos em 1924.",
-   "kit": [
-    "#006437",
-    "#FFFFFF"
-   ],
-   "series": "A"
-  },
-  {
    "id": "wd-Q2321775-Q35933-1976",
    "personId": "Q2321775",
    "name": "Zé Maria",
-   "position": "ZAG",
+   "position": "LAT",
    "club": "Corinthians",
    "year": 1976,
    "levelMin": 84,
@@ -14342,7 +13712,7 @@
    "id": "wd-Q175303-Q18741-2014",
    "personId": "Q175303",
    "name": "Aaron Lennon",
-   "position": "MEI",
+   "position": "ATA",
    "club": "Tottenham",
    "year": 2014,
    "levelMin": 79,
@@ -14387,7 +13757,8 @@
     "#FFFFFF",
     "#2FAEE0"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q336916-Q132885-1991",
@@ -14427,7 +13798,7 @@
    "id": "wd-Q14558450-Q10329-2022",
    "personId": "Q14558450",
    "name": "Adnan Januzaj",
-   "position": "MEI",
+   "position": "ATA",
    "club": "Sevilla",
    "year": 2022,
    "levelMin": 72,
@@ -14506,7 +13877,8 @@
     "#FFFFFF",
     "#1E3A8A"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q312170-Q132885-1986",
@@ -14557,13 +13929,14 @@
     "#C8102E",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q2574557-Q80964-1967",
    "personId": "Q2574557",
    "name": "Alberto Gallardo",
-   "position": "MEI",
+   "position": "ATA",
    "club": "Palmeiras",
    "year": 1967,
    "levelMin": 80,
@@ -14597,7 +13970,7 @@
    "id": "wd-Q111366053-Q9616-2026",
    "personId": "Q111366053",
    "name": "Alejandro Garnacho",
-   "position": "MEI",
+   "position": "ATA",
    "club": "Chelsea",
    "year": 2026,
    "levelMin": 63,
@@ -14608,7 +13981,8 @@
     "#034694",
     "#FFFFFF"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q342680-Q131499-1993",
@@ -14625,7 +13999,8 @@
     "#E83030",
     "#FFFFFF"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q1378371-Q2739-2018",
@@ -14659,7 +14034,8 @@
     "#DC052D",
     "#FFFFFF"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q507815-Q188277-2004",
@@ -14693,7 +14069,8 @@
     "#0033A0",
     "#FFFFFF"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q515938-Q5014111-2009",
@@ -14727,7 +14104,8 @@
     "#00613A",
     "#FFFFFF"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q2605913-Q80955-2005",
@@ -14744,13 +14122,14 @@
     "#FFFFFF",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q180553-Q9617-2015",
    "personId": "Q180553",
    "name": "Alexis Sánchez",
-   "position": "MEI",
+   "position": "ATA",
    "club": "Arsenal",
    "year": 2015,
    "levelMin": 83,
@@ -14829,7 +14208,8 @@
     "#87D8F7",
     "#FFFFFF"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q1440130-Q198034-2007",
@@ -14880,7 +14260,8 @@
     "#DA291C",
     "#111111"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q484772-Q80845-2015",
@@ -14937,7 +14318,7 @@
    "id": "wd-Q516921-Q132885-2015",
    "personId": "Q516921",
    "name": "André Ayew",
-   "position": "MEI",
+   "position": "ATA",
    "club": "Olympique de Marseille",
    "year": 2015,
    "levelMin": 84,
@@ -14982,7 +14363,8 @@
     "#7A1E32",
     "#00613A"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q4759902-Q219120-2006",
@@ -14999,7 +14381,8 @@
     "#111111",
     "#FFFFFF"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q43926-Q1543-2006",
@@ -15067,7 +14450,8 @@
     "#E83030",
     "#FFFFFF"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q19364-Q10333-2013",
@@ -15118,13 +14502,14 @@
     "#FFD200",
     "#111111"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q12808967-Q131499-2020",
    "personId": "Q12808967",
    "name": "Andrija Živković",
-   "position": "MEI",
+   "position": "ATA",
    "club": "Benfica",
    "year": 2020,
    "levelMin": 72,
@@ -15135,13 +14520,14 @@
     "#E83030",
     "#FFFFFF"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q59064-Q18741-2016",
    "personId": "Q59064",
    "name": "Andros Townsend",
-   "position": "MEI",
+   "position": "ATA",
    "club": "Tottenham",
    "year": 2016,
    "levelMin": 63,
@@ -15152,7 +14538,8 @@
     "#FFFFFF",
     "#132257"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q122294-Q2739-1985",
@@ -15169,13 +14556,14 @@
     "#8E1F2F",
     "#F0BC42"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q32556-Q2609-2014",
    "personId": "Q32556",
    "name": "Antonio Candreva",
-   "position": "MEI",
+   "position": "ATA",
    "club": "Lazio",
    "year": 2014,
    "levelMin": 78,
@@ -15203,7 +14591,8 @@
     "#111111",
     "#FFFFFF"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q26580-Q1422-1996",
@@ -15237,13 +14626,14 @@
     "#C8102E",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q318931-Q11938-2006",
    "personId": "Q318931",
    "name": "Archie Thompson",
-   "position": "MEI",
+   "position": "ATA",
    "club": "PSV",
    "year": 2006,
    "levelMin": 64,
@@ -15254,7 +14644,8 @@
     "#ED1C24",
     "#FFFFFF"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q108159340-Q8682-2026",
@@ -15288,7 +14679,8 @@
     "#ED1C24",
     "#FFFFFF"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q311046-Q81888-1992",
@@ -15322,7 +14714,8 @@
     "#7A1E32",
     "#00613A"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q39667548-Q221695-2025",
@@ -15424,7 +14817,8 @@
     "#D50000",
     "#FFFFFF"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q20312611-Q598834-2022",
@@ -15441,7 +14835,8 @@
     "#FFD200",
     "#111111"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q44298-Q15789-2011",
@@ -15492,13 +14887,14 @@
     "#D50000",
     "#0033A0"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q20992981-Q104761-2018",
    "personId": "Q20992981",
    "name": "Benjamin Henrichs",
-   "position": "MEI",
+   "position": "LAT",
    "club": "Bayer Leverkusen",
    "year": 2018,
    "levelMin": 62,
@@ -15509,13 +14905,14 @@
     "#E32221",
     "#111111"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q137242-Q270995-2024",
    "personId": "Q137242",
    "name": "Bernard",
-   "position": "MEI",
+   "position": "ATA",
    "club": "Atlético-MG",
    "year": 2024,
    "levelMin": 82,
@@ -15662,7 +15059,8 @@
     "#0068A8",
     "#111111"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q993172-Q221695-2007",
@@ -15679,7 +15077,8 @@
     "#0D80BF",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q58323172-Q506832-2020",
@@ -15713,7 +15112,8 @@
     "#FFD200",
     "#111111"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q4241246-Q131499-2016",
@@ -15730,7 +15130,8 @@
     "#E83030",
     "#FFFFFF"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q296583-Q18656-1984",
@@ -15764,7 +15165,8 @@
     "#D50000",
     "#FFFFFF"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q27929648-Q221695-2020",
@@ -15781,7 +15183,8 @@
     "#0D80BF",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q83880808-Q219120-2019",
@@ -15798,7 +15201,8 @@
     "#111111",
     "#FFFFFF"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q5042026-Q80987-2009",
@@ -15815,7 +15219,8 @@
     "#7A1E32",
     "#00613A"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q5041766-Q80955-2018",
@@ -15883,7 +15288,8 @@
     "#D50000",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q708163-Q35933-2006",
@@ -15900,7 +15306,8 @@
     "#FFFFFF",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q316436-Q80955-1991",
@@ -15951,7 +15358,8 @@
     "#5BC2E7",
     "#FFFFFF"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q797945-Q80845-2015",
@@ -15991,7 +15399,7 @@
    "id": "wd-Q919182-Q9616-2013",
    "personId": "Q919182",
    "name": "Christian Atsu",
-   "position": "MEI",
+   "position": "ATA",
    "club": "Chelsea",
    "year": 2013,
    "levelMin": 67,
@@ -16025,7 +15433,7 @@
    "id": "wd-Q276284-Q2739-2007",
    "personId": "Q276284",
    "name": "Christian Wilhelmsson",
-   "position": "MEI",
+   "position": "ATA",
    "club": "Roma",
    "year": 2007,
    "levelMin": 64,
@@ -16036,7 +15444,8 @@
     "#8E1F2F",
     "#F0BC42"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q1085348-Q104761-2016",
@@ -16053,7 +15462,8 @@
     "#E32221",
     "#111111"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q210284-Q478317-2007",
@@ -16138,7 +15548,8 @@
     "#FFFFFF",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q516805-Q17479-1989",
@@ -16161,7 +15572,7 @@
    "id": "wd-Q270890-Q2739-1994",
    "personId": "Q270890",
    "name": "Claudio Caniggia",
-   "position": "MEI",
+   "position": "ATA",
    "club": "Roma",
    "year": 1994,
    "levelMin": 78,
@@ -16178,7 +15589,7 @@
    "id": "wd-Q295883-Q10333-2000",
    "personId": "Q295883",
    "name": "Claudio López",
-   "position": "MEI",
+   "position": "ATA",
    "club": "Valencia",
    "year": 2000,
    "levelMin": 77,
@@ -16229,7 +15640,7 @@
    "id": "wd-Q19879773-Q219120-2022",
    "personId": "Q19879773",
    "name": "Clayson",
-   "position": "MEI",
+   "position": "ATA",
    "club": "Ponte Preta",
    "year": 2022,
    "levelMin": 64,
@@ -16240,7 +15651,8 @@
     "#111111",
     "#FFFFFF"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q514375-Q38568-2010",
@@ -16280,7 +15692,7 @@
    "id": "wd-Q313145-Q478317-2016",
    "personId": "Q313145",
    "name": "Colin Kâzım-Richards",
-   "position": "MEI",
+   "position": "ATA",
    "club": "Coritiba",
    "year": 2016,
    "levelMin": 79,
@@ -16291,7 +15703,8 @@
     "#00613A",
     "#FFFFFF"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q15406583-Q15789-2021",
@@ -16314,7 +15727,7 @@
    "id": "wd-Q16553648-Q270995-2023",
    "personId": "Q16553648",
    "name": "Cristian Pavón",
-   "position": "MEI",
+   "position": "ATA",
    "club": "Atlético-MG",
    "year": 2023,
    "levelMin": 70,
@@ -16382,7 +15795,7 @@
    "id": "wd-Q313035-Q50602-2007",
    "personId": "Q313035",
    "name": "DaMarcus Beasley",
-   "position": "MEI",
+   "position": "ATA",
    "club": "Manchester City",
    "year": 2007,
    "levelMin": 79,
@@ -16399,7 +15812,7 @@
    "id": "wd-Q192971-Q9616-2006",
    "personId": "Q192971",
    "name": "Damien Duff",
-   "position": "MEI",
+   "position": "ATA",
    "club": "Chelsea",
    "year": 2006,
    "levelMin": 72,
@@ -16444,7 +15857,8 @@
     "#0033A0",
     "#FFFFFF"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q2464236-Q188841-2005",
@@ -16461,7 +15875,8 @@
     "#D50000",
     "#0033A0"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q1161529-Q2580083-2010",
@@ -16478,7 +15893,8 @@
     "#111111",
     "#FFFFFF"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q1825489-Q374069-2003",
@@ -16512,7 +15928,8 @@
     "#D50000",
     "#0033A0"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q316854-Q10333-2018",
@@ -16529,7 +15946,8 @@
     "#FFFFFF",
     "#111111"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q168497-Q2739-2010",
@@ -16580,7 +15998,8 @@
     "#111111",
     "#FFFFFF"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q5219616-Q910453-2008",
@@ -16597,7 +16016,8 @@
     "#00843D",
     "#FFFFFF"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q3702239-Q1513287-1979",
@@ -16614,7 +16034,8 @@
     "#D50000",
     "#FFFFFF"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q310817-Q75729-2005",
@@ -16631,7 +16052,8 @@
     "#008057",
     "#FFFFFF"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q5222817-Q2332493-1972",
@@ -16648,7 +16070,8 @@
     "#D50000",
     "#FFFFFF"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q363608-Q18741-1999",
@@ -16665,7 +16088,8 @@
     "#FFFFFF",
     "#132257"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q10520-Q18656-2002",
@@ -16688,7 +16112,7 @@
    "id": "wd-Q27801691-Q38568-2016",
    "personId": "Q27801691",
    "name": "David Neres",
-   "position": "MEI",
+   "position": "ATA",
    "club": "São Paulo",
    "year": 2016,
    "levelMin": 72,
@@ -16705,7 +16129,7 @@
    "id": "wd-Q27801691-Q81888-2022",
    "personId": "Q27801691",
    "name": "David Neres",
-   "position": "MEI",
+   "position": "ATA",
    "club": "Ajax",
    "year": 2022,
    "levelMin": 72,
@@ -16733,7 +16157,8 @@
     "#8E1F2F",
     "#F0BC42"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q161069-Q50602-2013",
@@ -16784,7 +16209,8 @@
     "#111111",
     "#FFFFFF"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q2015351-Q17479-2000",
@@ -16841,7 +16267,7 @@
    "id": "wd-Q311641-Q80964-2008",
    "personId": "Q311641",
    "name": "Denílson",
-   "position": "MEI",
+   "position": "ATA",
    "club": "Palmeiras",
    "year": 2008,
    "levelMin": 86,
@@ -16875,7 +16301,7 @@
    "id": "wd-Q246417-Q10333-2018",
    "personId": "Q246417",
    "name": "Denis Cheryshev",
-   "position": "MEI",
+   "position": "ATA",
    "club": "Valencia",
    "year": 2018,
    "levelMin": 79,
@@ -16909,7 +16335,7 @@
    "id": "wd-Q207665-Q11938-2004",
    "personId": "Q207665",
    "name": "Dennis Rommedahl",
-   "position": "MEI",
+   "position": "ATA",
    "club": "PSV",
    "year": 2004,
    "levelMin": 80,
@@ -16937,7 +16363,8 @@
     "#D50000",
     "#FFFFFF"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q310660-Q50602-2002",
@@ -16954,7 +16381,8 @@
     "#6CABDD",
     "#FFFFFF"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q312486-Q80987-1955",
@@ -17022,7 +16450,8 @@
     "#0D80BF",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q463146-Q80845-2005",
@@ -17107,7 +16536,8 @@
     "#006437",
     "#FFFFFF"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q376247-Q5014111-2023",
@@ -17158,7 +16588,8 @@
     "#111111",
     "#FFFFFF"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q455565-Q80958-1976",
@@ -17226,7 +16657,8 @@
     "#00613A",
     "#FFFFFF"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q30134278-Q1130849-2026",
@@ -17266,7 +16698,7 @@
    "id": "wd-Q745422-Q80958-1995",
    "personId": "Q745422",
    "name": "Donizete Pantera",
-   "position": "MEI",
+   "position": "ATA",
    "club": "Botafogo",
    "year": 1995,
    "levelMin": 84,
@@ -17283,7 +16715,7 @@
    "id": "wd-Q745422-Q131499-1996",
    "personId": "Q745422",
    "name": "Donizete Pantera",
-   "position": "MEI",
+   "position": "ATA",
    "club": "Benfica",
    "year": 1996,
    "levelMin": 70,
@@ -17351,7 +16783,7 @@
    "id": "wd-Q391680-Q221695-2021",
    "personId": "Q391680",
    "name": "Douglas Costa",
-   "position": "MEI",
+   "position": "ATA",
    "club": "Grêmio",
    "year": 2021,
    "levelMin": 86,
@@ -17396,7 +16828,8 @@
     "#D50000",
     "#FFFFFF"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q257548-Q132885-1991",
@@ -17419,7 +16852,7 @@
    "id": "wd-Q1341709-Q221695-2015",
    "personId": "Q1341709",
    "name": "Dudu",
-   "position": "MEI",
+   "position": "ATA",
    "club": "Grêmio",
    "year": 2015,
    "levelMin": 79,
@@ -17487,7 +16920,7 @@
    "id": "wd-Q245295-Q41420-2007",
    "personId": "Q245295",
    "name": "Ebi Smolarek",
-   "position": "MEI",
+   "position": "ATA",
    "club": "Borussia Dortmund",
    "year": 2007,
    "levelMin": 69,
@@ -17498,7 +16931,8 @@
     "#FDE100",
     "#111111"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q461505-Q80845-2004",
@@ -17515,7 +16949,8 @@
     "#D50000",
     "#FFFFFF"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q185115-Q1422-2000",
@@ -17583,7 +17018,8 @@
     "#D50000",
     "#FFFFFF"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q210101-Q188841-2002",
@@ -17623,7 +17059,7 @@
    "id": "wd-Q2268949-Q270995-2020",
    "personId": "Q2268949",
    "name": "Eduardo Vargas",
-   "position": "MEI",
+   "position": "ATA",
    "club": "Atlético-MG",
    "year": 2020,
    "levelMin": 84,
@@ -17685,7 +17121,8 @@
     "#6CABDD",
     "#FFFFFF"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q294204-Q10333-2008",
@@ -17719,7 +17156,8 @@
     "#D50000",
     "#111111"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q533007-Q270995-1987",
@@ -17736,7 +17174,8 @@
     "#111111",
     "#FFFFFF"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q215952-Q221695-1997",
@@ -17770,13 +17209,14 @@
     "#111111",
     "#FFFFFF"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q59870-Q17479-2009",
    "personId": "Q59870",
    "name": "Emerson Sheik",
-   "position": "MEI",
+   "position": "ATA",
    "club": "Flamengo",
    "year": 2009,
    "levelMin": 81,
@@ -17838,7 +17278,8 @@
     "#ED1C24",
     "#FFFFFF"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q5392604-Q198034-2012",
@@ -17855,7 +17296,8 @@
     "#D50000",
     "#111111"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q47756-Q35933-1987",
@@ -17906,13 +17348,14 @@
     "#FFFFFF",
     "#D2122E"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q275415-Q2641-2012",
    "personId": "Q275415",
    "name": "Ezequiel Lavezzi",
-   "position": "MEI",
+   "position": "ATA",
    "club": "Napoli",
    "year": 2012,
    "levelMin": 79,
@@ -17929,7 +17372,7 @@
    "id": "wd-Q641425-Q80987-2012",
    "personId": "Q641425",
    "name": "Fabinho",
-   "position": "MEI",
+   "position": "LAT",
    "club": "Fluminense",
    "year": 2012,
    "levelMin": 73,
@@ -17974,7 +17417,8 @@
     "#C8102E",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q18637649-Q198034-2020",
@@ -18076,7 +17520,8 @@
     "#111111",
     "#FFFFFF"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q2077454-Q17479-2016",
@@ -18093,7 +17538,8 @@
     "#C8102E",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q204450-Q80964-2017",
@@ -18252,7 +17698,7 @@
    "id": "wd-Q887406-Q188277-2009",
    "personId": "Q887406",
    "name": "Fidel Martínez",
-   "position": "MEI",
+   "position": "ATA",
    "club": "Cruzeiro",
    "year": 2009,
    "levelMin": 65,
@@ -18263,13 +17709,14 @@
     "#0033A0",
     "#FFFFFF"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q249198-Q1422-2022",
    "personId": "Q249198",
    "name": "Filip Kostić",
-   "position": "MEI",
+   "position": "ATA",
    "club": "Juventus",
    "year": 2022,
    "levelMin": 72,
@@ -18297,7 +17744,8 @@
     "#0055A4",
     "#E30613"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q969748-Q910453-1995",
@@ -18388,7 +17836,7 @@
    "id": "wd-Q1918-Q15789-2010",
    "personId": "Q1918",
    "name": "Franck Ribéry",
-   "position": "MEI",
+   "position": "ATA",
    "club": "Bayern de Munique",
    "year": 2010,
    "levelMin": 91,
@@ -18501,7 +17949,8 @@
     "#00843D",
     "#111111"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q965448-Q270995-2026",
@@ -18569,7 +18018,8 @@
     "#FFFFFF",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q15878652-Q38568-2015",
@@ -18586,7 +18036,8 @@
     "#FFFFFF",
     "#D0021B"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q120681423-Q35933-2024",
@@ -18603,7 +18054,8 @@
     "#FFFFFF",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q353678-Q1130849-2000",
@@ -18620,7 +18072,8 @@
     "#C8102E",
     "#FFFFFF"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q329524-Q5014111-2023",
@@ -18694,7 +18147,7 @@
    "id": "wd-Q164521-Q18656-1973",
    "personId": "Q164521",
    "name": "George Best",
-   "position": "MEI",
+   "position": "ATA",
    "club": "Manchester United",
    "year": 1973,
    "levelMin": 89,
@@ -18722,7 +18175,8 @@
     "#0033A0",
     "#FFFFFF"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q448291-Q11938-1991",
@@ -18756,7 +18210,8 @@
     "#FFFFFF",
     "#D0021B"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q309672-Q10329-2004",
@@ -18824,13 +18279,14 @@
     "#C8102E",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q208025-Q9617-2013",
    "personId": "Q208025",
    "name": "Gervinho",
-   "position": "MEI",
+   "position": "ATA",
    "club": "Arsenal",
    "year": 2013,
    "levelMin": 83,
@@ -18881,7 +18337,7 @@
    "id": "wd-Q311335-Q221695-2003",
    "personId": "Q311335",
    "name": "Gilberto",
-   "position": "MEI",
+   "position": "LAT",
    "club": "Grêmio",
    "year": 2003,
    "levelMin": 85,
@@ -19102,7 +18558,7 @@
    "id": "wd-Q439959-Q17479-2010",
    "personId": "Q439959",
    "name": "Gonzalo Fierro",
-   "position": "MEI",
+   "position": "ATA",
    "club": "Flamengo",
    "year": 2010,
    "levelMin": 80,
@@ -19113,7 +18569,8 @@
     "#C8102E",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q314095-Q18656-1984",
@@ -19181,7 +18638,8 @@
     "#FFD200",
     "#111111"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q3120611-Q5014111-1981",
@@ -19198,7 +18656,8 @@
     "#111111",
     "#FFFFFF"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q44326-Q8682-1973",
@@ -19232,7 +18691,8 @@
     "#004170",
     "#DA291C"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q327456-Q80958-2026",
@@ -19283,7 +18743,8 @@
     "#111111",
     "#FFFFFF"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q216260-Q81888-2008",
@@ -19300,7 +18761,8 @@
     "#FFFFFF",
     "#D2122E"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q257492-Q631-1982",
@@ -19402,7 +18864,8 @@
     "#FFFFFF",
     "#D0021B"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q294963-Q10333-2010",
@@ -19419,7 +18882,8 @@
     "#FFFFFF",
     "#111111"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q938963-Q17479-2009",
@@ -19436,7 +18900,8 @@
     "#C8102E",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q161089-Q50602-2017",
@@ -19470,7 +18935,8 @@
     "#FFFFFF",
     "#111111"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q115453-Q7156-2015",
@@ -19504,7 +18970,8 @@
     "#C8102E",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q6168526-Q1024264-2011",
@@ -19521,7 +18988,8 @@
     "#D50000",
     "#FFFFFF"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q978042-Q80964-1949",
@@ -19544,7 +19012,7 @@
    "id": "wd-Q210102-Q80958-1971",
    "personId": "Q210102",
    "name": "Jairzinho",
-   "position": "MEI",
+   "position": "ATA",
    "club": "Botafogo",
    "year": 1971,
    "levelMin": 89,
@@ -19561,7 +19029,7 @@
    "id": "wd-Q210102-Q132885-1974",
    "personId": "Q210102",
    "name": "Jairzinho",
-   "position": "MEI",
+   "position": "ATA",
    "club": "Olympique de Marseille",
    "year": 1974,
    "levelMin": 80,
@@ -19578,7 +19046,7 @@
    "id": "wd-Q151025-Q41420-2012",
    "personId": "Q151025",
    "name": "Jakub Błaszczykowski",
-   "position": "MEI",
+   "position": "ATA",
    "club": "Borussia Dortmund",
    "year": 2012,
    "levelMin": 83,
@@ -19606,7 +19074,8 @@
     "#C8102E",
     "#FFFFFF"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q310330-Q50602-2014",
@@ -19623,7 +19092,8 @@
     "#6CABDD",
     "#FFFFFF"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q1643936-Q80987-1954",
@@ -19657,7 +19127,8 @@
     "#111111",
     "#FFFFFF"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q605817-Q483020-2000",
@@ -19742,7 +19213,8 @@
     "#C8102E",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q1189859-Q221695-2008",
@@ -19759,7 +19231,8 @@
     "#0D80BF",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q222151-Q75729-2010",
@@ -19810,7 +19283,8 @@
     "#D50000",
     "#FFFFFF"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q931197-Q17479-1958",
@@ -19861,7 +19335,8 @@
     "#E32221",
     "#111111"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q17492-Q7156-2014",
@@ -19878,7 +19353,8 @@
     "#A50044",
     "#004D98"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q314627-Q1130849-2013",
@@ -19895,7 +19371,8 @@
     "#C8102E",
     "#FFFFFF"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q273715-Q1130849-2017",
@@ -19997,7 +19474,8 @@
     "#00613A",
     "#FFFFFF"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q79634899-Q35933-2024",
@@ -20014,7 +19492,8 @@
     "#FFFFFF",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q28777389-Q38568-2017",
@@ -20031,7 +19510,8 @@
     "#FFFFFF",
     "#D0021B"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q947397-Q80958-1980",
@@ -20048,7 +19528,8 @@
     "#111111",
     "#FFFFFF"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q1881742-Q188277-2010",
@@ -20065,7 +19546,8 @@
     "#0033A0",
     "#FFFFFF"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q2638092-Q35933-1961",
@@ -20167,7 +19649,8 @@
     "#FFFFFF",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q9016102-Q910453-2008",
@@ -20184,7 +19667,8 @@
     "#00843D",
     "#FFFFFF"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q315697-Q483020-2020",
@@ -20252,7 +19736,8 @@
     "#7A1E32",
     "#00613A"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q311191-Q9617-2002",
@@ -20343,7 +19828,7 @@
    "id": "wd-Q31760-Q188277-2005",
    "personId": "Q31760",
    "name": "Jussiê",
-   "position": "MEI",
+   "position": "ATA",
    "club": "Cruzeiro",
    "year": 2005,
    "levelMin": 76,
@@ -20354,13 +19839,14 @@
     "#0033A0",
     "#FFFFFF"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q224033-Q18656-1998",
    "personId": "Q224033",
    "name": "Karel Poborský",
-   "position": "MEI",
+   "position": "ATA",
    "club": "Manchester United",
    "year": 1998,
    "levelMin": 80,
@@ -20377,7 +19863,7 @@
    "id": "wd-Q14755604-Q80987-2015",
    "personId": "Q14755604",
    "name": "Kenedy",
-   "position": "MEI",
+   "position": "ATA",
    "club": "Fluminense",
    "year": 2015,
    "levelMin": 68,
@@ -20456,7 +19942,8 @@
     "#ED1C24",
     "#FFFFFF"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q311035-Q506832-2003",
@@ -20513,7 +20000,7 @@
    "id": "wd-Q363766-Q1422-1957",
    "personId": "Q363766",
    "name": "Kurt Hamrin",
-   "position": "MEI",
+   "position": "ATA",
    "club": "Juventus",
    "year": 1957,
    "levelMin": 72,
@@ -20524,7 +20011,8 @@
     "#FFFFFF",
     "#111111"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q20900256-Q219120-2025",
@@ -20558,7 +20046,8 @@
     "#FFFFFF",
     "#D0021B"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q483813-Q374069-2011",
@@ -20575,7 +20064,8 @@
     "#0055A4",
     "#FFFFFF"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q630170-Q1422-2022",
@@ -20609,7 +20099,8 @@
     "#D50000",
     "#FFFFFF"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q520721-Q15789-2022",
@@ -20660,7 +20151,8 @@
     "#00843D",
     "#FFFFFF"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q2398473-Q910453-1984",
@@ -20700,7 +20192,7 @@
    "id": "wd-Q1756086-Q2641-2018",
    "personId": "Q1756086",
    "name": "Lorenzo Insigne",
-   "position": "MEI",
+   "position": "ATA",
    "club": "Napoli",
    "year": 2018,
    "levelMin": 80,
@@ -20728,7 +20220,8 @@
     "#8E1F2F",
     "#F0BC42"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q207431-Q81888-1973",
@@ -20779,7 +20272,8 @@
     "#FFFFFF",
     "#D0021B"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q220593-Q221695-2007",
@@ -20819,7 +20313,7 @@
    "id": "wd-Q312886-Q38568-2023",
    "personId": "Q312886",
    "name": "Lucas Moura",
-   "position": "MEI",
+   "position": "ATA",
    "club": "São Paulo",
    "year": 2023,
    "levelMin": 86,
@@ -20870,7 +20364,7 @@
    "id": "wd-Q10552199-Q35933-2017",
    "personId": "Q10552199",
    "name": "Lucca",
-   "position": "MEI",
+   "position": "ATA",
    "club": "Corinthians",
    "year": 2017,
    "levelMin": 63,
@@ -20881,7 +20375,8 @@
     "#FFFFFF",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q244894-Q506832-2016",
@@ -20932,13 +20427,14 @@
     "#D50000",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q555204-Q7156-1964",
    "personId": "Q555204",
    "name": "Luis Cubilla",
-   "position": "MEI",
+   "position": "ATA",
    "club": "Barcelona",
    "year": 1964,
    "levelMin": 72,
@@ -20955,7 +20451,7 @@
    "id": "wd-Q483145-Q7156-1999",
    "personId": "Q483145",
    "name": "Luís Figo",
-   "position": "MEI",
+   "position": "ATA",
    "club": "Barcelona",
    "year": 1999,
    "levelMin": 91,
@@ -20983,7 +20479,8 @@
     "#FFFFFF",
     "#D0021B"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q64762050-Q80958-2023",
@@ -21000,7 +20497,8 @@
     "#111111",
     "#FFFFFF"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q270367-Q631-1962",
@@ -21125,7 +20623,7 @@
    "id": "wd-Q134976-Q15789-2009",
    "personId": "Q134976",
    "name": "Lukas Podolski",
-   "position": "MEI",
+   "position": "ATA",
    "club": "Bayern de Munique",
    "year": 2009,
    "levelMin": 86,
@@ -21170,13 +20668,14 @@
     "#111111",
     "#FFFFFF"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q16745198-Q35933-2016",
    "personId": "Q16745198",
    "name": "Malcom",
-   "position": "MEI",
+   "position": "ATA",
    "club": "Corinthians",
    "year": 2016,
    "levelMin": 75,
@@ -21193,7 +20692,7 @@
    "id": "wd-Q16745198-Q7156-2019",
    "personId": "Q16745198",
    "name": "Malcom",
-   "position": "MEI",
+   "position": "ATA",
    "club": "Barcelona",
    "year": 2019,
    "levelMin": 74,
@@ -21238,7 +20737,8 @@
     "#FFFFFF",
     "#111111"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q1524928-Q80987-2012",
@@ -21289,7 +20789,8 @@
     "#003893",
     "#FFFFFF"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q378101-Q35933-1998",
@@ -21442,7 +20943,8 @@
     "#111111",
     "#FFFFFF"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q194439-Q35933-2001",
@@ -21493,7 +20995,8 @@
     "#D50000",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q201825-Q2641-2014",
@@ -21533,7 +21036,7 @@
    "id": "wd-Q213124-Q219098-2016",
    "personId": "Q213124",
    "name": "Mark González",
-   "position": "MEI",
+   "position": "ATA",
    "club": "Sport",
    "year": 2016,
    "levelMin": 77,
@@ -21567,7 +21070,7 @@
    "id": "wd-Q313575-Q631-2023",
    "personId": "Q313575",
    "name": "Marko Arnautović",
-   "position": "MEI",
+   "position": "ATA",
    "club": "Inter de Milão",
    "year": 2023,
    "levelMin": 70,
@@ -21601,7 +21104,7 @@
    "id": "wd-Q681938-Q38568-2011",
    "personId": "Q681938",
    "name": "Marlos",
-   "position": "MEI",
+   "position": "ATA",
    "club": "São Paulo",
    "year": 2011,
    "levelMin": 80,
@@ -21612,7 +21115,8 @@
     "#FFFFFF",
     "#D0021B"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q1947869-Q188277-2008",
@@ -21629,7 +21133,8 @@
     "#0033A0",
     "#FFFFFF"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q372434-Q506832-2012",
@@ -21646,7 +21151,8 @@
     "#C8102E",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q310263-Q50602-1981",
@@ -21663,7 +21169,8 @@
     "#6CABDD",
     "#FFFFFF"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q16902219-Q9617-2025",
@@ -21748,7 +21255,8 @@
     "#FFFFFF",
     "#132257"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q14755400-Q221695-2022",
@@ -21765,7 +21273,8 @@
     "#0D80BF",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q6786984-Q374069-2011",
@@ -21816,7 +21325,8 @@
     "#008057",
     "#FFFFFF"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q2053358-Q631-2018",
@@ -21867,7 +21377,8 @@
     "#FB090B",
     "#111111"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q3299667-Q17479-2014",
@@ -21884,13 +21395,14 @@
     "#C8102E",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q28968068-Q2609-2022",
    "personId": "Q28968068",
    "name": "Mattia Zaccagni",
-   "position": "MEI",
+   "position": "ATA",
    "club": "Lazio",
    "year": 2022,
    "levelMin": 64,
@@ -21901,7 +21413,8 @@
     "#87D8F7",
     "#FFFFFF"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q381207-Q274465-1999",
@@ -21918,7 +21431,8 @@
     "#D50000",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q3179256-Q5014111-2003",
@@ -21935,7 +21449,8 @@
     "#111111",
     "#FFFFFF"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q342457-Q541744-1992",
@@ -22071,7 +21586,8 @@
     "#5BC2E7",
     "#FFFFFF"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q188720-Q7156-1991",
@@ -22190,13 +21706,14 @@
     "#008057",
     "#FFFFFF"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q208433-Q1130849-2010",
    "personId": "Q208433",
    "name": "Milan Jovanović",
-   "position": "MEI",
+   "position": "ATA",
    "club": "Liverpool",
    "year": 2010,
    "levelMin": 72,
@@ -22207,7 +21724,8 @@
     "#C8102E",
     "#FFFFFF"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q312687-Q219120-2002",
@@ -22258,7 +21776,8 @@
     "#D50000",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q146907-Q2739-2016",
@@ -22326,7 +21845,8 @@
     "#00843D",
     "#FFFFFF"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q927846-Q38568-2000",
@@ -22343,7 +21863,8 @@
     "#FFFFFF",
     "#D0021B"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q59194-Q18741-2014",
@@ -22394,7 +21915,8 @@
     "#FFFFFF",
     "#132257"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q14778629-Q704-2019",
@@ -22417,7 +21939,7 @@
    "id": "wd-Q795451-Q18741-2016",
    "personId": "Q795451",
    "name": "Nacer Chadli",
-   "position": "MEI",
+   "position": "ATA",
    "club": "Tottenham",
    "year": 2016,
    "levelMin": 79,
@@ -22445,13 +21967,14 @@
     "#E2001A",
     "#FFFFFF"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q482947-Q18656-2013",
    "personId": "Q482947",
    "name": "Nani",
-   "position": "MEI",
+   "position": "ATA",
    "club": "Manchester United",
    "year": 2013,
    "levelMin": 86,
@@ -22479,13 +22002,14 @@
     "#C8102E",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q37231-Q374069-2015",
    "personId": "Q37231",
    "name": "Néstor Camacho",
-   "position": "MEI",
+   "position": "ATA",
    "club": "Avaí",
    "year": 2015,
    "levelMin": 66,
@@ -22496,13 +22020,14 @@
     "#0055A4",
     "#FFFFFF"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q142794-Q80955-2013",
    "personId": "Q142794",
    "name": "Neymar",
-   "position": "MEI",
+   "position": "ATA",
    "club": "Santos",
    "year": 2013,
    "levelMin": 89,
@@ -22519,7 +22044,7 @@
    "id": "wd-Q142794-Q7156-2017",
    "personId": "Q142794",
    "name": "Neymar",
-   "position": "MEI",
+   "position": "ATA",
    "club": "Barcelona",
    "year": 2017,
    "levelMin": 91,
@@ -22547,7 +22072,8 @@
     "#FFFFFF",
     "#FEBE10"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q20994037-Q17479-2024",
@@ -22717,7 +22243,8 @@
     "#0068A8",
     "#111111"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q56788302-Q131499-2026",
@@ -22802,7 +22329,8 @@
     "#0033A0",
     "#FFFFFF"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q437545-Q15789-2007",
@@ -22836,13 +22364,14 @@
     "#111111",
     "#FFFFFF"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q277533-Q10333-2012",
    "personId": "Q277533",
    "name": "Pablo Hernández",
-   "position": "MEI",
+   "position": "ATA",
    "club": "Valencia",
    "year": 2012,
    "levelMin": 70,
@@ -22853,7 +22382,8 @@
     "#FFFFFF",
     "#111111"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q572942-Q80987-1923",
@@ -22876,7 +22406,7 @@
    "id": "wd-Q50603-Q18656-2008",
    "personId": "Q50603",
    "name": "Park Ji-sung",
-   "position": "MEI",
+   "position": "ATA",
    "club": "Manchester United",
    "year": 2008,
    "levelMin": 86,
@@ -22904,7 +22434,8 @@
     "#00613A",
     "#FFFFFF"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q4806084-Q73971-2015",
@@ -23023,7 +22554,8 @@
     "#C8102E",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q389196-Q80845-1976",
@@ -23046,7 +22578,7 @@
    "id": "wd-Q363829-Q8701-1993",
    "personId": "Q363829",
    "name": "Paulo Futre",
-   "position": "MEI",
+   "position": "ATA",
    "club": "Atlético de Madrid",
    "year": 1993,
    "levelMin": 80,
@@ -23074,7 +22606,8 @@
     "#006437",
     "#FFFFFF"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q312454-Q80845-1980",
@@ -23125,7 +22658,8 @@
     "#111111",
     "#FFFFFF"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q171295-Q1422-1999",
@@ -23159,7 +22693,8 @@
     "#FFFFFF",
     "#132257"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q2319964-Q80987-1996",
@@ -23176,7 +22711,8 @@
     "#7A1E32",
     "#00613A"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q294881-Q131499-2003",
@@ -23193,7 +22729,8 @@
     "#E83030",
     "#FFFFFF"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q30729096-Q50602-2026",
@@ -23261,7 +22798,8 @@
     "#FFFFFF",
     "#D50000"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q7197034-Q2641-2021",
@@ -23369,7 +22907,7 @@
    "id": "wd-Q265697-Q17479-1939",
    "personId": "Q265697",
    "name": "Raimundo Orsi",
-   "position": "MEI",
+   "position": "ATA",
    "club": "Flamengo",
    "year": 1939,
    "levelMin": 74,
@@ -23431,13 +22969,14 @@
     "#0055A4",
     "#E30613"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q110160871-Q80964-2026",
    "personId": "Q110160871",
    "name": "Ramón Sosa",
-   "position": "MEI",
+   "position": "ATA",
    "club": "Palmeiras",
    "year": 2026,
    "levelMin": 79,
@@ -23499,7 +23038,8 @@
     "#111111",
     "#FFFFFF"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q352820-Q9616-1979",
@@ -23618,7 +23158,8 @@
     "#FFFFFF",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q1043195-Q38568-1984",
@@ -23669,7 +23210,8 @@
     "#111111",
     "#FFFFFF"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q3081138-Q478317-2013",
@@ -23686,7 +23228,8 @@
     "#00613A",
     "#FFFFFF"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q1335658-Q73971-2008",
@@ -23703,7 +23246,8 @@
     "#D50000",
     "#FFFFFF"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q3311735-Q2945011-2011",
@@ -23720,7 +23264,8 @@
     "#00843D",
     "#FFD200"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q768386-Q5014111-1976",
@@ -23737,7 +23282,8 @@
     "#111111",
     "#FFFFFF"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q3934313-Q73971-2008",
@@ -23754,7 +23300,8 @@
     "#D50000",
     "#FFFFFF"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q153002-Q1543-2012",
@@ -23788,7 +23335,8 @@
     "#D50000",
     "#FFFFFF"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q220283-Q35933-1973",
@@ -23811,7 +23359,7 @@
    "id": "wd-Q8338725-Q50602-2018",
    "personId": "Q8338725",
    "name": "Riyad Mahrez",
-   "position": "MEI",
+   "position": "ATA",
    "club": "Manchester City",
    "year": 2018,
    "levelMin": 83,
@@ -23828,7 +23376,7 @@
    "id": "wd-Q1356772-Q104761-2015",
    "personId": "Q1356772",
    "name": "Robbie Kruse",
-   "position": "MEI",
+   "position": "ATA",
    "club": "Bayer Leverkusen",
    "year": 2015,
    "levelMin": 71,
@@ -23839,7 +23387,8 @@
     "#E32221",
     "#111111"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q2452590-Q219098-2014",
@@ -23856,13 +23405,14 @@
     "#D50000",
     "#111111"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q59786-Q50602-2010",
    "personId": "Q59786",
    "name": "Róbert Mak",
-   "position": "MEI",
+   "position": "ATA",
    "club": "Manchester City",
    "year": 2010,
    "levelMin": 53,
@@ -23873,7 +23423,8 @@
     "#6CABDD",
     "#FFFFFF"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q298190-Q8682-1994",
@@ -23930,7 +23481,7 @@
    "id": "wd-Q58441-Q8682-2008",
    "personId": "Q58441",
    "name": "Robinho",
-   "position": "MEI",
+   "position": "ATA",
    "club": "Real Madrid",
    "year": 2008,
    "levelMin": 86,
@@ -23958,7 +23509,8 @@
     "#00843D",
     "#FFFFFF"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q2153542-Q1024264-2010",
@@ -23992,7 +23544,8 @@
     "#111111",
     "#FFFFFF"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q1185466-Q221695-2002",
@@ -24009,7 +23562,8 @@
     "#0D80BF",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q217882-Q80955-2009",
@@ -24043,7 +23597,8 @@
     "#111111",
     "#FFFFFF"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q298320-Q80964-2002",
@@ -24111,7 +23666,8 @@
     "#FFFFFF",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q326240-Q9616-2020",
@@ -24128,7 +23684,8 @@
     "#034694",
     "#FFFFFF"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q188632-Q18656-1998",
@@ -24162,13 +23719,14 @@
     "#003893",
     "#FFFFFF"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q38053896-Q10329-2025",
    "personId": "Q38053896",
    "name": "Rubén Vargas",
-   "position": "MEI",
+   "position": "ATA",
    "club": "Sevilla",
    "year": 2025,
    "levelMin": 69,
@@ -24247,13 +23805,14 @@
     "#CB3524",
     "#FFFFFF"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q180462-Q80958-2020",
    "personId": "Q180462",
    "name": "Salomon Kalou",
-   "position": "MEI",
+   "position": "ATA",
    "club": "Botafogo",
    "year": 2020,
    "levelMin": 80,
@@ -24270,7 +23829,7 @@
    "id": "wd-Q180462-Q9616-2012",
    "personId": "Q180462",
    "name": "Salomon Kalou",
-   "position": "MEI",
+   "position": "ATA",
    "club": "Chelsea",
    "year": 2012,
    "levelMin": 85,
@@ -24338,7 +23897,7 @@
    "id": "wd-Q57017297-Q1543-2026",
    "personId": "Q57017297",
    "name": "Samuel Chukwueze",
-   "position": "MEI",
+   "position": "ATA",
    "club": "Milan",
    "year": 2026,
    "levelMin": 63,
@@ -24349,13 +23908,14 @@
     "#FB090B",
     "#111111"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q67222776-Q17479-2026",
    "personId": "Q67222776",
    "name": "Samuel Lino",
-   "position": "MEI",
+   "position": "ATA",
    "club": "Flamengo",
    "year": 2026,
    "levelMin": 79,
@@ -24372,7 +23932,7 @@
    "id": "wd-Q67222776-Q557103-2019",
    "personId": "Q67222776",
    "name": "Samuel Lino",
-   "position": "MEI",
+   "position": "ATA",
    "club": "São Bernardo",
    "year": 2019,
    "levelMin": 67,
@@ -24400,7 +23960,8 @@
     "#D50000",
     "#111111"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q314856-Q631-1969",
@@ -24485,7 +24046,8 @@
     "#6CABDD",
     "#FFFFFF"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q1440632-Q73971-2007",
@@ -24536,7 +24098,8 @@
     "#111111",
     "#FFFFFF"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q49704-Q7156-2015",
@@ -24655,7 +24218,8 @@
     "#D50000",
     "#FFFFFF"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q232789-Q2739-2004",
@@ -24706,7 +24270,8 @@
     "#004170",
     "#DA291C"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q211151-Q1422-2005",
@@ -24763,7 +24328,7 @@
    "id": "wd-Q303108-Q80845-2010",
    "personId": "Q303108",
    "name": "Taison",
-   "position": "MEI",
+   "position": "ATA",
    "club": "Internacional",
    "year": 2010,
    "levelMin": 77,
@@ -24780,7 +24345,7 @@
    "id": "wd-Q367474-Q15789-2012",
    "personId": "Q367474",
    "name": "Takashi Usami",
-   "position": "MEI",
+   "position": "ATA",
    "club": "Bayern de Munique",
    "year": 2012,
    "levelMin": 63,
@@ -24791,7 +24356,8 @@
     "#DC052D",
     "#FFFFFF"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q2062952-Q35933-2006",
@@ -24831,7 +24397,7 @@
    "id": "wd-Q27067753-Q8682-2022",
    "personId": "Q27067753",
    "name": "Takefusa Kubo",
-   "position": "MEI",
+   "position": "ATA",
    "club": "Real Madrid",
    "year": 2022,
    "levelMin": 69,
@@ -24859,7 +24425,8 @@
     "#7A1E32",
     "#00613A"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q311403-Q128446-1976",
@@ -25154,7 +24721,7 @@
    "id": "wd-Q311407-Q188277-1971",
    "personId": "Q311407",
    "name": "Tostão",
-   "position": "MEI",
+   "position": "ATA",
    "club": "Cruzeiro",
    "year": 1971,
    "levelMin": 92,
@@ -25199,7 +24766,8 @@
     "#111111",
     "#FFFFFF"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q2473949-Q73971-2009",
@@ -25216,7 +24784,8 @@
     "#D50000",
     "#FFFFFF"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q2269083-Q80955-1997",
@@ -25233,7 +24802,8 @@
     "#FFFFFF",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q181096-Q270995-1992",
@@ -25307,7 +24877,7 @@
    "id": "wd-Q886577-Q80955-2014",
    "personId": "Q886577",
    "name": "Victor Andrade",
-   "position": "MEI",
+   "position": "ATA",
    "club": "Santos",
    "year": 2014,
    "levelMin": 64,
@@ -25318,13 +24888,14 @@
     "#FFFFFF",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q295637-Q9616-2017",
    "personId": "Q295637",
    "name": "Victor Moses",
-   "position": "MEI",
+   "position": "ATA",
    "club": "Chelsea",
    "year": 2017,
    "levelMin": 80,
@@ -25352,13 +24923,14 @@
     "#034694",
     "#FFFFFF"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q7944670-Q10329-2016",
    "personId": "Q7944670",
    "name": "Vitolo",
-   "position": "MEI",
+   "position": "ATA",
    "club": "Sevilla",
    "year": 2016,
    "levelMin": 62,
@@ -25369,7 +24941,8 @@
     "#FFFFFF",
     "#D50000"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q217868-Q478317-2013",
@@ -25386,7 +24959,8 @@
     "#00613A",
     "#FFFFFF"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q979503-Q188841-2006",
@@ -25471,7 +25045,8 @@
     "#FFFFFF",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q124086-Q81888-2007",
@@ -25511,7 +25086,7 @@
    "id": "wd-Q73480-Q35933-2021",
    "personId": "Q73480",
    "name": "Willian",
-   "position": "MEI",
+   "position": "ATA",
    "club": "Corinthians",
    "year": 2021,
    "levelMin": 85,
@@ -25590,7 +25165,8 @@
     "#0D80BF",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q208104-Q8682-2009",
@@ -25630,7 +25206,7 @@
    "id": "wd-Q767469-Q128446-2017",
    "personId": "Q767469",
    "name": "Yacine Brahimi",
-   "position": "MEI",
+   "position": "ATA",
    "club": "Porto",
    "year": 2017,
    "levelMin": 69,
@@ -25641,13 +25217,14 @@
     "#003893",
     "#FFFFFF"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q4022527-Q188277-2025",
    "personId": "Q4022527",
    "name": "Yannick Bolasie",
-   "position": "MEI",
+   "position": "ATA",
    "club": "Cruzeiro",
    "year": 2025,
    "levelMin": 73,
@@ -25664,7 +25241,7 @@
    "id": "wd-Q4284482-Q8701-2020",
    "personId": "Q4284482",
    "name": "Yannick Carrasco",
-   "position": "MEI",
+   "position": "ATA",
    "club": "Atlético de Madrid",
    "year": 2020,
    "levelMin": 78,
@@ -25851,7 +25428,7 @@
    "id": "wd-Q218915-Q7156-1958",
    "personId": "Q218915",
    "name": "Zoltán Czibor",
-   "position": "MEI",
+   "position": "ATA",
    "club": "Barcelona",
    "year": 1958,
    "levelMin": 79,
@@ -25879,7 +25456,8 @@
     "#DC052D",
     "#FFFFFF"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q318456-Q80987-2021",
@@ -25981,7 +25559,8 @@
     "#E32221",
     "#111111"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q202645-Q1422-2006",
@@ -26032,7 +25611,8 @@
     "#111111",
     "#FFFFFF"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q160363-Q80845-1995",
@@ -26066,7 +25646,8 @@
     "#111111",
     "#FFFFFF"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q458481-Q80955-1999",
@@ -26083,7 +25664,8 @@
     "#FFFFFF",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q736325-Q80964-2014",
@@ -26100,7 +25682,8 @@
     "#006437",
     "#FFFFFF"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q2165118-Q75729-1999",
@@ -26117,7 +25700,8 @@
     "#008057",
     "#FFFFFF"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q2629254-Q80955-1972",
@@ -26134,7 +25718,8 @@
     "#FFFFFF",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q112877211-Q198032-2026",
@@ -26151,7 +25736,8 @@
     "#0055A4",
     "#E30613"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q346945-Q631-1982",
@@ -26321,7 +25907,8 @@
     "#FFFFFF",
     "#FEBE10"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q164546-Q8682-1953",
@@ -26389,7 +25976,8 @@
     "#006437",
     "#FFFFFF"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q153463-Q7156-1979",
@@ -26423,7 +26011,8 @@
     "#FFFFFF",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q217974-Q80955-1993",
@@ -26457,7 +26046,8 @@
     "#00843D",
     "#111111"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q454934-Q80958-1963",
@@ -26508,7 +26098,8 @@
     "#D50000",
     "#0033A0"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q1007872-Q219120-2007",
@@ -26525,7 +26116,8 @@
     "#111111",
     "#FFFFFF"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q10554853-Q1513287-2012",
@@ -26542,7 +26134,8 @@
     "#D50000",
     "#FFFFFF"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q516765-Q38568-2004",
@@ -26559,7 +26152,8 @@
     "#FFFFFF",
     "#D0021B"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q58377-Q9616-2015",
@@ -26593,7 +26187,8 @@
     "#FB090B",
     "#111111"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q4754963-Q2739-2022",
@@ -26661,7 +26256,8 @@
     "#C8102E",
     "#FFFFFF"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q310328-Q41420-2017",
@@ -26678,7 +26274,8 @@
     "#FDE100",
     "#111111"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q216928-Q50602-2005",
@@ -26695,7 +26292,8 @@
     "#6CABDD",
     "#FFFFFF"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q529865-Q35933-1931",
@@ -26729,7 +26327,8 @@
     "#FFFFFF",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q508434-Q80955-1961",
@@ -26797,7 +26396,8 @@
     "#8E1F2F",
     "#F0BC42"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q59205608-Q38568-2020",
@@ -26848,7 +26448,8 @@
     "#D50000",
     "#0033A0"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q296965-Q10333-1998",
@@ -26916,7 +26517,8 @@
     "#ED1C24",
     "#FFFFFF"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q455799-Q221695-1982",
@@ -27069,7 +26671,8 @@
     "#EF0107",
     "#FFFFFF"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q214233-Q128446-2004",
@@ -27120,7 +26723,8 @@
     "#A50044",
     "#004D98"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q455557-Q80955-2011",
@@ -27154,7 +26758,8 @@
     "#FFFFFF",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q15956282-Q180305-2024",
@@ -27205,7 +26810,8 @@
     "#D50000",
     "#FFFFFF"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q165576-Q374069-2015",
@@ -27222,7 +26828,8 @@
     "#0055A4",
     "#FFFFFF"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q4979318-Q598834-2011",
@@ -27239,7 +26846,8 @@
     "#FFD200",
     "#111111"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q850284-Q80955-2002",
@@ -27256,7 +26864,8 @@
     "#FFFFFF",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q3302294-Q38568-2005",
@@ -27273,13 +26882,14 @@
     "#FFFFFF",
     "#D0021B"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q318383-Q80955-2018",
    "personId": "Q318383",
    "name": "Bryan Ruiz",
-   "position": "ATA",
+   "position": "MEI",
    "club": "Santos",
    "year": 2018,
    "levelMin": 80,
@@ -27296,7 +26906,7 @@
    "id": "wd-Q318383-Q75729-2015",
    "personId": "Q318383",
    "name": "Bryan Ruiz",
-   "position": "ATA",
+   "position": "MEI",
    "club": "Sporting",
    "year": 2015,
    "levelMin": 80,
@@ -27341,7 +26951,8 @@
     "#FFFFFF",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q342489-Q38568-1987",
@@ -27392,7 +27003,8 @@
     "#FFFFFF",
     "#D50000"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q313361-Q5014111-2012",
@@ -27460,7 +27072,8 @@
     "#111111",
     "#FFFFFF"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q932982-Q132885-2022",
@@ -27613,7 +27226,8 @@
     "#D50000",
     "#111111"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q464385-Q5014111-1996",
@@ -27664,7 +27278,8 @@
     "#C8102E",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q537739-Q910453-2011",
@@ -27766,7 +27381,8 @@
     "#0068A8",
     "#111111"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q46372260-Q1130849-2025",
@@ -27817,7 +27433,8 @@
     "#FDE100",
     "#111111"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q83006-Q10333-2008",
@@ -27868,7 +27485,8 @@
     "#C8102E",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q296341-Q9616-2013",
@@ -27885,7 +27503,8 @@
     "#034694",
     "#FFFFFF"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q488508-Q1024264-2012",
@@ -27902,7 +27521,8 @@
     "#D50000",
     "#FFFFFF"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q514577-Q35933-2011",
@@ -28055,7 +27675,8 @@
     "#111111",
     "#FFFFFF"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q552597-Q180305-2011",
@@ -28072,7 +27693,8 @@
     "#E2001A",
     "#FFFFFF"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q15830977-Q557103-2014",
@@ -28089,7 +27711,8 @@
     "#FFD200",
     "#111111"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q19518278-Q1130849-2023",
@@ -28123,7 +27746,8 @@
     "#FFD200",
     "#111111"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q4254043-Q1130849-2022",
@@ -28157,7 +27781,8 @@
     "#FFFFFF",
     "#2FAEE0"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q926917-Q17479-1933",
@@ -28174,7 +27799,8 @@
     "#C8102E",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q348407-Q1422-2015",
@@ -28191,7 +27817,8 @@
     "#FFFFFF",
     "#111111"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q18336397-Q18741-2024",
@@ -28208,7 +27835,8 @@
     "#FFFFFF",
     "#132257"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q433193-Q483020-1982",
@@ -28242,7 +27870,8 @@
     "#00843D",
     "#FFFFFF"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q18128250-Q2580083-2010",
@@ -28259,7 +27888,8 @@
     "#111111",
     "#FFFFFF"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q214204-Q9616-2018",
@@ -28378,7 +28008,8 @@
     "#111111",
     "#FFFFFF"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q593943-Q38568-2006",
@@ -28395,7 +28026,8 @@
     "#FFFFFF",
     "#D0021B"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q197875-Q80955-1996",
@@ -28412,7 +28044,8 @@
     "#FFFFFF",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q535429-Q17479-2000",
@@ -28531,7 +28164,8 @@
     "#006437",
     "#FFFFFF"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q2255874-Q80964-1999",
@@ -28548,7 +28182,8 @@
     "#006437",
     "#FFFFFF"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q445541-Q80964-1995",
@@ -28599,7 +28234,8 @@
     "#D50000",
     "#0033A0"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q447646-Q38568-2001",
@@ -28667,7 +28303,8 @@
     "#D50000",
     "#0033A0"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q47766-Q80845-1999",
@@ -28854,7 +28491,8 @@
     "#ED1C24",
     "#FFFFFF"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q309532-Q15789-2020",
@@ -28990,7 +28628,8 @@
     "#00613A",
     "#FFFFFF"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q361409-Q80964-1999",
@@ -29041,7 +28680,8 @@
     "#D50000",
     "#111111"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q18921427-Q80958-2013",
@@ -29058,7 +28698,8 @@
     "#111111",
     "#FFFFFF"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q18921427-Q80964-2011",
@@ -29075,7 +28716,8 @@
     "#006437",
     "#FFFFFF"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q482931-Q8682-1958",
@@ -29109,7 +28751,8 @@
     "#D50000",
     "#FFFFFF"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q361418-Q128446-1983",
@@ -29126,7 +28769,8 @@
     "#003893",
     "#FFFFFF"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q187891-Q1422-2013",
@@ -29160,7 +28804,8 @@
     "#D50000",
     "#FFFFFF"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q42731-Q8701-2007",
@@ -29534,7 +29179,8 @@
     "#111111",
     "#FFFFFF"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q9354-Q9616-1996",
@@ -29585,7 +29231,8 @@
     "#0033A0",
     "#FFFFFF"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q202404-Q50602-2008",
@@ -29653,7 +29300,8 @@
     "#DA291C",
     "#111111"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q334684-Q631-1984",
@@ -29670,7 +29318,8 @@
     "#0068A8",
     "#111111"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q60621615-Q1543-2026",
@@ -29704,7 +29353,8 @@
     "#008057",
     "#FFFFFF"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q238163-Q2609-2009",
@@ -29738,7 +29388,8 @@
     "#FFFFFF",
     "#111111"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q159059-Q38568-2005",
@@ -29789,7 +29440,8 @@
     "#FFFFFF",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q314511-Q1543-1949",
@@ -29840,7 +29492,8 @@
     "#D50000",
     "#111111"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q192974-Q631-2000",
@@ -29874,7 +29527,8 @@
     "#ED1C24",
     "#FFFFFF"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q131529-Q7156-1980",
@@ -30010,7 +29664,8 @@
     "#FFFFFF",
     "#132257"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q366559-Q41420-1985",
@@ -30112,7 +29767,8 @@
     "#C8102E",
     "#FFFFFF"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q65030995-Q80958-2025",
@@ -30180,7 +29836,8 @@
     "#E32221",
     "#111111"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q1347269-Q478317-2023",
@@ -30248,7 +29905,8 @@
     "#111111",
     "#FFFFFF"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q720549-Q80955-1972",
@@ -30282,13 +29940,14 @@
     "#111111",
     "#FFFFFF"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q368441-Q38568-2023",
    "personId": "Q368441",
    "name": "James Rodríguez",
-   "position": "ATA",
+   "position": "MEI",
    "club": "São Paulo",
    "year": 2023,
    "levelMin": 81,
@@ -30305,7 +29964,7 @@
    "id": "wd-Q368441-Q8682-2018",
    "personId": "Q368441",
    "name": "James Rodríguez",
-   "position": "ATA",
+   "position": "MEI",
    "club": "Real Madrid",
    "year": 2018,
    "levelMin": 84,
@@ -30333,7 +29992,8 @@
     "#ED1C24",
     "#FFFFFF"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q317863-Q5014111-1996",
@@ -30367,7 +30027,8 @@
     "#034694",
     "#FFFFFF"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q2256012-Q17479-2001",
@@ -30384,7 +30045,8 @@
     "#C8102E",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q513911-Q478317-2023",
@@ -30537,7 +30199,8 @@
     "#FFFFFF",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q351972-Q131499-1998",
@@ -30622,7 +30285,8 @@
     "#00843D",
     "#FFFFFF"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q2294406-Q80955-1976",
@@ -30741,7 +30405,8 @@
     "#FFFFFF",
     "#D0021B"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q491544-Q188277-2011",
@@ -30792,7 +30457,8 @@
     "#D50000",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q552610-Q198032-1968",
@@ -30826,7 +30492,8 @@
     "#DA291C",
     "#111111"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q3041366-Q198034-2014",
@@ -30843,7 +30510,8 @@
     "#D50000",
     "#111111"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q520731-Q219098-2009",
@@ -30883,7 +30551,7 @@
    "id": "wd-Q168740-Q18656-2015",
    "personId": "Q168740",
    "name": "Juan Mata",
-   "position": "ATA",
+   "position": "MEI",
    "club": "Manchester United",
    "year": 2015,
    "levelMin": 86,
@@ -30928,7 +30596,8 @@
     "#87D8F7",
     "#FFFFFF"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q57079-Q631-1991",
@@ -30979,13 +30648,14 @@
     "#FFFFFF",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q531814-Q38568-2003",
    "personId": "Q531814",
    "name": "Kaká",
-   "position": "ATA",
+   "position": "MEI",
    "club": "São Paulo",
    "year": 2003,
    "levelMin": 89,
@@ -31002,7 +30672,7 @@
    "id": "wd-Q531814-Q1543-2009",
    "personId": "Q531814",
    "name": "Kaká",
-   "position": "ATA",
+   "position": "MEI",
    "club": "Milan",
    "year": 2009,
    "levelMin": 91,
@@ -31070,7 +30740,7 @@
    "id": "wd-Q345702-Q50602-1978",
    "personId": "Q345702",
    "name": "Kazimierz Deyna",
-   "position": "ATA",
+   "position": "MEI",
    "club": "Manchester City",
    "year": 1978,
    "levelMin": 85,
@@ -31104,7 +30774,7 @@
    "id": "wd-Q202054-Q80958-2020",
    "personId": "Q202054",
    "name": "Keisuke Honda",
-   "position": "ATA",
+   "position": "MEI",
    "club": "Botafogo",
    "year": 2020,
    "levelMin": 80,
@@ -31149,7 +30819,8 @@
     "#FFFFFF",
     "#1E3A8A"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q15506789-Q50602-2023",
@@ -31166,7 +30837,8 @@
     "#6CABDD",
     "#FFFFFF"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q3915221-Q338285-2011",
@@ -31200,7 +30872,8 @@
     "#FFFFFF",
     "#111111"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q187198-Q1130849-1978",
@@ -31234,7 +30907,8 @@
     "#FFFFFF",
     "#D50000"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q152832-Q1130849-1977",
@@ -31285,7 +30959,8 @@
     "#0D80BF",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q21621995-Q483020-2024",
@@ -31353,13 +31028,14 @@
     "#5BC2E7",
     "#FFFFFF"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q313112-Q81888-2013",
    "personId": "Q313112",
    "name": "Lasse Schöne",
-   "position": "ATA",
+   "position": "MEI",
    "club": "Ajax",
    "year": 2013,
    "levelMin": 77,
@@ -31370,7 +31046,8 @@
     "#FFFFFF",
     "#D2122E"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q21484126-Q631-2024",
@@ -31404,7 +31081,8 @@
     "#FFFFFF",
     "#D0021B"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q6509762-Q9617-2023",
@@ -31455,7 +31133,8 @@
     "#006437",
     "#FFFFFF"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q19841320-Q188277-2015",
@@ -31472,7 +31151,8 @@
     "#0033A0",
     "#FFFFFF"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q485878-Q1024264-2008",
@@ -31489,7 +31169,8 @@
     "#D50000",
     "#FFFFFF"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q311739-Q38568-1943",
@@ -31625,7 +31306,8 @@
     "#111111",
     "#FFFFFF"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q154623-Q80964-2015",
@@ -31676,7 +31358,8 @@
     "#FFFFFF",
     "#D0021B"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q1200065-Q506832-2011",
@@ -31693,7 +31376,8 @@
     "#C8102E",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q15966749-Q35933-2014",
@@ -31710,7 +31394,8 @@
     "#FFFFFF",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q690387-Q80964-1968",
@@ -31931,7 +31616,8 @@
     "#E2001A",
     "#FFFFFF"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q483457-Q80987-2003",
@@ -31982,7 +31668,8 @@
     "#7A1E32",
     "#00613A"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q5945315-Q2332493-2014",
@@ -31999,7 +31686,8 @@
     "#D50000",
     "#FFFFFF"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q309890-Q18656-2009",
@@ -32016,7 +31704,8 @@
     "#DA291C",
     "#111111"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q6087839-Q1052219-2007",
@@ -32033,7 +31722,8 @@
     "#111111",
     "#FFFFFF"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q2255656-Q2536715-1994",
@@ -32050,7 +31740,8 @@
     "#00843D",
     "#FFFFFF"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q370507-Q221695-2014",
@@ -32101,7 +31792,8 @@
     "#111111",
     "#FFFFFF"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q6756642-Q338285-2015",
@@ -32118,7 +31810,8 @@
     "#00843D",
     "#111111"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q6757347-Q910453-2011",
@@ -32135,7 +31828,8 @@
     "#00843D",
     "#FFFFFF"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q44097-Q1543-2009",
@@ -32152,7 +31846,8 @@
     "#FB090B",
     "#111111"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q483629-Q1543-1991",
@@ -32186,7 +31881,8 @@
     "#00613A",
     "#FFFFFF"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q22951255-Q18656-2024",
@@ -32220,7 +31916,8 @@
     "#FFFFFF",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q45766-Q15789-2012",
@@ -32271,7 +31968,8 @@
     "#0D80BF",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q42010-Q9617-2011",
@@ -32322,7 +32020,8 @@
     "#FFFFFF",
     "#D0021B"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q2440999-Q221695-2024",
@@ -32356,13 +32055,14 @@
     "#ED1C24",
     "#FFFFFF"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q206237-Q50602-1936",
    "personId": "Q206237",
    "name": "Matt Busby",
-   "position": "ATA",
+   "position": "MEI",
    "club": "Manchester City",
    "year": 1936,
    "levelMin": 79,
@@ -32390,7 +32090,8 @@
     "#FDE100",
     "#111111"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q380830-Q2739-2015",
@@ -32407,7 +32108,8 @@
     "#8E1F2F",
     "#F0BC42"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q1989585-Q5014111-2008",
@@ -32458,7 +32160,8 @@
     "#FFFFFF",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q694542-Q17479-1995",
@@ -32611,7 +32314,8 @@
     "#6CABDD",
     "#FFFFFF"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q180581-Q1130849-2005",
@@ -32662,7 +32366,8 @@
     "#111111",
     "#FFFFFF"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q47660-Q80964-1986",
@@ -32713,7 +32418,8 @@
     "#034694",
     "#FFFFFF"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q2307148-Q17479-1929",
@@ -32764,7 +32470,8 @@
     "#FFFFFF",
     "#D2122E"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q3324839-Q506832-2014",
@@ -32781,7 +32488,8 @@
     "#C8102E",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q381729-Q38568-1993",
@@ -32849,7 +32557,8 @@
     "#0D80BF",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q1955597-Q198034-2008",
@@ -32866,7 +32575,8 @@
     "#D50000",
     "#111111"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q335831-Q50602-1993",
@@ -32968,7 +32678,8 @@
     "#111111",
     "#FFFFFF"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q456617-Q7156-2011",
@@ -32985,7 +32696,8 @@
     "#A50044",
     "#004D98"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q599675-Q9617-2003",
@@ -33121,7 +32833,8 @@
     "#111111",
     "#FFFFFF"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q507190-Q7156-2018",
@@ -33325,7 +33038,8 @@
     "#C8102E",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q2007888-Q910453-2005",
@@ -33342,7 +33056,8 @@
     "#00843D",
     "#FFFFFF"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q2093661-Q1513287-2012",
@@ -33365,7 +33080,7 @@
    "id": "wd-Q516417-Q38568-1970",
    "personId": "Q516417",
    "name": "Pedro Rocha",
-   "position": "ATA",
+   "position": "MEI",
    "club": "São Paulo",
    "year": 1970,
    "levelMin": 84,
@@ -33433,7 +33148,7 @@
    "id": "wd-Q311872-Q5014111-2024",
    "personId": "Q311872",
    "name": "Philippe Coutinho",
-   "position": "ATA",
+   "position": "MEI",
    "club": "Vasco",
    "year": 2024,
    "levelMin": 84,
@@ -33450,7 +33165,7 @@
    "id": "wd-Q311872-Q1130849-2018",
    "personId": "Q311872",
    "name": "Philippe Coutinho",
-   "position": "ATA",
+   "position": "MEI",
    "club": "Liverpool",
    "year": 2018,
    "levelMin": 85,
@@ -33580,7 +33295,8 @@
     "#0D80BF",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q20745204-Q80955-2014",
@@ -33597,7 +33313,8 @@
     "#FFFFFF",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q20745204-Q219120-2015",
@@ -33614,7 +33331,8 @@
     "#111111",
     "#FFFFFF"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q18233590-Q478317-2013",
@@ -33631,7 +33349,8 @@
     "#00613A",
     "#FFFFFF"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q312157-Q50602-2021",
@@ -33682,7 +33401,8 @@
     "#00843D",
     "#FFFFFF"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q28861547-Q374069-2015",
@@ -33807,7 +33527,7 @@
    "id": "wd-Q298491-Q631-2015",
    "personId": "Q298491",
    "name": "Rene Krhin",
-   "position": "ATA",
+   "position": "MEI",
    "club": "Inter de Milão",
    "year": 2015,
    "levelMin": 64,
@@ -33818,7 +33538,8 @@
     "#0068A8",
     "#111111"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q297608-Q11938-1978",
@@ -33886,7 +33607,8 @@
     "#111111",
     "#FFFFFF"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q7322701-Q598834-2005",
@@ -33903,7 +33625,8 @@
     "#FFD200",
     "#111111"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q703748-Q221695-2008",
@@ -33920,7 +33643,8 @@
     "#0D80BF",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q20806743-Q80987-2017",
@@ -33971,7 +33695,8 @@
     "#7A1E32",
     "#00613A"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q20630956-Q11938-2022",
@@ -34039,7 +33764,8 @@
     "#ED1C24",
     "#FFFFFF"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q151269-Q15789-2015",
@@ -34090,7 +33816,8 @@
     "#0033A0",
     "#FFFFFF"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q550019-Q5014111-1981",
@@ -34192,7 +33919,8 @@
     "#111111",
     "#FFFFFF"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q595653-Q816779-2006",
@@ -34209,7 +33937,8 @@
     "#00613A",
     "#FFFFFF"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q1254883-Q219098-2001",
@@ -34243,7 +33972,8 @@
     "#5BC2E7",
     "#FFFFFF"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q2975841-Q198034-2010",
@@ -34277,7 +34007,8 @@
     "#D50000",
     "#FFFFFF"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q42728914-Q80955-2019",
@@ -34345,7 +34076,8 @@
     "#FFFFFF",
     "#132257"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q178649-Q17479-1995",
@@ -34583,7 +34315,8 @@
     "#FFFFFF",
     "#FEBE10"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q99485542-Q270995-2022",
@@ -34617,7 +34350,8 @@
     "#C8102E",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q7442842-Q188277-2013",
@@ -34634,7 +34368,8 @@
     "#0033A0",
     "#FFFFFF"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q132056-Q80958-2010",
@@ -34736,7 +34471,8 @@
     "#FDE100",
     "#111111"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q299244-Q2739-2015",
@@ -34753,7 +34489,8 @@
     "#8E1F2F",
     "#F0BC42"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q1934-Q704-2006",
@@ -34821,7 +34558,8 @@
     "#FFFFFF",
     "#D2122E"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q102331-Q35933-1981",
@@ -34844,7 +34582,7 @@
    "id": "wd-Q102331-Q2332493-1978",
    "personId": "Q102331",
    "name": "Sócrates",
-   "position": "ATA",
+   "position": "MEI",
    "club": "Botafogo-SP",
    "year": 1978,
    "levelMin": 91,
@@ -34940,7 +34678,8 @@
     "#0068A8",
     "#111111"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q9613708-Q198032-2014",
@@ -34974,7 +34713,8 @@
     "#FFD200",
     "#00843D"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q2626579-Q221695-2006",
@@ -34991,7 +34731,8 @@
     "#0D80BF",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q234576-Q18741-1993",
@@ -35025,7 +34766,8 @@
     "#FFFFFF",
     "#D50000"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q769055-Q80987-1917",
@@ -35042,7 +34784,8 @@
     "#7A1E32",
     "#00613A"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q263411-Q270995-2005",
@@ -35059,7 +34802,8 @@
     "#111111",
     "#FFFFFF"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q45901-Q9617-2004",
@@ -35144,7 +34888,8 @@
     "#00843D",
     "#FFFFFF"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q714354-Q816779-1992",
@@ -35229,7 +34974,8 @@
     "#004170",
     "#DA291C"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q887969-Q80964-1995",
@@ -35314,7 +35060,8 @@
     "#004170",
     "#DA291C"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q441769-Q38568-1998",
@@ -35365,7 +35112,8 @@
     "#00843D",
     "#FFFFFF"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q116743-Q128446-2019",
@@ -35501,7 +35249,8 @@
     "#00613A",
     "#FFFFFF"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q467194-Q219120-2002",
@@ -35552,7 +35301,8 @@
     "#7A1E32",
     "#00613A"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q644235-Q80987-2010",
@@ -35569,7 +35319,8 @@
     "#7A1E32",
     "#00613A"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q1383449-Q219120-2015",
@@ -35603,7 +35354,8 @@
     "#D50000",
     "#FFFFFF"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q7982480-Q816779-2012",
@@ -35620,7 +35372,8 @@
     "#00613A",
     "#FFFFFF"
    ],
-   "series": "B"
+   "series": "B",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q112620020-Q188277-2026",
@@ -35637,7 +35390,8 @@
     "#0033A0",
     "#FFFFFF"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q112620020-Q35933-2024",
@@ -35654,7 +35408,8 @@
     "#FFFFFF",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q363251-Q81888-2005",
@@ -35671,7 +35426,8 @@
     "#FFFFFF",
     "#D2122E"
    ],
-   "series": "EU"
+   "series": "EU",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q370339-Q50602-2015",
@@ -35705,7 +35461,8 @@
     "#C8102E",
     "#111111"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q128294-Q2552872-1994",
@@ -35722,7 +35479,8 @@
     "#0B1F4D",
     "#FFFFFF"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q4501756-Q80958-2012",
@@ -35739,7 +35497,8 @@
     "#111111",
     "#FFFFFF"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q10393735-Q219120-2016",
@@ -35841,7 +35600,8 @@
     "#111111",
     "#FFFFFF"
    ],
-   "series": "A"
+   "series": "A",
+   "packagesOnly": true
   },
   {
    "id": "wd-Q311511-Q17479-1958",
@@ -36629,7 +36389,7 @@
    "id": "wd-Q180326-parma-1999",
    "personId": "Q180326",
    "name": "Lilian Thuram",
-   "position": "LAT",
+   "position": "ZAG",
    "club": "Parma",
    "year": 1999,
    "levelMin": 89,
@@ -38805,7 +38565,7 @@
    "id": "wd-Q10524-Q18656-1999",
    "personId": "Q10524",
    "name": "Ryan Giggs",
-   "position": "MEI",
+   "position": "ATA",
    "club": "Manchester United",
    "year": 1999,
    "levelMin": 91,
@@ -40114,7 +39874,7 @@
    "id": "wd-Q313180-Q81888-1972",
    "personId": "Q313180",
    "name": "Ruud Krol",
-   "position": "ZAG",
+   "position": "LAT",
    "club": "Ajax",
    "year": 1972,
    "levelMin": 84,

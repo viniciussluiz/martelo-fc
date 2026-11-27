@@ -60,8 +60,8 @@ Igual ao leilão de clubes, mas cada lote é um **setor de uma seleção** (os a
 O leilão de jogador (um jogador por lance) só com **Lendas e Craques** de todos os clubes do Brasil e da Europa. A sala não escolhe
 grupo de clubes, e as cartas de seleção ficam de fora.
 - Lendas primeiro: em vez dos terços de força, o lote de cada posição leva todas as Lendas que couberem (sorteadas) e só completa
-  com Craques quando faltam Lendas. Hoje há 34 goleiros, 19 laterais, 46 zagueiros, 62 meias e 87 atacantes Lenda: com até 5
-  técnicos o lote é só de Lendas; os laterais são os primeiros a precisar de Craque (a partir de 6 técnicos).
+  com Craques quando faltam Lendas. Hoje há 34 goleiros, 25 laterais, 40 zagueiros, 57 meias e 92 atacantes Lenda: com até 7
+  técnicos o lote é só de Lendas; os laterais são os primeiros a precisar de Craque (a partir de 8 técnicos).
 - Aguenta os 20 técnicos da sala. Moedas, desempate, repescagem, Monte, cartas-surpresa e herdadas: como no leilão de jogador; no
   novo ciclo só voltam as herdadas que ainda são Lenda ou Craque.
 
@@ -71,8 +71,8 @@ jogadores dos dois clubes, de todas as épocas. A lista de clássicos fica em `s
 - O pacote junta o pacote de cada clube como ele sairia no leilão de clubes (cada um com o seu corte de até 10), então chega a 20.
 - Cada clube entra em um clássico só por leilão (uma pessoa nunca aparece em dois pacotes): a cada leilão o jogo sorteia a
   combinação (Fla-Flu e Vasco x Botafogo, ou Flamengo x Vasco e Fluminense x Botafogo…). Com o baralho de hoje são 18 clássicos
-  por leilão, 9 do Brasil e 9 da Europa: pacote de clássico para até 17 técnicos. Acima disso, os pacotes que faltarem saem
-  “combinados”, com jogadores dos clubes que não estão nos clássicos. A sala nunca trava.
+  por leilão, 9 do Brasil e 9 da Europa: pacote de clássico para até 15 técnicos (Atletiba e Ba-Vi não fecham a zaga). Acima
+  disso, os pacotes que faltarem saem “combinados”, com jogadores dos clubes que não estão nos clássicos. A sala nunca trava.
 - Mistura do lote (fortes, médios e fracos; metade Brasil e metade Europa; pelo menos um pacote com Lenda), lances, Monte,
   convocação, sobras e novo ciclo: como no leilão de clubes.
 

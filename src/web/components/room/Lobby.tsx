@@ -259,7 +259,7 @@ export function SettingsPanel({ room, editable }: { room: RoomView; editable: bo
         {s.auctionMode === 'classicos' ? (
           <p className="hint">
             A cada leilão o jogo sorteia {classicos} clássicos do Brasil e da Europa, com cada clube em um só (o Flamengo vem no Fla-Flu ou no
-            Flamengo x Vasco, por exemplo). Com mais de {classicos - 1} técnicos, os pacotes que faltarem saem combinados.
+            Flamengo x Vasco, por exemplo). Em sala muito cheia, os pacotes que faltarem saem combinados.
           </p>
         ) : s.auctionMode === 'lendas' ? (
           <p className="hint">No leilão de lendas entram todos os clubes (Brasil e Europa).</p>

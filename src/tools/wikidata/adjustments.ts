@@ -1,12 +1,13 @@
 import { existsSync, readFileSync } from 'node:fs';
-import type { Card, Tier } from '../../engine/types.js';
+import type { Card, Position, Tier } from '../../engine/types.js';
 
 /**
  * Correções manuais do baralho (`data/deck-ajustes.json`), para quando o Wikidata erra ou quando a
  * nota calculada não faz justiça a alguém:
  *  - `excluir`: cartas que nunca entram (ex.: passagem sem data de saída que vira carta “de 2026”);
  *  - `nivel`: faixa de nível fixa (ex.: Pelé e Messi 95–100) e, se quiser, a faixa do jogo (`tier`);
- *  - `incluir`: cartas completas feitas à mão (ex.: Dirceu Lopes e Ronaldo no Cruzeiro), que entram no fim do baralho.
+ *  - `incluir`: cartas completas feitas à mão (ex.: Dirceu Lopes e Ronaldo no Cruzeiro), que entram no fim do baralho;
+ *  - `posicao`: posição corrigida (o Wikidata marca muito lateral só como “defensor”, que vira zagueiro).
  * O `id` casa por prefixo: `wd-<jogador>` pega todas as cartas do jogador, `wd-<jogador>-<clube>`
  * todas daquela passagem, e o id completo só aquela carta.
  */
@@ -29,10 +30,27 @@ export interface LevelOverride {
 /** Carta feita à mão: os campos da carta e, se quiser, o motivo. */
 export type Inclusion = Card & { motivo?: string };
 
+/** Posição fixada à mão. Vale por último, então corrige também as cartas de `incluir`. */
+export interface PositionOverride {
+  id: string;
+  jogador?: string;
+  clube?: string;
+  posicao: Position;
+  motivo?: string;
+}
+
+/** Jogador pouco conhecido que sai do leilão de jogadores (continua nos pacotes de clubes e de clássicos). */
+export interface Hidden {
+  id: string;
+  jogador?: string;
+}
+
 export interface DeckAdjustments {
   excluir: Exclusion[];
   nivel: LevelOverride[];
   incluir?: Inclusion[];
+  posicao?: PositionOverride[];
+  ocultar?: Hidden[];
 }
 
 const TIERS: Tier[] = ['lenda', 'craque', 'titular', 'operario', 'perna'];
@@ -70,7 +88,9 @@ export function loadAdjustments(path: string): DeckAdjustments {
       c.levelMin <= c.levelMax &&
       c.levelMax <= 100,
   );
-  return { excluir, nivel, incluir };
+  const posicao = (raw.posicao ?? []).filter((p) => typeof p?.id === 'string' && p.id.length > 0 && positions.includes(p.posicao));
+  const ocultar = (raw.ocultar ?? []).filter((h) => typeof h?.id === 'string' && h.id.length > 0);
+  return { excluir, nivel, incluir, posicao, ocultar };
 }
 
 export function matchesId(card: Pick<Card, 'id'>, id: string): boolean {
@@ -83,13 +103,14 @@ export function isExcluded(card: Pick<Card, 'id'>, exclusions: Exclusion[]): boo
 
 /**
  * Aplica as correções: tira as excluídas, fixa as faixas de nível (com `tier` vale o que está escrito;
- * sem ele, quem ganha faixa ≥ 86 vira Lenda) e
- * põe no fim as cartas feitas à mão (uma com o mesmo id de uma carta do baralho fica no lugar dela).
+ * sem ele, quem ganha faixa ≥ 86 vira Lenda),
+ * põe no fim as cartas feitas à mão (uma com o mesmo id de uma carta do baralho fica no lugar dela)
+ * e, por último, corrige as posições.
  */
-export function applyAdjustments<T extends Pick<Card, 'id' | 'levelMin' | 'levelMax' | 'tier'>>(
+export function applyAdjustments<T extends Pick<Card, 'id' | 'levelMin' | 'levelMax' | 'tier' | 'position' | 'packagesOnly'>>(
   cards: T[],
   adj: DeckAdjustments,
-): { cards: T[]; removed: T[]; leveled: T[]; added: T[] } {
+): { cards: T[]; removed: T[]; leveled: T[]; added: T[]; moved: T[]; hidden: T[] } {
   const removed = cards.filter((c) => isExcluded(c, adj.excluir));
   const kept = cards.filter((c) => !isExcluded(c, adj.excluir));
   const leveled: T[] = [];
@@ -103,5 +124,21 @@ export function applyAdjustments<T extends Pick<Card, 'id' | 'levelMin' | 'level
   });
   const added = (adj.incluir ?? []).map(({ motivo: _motivo, ...card }) => card as unknown as T);
   const addedIds = new Set(added.map((c) => c.id));
-  return { cards: [...out.filter((c) => !addedIds.has(c.id)), ...added], removed, leveled, added };
+  const moved: T[] = [];
+  const all = [...out.filter((c) => !addedIds.has(c.id)), ...added].map((c) => {
+    const p = (adj.posicao ?? []).find((o) => matchesId(c, o.id));
+    if (!p || p.posicao === c.position) return c;
+    const next = { ...c, position: p.posicao };
+    moved.push(next);
+    return next;
+  });
+  // Pouco conhecidos: saem do leilão de jogadores (a carta segue no baralho, para os pacotes).
+  const hidden: T[] = [];
+  const cardsOut = all.map((c) => {
+    if (!(adj.ocultar ?? []).some((h) => matchesId(c, h.id))) return c;
+    const next = { ...c, packagesOnly: true };
+    hidden.push(next);
+    return next;
+  });
+  return { cards: cardsOut, removed, leveled, added, moved, hidden };
 }

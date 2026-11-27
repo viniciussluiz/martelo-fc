@@ -13,6 +13,7 @@ import type { RawDump, RawPerson } from './types.js';
  *  - só ficam as seleções que fecham todos os setores com folga para a convocação.
  * Nota: a mesma do melhor momento do jogador no baralho de clubes; quem não tem carta lá recebe
  * a nota típica de quem tem história parecida (artigos, prêmios, jogos e Copas pela seleção).
+ * Lenda de seleção: só quem é Lenda no clube, mais as escolhidas à mão em CARD_FIXES.
  * Uma carta por jogador: o “clube” é a seleção.
  */
 
@@ -38,15 +39,35 @@ export interface NationalReport {
  * Chave: seleção → nome da carta.
  */
 export const POSITION_FIXES: Record<string, Record<string, Position>> = {
-  Brasil: { 'Nílton Santos': 'LAT', 'Djalma Santos': 'LAT', Sócrates: 'MEI', Neymar: 'ATA', Rivaldo: 'MEI', Kaká: 'MEI', 'Carlos Alberto Torres': 'LAT', Leandro: 'LAT', Júnior: 'LAT' },
-  Argentina: { 'Nicolás Otamendi': 'ZAG', 'Lionel Messi': 'ATA', 'Ángel Di María': 'ATA', 'Ezequiel Lavezzi': 'ATA', 'Nicolás Burdisso': 'ZAG' },
-  Uruguai: { 'Sebastián Coates': 'ZAG', 'Rodrigo Betancur': 'MEI' },
-  Portugal: { 'Raphaël Guerreiro': 'LAT', 'Ricardo Costa': 'ZAG', 'Cristiano Ronaldo': 'ATA', Nani: 'ATA' },
+  Brasil: { 'Nílton Santos': 'LAT', 'Djalma Santos': 'LAT', Sócrates: 'MEI', Neymar: 'ATA', Rivaldo: 'MEI', Kaká: 'MEI', 'Carlos Alberto Torres': 'LAT', Leandro: 'LAT', Júnior: 'LAT', Tostão: 'ATA' },
+  Argentina: { 'Nicolás Otamendi': 'ZAG', 'Lionel Messi': 'ATA', 'Ángel Di María': 'ATA', 'Ezequiel Lavezzi': 'ATA', 'Nicolás Burdisso': 'ZAG', 'Ezequiel Garay': 'ZAG' },
+  Uruguai: { 'Sebastián Coates': 'ZAG', 'Rodrigo Betancur': 'MEI', 'Pedro Rocha': 'MEI', 'Pablo Forlán': 'LAT' },
+  Portugal: { 'Raphaël Guerreiro': 'LAT', 'Ricardo Costa': 'ZAG', 'Cristiano Ronaldo': 'ATA', Nani: 'ATA', 'Luís Figo': 'ATA' },
   Inglaterra: { 'Rio Ferdinand': 'ZAG', 'James Milner': 'MEI' },
   Itália: { 'Giorgio Chiellini': 'ZAG', 'Leonardo Bonucci': 'ZAG', 'Paolo Maldini': 'LAT' },
-  Alemanha: { 'Robert Huth': 'ZAG', 'Joshua Kimmich': 'LAT', 'Lukas Podolski': 'ATA' },
+  Alemanha: { 'Robert Huth': 'ZAG', 'Joshua Kimmich': 'LAT', 'Lukas Podolski': 'ATA', 'Paul Breitner': 'LAT' },
   França: { 'Franck Ribéry': 'ATA' },
-  Holanda: { 'Dirk Kuyt': 'ATA' },
+  Holanda: { 'Dirk Kuyt': 'ATA', 'Royston Drenthe': 'LAT' },
+  // Revisão de posições (nov/2026): laterais que o Wikidata chama só de “defensor”, meias no ataque e o
+  // contrário. Ponta que já está no meio da seleção fica lá quando tirá-lo tiraria um centroavante da cota.
+  Dinamarca: { 'Jan Heintze': 'LAT', 'Dennis Rommedahl': 'ATA' },
+  // Navas: lateral-direito da Espanha campeã da Euro 2024.
+  Espanha: { 'Jesús Navas': 'LAT', 'Juan Mata': 'MEI' },
+  // Beasley: ponta no começo, lateral-esquerdo da seleção na Copa de 2014 (e é ele quem fecha a lateral dos EUA).
+  'Estados Unidos': { 'DaMarcus Beasley': 'LAT', 'John Brooks': 'ZAG', 'Christian Pulisic': 'ATA', 'Julian Green': 'ATA' },
+  Irlanda: { 'Damien Duff': 'ATA', 'Ronnie Whelan': 'MEI' },
+  México: { 'Jorge Sánchez': 'LAT', 'Hirving Lozano': 'ATA', 'Edson Álvarez': 'MEI' },
+};
+
+/**
+ * Nota e ano escolhidos à mão para a carta da seleção (valem sobre os calculados).
+ * Chave: seleção → nome da carta. `faixa` é a nota [mínima, máxima]; a raridade sai dela.
+ */
+export const CARD_FIXES: Record<string, Record<string, { faixa?: [number, number]; ano?: number }>> = {
+  // Lendas da Bélgica: só De Bruyne e Courtois, os dois da Copa de 2018 (3º lugar; Courtois foi a Luva de Ouro).
+  Bélgica: { 'Thibaut Courtois': { ano: 2018 } },
+  // Griezmann da Copa de 2018 (campeão, melhor jogador da final): Lenda na seleção mesmo sem ser no clube.
+  França: { 'Antoine Griezmann': { faixa: [87, 93], ano: 2018 } },
 };
 
 /**
@@ -92,6 +113,7 @@ export function buildNationalDeck(raw: RawDump, clubCards: Card[], currentYear =
     name: string;
     score: number;
     club?: Card;
+    fix?: { faixa?: [number, number]; ano?: number };
   }
   const cands: Cand[] = [];
   for (const p of Object.values(raw.people)) {
@@ -107,7 +129,8 @@ export function buildNationalDeck(raw: RawDump, clubCards: Card[], currentYear =
     if (!name) continue;
     const position = POSITION_FIXES[team.name]?.[name] ?? club?.position ?? mapPosition(p.positions);
     if (!position) continue;
-    cands.push({ person: p, team, position, name, score: nationalScore(p), ...(club ? { club } : {}) });
+    const fix = CARD_FIXES[team.name]?.[name];
+    cands.push({ person: p, team, position, name, score: nationalScore(p), ...(club ? { club } : {}), ...(fix ? { fix } : {}) });
   }
 
   // Nota de quem não tem carta de clube: mediana de quem tem história parecida na seleção.
@@ -129,11 +152,14 @@ export function buildNationalDeck(raw: RawDump, clubCards: Card[], currentYear =
     return near[near.length >> 1]!;
   };
   const level = (c: Cand): [number, number] => {
+    if (c.fix?.faixa) return c.fix.faixa;
     const typical = Math.min(93, Math.max(60, estimate(c.score)));
     // Com carta de clube: vale o auge dele lá, a não ser que a carta seja de uma passagem menor
     // (Batistuta só tem a da Roma) — aí sobe um pouco, até a nota típica de quem tem a mesma história.
     if (c.club) {
-      const lift = Math.min(MAX_LIFT, Math.max(0, Math.round(typical - mid(c.club))));
+      let lift = Math.min(MAX_LIFT, Math.max(0, Math.round(typical - mid(c.club))));
+      // A subida não faz ninguém virar Lenda: na seleção, Lenda é quem já é Lenda no clube (ou está em CARD_FIXES).
+      while (lift > 0 && c.club.tier !== 'lenda' && tierOf(mid(c.club) + lift) === 'lenda') lift--;
       return [Math.min(95, c.club.levelMin + lift), Math.min(100, c.club.levelMax + lift)];
     }
     const m = Math.min(88, typical - 2);
@@ -168,7 +194,7 @@ export function buildNationalDeck(raw: RawDump, clubCards: Card[], currentYear =
     }
     for (const { c, range } of picked) {
       const p = c.person;
-      const year = c.club?.year ?? Math.min(currentYear, (p.birthYear ?? currentYear - 27) + 27);
+      const year = c.fix?.ano ?? c.club?.year ?? Math.min(currentYear, (p.birthYear ?? currentYear - 27) + 27);
       const bits = [p.caps ? `${p.caps} jogos pela seleção` : 'Jogou pela seleção', p.wc ? `${p.wc} ${p.wc === 1 ? 'Copa do Mundo' : 'Copas do Mundo'}` : ''];
       cards.push({
         id: `sel-${p.qid}-${slug(team.name)}`,

@@ -70,6 +70,10 @@ export const LEGEND_ART: Record<string, string> = {
  */
 export const CARD_ART: Record<string, string | null> = {
   'wd-Q58441-Q8682-2008': null, // Robinho no Real Madrid: sem face (as do Santos e do Atlético-MG continuam)
+  // Lendas de seleção da Copa de 2018, com a camisa da seleção (as cartas de clube seguem com o retrato da pessoa).
+  'sel-Q357984-belgica': 'de-bruyne-belgica-2018',
+  'sel-Q73360-belgica': 'courtois-belgica-2018',
+  'sel-Q455462-franca': 'griezmann-franca-2018',
 };
 
 /** Chave do retrato de uma carta: o QID da pessoa ou, sem ele (ou com exceção da carta), o id da carta. */

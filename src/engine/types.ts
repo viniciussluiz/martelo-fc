@@ -136,6 +136,11 @@ export interface Card {
   kit?: [string, string];
   /** Grupo do clube da carta (baralho real): Série A, Série B ou Europa; a sala escolhe quais usa. */
   series?: Series;
+  /**
+   * Jogador pouco conhecido: fica fora do leilão de jogadores, para sobrar vez aos conhecidos. Continua
+   * nos pacotes dos leilões de clubes e de clássicos, que precisam dele para fechar os setores do clube.
+   */
+  packagesOnly?: boolean;
 }
 
 export type AcquisitionSource = 'leilao' | 'desempate' | 'repescagem' | 'monte';
@@ -183,6 +188,11 @@ export function isPackageMode(mode: AuctionMode | undefined): boolean {
 /** Cartas de seleção do baralho (modo “Seleções”). */
 export function nationalDeck(deck: Card[]): Card[] {
   return deck.filter((c) => c.series === 'SEL');
+}
+
+/** Cartas do leilão de jogadores: as do grupo de clubes da sala, menos as dos pouco conhecidos (`packagesOnly`). */
+export function playerAuctionDeck(deck: Card[], scope: SeriesScope): Card[] {
+  return deckForScope(deck, scope).filter((c) => !c.packagesOnly);
 }
 
 /** Cartas do leilão “Lendas”: as Lendas e os Craques de todos os clubes (sem as cartas de seleção). */

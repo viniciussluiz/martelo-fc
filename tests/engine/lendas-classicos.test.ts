@@ -127,21 +127,22 @@ describe('leilão de clássicos', () => {
     }
   });
 
-  it('não trava: até 17 técnicos só clássicos; acima disso, os pacotes que faltam saem combinados', () => {
-    for (const [n, mixed] of [
-      [10, 0],
-      [17, 0],
-      [18, 1],
-      [20, 3],
-    ] as const) {
-      const { packages, cards } = auction(n, `n${n}`);
-      for (const pos of POSITIONS) {
-        const sector = packages.filter((p) => p.position === pos);
-        expect(sector, `${n} ${pos}`).toHaveLength(n + 1);
-        expect(sector.filter((p) => p.mixed).length, `${n} ${pos}`).toBe(mixed);
-        for (const p of sector) expect(p.cardIds.length).toBeGreaterThanOrEqual(SECTOR_NEED[pos]);
+  it('não trava: até 15 técnicos só clássicos; acima disso, os pacotes que faltam saem combinados', () => {
+    for (const n of [10, 15, 16, 20]) {
+      for (const seed of ['a', 'b', 'c']) {
+        const { packages, cards } = auction(n, `n${n}${seed}`);
+        for (const pos of POSITIONS) {
+          const sector = packages.filter((p) => p.position === pos);
+          expect(sector, `${n} ${pos}`).toHaveLength(n + 1);
+          const mixed = sector.filter((p) => p.mixed).length;
+          // Até 15, todo pacote é de clássico. Com mais, a zaga é a primeira a precisar de combinado
+          // (Atletiba e Ba-Vi não fecham um pacote de zagueiros), e nunca falta pacote.
+          if (n <= 15) expect(mixed, `${n} ${pos}`).toBe(0);
+          else expect(mixed, `${n} ${pos}`).toBeLessThanOrEqual(n - 15);
+          for (const p of sector) expect(p.cardIds.length).toBeGreaterThanOrEqual(SECTOR_NEED[pos]);
+        }
+        expect(new Set(cards.map(person)).size).toBe(cards.length);
       }
-      expect(new Set(cards.map(person)).size).toBe(cards.length);
     }
   });
 });

@@ -70,7 +70,12 @@ conhecidos. O baralho atual tem 2.374 cartas: Série A 881, Série B 332 e Europ
 - `nivel`: faixa de nível fixa (ex.: Pelé e Messi 95–100);
 - `incluir`: cartas completas feitas à mão, para quem o Wikidata não tem ou a nota calculada deixou de fora (ex.: Dirceu Lopes,
   Cruzeiro 1966, e Ronaldo Fenômeno, Cruzeiro 1993). Entram no fim do baralho. Podem ser de clubes fora da lista (Parma,
-  Deportivo La Coruña, Villarreal…): essas cartas ficam no grupo Europa e não formam pacote no leilão de clubes.
+  Deportivo La Coruña, Villarreal…): essas cartas ficam no grupo Europa e não formam pacote no leilão de clubes;
+- `posicao`: posição corrigida à mão (vale por último, inclusive para as cartas de `incluir`);
+- `ocultar`: jogadores pouco conhecidos que ficam fora do leilão de jogadores, para sobrar vez aos conhecidos (619 na revisão
+  de nov/2026). A carta continua no baralho, marcada com `packagesOnly`, e entra nos pacotes dos leilões de clubes e de
+  clássicos, que precisam dela para fechar os setores. A lista foi feita sem tirar sala de nenhum grupo de clubes: todos
+  continuam fechando 20 técnicos, e a Série B sozinha, 12, como antes.
 O `id` casa por prefixo: `wd-<jogador>` pega todas as cartas do jogador, `wd-<jogador>-<clube>` as daquela passagem, e com o
 ano no fim só aquela carta.
 
